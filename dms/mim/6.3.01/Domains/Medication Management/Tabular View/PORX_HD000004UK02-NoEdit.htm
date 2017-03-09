@@ -1,0 +1,636 @@
+<HTML><HEAD><TITLE>Prescription State List Query Response Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="Prescription State List Query Response" name=Entry>
+<META content=PORX_HD000004UK02 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Prescription State List Query Response - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne style="LEFT: 210px; VISIBILITY: hidden; TOP: 266px">Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="PORX_RM000004UK02.htm"><B>PORX_RM000004UK02</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=PrescriptionStateList><B>PrescriptionStateList</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#WorkingList;PrescriptionStateList_c title=PORX_HD000004UK02#PrescriptionStateList_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A list one or more&nbsp;instances each providing selected information about the&nbsp;state of an identified prescription instance as recorded by the ETP component of the Spine.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=PrescriptionStateList>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>LIST</B>} )<A>{<B> Fixed="<FONT color=red>LIST</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Act;PrescriptionStateList/$classCode title=PrescriptionStateList.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code indicating that this is a list.</P>
+<UL>
+<LI>Fixed value: "LIST"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Act;PrescriptionStateList/$moodCode title=Act.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Act;PrescriptionStateList/$id title=PORX_HD000004UK02#PrescriptionStateList.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The&nbsp;globally unique identifier for&nbsp;this instance.&nbsp;</P>
+<P>The <B>Identifier Global</B> datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>the <I>root</I> attribute will contain a UUID</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Act;PrescriptionStateList/$effectiveTime title=Act.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The date and timestamp of this message.</P>
+<P>The date-timestamp must be given with&nbsp;the following precision:</P>
+<UL>
+<LI>YYYYMMDDHHMMSS</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..*] </B></FONT><A name=Component><B>component</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD000004UK02#Act;/PrescriptionStateList/component title=PORX_HD000004UK02#/PrescriptionStateList/component style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A relationship linking the prescription&nbsp;state list to one or more component prescription event list items.</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;PrescriptionStateList/component/$typeCode title=component.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value: "COMP"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;PrescriptionStateList/component/$contextConductionInd title=PORX_HD000004UK02#PrescriptionStateList/component.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P>
+<P>In this context the contextConductionInd defaults to "false". </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;PrescriptionStateList/component/$seperatableInd title=component.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.</P>
+<P>If the source act is intended to be interpreted independently the value shall be "true" otherwise the value shall be "false".</P>
+<P>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.</P>
+<P>In this context the seperatableInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>prescription</B> (<A href="#Prescription"><B>Prescription</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;PrescriptionStateList/component/prescription-Prescription title=PORX_HD000004UK02#prescription-Prescription style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A component prescription state item.&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Prescription><B>Prescription</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#SubstanceAdministration;Prescription_c title=PORX_HD000004UK02#Prescription_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Act&nbsp;containing&nbsp;selected information about&nbsp;the&nbsp;state of an identified prescription.&nbsp;</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Prescription>Used by: </A></FONT><A href="#PrescriptionStateList"><B>PrescriptionStateList</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBADM</B>} )<A>{<B> Fixed="<FONT color=red>SBADM</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#SubstanceAdministration;Prescription/$classCode title=SubstanceAdministration.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate introducing or applying a substance to a subject.</P>
+<UL>
+<LI>Fixed value: "SBADM"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#SubstanceAdministration;Prescription/$moodCode title=PORX_HD000004UK02#Prescription.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is event.</P>
+<UL>
+<LI>Fixed value: "EVN" </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[2..2] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#LIST"><B>LIST</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#SubstanceAdministration;Prescription/$id title=PORX_HD000004UK02#Prescription.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A list of prescription identifiers that&nbsp;are universally unique across all records.&nbsp; The identifiers, in order of their occurence, consist of:</P>
+<OL>
+<LI>the globally unique&nbsp;number (DCE UUID) that identifies&nbsp;the&nbsp;Prescription clinical event. &nbsp; </LI>
+<P>The <B>Identifier Global</B> datatype flavour is used to carry this information as follows: </P>
+<UL>
+<LI style="PADDING-BOTTOM: 20px">the <I>root</I> attribute shall contain the value of the DCE UUID</LI></UL>
+<LI>the Short Form Prescription Identifier. </LI>
+<P>The <B>Identifier External</B> datatype flavour is used to carry this information as follows: </P>
+<UL>
+<LI>the <I>root</I> attribute shall contain the value of the <B>Short Form Prescription Identifier</B> OID = 2.16.840.1.113883.2.1.3.2.4.18.8 </LI>
+<LI>the <I>extension</I> attribute shall contain the 18 character Short Form Prescription Identifier as described in the <I>ETP Prescribing Systems Compliance Specification</I> document (ref: NPFIT-ETP-EDB-0025.09).</LI></UL></OL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#SubstanceAdministration;Prescription/$effectiveTime title=PORX_HD000004UK02#Prescription.effectiveTime style="WIDTH: 476px; HEIGHT: 133px; BACKGROUND-COLOR: white">
+The issue date of the prescription. 
+<p>The date-timestamp must be given with the following precision: </p>
+<ul>
+	<li>YYYYMMDDHHMMSS</li>
+</ul>
+</DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>repeatNumber</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#INT"><B>INT</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#SubstanceAdministration;Prescription/$repeatNumber title=PORX_HD000004UK02#Prescription.repeatNumber style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+
+			<p>This interval is used to represent the number of authorised 
+			instances of a repeat dispensing prescription only.</p>
+			<p>The <b>Interval of Integers</b> datatype flavour is used to carry 
+			this information as follows:</p>
+			<ul>
+				<li>the <i>low.value</i> attribute shall contain&nbsp;the ordinal 
+				number of the dispense in the series of repeat dispenses; 
+				</li>
+				<li>the <i>high.value&nbsp;</i>attribute shall contain the number of 
+				times the prescription is authorised to be dispensed.</li>
+			</ul>
+
+</NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=PertinentInformation><B>pertinentInformation14</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD000004UK02#SubstanceAdministration;component/Prescription/pertinentInformation14 title=PORX_HD000004UK02#SubstanceAdministration/pertinentInformation14 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A link to information&nbsp;indicating the&nbsp;date that&nbsp;the prescription was last 
+dispensed.</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation14/$typeCode title=ActRelationship.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value&nbsp;: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation14/$contextConductionInd title=pertinentInformation14.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P>
+<P>In this context the contextConductionInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation14/$seperatableInd title=pertinentInformation14.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.</P>
+<P>If the source act is intended to be interpreted independently the value shall be "true" otherwise the value shall be "false".</P>
+<P>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.</P>
+<P><BR>In this context the seperatableInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentLastActivityDate</B> (<A href="#LastActivityDate"><B>LastActivityDate</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation14/pertinentLastActivityDate-LastActivityDate title=PORX_HD000004UK02#pertinentLastActivityDate-LastActivityDate style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The&nbsp;date that&nbsp;the prescription was last dispensed.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PertinentInformation2><B>pertinentInformation10</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD000004UK02#SubstanceAdministration;component/Prescription/pertinentInformation10 title=PORX_HD000004UK02#SubstanceAdministration/pertinentInformation10 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>
+<P><B>A link to the&nbsp;prescription status.</B> </P></B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation10/$typeCode title=ActRelationship.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value&nbsp;: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation10/$contextConductionInd title=ActRelationship.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P>
+<P>In this context the contextConductionInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation10/$seperatableInd title=Prescription/pertinentInformation10.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.</P>
+<P>If the source act is intended to be interpreted independently the value shall be "true" otherwise the value shall be "false".</P>
+<P>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.</P>
+<P>In this context the seperatableInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentPrescriptionStatus</B> (<A href="#PrescriptionStatus"><B>PrescriptionStatus</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation10/pertinentPrescriptionStatus-PrescriptionStatus title=PORX_HD000004UK02#ActRelationship/pertinentPrescriptionStatus-PrescriptionStatus style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the status of the prescription.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PertinentInformation31><B>pertinentInformation13</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD000004UK02#SubstanceAdministration;component/Prescription/pertinentInformation13 title=PORX_HD000004UK02#Prescription/pertinentInformation13 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A link to the information indicating if a cancellation is pending on the prescription.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation13/$typeCode title=ActRelationship.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value&nbsp;: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation13/$contextConductionInd title=pertinentInformation13.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P>
+<P>In this context the contextConductionInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation13/$seperatableInd title=pertinentInformation13.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.</P>
+<P>If the source act is intended to be interpreted independently the value shall be "true" otherwise the value shall be "false".</P>
+<P>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.<BR>In this context the seperatableInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentCancellationPending</B> (<A href="#CancellationPending"><B>CancellationPending</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD000004UK02#ActRelationship;Prescription/pertinentInformation13/pertinentCancellationPending-CancellationPending title=PORX_HD000004UK02#pertinentCancellationPending-CancellationPending style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Cancellation pending information pertinent to this prescription.&nbsp; </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=LastActivityDate><B>LastActivityDate</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;LastActivityDate_c title=LastActivityDate_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Act&nbsp;containing the date that a prescription was last 
+	dispensed.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=LastActivityDate>Used by: </A></FONT><A href="#Prescription"><B>Prescription</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;LastActivityDate/$classCode title=Observation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this act is an observation</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;LastActivityDate/$moodCode title=Observation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this&nbsp;is an event</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/PrescriptionAnnotation.htm"><B>PrescriptionAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;LastActivityDate/$code title=LastActivityDate.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this represents the last activity date.</P>
+<P>The&nbsp;<B>Coded with Code System</B> datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain&nbsp;the fixed&nbsp;value "LADT" from the list of codes in the&nbsp;<U>PrescriptionAnnotation </U>vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID value referenced in the&nbsp;<U>PrescriptionAnnotation </U>vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;LastActivityDate/$value title=PORX_HD000004UK02#LastActivityDate.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The&nbsp;date that&nbsp;the prescription was last dispensed.</P>
+<P>The <B>Date and Time </B>datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>the <I>value</I> attribute shall contain the last activity date&nbsp;with YYYYMMDDHHMMSS precision.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=PrescriptionStatus><B>PrescriptionStatus</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;PrescriptionStatus_c title=PORX_HD000004UK02#PrescriptionStatus_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Act containing the&nbsp;status of&nbsp;a prescription as a function of&nbsp;the individual medication item statuses.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=PrescriptionStatus>Used by: </A></FONT><A href="#Prescription"><B>Prescription</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;PrescriptionStatus/$classCode title=Observation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this act is an observation</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;PrescriptionStatus/$moodCode title=Observation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this&nbsp;is an event</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/PrescriptionAnnotation.htm"><B>PrescriptionAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;PrescriptionStatus/$code title=PrescriptionStatus.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is representation of the prescription status</P>
+<P>The&nbsp;<B>Coded with Code System</B> datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain&nbsp;the fixed&nbsp;value "PS" from the list of codes in the&nbsp;<U>PrescriptionAnnotation </U>vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID value referenced in the&nbsp;<U>PrescriptionAnnotation </U>vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cwe')" onmouseout="popUp(event,'cwe')"><B>CNE</B></A>:<A href="../../../Vocabulary/PrescriptionStatus.htm"><B>PrescriptionStatus</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;PrescriptionStatus/$value title=PrescriptionStatus.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Coded information classfying the status of the overall prescription as a function of the medication dispensed.</P>
+<P>The&nbsp;<B>Coded with Code System</B> datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;<U>PrescriptionStatus</U> vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID value referenced in the&nbsp;<U>PrescriptionStatus</U> vocabulary</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=CancellationPending><B>CancellationPending</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;CancellationPending_c title=PORX_HD000004UK02#CancellationPending_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Act indicating if a cancellation is pending on a prescription.&nbsp;</B> </NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=CancellationPending>Used by: </A></FONT><A href="#Prescription"><B>Prescription</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;CancellationPending/$classCode title=Observation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this act is an observation</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;CancellationPending/$moodCode title=Observation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this&nbsp;is an event</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/PrescriptionAnnotation.htm"><B>PrescriptionAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;CancellationPending/$code title=PORX_HD000004UK02#CancellationPending.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is the representation of whether or not a cancellation is pending on a prescription. </P>
+<P>The&nbsp;<B>Coded with Code System</B> datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain&nbsp;the fixed&nbsp;value "CAP" from the list of codes in the&nbsp;<U>PrescriptionAnnotation </U>vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID value referenced in the&nbsp;<U>PrescriptionAnnotation </U>vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD000004UK02#Observation;CancellationPending/$value title=PORX_HD000004UK02#CancellationPending.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If cancellation pending the value shall be "true" otherwise the value shall be "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

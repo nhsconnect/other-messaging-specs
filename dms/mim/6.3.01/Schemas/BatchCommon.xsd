@@ -1,0 +1,305 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v3" targetNamespace="urn:hl7-org:v3" elementFormDefault="qualified">
+	<xs:include schemaLocation="UKCT_MT120501UK03.xsd"/>
+	<xs:include schemaLocation="UKCT_MT120301UK02.xsd"/>
+	<xs:include schemaLocation="UKCT_MT120901UK01.xsd"/>
+	<xs:include schemaLocation="UKCT_MT121001UK01.xsd"/>
+	<xs:complexType name="BatchRequest">
+		<xs:sequence>
+			<xs:element name="id" type="II"/>
+			<xs:element name="creationTime" type="TS"/>
+			<xs:element name="transmissionQuantity" type="INT"/>
+			<xs:element name="versionCode" type="CS"/>
+			<xs:element name="interactionId" type="II"/>
+			<xs:element name="batchSequenceNo" type="BatchSequenceNo"/>
+			<xs:element name="manifestItem" type="BatchManifestItem_Type1" maxOccurs="unbounded"/>
+			<xs:element name="communicationFunctionRcv" type="CommunicationFunctionRcv"/>
+			<xs:element name="communicationFunctionSnd" type="CommunicationFunctionSnd"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="BatchResponse">
+		<xs:sequence>
+			<xs:element name="id" type="II"/>
+			<xs:element name="creationTime" type="TS"/>
+			<xs:element name="transmissionQuantity" type="INT"/>
+			<xs:element name="versionCode" type="CS"/>
+			<xs:element name="interactionId" type="II"/>
+			<xs:element name="acknowledgement" type="Acknowledgement" maxOccurs="unbounded"/>
+			<xs:element name="batchSequenceNo" type="BatchSequenceNo" minOccurs="0"/>
+			<xs:element name="manifestItem" type="BatchManifestItem_Type2" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="communicationFunctionRcv" type="CommunicationFunctionRcv"/>
+			<xs:element name="communicationFunctionSnd" type="CommunicationFunctionSnd"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:attributeGroup name="BatchControlAct_AttributeGroup">
+		<xs:annotation>
+			<xs:documentation>Default attribute group for BatchControlAct to refrenced in new batch schemas</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="CACT"/>
+		<xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:attributeGroup>
+	<xs:complexType name="BatchManifestItem_Type1">
+		<xs:annotation>
+			<xs:documentation>Complex type restriction on ManifestItems to restrict the cardinality on value element to 2.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ManifestItem">
+				<xs:sequence>
+					<xs:element name="payloadId" type="II"/>
+					<xs:element name="manifestValue" type="ManifestValue"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BatchManifestItem_Type2">
+		<xs:annotation>
+			<xs:documentation>Complex type restriction on ManifestItems to restrict the cardinality between 2 - 4.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ManifestItem">
+				<xs:sequence>
+					<xs:element name="payloadId" type="II"/>
+					<xs:element name="manifestValue" type="ManifestValue" minOccurs="2" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:attributeGroup name="Default_Attributes">
+		<xs:annotation>
+			<xs:documentation>Attributes that are optional and defualted</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="type" type="xs:string" use="optional"/>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:attributeGroup>
+	<xs:complexType name="BatchSequenceNo">
+		<xs:sequence>
+			<xs:element name="value" type="II"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="CommunicationFunctionRcv">
+		<xs:sequence>
+			<xs:element name="device" type="Device"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="cs" use="optional" default="RCV"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="Device">
+		<xs:sequence>
+			<xs:element name="id" type="II" maxOccurs="unbounded"/>
+			<xs:element name="agencyFor" type="Agent" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="classCode" type="EntityClass" use="optional" default="DEV"/>
+		<xs:attribute name="determinerCode" type="EntityDeterminer" use="optional" default="INSTANCE"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="Agent">
+		<xs:sequence>
+			<xs:element name="representedOrganization" type="Organization" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="classCode" type="RoleClass" use="optional" default="AGNT"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="Organization">
+		<xs:sequence>
+			<xs:element name="id" type="II"/>
+			<xs:group ref="UKCT_MT120501UK03"/>
+			<xs:group ref="UKCT_MT120301UK02"/>
+		</xs:sequence>
+		<xs:attribute name="classCode" type="EntityClass" use="optional" default="ENT"/>
+		<xs:attribute name="determinerCode" type="EntityDeterminer" use="optional" default="INSTANCE"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="CommunicationFunctionSnd">
+		<xs:sequence>
+			<xs:element name="device" type="Device"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="cs" use="optional" default="SND"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="ManifestItem">
+		<xs:sequence>
+			<xs:element name="payloadId" type="II" maxOccurs="unbounded"/>
+			<xs:element name="manifestValue" type="ManifestValue" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="ManifestValue">
+		<xs:sequence>
+			<xs:element name="manifestItemKey" type="CV"/>
+			<xs:element name="manifestItemValue" type="II"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="BatchControlActEvent">
+		<xs:sequence>
+			<xs:element name="author" type="Author" minOccurs="0"/>
+			<xs:element name="author1" type="Author2" maxOccurs="2"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="BatchControlAct_AttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="Author">
+		<xs:sequence>
+			<xs:group ref="UKCT_MT120901UK01"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="ParticipationType" use="optional" default="AUT"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="Author2">
+		<xs:sequence>
+			<xs:group ref="UKCT_MT121001UK01"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="ParticipationType" use="optional" default="AUT"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="Acknowledgement">
+		<xs:sequence>
+			<xs:element name="acknowledgementDetail" type="AcknowledgementDetail" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="transmission" type="TargetBatch"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="cs" use="optional"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="AcknowledgementDetail">
+		<xs:sequence>
+			<xs:element name="code" type="CV"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="cs" use="optional"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="TargetBatch">
+		<xs:sequence>
+			<xs:element name="id" type="II"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="Reason">
+		<xs:sequence>
+			<xs:element name="justifyingDetectedIssueEvent" type="DetectedIssueEvent"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="RSON"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="DetectedIssueEvent">
+		<xs:sequence>
+			<xs:element name="code" type="CD"/>
+		</xs:sequence>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="ALRT"/>
+		<xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="QueryAck">
+		<xs:sequence>
+			<xs:element name="queryResponseCode" type="CS"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="BatchControlActRespond">
+		<xs:sequence>
+			<xs:element name="subject" type="RespondSubject"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BatchControlActRequest">
+		<xs:sequence>
+			<xs:element name="subject" type="RequestSubject"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RequestSubject">
+		<xs:sequence>
+			<xs:element name="controlAct" type="ControlActRequest"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="SUBJ"/>
+		<xs:attribute name="contextConductionInd" type="bl" use="optional" default="false"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="RespondSubject">
+		<xs:sequence>
+			<xs:element name="controlAct" type="ControlActRespond"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="SUBJ"/>
+		<xs:attribute name="contextConductionInd" type="bl" use="optional" default="false"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="Subject">
+		<xs:sequence>
+			<xs:any namespace="urn:hl7-org:v3" processContents="skip"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="SUBJ"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="ControlActRespond">
+		<xs:sequence>
+			<xs:element name="id" type="II"/>
+			<xs:element name="component" type="Component"/>
+			<xs:element name="pertinentInformation" type="PertinentInformation" minOccurs="0"/>
+			<xs:element name="subject" type="Subject" minOccurs="0"/>
+			<xs:element name="reasonOf" type="Reason" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="queryAck" type="QueryAck" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="CACT"/>
+		<xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="ControlActRequest">
+		<xs:sequence>
+			<xs:element name="id" type="II"/>
+			<xs:element name="component" type="Component"/>
+			<xs:element name="subject" type="Subject" minOccurs="0"/>
+			<xs:element name="reasonOf" type="Reason" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="queryByParameter" type="QueryByParameter" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="CACT"/>
+		<xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="Component">
+		<xs:sequence>
+			<xs:element name="payloadInteraction" type="PayloadInteraction"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="COMP"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="PertinentInformation">
+		<xs:sequence>
+			<xs:element name="pertinentRefToMessage" type="RefToMessage"/>
+		</xs:sequence>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="PERT"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="QueryByParameter">
+		<xs:sequence>
+			<xs:any namespace="urn:hl7-org:v3" processContents="skip"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="PayloadInteraction">
+		<xs:sequence>
+			<xs:element name="id" type="II"/>
+			<xs:element name="code" type="CV"/>
+		</xs:sequence>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="OBS"/>
+		<xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+	<xs:complexType name="RefToMessage">
+		<xs:sequence>
+			<xs:element name="id" type="II"/>
+			<xs:element name="code" type="CV"/>
+		</xs:sequence>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="OBS"/>
+		<xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN"/>
+		<xs:attributeGroup ref="Default_Attributes"/>
+	</xs:complexType>
+</xs:schema>

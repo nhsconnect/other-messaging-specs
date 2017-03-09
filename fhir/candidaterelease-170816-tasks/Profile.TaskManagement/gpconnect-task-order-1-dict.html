@@ -1,0 +1,599 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+			<title>TaskManagement - FHIR Implementation Guide</title>
+
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="author" content="HSCIC" />        
+			<meta name="publisher version" content=	"FHIR-Furnace : 2.7.6075.24962" />
+		
+			<link href="../dist/css/fhir.css" rel="stylesheet" />
+	 
+			<!-- Bootstrap core CSS -->
+			<link href="../dist/css/bootstrap.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-fhir.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-glyphicons.css" rel="stylesheet" />
+
+			<!-- Project extras -->
+			
+			<link href="../dist/css/pygments-manni.css" rel="stylesheet" />
+
+			<script src="../dist/js/jquery.js"> </script>
+			<script src="../dist/js/bootstrap.min.js"> </script>
+
+			<script src="../dist/js/fhir.js"> </script>
+			
+				<script>
+				  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+				  ga('create', 'UA-67795986-1', 'auto');
+				  ga('send', 'pageview');
+
+				</script>
+			
+			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+				<script src="../dist/js/html5shiv.js"></script>
+				<script src="../dist/js/respond.min.js"></script>
+			<![endif]-->
+
+			<!-- Favicons -->
+			<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../dist/images/apple-touch-icon-144-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../dist/images/apple-touch-icon-114-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../dist/images/apple-touch-icon-72-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" href="../dist/images/apple-touch-icon-57-precomposed.png" />
+			<link rel="shortcut icon" href="../dist/images/favicon.ico" />
+	</head>
+	
+	<body>  
+		
+		<!-- segment-header -->
+		<div id="segment-header" class="segment">
+            
+            <div class="container">
+                <!-- container -->
+                <a id="logo" href="http://www.digital.nhs.uk" target="_blank">
+                    <img src="../dist/images/logo.png" alt="logo NHS Digital" />
+                </a>
+                <div id="specificationName">
+         
+                        <b>TaskManagement</b>
+                  
+                </div>
+
+            </div>
+            <div class="container">
+                <!-- container -->
+            </div>
+        </div>
+        
+		<!-- /segment-header -->
+		
+		
+		<div id="segment-navbar" class="segment">
+            <!-- segment-navbar -->
+            <div id="stripe"> </div>
+            <div class="container">
+                <!-- container -->
+                <!-- HEADER CONTENT -->
+
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <button data-target=".navbar-inverse-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                        </button>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <ul class="nav navbar-nav">   
+
+											<li>
+												<a href='../Chapter.1.About/index.html'>About</a>
+											</li>
+											<li>
+												<a href='../Chapter.2.Change History/index.html'>Change History</a>
+											</li>
+											<li>
+												<a href='../Chapter.4.API Implementation/index.html'>API Implementation</a>
+											</li>
+											<li>
+												<a href='../Chapter.5.Constrained FHIR Models/index.html'>Constrained FHIR Models</a>
+											</li>
+											<li>
+												<a href='../Chapter.6.Examples/examples.html'>Examples</a>
+											</li>
+											<li>
+												<a href='../Chapter.7.Valuesets/valuesets.html'>Valuesets</a>
+											</li>
+
+                            </ul>
+							
+                            <p class="navbar-text pull-right" style="padding-right: 10px;padding-top: 3px;">
+                                <span class="label label-default"  style="font-size: 95%;">Version 1.0.0 : RC1</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </nav>				
+            </div>
+        </div>
+		
+		<div id="segment-breadcrumb" class="segment">
+            <!-- segment-breadcrumb -->
+            <div class="container">
+                <!-- container -->
+                <ul class="breadcrumb"></ul>
+            </div>
+            <!-- /container -->
+        </div>
+        <div id="segment-content" class="segment">
+            <!-- segment-content -->
+            <div class="container">
+                <!-- container -->
+                <div class="row">
+                    <div class="inner-wrapper">
+						<!-- CONTENT CONTENT -->
+                        <div class="col-12">
+							
+							
+							
+<div class="panel panel - default" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="panel-heading">
+    <h3 class="panel-title">GPConnect-Task-Order-1</h3>
+  </div>
+  <div class="panel-body">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        <b>GPConnect-Task-Order-1</b>
+      </p>
+      <table class="dict">
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order"></a>
+            <b>Order</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The order resource supports the task being communicated</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/order.html" xmlns="http://www.w3.org/1999/xhtml">Order</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Request</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order.identifier"></a>
+            <b>Order.identifier</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>A unique identifier for the task</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#identifier" xmlns="http://www.w3.org/1999/xhtml">Identifier</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order.identifier.system"></a>
+            <b>Order.identifier.system</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Establishes the namespace in which set of possible id values is unique</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#uri" xmlns="http://www.w3.org/1999/xhtml">Uri</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>There are many sequences of identifiers.  To perform matching, we need to know what sequence we're dealing with. The system identifies a particular sequence or set of unique identifiers.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Example</td>
+          <td>http://acme.org/id/tpptask</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order.identifier.value"></a>
+            <b>Order.identifier.value</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The portion of the identifier typically displayed to the user and which is unique within the context of the system</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>If the value is a full URI, then the system SHALL be urn:ietf:rfc:3986.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Example</td>
+          <td>07e2071f-509f-4ac1-82e5-2f74a8915379</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order.date"></a>
+            <b>Order.date</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>When the order was made</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#datetime" xmlns="http://www.w3.org/1999/xhtml">DateTime</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order.subject"></a>
+            <b>Order.subject</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Patient this task is about</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Patient</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>May be left blank if the request reference identifies the patient, or if the request is not associated with a patient.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order.source"></a>
+            <b>Order.source</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Who initiated the task</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>Choice of: <ul><li></li><li></li></ul></td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Author, Practitioner</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order.target"></a>
+            <b>Order.target</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Who is intended to fulfill the task</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order.reason[x]"></a>
+            <b>Order.reason[x]</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Reason for the task</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/terminologies.html">Binding</a>
+          </td>
+          <td>
+            <div class="binding-description" xmlns="http://www.w3.org/1999/xhtml">
+              <p>Indicates the reason for the task</p>
+              <p>The codes SHALL be taken from <a href="gpconnect-task-type-1.html">http://fhir.nhs.net/ValueSet/gpconnect-task-type-1</a></p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#codeableconcept" xmlns="http://www.w3.org/1999/xhtml">CodeableConcept</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order.detail"></a>
+            <b>Order.detail</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Additional detail associated with the task</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order.detail.reference"></a>
+            <b>Order.detail.reference</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1 ?</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure "/[type]/[id]" then it should be assumed that the reference is to a FHIR RESTful server.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Example</td>
+          <td>#93f557a9-38d1-493f-b1de-6b47ab4e89cc</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="Order.detail.display"></a>
+            <b>Order.detail.display</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Plain text narrative that identifies the resource in addition to the resource reference</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>This is generally not the same as the Resource.text of the referenced resource.  The purpose is to identify what's being referenced, not to fully describe it.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Example</td>
+          <td>Task Narrative</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>							
+							
+							
+						
+					   </div>                      
+                    </div>
+                    <!-- /inner-wrapper -->                   
+                </div>
+                <!-- /row -->              
+            </div>
+            <!-- /container -->           
+        </div>
+    <!-- /segment-content -->
+
+        <div id="segment-footer" class="segment">
+            <!-- segment-footer -->
+            <div class="container">
+                <!-- container -->
+                <div class="inner-wrapper">
+					<div id="explanatoryline">
+                         <img src="../dist/images/explanatoryline.png" alt="Information and technology for better health and care" />
+						 <p>
+                        Copyright &copy; 2016 Health and Social Care Information Centre<br/>
+						NHS Digital is the trading name of the Health and Social Care Information Centre.
+                    </p>
+                    </div>
+				<div id="hl7-nav">
+                    <a id="hl7-logo" href="http://www.hl7.org" target="_blank">
+                        <img src="../dist/images/hl7-logo.png" alt="visit the hl7 website" />
+                    </a>
+					<p>
+					FHIR&reg; is the registered trademark of HL7<br/>
+					and is used with the permission of HL7.
+					</p>
+				</div>
+					<p>
+						<!--<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> -->
+                    </p>
+                </div>
+                <!-- /inner-wrapper -->
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-post-footer" class="segment">
+            <!-- segment-post-footer -->
+            <div class="container">
+                <!-- container -->
+            </div>
+            <!-- /container -->
+        </div>
+	</body>
+</html>

@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>FHIR API implementation guide for GPSoC IM2 - FHIR Implementaton Guide</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="HSCIC" />        
+        <meta name="publisher version" content=	"FHIR-Furnace : 2.1.5816.30722" />
+	
+        <link href="../dist/css/fhir.css" rel="stylesheet" />
+ 
+        <!-- Bootstrap core CSS -->
+        <link href="../dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="../dist/css/bootstrap-fhir.css" rel="stylesheet" />
+        <link href="../dist/css/bootstrap-glyphicons.css" rel="stylesheet" />
+
+        <!-- Project extras -->
+        <link href="../dist/css/project.css" rel="stylesheet" />
+        <link href="../dist/css/pygments-manni.css" rel="stylesheet" />
+
+        <script src="../dist/js/jquery.js"> </script>
+        <script src="../dist/js/bootstrap.min.js"> </script>
+
+        <script src="../dist/js/fhir.js"> </script>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-67795986-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="../dist/js/html5shiv.js"></script>
+            <script src="../dist/js/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../dist/images/apple-touch-icon-144-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../dist/images/apple-touch-icon-114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../dist/images/apple-touch-icon-72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="../dist/images/apple-touch-icon-57-precomposed.png" />
+        <link rel="shortcut icon" href="../dist/images/favicon.png" />
+
+    </head>
+    <body>
+
+        <div id="segment-header" class="segment">
+            <!-- segment-header -->
+            <div class="container">
+                <!-- container -->
+                <a id="logo" href="http://www.hscic.gov.uk">
+                    <img src="../dist/images/logo.png" alt="logo hscic" />
+                </a>
+                <div id="hl7-status">
+                    <div id="hl7-igname">
+                        <b>FHIR API implementation guide for GPSoC IM2</b>
+                    </div>
+                </div>
+
+                <div id="hl7-nav">
+                    <a id="hl7-logo" href="http://www.hl7.org">
+                        <img src="../dist/images/hl7-logo.png" width="42" height="50" alt="visit the hl7 website" />
+                    </a>
+                </div>
+                <!--hl7-search-->
+            </div>
+            <div class="container">
+                <!-- container -->
+            </div>
+        </div>
+        <!-- /segment-header -->
+
+
+        <div id="segment-navbar" class="segment">
+            <!-- segment-navbar -->
+            <div id="stripe"> </div>
+            <div class="container">
+                <!-- container -->
+                <!-- HEADER CONTENT -->
+
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <button data-target=".navbar-inverse-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                        </button>
+                        <a href="index.html" class="navbar-brand hidden">FHIR</a>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <ul class="nav navbar-nav">
+
+                                        <li>
+                                            <a href='../Chapter.1.About/index.html'>About</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.2.Change History/index.html'>Change History</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.4.API Implementation/index.html'>API Implementation</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.6.Constrained FHIR Models/index.html'>Constrained FHIR Models</a>
+                                        </li>
+
+                            </ul>
+                            <p class="navbar-text pull-right" style="padding-right: 10px;padding-top: 3px;">
+                                <span class="label label-default"  style="font-size: 95%;">Version 1.0 : DRAFT B</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+
+        <div id="segment-breadcrumb" class="segment">
+            <!-- segment-breadcrumb -->
+            <div class="container">
+                <!-- container -->
+                <ul class="breadcrumb"></ul>
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-content" class="segment">
+            <!-- segment-content -->
+            <div class="container">
+                <!-- container -->
+                <div class="row">
+                    <div class="inner-wrapper">
+                        <!-- CONTENT CONTENT -->
+                        <div class="col-12">
+                           <h2>RESTful API Architecture</h2>
+<p>The Interface Mechanism Phase 2 REST API is based on the HL7 FHIR (DSTU2) REST API. The following subsections detail differences from the HL7 FHIR specification.</p>
+<p><strong>Support for Historical Versions of Resources</strong></p>
+<p>Servers are not required to support the vread interaction. Servers that do support vread must return version-specific Content-Location and Location headers in responses.</p>
+<p><strong>REST API Interactions</strong></p>
+<p><strong>Instance Level</strong></p>
+<p><strong><em>read</em></strong></p>
+<p>Servers shall return an ETag header with the versionId and a Last-Modified header. Servers that support the vread operation shall return a Content-Location header in the response which is the full version specific url.</p>
+<p><strong><em>vread</em></strong></p>
+<p>Servers are not required to support the FHIR vread interaction.
+Servers that support this operation shall: </p>
+<ul>
+<li>return an ETag header with the versionId and a Last-Modified header.</li>
+<li>return a Content-Location header with the response which is the full version specific url.</li>
+</ul>
+<p><strong>Compartment Based Access</strong></p>
+<p>Servers shall support the following FHIR-defined compartments:</p>
+<table>
+<thead>
+<tr>
+	<th align="left">URI</th>
+	<th align="center">Title</th>
+	<th align="center">Included Resources</th>
+	<th align="center">Inclusion Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">[Base URL/URI]/fhir/compartment/patient</td>
+	<td align="center">Patient</td>
+	<td align="center">Patient</td>
+	<td align="center">link</td>
+</tr>
+</tbody>
+</table>
+<h2>Resource Patient</h2>
+<p><strong>FHIR Interactions</strong></p>
+<p>Servers shall support the following FHIR RESTful API interactions:</p>
+<ul>
+<li>read</li>
+<li>search</li>
+</ul>
+<p><strong>Search Parameters</strong></p>
+<p>Servers shall support the following search parameters:</p>
+<ul>
+<li>identifier </li>
+<li>identifier=[system]|[code]</li>
+</ul>
+<p>The following table defines valid system and code values:</p>
+<table>
+<thead>
+<tr>
+	<th align="left">System</th>
+	<th align="center">code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">urn:fhir.nhs.uk:id/NHSNumber</td>
+	<td align="center">An NHS number, e.g. 9434765919</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Search Result Parameters</strong></p>
+<p>To be added...</p>
+<p><strong>Example Requests</strong></p>
+<p>The following is an example search URL (submitted using HTTP GET) where <strong><em>[Base URL/URI]/fhir</em></strong> is the service root URL:</p>
+<ul>
+<li>[Base URL/URI]/fhir/Patient?identifier=urn:fhir.nhs.uk:id/NHSNumber|9434765919</li>
+</ul>
+<p><em>If a Patient resource for NHS number 9434765919 exists, the search returns a Bundle containing all Patient resource with the specified NHS number identifier.</em></p>
+<p><strong>Patient id's and Patient resource id's</strong></p>
+<p>Clients should not assume any implicit mapping between a Patient resource's logical id and the patient's NHS number or any other patient identifier. That is, clients should not infer a Patient resource's logical id from any of the patient's identifiers.</p>
+<p>Servers should not use NHS Number or any other patient identifier as the Patient resource logical id.</p>
+<hr />
+<p>Go to: <a href="http://www.hl7.org/implement/standards/fhir/2015May/index.html">HL7 FHIR Website</a></p>
+
+                        </div>                      
+                    </div>
+                    <!-- /inner-wrapper -->                   
+                </div>
+                <!-- /row -->              
+            </div>
+            <!-- /container -->           
+        </div>
+    <!-- /segment-content -->
+
+        <div id="segment-footer" class="segment">
+            <!-- segment-footer -->
+            <div class="container">
+                <!-- container -->
+                <div class="inner-wrapper">
+                    <p>
+                        &copy; HSCIC 2015+. FHIR Implementation Guide. 
+                    </p>
+<!--                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> -->
+                    </p>
+                </div>
+                <!-- /inner-wrapper -->
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-post-footer" class="segment hidden">
+            <!-- segment-post-footer -->
+            <div class="container">
+                <!-- container -->
+            </div>
+            <!-- /container -->
+        </div>
+        
+    </body>
+</html>

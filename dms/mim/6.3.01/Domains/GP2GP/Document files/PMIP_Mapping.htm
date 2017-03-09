@@ -1,0 +1,285 @@
+<html>
+<head>
+    <style>
+<!--
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Arial;
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+h1
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-indent:0cm;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:Arial;
+	font-weight:bold}
+h2
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-indent:0cm;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic}
+h3
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-indent:0cm;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic}
+h4
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-indent:0cm;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:bold}
+h5
+	{margin:6.0pt 0cm; text-indent:0cm;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic}
+a:link
+	{color:blue;}
+a:visited
+	{color:purple;
+	text-decoration:none;
+	text-decoration:none;
+	}
+p
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	}
+
+table
+    {
+    padding:0px;
+    border:solid black;
+    }
+td
+    {
+    border-color:black;
+    border-width:thin;
+    border-style:solid; 
+    margin:0px;
+    }
+-->
+</style>
+    <title>PMIP Mapping to GP2GP Structure</title>
+</head>
+<body>
+    <h1>
+        PMIP Mapping to GP2GP Structure</h1>
+    <table bordercolor="black">
+        <thead>
+            <tr>
+                <td>
+                    PMIP</td>
+                <td>
+                    GP2GP</td>
+                <td>
+                    Notes</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <strong>PMIP Report</strong></td>
+                <td>
+                    <strong>
+                    EhrComposition</strong></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Report id</td>
+                <td>
+                    EhrComposition@id</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Report Issued Date</td>
+                <td>
+                    EhrComposition@availableTime</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Report Received Date</td>
+                <td>
+                    EhrComposition/participant@time</td>
+                <td>
+                    The typeCode of the participation signifies the type of receipt<br />
+                    <ul>
+                        <li>'receiver' denotes the GP system</li>
+                        <li>'primary information recipient' denotes the first clinical reviewer in that
+                            GP practice</li></ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Sample</strong></td>
+                <td>
+                    <strong>
+                    SpecimenRole</strong></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Sample id</td>
+                <td>
+                    SpecimenRole@id[1]</td>
+                <td>
+                    The <strong>second</strong> id attribute.</td>
+            </tr>
+            <tr>
+                <td>
+                    Sample Type</td>
+                <td>
+                    SpecimenMaterial@desc</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Sample Collection Date</td>
+                <td>
+                    SpecimenRole@effectiveTime</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Sample Received Date</td>
+                <td>
+                    <em>EhrStatement</em>/specimenReceipt@time</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Sample Volume</td>
+                <td>
+                    SpecimenMaterial@quantity</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Sample Comments</td>
+                <td>
+                    CompoundStatement/component/NarrativeStatement</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>
+                    Result (Abstract)</strong></td>
+                <td>
+                    <strong><em>EhrStatement</em> (Choice)</strong></td>
+                <td>
+                    Only CompoundStatement and ObservationStatement are valid</td>
+            </tr>
+            <tr>
+                <td>
+                    Result Type</td>
+                <td>
+                    <em>EhrStatement</em>@code</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Lab Comment</td>
+                <td>
+                    CompoundStatement/component/NarrativeStatement</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Complex Reference Range</td>
+                <td>
+                    CompoundStatement/component/NarrativeStatement</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>
+                    Battery Result</strong></td>
+                <td>
+                    <strong>CompoundStatement</strong></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>
+                    Single Result</strong></td>
+                <td>
+                    <strong>ObservationStatement</strong></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Abnormality Indicator</td>
+                <td>
+                    ObservationStatement@interpretationCode</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Result Value</td>
+                <td>
+                    ObservationStatement@value</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Result Range</td>
+                <td>
+                    ObservationStatement/referenceRange</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Reference Population Definition</td>
+                <td>
+                    CompoundStatement/component/NarrativeStatement</td>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

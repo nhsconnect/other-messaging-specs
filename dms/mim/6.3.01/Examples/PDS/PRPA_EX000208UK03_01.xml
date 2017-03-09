@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This example message is provided for illustrative purposes only. It has had no clinical validation nor is it guaranteed to be fully compliant with the written message specification. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence. -->
+<PdsNhaisUpdateRequest xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3
+../../Schemas/PRPA_MT000208UK03.xsd" classCode="REG" moodCode="RQO">
+	<!-- To indicate that all updates are "Change to existing data" -->
+	<code code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.40"/>
+	<!-- To provide the registering authority for the death notification information -->
+	<author typeCode="AUT">
+		<registeringAuthority classCode="ASSIGNED">
+			<!-- To indicate "NHAIS" -->
+			<code code="y" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.20"/>
+			<!-- NHAIS cypher -->
+			<id root="2.16.840.1.113883.2.1.3.2.4.6" extension="BRS"/>
+			<assignedRegisteringOrganization classCode="ORG" determinerCode="INSTANCE">
+				<scopedAssignedPerson classCode="ASSIGNED">
+					<!-- User ID of registering person within the NHAIS system -->
+					<id root="2.16.840.1.113883.2.1.3.2.4.5" extension="XXXX"/>
+				</scopedAssignedPerson>
+			</assignedRegisteringOrganization>
+		</registeringAuthority>
+	</author>
+	<pertinentInformation typeCode="PERT">
+		<pertinentSerialChangeNumber classCode="OBS" moodCode="EVN">
+			<!-- To indicate this is an observation of a Serial Change Number -->
+			<code code="2" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+			<value value="2"/>
+		</pertinentSerialChangeNumber>
+	</pertinentInformation>
+	<subject typeCode="SBJ">
+		<patientRole classCode="PAT">
+			<!-- To indicate an alteration to the "Usual" address of the patient (note all components of the address are to be given even if only one component of it has changed) -->
+			<addr use="H" updateMode="altered">
+				<streetAddressLine>HEXAGON HOUSE</streetAddressLine>
+				<streetAddressLine>PYNES HILL</streetAddressLine>
+				<streetAddressLine>RYDON LANE</streetAddressLine>
+				<streetAddressLine>EXETER</streetAddressLine>
+				<streetAddressLine>DEVON</streetAddressLine>
+				<postalCode>EX2 5SE</postalCode>
+				<addressKey>12345678</addressKey>
+				<id root="2.16.840.1.113883.2.1.3.2.4.18.1" extension="P000000011"/>
+			</addr>
+			<!-- NHS number (identifies patient - not an updated item of data) -->
+			<id root="2.16.840.1.113883.2.1.4.1" extension="9999999484"/>
+			<patientPerson classCode="PSN" determinerCode="INSTANCE">
+				<!-- To indicate an alteration to the Administrative gender to "Female" -->
+				<administrativeGenderCode code="2" updateMode="altered"/>
+				<!-- To indicate an alteration to the date of birth of the patient -->
+				<birthTime value="19780719" updateMode="altered"/>
+				<!-- To indicate an alteration to the date and time of death -->
+				<deceasedTime value="200312020635" updateMode="altered"/>
+				<!-- To indicate a change to the "Usual" name of the patient (note all components of the name are given even if only one component of it has changed) -->
+				<name use="L" updateMode="altered">
+					<prefix>Ms</prefix>
+					<given>Three</given>
+					<given>Zoe</given>
+					<family>Editestpatient</family>
+					<id root="2.16.840.1.113883.2.1.3.2.4.18.1" extension="P000000021"/>
+				</name>
+				<!-- To indicate an alteration to the "Alias" name of the patient (note all components of the name are given even if only one component of it has changed) -->
+				<name use="A" updateMode="altered">
+					<prefix>Ms</prefix>
+					<given>Mary</given>
+					<family>Smith</family>
+					<id root="2.16.840.1.113883.2.1.3.2.4.18.1" extension="P000000022"/>
+				</name>
+				<!-- To indicate an alteration to the "Preferred" name of the patient (note all components of the name are given even if only one component of it has changed) -->
+				<name use="PREFERRED" updateMode="altered">
+					<prefix>Ms</prefix>
+					<given>Zoe</given>
+					<family>Editestpatient</family>
+					<id root="2.16.840.1.113883.2.1.3.2.4.18.1" extension="P000000023"/>
+				</name>
+				<!-- To indicate an alteration to the primary care provision -->
+				<playedOtherProviderPatient classCode="PAT">
+					<subjectOf typeCode="SBJ">
+						<patientCareProvisionEvent classCode="PCPR" moodCode="EVN" updateMode="altered">
+							<!-- To indicate primary care provision -->
+							<code code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.37"/>
+							<id root="2.16.840.1.113883.2.1.3.2.4.18.1" extension="P000000041"/>
+							<performer typeCode="PRF">
+								<assignedOrganization classCode="ASSIGNED">
+									<!-- National GP Practice code of primary care provider -->
+									<id root="2.16.840.1.113883.2.1.4.3" extension="Z99993"/>
+								</assignedOrganization>
+							</performer>
+						</patientCareProvisionEvent>
+					</subjectOf>
+				</playedOtherProviderPatient>
+				<COCT_MT000200UK02.RegisteredRolePart classCode="PART" updateMode="altered">
+					<partRegisteredPerson classCode="PSN" determinerCode="INSTANCE">
+					<name use="PREVIOUS">Ms Three Zoe Jones</name>
+					<birthplace classCode="BIRTHPL">
+						<addr>Wythenshawe Hospital, Manchester</addr>
+					</birthplace>
+					<militaryMembership classCode="MIL">
+						<effectiveTime>
+							<low value="19800619"/>
+							<high value="20050222"/>
+						</effectiveTime>
+					</militaryMembership>
+					<playedRegisteredPatient classCode="PAT">
+						<addr>Princes Exchange, Princes Square, Leeds LS1 3HY</addr>
+						<replacementOf typeCode="REPL">
+							<oldVersion classCode="PAT">
+								<subjectOf1 typeCode="SBJ">
+									<nHAISRegistrationEvent classCode="REG" moodCode="EVN">
+										<code code="01" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.165"></code>
+										<custodian typeCode="CST">
+											<assignedDevice classCode="ASSIGNED">
+												<assignedDevice classCode="DEV" determinerCode="INSTANCE">
+													<name>SMO</name>
+												</assignedDevice>
+											</assignedDevice>
+										</custodian>
+									</nHAISRegistrationEvent>
+								</subjectOf1>
+								<subjectOf2 typeCode="SBJ">
+									<patientCareProvisionEvent classCode="PCPR" moodCode="EVN">
+										<code code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.37"></code>
+										<performer typeCode="PRF">
+											<assignedEntity classCode="ASSIGNED">
+												<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+													<name>Dr Peter Parlour</name>
+												</assignedPerson>
+											</assignedEntity>
+										</performer>
+									</patientCareProvisionEvent>
+								</subjectOf2>
+							</oldVersion>
+						</replacementOf>
+						<subjectOf1 typeCode="SBJ">
+							<uKResidence classCode="OBS" moodCode="EVN">
+								<code code="18" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"></code>
+								<value>
+									<low value="19850623"/>
+								</value>
+							</uKResidence>
+						</subjectOf1>
+						<subjectOf2 typeCode="SBJ">
+							<nHAISRegistrationEncounter classCode="REG" moodCode="EVN">
+								<code code="01" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.165"></code>
+								<reasonCode code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.166"></reasonCode>
+							</nHAISRegistrationEncounter>
+						</subjectOf2>
+						<subjectOf3 typeCode="SBJ">
+							<initialNHAISRegistrationEvent classCode="REG" moodCode="EVN">
+								<code code="03" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.165"></code>
+								<effectiveTime value="20020912"/>
+							</initialNHAISRegistrationEvent>
+						</subjectOf3>
+					</playedRegisteredPatient>
+					</partRegisteredPerson>
+				</COCT_MT000200UK02.RegisteredRolePart>
+			</patientPerson>
+			<!-- To indicate an alteration to the patient's paper record back office location -->
+			<recordTargetOf typeCode="RCT">
+				<clinicalDocumentEvent classCode="DOCCLIN" moodCode="EVN" updateMode="altered">
+					<code code="16521000000101" codeSystem="2.16.840.1.113883.2.1.3.2.4.15"/>
+					<effectiveTime>
+						<low value="200405211720"/>
+					</effectiveTime>
+					<priorityCode code="U" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.190"/>
+					<location typeCode="LOC">
+						<serviceDeliveryLocation classCode="SDLOC">
+							<id root="2.16.840.1.113883.2.1.3.2.4.18.1" extension="P000000042"/>
+							<location classCode="PLC" determinerCode="INSTANCE">
+								<name>ZZZ</name>
+							</location>
+						</serviceDeliveryLocation>
+					</location>
+					<!--To indicate the transfer status of a patient's paper medical record-->
+					<subjectOf typeCode="SUBJ">
+						<transferStatus classCode="OBS" moodCode="EVN">
+							<code code="19" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"></code>
+							<!--Paper record transfer recalled from Practice - Urgent-->
+							<value code="CP" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.167"/>
+						</transferStatus>
+					</subjectOf>
+				</clinicalDocumentEvent>
+			</recordTargetOf>
+			<!-- To indicate an alteration to the patient's "death notification" -->
+			<subjectOf1 typeCode="SBJ">
+				<deathNotification classCode="OBS" moodCode="EVN" updateMode="altered">
+					<!-- To indicate this is an observation of a death notification -->
+					<code code="3" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+					<!-- "(Formal) death notice received from Registrar of Deaths" -->
+					<value code="2" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.5"/>
+				</deathNotification>
+			</subjectOf1>
+			<!-- To indicate an alteration to the patient's NHAIS posting -->
+			<subjectOf2 typeCode="SBJ">
+				<nHAISRegistrationEvent classCode="REG" moodCode="EVN" updateMode="altered">
+					<code code="01" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.165"/>
+					<effectiveTime>
+						<low value="200406251205"/>
+						<high value="200603071145"/>
+					</effectiveTime>
+					<custodian typeCode="CST">
+						<assignedDevice classCode="ASSIGNED">
+							<id root="2.16.840.1.113883.2.1.3.2.4.6" extension="XXXX"></id>
+						</assignedDevice>
+					</custodian>
+				</nHAISRegistrationEvent>
+			</subjectOf2>
+			<!-- To indicate an alteration to the patient's "reason for removal" -->
+			<subjectOf3 typeCode="SBJ">
+				<nHAISRemovalRegistrationEvent classCode="REG" moodCode="EVN" updateMode="altered">
+					<code code="02" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.165"/>
+					<effectiveTime>
+						<low value="200606060932"/>
+						<high value="200608091321"/>
+					</effectiveTime>
+					<reasonCode code="EMB" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.168"/>
+				</nHAISRemovalRegistrationEvent>
+			</subjectOf3>
+		</patientRole>
+	</subject>
+</PdsNhaisUpdateRequest>

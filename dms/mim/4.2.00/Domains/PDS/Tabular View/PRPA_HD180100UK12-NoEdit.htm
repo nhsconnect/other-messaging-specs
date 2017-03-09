@@ -1,0 +1,151 @@
+<HTML><HEAD><TITLE>PdsSuccessfulUpdateResponse Tabular View</TITLE><META http-equiv=Content-Type content="text/html; charset=UTF-8"><META content=PdsSuccessfulUpdateResponse name=Entry><META content=PRPA_HD180100UK12 name=Identifier><STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD><BODY onload="checkDOM('ds')"><H1>PdsSuccessfulUpdateResponse - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN> <TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides><TBODY><TR bgColor=black><TD colSpan=10 height=4></TD></TR><TR><TD colSpan=2 height=35><A href="PRPA_RM180000UK12.htm"><B>PRPA_RM180000UK12</B></A></TD><TD noWrap height=35></TD></TR><TR bgColor=black><TD colSpan=10 height=3></TD></TR><TR vAlign=top><TD bgColor=yellow colSpan=2><A name=PdsSuccessfulUpdateResponse><B>PdsSuccessfulUpdateResponse</B></A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=PRPA_HD180100UK12#ActHeir;PdsSuccessfulUpdateResponse_c title=PRPA_HD180100UK12#PdsSuccessfulUpdateResponse_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P><B>A heading for providing information about a successful update of patient information on to the PDS.</B> </P></NOTE></DIV></TD></TR><TR bgColor=black><TD colSpan=10 height=3></TD></TR><TR class=hmd><TD align=right></TD><TD colSpan=10><FONT color=gray><A name=PdsSuccessfulUpdateResponse>Used by: </A></FONT></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>REG</B>} )<A>{<B> Fixed="<FONT color=red>REG</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=PRPA_HD180100UK12#Act;PdsSuccessfulUpdateResponse/$classCode title=PdsSuccessfulUpdateResponse.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that this is a registration.</P><UL><LI>Fixed value: "REG" (Registration)</LI></UL><P>The classCode is carried as an attribute of the <I>PdsSuccessfulUpdateResponse</I> element.</P></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=PRPA_HD180100UK12#Act;PdsSuccessfulUpdateResponse/$moodCode title=PdsSuccessfulUpdateResponse.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that this is a registration which has occurred.</P><UL><LI>Fixed value: "EVN" (Event)</LI></UL><P>The moodCode is carried as an attribute of the <I>PdsSuccessfulUpdateResponse</I> element.</P></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PertinentInformation><B>pertinentInformation</B></A></TD><TD style="BACKGROUND-COLOR: white"><DIV id=PRPA_HD180100UK12#Act;/PdsSuccessfulUpdateResponse/pertinentInformation title=PRPA_HD180100UK12#/PdsSuccessfulUpdateResponse/pertinentInformation style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P><B>A heading for providing a link to information pertinent to the successful update response.</B> </P></NOTE></DIV></TD></TR><TR><TD width="4%"></TD><TD bgColor=white colSpan=10><TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides><TBODY><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="52%"><DIV id=PRPA_HD180100UK12#ActRelationship;PdsSuccessfulUpdateResponse/pertinentInformation/$typeCode title=PdsSuccessfulUpdateResponse/pertinentInformation.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Defines the type of relationship of the Serial Change Number to the successful update response, i.e. that the Serial Change Number is pertinent to the successful update response.</P><UL><LI>Fixed value: "PERT" (Has pertinent information)</LI></UL><P>The typeCode is carried as an attribute of the <I>pertinentInformation</I> element.</P></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentSerialChangeNumber</B> (<A href="#SerialChangeNumber"><B>SerialChangeNumber</B></A>)</TD><TD style="BACKGROUND-COLOR: white" width="52%"><DIV id=PRPA_HD180100UK12#ActRelationship;PdsSuccessfulUpdateResponse/pertinentInformation/pertinentSerialChangeNumber-SerialChangeNumber title=PdsSuccessfulUpdateResponse/pertinentInformation/pertinentSerialChangeNumber-SerialChangeNumber style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P><B>A heading for providing the Serial Change Number for a Service User record on the PDS.</B>&nbsp;&nbsp;</P></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR><TR bgColor=black><TD colSpan=10 height=3></TD></TR><TR vAlign=top><TD bgColor=yellow colSpan=2><A name=SerialChangeNumber><B>SerialChangeNumber</B></A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=PRPA_HD180100UK12#Observation;SerialChangeNumber_c title=PRPA_HD180100UK12#SerialChangeNumber_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P><B>A heading for providing the Serial Change Number for a Service User record on the PDS.</B> </P></NOTE></DIV></TD></TR><TR bgColor=black><TD colSpan=10 height=3></TD></TR><TR class=hmd><TD align=right></TD><TD colSpan=10><FONT color=gray><A name=SerialChangeNumber>Used by: </A></FONT><A href="#PdsSuccessfulUpdateResponse"><B>PdsSuccessfulUpdateResponse</B></A></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=PRPA_HD180100UK12#Observation;SerialChangeNumber/$classCode title=SerialChangeNumber.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that this is an observation.</P><UL><LI>Fixed value: "OBS" (Observation)</LI></UL><P>The classCode is carried as an attribute of the <I>pertinentSerialChangeNumber</I> element.</P></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=PRPA_HD180100UK12#Observation;SerialChangeNumber/$moodCode title=SerialChangeNumber.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that this is an observation which has occurred.</P><UL><LI>Fixed value: "EVN" (Event)</LI></UL><P>The moodCode is carried as an attribute of the <I>pertinentSerialChangeNumber</I> element.</P></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/DemographicObservationType.htm"><B>DemographicObservationType</B></A>} )</TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=PRPA_HD180100UK12#Observation;SerialChangeNumber/$code title=PRPA_HD180100UK12#SerialChangeNumber.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>To provide the type of observation in coded form.</P><P>In this context, the type of observation is an observation of a Serial Change Number.</P><P>The Coded with Code System datatype flavour is used to carry this information as follows:</P><UL><LI>The <I>code</I> attribute will contain value "2" (Serial Change Number) from the list of codes in the <U>DemographicObservationType</U> vocabulary;</LI><LI>The <I>codeSystem</I> attribute will contain the OID referenced in the <U>DemographicObservationType</U> vocabulary.</LI></UL></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#INT"><B>INT</B></A>)</TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=PRPA_HD180100UK12#Observation;SerialChangeNumber/$value title=PRPA_HD180100UK12#SerialChangeNumber.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>To provide a value for the Serial Change Number of the Service User record on the PDS.</P><P>The Integer datatype flavour is used to carry this information as follows:</P><UL><LI>The <I>value</I> attribute will contain the Serial Change Number.</LI></UL></NOTE></DIV></TD></TR><TR bgColor=black><TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

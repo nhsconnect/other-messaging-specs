@@ -1,0 +1,4020 @@
+{
+  "resourceType": "StructureDefinition",
+  "meta": {
+    "lastUpdated": "2015-09-22T11:02:49.724+01:00",
+    "tag": [
+      {
+        "system": "urn:hscic:publishOrder",
+        "code": "4"
+      }
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
+      "valueInteger": 4
+    }
+  ],
+  "url": "http://fhir.nhs.net/StructureDefinition/ers-specialty-valueset-1",
+  "name": "eRS-Specialty-ValueSet-1",
+  "status": "draft",
+  "publisher": "NHS Digital",
+  "contact": [
+    {
+      "name": "Interoperability Team",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperability@nhs.net",
+          "use": "work"
+        }
+      ]
+    }
+  ],
+  "date": "2015-09-22T11:02:49+01:00",
+  "description": "This Specialty value set resource is constrained to support the requirements of the e-RS project. ",
+  "fhirVersion": "1.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/w5",
+      "name": "W5 Mapping"
+    },
+    {
+      "identity": "define.xml2.0",
+      "uri": "http://www.cdisc.org/define-xml",
+      "name": "CDISC Define XML 2.0 metadata standard"
+    }
+  ],
+  "kind": "resource",
+  "constrainedType": "ValueSet",
+  "abstract": false,
+  "base": "http://hl7.org/fhir/StructureDefinition/ValueSet",
+  "snapshot": {
+    "element": [
+      {
+        "path": "ValueSet",
+        "short": "A set of codes drawn from one or more code systems",
+        "definition": "A value set specifies a set of codes drawn from one or more code systems.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "ValueSet"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "vsd-7",
+            "severity": "error",
+            "human": "A defined code system (if present) SHALL have a different url than the value set url",
+            "xpath": "not(f:codeSystem/f:system/@value = f:url/@value)"
+          },
+          {
+            "key": "vsd-2",
+            "severity": "error",
+            "human": "A value set with only one import SHALL also have an include and/or an exclude unless the value set includes and inline code system",
+            "xpath": "not(exists(f:compose)) or (count(f:compose/f:import)!=1 or exists(f:compose/f:include) or exists(f:compose/f:exclude) or exists(f:codeSystem))"
+          },
+          {
+            "key": "vsd-5",
+            "severity": "error",
+            "human": "Value set SHALL contain at least one of a codeSystem, a compose, or an expansion element",
+            "xpath": "exists(f:codeSystem) or exists(f:compose) or exists(f:expansion)"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          },
+          {
+            "identity": "w5",
+            "map": "conformance.terminology"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.url",
+        "short": "Globally unique logical identifier for  value set",
+        "definition": "An absolute URL that is used to identify this value set when it is referenced in a specification, model, design or an instance. This SHALL be a URL, SHOULD be globally unique, and SHOULD be an address at which this value set is (or will be) published.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.url",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "http://ers-specialty-1",
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          },
+          {
+            "identity": "w5",
+            "map": "id"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier",
+        "name": "ExampleERSCodes",
+        "short": "Additional identifier for the value set (e.g. HL7 v2 / CDA)",
+        "definition": "Formal identifier that is used to identify this value set when it is represented in other formats, or referenced in a specification, model, design or an instance.",
+        "comments": "Typically, this is used for values that can go in an HL7 v3 II data type.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.identifier",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Identifier"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "define.xml2.0",
+            "map": "Identifier part"
+          },
+          {
+            "identity": "w5",
+            "map": "id"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.use",
+        "short": "usual | official | temp | secondary (If known)",
+        "definition": "The purpose of this identifier.",
+        "comments": "This is labeled as \"Is Modifier\" because applications should not mistake a temporary id for a permanent one. Applications can assume that an identifier is permanent unless it explicitly says that it is temporary.",
+        "requirements": "Allows the appropriate identifier for a particular context of use to be selected from among a set of identifiers.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Identifier.use",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "isModifier": true,
+        "isSummary": true,
+        "binding": {
+          "strength": "required",
+          "description": "Identifies the purpose for this identifier, if known .",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/identifier-use"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "N/A"
+          },
+          {
+            "identity": "rim",
+            "map": "Role.code or implied by context"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.type",
+        "short": "Description of identifier",
+        "definition": "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+        "comments": "This element deals only with general categories of identifiers.  It SHOULD not be used for codes that correspond 1..1 with the Identifier.system. Some identifiers may fall into multiple categories due to common usage.   Where the system is known, a type is unnecessary because the type is always part of the system definition. However systems often need to handle identifiers where the system is not known. There is not a 1:1 relationship between type and system, since many different systems have the same type.",
+        "requirements": "Allows users to make use of identifiers when the identifier system is not known.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Identifier.type",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "isSummary": true,
+        "binding": {
+          "strength": "extensible",
+          "description": "A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/identifier-type"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "CX.5"
+          },
+          {
+            "identity": "rim",
+            "map": "Role.code or implied by context"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.type.coding",
+        "short": "Code defined by a terminology system",
+        "definition": "A reference to a code defined by a terminology system.",
+        "comments": "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true.",
+        "requirements": "Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CodeableConcept.coding",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.1-8, C*E.10-22"
+          },
+          {
+            "identity": "rim",
+            "map": "union(., ./translation)"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.type.coding.system",
+        "short": "Identity of the terminology system",
+        "definition": "The identification of the code system that defines the meaning of the symbol in the code.",
+        "comments": "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously.",
+        "requirements": "Need to be unambiguous about the source of the definition of the symbol.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.system",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.3"
+          },
+          {
+            "identity": "rim",
+            "map": "./codeSystem"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.type.coding.version",
+        "short": "Version of the system - if relevant",
+        "definition": "The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged.",
+        "comments": "Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.version",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.7"
+          },
+          {
+            "identity": "rim",
+            "map": "./codeSystemVersion"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.type.coding.code",
+        "short": "Symbol in syntax defined by the system",
+        "definition": "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "requirements": "Need to refer to a particular code in the system.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.code",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.1"
+          },
+          {
+            "identity": "rim",
+            "map": "./code"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.type.coding.display",
+        "short": "Representation defined by the system",
+        "definition": "A representation of the meaning of the code in the system, following the rules of the system.",
+        "requirements": "Need to be able to carry a human-readable meaning of the code for readers that do not know  the system.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.display",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.2 - but note this is not well followed"
+          },
+          {
+            "identity": "rim",
+            "map": "CV.displayName"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.type.coding.userSelected",
+        "short": "If this coding was chosen directly by the user",
+        "definition": "Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays).",
+        "comments": "Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely.",
+        "requirements": "This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.userSelected",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "Sometimes implied by being first"
+          },
+          {
+            "identity": "rim",
+            "map": "CD.codingRationale"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\\#true a [     fhir:source \"true\";     fhir:target dt:CDCoding.codingRationale\\#O   ]"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.type.text",
+        "short": "Plain text representation of the concept",
+        "definition": "A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user.",
+        "comments": "Very often the text is the same as a displayName of one of the codings.",
+        "requirements": "The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CodeableConcept.text",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.9. But note many systems use C*E.2 for this"
+          },
+          {
+            "identity": "rim",
+            "map": "./originalText[mediaType/code=\"text/plain\"]/data"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.system",
+        "short": "The namespace for the identifier",
+        "definition": "Establishes the namespace in which set of possible id values is unique.",
+        "requirements": "There are many sequences of identifiers.  To perform matching, we need to know what sequence we're dealing with. The system identifies a particular sequence or set of unique identifiers.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Identifier.system",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "urn:x-fhir:uk:nhs:id:ExampleERSCodes",
+        "exampleUri": "http://www.acme.com/identifiers/patient or urn:ietf:rfc:3986 if the Identifier.value itself is a full uri",
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "CX.4 / EI-2-4"
+          },
+          {
+            "identity": "rim",
+            "map": "II.root or Role.id.root"
+          },
+          {
+            "identity": "servd",
+            "map": "./IdentifierType"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.value",
+        "short": "The value that is unique",
+        "definition": "The portion of the identifier typically displayed to the user and which is unique within the context of the system.",
+        "comments": "If the value is a full URI, then the system SHALL be urn:ietf:rfc:3986.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Identifier.value",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "ExampleERSCodes",
+        "exampleString": "123456",
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "CX.1 / EI.1"
+          },
+          {
+            "identity": "rim",
+            "map": "II.extension or II.root if system indicates OID or GUID (Or Role.id.extension or root)"
+          },
+          {
+            "identity": "servd",
+            "map": "./Value"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.period",
+        "short": "Time period when id is/was valid for use",
+        "definition": "Time period during which identifier is/was valid for use.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Identifier.period",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Period"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "CX.7 + CX.8"
+          },
+          {
+            "identity": "rim",
+            "map": "Role.effectiveTime or implied by context"
+          },
+          {
+            "identity": "servd",
+            "map": "./StartDate and ./EndDate"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.period.start",
+        "short": "Starting time with inclusive boundary",
+        "definition": "The start of the period. The boundary is inclusive.",
+        "comments": "If the low element is missing, the meaning is that the low boundary is not known.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Period.start",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ],
+        "condition": [
+          "per-1"
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "DR.1"
+          },
+          {
+            "identity": "rim",
+            "map": "./low"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.period.end",
+        "short": "End time with inclusive boundary, if not ongoing",
+        "definition": "The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.",
+        "comments": "The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Period.end",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ],
+        "meaningWhenMissing": "If the end of the period is missing, it means that the period is ongoing",
+        "condition": [
+          "per-1"
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "DR.2"
+          },
+          {
+            "identity": "rim",
+            "map": "./high"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.assigner",
+        "short": "Organization that issued id (may be just text)",
+        "definition": "Organization that issued/manages the identifier.",
+        "comments": "The reference may be just a text description of the assigner.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Identifier.assigner",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/Organization"
+            ]
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "CX.4 / (CX.4,CX.9,CX.10)"
+          },
+          {
+            "identity": "rim",
+            "map": "II.assigningAuthorityName but note that this is an improper use by the definition of the field.  Also Role.scoper"
+          },
+          {
+            "identity": "servd",
+            "map": "./IdentifierIssuingAuthority"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.assigner.reference",
+        "short": "Relative, internal or absolute URL reference",
+        "definition": "A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources.",
+        "comments": "Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure \"/[type]/[id]\" then it should be assumed that the reference is to a FHIR RESTful server.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Reference.reference",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "condition": [
+          "ref-1"
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.assigner.display",
+        "short": "Text alternative for the resource",
+        "definition": "Plain text narrative that identifies the resource in addition to the resource reference.",
+        "comments": "This is generally not the same as the Resource.text of the referenced resource.  The purpose is to identify what's being referenced, not to fully describe it.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Reference.display",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.version",
+        "short": "Logical identifier for this version of the value set",
+        "definition": "Used to identify this version of the value set when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the profile author manually and the value should be a timestamp.",
+        "comments": "There may be multiple resource versions of the value set that have the same identifier.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.version",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          },
+          {
+            "identity": "w5",
+            "map": "id.version"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.name",
+        "short": "Informal name for this value set",
+        "definition": "A free text natural language name describing the value set.",
+        "comments": "The name is not expected to be unique. A name should be provided unless the value set is a contained resource (e.g. an anonymous value set in a profile). Most registries will require a name.",
+        "requirements": "Support human navigation.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.name",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.status",
+        "short": "draft | active | retired",
+        "definition": "The status of the value set.",
+        "comments": "Allows filtering of value set instances that are appropriate (or not) for use.",
+        "requirements": "Identify when/if the value set should be used.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.status",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "isModifier": true,
+        "isSummary": true,
+        "binding": {
+          "strength": "required",
+          "description": "The lifecycle status of a Value Set or Concept Map.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/conformance-resource-status"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          },
+          {
+            "identity": "w5",
+            "map": "status"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.experimental",
+        "short": "If for testing purposes, not real usage",
+        "definition": "This valueset was authored for testing purposes (or education/evaluation/marketing), and is not intended to be used for genuine usage.",
+        "comments": "Allows filtering of value sets that are appropriate for use vs. not.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.experimental",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "w5",
+            "map": "class"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.publisher",
+        "short": "Name of the publisher (organization or individual)",
+        "definition": "The name of the individual or organization that published the value set.",
+        "comments": "Usually an organization, but may be an individual. This item SHOULD be populated unless the information is available from context.",
+        "requirements": "Helps establish the \"authority/credibility\" of the value set.  May also allow for contact.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.publisher",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "NHS Digital",
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "w5",
+            "map": "who.witness"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.contact",
+        "short": "Contact details of the publisher",
+        "definition": "Contacts to assist a user in finding and communicating with the publisher.",
+        "comments": "May be a web site, an email address, a telephone number, etc.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.contact",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.contact.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.contact.name",
+        "short": "Name of an individual to contact",
+        "definition": "The name of an individual to contact regarding the value set.",
+        "comments": "If there is no named individual, the telecom is for the organization as a whole.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.contact.name",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.contact.telecom",
+        "short": "Contact details for individual or publisher",
+        "definition": "Contact details for individual (if a name was provided) or the publisher.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "ValueSet.contact.telecom",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "ContactPoint"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.contact.telecom.system",
+        "short": "phone | fax | email | pager | other",
+        "definition": "Telecommunications form for contact point - what communications system is required to make use of the contact.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ContactPoint.system",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "condition": [
+          "cpt-2"
+        ],
+        "isSummary": true,
+        "binding": {
+          "strength": "required",
+          "description": "Telecommunications form for contact point",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/contact-point-system"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "XTN.3"
+          },
+          {
+            "identity": "rim",
+            "map": "./scheme"
+          },
+          {
+            "identity": "servd",
+            "map": "./ContactPointType"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.contact.telecom.value",
+        "short": "The actual contact point details",
+        "definition": "The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).",
+        "comments": "Additional text data such as phone extension numbers, or notes about use of the contact are sometimes included in the value.",
+        "requirements": "Need to support legacy numbers that are not in a tightly controlled format.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ContactPoint.value",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "XTN.1 (or XTN.12)"
+          },
+          {
+            "identity": "rim",
+            "map": "./url"
+          },
+          {
+            "identity": "servd",
+            "map": "./Value"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.contact.telecom.use",
+        "short": "home | work | temp | old | mobile - purpose of this contact point",
+        "definition": "Identifies the purpose for the contact point.",
+        "comments": "This is labeled as \"Is Modifier\" because applications should not mistake a temporary or old contact etc.for a current/permanent one. Applications can assume that a contact is current unless it explicitly says that it is temporary or old.",
+        "requirements": "Need to track the way a person uses this contact, so a user can choose which is appropriate for their purpose.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ContactPoint.use",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "isModifier": true,
+        "isSummary": true,
+        "binding": {
+          "strength": "required",
+          "description": "Use of contact point",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/contact-point-use"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "XTN.2 - but often indicated by field"
+          },
+          {
+            "identity": "rim",
+            "map": "unique(./use)"
+          },
+          {
+            "identity": "servd",
+            "map": "./ContactPointPurpose"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.contact.telecom.rank",
+        "short": "Specify preferred order of use (1 = highest)",
+        "definition": "Specifies a preferred order in which to use a set of contacts. Contacts are ranked with lower values coming before higher values.",
+        "comments": "Note that rank does not necessarily follow the order in which the contacts are represented in the instance.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ContactPoint.rank",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "positiveInt"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "n/a"
+          },
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.contact.telecom.period",
+        "short": "Time period when the contact point was/is in use",
+        "definition": "Time period when the contact point was/is in use.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ContactPoint.period",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Period"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "N/A"
+          },
+          {
+            "identity": "rim",
+            "map": "./useablePeriod[type=\"IVL<TS>\"]"
+          },
+          {
+            "identity": "servd",
+            "map": "./StartDate and ./EndDate"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.contact.telecom.period.start",
+        "short": "Starting time with inclusive boundary",
+        "definition": "The start of the period. The boundary is inclusive.",
+        "comments": "If the low element is missing, the meaning is that the low boundary is not known.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Period.start",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ],
+        "condition": [
+          "per-1"
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "DR.1"
+          },
+          {
+            "identity": "rim",
+            "map": "./low"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.contact.telecom.period.end",
+        "short": "End time with inclusive boundary, if not ongoing",
+        "definition": "The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.",
+        "comments": "The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Period.end",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ],
+        "meaningWhenMissing": "If the end of the period is missing, it means that the period is ongoing",
+        "condition": [
+          "per-1"
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "DR.2"
+          },
+          {
+            "identity": "rim",
+            "map": "./high"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.date",
+        "short": "Date for given status",
+        "definition": "The date that the value set status was last changed. The date must change when the business version changes, if it does, and it must change if the status code changes. In addition, it should change when the substantive content of the implementation guide changes (e.g. the 'content logical definition').",
+        "comments": "Note that this is not the same as the resource last-modified-date, since the resource may be a secondary representation of the value set. Additional specific dates may be added as extensions.",
+        "requirements": "Need to know when a value set was first legal for use or became withdrawn or replaced.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.date",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          },
+          {
+            "identity": "w5",
+            "map": "when.recorded"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.lockedDate",
+        "short": "Fixed date for all referenced code systems and value sets",
+        "definition": "If a locked date is defined, then the Content Logical Definition must be evaluated using the current version of all referenced code system(s) and value set instances as of the locked date.",
+        "comments": "With a defined lockedDate the value set is considered \"Locked\". Otherwise, the value set may have different expansions as underlying code systems and/or value sets evolve.  The interpretation of lockedDate is often dependent on the context - e.g. a SNOMED CT derived value set with a lockedDate will have a different expansion in USA than in UK.  If a value set specifies a version for include and exclude statements, and also specifies a locked date, the specified versions need to be available that date, or the value set will not be usable.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.lockedDate",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "date"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "w5",
+            "map": "when.init"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.description",
+        "short": "e-RS Specialty",
+        "definition": "A set of codes to reflect the Specialty for e-RS",
+        "comments": "The description is not intended to describe the semantics of the Value Set - there are no intrinsic semantics separate from the codes contained in its expansion. The description should capture its intended use, which is needed for ensuring integrity for its use in models across future changes. A description should be provided unless the value set is a contained resource (e.g. an anonymous value set in a profile). Most registries will require a description.",
+        "requirements": "Human understandability.",
+        "alias": [
+          "Scope",
+          "Purpose"
+        ],
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.description",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.useContext",
+        "short": "Content intends to support these contexts",
+        "definition": "The content was developed with a focus and intent of supporting the contexts that are listed. These terms may be used to assist with indexing and searching of value set definitions.",
+        "requirements": "Assist in searching for appropriate content.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.useContext",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "isSummary": true,
+        "binding": {
+          "strength": "extensible",
+          "description": "Indicates the countries, regions, disciplines and other aspects of use within which this artifact is targeted for use.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/use-context"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "define.xml2.0",
+            "map": "COMPONENT, PROPERTY, TIME_ASPCT, SYSTEM, SCALE_TYP, METHOD_TYP, CLASS, CLASSTYPE, ORDER_OBS, DOCUMENT_SECTION, HL7_ATTACHMENT_STRUCTURE"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.useContext.coding",
+        "short": "Code defined by a terminology system",
+        "definition": "A reference to a code defined by a terminology system.",
+        "comments": "Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true.",
+        "requirements": "Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CodeableConcept.coding",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.1-8, C*E.10-22"
+          },
+          {
+            "identity": "rim",
+            "map": "union(., ./translation)"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.useContext.coding.system",
+        "short": "Identity of the terminology system",
+        "definition": "The identification of the code system that defines the meaning of the symbol in the code.",
+        "comments": "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously.",
+        "requirements": "Need to be unambiguous about the source of the definition of the symbol.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.system",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.3"
+          },
+          {
+            "identity": "rim",
+            "map": "./codeSystem"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.useContext.coding.version",
+        "short": "Version of the system - if relevant",
+        "definition": "The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged.",
+        "comments": "Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.version",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.7"
+          },
+          {
+            "identity": "rim",
+            "map": "./codeSystemVersion"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.useContext.coding.code",
+        "short": "Symbol in syntax defined by the system",
+        "definition": "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "requirements": "Need to refer to a particular code in the system.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.code",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.1"
+          },
+          {
+            "identity": "rim",
+            "map": "./code"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.useContext.coding.display",
+        "short": "Representation defined by the system",
+        "definition": "A representation of the meaning of the code in the system, following the rules of the system.",
+        "requirements": "Need to be able to carry a human-readable meaning of the code for readers that do not know  the system.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.display",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.2 - but note this is not well followed"
+          },
+          {
+            "identity": "rim",
+            "map": "CV.displayName"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.useContext.coding.userSelected",
+        "short": "If this coding was chosen directly by the user",
+        "definition": "Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays).",
+        "comments": "Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely.",
+        "requirements": "This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.userSelected",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "Sometimes implied by being first"
+          },
+          {
+            "identity": "rim",
+            "map": "CD.codingRationale"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\\#true a [     fhir:source \"true\";     fhir:target dt:CDCoding.codingRationale\\#O   ]"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.useContext.text",
+        "short": "Plain text representation of the concept",
+        "definition": "A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user.",
+        "comments": "Very often the text is the same as a displayName of one of the codings.",
+        "requirements": "The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CodeableConcept.text",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.9. But note many systems use C*E.2 for this"
+          },
+          {
+            "identity": "rim",
+            "map": "./originalText[mediaType/code=\"text/plain\"]/data"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.immutable",
+        "short": "Indicates whether or not any change to the content logical definition may occur",
+        "definition": "If this is set to 'true', then no new versions of the content logical definition can be created.  Note: Other metadata might still change.",
+        "comments": "Normally immutability is set to 'false', which is the default assumption if it is not populated.  Note that the implication is that if this is set to 'true', there may be only one ValueSet version for this definition. Immutability tends to be set to 'true' in one of two cases: - Where the value set, by the nature of its usage, cannot change.  For example \"All specializations of ACT in ActClassCode\" - Where there's no safe way to express the \"Purpose\" such that someone else could safely make changes to the value set definition Source workflow control must guarantee that the same URI always yields the same definition.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.immutable",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.requirements",
+        "short": "Why needed",
+        "definition": "Explains why this value set is needed and why it has been constrained as it has.",
+        "comments": "This element does not describe the usage of the value set (that is done in comments), rather it's for traceability of ''why'' the element is either needed or ''why'' the constraints exist as they do.  This may be used to point to source materials or specifications that drove the structure of this data element.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.requirements",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.copyright",
+        "short": "Crown Copyright",
+        "definition": "A copyright statement relating to the value set and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the value set.",
+        "comments": "Frequently, the copyright differs between the value set, and codes that are included. The copyright statement should clearly differentiate between these when required.",
+        "alias": [
+          "License",
+          "Restrictions"
+        ],
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.copyright",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "Crown Copyright"
+      },
+      {
+        "path": "ValueSet.extensible",
+        "short": "Whether this is intended to be used with an extensible binding",
+        "definition": "Whether this is intended to be used with an extensible binding or not.",
+        "requirements": "It is not required to say whether this intent applies.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.extensible",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.codeSystem",
+        "short": "An inline code system - part of this value set",
+        "definition": "A definition of a code system, inlined into the value set (as a packaging convenience). Note that the inline code system may be used from other value sets by referring to it's (codeSystem.system) directly.",
+        "comments": "All code systems defined as part of a FHIR value set have an implicit valueset that includes all the code in the code system - the value set in which they are defined.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.codeSystem",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "condition": [
+          "vsd-5"
+        ],
+        "constraint": [
+          {
+            "key": "vsd-8",
+            "severity": "error",
+            "human": "Codes must be unique",
+            "xpath": "count(descendant::f:concept)=count(distinct-values(descendant::f:concept/f:code/@value))"
+          },
+          {
+            "key": "vsd-3",
+            "severity": "error",
+            "human": "Within a code system definition, all the codes SHALL be unique",
+            "xpath": "count(distinct-values(descendant::f:concept/f:code/@value))=count(descendant::f:concept)"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.codeSystem.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.system",
+        "short": "URI to identify the code system (e.g. in Coding.system)",
+        "definition": "An absolute URI that is used to reference this code system, including in [Coding]{datatypes.html#Coding}.system.",
+        "comments": "The reference is not required to point to any specific kind of definition, but the more information that can be provided, the more useful it is for implementers. Best practice is to resolve to a computable definition of the code system (either a value set, or some other format). Terminology Servers MAY validate this reference (e.g. when accepting PUT/POST), and MAY make additional rules about what kind of content it refers to.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.codeSystem.system",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "http://fhir.nhs.net/ValueSet/ers-specialty-1",
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.codeSystem.version",
+        "short": "Version (for use in Coding.version)",
+        "definition": "The version of this code system that defines the codes. Note that the version is optional because a well maintained code system does not suffer from versioning, and therefore the version does not need to be maintained. However many code systems are not well maintained, and the version needs to be defined and tracked.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.version",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "1",
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.codeSystem.caseSensitive",
+        "short": "If code comparison is case sensitive",
+        "definition": "If code comparison is case sensitive when codes within this system are compared to each other.",
+        "comments": "If this value is missing, then it is not specified whether a code system is case sensitive or not. When the rule is not known, Postel's law should be followed: produce codes with the correct case, and accept codes in any case. This element is primarily provided to support validation software.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.caseSensitive",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name",
+            "valueString": "ConceptDefinition"
+          }
+        ],
+        "path": "ValueSet.codeSystem.concept",
+        "name": "concept",
+        "short": "Concepts in the code system",
+        "definition": "Concepts that are in the code system. The concept definitions are inherently hierarchical, but the definitions must be consulted to determine what the meaning of the hierarchical relationships are.",
+        "min": 1,
+        "max": "*",
+        "base": {
+          "path": "ValueSet.codeSystem.concept",
+          "min": 1,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.extension",
+        "slicing": {
+          "discriminator": [
+            "url"
+          ],
+          "rules": "openAtEnd"
+        }
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.extension",
+        "name": "effectiveToDate",
+        "short": "The value set concept effective to date.",
+        "definition": "The value set concept effective to date.",
+        "requirements": "The ability to add extensions in a structured way is what keeps FHIR resources simple.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.nhs.net/StructureDefinition/extension-ers-effectivetodate-1"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.extension",
+        "name": "effectiveFromDate",
+        "short": "The value set concept effective from date.",
+        "definition": "The value set concept effective from date",
+        "requirements": "The ability to add extensions in a structured way is what keeps FHIR resources simple.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.nhs.net/StructureDefinition/extension-ers-effectivefromdate-1"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.code",
+        "short": "Code that identifies concept",
+        "definition": "A code - a text symbol - that uniquely identifies the concept within the code system.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.code",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "exampleCode": "2WW"
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.abstract",
+        "short": "If this code is not for use as a real concept",
+        "definition": "If this code is not for use as a real concept.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.abstract",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "defaultValueBoolean": false
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.display",
+        "short": "Text to Display to the user",
+        "definition": "A human readable string that is the recommended default way to present this concept to a user.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.display",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "exampleString": "2WW"
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.definition",
+        "short": "Formal Definition",
+        "definition": "The formal definition of the concept. The value set resource does not make formal definitions required, because of the prevalence of legacy systems. However, they are highly recommended, as without them there is no formal meaning associated with the concept.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.definition",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "exampleString": "Two Week Wait"
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation",
+        "name": "designation",
+        "short": "Additional representations for the concept",
+        "definition": "Additional representations for the concept - other languages, aliases, specialized purposes, used for particular purposes, etc.",
+        "requirements": "Many concept definition systems support multiple representations, in multiple languages, and for multiple purposes.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.designation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.language",
+        "short": "Human language of the designation",
+        "definition": "The language this designation is defined for.",
+        "comments": "In the absence of a language, the resource language applies.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.designation.language",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "description": "A human language.",
+          "valueSetUri": "http://tools.ietf.org/html/bcp47"
+        }
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.use",
+        "short": "Details how this designation would be used",
+        "definition": "A code that details how this designation would be used.",
+        "comments": "If no use is provided, the designation can be assumed to be suitable for general display to a human user.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.designation.use",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "binding": {
+          "strength": "extensible",
+          "description": "Details of how a designation would be used.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/designation-use"
+          }
+        }
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.use.system",
+        "short": "Identity of the terminology system",
+        "definition": "The identification of the code system that defines the meaning of the symbol in the code.",
+        "comments": "The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously.",
+        "requirements": "Need to be unambiguous about the source of the definition of the symbol.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.system",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.3"
+          },
+          {
+            "identity": "rim",
+            "map": "./codeSystem"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.use.version",
+        "short": "Version of the system - if relevant",
+        "definition": "The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged.",
+        "comments": "Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.version",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.7"
+          },
+          {
+            "identity": "rim",
+            "map": "./codeSystemVersion"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.use.code",
+        "short": "Symbol in syntax defined by the system",
+        "definition": "A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "requirements": "Need to refer to a particular code in the system.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.code",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.1"
+          },
+          {
+            "identity": "rim",
+            "map": "./code"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.use.display",
+        "short": "Representation defined by the system",
+        "definition": "A representation of the meaning of the code in the system, following the rules of the system.",
+        "requirements": "Need to be able to carry a human-readable meaning of the code for readers that do not know  the system.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.display",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "C*E.2 - but note this is not well followed"
+          },
+          {
+            "identity": "rim",
+            "map": "CV.displayName"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.use.userSelected",
+        "short": "If this coding was chosen directly by the user",
+        "definition": "Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays).",
+        "comments": "Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely.",
+        "requirements": "This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Coding.userSelected",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "Sometimes implied by being first"
+          },
+          {
+            "identity": "rim",
+            "map": "CD.codingRationale"
+          },
+          {
+            "identity": "orim",
+            "map": "fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\\#true a [     fhir:source \"true\";     fhir:target dt:CDCoding.codingRationale\\#O   ]"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.value",
+        "short": "The text value for this designation",
+        "definition": "The text value for this designation.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.designation.value",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "exampleString": "9901"
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.concept",
+        "short": "Child Concepts (Clinic Type for the Specialty)",
+        "definition": "eRS Clinic Type child concepts to be used..",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.concept",
+          "min": 0,
+          "max": "*"
+        },
+        "nameReference": "concept"
+      },
+      {
+        "path": "ValueSet.compose",
+        "short": "When value set includes codes from elsewhere",
+        "definition": "A set of criteria that provide the content logical definition of the value set by including or excluding codes from outside this value set.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.compose",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "condition": [
+          "vsd-5"
+        ],
+        "constraint": [
+          {
+            "key": "vsd-1",
+            "severity": "error",
+            "human": "A value set composition SHALL have an include or an import",
+            "xpath": "exists(f:include) or exists(f:import)"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.import",
+        "short": "Import the contents of another value set",
+        "definition": "Includes the contents of the referenced value set as a part of the contents of this value set. This is an absolute URI that is a reference to ValueSet.uri.",
+        "comments": "The value set URI is either a logical reference to a defined value set such as a [SNOMED CT reference set]{snomedct.html#implicit}, or a direct reference to a value set definition using ValueSet.url. The reference may also not reference an actual FHIR ValueSet resource; in this case, whatever is referenced is an implicit definition of a value set that needs to be clear about how versions are resolved.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "ValueSet.compose.import",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "condition": [
+          "vsd-1"
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name",
+            "valueString": "ConceptSet"
+          }
+        ],
+        "path": "ValueSet.compose.include",
+        "name": "include",
+        "short": "Include one or more codes from a code system",
+        "definition": "Include one or more codes from a code system.",
+        "comments": "If there are no codes or filters, the entire code system is included. Note that the set of codes that are included may contain abstract codes.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "ValueSet.compose.include",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "condition": [
+          "vsd-1"
+        ],
+        "constraint": [
+          {
+            "key": "vsd-11",
+            "severity": "error",
+            "human": "Cannot have both concept and filter",
+            "xpath": "not(exists(f:concept)) or not(exists(f:filter))"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.include.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.include.system",
+        "short": "The system the codes come from",
+        "definition": "An absolute URI which is the code system from which the selected codes come from.",
+        "comments": "See ''Coding.system'' for further documentation.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.compose.include.system",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "define.xml2.0",
+            "map": "ODM/Study/MetaDataVersion/CodeList/ExternalCodeList/Href"
+          },
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.include.version",
+        "short": "Specific version of the code system referred to",
+        "definition": "The version of the code system that the codes are selected from.",
+        "comments": "This is used when selecting the descendants of a concept - they may change between versions. If no version is specified, then the exact contents of the value set may not be known until a context of use binds it to a particular version.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.compose.include.version",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "define.xml2.0",
+            "map": "ODM/Study/MetaDataVersion/CodeList/ExternalCodeList/Version"
+          },
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name",
+            "valueString": "ConceptReference"
+          }
+        ],
+        "path": "ValueSet.compose.include.concept",
+        "short": "A concept defined in the system",
+        "definition": "Specifies a concept to be included or excluded.",
+        "comments": "The list of concepts is considered ordered, though the order may not have any particular significance. Typically, the order of an expansion follows that defined in the compose element.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "ValueSet.compose.include.concept",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "condition": [
+          "vsd-11"
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.include.concept.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.include.concept.code",
+        "short": "Code or expression from system",
+        "definition": "Specifies a code for the concept to be included or excluded.",
+        "comments": "Expressions are allowed if defined by the underlying code system.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.compose.include.concept.code",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.include.concept.display",
+        "short": "Test to display for this code for this value set",
+        "definition": "The text to display to the user for this concept in the context of this valueset. If no display is provided, then applications using the value set use the display specified for the code by the system.",
+        "comments": "The value set resource allows for an alternative display to be specified for when this concept is used in this particular value set. See notes in the value set narrative about the correct use of this element.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.compose.include.concept.display",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.include.concept.designation",
+        "short": "Additional representations for this valueset",
+        "definition": "Additional representations for this concept when used in this value set - other languages, aliases, specialized purposes, used for particular purposes, etc.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "ValueSet.compose.include.concept.designation",
+          "min": 0,
+          "max": "*"
+        },
+        "nameReference": "designation"
+      },
+      {
+        "path": "ValueSet.compose.include.filter",
+        "short": "Select codes/concepts by their properties (including relationships)",
+        "definition": "Select concepts by specify a matching criteria based on the properties (including relationships) defined by the system. If multiple filters are specified, they SHALL all be true.",
+        "comments": "Selecting codes by specifying filters based on properties is only possible where the underlying code system defines appropriate properties. Note that in some cases, the underlying code system defines the logical concepts but not the literal codes for the concepts. In such cases, the literal definitions may be provided by a third party.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "ValueSet.compose.include.filter",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "condition": [
+          "vsd-11"
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.include.filter.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.include.filter.property",
+        "short": "A property defined by the code system",
+        "definition": "A code that identifies a property defined in the code system.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.compose.include.filter.property",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.include.filter.op",
+        "short": "= | is-a | is-not-a | regex | in | not-in",
+        "definition": "The kind of operation to perform as a part of the filter criteria.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.compose.include.filter.op",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "description": "The kind of operation to perform as a part of a property based filter.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/filter-operator"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.include.filter.value",
+        "short": "Code from the system, or regex criteria",
+        "definition": "The match value may be either a code defined by the system, or a string value which is used a regex match on the literal string of the property value.",
+        "comments": "Use regex matching with care - full regex matching on every SNOMED CT term is prohibitive, for example.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.compose.include.filter.value",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.compose.exclude",
+        "short": "Explicitly exclude codes",
+        "definition": "Exclude one or more codes from the value set.",
+        "comments": "Usually this is used to selectively exclude codes that were included by subsumption in the inclusions. Any display names specified for the codes are ignored.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "ValueSet.compose.exclude",
+          "min": 0,
+          "max": "*"
+        },
+        "nameReference": "include",
+        "condition": [
+          "vsd-2"
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion",
+        "short": "Used when the value set is \"expanded\"",
+        "definition": "A value set can also be \"expanded\", where the value set is turned into a simple collection of enumerated codes. This element holds the expansion, if it has been performed.",
+        "comments": "Expansion is performed to produce a collection of codes that are ready to use for data entry or validation.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.expansion",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "condition": [
+          "vsd-5"
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.identifier",
+        "short": "Uniquely identifies this expansion",
+        "definition": "An identifier that uniquely identifies this expansion of the valueset. Systems may re-use the same identifier as long as the expansion and the definition remain the same, but are not required to do so.",
+        "comments": "Typically, this uri is a UUID (e.g. urn:uuid:8230ff20-c97a-4167-a59d-dc2cb9df16dd).",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.expansion.identifier",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.timestamp",
+        "short": "Time ValueSet expansion happened",
+        "definition": "The time at which the expansion was produced by the expanding system.",
+        "comments": "This SHOULD be a fully populated instant, but in some circumstances, value sets are expanded by hand, of the expansion is published without that precision.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.expansion.timestamp",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.total",
+        "short": "Total number of codes in the expansion",
+        "definition": "The total number of concepts in the expansion. If the number of concept nodes in this resource is less than the stated number, then the server can return more using the offset parameter.",
+        "comments": "Paging only applies to flat expansions.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.expansion.total",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "integer"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.offset",
+        "short": "Offset at which this resource starts",
+        "definition": "If paging is being used, the offset at which this resource starts.  I.e. this resource is a partial view into the expansion. If paging is not being used, this element SHALL not be present.",
+        "comments": "Paging only applies to flat expansions. If a filter is applied, the count is the number of concepts that matched the filter, not the number of concepts in an unfiltered view of the expansion.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.expansion.offset",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "integer"
+          }
+        ],
+        "meaningWhenMissing": "Paging is not being used"
+      },
+      {
+        "path": "ValueSet.expansion.parameter",
+        "short": "Parameter that controlled the expansion process",
+        "definition": "A Parameter that controlled the expansion process. These parameters may be used by users of expanded value sets to check whether the expansion is suitable for a particular purpose, or to pick the correct expansion.",
+        "comments": "The server decides which parameters to include here, but as a minimum, the list SHOULD include the date, filter, and profile parameters passed to the $expand operation (if any).",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "ValueSet.expansion.parameter",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.parameter.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.parameter.name",
+        "short": "Name as assigned by server",
+        "definition": "The name of the parameter.",
+        "comments": "The names are assigned at the discretion of the server.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.expansion.parameter.name",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.parameter.value[x]",
+        "short": "Value of the named parameter",
+        "definition": "The value of the parameter.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.expansion.parameter.value[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          },
+          {
+            "code": "boolean"
+          },
+          {
+            "code": "integer"
+          },
+          {
+            "code": "decimal"
+          },
+          {
+            "code": "uri"
+          },
+          {
+            "code": "code"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.contains",
+        "name": "contains",
+        "short": "Codes in the value set",
+        "definition": "The codes that are contained in the value set expansion.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "ValueSet.expansion.contains",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "vsd-6",
+            "severity": "error",
+            "human": "SHALL have a code or a display",
+            "xpath": "exists(f:code) or exists(f:display)"
+          },
+          {
+            "key": "vsd-9",
+            "severity": "error",
+            "human": "Must have a code if not abstract",
+            "xpath": "exists(f:code) or (f:abstract/@value = true())"
+          },
+          {
+            "key": "vsd-10",
+            "severity": "error",
+            "human": "Must have a system if a code is present",
+            "xpath": "exists(f:system) or not(exists(f:code))"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.contains.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.contains.system",
+        "short": "System value for the code",
+        "definition": "An absolute URI which is the code system in which the code for this item in the expansion is defined.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.expansion.contains.system",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.contains.abstract",
+        "short": "If user cannot select this entry",
+        "definition": "If true, this entry is included in the expansion for navigational purposes, and the user cannot select the code directly as a proper value.",
+        "comments": "This should not be understood to exclude its use for searching (e.g. by subsumption testing). The client should know whether it is appropriate for the user to select an abstract code or not.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.expansion.contains.abstract",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.contains.version",
+        "short": "Version in which this code/display is defined",
+        "definition": "The version of this code system that defined this code and/or display. This should only be used with code systems that do not enforce concept permanence.",
+        "comments": "The exact value of the version string is specified by the system from which the code is derived.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.expansion.contains.version",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.contains.code",
+        "short": "Code - if blank, this is not a selectable code",
+        "definition": "The code for this item in the expansion hierarchy. If this code is missing the entry in the hierarchy is a place holder (abstract) and does not represent a valid code in the value set.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.expansion.contains.code",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "condition": [
+          "vsd-6"
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.contains.display",
+        "short": "User display for the concept",
+        "definition": "The recommended display for this item in the expansion.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.expansion.contains.display",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "condition": [
+          "vsd-6"
+        ]
+      },
+      {
+        "path": "ValueSet.expansion.contains.contains",
+        "short": "Codes contained under this entry",
+        "definition": "Other codes and entries contained under this entry in the hierarchy.",
+        "comments": "If the expansion uses this element, there is  no implication about the logical relationship between them, and the  structure cannot be used for logical inferencing. The structure  exists to provide navigational assistance for helping human users to  locate codes in the expansion.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "ValueSet.expansion.contains.contains",
+          "min": 0,
+          "max": "*"
+        },
+        "nameReference": "contains"
+      }
+    ]
+  },
+  "differential": {
+    "element": [
+      {
+        "path": "ValueSet",
+        "short": "A set of codes drawn from one or more code systems",
+        "definition": "A value set specifies a set of codes drawn from one or more code systems.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "ValueSet"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "vsd-7",
+            "severity": "error",
+            "human": "A defined code system (if present) SHALL have a different url than the value set url",
+            "xpath": "not(f:codeSystem/f:system/@value = f:url/@value)"
+          },
+          {
+            "key": "vsd-2",
+            "severity": "error",
+            "human": "A value set with only one import SHALL also have an include and/or an exclude unless the value set includes and inline code system",
+            "xpath": "not(exists(f:compose)) or (count(f:compose/f:import)!=1 or exists(f:compose/f:include) or exists(f:compose/f:exclude) or exists(f:codeSystem))"
+          },
+          {
+            "key": "vsd-5",
+            "severity": "error",
+            "human": "Value set SHALL contain at least one of a codeSystem, a compose, or an expansion element",
+            "xpath": "exists(f:codeSystem) or exists(f:compose) or exists(f:expansion)"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          },
+          {
+            "identity": "w5",
+            "map": "conformance.terminology"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.url",
+        "short": "Globally unique logical identifier for  value set",
+        "definition": "An absolute URL that is used to identify this value set when it is referenced in a specification, model, design or an instance. This SHALL be a URL, SHOULD be globally unique, and SHOULD be an address at which this value set is (or will be) published.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.url",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "http://ers-specialty-1",
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          },
+          {
+            "identity": "w5",
+            "map": "id"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier",
+        "name": "ExampleERSCodes",
+        "short": "Additional identifier for the value set (e.g. HL7 v2 / CDA)",
+        "definition": "Formal identifier that is used to identify this value set when it is represented in other formats, or referenced in a specification, model, design or an instance.",
+        "comments": "Typically, this is used for values that can go in an HL7 v3 II data type.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.identifier",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Identifier"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "define.xml2.0",
+            "map": "Identifier part"
+          },
+          {
+            "identity": "w5",
+            "map": "id"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.type",
+        "short": "Description of identifier",
+        "definition": "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+        "comments": "This element deals only with general categories of identifiers.  It SHOULD not be used for codes that correspond 1..1 with the Identifier.system. Some identifiers may fall into multiple categories due to common usage.   Where the system is known, a type is unnecessary because the type is always part of the system definition. However systems often need to handle identifiers where the system is not known. There is not a 1:1 relationship between type and system, since many different systems have the same type.",
+        "requirements": "Allows users to make use of identifiers when the identifier system is not known.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Identifier.type",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "isSummary": true,
+        "binding": {
+          "strength": "extensible",
+          "description": "A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/identifier-type"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "CX.5"
+          },
+          {
+            "identity": "rim",
+            "map": "Role.code or implied by context"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.system",
+        "short": "The namespace for the identifier",
+        "definition": "Establishes the namespace in which set of possible id values is unique.",
+        "requirements": "There are many sequences of identifiers.  To perform matching, we need to know what sequence we're dealing with. The system identifies a particular sequence or set of unique identifiers.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Identifier.system",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "urn:x-fhir:uk:nhs:id:ExampleERSCodes",
+        "exampleUri": "http://www.acme.com/identifiers/patient or urn:ietf:rfc:3986 if the Identifier.value itself is a full uri",
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "CX.4 / EI-2-4"
+          },
+          {
+            "identity": "rim",
+            "map": "II.root or Role.id.root"
+          },
+          {
+            "identity": "servd",
+            "map": "./IdentifierType"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.value",
+        "short": "The value that is unique",
+        "definition": "The portion of the identifier typically displayed to the user and which is unique within the context of the system.",
+        "comments": "If the value is a full URI, then the system SHALL be urn:ietf:rfc:3986.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Identifier.value",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "ExampleERSCodes",
+        "exampleString": "123456",
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "CX.1 / EI.1"
+          },
+          {
+            "identity": "rim",
+            "map": "II.extension or II.root if system indicates OID or GUID (Or Role.id.extension or root)"
+          },
+          {
+            "identity": "servd",
+            "map": "./Value"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.period",
+        "short": "Time period when id is/was valid for use",
+        "definition": "Time period during which identifier is/was valid for use.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Identifier.period",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Period"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "CX.7 + CX.8"
+          },
+          {
+            "identity": "rim",
+            "map": "Role.effectiveTime or implied by context"
+          },
+          {
+            "identity": "servd",
+            "map": "./StartDate and ./EndDate"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.identifier.assigner",
+        "short": "Organization that issued id (may be just text)",
+        "definition": "Organization that issued/manages the identifier.",
+        "comments": "The reference may be just a text description of the assigner.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Identifier.assigner",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/Organization"
+            ]
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "CX.4 / (CX.4,CX.9,CX.10)"
+          },
+          {
+            "identity": "rim",
+            "map": "II.assigningAuthorityName but note that this is an improper use by the definition of the field.  Also Role.scoper"
+          },
+          {
+            "identity": "servd",
+            "map": "./IdentifierIssuingAuthority"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.version",
+        "short": "Logical identifier for this version of the value set",
+        "definition": "Used to identify this version of the value set when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the profile author manually and the value should be a timestamp.",
+        "comments": "There may be multiple resource versions of the value set that have the same identifier.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.version",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          },
+          {
+            "identity": "w5",
+            "map": "id.version"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.name",
+        "short": "Informal name for this value set",
+        "definition": "A free text natural language name describing the value set.",
+        "comments": "The name is not expected to be unique. A name should be provided unless the value set is a contained resource (e.g. an anonymous value set in a profile). Most registries will require a name.",
+        "requirements": "Support human navigation.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.name",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.experimental",
+        "short": "If for testing purposes, not real usage",
+        "definition": "This valueset was authored for testing purposes (or education/evaluation/marketing), and is not intended to be used for genuine usage.",
+        "comments": "Allows filtering of value sets that are appropriate for use vs. not.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.experimental",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "w5",
+            "map": "class"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.publisher",
+        "short": "Name of the publisher (organization or individual)",
+        "definition": "The name of the individual or organization that published the value set.",
+        "comments": "Usually an organization, but may be an individual. This item SHOULD be populated unless the information is available from context.",
+        "requirements": "Helps establish the \"authority/credibility\" of the value set.  May also allow for contact.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.publisher",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "NHS Digital",
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "w5",
+            "map": "who.witness"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.contact",
+        "short": "Contact details of the publisher",
+        "definition": "Contacts to assist a user in finding and communicating with the publisher.",
+        "comments": "May be a web site, an email address, a telephone number, etc.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.contact",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.lockedDate",
+        "short": "Fixed date for all referenced code systems and value sets",
+        "definition": "If a locked date is defined, then the Content Logical Definition must be evaluated using the current version of all referenced code system(s) and value set instances as of the locked date.",
+        "comments": "With a defined lockedDate the value set is considered \"Locked\". Otherwise, the value set may have different expansions as underlying code systems and/or value sets evolve.  The interpretation of lockedDate is often dependent on the context - e.g. a SNOMED CT derived value set with a lockedDate will have a different expansion in USA than in UK.  If a value set specifies a version for include and exclude statements, and also specifies a locked date, the specified versions need to be available that date, or the value set will not be usable.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.lockedDate",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "date"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "w5",
+            "map": "when.init"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.description",
+        "short": "e-RS Specialty",
+        "definition": "A set of codes to reflect the Specialty for e-RS",
+        "comments": "The description is not intended to describe the semantics of the Value Set - there are no intrinsic semantics separate from the codes contained in its expansion. The description should capture its intended use, which is needed for ensuring integrity for its use in models across future changes. A description should be provided unless the value set is a contained resource (e.g. an anonymous value set in a profile). Most registries will require a description.",
+        "requirements": "Human understandability.",
+        "alias": [
+          "Scope",
+          "Purpose"
+        ],
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.description",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.useContext",
+        "short": "Content intends to support these contexts",
+        "definition": "The content was developed with a focus and intent of supporting the contexts that are listed. These terms may be used to assist with indexing and searching of value set definitions.",
+        "requirements": "Assist in searching for appropriate content.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.useContext",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "isSummary": true,
+        "binding": {
+          "strength": "extensible",
+          "description": "Indicates the countries, regions, disciplines and other aspects of use within which this artifact is targeted for use.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/use-context"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "define.xml2.0",
+            "map": "COMPONENT, PROPERTY, TIME_ASPCT, SYSTEM, SCALE_TYP, METHOD_TYP, CLASS, CLASSTYPE, ORDER_OBS, DOCUMENT_SECTION, HL7_ATTACHMENT_STRUCTURE"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.immutable",
+        "short": "Indicates whether or not any change to the content logical definition may occur",
+        "definition": "If this is set to 'true', then no new versions of the content logical definition can be created.  Note: Other metadata might still change.",
+        "comments": "Normally immutability is set to 'false', which is the default assumption if it is not populated.  Note that the implication is that if this is set to 'true', there may be only one ValueSet version for this definition. Immutability tends to be set to 'true' in one of two cases: - Where the value set, by the nature of its usage, cannot change.  For example \"All specializations of ACT in ActClassCode\" - Where there's no safe way to express the \"Purpose\" such that someone else could safely make changes to the value set definition Source workflow control must guarantee that the same URI always yields the same definition.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.immutable",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.requirements",
+        "short": "Why needed",
+        "definition": "Explains why this value set is needed and why it has been constrained as it has.",
+        "comments": "This element does not describe the usage of the value set (that is done in comments), rather it's for traceability of ''why'' the element is either needed or ''why'' the constraints exist as they do.  This may be used to point to source materials or specifications that drove the structure of this data element.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.requirements",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.copyright",
+        "short": "Crown Copyright",
+        "definition": "A copyright statement relating to the value set and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the value set.",
+        "comments": "Frequently, the copyright differs between the value set, and codes that are included. The copyright statement should clearly differentiate between these when required.",
+        "alias": [
+          "License",
+          "Restrictions"
+        ],
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.copyright",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "Crown Copyright"
+      },
+      {
+        "path": "ValueSet.extensible",
+        "short": "Whether this is intended to be used with an extensible binding",
+        "definition": "Whether this is intended to be used with an extensible binding or not.",
+        "requirements": "It is not required to say whether this intent applies.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.extensible",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.codeSystem.system",
+        "short": "URI to identify the code system (e.g. in Coding.system)",
+        "definition": "An absolute URI that is used to reference this code system, including in [Coding]{datatypes.html#Coding}.system.",
+        "comments": "The reference is not required to point to any specific kind of definition, but the more information that can be provided, the more useful it is for implementers. Best practice is to resolve to a computable definition of the code system (either a value set, or some other format). Terminology Servers MAY validate this reference (e.g. when accepting PUT/POST), and MAY make additional rules about what kind of content it refers to.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.codeSystem.system",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "http://fhir.nhs.net/ValueSet/ers-specialty-1",
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.codeSystem.version",
+        "short": "Version (for use in Coding.version)",
+        "definition": "The version of this code system that defines the codes. Note that the version is optional because a well maintained code system does not suffer from versioning, and therefore the version does not need to be maintained. However many code systems are not well maintained, and the version needs to be defined and tracked.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.version",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "1",
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.codeSystem.caseSensitive",
+        "short": "If code comparison is case sensitive",
+        "definition": "If code comparison is case sensitive when codes within this system are compared to each other.",
+        "comments": "If this value is missing, then it is not specified whether a code system is case sensitive or not. When the rule is not known, Postel's law should be followed: produce codes with the correct case, and accept codes in any case. This element is primarily provided to support validation software.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.caseSensitive",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.extension",
+        "slicing": {
+          "discriminator": [
+            "url"
+          ],
+          "rules": "openAtEnd"
+        }
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.extension",
+        "name": "effectiveToDate",
+        "short": "The value set concept effective to date.",
+        "definition": "The value set concept effective to date.",
+        "requirements": "The ability to add extensions in a structured way is what keeps FHIR resources simple.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.nhs.net/StructureDefinition/extension-ers-effectivetodate-1"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.extension",
+        "name": "effectiveFromDate",
+        "short": "The value set concept effective from date.",
+        "definition": "The value set concept effective from date",
+        "requirements": "The ability to add extensions in a structured way is what keeps FHIR resources simple.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.nhs.net/StructureDefinition/extension-ers-effectivefromdate-1"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.code",
+        "short": "Code that identifies concept",
+        "definition": "A code - a text symbol - that uniquely identifies the concept within the code system.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.code",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "exampleCode": "2WW"
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.abstract",
+        "short": "If this code is not for use as a real concept",
+        "definition": "If this code is not for use as a real concept.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.abstract",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "defaultValueBoolean": false
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.display",
+        "short": "Text to Display to the user",
+        "definition": "A human readable string that is the recommended default way to present this concept to a user.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.display",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "exampleString": "2WW"
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.definition",
+        "short": "Formal Definition",
+        "definition": "The formal definition of the concept. The value set resource does not make formal definitions required, because of the prevalence of legacy systems. However, they are highly recommended, as without them there is no formal meaning associated with the concept.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.definition",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "exampleString": "Two Week Wait"
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation",
+        "name": "designation",
+        "short": "Additional representations for the concept",
+        "definition": "Additional representations for the concept - other languages, aliases, specialized purposes, used for particular purposes, etc.",
+        "requirements": "Many concept definition systems support multiple representations, in multiple languages, and for multiple purposes.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.designation",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.language",
+        "short": "Human language of the designation",
+        "definition": "The language this designation is defined for.",
+        "comments": "In the absence of a language, the resource language applies.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.designation.language",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "description": "A human language.",
+          "valueSetUri": "http://tools.ietf.org/html/bcp47"
+        }
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.use",
+        "short": "Details how this designation would be used",
+        "definition": "A code that details how this designation would be used.",
+        "comments": "If no use is provided, the designation can be assumed to be suitable for general display to a human user.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.designation.use",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "binding": {
+          "strength": "extensible",
+          "description": "Details of how a designation would be used.",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/designation-use"
+          }
+        }
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.designation.value",
+        "short": "The text value for this designation",
+        "definition": "The text value for this designation.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.designation.value",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "exampleString": "9901"
+      },
+      {
+        "path": "ValueSet.codeSystem.concept.concept",
+        "short": "Child Concepts (Clinic Type for the Specialty)",
+        "definition": "eRS Clinic Type child concepts to be used..",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.codeSystem.concept.concept",
+          "min": 0,
+          "max": "*"
+        },
+        "nameReference": "concept"
+      },
+      {
+        "path": "ValueSet.compose",
+        "short": "When value set includes codes from elsewhere",
+        "definition": "A set of criteria that provide the content logical definition of the value set by including or excluding codes from outside this value set.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.compose",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "condition": [
+          "vsd-5"
+        ],
+        "constraint": [
+          {
+            "key": "vsd-1",
+            "severity": "error",
+            "human": "A value set composition SHALL have an include or an import",
+            "xpath": "exists(f:include) or exists(f:import)"
+          }
+        ]
+      },
+      {
+        "path": "ValueSet.expansion",
+        "short": "Used when the value set is \"expanded\"",
+        "definition": "A value set can also be \"expanded\", where the value set is turned into a simple collection of enumerated codes. This element holds the expansion, if it has been performed.",
+        "comments": "Expansion is performed to produce a collection of codes that are ready to use for data entry or validation.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "ValueSet.expansion",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "condition": [
+          "vsd-5"
+        ]
+      }
+    ]
+  }
+}

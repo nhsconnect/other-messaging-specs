@@ -1,0 +1,151 @@
+<HTML><HEAD><TITLE>ControlAct Tabular View</TITLE><META http-equiv=Content-Type content="text/html; charset=UTF-8"><META content="" name=Entry><META content=MCAI_HD040100UK03 name=Identifier><STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD><BODY onload="checkDOM('ds')"><H1>ControlAct - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN> <TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides><TBODY><TR bgColor=black><TD colSpan=10 height=4></TD></TR><TR><TD colSpan=2 height=35><A href="MCAI_RM040000UK03.htm"><B>MCAI_RM040000UK03</B></A></TD><TD noWrap height=35></TD></TR><TR bgColor=black><TD colSpan=10 height=3></TD></TR><TR vAlign=top><TD bgColor=yellow colSpan=2><A name=ControlActEvent><B>ControlActEvent</B></A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=MCAI_HD040100UK03#ControlAct;ControlActEvent_c title=MCAI_HD040100UK03#ControlActEvent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P><B>The Control Act carries administrative information&nbsp;related to the "controlled act" that is being communicated in the message. It is intended that a single Control Act profile&nbsp;is used&nbsp;for the same types of interaction across the domains.</B></P></NOTE></DIV></TD></TR><TR bgColor=black><TD colSpan=10 height=3></TD></TR><TR class=hmd><TD align=right></TD><TD colSpan=10><FONT color=gray><A name=ControlActEvent>Used by: </A></FONT></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>CACT</B>} )<A>{<B> Fixed="<FONT color=red>CACT</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=MCAI_HD040100UK03#Act;ControlActEvent/$classCode title=ControlActEvent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that&nbsp; this is a Control Act.</P><UL><LI>Fixed value "CACT"</LI></UL></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=MCAI_HD040100UK03#Act;ControlActEvent/$moodCode title=ControlActEvent.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that the control act mood is an event.</P><UL><LI>Fixed value "EVN"</LI></UL></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Author><B>author</B></A></TD><TD style="BACKGROUND-COLOR: white"><DIV id=MCAI_HD040100UK03#Act;/ControlActEvent/author title=MCAI_HD040100UK03#/ControlActEvent/author style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P><B>A participation referring to a person who is logged in at the time the message is initiated.&nbsp;</B></P><P><B>The participation is optional. It shall be present when the message is&nbsp;initiated by a person. It shall not be present when the message is automatically&nbsp;initiated by a system.&nbsp;</B></P></NOTE></DIV></TD></TR><TR><TD width="4%"></TD><TD bgColor=white colSpan=10><TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides><TBODY><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="52%"><DIV id=MCAI_HD040100UK03#Participation;ControlActEvent/author/$typeCode title=MCAI_HD040100UK03#ControlActEvent/author.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that the role has author responsibility.</P><UL><LI>Fixed value: "AUT"</LI></UL></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD120900UK01-NoEdit.htm">participant</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM120900UK01.htm"><SMALL>[CMET:&nbsp;UKCT_MT120901UK01]</SMALL></A></TD><TD style="BACKGROUND-COLOR: white" width="52%"><DIV id=MCAI_HD040100UK03#Participation;ControlActEvent/author/participant+UKCT_MT120901UK01 title=MCAI_HD040100UK03#ControlActEvent/author/participant+UKCT_MT120901UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>NPfIT CMET&nbsp;to identify a person fulfilling a specific role where&nbsp;the Person,&nbsp;Role Profile and Job&nbsp;Role are all mandatory. Full details of the person, role profile and job role&nbsp;are available from SDS.</P><P>In this context the person is the&nbsp;signed in user&nbsp;for the user session responsible for initiating&nbsp;the message. The person shall be identified by SDS Role Profile ID, SDS User Id and SDS Role Id.</P></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..2] </B></FONT><A name=Author2><B>author1</B></A></TD><TD style="BACKGROUND-COLOR: white"><DIV id=MCAI_HD040100UK03#Act;/ControlActEvent/author1 title=MCAI_HD040100UK03#/ControlActEvent/author1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P><B>A participation referring to one or more&nbsp;systems that are involved in the&nbsp;initiation of the&nbsp;message.</B></P><P><B>One instance of the participation is mandatory and&nbsp;shall carry the accredited service id of the system in use at the time the message is initiated.</B></P><P><B>One instance of the participation is optional and may carry the workstation id of the system being used by the logged in user at the time the message is initiated</B>.</P></NOTE></DIV></TD></TR><TR><TD width="4%"></TD><TD bgColor=white colSpan=10><TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides><TBODY><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="52%"><DIV id=MCAI_HD040100UK03#Participation;ControlActEvent/author1/$typeCode title=MCAI_HD040100UK03#ControlActEvent/author1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that the role has author responsibility.</P><UL><LI>Fixed value: "AUT"</LI></UL></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD121000UK01-NoEdit.htm">participant</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM121000UK01.htm"><SMALL>[CMET:&nbsp;UKCT_MT121001UK01]</SMALL></A></TD><TD style="BACKGROUND-COLOR: white" width="52%"><DIV id=MCAI_HD040100UK03#Participation;ControlActEvent/author1/participant+UKCT_MT121001UK01 title=MCAI_HD040100UK03#ControlActEvent/author1/participant+UKCT_MT121001UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>NPfIT CMET&nbsp;to identify a&nbsp;mandatory system which could be software or hardware. Full details of the system are available from SDS.</P><P>In this context the system is&nbsp;a system in use at the time the message is initiated.&nbsp;This shall be represented by either&nbsp;the SDS Accredited Application Instance Id held in the SDS directory as the Accredited System Identifier or a locally identified&nbsp;workstation id.</P></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Reason><B>reason</B></A></TD><TD style="BACKGROUND-COLOR: white"><DIV id=MCAI_HD040100UK03#Act;/ControlActEvent/reason title=MCAI_HD040100UK03#/ControlActEvent/reason style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P><B>Identifies the relationship between the control act and the detected issue event.</B></P></NOTE></DIV></TD></TR><TR><TD width="4%"></TD><TD bgColor=white colSpan=10><TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides><TBODY><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RSON</B>} )<A>{<B> Fixed="<FONT color=red>RSON</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="52%"><DIV id=MCAI_HD040100UK03#ActRelationship;ControlActEvent/reason/$typeCode title=MCAI_HD040100UK03#ControlActEvent/reason.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that this is a reason.</P><UL><LI>Fixed value: "RSON"</LI></UL></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>justifyingDetectedIssueEvent</B> (<A href="#DetectedIssueEvent"><B>DetectedIssueEvent</B></A>)</TD><TD style="BACKGROUND-COLOR: white" width="52%"><DIV id=MCAI_HD040100UK03#ActRelationship;ControlActEvent/reason/justifyingDetectedIssueEvent-DetectedIssueEvent title=ControlActEvent/reason/justifyingDetectedIssueEvent-DetectedIssueEvent style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Details of the detected issue.</P></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Subject><B>subject</B></A></TD><TD style="BACKGROUND-COLOR: white"><DIV id=MCAI_HD040100UK03#Act;/ControlActEvent/subject title=MCAI_HD040100UK03#/ControlActEvent/subject style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P><B>Refers to the subject act of the message.</B> </P></NOTE></DIV></TD></TR><TR><TD width="4%"></TD><TD bgColor=white colSpan=10><TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides><TBODY><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SUBJ</B>} )<A>{<B> Fixed="<FONT color=red>SUBJ</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="52%"><DIV id=MCAI_HD040100UK03#ActRelationship;ControlActEvent/subject/$typeCode title=MCAI_HD040100UK03#ControlActEvent/subject.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that the domain payload entry point act is the subject of the&nbsp;Control Act.&nbsp;</P><UL><LI>Fixed value "SUBJ"</LI></UL></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD><TD style="BACKGROUND-COLOR: white" width="52%"><DIV id=MCAI_HD040100UK03#ActRelationship;ControlActEvent/subject/$contextConductionInd title=MCAI_HD040100UK03#ControlActEvent/subject.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>A&nbsp;value indicating whether any of the other participations, eg. "author", are inherited by the domain payload.&nbsp;&nbsp;</P><P>&nbsp;In this context the&nbsp;<I>value</I> attribute&nbsp;is&nbsp;a fixed value of&nbsp;"false" indicating that none of the author participations&nbsp;shall be inherited.</P></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>act</B> (<A href="#Act"><B>Act</B></A>)</TD><TD style="BACKGROUND-COLOR: white" width="52%"><DIV id=MCAI_HD040100UK03#ActRelationship;ControlActEvent/subject/act-Act title=MCAI_HD040100UK03#ControlActEvent/subject/act-Act style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>The act that is the entry point into the domain payload.</P></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR><TR bgColor=black><TD colSpan=10 height=3></TD></TR><TR vAlign=top><TD bgColor=yellow colSpan=2><A name=DetectedIssueEvent><B>DetectedIssueEvent</B></A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=MCAI_HD040100UK03#Observation;DetectedIssueEvent_c title=MCAI_HD040100UK03#DetectedIssueEvent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P><B>Details of the business&nbsp;issue or error that has been detected by the receiving system. </B></P><P><B>A business&nbsp;issue or error is defined as being one that is related to the information&nbsp;conveyed by the&nbsp;message evaluated in context by the processing application.</B>&nbsp;</P></NOTE></DIV></TD></TR><TR bgColor=black><TD colSpan=10 height=3></TD></TR><TR class=hmd><TD align=right></TD><TD colSpan=10><FONT color=gray><A name=DetectedIssueEvent>Used by: </A></FONT><A href="#ControlActEvent"><B>ControlActEvent</B></A></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ALRT</B>} )<A>{<B> Fixed="<FONT color=red>ALRT</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=MCAI_HD040100UK03#Observation;DetectedIssueEvent/$classCode title=MCAI_HD040100UK03#DetectedIssueEvent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that the act is an alert.</P><UL><LI>Fixed value: "ALRT"</LI></UL></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=MCAI_HD040100UK03#Observation;DetectedIssueEvent/$moodCode title=MCAI_HD040100UK03#DetectedIssueEvent.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that this is an alert that has occurred.</P><UL><LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/ActDetectedIssueCode.htm"><B>ActDetectedIssueCode</B></A>} )</TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=MCAI_HD040100UK03#Observation;DetectedIssueEvent/$code title=MCAI_HD040100UK03#DetectedIssueEvent.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>This&nbsp;allows the responding system to&nbsp;record the&nbsp;business issue or error&nbsp;that has been detected.</P><P>All business issues and errors shall be reported using DetectedIssueEvent.code. The code shall contain a qualifier sub element&nbsp;to indicate the severity of the issue or error.&nbsp;</P><P>The Coded&nbsp;Qualified datatype flavour&nbsp;shall be&nbsp;used to carry this information as follows:</P><UL><LI>The <I>code</I> attribute is required and&nbsp;shall contain a value from one of the code systems identified&nbsp;under ActDetectedIssueCode </LI><LI>The <I>displayName</I> attribute is optional and may contain the textual description of the code</LI><LI>The <I>codeSystem</I> attribute is required and&nbsp;shall contain an OID as appropriate.</LI><LI>The <I>originalText</I>&nbsp;sub element&nbsp;is optional and may contain the text&nbsp;used&nbsp;as the basis for the coding&nbsp;</LI><LI>The <I>qualifier</I> sub element is required and&nbsp; shall contain one of the&nbsp;qualifier codes identified under DetectedIssueQualifier together with the appropriate OID.</LI></UL></NOTE></DIV></TD></TR><TR bgColor=black><TD colSpan=10 height=3></TD></TR><TR vAlign=top><TD bgColor=yellow colSpan=2><A name=Act><B>Act</B></A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=MCAI_HD040100UK03#ActHeir;Act_c title=MCAI_HD040100UK03#Act_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P><B>This class provides the entry point into the domain payload.</B> </P></NOTE></DIV></TD></TR><TR bgColor=black><TD colSpan=10 height=3></TD></TR><TR class=hmd><TD align=right></TD><TD colSpan=10><FONT color=gray><A name=Act>Used by: </A></FONT><A href="#ControlActEvent"><B>ControlActEvent</B></A></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ACT</B>} )<A>{<B> Fixed="<FONT color=red>ACT</FONT> "</B> }</A></TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=MCAI_HD040100UK03#ActHeir;Act/$classCode title=MCAI_HD040100UK03#Act.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that the&nbsp;entry point&nbsp;is an act.</P><UL><LI>Fixed value "ACT"</LI></UL></NOTE></DIV></TD></TR><TR bgColor=gray><TD colSpan=10 height=1></TD></TR><TR vAlign=top><TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActMood</B>} )</TD><TD style="BACKGROUND-COLOR: white" width="50%"><DIV id=MCAI_HD040100UK03#ActHeir;Act/$moodCode title=MCAI_HD040100UK03#Act.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><P>Indicates that the act that is the entry point has a mood.</P></NOTE></DIV></TD></TR><TR bgColor=black><TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

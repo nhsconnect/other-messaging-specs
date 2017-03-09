@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+PSIS Event query response schema.
+
+This is the response to a PSIS Event query. It contains
+a single event, with its original HL7.
+
+The metadata elements of this response are in the "urn:npfit:psisqr"
+namespace, with the "psis" prefix. The original HL7 of the event is in the
+"urn:hl7-org:v3" namespace, with no prefix.
+
+11 August 2004
+
+-->
+<xs:schema targetNamespace="urn:npfit:psisqr" elementFormDefault="qualified" xmlns:hl7="urn:hl7-org:v3" xmlns="urn:npfit:psisqr" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- This schema is based on the queryResponsePatient schema -->
+	<xs:include schemaLocation="queryResponsePatient_02.xsd"/>
+	<xs:element name="queryResponseEvent">
+		<xs:annotation>
+			<xs:documentation>
+			queryResponseEvent is the root element of the response
+			for a "get event by event ID" request.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="recordTarget" type="recordTarget"/>
+				<xs:element name="event" type="event"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

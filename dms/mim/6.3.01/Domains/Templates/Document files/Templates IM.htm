@@ -1,0 +1,1554 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Template Implementation Manual</title>
+<link rel="stylesheet" href="../../../Core/Stylesheets/IMCommon_v3.css" type="text/css">
+</head>
+
+<body lang="EN-GB" link="blue" vlink="purple">
+
+<div id="header">
+	<p>Templates Implementation Manual - Library : Version 2.4</p>
+</div>
+<div id="content">
+	<div class="Section1">
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="Un-numberedHeading1">Contents</p>
+		<div class="index1" div id="fp_TOC" class="fp_TOC">
+			<a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;Template Definitions 
+		for NPfIT Roles</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.1">1.1&nbsp;&nbsp;&nbsp;&nbsp;AuthorSDS - COCD_TP145001UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.2">1.2&nbsp;&nbsp;&nbsp;&nbsp;AuthorNonSDSWithOrgNonSDS - COCD_TP145002UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.3">1.3&nbsp;&nbsp;&nbsp;&nbsp;AuthorNonSDSWithOrgSDS - COCD_TP145003UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.4">1.4&nbsp;&nbsp;&nbsp;&nbsp;EntitySDS - COCD_TP145004UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.5">1.5&nbsp;&nbsp;&nbsp;&nbsp;EntityNonSDSWithOrgSDS - COCD_TP145005UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.6">1.6&nbsp;&nbsp;&nbsp;&nbsp;EntityNonSDSWithOrgNonSDS - COCD_TP145006UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.7">1.7&nbsp;&nbsp;&nbsp;&nbsp;RelatedEntity - COCD_TP145007UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.8">1.8&nbsp;&nbsp;&nbsp;&nbsp;ServiceDeliveryLocationSDS - COCD_TP145008UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.9">1.9&nbsp;&nbsp;&nbsp;&nbsp;AuthorDeviceSDS - COCD_TP145009UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.10">1.10&nbsp;&nbsp;&nbsp;&nbsp;DeviceNonSDSWithOrgSDS - COCD_TP145010UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.11">1.11&nbsp;&nbsp;&nbsp;&nbsp;NonNamedPersonWithOrgSDS - COCD_TP145012UK03 </a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.12">1.12&nbsp;&nbsp;&nbsp;&nbsp;NonNamedPersonWithOrgNonSDS - COCD_TP145013UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.13">1.13&nbsp;&nbsp;&nbsp;&nbsp;IncidentalLocation 
+		- COCD_TP145014UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.14">1.14&nbsp;&nbsp;&nbsp;&nbsp;RequesterEntity - COCD_TP145016UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.15">1.15&nbsp;&nbsp;&nbsp;&nbsp;RecipientOrganization - COCD_TP145017UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.16">1.16&nbsp;&nbsp;&nbsp;&nbsp;CustodianOrganization - COCD_TP145018UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.17">1.17&nbsp;&nbsp;&nbsp;&nbsp;NonNamedPersonAuthorSDS - COCD_TP145019UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.18">1.18&nbsp;&nbsp;&nbsp;&nbsp;Patient - COCD_TP145020UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.19">1.19&nbsp;&nbsp;&nbsp;&nbsp;RecipientEntitySDS - COCD_TP145021UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.20">1.20&nbsp;&nbsp;&nbsp;&nbsp;EntitySDSwithRequiredRoleProfileId - COCD_TP145022UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.21">1.21&nbsp;&nbsp;&nbsp;&nbsp;Accessor - COCD_TP145023UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.22">1.22&nbsp;&nbsp;&nbsp;&nbsp;HealthCareFacility - COCD_TP145024UK01</a><br><a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp;&nbsp;Template Definitions 
+		for NPfIT CDA coded entries</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.1">2.1&nbsp;&nbsp;&nbsp;&nbsp;LifeStyle - COCD_TP146001UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.2">2.2&nbsp;&nbsp;&nbsp;&nbsp;Smoking - COCD_TP146002UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.3">2.3&nbsp;&nbsp;&nbsp;&nbsp;AlcoholIntake - COCD_TP146003UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.4">2.4&nbsp;&nbsp;&nbsp;&nbsp;SocialOrPersonalCircumstance - COCD_TP146004UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.5">2.5&nbsp;&nbsp;&nbsp;&nbsp;CareEvent - COCD_TP146005UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.6">2.6&nbsp;&nbsp;&nbsp;&nbsp;Problem - COCD_TP146006UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.7">2.7&nbsp;&nbsp;&nbsp;&nbsp;LinkAssertion - COCD_TP146007UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.8">2.8&nbsp;&nbsp;&nbsp;&nbsp;ProblemMemberAssertion - COCD_TP146008UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.9">2.9&nbsp;&nbsp;&nbsp;&nbsp;ProblemLinkAssertion - COCD_TP146009UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.10">2.10&nbsp;&nbsp;&nbsp;&nbsp;RiskToPerson - COCD_TP146010UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.11">2.11&nbsp;&nbsp;&nbsp;&nbsp;Diagnosis - COCD_TP146011UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.12">2.12&nbsp;&nbsp;&nbsp;&nbsp;Finding - COCD_TP146012UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.13">2.13&nbsp;&nbsp;&nbsp;&nbsp;BloodPressure - COCD_TP146013UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.14">2.14&nbsp;&nbsp;&nbsp;&nbsp;Weight - COCD_TP146014UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.15">2.15&nbsp;&nbsp;&nbsp;&nbsp;Height - COCD_TP146015UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.16">2.16&nbsp;&nbsp;&nbsp;&nbsp;Temperature - COCD_TP146016UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.17">2.17&nbsp;&nbsp;&nbsp;&nbsp;OrganizedFinding - COCD_TP146017UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.18">2.18&nbsp;&nbsp;&nbsp;&nbsp;FamilyHistory - COCD_TP146018UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.19">2.19&nbsp;&nbsp;&nbsp;&nbsp;Investigation - COCD_TP146019UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.20">2.20&nbsp;&nbsp;&nbsp;&nbsp;PersonalPreference - COCD_TP146020UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.21">2.21&nbsp;&nbsp;&nbsp;&nbsp;Service - COCD_TP146021UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.22">2.22&nbsp;&nbsp;&nbsp;&nbsp;AllergicOrAdverseReactionEvent - COCD_TP146022UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.23">2.23&nbsp;&nbsp;&nbsp;&nbsp;ProvisionOfAdviceAndInformation - COCD_TP146023UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.24">2.24&nbsp;&nbsp;&nbsp;&nbsp;AdministrativeProcedure - COCD_TP146024UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.25">2.25&nbsp;&nbsp;&nbsp;&nbsp;AllergyPropensity - COCD_TP146025UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.26">2.26&nbsp;&nbsp;&nbsp;&nbsp;RiskToPatient - COCD_TP146026UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.27">2.27&nbsp;&nbsp;&nbsp;&nbsp;Treatment - COCD_TP146027UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.28">2.28&nbsp;&nbsp;&nbsp;&nbsp;MedicationAdministrationDose - COCD_TP146029UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.29">2.29&nbsp;&nbsp;&nbsp;&nbsp;MedicationAdministrationCourse - COCD_TP146030UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.30">2.30&nbsp;&nbsp;&nbsp;&nbsp;PlanMedicationAdministration - COCD_TP146031UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.31">2.31&nbsp;&nbsp;&nbsp;&nbsp;RequestMedicationSupply - COCD_TP146032UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.32">2.32&nbsp;&nbsp;&nbsp;&nbsp;SupplyMedication 
+		- COCD_TP146033UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.33">2.33&nbsp;&nbsp;&nbsp;&nbsp;RequestMedicationAdministration - COCD_TP146034UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.34">2.34&nbsp;&nbsp;&nbsp;&nbsp;MedicationDiscontinuation - COCD_TP146036UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.35">2.35&nbsp;&nbsp;&nbsp;&nbsp;PatientMovement - COCD_TP146037UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.36">2.36&nbsp;&nbsp;&nbsp;&nbsp;Discharge - COCD_TP146038UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.37">2.37&nbsp;&nbsp;&nbsp;&nbsp;NullifyDocument - COCD_TP146049UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.38">2.38&nbsp;&nbsp;&nbsp;&nbsp;EncompassingEncounter 
+		- COCD_TP146060UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.39">2.39&nbsp;&nbsp;&nbsp;&nbsp;TextSection 
+		- COCD_TP146061UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.40">2.40&nbsp;&nbsp;&nbsp;&nbsp;CRETypeList 
+		- COCD_TP146062UK01</a><br><a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp;&nbsp;Template Definitions for NPfIT CDA 
+		coded entries associated with sealing</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp;&nbsp;SealingEvent - 
+COCD_TP146043UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.2">3.2&nbsp;&nbsp;&nbsp;&nbsp;RefusalToSeal 
+		- COCD_TP146044UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.3">3.3&nbsp;&nbsp;&nbsp;&nbsp;UnSealingEvent - COCD_TP146045UK05</a><br><a href="#_Toc_Section_4">4&nbsp;&nbsp;&nbsp;&nbsp;Template Definitions 
+		for reference validation</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1">4.1&nbsp;&nbsp;&nbsp;&nbsp;LifeStyleRef - COCD_TP147001UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.2">4.2&nbsp;&nbsp;&nbsp;&nbsp;SmokingRef - COCD_TP147002UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.3">4.3&nbsp;&nbsp;&nbsp;&nbsp;AlcoholIntakeRef - COCD_TP147003UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.4">4.4&nbsp;&nbsp;&nbsp;&nbsp;SocialOrPersonalCircumstanceRef - COCD_TP147004UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.5">4.5&nbsp;&nbsp;&nbsp;&nbsp;CareEventRef - COCD_TP147005UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.6">4.6&nbsp;&nbsp;&nbsp;&nbsp;ProblemRef - COCD_TP147006UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.7">4.7&nbsp;&nbsp;&nbsp;&nbsp;RiskToPersonRef - COCD_TP147010UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.8">4.8&nbsp;&nbsp;&nbsp;&nbsp;DiagnosisRef - COCD_TP147011UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.9">4.9&nbsp;&nbsp;&nbsp;&nbsp;FindingRef - COCD_TP147012UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.10">4.10&nbsp;&nbsp;&nbsp;&nbsp;BloodPressureRef - COCD_TP147013UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.11">4.11&nbsp;&nbsp;&nbsp;&nbsp;WeightRef - COCD_TP147014UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.12">4.12&nbsp;&nbsp;&nbsp;&nbsp;HeightRef - COCD_TP147015UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.13">4.13&nbsp;&nbsp;&nbsp;&nbsp;TemperatureRef - COCD_TP147016UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.14">4.14&nbsp;&nbsp;&nbsp;&nbsp;FindingOrganizerRef - COCD_TP147017UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.15">4.15&nbsp;&nbsp;&nbsp;&nbsp;FamilyHistoryRef - COCD_TP147018UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.16">4.16&nbsp;&nbsp;&nbsp;&nbsp;InvestigationRef - COCD_TP147019UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.17">4.17&nbsp;&nbsp;&nbsp;&nbsp;PersonalPreferenceRef - COCD_TP147020UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.18">4.18&nbsp;&nbsp;&nbsp;&nbsp;ServiceRef - COCD_TP147021UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.19">4.19&nbsp;&nbsp;&nbsp;&nbsp;AllergicOrAdverseReactionEventRef - COCD_TP147022UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.20">4.20&nbsp;&nbsp;&nbsp;&nbsp;ProvisionOfAdviceAndInformationRef - COCD_TP147023UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.21">4.21&nbsp;&nbsp;&nbsp;&nbsp;AdministrativeProcedureRef - COCD_TP147024UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.22">4.22&nbsp;&nbsp;&nbsp;&nbsp;AllergyPropensityRef - COCD_TP147025UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.23">4.23&nbsp;&nbsp;&nbsp;&nbsp;RiskToPatientRef - COCD_TP147026UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.24">4.24&nbsp;&nbsp;&nbsp;&nbsp;TreatmentRef - COCD_TP147027UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.25">4.25&nbsp;&nbsp;&nbsp;&nbsp;MedicationAdministrationDoseRef 
+		- COCD_TP147029UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.26">4.26&nbsp;&nbsp;&nbsp;&nbsp;MedicationAdministrationCourseRef 
+		- COCD_TP147030UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.27">4.27&nbsp;&nbsp;&nbsp;&nbsp;PlanMedicationAdministrationRef 
+		- COCD_TP147031UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.28">4.28&nbsp;&nbsp;&nbsp;&nbsp;RequestMedicationSupplyRef - COCD_TP147032UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.29">4.29&nbsp;&nbsp;&nbsp;&nbsp;SupplyMedicationRef - COCD_TP147033UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.30">4.30&nbsp;&nbsp;&nbsp;&nbsp;RequestMedicationAdministrationRef - COCD_TP147034UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.31">4.31&nbsp;&nbsp;&nbsp;&nbsp;MedicationDiscontinuationRef - COCD_TP147036UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.32">4.32&nbsp;&nbsp;&nbsp;&nbsp;PatientMovementRef - COCD_TP147037UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.33">4.33&nbsp;&nbsp;&nbsp;&nbsp;DischargeRef - COCD_TP147038UK03</a></div>
+		<p class="MsoMIM">&nbsp;</p>
+		<div class="MsoMIM" align="center" style="text-align:center">
+			<hr size="2" width="95%" align="center"></div>
+		<p><b>Change History&nbsp;&nbsp;&nbsp;
+<a title="View Change History" href="ChangeHistory/TemplateIMCH.htm">
+<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></b></p>
+<a title="View Change History" href="ChangeHistory/TemplateIMCH.htm">
+			<hr size="2" width="95%" align="center"></a>
+		<p>&nbsp;</p>  
+		<h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;Template Definitions 
+		for NPfIT Roles</h1>
+		<h2><a name=COCD_TP145001UK03></a><a name=_Toc_Section_1.1></a>1.1&nbsp;&nbsp;&nbsp;&nbsp;AuthorSDS - COCD_TP145001UK03</h2>
+		</a>
+		<p class="MsoMIM">Template to represent a role of assigned author details 
+		of which are available on SDS</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145001UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145001UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145001UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145001UK03-AuthorSDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145001UK-AuthorSDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a><b>
+		</b></p>
+		<h2><a name=COCD_TP145002UK03></a><a name=_Toc_Section_1.2></a>1.2&nbsp;&nbsp;&nbsp;&nbsp;AuthorNonSDSWithOrgNonSDS - COCD_TP145002UK03</h2>
+		<p class="MsoMIM">Template to represent a role of assigned author details 
+		of which are not available on SDS with an optional scoping non SDS organization.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145002UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145002UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145002UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145002UK03-AuthorNonSDSWithOrgNonSDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145002UK-AuthorNonSDSWithOrgNonSDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a>
+		</p>
+		<h2><a name=COCD_TP145003UK03></a><a name=_Toc_Section_1.3></a>1.3&nbsp;&nbsp;&nbsp;&nbsp;AuthorNonSDSWithOrgSDS - COCD_TP145003UK03</h2>
+		<p class="MsoMIM">Template to represent an assigned entity role where details 
+		are not available on SDS but the scoping organization is. </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145003UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145003UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145003UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145003UK03-AuthorNonSDSWithOrgSDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145003UK-AuthorNonSDSWithOrgSDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145004UK03></a><a name=_Toc_Section_1.4></a>1.4&nbsp;&nbsp;&nbsp;&nbsp;EntitySDS - COCD_TP145004UK03</h2>
+		<p class="MsoMIM">Template to represent an assigned entity role where the 
+		details are available on SDS </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145004UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145004UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145004UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145004UK03-EntitySDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145004UK-EntitySDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145005UK03></a><a name=_Toc_Section_1.5></a>1.5&nbsp;&nbsp;&nbsp;&nbsp;EntityNonSDSWithOrgSDS - COCD_TP145005UK03</h2>
+		<p class="MsoMIM">Template to represent an assigned entity role where the 
+		details are not available on SDS but details of the scoping organization 
+		are.&nbsp; </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145005UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145005UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145005UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145005UK03-EntityNonSDSWithOrgSDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145005UK-EntityNonSDSWithOrgSDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145006UK03></a><a name=_Toc_Section_1.6></a>1.6&nbsp;&nbsp;&nbsp;&nbsp;EntityNonSDSWithOrgNonSDS - COCD_TP145006UK03</h2>
+		<p class="MsoMIM">Template to represent a role where neither the assigned 
+		entity role nor the scoping organization are available on SDS</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145006UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145006UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145006UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145006UK03-EntityNonSDSWithOrgNonSDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145006UK-EntityNonSDSWithOrgNonSDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145007UK03></a><a name=_Toc_Section_1.7></a>1.7&nbsp;&nbsp;&nbsp;&nbsp;RelatedEntity - COCD_TP145007UK03</h2>
+		<p class="MsoMIM">Template to represent a related person </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145007UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145007UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145007UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145007UK03-RelatedEntity.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145007UK-RelatedEntityCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145008UK03></a><a name=_Toc_Section_1.8></a>1.8&nbsp;&nbsp;&nbsp;&nbsp;ServiceDeliveryLocationSDS - COCD_TP145008UK03</h2>
+		<p class="MsoMIM">Template to represent a role of service delivery location
+		</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145008UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145008UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145008UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145008UK03-ServiceDeliveryLocationSDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145008UK-ServiceDeliveryLocationSDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145009UK03></a><a name=_Toc_Section_1.9></a>1.9&nbsp;&nbsp;&nbsp;&nbsp;AuthorDeviceSDS - COCD_TP145009UK03</h2>
+		<p class="MsoMIM">Template to represent a role of a device where the details 
+		of which are available from SDS</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145009UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145009UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145009UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145009UK03-AuthorDeviceSDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145009UK-AuthorDeviceSDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145010UK03></a><a name=_Toc_Section_1.10></a>1.10&nbsp;&nbsp;&nbsp;&nbsp;DeviceNonSDSWithOrgSDS - COCD_TP145010UK03</h2>
+		<p class="MsoMIM">Template to represent a role of a device where neither 
+		the details of which are not available from SDS nor the scoping organization</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145010UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145010UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145010UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145010UK03-DeviceNonSDSWithOrgSDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145010UK-DeviceNonSDSWithOrgSDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145012UK03></a><a name=_Toc_Section_1.11></a>1.11&nbsp;&nbsp;&nbsp;&nbsp;NonNamedPersonWithOrgSDS - COCD_TP145012UK03 </h2>
+		<p class="MsoMIM">Template to represent a role of an person where the actual 
+		name of the person&nbsp; is not required and the scoping organization&#39;s 
+		details are available on SDS. </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145012UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145012UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145012UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145012UK03-NonNamedPersonWithOrgSDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145012UK-NonNamedPersonWithOrgSDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145013UK03></a><a name=_Toc_Section_1.12></a>1.12&nbsp;&nbsp;&nbsp;&nbsp;NonNamedPersonWithOrgNonSDS - COCD_TP145013UK03</h2>
+		<p class="MsoMIM">Template to represent a role of an person where the actual 
+		name of the person&nbsp; is not required and the scoping organization&#39;s 
+		details are not available on SDS. </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145013UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145013UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145013UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145013UK03-NonNamedPersonWithOrgNonSDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145013UK-NonNamedPersonWithOrgNonSDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145014UK03></a><a name=_Toc_Section_1.13></a>1.13&nbsp;&nbsp;&nbsp;&nbsp;IncidentalLocation 
+		- COCD_TP145014UK03</h2>
+		<p class="MsoMIM">Template to represent a role of incidental location
+		</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145014UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145014UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145014UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145014UK03-IncidentalLocation.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145014UK-IncidentalLocationCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145016UK03></a><a name=_Toc_Section_1.14></a>1.14&nbsp;&nbsp;&nbsp;&nbsp;RequesterEntity - COCD_TP145016UK03</h2>
+		<p class="MsoMIM">Template to represent a role requester to seal an item 
+		of information.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145016UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145016UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145016UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145016UK03-RequesterEntity.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145016UK-RequesterEntityCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP145017UK03></a><a name=_Toc_Section_1.15></a>1.15&nbsp;&nbsp;&nbsp;&nbsp;RecipientOrganization - COCD_TP145017UK03</h2>
+		<p class="MsoMIM">Template to represent recipient organization.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145017UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145017UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145017UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145017UK03-RecipientOrganization.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145017UK-RecipientOrganizationCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<h2><a name=COCD_TP145018UK03></a><a name=_Toc_Section_1.16></a>1.16&nbsp;&nbsp;&nbsp;&nbsp;CustodianOrganization - COCD_TP145018UK03</h2>
+		<p class="MsoMIM">Template to represent custodian organization.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145018UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145018UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145018UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145018UK03-CustodianOrganization.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145018UK-CustodianOrganizationCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<h2><a name=COCD_TP145019UK03></a><a name=_Toc_Section_1.17></a>1.17&nbsp;&nbsp;&nbsp;&nbsp;NonNamedPersonAuthorSDS - COCD_TP145019UK03</h2>
+		<p class="MsoMIM">Template to represent author when only organization is 
+		stated.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145019UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145019UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145019UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145019UK03-NonNamedPersonAuthorSDS.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145019UK-NonNamedPersonAuthorSDSCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<h2><a name=COCD_TP145020UK03></a><a name=_Toc_Section_1.18></a>1.18&nbsp;&nbsp;&nbsp;&nbsp;Patient - COCD_TP145020UK03</h2>
+		<p class="MsoMIM">Template to represent a patient.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145020UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145020UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145020UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145020UK03-Patient.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145020UK-PatientCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<h2><a name=COCD_TP145021UK02></a><a name=_Toc_Section_1.19></a>1.19&nbsp;&nbsp;&nbsp;&nbsp;RecipientEntitySDS - COCD_TP145021UK02</h2>
+		<p class="MsoMIM">Template to represent an recipient assigned entity role 
+		where the details are available on SDS </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145021UK02.htm">
+		<img src="../../../Core/Components_files/image003.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145021UK02-NoEdit.htm">
+		<img src="../../../Core/Components_files/image004.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145021UK02.xsd">
+		<img src="../../../Core/Components_files/image005.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145021UK02-RecipientEntitySDS.mif">
+		<img src="../../../Core/Components_files/icon_mif.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145021UK-RecipientEntitySDSCH.htm">
+		<img src="../../../Core/Contents_files/Document.gif" border="0" height="20" width="30"></a></p>
+		<p class="MsoMIM">
+		&nbsp;</p>
+		<h2><a name=COCD_TP145022UK01></a><a name=_Toc_Section_1.20></a>1.20&nbsp;&nbsp;&nbsp;&nbsp;EntitySDSwithRequiredRoleProfileId - COCD_TP145022UK01</h2>
+		<p class="MsoMIM">Template to represent an assigned entity role where the 
+		details are available on SDS but the persons role profile id may not be 
+		available on the source system and therefore cannot be included. </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145022UK01.htm">
+		<img src="../../../Core/Components_files/image003.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145022UK01-NoEdit.htm">
+		<img src="../../../Core/Components_files/image004.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145022UK01.xsd">
+		<img src="../../../Core/Components_files/image005.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145022UK01-EntitySDSwithReqRoleProfile.mif">
+		<img src="../../../Core/Components_files/icon_mif.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145022UK-EntitySDSWithRequiredRoleProfileIdCH.htm">
+		<img src="../../../Core/Contents_files/Document.gif" border="0" height="20" width="30"></a></p>
+		<p class="MsoMIM">&nbsp;</p>  <h2><a name=COCD_TP145023UK01></a><a name=_Toc_Section_1.21></a>1.21&nbsp;&nbsp;&nbsp;&nbsp;Accessor - COCD_TP145023UK01</h2>
+		<p class="MsoMIM">Template to represent the role of an Accessor.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145023UK01.htm">
+		<img src="../../../Core/Components_files/image003.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145023UK01-NoEdit.htm">
+		<img src="../../../Core/Components_files/image004.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145023UK01.xsd">
+		<img src="../../../Core/Components_files/image005.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145023UK01-Accessor.mif">
+		<img src="../../../Core/Components_files/icon_mif.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145023UK-AccessorCH.htm">
+		<img src="../../../Core/Contents_files/Document.gif" border="0" height="20" width="30"></a></p>
+		<p class="MsoMIM">
+		&nbsp;</p>
+		<p class="MsoMIM">
+		&nbsp;</p>  <h2><a name=COCD_TP145024UK01></a><a name=_Toc_Section_1.22></a>1.22&nbsp;&nbsp;&nbsp;&nbsp;HealthCareFacility - COCD_TP145024UK01</h2>
+		<p class="MsoMIM">Template to represent the Healthcare facility where 
+		the encompassing encounter took place or is associated with.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP145024UK01.htm">
+		<img src="../../../Core/Components_files/image003.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP145024UK01-NoEdit.htm">
+		<img src="../../../Core/Components_files/image004.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP145024UK01.xsd">
+		<img src="../../../Core/Components_files/image005.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP145024UK01-HealthCareFacility.mif">
+		<img src="../../../Core/Components_files/icon_mif.gif" border="0"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP145024UK-HealthCareFacilityCH.htm">
+		<img src="../../../Core/Contents_files/Document.gif" border="0" height="20" width="30"></a></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<h1><a name=_Toc_Section_2></a>2&nbsp;&nbsp;&nbsp;&nbsp;Template Definitions 
+		for NPfIT CDA coded entries</h1>
+		<h2><a name=COCD_TP146001UK04></a><a name=_Toc_Section_2.1></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;LifeStyle - COCD_TP146001UK04</h2>
+		<p class="MsoMIM">Template to allow the representation of the patient&#39;s 
+		lifestyle</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146001UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146001UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146001UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146001UK04-LifeStyle.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146001UK-LifeStyleCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146002UK04></a><a name=_Toc_Section_2.2></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;Smoking - COCD_TP146002UK04</h2>
+		<p class="MsoMIM">Template to represent observations relating to the patient 
+		with regards to smoking</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146002UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146002UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146002UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146002UK04-Smoking.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146002UK-SmokingCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146003UK04></a><a name=_Toc_Section_2.3></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;AlcoholIntake - COCD_TP146003UK04</h2>
+		<p class="MsoMIM">Template to represent observations relating to the patient 
+		with regards to alcohol</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146003UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146003UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146003UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146003UK04-AlcolholIntake.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146003UK-AlcoholIntakeCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146004UK04></a><a name=_Toc_Section_2.4></a>2.4&nbsp;&nbsp;&nbsp;&nbsp;SocialOrPersonalCircumstance - COCD_TP146004UK04</h2>
+		<p class="MsoMIM">Template to represent the patient&#39;s social or personal 
+		circumstances </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146004UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146004UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146004UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146004UK04-SocialOrPersonalCircumstance.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146004UK-SocialOrPersonalCircumstanceCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146005UK04></a><a name=_Toc_Section_2.5></a>2.5&nbsp;&nbsp;&nbsp;&nbsp;CareEvent - COCD_TP146005UK04</h2>
+		<p class="MsoMIM">Template to represent care events</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146005UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146005UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146005UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146005UK04-CareEvent.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146005UK-CareEventCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146006UK04></a><a name=_Toc_Section_2.6></a>2.6&nbsp;&nbsp;&nbsp;&nbsp;Problem - COCD_TP146006UK04</h2>
+		<p class="MsoMIM">Template used with a reference to a clinical statement 
+		to indicate that the clinical statement has been highlighted as a problem</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146006UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146006UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146006UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146006UK04-Problem.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146006UK-ProblemCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146007UK04></a><a name=_Toc_Section_2.7></a>2.7&nbsp;&nbsp;&nbsp;&nbsp;LinkAssertion - COCD_TP146007UK04</h2>
+		<p class="MsoMIM">Template used to assert a link between 2 clinical statements</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146007UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146007UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146007UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146007UK04-LinkAssertion.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146007UK-LinkAssertionCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">
+		Note: <br/>Suppliers are not required to implement Link 
+		Assertion for systems deployed against Spine Release 2008A. This is 
+		because the limited&nbsp;&nbsp;&nbsp;&nbsp; requirement to code 
+		information for that release (only Medications and Allergies &amp; Adverse 
+		Drug Reactions) means that the environment does not support a clear 
+		Business Use Case for Link Assertion. However, it should be assumed that 
+		this will change as the level of coded information increases.</p>
+		
+		<h2><a name=COCD_TP146008UK04></a><a name=_Toc_Section_2.8></a>2.8&nbsp;&nbsp;&nbsp;&nbsp;ProblemMemberAssertion - COCD_TP146008UK04</h2>
+		<p class="MsoMIM">Template used to assert that a clinical statement is a 
+		member of a problem</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146008UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146008UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146008UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146008UK04-ProblemMemberAssertion.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146008UK-ProblemMemberAssertionCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a>
+		</p>
+		<h2><a name=COCD_TP146009UK04></a><a name=_Toc_Section_2.9></a>2.9&nbsp;&nbsp;&nbsp;&nbsp;ProblemLinkAssertion - COCD_TP146009UK04</h2>
+		<p class="MsoMIM">Template used to assert a link between 2 problems</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146009UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146009UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146009UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146009UK04-ProblemLinkAssertion.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146009UK-ProblemLinkAssertionCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146010UK04></a><a name=_Toc_Section_2.10></a>2.10&nbsp;&nbsp;&nbsp;&nbsp;RiskToPerson - COCD_TP146010UK04</h2>
+		<p class="MsoMIM">Template used to highlight a clinical statement as a risk 
+		to a clinician or third party</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146010UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146010UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146010UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146010UK04-RiskToPerson.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146010UK-RiskToPersonCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146011UK04></a><a name=_Toc_Section_2.11></a>2.11&nbsp;&nbsp;&nbsp;&nbsp;Diagnosis - COCD_TP146011UK04</h2>
+		<p class="MsoMIM">Template for diagnoses</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146011UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146011UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146011UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146011UK04-Diagnosis.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146011UK-DiagnosisCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a>&nbsp;&nbsp;&nbsp;
+		</p>
+		<h2><a name=COCD_TP146012UK04></a><a name=_Toc_Section_2.12></a>2.12&nbsp;&nbsp;&nbsp;&nbsp;Finding - COCD_TP146012UK04</h2>
+		<p class="MsoMIM">Template for non organized findings that do not have a 
+		specific template</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146012UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146012UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146012UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146012UK04-Finding.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146012UK-FindingCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146013UK04></a><a name=_Toc_Section_2.13></a>2.13&nbsp;&nbsp;&nbsp;&nbsp;BloodPressure - COCD_TP146013UK04</h2>
+		<p class="MsoMIM">Template for representation of blood pressure observations
+		</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146013UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146013UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146013UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146013UK04-BloodPressure.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146013UK-BloodPressureCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146014UK04></a><a name=_Toc_Section_2.14></a>2.14&nbsp;&nbsp;&nbsp;&nbsp;Weight - COCD_TP146014UK04</h2>
+		<p class="MsoMIM">Template for representation of weight observations</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146014UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146014UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146014UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146014UK04-Weight.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146014UK-WeightCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146015UK04></a><a name=_Toc_Section_2.15></a>2.15&nbsp;&nbsp;&nbsp;&nbsp;Height - COCD_TP146015UK04</h2>
+		<p class="MsoMIM">Template for representation of height observations</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146015UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146015UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146015UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146015UK04-Height.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146015UK-HeightCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146016UK04></a><a name=_Toc_Section_2.16></a>2.16&nbsp;&nbsp;&nbsp;&nbsp;Temperature - COCD_TP146016UK04</h2>
+		<p class="MsoMIM">Template for representation of temperature observations</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146016UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146016UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146016UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146016UK04-Temperature.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146016UK-TemperatureCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146017UK04></a><a name=_Toc_Section_2.17></a>2.17&nbsp;&nbsp;&nbsp;&nbsp;OrganizedFinding - COCD_TP146017UK04</h2>
+		<p class="MsoMIM">Template for representation of organized findings such 
+		as a battery of tests</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146017UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146017UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146017UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146017UK04-OrganizedFinding.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146017UK-OrganizedFindingCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146018UK04></a><a name=_Toc_Section_2.18></a>2.18&nbsp;&nbsp;&nbsp;&nbsp;FamilyHistory - COCD_TP146018UK04</h2>
+		<p class="MsoMIM">Template for the representation of family history</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146018UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146018UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146018UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146018UK04-FamilyHistory.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146018UK-FamilyHistoryCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146019UK04></a><a name=_Toc_Section_2.19></a>2.19&nbsp;&nbsp;&nbsp;&nbsp;Investigation - COCD_TP146019UK04</h2>
+		<p class="MsoMIM">Template for the representation of investigative procedures
+		</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146019UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146019UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146019UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146019UK04-Investigation.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146019UK-InvestigationCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146020UK04></a><a name=_Toc_Section_2.20></a>2.20&nbsp;&nbsp;&nbsp;&nbsp;PersonalPreference - COCD_TP146020UK04</h2>
+		<p class="MsoMIM">Template for personal preferences of the patient</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146020UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146020UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146020UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146020UK04-PersonalPreference.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146020UK-PersonalPreferenceCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146021UK04></a><a name=_Toc_Section_2.21></a>2.21&nbsp;&nbsp;&nbsp;&nbsp;Service - COCD_TP146021UK04</h2>
+		<p class="MsoMIM">Template to represent services and providers of the service 
+		to the patient</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146021UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146021UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146021UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146021UK04-Service.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146021UK-ServiceCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146022UK04></a><a name=_Toc_Section_2.22></a>2.22&nbsp;&nbsp;&nbsp;&nbsp;AllergicOrAdverseReactionEvent - COCD_TP146022UK04</h2>
+		<p class="MsoMIM">Template to represent allergy and adverse reaction events</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146022UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146022UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146022UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146022UK04-AlergicOrAdverseReactionEvent.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146022UK-AllergicOrAdverseReactionEventCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">Severe Adverse Reaction to Fluoxetine
+		<a title="View Example" href="../../../Examples/Templates/COCD_EX146022UK04_01.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif"></a></p>
+		<p class="MsoMIM">Adverse Reaction to Fluoxetine
+		<a title="View Example" href="../../../Examples/Templates/COCD_EX146022UK04_02.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif"></a></p>
+		<p class="MsoMIM">Adverse Reaction to Cefataxime
+		<a title="View Example" href="../../../Examples/Templates/COCD_EX146022UK04_03.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif"></a></p>
+		<p class="MsoMIM">Drug-induced Anaphylaxis to Succinylcholine
+		<a title="View Example" href="../../../Examples/Templates/COCD_EX146022UK04_04.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif"></a></p>
+		<p class="MsoMIM">Drug-induced Anaphylactoid Reaction to Atracurium
+		<a title="View Example" href="../../../Examples/Templates/COCD_EX146022UK04_05.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif"></a></p>
+		<h2><a name=COCD_TP146023UK04></a><a name=_Toc_Section_2.23></a>2.23&nbsp;&nbsp;&nbsp;&nbsp;ProvisionOfAdviceAndInformation - COCD_TP146023UK04</h2>
+		<p class="MsoMIM">Template to represent advice or information given to a 
+		patient or the patient&#39;s representative</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146023UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146023UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146023UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146023UK04-AdviceAndInformation.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146023UK-ProvisionOfAdviceAndInformationCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146024UK04></a><a name=_Toc_Section_2.24></a>2.24&nbsp;&nbsp;&nbsp;&nbsp;AdministrativeProcedure - COCD_TP146024UK04</h2>
+		<p class="MsoMIM">Template to represent an administrative procedure</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146024UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146024UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146024UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146024UK04-AdministrativeProcedure.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146024UK-AdministrativeProcedureCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146025UK04></a><a name=_Toc_Section_2.25></a>2.25&nbsp;&nbsp;&nbsp;&nbsp;AllergyPropensity - COCD_TP146025UK04</h2>
+		<p class="MsoMIM">Template to represent a propensity to an allergy or adverse 
+		reaction</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146025UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146025UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146025UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146025UK04-AllergyPropensity.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146025UK-AllergyPropensityCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">Severe Allergy to Fluoxetine
+		<a title="View Example" href="../../../Examples/Templates/COCD_EX146025UK04_01.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif"></a></p>
+		<p class="MsoMIM">Drug Allergy to Enalapril
+		<a title="View Example" href="../../../Examples/Templates/COCD_EX146025UK04_02.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif"></a></p>
+		<p class="MsoMIM">Drug Allergy to Succinylcholine
+		<a title="View Example" href="../../../Examples/Templates/COCD_EX146025UK04_03.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif"></a></p>
+		<p class="MsoMIM">Drug Allergy to Ibuprofen
+		<a title="View Example" href="../../../Examples/Templates/COCD_EX146025UK04_04.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif"></a></p>
+		<h2><a name=COCD_TP146026UK04></a><a name=_Toc_Section_2.26></a>2.26&nbsp;&nbsp;&nbsp;&nbsp;RiskToPatient - COCD_TP146026UK04</h2>
+		<p class="MsoMIM">Template to represent an identified risk to a patient</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146026UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146026UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146026UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146026UK04-RiskToPatient.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146026UK-RiskToPatientCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146027UK04></a><a name=_Toc_Section_2.27></a>2.27&nbsp;&nbsp;&nbsp;&nbsp;Treatment - COCD_TP146027UK04</h2>
+		<p class="MsoMIM">Template to represent treatment given to the patient</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146027UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146027UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146027UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146027UK04-Treatment.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146027UK-TreatmentCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146029UK04></a><a name=_Toc_Section_2.28></a>2.28&nbsp;&nbsp;&nbsp;&nbsp;MedicationAdministrationDose - COCD_TP146029UK04</h2>
+		<p class="MsoMIM">Template to represent administration of a single dosage 
+		of medication</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146029UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146029UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146029UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146029UK04-AdministrationSingleDose.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146029UK-MedicationAdministrationDoseCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146030UK04></a><a name=_Toc_Section_2.29></a>2.29&nbsp;&nbsp;&nbsp;&nbsp;MedicationAdministrationCourse - COCD_TP146030UK04</h2>
+		<p class="MsoMIM">Template to represent administration of a course of medication</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146030UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146030UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146030UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146030UK04-AdministrationCourse.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146030UK-MedicationAdministrationCourseCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146031UK04></a><a name=_Toc_Section_2.30></a>2.30&nbsp;&nbsp;&nbsp;&nbsp;PlanMedicationAdministration - COCD_TP146031UK04</h2>
+		<p class="MsoMIM">A template to represent a plan to administer medication
+		</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146031UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146031UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146031UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146031UK04-PlannedMedicationAdministration.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146031UK-PlanMedicationAdministrationCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146032UK04></a><a name=_Toc_Section_2.31></a>2.31&nbsp;&nbsp;&nbsp;&nbsp;RequestMedicationSupply - COCD_TP146032UK04</h2>
+		<p class="MsoMIM">Template to represent a request to supply medication</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146032UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146032UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146032UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146032UK04-RequestMedicationSupply.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146032UK-RequestMedicationSupplyCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146033UK04></a><a name=_Toc_Section_2.32></a>2.32&nbsp;&nbsp;&nbsp;&nbsp;SupplyMedication 
+		- COCD_TP146033UK04</h2>
+		<p class="MsoMIM">Template to represent a supply of medication</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146033UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146033UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146033UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146033UK04-SupplyMedication.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146033UK-SupplyMedicationCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146034UK04></a><a name=_Toc_Section_2.33></a>2.33&nbsp;&nbsp;&nbsp;&nbsp;RequestMedicationAdministration - COCD_TP146034UK04</h2>
+		<p class="MsoMIM">Template to represent a request for medication administration</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146034UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146034UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146034UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146034UK04-RequestMedicationAdministration.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146034UK-RequestMedicationAdministrationCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146036UK04></a><a name=_Toc_Section_2.34></a>2.34&nbsp;&nbsp;&nbsp;&nbsp;MedicationDiscontinuation - COCD_TP146036UK04</h2>
+		<p class="MsoMIM">Template for the act of discontinuation of medication</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146036UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146036UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146036UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146036UK04-MedicationDiscontinuation.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146036UK-MedicationDiscontinuationCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146037UK04></a><a name=_Toc_Section_2.35></a>2.35&nbsp;&nbsp;&nbsp;&nbsp;PatientMovement - COCD_TP146037UK04</h2>
+		<p class="MsoMIM">Template for represent transportation of the patient including 
+		the origin and destination of patient</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146037UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146037UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146037UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146037UK04-PatientMovement.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146037UK-PatientMovementCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146038UK04></a><a name=_Toc_Section_2.36></a>2.36&nbsp;&nbsp;&nbsp;&nbsp;Discharge - COCD_TP146038UK04</h2>
+		<p class="MsoMIM">Template for the act of the discharge from an inpatient 
+		stay</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146038UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146038UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146038UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146038UK04-Discharge.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146038UK-DischargeCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP146049UK05></a><a name=_Toc_Section_2.37></a>2.37&nbsp;&nbsp;&nbsp;&nbsp;NullifyDocument - COCD_TP146049UK05</h2>
+		<p class="MsoMIM">Template to carry the meta data required to nullify a 
+		document. </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM"><a href="../Tabular%20View/COCD_TP146049UK05.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../Tabular%20View/COCD_TP146049UK05-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../../../Schemas/COCD_TP146049UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146049UK05-NullifyDocument.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146049UK-NullifyDocumentCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">&nbsp;</p>  <h2><a name=COCD_TP146060UK01></a><a name=_Toc_Section_2.38></a>2.38&nbsp;&nbsp;&nbsp;&nbsp;EncompassingEncounter 
+		- COCD_TP146060UK01</h2>
+		<p class="MsoMIM">&nbsp;Template to represent the place and location of 
+		an encompassing encounter of a care event.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146060UK01.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146060UK01-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146060UK01.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146060UK01-EncompassingEncounter.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146060UK-EncompassingEncounterCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">
+		&nbsp;</p>  <h2><a name=COCD_TP146061UK01></a><a name=_Toc_Section_2.39></a>2.39&nbsp;&nbsp;&nbsp;&nbsp;TextSection 
+		- COCD_TP146061UK01</h2>
+		<p class="MsoMIM">&nbsp;Template to constrain the text sections used in 
+		the NPfIT CDA implementation</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146061UK01.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146061UK01-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146061UK01.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146061UK01-TextSection.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146061UK-TextSectionCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">
+		&nbsp;</p>  <h2><a name=COCD_TP146062UK01></a><a name=_Toc_Section_2.40></a>2.40&nbsp;&nbsp;&nbsp;&nbsp;CRETypeList 
+		- COCD_TP146062UK01</h2>
+		<p class="MsoMIM">&nbsp;Template to carry a list of ids categorised by a CRE 
+		as used in 
+		the NPfIT CDA implementation</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP146062UK01.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP146062UK01-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP146062UK01.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146062UK01-CRETypeList.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146062UK-CRETypeListCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">
+		&nbsp;</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<h1><a name=_Toc_Section_3></a>3&nbsp;&nbsp;&nbsp;&nbsp;Template Definitions for NPfIT CDA 
+		coded entries associated with sealing</h1>
+		<h2><a name=COCD_TP146043UK05></a><a name=_Toc_Section_3.1></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;SealingEvent - 
+COCD_TP146043UK05</h2>
+		<p class="MsoMIM">Template to carry the meta data associated with a 
+		sealing event.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM"><a href="../Tabular%20View/COCD_TP146043UK05.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../Tabular%20View/COCD_TP146043UK05-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../../../Schemas/COCD_TP146043UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146043UK05-SealingEvent.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146043UK-SealingEventCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<h2><a name=COCD_TP146044UK05></a><a name=_Toc_Section_3.2></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;RefusalToSeal 
+		- COCD_TP146044UK05</h2>
+		<p class="MsoMIM">Template to carry the meta data associated with a 
+		refusal to seal. </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM"><a href="../Tabular%20View/COCD_TP146044UK05.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../Tabular%20View/COCD_TP146044UK05-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../../../Schemas/COCD_TP146044UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146044UK05-RefusalToSeal.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146044UK-RefusalToSealCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">&nbsp;</p>  <h2><a name=COCD_TP146045UK05></a><a name=_Toc_Section_3.3></a>3.3&nbsp;&nbsp;&nbsp;&nbsp;UnSealingEvent - COCD_TP146045UK05</h2>
+		<p class="MsoMIM">Template to carry the meta data associated with a 
+		Unsealing event.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM"><a href="../Tabular%20View/COCD_TP146045UK05.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../Tabular%20View/COCD_TP146045UK05-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../../../Schemas/COCD_TP146045UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP146045UK05-UnSealingEvent.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP146045UK-UnSealingEventCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<h1><a name=_Toc_Section_4></a>4&nbsp;&nbsp;&nbsp;&nbsp;Template Definitions 
+		for reference validation</h1>
+		<p class="MsoMIM">These templates are machine generated and are used to 
+		constrain relationships between templates.</p>
+		<h2><a name=COCD_TP147001UK03></a><a name=_Toc_Section_4.1></a>4.1&nbsp;&nbsp;&nbsp;&nbsp;LifeStyleRef - COCD_TP147001UK03</h2>
+		<p class="MsoMIM">&nbsp;Template to constrain a lifestyle act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147001UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147001UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147001UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147001UK03-LifeStyleRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147001UK-LifeStyleRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147002UK03></a><a name=_Toc_Section_4.2></a>4.2&nbsp;&nbsp;&nbsp;&nbsp;SmokingRef - COCD_TP147002UK03</h2>
+		<p class="MsoMIM">Template to constrain a smoking act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147002UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147002UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147002UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147002UK03-SmokingRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147002UK-SmokingRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147003UK03></a><a name=_Toc_Section_4.3></a>4.3&nbsp;&nbsp;&nbsp;&nbsp;AlcoholIntakeRef - COCD_TP147003UK03</h2>
+		<p class="MsoMIM">Template to constrain an alcohol intake reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147003UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147003UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147003UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147003UK03-AlcoholIntakeRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147003UK-AlcoholIntakeRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147004UK03></a><a name=_Toc_Section_4.4></a>4.4&nbsp;&nbsp;&nbsp;&nbsp;SocialOrPersonalCircumstanceRef - COCD_TP147004UK03</h2>
+		<p class="MsoMIM">Template to constrain a social or personal circumstance 
+		act reference </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147004UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147004UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147004UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147004UK03-SocialOrPersonalCircumstanceRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147004UK-SocialOrPersonalCircumstanceRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147005UK03></a><a name=_Toc_Section_4.5></a>4.5&nbsp;&nbsp;&nbsp;&nbsp;CareEventRef - COCD_TP147005UK03</h2>
+		<p class="MsoMIM">Template to constrain a care event act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147005UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147005UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147005UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147005UK03-CareEventRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147005UK-CareEventRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147006UK03></a><a name=_Toc_Section_4.6></a>4.6&nbsp;&nbsp;&nbsp;&nbsp;ProblemRef - COCD_TP147006UK03</h2>
+		<p class="MsoMIM">Template to constrain a problem reference </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147006UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147006UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147006UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147006UK03-ProblemRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147006UK-ProblemRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147010UK03></a><a name=_Toc_Section_4.7></a>4.7&nbsp;&nbsp;&nbsp;&nbsp;RiskToPersonRef - COCD_TP147010UK03</h2>
+		<p class="MsoMIM">Template to constrain a risk to person act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147010UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147010UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147010UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147010UK03-RiskToPersonRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147010UK-RiskToPersonRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147011UK03></a><a name=_Toc_Section_4.8></a>4.8&nbsp;&nbsp;&nbsp;&nbsp;DiagnosisRef - COCD_TP147011UK03</h2>
+		<p class="MsoMIM">Template to constrain a diagnosis act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147011UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147011UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147011UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147011UK03-DiagnosisRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147011UK-DiagnosisRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147012UK03></a><a name=_Toc_Section_4.9></a>4.9&nbsp;&nbsp;&nbsp;&nbsp;FindingRef - COCD_TP147012UK03</h2>
+		<p class="MsoMIM">Template to constrain a finding act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147012UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147012UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147012UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147012UK03-FindingRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147011UK-FindingRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147013UK03></a><a name=_Toc_Section_4.10></a>4.10&nbsp;&nbsp;&nbsp;&nbsp;BloodPressureRef - COCD_TP147013UK03</h2>
+		<p class="MsoMIM">Template to constrain a blood pressure act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147013UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147013UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147013UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147013UK03-BloodPressureRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147013UK-BloodPressureRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147014UK03></a><a name=_Toc_Section_4.11></a>4.11&nbsp;&nbsp;&nbsp;&nbsp;WeightRef - COCD_TP147014UK03</h2>
+		<p class="MsoMIM">Template to constrain a weight act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147014UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147014UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147014UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147014UK03-WeightRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147014UK-WeightRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147015UK03></a><a name=_Toc_Section_4.12></a>4.12&nbsp;&nbsp;&nbsp;&nbsp;HeightRef - COCD_TP147015UK03</h2>
+		<p class="MsoMIM">Template to constrain a height act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147015UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147015UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147015UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147015UK03-HeightRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147015UK-HeightRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147016UK03></a><a name=_Toc_Section_4.13></a>4.13&nbsp;&nbsp;&nbsp;&nbsp;TemperatureRef - COCD_TP147016UK03</h2>
+		<p class="MsoMIM">Template to constrain a temperature act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147016UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147016UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147016UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147016UK03-TemperatureRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147016UK-TemperatureRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147017UK03></a><a name=_Toc_Section_4.14></a>4.14&nbsp;&nbsp;&nbsp;&nbsp;FindingOrganizerRef - COCD_TP147017UK03</h2>
+		<p class="MsoMIM">Template used to constrain a finding organizer act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147017UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147017UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147017UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147017UK03-FindingOrganizerRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147017UK-FindingOrganizerRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a>
+		</p>
+		<h2><a name=COCD_TP147018UK03></a><a name=_Toc_Section_4.15></a>4.15&nbsp;&nbsp;&nbsp;&nbsp;FamilyHistoryRef - COCD_TP147018UK03</h2>
+		<p class="MsoMIM">Template used to constrain a family history act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147018UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147018UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147018UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147018UK03-FamilyHistoryRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147018UK-FamilyHistoryRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147019UK03></a><a name=_Toc_Section_4.16></a>4.16&nbsp;&nbsp;&nbsp;&nbsp;InvestigationRef - COCD_TP147019UK03</h2>
+		<p class="MsoMIM">Template used to constrain an investigation act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147019UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147019UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147019UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147019UK03-InvestigationRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147019UK-InvestigationRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147020UK03></a><a name=_Toc_Section_4.17></a>4.17&nbsp;&nbsp;&nbsp;&nbsp;PersonalPreferenceRef - COCD_TP147020UK03</h2>
+		<p class="MsoMIM">Template used to constrain a person preference act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147020UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147020UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147020UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147020UK03-PersonalPreferenceRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147020UK-PersonalPreferenceRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147021UK03></a><a name=_Toc_Section_4.18></a>4.18&nbsp;&nbsp;&nbsp;&nbsp;ServiceRef - COCD_TP147021UK03</h2>
+		<p class="MsoMIM">Template used to constrain a service act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147021UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147021UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147021UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147021UK03-ServiceRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147021UK-ServiceRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147022UK03></a><a name=_Toc_Section_4.19></a>4.19&nbsp;&nbsp;&nbsp;&nbsp;AllergicOrAdverseReactionEventRef - COCD_TP147022UK03</h2>
+		<p class="MsoMIM">Template used to constrain an allergy diagnosis event 
+		act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147022UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147022UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147022UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147022UK03-AllergyDiagnosisEventRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147022UK-AllergicOrAdverseReactionEventRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147023UK03></a><a name=_Toc_Section_4.20></a>4.20&nbsp;&nbsp;&nbsp;&nbsp;ProvisionOfAdviceAndInformationRef - COCD_TP147023UK03</h2>
+		<p class="MsoMIM">Template used to constrain a provision of advice and information 
+		act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147023UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147023UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147023UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147023UK03-ProvisionOfAdviceAndInformationRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147023UK-ProvisionOfAdviceAndInformationRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147024UK03></a><a name=_Toc_Section_4.21></a>4.21&nbsp;&nbsp;&nbsp;&nbsp;AdministrativeProcedureRef - COCD_TP147024UK03</h2>
+		<p class="MsoMIM">Template used to constrain an administrative procedure 
+		act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147024UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147024UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147024UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147024UK03-AdministrativeProcedureRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147024UK-AdministrativeProcedureRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147025UK03></a><a name=_Toc_Section_4.22></a>4.22&nbsp;&nbsp;&nbsp;&nbsp;AllergyPropensityRef - COCD_TP147025UK03</h2>
+		<p class="MsoMIM">Template used to constrain a allergy act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147025UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147025UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147025UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147025UK03-AllergyRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147025UK-AllergyPropensityRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147026UK03></a><a name=_Toc_Section_4.23></a>4.23&nbsp;&nbsp;&nbsp;&nbsp;RiskToPatientRef - COCD_TP147026UK03</h2>
+		<p class="MsoMIM">Template used to constrain risk to patient act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147026UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147026UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147026UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147026UK03-RiskToPatientRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147026UK-RiskToPatientRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147027UK03></a><a name=_Toc_Section_4.24></a>4.24&nbsp;&nbsp;&nbsp;&nbsp;TreatmentRef - COCD_TP147027UK03</h2>
+		<p class="MsoMIM">Template used to constrain a treatment act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147027UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147027UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147027UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147027UK03-TreatmentRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147027UK-TreatmentRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147029UK04></a><a name=_Toc_Section_4.25></a>4.25&nbsp;&nbsp;&nbsp;&nbsp;MedicationAdministrationDoseRef 
+		- COCD_TP147029UK04</h2>
+		<p class="MsoMIM">Template used to constrain a medication administration 
+		dose act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147029UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147029UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147029UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147029UK04-MedicationAdministrationDoseRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147029UK-MedicationAdministrationDoseRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147030UK04></a><a name=_Toc_Section_4.26></a>4.26&nbsp;&nbsp;&nbsp;&nbsp;MedicationAdministrationCourseRef 
+		- COCD_TP147030UK04</h2>
+		<p class="MsoMIM">Template used to constrain a medication administration 
+		course act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147030UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147030UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147030UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147030UK04-MedicationAdministrationCourseRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147030UK-MedicationAdministrationCourseRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147031UK04></a><a name=_Toc_Section_4.27></a>4.27&nbsp;&nbsp;&nbsp;&nbsp;PlanMedicationAdministrationRef 
+		- COCD_TP147031UK04</h2>
+		<p class="MsoMIM">Template used to constrain a plan medication administration 
+		act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147031UK04.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147031UK04-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147031UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147031UK04-PlanMedicationAdministrationRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147031UK-PlanMedicationAdministrationRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147032UK03></a><a name=_Toc_Section_4.28></a>4.28&nbsp;&nbsp;&nbsp;&nbsp;RequestMedicationSupplyRef - COCD_TP147032UK03</h2>
+		<p class="MsoMIM">Template used to constrain a request medication supply 
+		act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147032UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147032UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147032UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147032UK03-RequestMedicationSupplyRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147032UK-RequestMedicationSupplyRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147033UK03></a><a name=_Toc_Section_4.29></a>4.29&nbsp;&nbsp;&nbsp;&nbsp;SupplyMedicationRef - COCD_TP147033UK03</h2>
+		<p class="MsoMIM">Template used to constrain a supply medication act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147033UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147033UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147033UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147033UK03-SupplyMedicationRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147033UK-SupplyMedicationRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147034UK03></a><a name=_Toc_Section_4.30></a>4.30&nbsp;&nbsp;&nbsp;&nbsp;RequestMedicationAdministrationRef - COCD_TP147034UK03</h2>
+		<p class="MsoMIM">Template used to constrain a request medication administration 
+		act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147034UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147034UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147034UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147034UK03-RequestMedicationAdministrationRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147034UK-RequestMedicationAdministrationRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147036UK03></a><a name=_Toc_Section_4.31></a>4.31&nbsp;&nbsp;&nbsp;&nbsp;MedicationDiscontinuationRef - COCD_TP147036UK03</h2>
+		<p class="MsoMIM">Template used to constrain an investigation act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147036UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147036UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147036UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147036UK03-MedicationDiscontinuationRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147036UK-MedicationDiscontinuationRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147037UK03></a><a name=_Toc_Section_4.32></a>4.32&nbsp;&nbsp;&nbsp;&nbsp;PatientMovementRef - COCD_TP147037UK03</h2>
+		<p class="MsoMIM">Template used to constrain a patient movement act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147037UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147037UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147037UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147037UK03-PatientMovementRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147037UK-PatientMovementRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<h2><a name=COCD_TP147038UK03></a><a name=_Toc_Section_4.33></a>4.33&nbsp;&nbsp;&nbsp;&nbsp;DischargeRef - COCD_TP147038UK03</h2>
+		<p class="MsoMIM">Template used to constrain a discharge act reference</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">
+		<a title="View R-MIM" href="../Tabular%20View/COCD_TP147038UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/COCD_TP147038UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/COCD_TP147038UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/COCD_TP147038UK03-DischargeRef.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/COCD_TP147038UK-DischargeRefCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<p class="MsoMIM">&nbsp;</p>
+	</div>
+</div>
+
+</body>
+
+</html>

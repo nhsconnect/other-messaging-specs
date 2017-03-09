@@ -1,0 +1,2267 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+			<title>EOLDocument - FHIR Implementation Guide</title>
+
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="author" content="HSCIC" />        
+			<meta name="publisher version" content=	"FHIR-Furnace : 2.7.6075.24962" />
+		
+			<link href="../dist/css/fhir.css" rel="stylesheet" />
+	 
+			<!-- Bootstrap core CSS -->
+			<link href="../dist/css/bootstrap.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-fhir.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-glyphicons.css" rel="stylesheet" />
+
+			<!-- Project extras -->
+			
+			<link href="../dist/css/pygments-manni.css" rel="stylesheet" />
+
+			<script src="../dist/js/jquery.js"> </script>
+			<script src="../dist/js/bootstrap.min.js"> </script>
+
+			<script src="../dist/js/fhir.js"> </script>
+			
+				<script>
+				  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+				  ga('create', 'UA-67795986-1', 'auto');
+				  ga('send', 'pageview');
+
+				</script>
+			
+			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+				<script src="../dist/js/html5shiv.js"></script>
+				<script src="../dist/js/respond.min.js"></script>
+			<![endif]-->
+
+			<!-- Favicons -->
+			<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../dist/images/apple-touch-icon-144-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../dist/images/apple-touch-icon-114-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../dist/images/apple-touch-icon-72-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" href="../dist/images/apple-touch-icon-57-precomposed.png" />
+			<link rel="shortcut icon" href="../dist/images/favicon.ico" />
+	</head>
+	
+	<body>  
+		
+		<!-- segment-header -->
+		<div id="segment-header" class="segment">
+            
+            <div class="container">
+                <!-- container -->
+                <a id="logo" href="http://www.digital.nhs.uk" target="_blank">
+                    <img src="../dist/images/logo.png" alt="logo NHS Digital" />
+                </a>
+                <div id="specificationName">
+         
+                        <b>EOLDocument</b>
+                  
+                </div>
+
+            </div>
+            <div class="container">
+                <!-- container -->
+            </div>
+        </div>
+        
+		<!-- /segment-header -->
+		
+		
+		<div id="segment-navbar" class="segment">
+            <!-- segment-navbar -->
+            <div id="stripe"> </div>
+            <div class="container">
+                <!-- container -->
+                <!-- HEADER CONTENT -->
+
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <button data-target=".navbar-inverse-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                        </button>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <ul class="nav navbar-nav">   
+
+											<li>
+												<a href='../Chapter.1.About/index.html'>About</a>
+											</li>
+											<li>
+												<a href='../Chapter.2.Change History/index.html'>Change History</a>
+											</li>
+											<li>
+												<a href='../Chapter.3.FHIR Document Architecture/index.html'>FHIR Document Architecture</a>
+											</li>
+											<li>
+												<a href='../Chapter.4.FHIR Document/index.html'>FHIR Document</a>
+											</li>
+											<li>
+												<a href='../Chapter.5.Examples/examples.html'>Examples</a>
+											</li>
+											<li>
+												<a href='../Chapter.7.Glossary/index.html'>Glossary</a>
+											</li>
+
+                            </ul>
+							
+                            <p class="navbar-text pull-right" style="padding-right: 10px;padding-top: 3px;">
+                                <span class="label label-default"  style="font-size: 95%;">Version 1.0 : DRAFT A</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </nav>				
+            </div>
+        </div>
+		
+		<div id="segment-breadcrumb" class="segment">
+            <!-- segment-breadcrumb -->
+            <div class="container">
+                <!-- container -->
+                <ul class="breadcrumb"></ul>
+            </div>
+            <!-- /container -->
+        </div>
+        <div id="segment-content" class="segment">
+            <!-- segment-content -->
+            <div class="container">
+                <!-- container -->
+                <div class="row">
+                    <div class="inner-wrapper">
+						<!-- CONTENT CONTENT -->
+                        <div class="col-12">
+							
+							
+							
+<div class="panel panel - default" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="panel-heading">
+    <h3 class="panel-title">COFE-Accommodation-QuestionnaireResponse-1</h3>
+  </div>
+  <div class="panel-body">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        <b>COFE-Accommodation-QuestionnaireResponse-1</b>
+      </p>
+      <table class="dict">
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse"></a>
+            <b>QuestionnaireResponse</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets, corresponding to the structure of the grouping of the underlying questions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/questionnaireresponse.html" xmlns="http://www.w3.org/1999/xhtml">QuestionnaireResponse</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Form</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.identifier"></a>
+            <b>QuestionnaireResponse.identifier</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>A business identifier assigned to a particular completed (or partially completed) questionnaire.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#identifier" xmlns="http://www.w3.org/1999/xhtml">Identifier</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Used for tracking, registration and other business purposes.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.identifier.value"></a>
+            <b>QuestionnaireResponse.identifier.value</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The portion of the identifier typically displayed to the user and which is unique within the context of the system.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>If the value is a full URI, then the system SHALL be urn:ietf:rfc:3986.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Example</td>
+          <td>123456</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.status"></a>
+            <b>QuestionnaireResponse.status</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The lifecycle status of the questionnaire response as a whole.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/terminologies.html">Binding</a>
+          </td>
+          <td>
+            <div class="binding-description" xmlns="http://www.w3.org/1999/xhtml">
+              <p>Lifecycle status of the questionnaire response.</p>
+              <p>The codes SHALL be taken from <a href="http://hl7.org/fhir/ValueSet/questionnaire-answers-status">http://hl7.org/fhir/ValueSet/questionnaire-answers-status</a></p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#code" xmlns="http://www.w3.org/1999/xhtml">Code</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>The information on Questionnaire resources  may possibly be gathered during multiple sessions and altered after considered being finished. Questionnaire resources with just questions may serve as template forms, with the applicable publication statuses.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.subject"></a>
+            <b>QuestionnaireResponse.subject</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The subject of the questionnaire response.  This could be a patient, organization, practitioner, device, etc.  This is who/what the answers apply to, but is not necessarily the source of information.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>The subject context must be known.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Patient, Focus</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.subject.reference"></a>
+            <b>QuestionnaireResponse.subject.reference</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1 ?</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure "/[type]/[id]" then it should be assumed that the reference is to a FHIR RESTful server.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.subject.display"></a>
+            <b>QuestionnaireResponse.subject.display</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Plain text narrative that identifies the resource in addition to the resource reference.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>This is generally not the same as the Resource.text of the referenced resource.  The purpose is to identify what's being referenced, not to fully describe it.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.author"></a>
+            <b>QuestionnaireResponse.author</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Person who received the answers to the questions in the QuestionnaireResponse and recorded them in the system.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Need to know who interpreted the subject's answers to the questions in the questionnaire, and selected the appropriate options for answers.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Laboratory, Service, Practitioner, Department, Company</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>Mapping a subject's answers to multiple choice options and determining what to put in the textual answer is a matter of interpretation.  Authoring by device would indicate that some portion of the questionnaire had been auto-populated.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.authored"></a>
+            <b>QuestionnaireResponse.authored</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The date and/or time that this version of the questionnaire response was authored.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#datetime" xmlns="http://www.w3.org/1999/xhtml">DateTime</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Clinicians need to be able to check the date that the information in the questionnaire was collected, to derive the context of the answers.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Date Created, Date published, Date Issued, Date updated</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>May be different from the update time of the resource itself, because that is the status of the collection and authoring.  This element is optional to allow for systems that may not know the value, however it SHOULD be populated if possible.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group"></a>
+            <b>QuestionnaireResponse.group(group)</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>A group of questions to a possibly similarly grouped set of questions in the questionnaire response.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Need to be able to logically group answers to grouped questions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>The Questionnaire itself has one "root" group with the actual contents of the Questionnaire.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.Accomodation Other Details"></a>
+            <b>QuestionnaireResponse.group.question(Accomodation Other Details)</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Set of questions within this group. The order of questions within the group is relevant.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..* ?</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Must register answers to questions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Responses, Contents</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.linkId"></a>
+            <b>QuestionnaireResponse.group.question.linkId</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Identifies the question from the Questionnaire that corresponds to this question in the QuestionnaireResponse resource.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Groups can repeat in the answers, so a direct 1..1 correspondence may not exist - requiring correspondence by id.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>ACCDET</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.text"></a>
+            <b>QuestionnaireResponse.group.question.text</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The actual question as shown to the user to prompt them for an answer.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>When including text for the questionnaire, each question may contain its actual question display text.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>What additional information has been provided to assist the emergency services locating and accessing the accommodation?</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer"></a>
+            <b>QuestionnaireResponse.group.question.answer</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The respondent's answer(s) to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>The value is nested because we cannot have a repeating structure that has variable type.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.answer.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.value[x]"></a>
+            <b>QuestionnaireResponse.group.question.answer.value[x]</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The answer (or one of the answers) provided by the respondent to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Ability to retain a single-valued answer to a question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.Floor Details"></a>
+            <b>QuestionnaireResponse.group.question(Floor Details)</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Set of questions within this group. The order of questions within the group is relevant.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..* ?</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Must register answers to questions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Responses, Contents</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.linkId"></a>
+            <b>QuestionnaireResponse.group.question.linkId</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Identifies the question from the Questionnaire that corresponds to this question in the QuestionnaireResponse resource.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Groups can repeat in the answers, so a direct 1..1 correspondence may not exist - requiring correspondence by id.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>ACCDET</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.text"></a>
+            <b>QuestionnaireResponse.group.question.text</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The actual question as shown to the user to prompt them for an answer.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>When including text for the questionnaire, each question may contain its actual question display text.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>What additional information has been provided to assist the emergency services locating and accessing the accommodation?</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer"></a>
+            <b>QuestionnaireResponse.group.question.answer</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The respondent's answer(s) to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>The value is nested because we cannot have a repeating structure that has variable type.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.answer.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.value[x]"></a>
+            <b>QuestionnaireResponse.group.question.answer.value[x]</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The answer (or one of the answers) provided by the respondent to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Ability to retain a single-valued answer to a question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.Lives Alone"></a>
+            <b>QuestionnaireResponse.group.question(Lives Alone)</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Set of questions within this group. The order of questions within the group is relevant.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..* ?</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Must register answers to questions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Responses, Contents</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.linkId"></a>
+            <b>QuestionnaireResponse.group.question.linkId</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Identifies the question from the Questionnaire that corresponds to this question in the QuestionnaireResponse resource.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Groups can repeat in the answers, so a direct 1..1 correspondence may not exist - requiring correspondence by id.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>ACCDET</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.text"></a>
+            <b>QuestionnaireResponse.group.question.text</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The actual question as shown to the user to prompt them for an answer.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>When including text for the questionnaire, each question may contain its actual question display text.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>What additional information has been provided to assist the emergency services locating and accessing the accommodation?</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer"></a>
+            <b>QuestionnaireResponse.group.question.answer</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The respondent's answer(s) to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>The value is nested because we cannot have a repeating structure that has variable type.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.answer.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.value[x]"></a>
+            <b>QuestionnaireResponse.group.question.answer.value[x]</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The answer (or one of the answers) provided by the respondent to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Ability to retain a single-valued answer to a question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.Household Composition"></a>
+            <b>QuestionnaireResponse.group.question(Household Composition)</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Set of questions within this group. The order of questions within the group is relevant.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..* ?</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Must register answers to questions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Responses, Contents</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.linkId"></a>
+            <b>QuestionnaireResponse.group.question.linkId</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Identifies the question from the Questionnaire that corresponds to this question in the QuestionnaireResponse resource.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Groups can repeat in the answers, so a direct 1..1 correspondence may not exist - requiring correspondence by id.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>ACCDET</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.text"></a>
+            <b>QuestionnaireResponse.group.question.text</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The actual question as shown to the user to prompt them for an answer.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>When including text for the questionnaire, each question may contain its actual question display text.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>What additional information has been provided to assist the emergency services locating and accessing the accommodation?</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer"></a>
+            <b>QuestionnaireResponse.group.question.answer</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The respondent's answer(s) to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>The value is nested because we cannot have a repeating structure that has variable type.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.answer.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.value[x]"></a>
+            <b>QuestionnaireResponse.group.question.answer.value[x]</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The answer (or one of the answers) provided by the respondent to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Ability to retain a single-valued answer to a question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.Access Details"></a>
+            <b>QuestionnaireResponse.group.question(Access Details)</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Set of questions within this group. The order of questions within the group is relevant.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..* ?</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Must register answers to questions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Responses, Contents</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.linkId"></a>
+            <b>QuestionnaireResponse.group.question.linkId</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Identifies the question from the Questionnaire that corresponds to this question in the QuestionnaireResponse resource.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Groups can repeat in the answers, so a direct 1..1 correspondence may not exist - requiring correspondence by id.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>ACCDET</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.text"></a>
+            <b>QuestionnaireResponse.group.question.text</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The actual question as shown to the user to prompt them for an answer.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>When including text for the questionnaire, each question may contain its actual question display text.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>What additional information has been provided to assist the emergency services locating and accessing the accommodation?</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer"></a>
+            <b>QuestionnaireResponse.group.question.answer</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The respondent's answer(s) to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>The value is nested because we cannot have a repeating structure that has variable type.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.answer.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.value[x]"></a>
+            <b>QuestionnaireResponse.group.question.answer.value[x]</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The answer (or one of the answers) provided by the respondent to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Ability to retain a single-valued answer to a question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.Accommodation Type"></a>
+            <b>QuestionnaireResponse.group.question(Accommodation Type)</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Set of questions within this group. The order of questions within the group is relevant.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..* ?</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Must register answers to questions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Responses, Contents</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.linkId"></a>
+            <b>QuestionnaireResponse.group.question.linkId</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Identifies the question from the Questionnaire that corresponds to this question in the QuestionnaireResponse resource.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Groups can repeat in the answers, so a direct 1..1 correspondence may not exist - requiring correspondence by id.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>ACCDET</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.text"></a>
+            <b>QuestionnaireResponse.group.question.text</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The actual question as shown to the user to prompt them for an answer.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>When including text for the questionnaire, each question may contain its actual question display text.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>What additional information has been provided to assist the emergency services locating and accessing the accommodation?</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer"></a>
+            <b>QuestionnaireResponse.group.question.answer</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The respondent's answer(s) to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>The value is nested because we cannot have a repeating structure that has variable type.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.modifierExtension"></a>
+            <b>QuestionnaireResponse.group.question.answer.modifierExtension</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>extensions, user content, modifiers</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="QuestionnaireResponse.group.question.answer.value[x]"></a>
+            <b>QuestionnaireResponse.group.question.answer.value[x]</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The answer (or one of the answers) provided by the respondent to the question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Ability to retain a single-valued answer to a question.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions.</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>							
+							
+							
+						
+					   </div>                      
+                    </div>
+                    <!-- /inner-wrapper -->                   
+                </div>
+                <!-- /row -->              
+            </div>
+            <!-- /container -->           
+        </div>
+    <!-- /segment-content -->
+
+        <div id="segment-footer" class="segment">
+            <!-- segment-footer -->
+            <div class="container">
+                <!-- container -->
+                <div class="inner-wrapper">
+					<div id="explanatoryline">
+                         <img src="../dist/images/explanatoryline.png" alt="Information and technology for better health and care" />
+						 <p>
+                        Copyright &copy; 2016 Health and Social Care Information Centre<br/>
+						NHS Digital is the trading name of the Health and Social Care Information Centre.
+                    </p>
+                    </div>
+				<div id="hl7-nav">
+                    <a id="hl7-logo" href="http://www.hl7.org" target="_blank">
+                        <img src="../dist/images/hl7-logo.png" alt="visit the hl7 website" />
+                    </a>
+					<p>
+					FHIR&reg; is the registered trademark of HL7<br/>
+					and is used with the permission of HL7.
+					</p>
+				</div>
+					<p>
+						<!--<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> -->
+                    </p>
+                </div>
+                <!-- /inner-wrapper -->
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-post-footer" class="segment">
+            <!-- segment-post-footer -->
+            <div class="container">
+                <!-- container -->
+            </div>
+            <!-- /container -->
+        </div>
+	</body>
+</html>

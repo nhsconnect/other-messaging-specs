@@ -1,0 +1,470 @@
+<HTML><HEAD><TITLE>Simple Details Response Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="Simple Details Response" name=Entry>
+<META content=REPC_HD090100UK30 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Simple Details Response - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="REPC_RM090000UK30.htm"><B>REPC_RM090000UK30</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SimpleLRList><B>SimpleLRList</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#WorkingList;SimpleLRList_c title=REPC_HD090100UK30#SimpleLRList_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>List of Legitimate Relationship records that meet the criteria specified in the request message.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SimpleLRList>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>LIST</B>} )<A>{<B> Fixed="<FONT color=red>LIST</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#Act;SimpleLRList/$classCode title=REPC_HD090100UK30#SimpleLRList.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a List.</P>
+<UL>
+<LI>Fixed Value: "LIST"</LI></UL>
+<P>The classCode is carried as an attribute of the&nbsp;<I>LRList </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#Act;SimpleLRList/$moodCode title=REPC_HD090100UK30#SimpleLRList.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an Event.</P>
+<UL>
+<LI>Fixed Value: "EVN"</LI></UL>
+<P>The moodCode is carried as an attribute of the <I>LRList </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=RecordTarget><B>recordTarget</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD090100UK30#Act;/SimpleLRList/recordTarget title=REPC_HD090100UK30#/SimpleLRList/recordTarget style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>The information held in the LR record is about specified patient. The patient does not have any direct input into the record itself</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RCT</B>} )<A>{<B> Fixed="<FONT color=red>RCT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD090100UK30#Participation;SimpleLRList/recordTarget/$typeCode title=REPC_HD090100UK30#SimpleLRList/recordTarget.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the&nbsp;patient of the request.</P>
+<UL>
+<LI>Fixed value: "RCT"</LI></UL>
+<P>The typeCode is carried as an attribute of the <I>recordTarget</I> element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>patient</B> (<A href="#Patient"><B>Patient</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD090100UK30#Participation;SimpleLRList/recordTarget/patient-Patient title=REPC_HD090100UK30#SimpleLRList/recordTarget/patient-Patient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the patient</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Component><B>component</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD090100UK30#Act;/SimpleLRList/component title=REPC_HD090100UK30#/SimpleLRList/component style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading providing details of the component records of the List.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD090100UK30#ActRelationship;SimpleLRList/component/$typeCode title=REPC_HD090100UK30#SimpleLRList/component.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value: "COMP"</LI></UL>
+<P>The typeCode is carried as an attribute of the&nbsp;<I>component</I> element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>simpleDetails</B> (<A href="#SimpleDetails"><B>SimpleDetails</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD090100UK30#ActRelationship;SimpleLRList/component/simpleDetails-SimpleDetails title=REPC_HD090100UK30#SimpleLRList/component/simpleDetails-SimpleDetails style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Link to Simple Details Act</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Patient><B>Patient</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#Patient;Patient_c title=REPC_HD090100UK30#Patient_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>A heading to provide details of the patient for whom the LR details are requested.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Patient>Used by: </A></FONT><A href="#SimpleLRList"><B>SimpleLRList</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PAT</B>} )<A>{<B> Fixed="<FONT color=red>PAT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#Patient;Patient/$classCode title=REPC_HD090100UK30#Patient.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of a patient.</P>
+<UL>
+<LI>Fixed value "PAT" Patient</LI></UL>
+<P>The classCode is carried as an attribute of the <I>Patient</I> element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#Patient;Patient/$id title=REPC_HD090100UK30#Patient.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The NHS number that identifies the patient.</P>
+<P>NHS numbers are composed of ten numerics. </P>
+<P>The <I>root</I> element identifies the&nbsp; NHS patient numbering scheme&nbsp;represented by&nbsp;</P>
+<UL>
+<LI>OID 2.16.840.1.113883.2.1.4.1 and </LI>
+<LI><I>extension</I> contains the actual identifier. </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SimpleDetails><B>SimpleDetails</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#ActHeir;SimpleDetails_c title=REPC_HD090100UK30#SimpleDetails_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>A heading to provide specific details of each of the component records in the List.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SimpleDetails>Used by: </A></FONT><A href="#SimpleLRList"><B>SimpleLRList</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PCPR</B>} )<A>{<B> Fixed="<FONT color=red>PCPR</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#ActHeir;SimpleDetails/$classCode title=REPC_HD090100UK30#SimpleDetails.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is Patient Care Provision.</P>
+<UL>
+<LI>Fixed Value: "PCPR"</LI></UL>
+<P>The classCode is carried as an attribute of the S<I>impleDetails </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#ActHeir;SimpleDetails/$moodCode title=REPC_HD090100UK30#SimpleDetails.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an Event.</P>
+<UL>
+<LI>Fixed Value: "EVN"</LI></UL>
+<P>The moodCode is carried as an attribute of the <I>SimpleDetails </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#ActHeir;SimpleDetails/$id title=REPC_HD090100UK30#SimpleDetails.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Unique Identifier denoting the LR Record.</P>
+<P>A Identifier code is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value 2.16.840.1.113883.2.1.3.2.4.18.3&nbsp;&nbsp; </LI>
+<LI>the Extension attribute shall contain the&nbsp;LR record id.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/LRCurrentStatus.htm"><B>LRCurrentStatus</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#ActHeir;SimpleDetails/$code title=REPC_HD090100UK30#SimpleDetails.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code for the legitimate relationship found.</P>
+<P>The Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;<U>LRCurrentStatus</U> vocabulary. </LI>
+<LI>An OID identifying the coding system from which the code is derived.</LI></UL>
+<P>Example:&nbsp;02 - 'inactive'</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#ActHeir;SimpleDetails/$effectiveTime title=REPC_HD090100UK30#SimpleDetails.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Date and Time at which the Legitimate Relationship achieved its current status.</P>
+<P>This date is present unless the legitimate relationship is 'active'.</P>
+<P>NOTE: Expired relationships are not returned at all.</P>
+<UL>
+<LI>Format: YYYYMMDDHHMMSS</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Subject><B>subject</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD090100UK30#ActHeir;component/SimpleDetails/subject title=REPC_HD090100UK30#component/SimpleDetails/subject style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading linking details of the parties involved in the LR&nbsp;record.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBJ</B>} )<A>{<B> Fixed="<FONT color=red>SBJ</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD090100UK30#Participation;SimpleDetails/subject/$typeCode title=REPC_HD090100UK30#SimpleDetails/subject.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the&nbsp;role is either the Health Care Professional or WorkGroup&nbsp;or other person of the record.</P>
+<UL>
+<LI>Fixed value: "SBJ"</LI></UL>
+<P>The typeCode is carried as an attribute of the <I>subject </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>role</B> (<B><A href="#LRinvolved">LRinvolved</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD090100UK30#Participation;SimpleDetails/subject/participant+LRinvolved title=REPC_HD090100UK30#SimpleDetails/subject/participant+LRinvolved style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Link to details of persons involved in the LR.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=LRinvolved><B>LRinvolved</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#Role;participant+LRinvolved_c title=REPC_HD090100UK30#participant+LRinvolved_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Parties involved in the Legitimate Relationship.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=LRinvolved>Used by: </A></FONT><A href="#SimpleDetails"><B>SimpleDetails</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B><I>either </I></FONT>: <B><A href="#OtherPerson">OtherPerson</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#Role;participant+LRinvolved/generalizes-OtherPerson title=REPC_HD090100UK30#participant+LRinvolved/generalizes-OtherPerson style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of a person involved in the LR. This person is not identifiable by SDS.</P><B>This is only a placeholder for future use.</B></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM120500UK02.htm">UKCT_MT120501UK02</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#Role;participant+LRinvolved/participant_R_AgentNPFITOrganizationSDSUniversal+UKCT_MT120501UK02 title=REPC_HD090100UK30#participant+LRinvolved/participant_R_AgentNPFITOrganizationSDSUniversal+UKCT_MT120501UK02 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Full details of the workgroup are available from SDS. The identifier in the 'OrganizationSDS' entity is required in this instance. This denotes the Workgroup Identifier.</P>
+<LI>The <I>root</I> element identifies the SDS Workgroup scheme represented by OID <SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">1.2.826.0.1285.0.2.0.109</SPAN> 
+<LI><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial">the <I>extension</I> contains the actual identifier.</SPAN></LI>
+<P>&nbsp;The Optional AGENT Class Identifier and Code may be ignored in this instance.</P></LI></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM120300UK02.htm">UKCT_MT120301UK02</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#Role;participant+LRinvolved/participant_R_AgentNPFITPersonSDSUniversal+UKCT_MT120301UK02 title=REPC_HD090100UK30#participant+LRinvolved/participant_R_AgentNPFITPersonSDSUniversal+UKCT_MT120301UK02 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET&nbsp;to identify&nbsp;a person fulfilling a specific role. Full details of the person and role profile are available from SDS.</P>
+<P>Both the Class of Agnt and PSN are required.</P>
+<P>The AGNT Cl ass consists of an SDS identifier that uniquely identifies the Role of the Person.&nbsp;&nbsp; This is carried in the following way: </P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.67 </LI>
+<LI>the <I>extension</I> attribute shall contain the SDS&nbsp;Role Profile&nbsp;ID</LI></UL>
+<P>The PSN Class an SDS identifier that uniquely identifies the Person.&nbsp;&nbsp; This is carried in the following way: </P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.65 </LI>
+<LI>the <I>extension</I> attribute shall contain the SDS&nbsp;User ID.</LI></UL>
+<P>In this context the person is the person involved in the LR with the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=OtherPerson><B>OtherPerson</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#RoleHeir;OtherPerson_c title=REPC_HD090100UK30#OtherPerson_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of Other Person (non SDS) involved in the LR.</P>
+<P><B>This is only a placeholder for future use.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=OtherPerson>Used by: </A></FONT><A href="#SimpleDetails"><B>SimpleDetails</B></A>,&nbsp;<A href="#LRinvolved"><B>LRinvolved</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AGNT</B>} )<A>{<B> Fixed="<FONT color=red>AGNT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#RoleHeir;OtherPerson/$classCode title=REPC_HD090100UK30#OtherPerson.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of an agent.</P>
+<UL>
+<LI>Fixed value "AGNT" Agent</LI></UL>
+<P>The classCode is carried as an attribute of the&nbsp;<I>OtherPerson </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD090100UK30#RoleHeir;OtherPerson/$id title=REPC_HD090100UK30#OtherPerson.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The NHS number&nbsp;identifies this person</P>
+<P>NHS numbers are composed of ten numerics. </P>
+<UL>
+<LI>The <I>root</I> element identifies the&nbsp; NHS patient numbering scheme&nbsp;represented by&nbsp;OID 2.16.840.1.113883.2.1.4.1&nbsp;</LI>
+<LI>the <I>extension</I> contains the actual identifier. </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

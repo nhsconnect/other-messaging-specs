@@ -1,0 +1,685 @@
+<HTML><HEAD><TITLE>PdsAdvancedTraceQuery Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content=PdsAdvancedTraceQuery name=Entry>
+<META content=QUPA_HD020100UK14 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>PdsAdvancedTraceQuery - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="QUPA_RM020000UK14.htm"><B>QUPA_RM020000UK14</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ControlActEvent><B>ControlActEvent</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ControlAct;ControlActEvent_c title=QUPA_HD020100UK14#ControlActEvent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>The Control Act carries administrative information&nbsp;related to the "controlled act" that is being communicated in the message. </B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ControlActEvent>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>CACT</B>} )<A>{<B> Fixed="<FONT color=red>CACT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#Act;ControlActEvent/$classCode title=QUPA_HD020100UK14#ControlActEvent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a control act.</P>
+<UL>
+<LI>Fixed value: "CACT" (Control act)</LI></UL>
+<P>The classCode is carried as an attribute of the <I>ControlActEvent</I> element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#Act;ControlActEvent/$moodCode title=QUPA_HD020100UK14#ControlActEvent.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event which has occurred.</P>
+<UL>
+<LI>Fixed value: "EVN" </LI></UL>
+<P>The moodCode is carried as an attribute of the <I>ControlActEvent</I> element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Author><B>author</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=QUPA_HD020100UK14#Act;/ControlActEvent/author title=QUPA_HD020100UK14#/ControlActEvent/author style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A participation referring to a person who is logged in at the time the message is initiated.&nbsp;</B> </P>
+<P><B>The participation is optional. It shall be present when the message is&nbsp;initiated by a person. It shall not be present when the message is automatically&nbsp;initiated by a system.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=QUPA_HD020100UK14#Participation;ControlActEvent/author/$typeCode title=QUPA_HD020100UK14#ControlActEvent/author.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Defines the type of participation of the linked party to the PDS registration, i.e. that the linked party is the author.</P>
+<UL>
+<LI>Fixed value: "AUT" (Author [originator])</LI></UL>
+<P>The typeCode is carried as an attribute of the <I>author</I> element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD120900UK01-NoEdit.htm">participant</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM120900UK01.htm"><SMALL>[CMET:&nbsp;UKCT_MT120901UK01]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=QUPA_HD020100UK14#Participation;ControlActEvent/author/participant+UKCT_MT120901UK01 title=QUPA_HD020100UK14#ControlActEvent/author/participant+UKCT_MT120901UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET&nbsp;to identify a person fulfilling a specific role where&nbsp;the Person,&nbsp;Role Profile and Job&nbsp;Role are all mandatory. Full details of the person, role profile and job role&nbsp;are available from SDS.</P>
+<P>In this context the person is the&nbsp;signed in user&nbsp;for the user session responsible for initiating&nbsp;the message.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..2] </B></FONT><A name=Author2><B>author1</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=QUPA_HD020100UK14#Act;/ControlActEvent/author1 title=QUPA_HD020100UK14#/ControlActEvent/author1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A participation referring to one or more&nbsp;systems that are involved in the&nbsp;initiation of the&nbsp;message.</B> </P>
+<P><B>One instance of the participation is mandatory and&nbsp;shall carry the accredited service id of the system in use at the time the message is initiated.</B> </P>
+<P><B>One instance of the participation is optional and may carry the workstation id of the system being used by the logged in user at the time the message is initiated</B>.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=QUPA_HD020100UK14#Participation;ControlActEvent/author1/$typeCode title=QUPA_HD020100UK14#ControlActEvent/author1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Defines the type of participation of the linked party to the query, i.e. that the linked party is the author.</P>
+<UL>
+<LI>Fixed value: "AUT" (Author [originator])</LI></UL>
+<P>The typeCode is carried as an attribute of the <I>author</I> element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD121000UK01-NoEdit.htm">participant</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM121000UK01.htm"><SMALL>[CMET:&nbsp;UKCT_MT121001UK01]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=QUPA_HD020100UK14#Participation;ControlActEvent/author1/participant+UKCT_MT121001UK01 title=QUPA_HD020100UK14#author1/participant+UKCT_MT121001UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET&nbsp;to identify a&nbsp;mandatory system which could be software or hardware. Full details of the system are available from SDS.</P>
+<P>In this context the system is&nbsp;a system in use at the time the message is initiated.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>query</B> (<A href="#Query"><B>Query</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ControlAct;ControlActEvent/query-Query title=QUPA_HD020100UK14#ControlActEvent/query-Query style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the query.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Query><B>Query</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#QueryByParameter;Query_c title=QUPA_HD020100UK14#Query_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the query, in this case, an advanced search for a Service User record on the PDS.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Query>Used by: </A></FONT><A href="#ControlActEvent"><B>ControlActEvent</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>historicDataIndicator</B> (<A href="#HistoricDataIndicator"><B>HistoricDataIndicator</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#QueryByParameter;Query/historicDataIndicator-HistoricDataIndicator title=QUPA_HD020100UK14#QueryByParameter/historicDataIndicator-HistoricDataIndicator style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the historicDataIndicator parameter.</B> <B>The historicDataIndicator parameter shall occur one time to indicate whether or not historic data is required to be returned in the response to the query.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>person.address</B> (<A href="#Person.address"><B>Person.address</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#QueryByParameter;Query/person.address-Person.address title=QueryByParameter/person.address-Person.address style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person address parameter.</B> </P>
+<P><B>The person address parameter may occur zero or one time identifying either the usual address or a temporary address of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>person.administrativeGenderCode</B> (<A href="#Person.administrativeGenderCode"><B>Person.administrativeGenderCode</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#QueryByParameter;Query/person.administrativeGenderCode-Person.administrativeGenderCode title=QueryByParameter/person.administrativeGenderCode-Person.administrativeGenderCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person administrative gender code parameter.</B> </P>
+<P><B>The person administrative gender code parameter shall occur one time identifying the administrative gender code of the person being searched for.</B>&nbsp;&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>person.birthTime</B> (<A href="#Person.birthTime"><B>Person.birthTime</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#QueryByParameter;Query/person.birthTime-Person.birthTime title=QueryByParameter/person.birthTime-Person.birthTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person birth time parameter.</B> </P>
+<P><B>The person birth time parameter shall occur one time either providing a full or partial birth date of the person being searched for, or providing a birth date range of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>person.deceasedTime</B> (<A href="#Person.deceasedTime"><B>Person.deceasedTime</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#QueryByParameter;Query/person.deceasedTime-Person.deceasedTime title=QueryByParameter/person.deceasedTime-Person.deceasedTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person deceased time parameter.</B> </P>
+<P><B>The person deceased time parameter may occur zero or one time, either providing a full or partial death date of the person being searched for, or providing a death date range of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>person.id</B> (<A href="#Person.id"><B>Person.id</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#QueryByParameter;Query/person.id-Person.id title=QueryByParameter/person.id-Person.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person identifier parameter.</B> </P>
+<P><B>The person identifier parameter may occur zero or one time providing an identifier of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>person.name</B> (<A href="#Person.name"><B>Person.name</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#QueryByParameter;Query/person.name-Person.name title=QueryByParameter/person.name-Person.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person name parameter.</B> </P>
+<P><B>The person name parameter shall occur one time identifying either the usual name, a previous name, an alias name or a preferred name of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>primaryCare.id</B> (<A href="#PrimaryCare.id"><B>PrimaryCare.id</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#QueryByParameter;Query/primaryCare.id-PrimaryCare.id title=QueryByParameter/primaryCare.id-PrimaryCare.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the primary care identifier parameter.</B> </P>
+<P><B>The primary care identifier parameter may occur zero or one time, providing an identifier of the primary care provider of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>searchParameter</B> (<A href="#SearchParameter"><B>SearchParameter</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#QueryByParameter;Query/searchParameter-SearchParameter title=QUPA_HD020100UK14#QueryByParameter/searchParameter-SearchParameter style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the searchParameter parameter.</B> </P>
+<P><B>The searchParameter parameter shall occur one time to indicate the type of search required, i.e. alphanumeric or algorithmic.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=HistoricDataIndicator><B>HistoricDataIndicator</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;HistoricDataIndicator_c title=QUPA_HD020100UK14#HistoricDataIndicator_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the historicDataIndicator parameter.</B> <B>The historicDataIndicator parameter shall occur one time to indicate whether or not historic data is required to be returned in the response to the query.</B>&nbsp;&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=HistoricDataIndicator>Used by: </A></FONT><A href="#Query"><B>Query</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cwe')" onmouseout="popUp(event,'cwe')"><B>CWE</B></A>:<A href="../../../Vocabulary/HistoricDataIndicator.htm"><B>HistoricDataIndicator</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;HistoricDataIndicator/$value title=QUPA_HD020100UK14#HistoricDataIndicator.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the value of the parameter item (identified in the associated semanticsText element) to be searched.</P>
+<P>In this context, the value element provides a code to indicate whether or not historic data is required to be returned in the response to the query.</P>
+<P>The Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the <U>HistoricDataIndicator</U> vocabulary;</LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the <U>HistoricDataIndicator</U> vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;HistoricDataIndicator/$semanticsText title=QUPA_HD020100UK14#HistoricDataIndicator.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Person.address><B>Person.address</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.address_c title=QUPA_HD020100UK14#Person.address_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person address parameter.</B> </P>
+<P><B>The person address parameter may occur zero or one time identifying either the usual address or a temporary address of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Person.address>Used by: </A></FONT><A href="#Query"><B>Query</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#AD"><B>AD</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.address/$value title=QUPA_HD020100UK14#Person.address.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the value of the parameter item (identified in the associated semanticsText element) to be searched.</P>
+<P>In this context, the value element provides an address of the person that is being searched for.</P>
+<P>An address is composed of the following components:</P>
+<UL>
+<LI>Between one and five unstructured address lines;</LI>
+<LI>Postcode;</LI>
+<LI>A PAF (postal address file) key.</LI></UL>
+<P>At least one of these components is required to be present.</P>
+<P>The type of address is required to be identified by using one of the following codes in the <I>use</I> attribute:</P>
+<UL>
+<LI>H - usual address;</LI>
+<LI>TMP - temporary address;</LI></UL>
+<P>The following sub-elements are used to carry the components of an address:</P>
+<UL>
+<LI>Between one and five <I>streetAddressLine</I> elements are used to carry unstructured address lines, with the order in which they are carried in the message being significant, i.e. the first occurrence of the <I>streetAddressLine</I> element is used to carry the first line of address, the second occurrence of the <I>streetAddressLine</I> element is used to carry the second line of address etc;</LI>
+<LI>A <I>postalCode</I> element is used to carry a full or partial postcode;</LI>
+<LI>An <I>addressKey</I> element is used to carry a PAF key.</LI></UL>
+<P><B>NB: The PDS will search all address types irrespective of the address type given in the <I>use</I> attribute.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.address/$semanticsText title=QUPA_HD020100UK14#Person.address.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Person.administrativeGenderCode><B>Person.administrativeGenderCode</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.administrativeGenderCode_c title=QUPA_HD020100UK14#Person.administrativeGenderCode_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person administrative gender code parameter.</B> </P>
+<P><B>The person administrative gender code parameter shall occur one time identifying the administrative gender code of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Person.administrativeGenderCode>Used by: </A></FONT><A href="#Query"><B>Query</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cwe')" onmouseout="popUp(event,'cwe')"><B>CWE</B></A>:<A href="../../../Vocabulary/Sex.htm"><B>Sex</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.administrativeGenderCode/$value title=QUPA_HD020100UK14#Person.administrativeGenderCode.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the value of the parameter item (identified in the associated semanticsText element) to be searched.</P>
+<P>In this context, the value element provides an administrative gender code of the person that is to be searched for.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the <U>Sex</U> vocabulary;</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.administrativeGenderCode/$semanticsText title=QUPA_HD020100UK14#Person.administrativeGenderCode.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Person.birthTime><B>Person.birthTime</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.birthTime_c title=QUPA_HD020100UK14#Person.birthTime_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person birth time parameter.</B> </P>
+<P><B>The person birth time parameter shall occur one time either providing a full or partial birth date of the person being searched for, or providing a birth date range of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Person.birthTime>Used by: </A></FONT><A href="#Query"><B>Query</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.birthTime/$value title=QUPA_HD020100UK14#Person.birthTime.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the value of the parameter item (identified in the associated semanticsText element) to be searched.</P>
+<P>In this context, the value element provides a date of birth or birth date range of the person that is to be searched for.</P>
+<P>One of the Date Only or Date Month or Date Year datatype flavours is used to carry this information as follows:</P>
+<UL>
+<LI>Where a single date is to be given, the <I>center</I> sub-element shall be present with the date to be searched for, provided in either YYYYMMDD, YYYYMM or YYYY format in the <I>value</I> attribute;</LI>
+<LI>Where a date range is to be given, the <I>low</I> sub-element may be present with the earliest date to be searched for, provided in either YYYYMMDD, YYYYMM or YYYY format in the <I>value</I> attribute;</LI>
+<LI>Where a date range is to be given, the <I>high</I> sub-element may be present with the latest to be searched for, provided in either YYYYMMDD, YYYYMM or YYYY format in the <I>value</I> attribute.</LI></UL>
+<P>Where a date range is to be given, at least one of the <I>low</I> sub-elements and <I>high</I> sub-elements shall be present.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.birthTime/$semanticsText title=QUPA_HD020100UK14#Person.birthTime.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Person.deceasedTime><B>Person.deceasedTime</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.deceasedTime_c title=QUPA_HD020100UK14#Person.deceasedTime_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person deceased time parameter.</B> </P>
+<P><B>The person deceased time parameter may occur zero or one time, either providing a full or partial death date of the person being searched for, or providing a death date range of the person being searched for.</B>&nbsp;&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Person.deceasedTime>Used by: </A></FONT><A href="#Query"><B>Query</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.deceasedTime/$value title=QUPA_HD020100UK14#Person.deceasedTime.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the value of the parameter item (identified in the associated semanticsText element) to be searched.</P>
+<P>In this context, the value element provides a date of death or death date range of the person that is to be searched for.</P>
+<P>One of the Date Only or Date Month or Date Year datatype flavours is used to carry this information as follows:</P>
+<UL>
+<LI>Where a single date is to be given, the <I>center</I> sub-element shall be present with the date to be searched for, provided in either YYYYMMDD, YYYYMM or YYYY format in the <I>value</I> attribute;</LI>
+<LI>Where a date range is to be given, the <I>low</I> sub-element may be present with the earliest date to be searched for, provided in either YYYYMMDD, YYYYMM or YYYY format in the <I>value</I> attribute;</LI>
+<LI>Where a date range is to be given, the <I>high</I> sub-element may be present with the latest to be searched for, provided in either YYYYMMDD, YYYYMM or YYYY format in the <I>value</I> attribute.</LI></UL>
+<P>Where a date range is to be given, at least one of the <I>low</I> sub-elements and <I>high</I> sub-elements shall be present.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.deceasedTime/$semanticsText title=QUPA_HD020100UK14#Person.deceasedTime.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Person.id><B>Person.id</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.id_c title=QUPA_HD020100UK14#Person.id_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person identifier parameter.</B> </P>
+<P><B>The person identifier parameter may occur zero or one time providing an identifier of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Person.id>Used by: </A></FONT><A href="#Query"><B>Query</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.id/$value title=QUPA_HD020100UK14#Person.id.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the value of the parameter item (identified in the associated semanticsText element) to be searched.</P>
+<P>In this context, the value element provides an identifier of the person that is to be searched for. This identifier will be one of:</P>
+<UL>
+<LI>NHS number;</LI>
+<LI>Temporary NHS number issued by an NHAIS registration authority;</LI>
+<LI>Old format NHS number.</LI></UL>
+<P>The Identifier External datatype flavour is used to carry this information as follows:-</P>
+<P>A NHS number is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute will contain an OID with the value "2.16.840.1.113883.2.1.4.1";</LI>
+<LI>The <I>extension</I> attribute will contain the NHS number itself.</LI></UL>
+<P>A Temporary NHS number issued by an NHAIS registration authority or an old format NHS number is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute will contain an OID with the value "2.16.840.1.113883.2.1.3.2.4.3";</LI>
+<LI>The <I>extension</I> attribute will contain the Temporary NHS number issued by an NHAIS registration authority or the old NHS number&nbsp;itself.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.id/$semanticsText title=QUPA_HD020100UK14#Person.id.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Person.name><B>Person.name</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.name_c title=QUPA_HD020100UK14#Person.name_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the person name parameter.</B> </P>
+<P><B>The person name parameter shall occur one time identifying either the usual name, a previous name, an alias name or a preferred name of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Person.name>Used by: </A></FONT><A href="#Query"><B>Query</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#PN"><B>PN</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.name/$value title=QUPA_HD020100UK14#Person.name.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the value of the parameter item (identified in the associated semanticsText element) to be searched.</P>
+<P>In this context, the value element provides a structured usual name (or partial name) of the person that is to be searched for.</P>
+<P>The following sub-elements are used to carry components of a structured name:</P>
+<UL>
+<LI>A single instance of the <I>prefix</I> element is used to carry a name title, for example, Mr, Mrs, Ms etc;</LI>
+<LI>One or more instances of the <I>given</I> element are used to carry given names (or forenames) or initials, with the order in which they are carried in the message being significant, i.e. the first occurrence of the <I>given</I> element is used to carry the first given name, the second occurrence of the <I>given</I> element is used to carry the second given name etc;</LI>
+<LI>A single instance of the <I>family</I> element is used to carry the family name (or surname);</LI>
+<LI>A single instance of the <I>suffix</I> element is used to carry a name prefix, for example, Jnr, Snr etc.</LI></UL>
+<P>Note that a wildcard (*) can be added to the end of any name component search string.</P>
+<P>Where the usual name is being carried, this is required to be indicated with a value of "L" in the <I>use</I> attribute.</P>
+<P>Where an alias name is being carried, this is required to be indicated with a value of "A" in the <I>use</I> attribute.</P>
+<P>Where a preferred name is being carried, this is required to be indicated with a value of "PREFERRED" in the <I>use</I> attribute.</P>
+<P>Where a previous name is being carried, this is required to be indicated with one of the following values given in the <I>use</I> attribute:</P>
+<UL>
+<LI>"PREVIOUS-BIRTH" is used to indicate a birth name;</LI>
+<LI>"PREVIOUS-MAIDEN" is used to indicate a maiden name;</LI>
+<LI>"PREVIOUS-BACHELOR" is used to indicate a bachelor name;</LI>
+<LI>"PREVIOUS" is used to indicate any other kind of previous name.</LI></UL>
+<P><B>NB: One occurrence of the <I>family</I> element is mandatory. The PDS will ignore any <I>prefix</I> or <I>suffix</I> elements. The PDS will search all name types (i.e. usual, previous, preferred and alias).</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;Person.name/$semanticsText title=QUPA_HD020100UK14#Person.name.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=PrimaryCare.id><B>PrimaryCare.id</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;PrimaryCare.id_c title=QUPA_HD020100UK14#PrimaryCare.id_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the primary care identifier parameter.</B> </P>
+<P><B>The primary care identifier parameter may occur zero or one time, providing an identifier of the primary care provider of the person being searched for.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=PrimaryCare.id>Used by: </A></FONT><A href="#Query"><B>Query</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;PrimaryCare.id/$value title=QUPA_HD020100UK14#PrimaryCare.id.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the value of the parameter item (identified in the associated semanticsText element) to be searched.</P>
+<P>In this context, the value element provides the nationally recognised identifier for the primary care provider of the person that is to be searched for.</P>
+<P>This identifier will be a national GP code or national GP Practice code.</P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:-</P>
+<P>A national GP code is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute will contain an OID with the value "2.16.840.1.113883.2.1.4.2";</LI>
+<LI>The <I>extension</I> attribute will contain the national GP code itself.</LI></UL>
+<P>A national GP Practice code is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute will contain an OID with the value "2.16.840.1.113883.2.1.4.3";</LI>
+<LI>The <I>extension</I> attribute will contain the national GP Practice code itself.</LI></UL>
+<P>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;PrimaryCare.id/$semanticsText title=QUPA_HD020100UK14#PrimaryCare.id.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SearchParameter><B>SearchParameter</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;SearchParameter_c title=QUPA_HD020100UK14#SearchParameter_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing information about the searchParameter parameter.</B> <B>The searchParameter parameter shall occur one time to indicate the type of search required, i.e. alphanumeric or algorithmic.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SearchParameter>Used by: </A></FONT><A href="#Query"><B>Query</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cwe')" onmouseout="popUp(event,'cwe')"><B>CWE</B></A>:<A href="../../../Vocabulary/SearchParameter.htm"><B>SearchParameter</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;SearchParameter/$value title=QUPA_HD020100UK14#SearchParameter.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the value of the parameter item (identified in the associated semanticsText element).</P>
+<P>In this context, the value element provides a code to indicate the type of search required, i.e. alphanumeric or algorithmic.</P>
+<P>The Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the <U>SearchParameter</U> vocabulary;</LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the <U>SearchParameter</U> vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QUPA_HD020100UK14#ParameterItem;SearchParameter/$semanticsText title=QUPA_HD020100UK14#SearchParameter.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

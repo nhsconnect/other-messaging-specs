@@ -1,0 +1,744 @@
+<HTML><HEAD><TITLE>Request Service Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="Request Service" name=Entry>
+<META content=PRPA_HD010100UK06 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Request Service - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne style="LEFT: 192px; VISIBILITY: hidden; TOP: 4474px">Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="PRPA_RM010000UK06.htm"><B>PRPA_RM010000UK06</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=RequestService><B>RequestService</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#ActHeir;RequestService_c title=PRPA_HD010100UK06#RequestService_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>The Request Service message represents a request for a service from a service requester to the Choose and Book Service.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=RequestService>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PCPR</B>} )<A>{<B> Fixed="<FONT color=red>PCPR</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;RequestService/$classCode title=PRPA_HD010100UK06#RequestService.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a <B>patient care provision</B>.</P>
+<UL>
+<LI>Fixed value: "<B>PCPR</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;RequestService/$moodCode title=PRPA_HD010100UK06#RequestService.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an <B>event</B>.</P>
+<UL>
+<LI>Fixed value: "<B>EVN</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data%20Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;RequestService/$id title=PRPA_HD010100UK06#RequestService.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This identifier is globally unique across all records.</P>
+<P>It identifies this instance of a service request.</P>
+<P>The Identifier Global datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>A UUID is held in the <B>root </B>attribute.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data%20Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/CaBAnnotation.htm"><B>CaBAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;RequestService/$code title=PRPA_HD010100UK06#RequestService.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code which identifies this Act.</P>
+<P>The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>CaBAnnotation</B> vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.140</B>"</LI>
+<LI>The <B>code </B>attribute shall contain the vocabulary code "<B>RSERV</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data%20Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;RequestService/$effectiveTime title=PRPA_HD010100UK06#RequestService.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Date/time that the request was made.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>priorityCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/PriorityType.htm"><B>PriorityType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;RequestService/$priorityCode title=PRPA_HD010100UK06#RequestService.priorityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Priority of the referral or advice and guidance request. This is the existing MiM vocabulary <B>PriorityType</B>.</P>
+<P>The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>PriorityType</B> vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.95</B>"</LI>
+<LI>The <B>code</B> attribute shall contain a value from the <B>PriorityType</B> vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Subject><B>subject</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRPA_HD010100UK06#Act;/RequestService/subject title=PRPA_HD010100UK06#/RequestService/subject style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Refers to the patient for whom this service is being requested.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBJ</B>} )<A>{<B> Fixed="<FONT color=red>SBJ</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#Participation;RequestService/subject/$typeCode title=PRPA_HD010100UK06#RequestService/subject.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates&nbsp;that this is a <B>subject</B>.</P>
+<UL>
+<LI>Fixed value: "<B>SBJ</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>patient</B> (<A href="#Patient"><B>Patient</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#Participation;RequestService/subject/patient-Patient title=PRPA_HD010100UK06#RequestService/subject/patient-Patient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates information about the patient who is the subject.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Author><B>author</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRPA_HD010100UK06#Act;/RequestService/author title=PRPA_HD010100UK06#/RequestService/author style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Refers to the person or organisation who originated the request.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#Participation;RequestService/author/$typeCode title=PRPA_HD010100UK06#RequestService/author.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the participant is the <B>author</B> of the request.</P>
+<UL>
+<LI>Fixed value: "<B>AUT</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD120300UK02-NoEdit.htm">agent</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM120300UK02.htm"><SMALL>[CMET:&nbsp;UKCT_MT120301UK02]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#Participation;RequestService/author/agent+UKCT_MT120301UK02 title=PRPA_HD010100UK06#RequestService/author/agent+UKCT_MT120301UK02 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET to identify a person fulfilling a specific role. Full details of the person and role profile are available from SDS.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Component><B>component2</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRPA_HD010100UK06#Act;/RequestService/component2 title=PRPA_HD010100UK06#/RequestService/component2 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Refers to a choice for representation of the reason for referral. The choices are:</B></P>
+<UL>
+<LI><B>Coded reason</B></LI>
+<LI><B>Non coded reason</B></LI></UL></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#ActRelationship;RequestService/component2/$typeCode title=PRPA_HD010100UK06#RequestService/component2.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value: "<B>COMP</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>target</B> (<B><A href="#ReasonChoice">ReasonChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#ActRelationship;RequestService/component2/reasonChoice-ReasonChoice title=PRPA_HD010100UK06#RequestService/component2/reasonChoice-ReasonChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates a choice of referral reason representation.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Component2><B>component1</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRPA_HD010100UK06#Act;/RequestService/component1 title=PRPA_HD010100UK06#/RequestService/component1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Refers to the specialty of the service classification.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#ActRelationship;RequestService/component1/$typeCode title=PRPA_HD010100UK06#RequestService/component1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value: "<B>COMP</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>specialty</B> (<A href="#Specialty"><B>Specialty</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#ActRelationship;RequestService/component1/specialty-Specialty title=PRPA_HD010100UK06#RequestService/component1/specialty-Specialty style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates specialty information.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Component3><B>component3</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRPA_HD010100UK06#Act;/RequestService/component3 title=PRPA_HD010100UK06#/RequestService/component3 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Refers to a code specifying the type of service being requested.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#ActRelationship;RequestService/component3/$typeCode title=PRPA_HD010100UK06#RequestService/component3.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value: "<B>COMP</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>requestType</B> (<A href="#RequestType"><B>RequestType</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#ActRelationship;RequestService/component3/requestType-RequestType title=PRPA_HD010100UK06#RequestService/component3/requestType-RequestType style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates request type information.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PertinentInformation><B>pertinentInformation</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRPA_HD010100UK06#Act;/RequestService/pertinentInformation title=PRPA_HD010100UK06#/RequestService/pertinentInformation style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Refers to the content sensitivity of the referral.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#ActRelationship;RequestService/pertinentInformation/$typeCode title=PRPA_HD010100UK06#RequestService/pertinentInformation.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is <B>pertinent information</B>.</P>
+<UL>
+<LI>Fixed value: "<B>PERT</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentContentSensitiveInd</B> (<A href="#ContentSensitiveInd"><B>ContentSensitiveInd</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK06#ActRelationship;RequestService/pertinentInformation/pertinentContentSensitiveInd-ContentSensitiveInd title=PRPA_HD010100UK06#RequestService/pertinentInformation/pertinentContentSensitiveInd-ContentSensitiveInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates information about the content sensitivity of the referral.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Patient><B>Patient</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Patient;Patient_c title=PRPA_HD010100UK06#Patient_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>The patient who is the record target, and for whom this service is being requested.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Patient>Used by: </A></FONT><A href="#RequestService"><B>RequestService</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PAT</B>} )<A>{<B> Fixed="<FONT color=red>PAT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Patient;Patient/$classCode title=PRPA_HD010100UK06#Patient.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this role is of type <B>patient</B>.</P>
+<UL>
+<LI>Fixed value: "<B>PAT</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data%20Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Patient;Patient/$id title=PRPA_HD010100UK06#Patient.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Provides NHS Number, the nationally recognised identifier for the patient.</P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <B>root</B> attribute will contain an <B>OID</B> with the value "<B>2.16.840.1.113883.2.1.4.1</B>"</LI>
+<LI>The <B>extension</B> attribute will contain the NHS Number.</LI></UL>
+<P>Only new, permanent NHS Numbers can be used to identify patients in Choose and Book.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ReasonChoice><B>ReasonChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;ReasonChoice_c title=PRPA_HD010100UK06#ReasonChoice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>A choice of ways to represent the reason for this referral. </B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ReasonChoice>Used by: </A></FONT><A href="#RequestService"><B>RequestService</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B><I>either </I></FONT>: <B><A href="#CodedReason">CodedReason</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;ReasonChoice/generalizes-CodedReason title=PRPA_HD010100UK06#ReasonChoice/generalizes-CodedReason style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A clinical (coded) description of the referral reason. This will be a SNOMED clinical term.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="#NonCodedReason">NonCodedReason</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;ReasonChoice/generalizes-NonCodedReason title=PRPA_HD010100UK06#ReasonChoice/generalizes-NonCodedReason style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A textual representation of a clinical concept for the referral reason.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Specialty><B>Specialty</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;Specialty_c title=PRPA_HD010100UK06#Specialty_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>The specialty of the service classification.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Specialty>Used by: </A></FONT><A href="#RequestService"><B>RequestService</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;Specialty/$classCode title=PRPA_HD010100UK06#Specialty.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an <B>observation</B>.</P>
+<UL>
+<LI>Fixed value: "<B>OBS</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;Specialty/$moodCode title=PRPA_HD010100UK06#Specialty.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an <B>event</B>.</P>
+<UL>
+<LI>Fixed value: "<B>EVN</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data%20Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/CaBAnnotation.htm"><B>CaBAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;Specialty/$code title=PRPA_HD010100UK06#Specialty.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code which identifies this Act.</P>
+<P>The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>CaBAnnotation</B> vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.140</B>"</LI>
+<LI>The <B>code </B>attribute shall contain the vocabulary code "<B>SPEC</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data%20Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/Specialty.htm"><B>Specialty</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;Specialty/$value title=PRPA_HD010100UK06#Specialty.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator of the specialty to be used when searching for services when the seamless transition is performed.</P>
+<P>The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>Specialty</B> vocabulary with the value "<b>2.16.840.1.113883.2.1.3.2.4.17.156</b>"</LI>
+<LI>The <B>code</B> attribute shall contain an appropriate code from the <B>Specialty</B> vocabulary. </LI></UL>
+<P><B>Specialty</B> will be an external list of values maintained by Choose and Book.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=RequestType><B>RequestType</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;RequestType_c title=PRPA_HD010100UK06#RequestType_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A&nbsp;code specifying the type of service being requested.</B></P>
+<P><B>Example values are:</B></P>
+<OL>
+<LI><B>Appointment Request</B></LI>
+<LI><B>Diagnostic</B></LI>
+<LI><B>Advice &amp; Guidance</B></LI></OL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=RequestType>Used by: </A></FONT><A href="#RequestService"><B>RequestService</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;RequestType/$classCode title=PRPA_HD010100UK06#RequestType.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an <B>observation</B>.</P>
+<UL>
+<LI>Fixed value: "<B>OBS</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;RequestType/$moodCode title=PRPA_HD010100UK06#RequestType.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an <B>event</B>.</P>
+<UL>
+<LI>Fixed value: "<B>EVN</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data%20Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/CaBAnnotation.htm"><B>CaBAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;RequestType/$code title=PRPA_HD010100UK06#RequestType.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code which identifies this Act.</P>
+<P>The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>CaBAnnotation</B> vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.140</B>"</LI>
+<LI>The <B>code </B>attribute shall contain the vocabulary code "<B>REQTY</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data%20Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/RequestType.htm"><B>RequestType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;RequestType/$value title=PRPA_HD010100UK06#RequestType.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator of the type of request to be created after the seamless transition is performed. </P>
+<P>&nbsp;The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>RequestType</B>&nbsp; vocabulary with the value "<b>2.16.840.1.113883.2.1.3.2.4.17.152</b>"</LI>
+<LI>The <B>code</B> attribute shall contain an appropriate code from the <B>RequestType</B> vocabulary. </LI></UL>
+<P><B>RequestType</B> will be an external list of values maintained by Choose and Book.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ContentSensitiveInd><B>ContentSensitiveInd</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;ContentSensitiveInd_c title=PRPA_HD010100UK06#ContentSensitiveInd_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Information about the content sensitivity of the referral. This will be set to 'true' if the request is content sensitive.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ContentSensitiveInd>Used by: </A></FONT><A href="#RequestService"><B>RequestService</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;ContentSensitiveInd/$classCode title=PRPA_HD010100UK06#ContentSensitiveInd.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an <B>observation</B>.</P>
+<UL>
+<LI>Fixed value: "<B>OBS</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;ContentSensitiveInd/$moodCode title=PRPA_HD010100UK06#ContentSensitiveInd.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an <B>event</B>.</P>
+<UL>
+<LI>Fixed value: "<B>EVN</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data%20Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/CaBAnnotation.htm"><B>CaBAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;ContentSensitiveInd/$code title=PRPA_HD010100UK06#ContentSensitiveInd.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code which identifies this Act.</P>
+<P>The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>CaBAnnotation</B> vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.140</B>"</LI>
+<LI>The <B>code </B>attribute shall contain the vocabulary code "<B>CSI</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data%20Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;ContentSensitiveInd/$value title=PRPA_HD010100UK06#ContentSensitiveInd.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This is a Boolean datatype.</P>
+<P>Defaulted to false.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=CodedReason><B>CodedReason</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;CodedReason_c title=PRPA_HD010100UK06#CodedReason_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A clinical (coded) description of the referral reason. This will be a SNOMED clinical term.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=CodedReason>Used by: </A></FONT><A href="#RequestService"><B>RequestService</B></A>, <A href="#ReasonChoice"><B>ReasonChoice</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;CodedReason/$classCode title=PRPA_HD010100UK06#CodedReason.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an <B>observation</B>.</P>
+<UL>
+<LI>Fixed value: "<B>OBS</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;CodedReason/$moodCode title=PRPA_HD010100UK06#CodedReason.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an <B>event</B>.</P>
+<UL>
+<LI>Fixed value: "<B>EVN</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data%20Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/CaBAnnotation.htm"><B>CaBAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;CodedReason/$code title=PRPA_HD010100UK06#CodedReason.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code which identifies this Act.</P>
+<P>The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>CaBAnnotation</B> vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.140</B>"</LI>
+<LI>The <B>code </B>attribute shall contain the vocabulary code "<B>CDRSN</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data%20Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SNOMEDCT</B>} )<A>{<B> Fixed="<FONT color=red>SNOMEDCT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;CodedReason/$value title=PRPA_HD010100UK06#CodedReason.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A SNOMED code, qualified as appropriate, which describes the reason for this referral.</P>
+<P>The Concept Descriptor (<B>CD</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for <B>SNOMEDCT</B> with the value "<B>2.16.840.1.113883.2.1.3.2.4.15</B>"</LI>
+<LI>The <B>code</B> attribute shall carry an appropriate <B>SNOMED</B> code.</LI>
+<LI>The <B>displayName</B> attribute may carry the display name of the <B>SNOMED</B> code.</LI>
+</UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=NonCodedReason><B>NonCodedReason</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;NonCodedReason_c title=PRPA_HD010100UK06#NonCodedReason_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A textual representation of a clinical concept for the referral reason.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=NonCodedReason>Used by: </A></FONT><A href="#RequestService"><B>RequestService</B></A>, <A href="#ReasonChoice"><B>ReasonChoice</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;NonCodedReason/$classCode title=PRPA_HD010100UK06#NonCodedReason.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an <B>observation</B>.</P>
+<UL>
+<LI>Fixed value: "<B>OBS</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;NonCodedReason/$moodCode title=PRPA_HD010100UK06#NonCodedReason.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an <B>event</B>.</P>
+<UL>
+<LI>Fixed value: "<B>EVN</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data%20Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/CaBAnnotation.htm"><B>CaBAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;NonCodedReason/$code title=PRPA_HD010100UK06#NonCodedReason.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code which identifies this Act.</P>
+<P>The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>CaBAnnotation</B> vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.140</B>"</LI>
+<LI>The <B>code </B>attribute shall contain the vocabulary code "<B>NCRSN</B>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>text</B> (<A href="../../../Data%20Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;NonCodedReason/$text title=PRPA_HD010100UK06#NonCodedReason.text style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A textual representation of a clinical concept for the referral reason.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>value</B> (<A href="../../../Data%20Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/ReasonQualifier.htm"><B>ReasonQualifier</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Observation;NonCodedReason/$value title=PRPA_HD010100UK06#NonCodedReason.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code denoting the status of the supplied textual referral reason.</P>
+<P>The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>ReasonQualifier</B> vocabulary with the value "<b>2.16.840.1.113883.2.1.3.2.4.17.155</b>"</LI>
+<LI>The <B>code </B>attribute shall contain an appropriate code from the <B>ReasonQualifier</B> vocabulary.</LI></UL>
+<P><B>ReasonQualifier</B> will be an external list of values maintained by Choose and Book.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

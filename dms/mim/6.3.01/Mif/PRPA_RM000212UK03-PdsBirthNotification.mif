@@ -1,0 +1,3689 @@
+<?xml version="1.0" encoding="WINDOWS-1252"?>
+<staticModel isAbstract="false" isSerializable="true" name="PRPA_RM000212UK03" packageKind="root" representationKind="flat" xsi:schemaLocation="urn:hl7-org:v3/mif C:\PROGRA~1\HL7\System\schemas\mifStaticModelFlat.xsd" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<packageLocation artifact="RM-deprecated" domain="PA" name="PRPA_RM000212UK03" realm="UK" root="DEFN" section="HM" subSection="PR" version="03" id="000212"/>
+	<header>
+		<renderingInformation application="NHS R-MIM Designer 2.99.KJ.00" renderingTime="2007-02-05T13:55:05" schemaVersion="1"/>
+		<legalese copyrightOwner="NHS Connecting for Health"/>
+	</header>
+	<graphicRepresentation presentation="HL7">
+		<graphElement name="Main">
+			<position x="0.0" y="0.0"/>
+			<size height="9.452" width="26.211"/>
+		</graphElement>
+	</graphicRepresentation>
+	<derivationSupplier staticModelDerivationId="1">
+		<targetStaticModel artifact="RIM" realm="UV" root="DEFN" version="1"/>
+	</derivationSupplier>
+	<ownedEntryPoint className="PdsRegistrationEvent" id="PRPA_RM000212UK03" isAbstract="false" name="PdsBirthNotification">
+		<annotations>
+			<description>
+				<text>
+					<p>Carries demographic and clinical details of a birth.</p>
+				</text>
+			</description>
+		</annotations>
+		<graphicRepresentation>
+			<graphElement containerDiagramName="Main" isHeightAutoSize="false" isWidthAutoSize="false" nodeOrientation="Right" shapeId="PRPA_RM000212UK03">
+				<position x="11.951" y="7.719"/>
+				<size height="0.453" width="2.569"/>
+				<anchorage connectToShapeId="Sheet.19">
+					<position x="14.52" y="7.946"/>
+					<graphEdge>
+						<anchor>
+							<position x="15.383" y="7.946"/>
+						</anchor>
+					</graphEdge>
+				</anchorage>
+			</graphElement>
+		</graphicRepresentation>
+	</ownedEntryPoint>
+	<ownedClass>
+		<class isAbstract="false" name="Patient">
+			<derivationSupplier className="Patient" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="false" isWidthAutoSize="false" shapeId="Sheet.1" shapeTemplate="Role">
+					<position x="15.861" y="4.515"/>
+					<size height="1.858" width="1.344"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-12-01T10:50:16" id="{7C0EA024-4BF4-43FF-A8A1-08EFD9733140}"/>
+					<text>The role of the Patient who a record is being created for.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PAT" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:58:16" id="{7F6AD2AA-2276-449A-B98C-B3C07BB3EF32}"/>
+						<text>
+							<p>A code indicating that the role is that of a Patient</p>
+							<ul>
+								<li>Fixed value: "PAT"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Patient" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PAT"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="id" sortKey="2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-01T09:53:47" id="{7BB9C3CC-2F2A-4FFA-9A06-958B8EACF6FF}"/>
+						<text>
+							<p>The NHS number identifying the Patient</p>
+							<p>A NHS number is carried in the following way:</p>
+							<ul>
+								<li>The <i>root</i>attribute will contain an OID with the value "2.16.840.1.113883.2.1.4.1";</li>
+								<li>The <i>extension</i>attribute will contain the NHS number itself</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="id" className="Patient" staticModelDerivationId="1"/>
+				<type name="II" typeSpecialisation="II.NPfIT.Patient.oid.mandatory"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="2" minimumMultiplicity="1" name="addr" sortKey="5">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2007-01-23T12:41:06" id="{262C1A3F-FF99-4DC0-BE5B-7565B110CCFD}"/>
+						<text>
+							<p>Address(es) of the patient.</p>
+							<p>The particular flavour of the address datatype used here is Address streetAddressLine Typed (format 2 in the datatypes description), plus:</p>
+							<ul>
+								<li>Optional Postcode</li>
+								<li>Optional Address Key</li>
+								<li>Optional Description</li>
+								<li>Mandatory Use</li>
+								<li>Optional Useable period</li>
+							</ul>
+							<p>This means that the address will contain the following components:</p>
+							<ul>
+								<li>Between one and five <em>streetAddressLine</em> elements. Excludes postcode, may be vernacular or PAF-derived. For vernacular addresses, the following formatting convention should be used:<ul>
+										<li>Line 1: premises ID</li>
+										<li>Line 2: no. / thoroughfare</li>
+										<li>Line 3: locality</li>
+										<li>Line 4: post town</li>
+										<li>Line 5: county</li>
+										<li>Lines 1 or 2 and line 4 should normally be mandatory although there may be some exceptions</li>
+									</ul>
+								</li>
+								<li>A <em>postalCode</em> element to carry a postcode (optional)</li>
+								<li>An <em>addressKey</em> element to carry a PAF key (optional)</li>
+								<li>A <em>desc</em> element to carry a free-text description of the nature of the address (e.g. "On holiday") (optional, may only be present for a temporary address, i.e. if the <em>use</em> attribute is "TMP")</li>
+								<li>The <em>use</em> attribute to denote the type of address. Only the values "H" (Home address) and "TMP" (Temporary address) are permitted here. (mandatory)</li>
+								<li>A <em>useablePeriod</em> element to contain the dates for which the address is / was current as a range, supplied in the <em>low</em> and <em>high</em> sub-elements. Both the <em>low</em> and <em>high</em> sub-elements are optional, allowing open-ended ranges to be specified. (optional)</li>
+							</ul>
+							<p>One instance of home address (use type "H") is mandatory and one instance of a discharge address (i.e. temporary - use type "TMP") is optional, where different from usual address.</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="addr" className="Patient" staticModelDerivationId="1"/>
+				<type name="SET">
+					<supplierBindingArgumentDatatype name="AD"/>
+				</type>
+			</attribute>
+			<attribute isMandatory="false" maximumMultiplicity="*" minimumMultiplicity="0" name="telecom" sortKey="6">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:58:17" id="{03F410EA-CDBC-4A05-AC4D-72242876327F}"/>
+						<text>
+							<p>Specifies a means of communicating remotely with the Person</p>
+							<p>The valid flavours of the TEL datatype are</p>
+							<p>2. Telecommunication address plus use <i>(f)</i>
+							</p>
+							<p>4. Telecommunication address plus use and valid time. <em>(f)</em>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="telecom" className="Patient" staticModelDerivationId="1"/>
+				<type name="SET">
+					<supplierBindingArgumentDatatype name="TEL"/>
+				</type>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Person">
+			<derivationSupplier className="Person" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.11" shapeTemplate="Entity">
+					<position x="12.214" y="3.82"/>
+					<size height="1.315" width="2.776"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-12-07T14:06:10" id="{E9E418E2-06FC-4C54-BFC5-E33AC2A93D74}"/>
+					<text>The Person entity playing the role of Patient in this message.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PSN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-25T09:34:38" id="{C37D74AD-7FC9-4828-9DDF-5CD28C6FE313}"/>
+						<text>
+							<p>A code indicating that the entity is a Person</p>
+							<ul>
+								<li>Fixed value: "PSN"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Person" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PSN"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="INSTANCE" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="determinerCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T14:21:47" id="{CADC5BAE-BEEB-4891-AB0B-1407EE45A492}"/>
+						<text>
+							<p>Indicates that this is an actual instance of the entity, and not a general description of a class of entity</p>
+							<ul>
+								<li>Fixed value: "INSTANCE"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="determinerCode" className="Person" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="INSTANCE"/>
+			</attribute>
+			<attribute isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="name" sortKey="6">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-01T10:13:54" id="{CBB5EC55-7864-47E6-B3E6-09DEC58AC274}"/>
+						<text>
+							<p>The name of the Person.</p>
+							<p>The appropriate flavours of the PN datatype to use are</p>
+							<p>6. Person name structured with use <i>(f)</i>
+							</p>
+							<p>8. Person name structured with use and valid time <i>(f)</i>
+							</p>
+							<p>The name shall contain zero or one &lt;family/&gt; element and between zero and two &lt;given/&gt; elements.</p>
+							<p>The prefix and suffix components are also supported.</p>
+							<p>The only value of "use" relevant is "L" - <em>Usual (current) name</em>
+							</p>
+							<p>
+								<i>
+									<b>N.B</b> - while more than two &lt;given/&gt; name elements may be present in the PN datatype, the PDS requires given names subsequent to the first to be concatenated into the second given name field of its API.</i>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="name" className="Person" staticModelDerivationId="1"/>
+				<type name="PN"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="administrativeGenderCode" sortKey="1">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-09T15:07:46" id="{4F51C6D1-8A65-4C07-B111-7DF52DB91A79}"/>
+						<text>
+							<p>The sex of the person (e.g., female, male).</p>
+							<ul>
+								<li>This code is for administrative purposes only and
+          does not imply a particular genetic or physical sex.
+          Therefore, were gender is indeterminate the value should
+          be as registered with the health provider.</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="administrativeGenderCode" className="Person" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="Sex"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="birthTime" sortKey="2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-01T10:12:45" id="{2BCA4A26-F9B7-482A-A738-2B1B2EE83D30}"/>
+						<text>The full date and time of birth of the patient being registered, to the maximum precision available of up to one minute.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="birthTime" className="Person" staticModelDerivationId="1"/>
+				<type name="TS"/>
+			</attribute>
+			<attribute isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="deceasedTime" sortKey="4">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-01T10:13:17" id="{B57BDA44-EF6C-4A31-A12F-EAF5CBCD3F34}"/>
+						<text>
+							<p>If the patient is deceased then this attribute shall carry the date and time of their death.</p>
+							<p>If the patient is not deceased then this attribute shall be absent.</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="deceasedTime" className="Person" staticModelDerivationId="1"/>
+				<type name="TS"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="multipleBirthOrderNumber" sortKey="6">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-08T13:34:02" id="{DBD5E7C5-7F06-4DEA-9478-BD3ADFDBD6E0}"/>
+						<text>
+							<p>For a birth registration this is mandatory and describes the sequence in the case of multiple births (e.g. twins, triplets etc).</p>
+							<p>For births that are not a part of a multiple birth, this will be set to 1.</p>
+							<p>Note that permissible values are 1-9, with any value between</p>
+							<ul>
+								<li>1 and 7 inclusive indicating the actual birth order number,</li>
+								<li>8 meaning "Not applicable" and</li>
+								<li>9 meaning "Not known".</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="multipleBirthOrderNumber" className="Person" staticModelDerivationId="1"/>
+				<type name="INT"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="ethnicGroupCode" sortKey="8">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-09T15:07:49" id="{D206CFF8-75AB-47CB-A747-C8B327B8732F}"/>
+						<text>
+							<p>The ethnic category of the patient represented in coded
+        form.</p>
+							<p>The Coded with Code System datatype flavour is used to
+        carry this information as follows:</p>
+							<ul>
+								<li>The 
+          <i>code</i>attribute shall contain a value from the list
+          of codes in the 
+          <u>EthnicCategory</u>vocabulary.</li>
+								<li>The 
+          <i>codeSystem</i>attribute will contain the OID
+          referenced in the 
+          <u>EthnicCategory</u>vocabulary</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="ethnicGroupCode" className="Person" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="EthnicCategory"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="DeathNotification">
+			<derivationSupplier className="Observation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.15" shapeTemplate="Act">
+					<position x="19.029" y="6.017"/>
+					<size height="0.782" width="2.845"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-14T16:59:47" id="{9EF3791C-2E5A-4195-B6D2-9E0F52CE8D9E}"/>
+					<text>A heading for providing information about a death notification.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="OBS" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:58:19" id="{010865BE-0D3A-47C1-A268-C7DD44215EF4}"/>
+						<text>
+							<p>Indicates that this is an observation.</p>
+							<ul>
+								<li>Fixed value: "OBS" (Observation)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="OBS"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="EVN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="moodCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:58:19" id="{85943650-3475-419A-BB92-5D37B5D64F5F}"/>
+						<text>
+							<p>Indicates this is an event.</p>
+							<ul>
+								<li>Fixed value: "EVN" (Event)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="moodCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="EVN"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="code" sortKey="4">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:58:59" id="{D79751EC-DB9D-462F-B85D-C8E0752DE349}"/>
+						<text>
+							<p>To provide the type of observation in coded form.</p>
+							<p>In this context, the type of observation is an observation of a death notification.</p>
+							<p>The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <i>code</i> attribute will contain value "3" (Death notification) from the list of codes in the <u>DemographicObservationType</u> vocabulary;</li>
+								<li>The <i>codeSystem</i> attribute will contain the OID referenced in the <u>DemographicObservationType</u> vocabulary.</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="code" className="Observation" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="DemographicObservationType"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="value" sortKey="1">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:59:45" id="{50EB2CBF-ED9A-4CE7-8CA8-1586222BC1FC}"/>
+						<text>
+							<p>To provide the registration status of the death notification in coded form.</p>
+							<p>The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <i>code</i> attribute will contain a value from the list of codes in the <u>DeathNotification</u> vocabulary;</li>
+								<li>The <i>codeSystem</i> attribute will contain the OID referenced in the <u>DeathNotification</u> vocabulary.</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="value" className="Observation" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="DeathNotification"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="PdsRegistrationEvent">
+			<derivationSupplier className="Act" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.19" shapeTemplate="Act">
+					<position x="15.383" y="7.315"/>
+					<size height="0.75" width="2.191"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-14T17:00:00" id="{4A64AAF1-B39F-4F16-BD66-74EB773F6F9F}"/>
+					<text>Requests that a record be created on a patient administration system.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="REG" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2007-01-23T12:39:07" id="{D534D8C6-0CDC-4BEC-9D81-9E5F69063C5E}"/>
+						<text>
+							<p>A code indicating that the act is of registration.</p>
+							<ul>
+								<li>Fixed value: "REG"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Act" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="REG"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="EVN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="moodCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2007-01-23T12:39:17" id="{7A238234-D98E-4DDB-BD4E-8B88E29A6AD4}"/>
+						<text>
+							<p>A code indicating that the act is an event.</p>
+							<ul>
+								<li>Fixed value: "EVN"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="moodCode" className="Act" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="EVN"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="RegisteringAuthority">
+			<derivationSupplier className="Role" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="false" shapeId="Sheet.23" shapeTemplate="Role">
+					<position x="19.281" y="7.336"/>
+					<size height="0.648" width="2.675"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-14T17:01:31" id="{61278001-723D-4715-9FDF-E2F30E41EA05}"/>
+					<text>Parent class linking to and containing details of the authority for the registration.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="ASSIGNED" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T17:00:02" id="{534C3AFC-2027-4705-914E-15760CEED994}"/>
+						<text>
+							<p>Indicates that the role is that of an entity acting in the employ of an Organization</p>
+							<ul>
+								<li>Fixed value: "ASSIGNED" (Assigned entity)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Role" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="ASSIGNED"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="id" sortKey="2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T17:00:02" id="{A8A17FB3-BF96-4769-AF5F-828877A7A6A6}"/>
+						<text>
+							<p>The identifier of the assigned organisation acting as registration authority. This will be :</p>
+							<ul>
+								<li>Organisation code (PCT code or Trust code)</li>
+							</ul>
+							<p>The Identifier External datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>root</em> attribute will contain an OID with the value "2.16.840.1.113883.2.1.4.3"</li>
+								<li>The <em>extension</em> attribute will contain the national organisation code</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="id" className="Role" staticModelDerivationId="1"/>
+				<type name="II" typeSpecialisation="II.NPfIT.oid.mandatory"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="code" sortKey="3">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T17:01:22" id="{6A9D2369-95BA-4DDF-94CD-B39E0CAEF0B4}"/>
+						<text>Value from the 
+<u>RegisteringAuthorityType</u>vocabulary.
+<p>The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>RegisteringAuthorityType</u> vocabulary</li>
+								<li>The <em>codeSystem</em> attribute will contain the OID "2.16.840.1.113883.2.1.3.2.4.16.20"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="code" className="Role" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="RegisteringAuthorityType"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Author">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Right" shapeId="Sheet.33" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="17.574" y="7.369"/>
+					<size height="0.303" width="1.738"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:22" id="{08AC8480-50AC-48D5-A773-B016974121F6}"/>
+					<text>The RegisteringAuthority serves as the Author of this message.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="AUT" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-25T09:25:07" id="{152F0767-7695-46FB-953F-CACFD5C4EFCC}"/>
+						<text>
+							<p>A code indicating that the target participates as an Author</p>
+							<ul>
+								<li>Fixed value: "AUT"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="AUT"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="ClinicalInformation">
+			<derivationSupplier className="Act" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="false" isWidthAutoSize="true" shapeId="Sheet.39" shapeTemplate="Act">
+					<position x="18.96" y="2.15"/>
+					<size height="2.651" width="1.696"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:23" id="{42160A23-7B1D-4C36-9F24-3319F3DD5FE5}"/>
+					<text>A composition of relevant clinical information appropriate to registration.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="COMPOSITION" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="0" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-09T15:09:18" id="{581D6A75-B53D-4397-AA02-16759C4F6874}"/>
+						<text>
+							<p>A code indicating that the act is an grouping of other
+        acts</p>
+							<ul>
+								<li>Fixed value: "COMPOSITION"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Act" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="COMPOSITION"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="EVN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="moodCode" sortKey="0" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-09T15:09:20" id="{3214F38B-0161-4550-8E0A-117ADD6FE2FF}"/>
+						<text>
+							<p>Indicates this is an event.</p>
+							<ul>
+								<li>Fixed value: "EVN" (Event)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="moodCode" className="Act" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="EVN"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="NumberOfFoetusInConfinement">
+			<derivationSupplier className="Observation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="false" shapeId="Sheet.43" shapeTemplate="Act">
+					<position x="14.188" y="2.496"/>
+					<size height="0.782" width="2.5"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:23" id="{645B9B3C-6279-445B-8C71-3E4D86DF581C}"/>
+					<text>Observation of the number of foetuses in confinement in the pregnancy containing the Patient.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="OBS" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-09T16:39:08" id="{5D6E2097-4AA2-49E6-A119-63A8B2032EC3}"/>
+						<text>
+							<p>A code indicating that the act is an observation</p>
+							<ul>
+								<li>Fixed value: "OBS"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="OBS"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="EVN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="moodCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:40:07" id="{F36405CA-49A3-4526-B681-C6A92AF74F20}"/>
+						<text>
+							<p>Indicates this is an event.</p>
+							<ul>
+								<li>Fixed value: "EVN" (Event)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="moodCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="EVN"/>
+			</attribute>
+			<attribute conformance="R" defaultValue="246435002" fixedValue="246435002" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="code" sortKey="4">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T17:01:50" id="{7A71B809-057A-4CE2-90F6-22F105411EFD}"/>
+						<text>
+							<p>A code from the <u>SnomedCT</u> vocabulary. The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>SnomedCT</u> vocabulary<ul>
+										<li>Fixed value = 246435002 "number of fetuses"</li>
+									</ul>
+								</li>
+								<li>The <em>codeSystem</em> attribute will contain the OID "2.16.840.1.113883.2.1.3.2.4.15"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="code" className="Observation" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="SnomedCT"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="value" sortKey="1">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-08T13:34:59" id="{F31BF519-D269-4243-B689-91BCA499828A}"/>
+						<text>
+							<div>Details of the number of births in confinement. Values defined in the NHS Data Dictionary, where the values are 1-6, the value 6 means six or more, and value 9 indicates a validation error. </div>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="value" className="Observation" staticModelDerivationId="1"/>
+				<type name="INT"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="SuspectedCongenitalAbnormality">
+			<derivationSupplier className="Observation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="false" shapeId="Sheet.47" shapeTemplate="Act">
+					<position x="22.942" y="2.196"/>
+					<size height="0.782" width="3.259"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-14T16:39:44" id="{C97E26D4-AF1A-44A6-B844-B135A80EDDCB}"/>
+					<text>Observation detailing whether the Patient has a suspected congenital abnormality (or the absence of one) at birth.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="OBS" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-09-28T13:58:36" id="{A0F52FD1-64CB-4EC2-A0E0-4170E037CBD7}"/>
+						<text>
+							<p>A code indicating that the act is an observation</p>
+							<ul>
+								<li>Fixed value: "OBS"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="OBS"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="EVN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="moodCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-09T15:12:30" id="{48967AF0-8133-40A1-A64C-E2930E4E0E81}"/>
+						<text>
+							<p>Indicates this is an event.</p>
+							<ul>
+								<li>Fixed value: "EVN" (Event)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="moodCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="EVN"/>
+			</attribute>
+			<attribute conformance="R" defaultValue="66091009" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="code" sortKey="4">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:50:17" id="{FFBB1047-25B0-4661-9D32-2E5401E88352}"/>
+						<text>
+							<p>A code from the <u>SnomedCT</u> vocabulary. The Coded Qualified datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>SnomedCT</u> vocabulary<ul>
+										<li>Fixed value = 66091009 "congenital disease"<ul>
+												<li>Fixed qualifier = 415684004 "suspected"</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>The <em>codeSystem</em> attribute will contain the OID "2.16.840.1.113883.2.1.3.2.4.15"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="code" className="Observation" staticModelDerivationId="1"/>
+				<type name="CD"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="SnomedCT"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="value" sortKey="1">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:49:50" id="{002E4CF4-E027-4F1E-B748-D10718AE298E}"/>
+						<text>Coded value as detailed in the 
+<u>SuspectedCongenitalAbnormalityType</u> vocabulary.
+<p>The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>SuspectedCongenitalAbnormalityType</u> vocabulary</li>
+								<li>The <em>codeSystem</em> attribute will contain the OID in the referenced vocabulary.</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="value" className="Observation" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="SuspectedCongenitalAbnormalityType"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Component">
+			<derivationSupplier className="ActRelationship" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Left" shapeId="Sheet.51" shapeTemplate="ActRelationship" textWrappingWidth="66.0">
+					<position x="16.688" y="2.71"/>
+					<size height="0.303" width="2.273"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:23" id="{C42CB845-E5ED-4E6E-90BB-374AAEF6EFB4}"/>
+					<text>The number of foetuses in confinement.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="COMP" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-09T16:37:41" id="{6132A284-70F4-4922-8F59-DB2FEBAAF03B}"/>
+						<text>
+							<p>A code indicating that the linked act is a component</p>
+							<ul>
+								<li>Fixed value: "COMP"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="ActRelationship" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="COMP"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Component2">
+			<derivationSupplier className="ActRelationship" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Right" shapeId="Sheet.57" shapeTemplate="ActRelationship" textWrappingWidth="66.0">
+					<position x="20.656" y="2.318"/>
+					<size height="0.303" width="2.286"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:23" id="{DAD9BECC-7B1E-446E-9E46-87291FFAF97A}"/>
+					<text>Indicates whether there is a suspected congenital abnormality or the baby is normal.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="COMP" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-09T16:36:17" id="{47F301EF-3EE6-43D9-A20A-07642F710F10}"/>
+						<text>
+							<p>A code indicating that the linked act is a component</p>
+							<ul>
+								<li>Fixed value: "COMP"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="ActRelationship" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="COMP"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Subject2">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Up" shapeId="Sheet.63" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="15.899" y="6.373"/>
+					<size height="0.942" width="0.994"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:23" id="{4ED69D82-AB9B-4C3F-967B-27A14F12B69F}"/>
+					<text>The patient who is the subject of the request to create a record.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="SBJ" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-10T10:20:05" id="{28391040-8C24-4E13-9EEA-74CDBCA79F83}"/>
+						<text>Indicates that the target Role is the subject of the
+      Act 
+      <ul>
+								<li>Fixed Value : "SBJ"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="SBJ"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Subject3">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Left" shapeId="Sheet.69" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="17.204" y="4.52"/>
+					<size height="0.303" width="1.757"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:23" id="{3A74B6DD-D906-40E2-AB35-C5E75398A51F}"/>
+					<text>Clinical information relevant to the patient.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="SBJ" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:46:02" id="{E1960B4F-11A7-4AB5-91ED-ED30B9086CC3}"/>
+						<text>Indicates that the target Role is the subject of the Act
+<ul>
+								<li>Fixed Value : "SBJ"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="SBJ"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Baby">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Right" shapeId="Sheet.75" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="6.097" y="5.962"/>
+					<size height="0.303" width="9.764"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:23" id="{E2ECBE7C-A287-42EE-9987-4170EC857CD8}"/>
+					<text>The participation of the Patient in their own birth.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="BBY" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-09-28T13:57:09" id="{2531E758-67E1-4CB2-B631-1E6CBF226716}"/>
+						<text>
+							<p>A code indicating that the participant is a baby</p>
+							<ul>
+								<li>Fixed value: "BBY"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="BBY"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Subject5">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Left" shapeId="Sheet.81" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="17.204" y="6.17"/>
+					<size height="0.303" width="1.826"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:23" id="{60230B60-42AB-49D5-9366-56C3CFB529E9}"/>
+					<text>Indicates whether the patient is deceased or not.
+<p>
+							<i>NB This can occur independantly of stillbirth</i>
+						</p>
+					</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="SBJ" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-10T10:20:08" id="{1CF29FD0-28F9-4DCA-A144-3500CE70D7E1}"/>
+						<text>Indicates that the target Role is the subject of the
+      Act 
+      <ul>
+								<li>Fixed Value : "SBJ"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="SBJ"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Component3">
+			<derivationSupplier className="ActRelationship" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Right" shapeId="Sheet.87" shapeTemplate="ActRelationship" textWrappingWidth="66.0">
+					<position x="20.656" y="3.225"/>
+					<size height="0.303" width="2.979"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:23" id="{9F191706-050A-460D-8CBE-480727989CD7}"/>
+					<text>Indicates whether the baby was stillborn.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="COMP" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-09T16:36:25" id="{D81345A4-5C2E-49CA-A6DF-FACA64FBE16F}"/>
+						<text>
+							<p>A code indicating that the linked act is a component</p>
+							<ul>
+								<li>Fixed value: "COMP"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="ActRelationship" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="COMP"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="StillbirthIndicator">
+			<derivationSupplier className="Observation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.93" shapeTemplate="Act">
+					<position x="23.635" y="3.075"/>
+					<size height="0.782" width="2.565"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-14T16:45:11" id="{54976146-8DB0-4A41-A3A2-9D9EF740A7FD}"/>
+					<text>
+						<p>An indicator as to whether the Person was stillborn.</p>
+						<p>
+							<em>NB. This is distinct data from whether the person is deceased as the latter may occur after birth but before registration of the Patient.</em>
+						</p>
+					</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="OBS" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-09-28T13:54:04" id="{72E1EF64-F832-4E22-963F-12F350C677E2}"/>
+						<text>
+							<p>A code indicating that the act is an observation</p>
+							<ul>
+								<li>Fixed value: "OBS"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="OBS"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="EVN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="moodCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:40:59" id="{00731841-BBF2-4F2E-9E9F-8827F2DD06E8}"/>
+						<text>
+							<p>Indicates this is an event.</p>
+							<ul>
+								<li>Fixed value: "EVN" (Event)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="moodCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="EVN"/>
+			</attribute>
+			<attribute conformance="R" defaultValue="237364002" fixedValue="237364002" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="code" sortKey="4">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:46:12" id="{12EAFA07-8F72-43F3-B613-536B76C07ED1}"/>
+						<text>
+							<p>A code from the <u>SnomedCT</u> vocabulary. The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>SnomedCT</u> vocabulary<ul>
+										<li>Fixed value = 237364002 "stillbirth"</li>
+									</ul>
+								</li>
+								<li>The <em>codeSystem</em> attribute will contain the OID "2.16.840.1.113883.2.1.3.2.4.15"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="code" className="Observation" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="SnomedCT"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="value" sortKey="1">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T17:02:24" id="{E6DC2A30-4802-414A-ACB2-663D9497BA8F}"/>
+						<text>Coded value as detailed in the 
+<u>StillbornType</u> vocabulary.
+<p>The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>StillbornType</u> vocabulary</li>
+								<li>The <em>codeSystem</em> attribute will contain the OID in the referenced vocabulary.</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="value" className="Observation" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="StillbornType"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="BirthWeight">
+			<derivationSupplier className="Observation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="false" shapeId="Sheet.97" shapeTemplate="Act">
+					<position x="18.904" y="5.077"/>
+					<size height="0.782" width="2.504"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-12-01T10:18:11" id="{1D2BCA11-0ED5-4E78-B6EB-024DF68C225E}"/>
+					<text>An observation of the weight of the patient at birth</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="OBS" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-09-28T13:49:44" id="{A5C74C82-3274-4C8F-B392-88BF268C76A3}"/>
+						<text>
+							<p>A code indicating that the act is an observation</p>
+							<ul>
+								<li>Fixed value: "OBS"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="OBS"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="EVN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="moodCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-09-28T13:49:41" id="{AB047AE8-69BE-498D-A44C-CB378A3DAC8C}"/>
+						<text>
+							<p>Indicates this is an event.</p>
+							<ul>
+								<li>Fixed value: "EVN" (Event)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="moodCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="EVN"/>
+			</attribute>
+			<attribute conformance="R" defaultValue="364589006" fixedValue="364589006" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="code" sortKey="4">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:50:57" id="{8B57BEAE-042C-474F-ACEF-C38518594BEA}"/>
+						<text>
+							<p>A code from the <u>SnomedCT</u> vocabulary. The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>SnomedCT</u> vocabulary<ul>
+										<li>Fixed value = 364589006 "birth weight"</li>
+									</ul>
+								</li>
+								<li>The <em>codeSystem</em> attribute will contain the OID "2.16.840.1.113883.2.1.3.2.4.15"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="code" className="Observation" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="SnomedCT"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="value" sortKey="1">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-08T13:36:59" id="{A9C5B3BF-1974-416D-9568-A7D10DB075DC}"/>
+						<text>The weight of the baby at birth. 4-digits, fixed length. 0000..9999 grams. 9999 meaning unweighed (according to NHS Data Dictionary). If 0000 is supplied, it will be treated as 9999.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="value" className="Observation" staticModelDerivationId="1"/>
+				<type name="INT"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Subject4">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Left" shapeId="Sheet.101" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="17.204" y="5.28"/>
+					<size height="0.303" width="1.7"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:23" id="{CA317C56-C731-449F-A13B-0E789AFB5128}"/>
+					<text>The birthweight of the patient</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="SBJ" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-10T10:20:08" id="{738CA09E-67AF-4CBF-BF9E-F78E60BF5CAF}"/>
+						<text>Indicates that the target Role is the subject of the
+      Act 
+      <ul>
+								<li>Fixed Value : "SBJ"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="SBJ"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="GestationAge">
+			<derivationSupplier className="Observation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="false" shapeId="Sheet.107" shapeTemplate="Act">
+					<position x="23.7" y="3.982"/>
+					<size height="0.782" width="2.5"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-14T16:53:46" id="{F7F70887-3795-4524-AC97-E91528E20521}"/>
+					<text>The gestational age of the Person at birth.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="OBS" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-09T15:40:15" id="{7DBB102E-6E27-4C6F-B546-E5F9D0C1612B}"/>
+						<text>
+							<p>A code indicating that the act is an observation</p>
+							<ul>
+								<li>Fixed value: "OBS"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="OBS"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="EVN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="moodCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T17:01:50" id="{9325F4AD-674F-4151-9C11-F9F9D9AC4F51}"/>
+						<text>
+							<p>Indicates this is an event.</p>
+							<ul>
+								<li>Fixed value: "EVN" (Event)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="moodCode" className="Observation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="EVN"/>
+			</attribute>
+			<attribute conformance="R" defaultValue="268477000" fixedValue="268477000" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="code" sortKey="4">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T17:02:09" id="{B4C2EB57-E583-4C2D-99D7-775CC430222F}"/>
+						<text>
+							<p>A code from the <u>SnomedCT</u> vocabulary. The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>SnomedCT</u> vocabulary<ul>
+										<li>Fixed value = 268477000 "fetal gestation at delivery"</li>
+									</ul>
+								</li>
+								<li>The <em>codeSystem</em> attribute will contain the OID "2.16.840.1.113883.2.1.3.2.4.15"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="code" className="Observation" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="SnomedCT"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="value" sortKey="1">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-08T13:36:50" id="{4634EEDF-FE20-4697-A91C-4EB0FD42583F}"/>
+						<text>Details of the gestational age of the baby. This will be a 2 digit (fixed length) number in the range 10-49 representing a number of weeks. 00 and 99 are also supported meaning "unknown".</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="value" className="Observation" staticModelDerivationId="1"/>
+				<type name="INT"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Component4">
+			<derivationSupplier className="ActRelationship" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Right" shapeId="Sheet.111" shapeTemplate="ActRelationship" textWrappingWidth="66.0">
+					<position x="20.656" y="4.17"/>
+					<size height="0.303" width="3.044"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:23" id="{810D061B-C794-4E72-94E1-2C8C63B92C89}"/>
+					<text>Indicates the gestational age of the baby at birth.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="COMP" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-09T16:37:35" id="{FC29DEFF-B625-4B5F-AE57-54C7847043B5}"/>
+						<text>
+							<p>A code indicating that the linked act is a component</p>
+							<ul>
+								<li>Fixed value: "COMP"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="ActRelationship" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="COMP"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="ObstetricCareProvision">
+			<derivationSupplier className="Act" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="false" isWidthAutoSize="true" shapeId="Sheet.117" shapeTemplate="Act">
+					<position x="4.02" y="5.506"/>
+					<size height="1.776" width="2.077"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-14T16:57:51" id="{D93B4833-F627-47C2-B1B4-5F838006D378}"/>
+					<text>The act of provision of obstetric care to the mother of the patient being registered.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PCPR" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:57:08" id="{12D67054-71D3-407B-B321-96A537700605}"/>
+						<text>Signifies that this is an act of patient care provision.
+<ul>
+								<li>Fixed value "PCPR"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Act" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PCPR"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="EVN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="moodCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:57:06" id="{15175C3D-E624-4A5B-8982-37A455D4F096}"/>
+						<text>
+							<p>Indicates this is an event.</p>
+							<ul>
+								<li>Fixed value: "EVN" (Event)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="moodCode" className="Act" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="EVN"/>
+			</attribute>
+			<attribute conformance="R" defaultValue="OBS" fixedValue="OBS" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="code" sortKey="4">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:57:13" id="{211E9461-182F-4810-AE35-A292952EF6EF}"/>
+						<text>
+							<p>A code from the <u>ActMedicalServiceCode</u> vocabulary. The Coded Simple Value datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>ActMedicalServiceCode</u> vocabulary<ul>
+										<li>Fixed Value : "OBS"</li>
+									</ul>
+								</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="code" className="Act" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="ActMedicalServiceCode"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Mother">
+			<derivationSupplier className="Patient" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.121" shapeTemplate="Role">
+					<position x="4.492" y="3.868"/>
+					<size height="0.515" width="1.25"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-12-01T10:06:56" id="{0A7D4D72-3EF8-4501-8631-C6BD7BCFD08D}"/>
+					<text>The role of the Mother.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PAT" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-25T09:24:25" id="{6676AF1C-9090-480A-8A80-5CBD54028E72}"/>
+						<text>
+							<p>A code indicating that the role is that of a Patient</p>
+							<ul>
+								<li>Fixed value: "PAT"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Patient" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PAT"/>
+			</attribute>
+			<attribute isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="id" sortKey="2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2007-01-26T16:36:39" id="{20ACA5D6-E980-4849-AA3A-4886250C3225}"/>
+						<text>
+							<p>The current nationally recognised identifier for the patient. This identifier will be of the form:</p>
+							<ul>
+								<li>NHS number;</li>
+							</ul>
+							<p>The Identifier External datatype flavour is used to carry this information as follows:-</p>
+							<p>A NHS number is carried in the following way:</p>
+							<ul>
+								<li>The <i>root</i> attribute will contain an OID with the value "2.16.840.1.113883.2.1.4.1";</li>
+								<li>The <i>extension</i> attribute will contain the NHS number itself</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="id" className="Patient" staticModelDerivationId="1"/>
+				<type name="II" typeSpecialisation="II.NPfIT.oid.required"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="MotherPerson">
+			<derivationSupplier className="Person" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.131" shapeTemplate="Entity">
+					<position x="1.079" y="3.751"/>
+					<size height="0.782" width="1.763"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-06T14:49:13" id="{36096847-6498-420D-B346-9F17BACBE9B5}"/>
+					<text>The Entity playing the role of Mother.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PSN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T14:49:12" id="{8674340A-4884-4897-89BD-DC40EF5DC7D4}"/>
+						<text>
+							<p>A code indicating that the entity is a Person</p>
+							<ul>
+								<li>Fixed value: "PSN"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Person" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PSN"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="INSTANCE" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="determinerCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T14:49:10" id="{F806404E-2803-4E73-A79D-39E24D4FEA14}"/>
+						<text>
+							<p>Indicates that this is an actual instance of the entity, and not a general description of a class of entity</p>
+							<ul>
+								<li>Fixed value: "INSTANCE"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="determinerCode" className="Person" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="INSTANCE"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="name" sortKey="6">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:32:42" id="{19CB9E70-C98F-4C6F-90CE-0E34B849E956}"/>
+						<text>The name of the mother.
+<p>The PN datatype will be of the flavour <i>Person Name structured</i> and contain exactly one &lt;family/&gt; element, and one or two &lt;given/&gt; elements.</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="name" className="Person" staticModelDerivationId="1"/>
+				<type name="PN"/>
+			</attribute>
+			<attribute isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="birthTime" sortKey="2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2007-01-26T16:36:47" id="{1A6426B5-1B9A-4B02-A043-B2E405982753}"/>
+						<text>
+							<p>The date of birth of the mother, expressed at the precision of the date.</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="birthTime" className="Person" staticModelDerivationId="1"/>
+				<type name="TS"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="RecordTarget">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Up" shapeId="Sheet.135" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="4.579" y="4.383"/>
+					<size height="1.123" width="1.019"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-10-25T09:24:33" id="{5E8292AE-9A15-4F68-BA70-05AB849FD061}"/>
+					<text>The participation of the Mother in the formation of her obstetric record.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="RCT" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-10T10:45:03" id="{0F325CC1-F748-4336-870C-F9BD3C8DAF1D}"/>
+						<text>
+							<p>A code indicating that the target participates as a Record Target</p>
+							<ul>
+								<li>Fixed value: "RCT"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="RCT"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="PartnerChildHealth">
+			<derivationSupplier className="Role" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.141" shapeTemplate="Role">
+					<position x="0.014" y="5.518"/>
+					<size height="0.515" width="1.856"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-07T17:33:13" id="{5B0A83BD-3173-4977-90F9-85CCE59EAEAB}"/>
+					<text>The role of a partner child health authority.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="ASSIGNED" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:34:06" id="{0BD81AB5-B807-4D51-A13D-A14F75C7C25D}"/>
+						<text>
+							<p>Indicates that the role is that of an entity acting in the employ of an Organization</p>
+							<ul>
+								<li>Fixed value: "ASSIGNED" (Assigned entity)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Role" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="ASSIGNED"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="id" sortKey="2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2007-01-23T13:38:56" id="{80D05650-C3FC-4A7E-8F53-A3611AE4B8E1}"/>
+						<text>
+							<p>The identifier of the assigned organisation acting as the partner child health authority.</p>
+							<p>The Identifier External datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>root</em> attribute will contain an OID with the value "<a>1.2.826.0.1285.0.1.10</a>"</li>
+								<li>The <em>extension</em> attribute will contain the NHS SDS Organisation Id</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="id" className="Role" staticModelDerivationId="1"/>
+				<type name="II" typeSpecialisation="II.NPfIT.oid.mandatory"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="ResponsibleChildHealth">
+			<derivationSupplier className="Role" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.151" shapeTemplate="Role">
+					<position x="0.042" y="6.618"/>
+					<size height="0.515" width="1.856"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-07T17:32:52" id="{1C6B97ED-F540-4C44-9B3E-BFED107521E2}"/>
+					<text>The role of the responsible child health authority.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="ASSIGNED" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:34:08" id="{A56C4ACF-F1C8-4EB3-B1C2-6B7882563758}"/>
+						<text>
+							<p>Indicates that the role is that of an entity acting in the employ of an Organization</p>
+							<ul>
+								<li>Fixed value: "ASSIGNED" (Assigned entity)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Role" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="ASSIGNED"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="id" sortKey="2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2007-01-23T12:49:42" id="{69630950-1CCD-407C-BEC6-849156856D9D}"/>
+						<text>
+							<p>The identifier of the assigned organisation acting as the responsible child health authority.</p>
+							<p>The Identifier External datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>root</em> attribute will contain an OID with the value "<a>1.2.826.0.1285.0.1.10</a>"</li>
+								<li>The <em>extension</em> attribute will contain the NHS SDS Organisation Id</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="id" className="Role" staticModelDerivationId="1"/>
+				<type name="II" typeSpecialisation="II.NPfIT.oid.mandatory"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Location">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Right" shapeId="Sheet.161" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="6.097" y="6.87"/>
+					<size height="0.303" width="1.305"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-06T14:21:01" id="{2B1F1361-77AF-488C-9A3C-175AECA12CFC}"/>
+					<text>The location of the birth.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="LOC" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-10T12:37:53" id="{1BA58987-8584-44C2-86AB-201223745836}"/>
+						<text>Indicates that the role is participating as a Location.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="LOC"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="PlaceOfBirth">
+			<derivationSupplier className="Place" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.167" shapeTemplate="Entity">
+					<position x="11.837" y="6.675"/>
+					<size height="0.782" width="1.763"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-12-01T10:51:36" id="{FB2A4DC3-2CD9-4BDC-95F2-07FD83A9CC0D}"/>
+					<text>The place of birth for the registered patient.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PLC" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T14:21:23" id="{91CC9558-2C03-4352-B9AA-28A208D35F07}"/>
+						<text>Indicates a physical place.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Place" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PLC"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="INSTANCE" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="determinerCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T14:21:51" id="{BF89AD7B-75E2-4AF9-9A37-B20887661AD9}"/>
+						<text>
+							<p>Indicates that this is an actual instance of the entity, and not a general description of a class of entity</p>
+							<ul>
+								<li>Fixed value: "INSTANCE"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="determinerCode" className="Place" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="INSTANCE"/>
+			</attribute>
+			<attribute isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="name" sortKey="6">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-01T10:51:32" id="{08ED318D-76CE-454B-9562-071C2963D500}"/>
+						<text>The name of the hospital or maternity unit where the birth took place.
+<p>This attribute is mandatory, except where the <i>DeliveryLocationType</i> of the location is 1,8 or 9.</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="name" className="Place" staticModelDerivationId="1"/>
+				<type name="ST"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="addr" sortKey="2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2007-01-23T12:42:42" id="{B1EEADDE-27E5-4297-B2BF-BC820B6FFFF5}"/>
+						<text>
+							<p>Details of the patients place of birth in as much detail as is available, i.e., may just be the country the patient was born in, but could also be the county and/or the town. The permissible elements are listed below, at least one which must be populated.</p>
+							<p>The <em>AD.NPfIT.CodedCountry</em> datatype flavour will be used to express this attribute.</p>
+							<ul>
+								<li>country<ul>
+										<li>The country element contains a code element<ul>
+												<li>The codeSystem attribute will contain a valid OID for the <a href="../../../Vocabulary/CountryOrUkInternalCode.htm">CountryOrUkInternalCode</a> vocabulary</li>
+												<li>The code attribute will contain the relevant code</li>
+												<li>Permissible values are limited to the set of England, Wales and the Isle of Man</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>county</li>
+								<li>city</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="addr" className="Place" staticModelDerivationId="1"/>
+				<type name="AD" typeSpecialisation="AD.NPfIT.CodedCountry"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="PrimaryCareProvision">
+			<derivationSupplier className="Act" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.171" shapeTemplate="Act">
+					<position x="3.738" y="2.387"/>
+					<size height="0.782" width="2.735"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2007-01-23T12:44:07" id="{F81731EA-4F3B-4B41-9EB9-9DFA472F6B7D}"/>
+					<text>
+						<p>The act of provision of primary care to the mother.</p>
+						<p>
+							<strong>NB:</strong> The API documentation states <em>"An instance of this class identifies a mother's GP or primary care organization. Either Practice Name or ID must be present. One mandatory repeat for GP Practice will be present. When message is sent to non-NCRS compliant systems an additional repeat is mandatory for GP (senior partner of GP Practice)." </em>
+						</p>
+						<p>The model structure inside this class maps the information for GP organization detail to the PrimaryCareProvision act, the PrimaryCareProviderWithDetail role, and the PrimaryCarePractice entity. The detail of the senior partner maps to the SeniorPartnerRole and the SeniorPartner entity. A redundant repeating of the PrimaryCareProvision act is not required (and not permitted).</p>
+					</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PCPR" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-10T10:33:35" id="{9FAC0E01-3B39-4255-A6D2-607F6845B1A3}"/>
+						<text>Signifies that this is an act of patient care provision.
+<ul>
+								<li>Fixed value "PCPR"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Act" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PCPR"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="EVN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="moodCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:40:09" id="{4990EE3D-C2BB-460D-BCEB-65B6A4AD4795}"/>
+						<text>
+							<p>Indicates this is an event.</p>
+							<ul>
+								<li>Fixed value: "EVN" (Event)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="moodCode" className="Act" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="EVN"/>
+			</attribute>
+			<attribute conformance="R" defaultValue="1" fixedValue="1" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="code" sortKey="4">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T17:12:37" id="{DF83890F-5AF3-48EE-B3A1-EAE7BB3A7246}"/>
+						<text>Coded value from the 
+<i>PatientCareProvisionType</i> vocabulary.
+<p>The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>PatientCareProvisionType</u> vocabulary<ul>
+										<li>Fixed value : "1" (Primary Care)</li>
+									</ul>
+								</li>
+								<li>The <em>codeSystem</em> attribute will contain the OID "<a>2.16.840.1.113883.2.1.3.2.4.17.37</a>"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="code" className="Act" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PatientCareProvisionType"/>
+			</attribute>
+			<attribute isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="effectiveTime" sortKey="10">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:42:31" id="{B8ED819F-6436-4959-9893-CC1E8C4EDC1E}"/>
+						<text>
+							<p>The effective dates for the care provision relationship represented as a range, supplied in the <em>low</em> and <em>high</em> sub-elements. Both the <em>low</em> and <em>high</em> sub-elements are optional, allowing open-ended ranges to be specified.</p>
+							<p>The effective from date (the <em>low</em> sub-element) must not be in the future.</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="effectiveTime" className="Act" staticModelDerivationId="1"/>
+				<type name="IVL">
+					<supplierBindingArgumentDatatype name="TS"/>
+				</type>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Subject">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Down" shapeId="Sheet.175" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="4.739" y="3.169"/>
+					<size height="0.7" width="0.994"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-06T15:46:44" id="{7F25B729-ED2F-4B40-AD79-B0B895959032}"/>
+					<text>Targets the Mother as the subject of PrimaryCareProvision</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="SBJ" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:46:44" id="{07A6AD97-1136-45AD-840F-A776E67D45D0}"/>
+						<text>Indicates that the target Role is the subject of the Act
+<ul>
+								<li>Fixed Value : "SBJ"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="SBJ"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Performer2">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Up" shapeId="Sheet.181" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="4.238" y="0.589"/>
+					<size height="1.799" width="1.013"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-06T15:48:44" id="{62D4CFA6-AEAB-422A-9234-FAE3F1F52602}"/>
+					<text>Indicates the performer of the PrimaryCareProvision.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PRF" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:48:43" id="{9D380D21-C3F9-40AE-A9F2-7116F91A16C7}"/>
+						<text>Indicates that the participation is that of a Performer
+<ul>
+								<li>Fixed value : "PRF"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PRF"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="PrimaryCareProviderWithDetail">
+			<derivationSupplier className="Role" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.187" shapeTemplate="Role">
+					<position x="3.58" y="0.074"/>
+					<size height="0.515" width="2.152"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-17T10:06:53" id="{958F9096-709D-46DF-A15B-EFC9F4042664}"/>
+					<text>A role providing extended information about the Mothers Primary Care provider.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PROV" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-10T11:39:45" id="{ABD2BD53-5782-4742-80A0-A157F35E0E5A}"/>
+						<text>
+							<p>Indicates that the role is that of a provider.</p>
+							<ul>
+								<li>Fixed value: "PROV" (Healthcare provider)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Role" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PROV"/>
+			</attribute>
+			<attribute isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="id" sortKey="2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-10T11:39:47" id="{B5451AA1-C952-49D9-AC7D-B5B7B9ED9100}"/>
+						<text>
+							<p>To provide the nationally recognised identifier for the provider.</p>
+							<p>This identifier will be a national GP Practice code.</p>
+							<p>The Identifier External datatype flavour is used to carry this information as follows:-</p>
+							<p>A national GP Practice code is carried in the following way:</p>
+							<ul>
+								<li>The <i>root</i> attribute will contain an OID with the value "2.16.840.1.113883.2.1.4.3";</li>
+								<li>The <i>extension</i> attribute will contain the national GP Practice code itself.</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="id" className="Role" staticModelDerivationId="1"/>
+				<type name="II" typeSpecialisation="II.NPfIT.oid.required"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="PrimaryCarePractice">
+			<derivationSupplier className="Organization" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.197" shapeTemplate="Entity">
+					<position x="7.9" y="0.175"/>
+					<size height="0.782" width="1.763"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-07T17:15:06" id="{B2B0BCA0-0F61-47E2-A0DD-ECF0F37DDA5D}"/>
+					<text>The Primary Care Practice which provides the care referred to in PrimaryCareProvision</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="ORG" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T16:08:20" id="{9BF0F2D9-AA12-443E-BDFD-400C74475C13}"/>
+						<text>Indicates that the entity is an Organization.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Organization" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="ORG"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="INSTANCE" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="determinerCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-25T09:36:08" id="{5572A681-A502-4922-A109-A4501FCCD987}"/>
+						<text>
+							<p>Indicates that this is an actual instance of the entity, and not a general description of a class of entity</p>
+							<ul>
+								<li>Fixed value: "INSTANCE"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="determinerCode" className="Organization" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="INSTANCE"/>
+			</attribute>
+			<attribute isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="name" sortKey="6">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T16:07:40" id="{EDE5153E-2FA3-4ED4-800B-6E521E17A348}"/>
+						<text>The name of the Primary Care Practice.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="name" className="Organization" staticModelDerivationId="1"/>
+				<type name="ST"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="addr" sortKey="1">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2007-01-23T12:46:00" id="{F036B54D-6993-4FBB-BBEA-67D1056F2CE3}"/>
+						<text>
+							<p>Address of the Primary Care Practice.</p>
+							<p>The <em>Address streetAddressLine Typed</em> datatype flavour shall be used to carry the data.</p>
+							<p>There shall be a minimum of one and a maximum of five streetAddressLine elements.</p>
+							<p>Either Address Line 1 or Address Line 2 must be present</p>
+							<p>The postalCode element is also optionally permitted.</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="addr" className="Organization" staticModelDerivationId="1"/>
+				<type name="AD"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="SeniorPartnerRole">
+			<derivationSupplier className="Role" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.201" shapeTemplate="Role">
+					<position x="8.176" y="1.711"/>
+					<size height="0.648" width="1.48"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-17T10:06:45" id="{F6C06D08-9AED-4FD4-95A7-72AD18D3E6A7}"/>
+					<text>The role of Senior Partner at the Primary Care Practice.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="ASSIGNED" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-17T10:06:05" id="{4953A2A9-2BED-421E-99FF-83793B05B044}"/>
+						<text>
+							<p>Indicates that the role is that of an entity acting in the employ of an Organization</p>
+							<ul>
+								<li>Fixed value: "ASSIGNED" (Assigned entity)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Role" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="ASSIGNED"/>
+			</attribute>
+			<attribute isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="effectiveTime" sortKey="8">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-17T10:06:00" id="{77670ECB-2AE5-4EAA-BD0F-9107A70042E6}"/>
+						<text>
+							<p>Indicates the timespan that the senior partner role occupies.</p>
+							<p>The "low" and "high" elements are permitted. The value of the "low" element must not be in the future.</p>
+							<p>
+								<strong>NB</strong> This attribute is only required when the value differs from that of the <em>PrimaryCareProvision@effectiveTime</em> attribute.</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="effectiveTime" className="Role" staticModelDerivationId="1"/>
+				<type name="IVL">
+					<supplierBindingArgumentDatatype name="TS"/>
+				</type>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="SeniorPartner">
+			<derivationSupplier className="Person" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.211" shapeTemplate="Entity">
+					<position x="7.856" y="3.386"/>
+					<size height="0.782" width="1.763"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-06T16:03:31" id="{82E211CF-6AD8-4908-B2AB-6F4A888C3B02}"/>
+					<text>The Senior Partner of the Primary Care practice.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PSN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:33:43" id="{B545765E-5116-4735-ABBB-3D809407DA0B}"/>
+						<text>
+							<p>A code indicating that the entity is a Person</p>
+							<ul>
+								<li>Fixed value: "PSN"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Person" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PSN"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="INSTANCE" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="determinerCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:33:44" id="{474C1F1B-91FA-43D3-A7C8-FD15CE685621}"/>
+						<text>
+							<p>Indicates that this is an actual instance of the entity, and not a general description of a class of entity</p>
+							<ul>
+								<li>Fixed value: "INSTANCE"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="determinerCode" className="Person" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="INSTANCE"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="id" sortKey="3">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2007-01-26T11:33:48" id="{11D3313E-889D-4CC9-9839-94ABC13ABF09}"/>
+						<text>
+							<p>The national GP identifier of the Senior Partner.</p>
+							<p>The <i>Identifier External</i> flavour of II shall be used</p>
+							<ul>
+								<li>The <i>root</i> shall contain the OID "2.16.840.1.113883.2.1.4.2"</li>
+								<li>The <i>extension</i> shall contain the identifier</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="id" className="Person" staticModelDerivationId="1"/>
+				<type name="II" typeSpecialisation="II.NPfIT.oid.mandatory"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="name" sortKey="6">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-01T11:00:50" id="{D563192A-D0E4-4D02-A148-AD9E3F1FC5D7}"/>
+						<text>The name of the Senior Partner.
+<p>The PN datatype will be of the flavour <i>Person Name unstructured</i>.</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="name" className="Person" staticModelDerivationId="1"/>
+				<type name="PN"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Notifier">
+			<derivationSupplier className="Role" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.215" shapeTemplate="Role">
+					<position x="4.202" y="7.867"/>
+					<size height="0.5" width="1.48"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-07T17:16:08" id="{28FD0A83-1B68-4BA0-96B4-3E8A990A6EA2}"/>
+					<text>The role of the person notifying the authorities of the birth.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="ASSIGNED" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T16:04:11" id="{E2011184-DAF6-4940-A883-A674C183EB5E}"/>
+						<text>
+							<p>Indicates that the role is that of an entity acting in the employ of an Organization</p>
+							<ul>
+								<li>Fixed value: "ASSIGNED" (Assigned entity)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Role" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="ASSIGNED"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="NotifierPerson">
+			<derivationSupplier className="Person" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.225" shapeTemplate="Entity">
+					<position x="3.942" y="8.692"/>
+					<size height="0.75" width="1.763"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-06T16:03:45" id="{91A2E436-E72A-47E6-B3C9-F3ADDC69D668}"/>
+					<text>The person playing the role of Notifier.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PSN" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2007-01-23T12:43:20" id="{4B3A6837-060D-4E9E-945A-0DDD109C33BB}"/>
+						<text>
+							<p>A code indicating that the entity is a Person</p>
+							<ul>
+								<li>Fixed value: "PSN"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Person" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PSN"/>
+			</attribute>
+			<attribute conformance="R" fixedValue="INSTANCE" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="determinerCode" sortKey="2" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-25T09:36:12" id="{4D36DE59-CCA1-4E7F-AC7A-7150415A861C}"/>
+						<text>
+							<p>Indicates that this is an actual instance of the entity, and not a general description of a class of entity</p>
+							<ul>
+								<li>Fixed value: "INSTANCE"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="determinerCode" className="Person" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="INSTANCE"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="name" sortKey="6">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T16:03:43" id="{4C433CE7-773E-4018-BD0C-758AFDE6041D}"/>
+						<text>The name of the notifier.
+<p>The PN datatype will be of the flavour <i>Person Name structured</i> and contain exactly one &lt;family/&gt; element, and one or two &lt;given/&gt; elements.</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="name" className="Person" staticModelDerivationId="1"/>
+				<type name="PN"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="true" name="DeliveryLocationChoice">
+			<derivationSupplier className="Role" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" nodeOrientation="Portrait" shapeId="Sheet.229" shapeTemplate="Choice">
+					<position x="7.401" y="6.605"/>
+					<size height="1.663" width="2.681"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-12-11T15:54:35" id="{0C297528-0071-4470-8B3B-D3293AAB8AA3}"/>
+					<text>
+						<p>Choice of expression of DeliveryLocation</p>
+						<p>Choice is per the DeliveryPlaceType of the birth location.</p>
+						<ul>
+							<li>Where the coded value is in the set [0,2,3,4,5,6,7], IdentifiedDeliveryLocation shall be used.</li>
+							<li>Where the coded value is not in this set, DeliveryLocation shall be used.</li>
+						</ul>
+					</text>
+				</otherAnnotation>
+			</annotations>
+			<specializationChild childClassName="IdentifiedDeliveryLocation">
+				<graphicRepresentation>
+					<graphElement containerDiagramName="Main" shapeId="Sheet.249">
+						<position x="7.526" y="6.855"/>
+						<size height="0.648" width="2.406"/>
+					</graphElement>
+				</graphicRepresentation>
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-11T15:54:36" id="{FDB40ACA-19FB-40B7-B52A-DFD8B1C722B0}"/>
+						<text>This role shall be used when the @code attribute is in the set [0,2,3,4,5,6,7]</text>
+					</otherAnnotation>
+				</annotations>
+			</specializationChild>
+			<specializationChild childClassName="DeliveryLocation">
+				<graphicRepresentation>
+					<graphElement containerDiagramName="Main" shapeId="Sheet.259">
+						<position x="7.526" y="7.628"/>
+						<size height="0.515" width="2.406"/>
+					</graphElement>
+				</graphicRepresentation>
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-07T17:18:50" id="{E2F907BE-454C-4D32-8BAF-81892287C121}"/>
+						<text>This role shall be used when the @code attribute is in the set [1,8,9]</text>
+					</otherAnnotation>
+				</annotations>
+			</specializationChild>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Author2">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Down" shapeId="Sheet.231" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="4.39" y="7.282"/>
+					<size height="0.585" width="1.013"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-01T14:32:13" id="{E2696820-BAA9-4406-B0DC-07D47AFBCBAA}"/>
+					<text>The participation of the author of the notification.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="AUT" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-10-30T15:49:41" id="{ED55D28E-098A-4343-AD36-8E2659564970}"/>
+						<text>
+							<p>A code indicating that the target participates as an Author</p>
+							<ul>
+								<li>Fixed value: "AUT"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="AUT"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="PrimaryInformationRecipient">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Left" shapeId="Sheet.237" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="1.87" y="5.715"/>
+					<size height="0.303" width="2.15"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-01T14:30:28" id="{F0093A8E-B476-4F59-AAC5-38E6BECA0C5F}"/>
+					<text>Participation of the Partner Child Health organization.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="PRCP" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-01T14:29:55" id="{2E6C5685-C9EC-4420-AC47-F1CD81C037FA}"/>
+						<text>Recipient to who an act statement is primaryily directed.
+<ul>
+								<li>Fixed Value : "PRCP" (Primary information recipient)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="PRCP"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="Tracker">
+			<derivationSupplier className="Participation" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" nodeOrientation="Left" shapeId="Sheet.243" shapeTemplate="Participation" textWrappingWidth="66.0">
+					<position x="1.897" y="6.796"/>
+					<size height="0.303" width="2.123"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-01T14:30:45" id="{5D6190E6-9E14-45A1-B0EA-E6A33C33B3CF}"/>
+					<text>Participation of the Responsible Child Health organization.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="TRC" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="typeCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-01T14:29:02" id="{31BC2DDB-4A6E-4EB9-944A-C1D3FA41FC9A}"/>
+						<text>A secondary information recipient who receives copies.
+<ul>
+								<li>Fixed Value : "TRC" (Tracker)</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="typeCode" className="Participation" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="TRC"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="IdentifiedDeliveryLocation">
+			<derivationSupplier className="Role" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.249" shapeTemplate="Role">
+					<position x="7.526" y="6.855"/>
+					<size height="0.648" width="2.406"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-12-11T15:55:21" id="{434D5AB3-20C1-4A8D-94C5-E4E1A2AEA4EA}"/>
+					<text>The role of a delivery location which carries a national identifier.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="LOCE" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:10:30" id="{347E7C88-D295-4822-BAF3-2ECBE4D145BA}"/>
+						<text>Indicates that the role that of a Located Entity
+<ul>
+								<li>Fixed Value : "LOCE"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Role" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="LOCE"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="id" sortKey="2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-06T15:33:38" id="{A93CD75E-26BA-48DB-B755-1C8644FF705A}"/>
+						<text>
+							<p>The identifier of the organisation acting as service delivery location.</p>
+							<p>The Identifier External datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>root</em> attribute will contain an OID with the value "1.2.826.0.1285.0.1.10"</li>
+								<li>The <em>extension</em> attribute will contain the SDS Organisation ID</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="id" className="Role" staticModelDerivationId="1"/>
+				<type name="II" typeSpecialisation="II.NPfIT.oid.mandatory"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="code" sortKey="3">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:57:53" id="{24FEA2A0-2013-4F67-8DE6-253099C61EC5}"/>
+						<text>A value from the 
+<u>DeliveryLocationType</u> vocabulary indicating the type of location.
+<ul>
+								<li>Restricted to values [0,2,3,4,5,6,7]</li>
+							</ul>
+							<p>The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>DeliveryLocationType</u> vocabulary</li>
+								<li>The <em>codeSystem</em> attribute will contain the OID in the referenced vocabulary.</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="code" className="Role" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="DeliveryLocationType"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class isAbstract="false" name="DeliveryLocation">
+			<derivationSupplier className="Role" staticModelDerivationId="1"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement containerDiagramName="Main" isHeightAutoSize="true" isWidthAutoSize="true" shapeId="Sheet.259" shapeTemplate="Role">
+					<position x="7.526" y="7.628"/>
+					<size height="0.515" width="2.406"/>
+				</graphElement>
+			</graphicRepresentation>
+			<annotations>
+				<otherAnnotation type="html">
+					<historyItem dateTime="2006-11-14T16:50:38" id="{D31D6D62-716F-4F02-AF7B-91BD15D8B7C2}"/>
+					<text>The role of a delivery location which is not specifically identified.</text>
+				</otherAnnotation>
+			</annotations>
+			<attribute conformance="R" fixedValue="LOCE" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="classCode" sortKey="1" isStructural="true">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:29:50" id="{456DB847-4895-4F21-BC3C-9C3A95F21C12}"/>
+						<text>Indicates that the role that of a Located Entity
+<ul>
+								<li>Fixed Value : "LOCE"</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="classCode" className="Role" staticModelDerivationId="1"/>
+				<type name="CS"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="LOCE"/>
+			</attribute>
+			<attribute conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="code" sortKey="3">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:50:24" id="{FCD29881-A3B4-4183-9B14-7EDA92F75756}"/>
+						<text>A value from the 
+<u>DeliveryLocationType</u> vocabulary indicating the type of location.
+<ul>
+								<li>Restricted to values [1,8,9]</li>
+							</ul>
+							<p>The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+							<ul>
+								<li>The <em>code</em> attribute will contain the appropriate value from the <u>DeliveryLocationType</u> vocabulary</li>
+								<li>The <em>codeSystem</em> attribute will contain the OID in the referenced vocabulary.</li>
+							</ul>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier attributeName="code" className="Role" staticModelDerivationId="1"/>
+				<type name="CV"/>
+				<supplierDomainSpecification codingStrength="CNE" domainName="DeliveryLocationType"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.11" containerDiagramName="Main" shapeId="Sheet.1">
+				<position x="17.205" y="6.373"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.11">
+						<position x="13.601" y="5.134"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="patientPerson" participantClassName="Person">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T16:58:17" id="{9E074CBA-3E17-4326-91CD-D5AE41C5A225}"/>
+						<text>The person playing the role of patient.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="player" className="Patient" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Patient">
+				<derivationSupplier associationEndName="playedRole" className="Person" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.1" containerDiagramName="Main" shapeId="Sheet.81">
+				<position x="17.204" y="6.321"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.1">
+						<position x="17.204" y="6.321"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="subjectOf4" participantClassName="Subject5">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-07T15:55:31" id="{C58593F2-9697-4DFB-8FC1-792A4AE453D4}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="Patient" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Patient">
+				<derivationSupplier associationEndName="role" className="Subject5" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.1" containerDiagramName="Main" shapeId="Sheet.101">
+				<position x="17.204" y="5.431"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.1">
+						<position x="17.204" y="5.431"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="subjectOf1" participantClassName="Subject4">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{55D5CEA5-D2A5-A2C4-17F4-9B2CC68EBEBC}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="Patient" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Patient">
+				<derivationSupplier associationEndName="role" className="Subject4" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.1" containerDiagramName="Main" shapeId="Sheet.69">
+				<position x="17.204" y="4.671"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.1">
+						<position x="17.204" y="4.671"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="subjectOf2" participantClassName="Subject3">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{6CD4480E-CAA6-6891-AFA5-F1E082595DDB}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="Patient" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Patient">
+				<derivationSupplier associationEndName="role" className="Subject3" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.1" containerDiagramName="Main" shapeId="Sheet.75">
+				<position x="15.861" y="6.113"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.1">
+						<position x="15.861" y="6.113"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="babyOf" participantClassName="Baby">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{2409B546-D8C4-9652-0818-37D91C49740E}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="Patient" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Patient">
+				<derivationSupplier associationEndName="role" className="Baby" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.1" containerDiagramName="Main" shapeId="Sheet.63">
+				<position x="16.396" y="6.373"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.1">
+						<position x="16.396" y="6.373"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="patient" participantClassName="Patient">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{F5BE70B4-A692-06C0-4B2B-80CE927A3134}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of a patient.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="role" className="Subject2" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Subject2">
+				<derivationSupplier associationEndName="participation" className="Patient" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.15" containerDiagramName="Main" shapeId="Sheet.81">
+				<position x="19.03" y="6.321"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.15">
+						<position x="19.03" y="6.321"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="1" name="deathNotification" participantClassName="DeathNotification">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{06C884B8-785E-F8D0-CE26-BA95CAB96C64}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of the patient's death notification status.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="act" className="Subject5" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Subject5">
+				<derivationSupplier associationEndName="participation" className="DeathNotification" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.19" containerDiagramName="Main" shapeId="Sheet.33">
+				<position x="17.574" y="7.52"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.19">
+						<position x="17.574" y="7.52"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="author" participantClassName="Author">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{7B948591-E618-8D0B-CDEE-99874D509566}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="PdsRegistrationEvent" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="PdsRegistrationEvent">
+				<derivationSupplier associationEndName="act" className="Author" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.19" containerDiagramName="Main" shapeId="Sheet.63">
+				<position x="16.396" y="7.315"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.19">
+						<position x="16.396" y="7.315"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="subject" participantClassName="Subject2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{FE72251E-E273-4C87-B5CD-7A06B3D3CC2C}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="PdsRegistrationEvent" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="PdsRegistrationEvent">
+				<derivationSupplier associationEndName="act" className="Subject2" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.23" containerDiagramName="Main" shapeId="Sheet.33">
+				<position x="19.312" y="7.52"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.23">
+						<position x="19.312" y="7.52"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="registeringAuthority" participantClassName="RegisteringAuthority">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{3BAF503C-AD5E-706F-36C9-699254EA68A6}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of the authority for the registration.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="role" className="Author" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Author">
+				<derivationSupplier associationEndName="participation" className="RegisteringAuthority" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.39" containerDiagramName="Main" shapeId="Sheet.51">
+				<position x="18.961" y="2.861"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.39">
+						<position x="18.961" y="2.861"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="component3" participantClassName="Component">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{84537BB1-2619-2878-8FC1-031220B0D86F}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundRelationship" className="ClinicalInformation" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="ClinicalInformation">
+				<derivationSupplier associationEndName="source" className="Component" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.39" containerDiagramName="Main" shapeId="Sheet.69">
+				<position x="18.961" y="4.671"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.39">
+						<position x="18.961" y="4.671"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="1" name="clinicalInformation" participantClassName="ClinicalInformation">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{06138B15-E175-3A8D-49B5-BF937586184C}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of clinical information about the patient.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="act" className="Subject3" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Subject3">
+				<derivationSupplier associationEndName="participation" className="ClinicalInformation" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.39" containerDiagramName="Main" shapeId="Sheet.111">
+				<position x="20.656" y="4.321"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.39">
+						<position x="20.656" y="4.321"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="component4" participantClassName="Component4">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{F0A86A7C-ABE3-7BF1-37AF-181525F175BC}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundRelationship" className="ClinicalInformation" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="ClinicalInformation">
+				<derivationSupplier associationEndName="source" className="Component4" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.39" containerDiagramName="Main" shapeId="Sheet.87">
+				<position x="20.656" y="3.376"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.39">
+						<position x="20.656" y="3.376"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="component2" participantClassName="Component3">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{653C8E3C-BD34-7DAE-C41C-FDE30B696EA3}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundRelationship" className="ClinicalInformation" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="ClinicalInformation">
+				<derivationSupplier associationEndName="source" className="Component3" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.39" containerDiagramName="Main" shapeId="Sheet.57">
+				<position x="20.656" y="2.469"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.39">
+						<position x="20.656" y="2.469"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="component1" participantClassName="Component2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{2794AE95-0ABB-36E8-31A4-6CF534700491}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundRelationship" className="ClinicalInformation" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="ClinicalInformation">
+				<derivationSupplier associationEndName="source" className="Component2" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.43" containerDiagramName="Main" shapeId="Sheet.51">
+				<position x="16.688" y="2.861"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.43">
+						<position x="16.688" y="2.861"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="numberOfFoetusInConfinement" participantClassName="NumberOfFoetusInConfinement">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{1B4A87F1-C73A-D3B2-225F-34D10BD72256}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of the number of foetuses in confinement.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="target" className="Component" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Component">
+				<derivationSupplier associationEndName="inboundRelationship" className="NumberOfFoetusInConfinement" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.47" containerDiagramName="Main" shapeId="Sheet.57">
+				<position x="22.942" y="2.469"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.47">
+						<position x="22.942" y="2.469"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="1" name="suspectedCongenitalAbnormality" participantClassName="SuspectedCongenitalAbnormality">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{06049D7E-882F-98DF-A72B-3D3ED7321364}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of whether there is a suspected congenital abnormality.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="target" className="Component2" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Component2">
+				<derivationSupplier associationEndName="inboundRelationship" className="SuspectedCongenitalAbnormality" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.117" containerDiagramName="Main" shapeId="Sheet.75">
+				<position x="6.097" y="6.113"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.117">
+						<position x="6.097" y="6.113"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="obstetricCareProvision" participantClassName="ObstetricCareProvision">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{495FBC30-CD28-4E89-2C46-FB344A8F43F8}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of an obstetric care provision event.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="act" className="Baby" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Baby">
+				<derivationSupplier associationEndName="participation" className="ObstetricCareProvision" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.93" containerDiagramName="Main" shapeId="Sheet.87">
+				<position x="23.635" y="3.376"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.93">
+						<position x="23.635" y="3.376"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="stillbirthIndicator" participantClassName="StillbirthIndicator">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{4C4B344B-05C6-4AA3-6FA5-F17D20B880B8}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of whether the baby was stillborn.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="target" className="Component3" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Component3">
+				<derivationSupplier associationEndName="inboundRelationship" className="StillbirthIndicator" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.97" containerDiagramName="Main" shapeId="Sheet.101">
+				<position x="18.904" y="5.431"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.97">
+						<position x="18.904" y="5.431"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="birthWeight" participantClassName="BirthWeight">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{1B793ADC-1778-FAA0-6126-C90825C0D4E9}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of the patient's birth weight.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="act" className="Subject4" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Subject4">
+				<derivationSupplier associationEndName="participation" className="BirthWeight" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.107" containerDiagramName="Main" shapeId="Sheet.111">
+				<position x="23.7" y="4.321"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.107">
+						<position x="23.7" y="4.321"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="gestationAge" participantClassName="GestationAge">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{094CD2F5-D26D-8A4A-9F85-74FD48D94D44}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of the baby's gestational age.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="target" className="Component4" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Component4">
+				<derivationSupplier associationEndName="inboundRelationship" className="GestationAge" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.117" containerDiagramName="Main" shapeId="Sheet.161">
+				<position x="6.097" y="7.021"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.117">
+						<position x="6.097" y="7.021"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="location" participantClassName="Location">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{EE5BD7D6-66AE-775A-9167-AB99A1C98E24}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="ObstetricCareProvision" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="ObstetricCareProvision">
+				<derivationSupplier associationEndName="act" className="Location" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.117" containerDiagramName="Main" shapeId="Sheet.231">
+				<position x="4.896" y="7.282"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.117">
+						<position x="4.896" y="7.282"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="author" participantClassName="Author2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-08T13:41:58" id="{D392EA75-0391-6CC1-929C-C3554ACDA974}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="ObstetricCareProvision" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="ObstetricCareProvision">
+				<derivationSupplier associationEndName="act" className="Author2" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.117" containerDiagramName="Main" shapeId="Sheet.243">
+				<position x="4.02" y="6.947"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.117">
+						<position x="4.02" y="6.947"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="tracker" participantClassName="Tracker">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{09107E92-5797-A0CB-FDAF-07BF26193EE5}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="ObstetricCareProvision" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="ObstetricCareProvision">
+				<derivationSupplier associationEndName="act" className="Tracker" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.117" containerDiagramName="Main" shapeId="Sheet.237">
+				<position x="4.02" y="5.866"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.117">
+						<position x="4.02" y="5.866"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="primaryInformationRecipient" participantClassName="PrimaryInformationRecipient">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{736D8E44-1E2D-5EEF-067C-7F074E300519}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="ObstetricCareProvision" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="ObstetricCareProvision">
+				<derivationSupplier associationEndName="act" className="PrimaryInformationRecipient" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.117" containerDiagramName="Main" shapeId="Sheet.135">
+				<position x="5.088" y="5.506"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.117">
+						<position x="5.088" y="5.506"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="recordTarget" participantClassName="RecordTarget">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{47A59033-BC58-4FCE-81DD-A17B68231317}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="ObstetricCareProvision" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="ObstetricCareProvision">
+				<derivationSupplier associationEndName="act" className="RecordTarget" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.131" containerDiagramName="Main" shapeId="Sheet.121">
+				<position x="5.742" y="4.383"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.131">
+						<position x="2.842" y="4.337"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="patientMotherPerson" participantClassName="MotherPerson">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-07T17:13:24" id="{98119EA3-E1C1-413F-8419-B78F0A825421}"/>
+						<text>The entity playing the role of mother.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="player" className="Mother" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Mother">
+				<derivationSupplier associationEndName="playedRole" className="MotherPerson" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.121" containerDiagramName="Main" shapeId="Sheet.175">
+				<position x="5.236" y="3.868"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.121">
+						<position x="5.236" y="3.868"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="subjectOf" participantClassName="Subject">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{83999F42-3A64-AC8F-9B05-933B29EBE628}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="Mother" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Mother">
+				<derivationSupplier associationEndName="role" className="Subject" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.121" containerDiagramName="Main" shapeId="Sheet.135">
+				<position x="5.088" y="4.383"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.121">
+						<position x="5.088" y="4.383"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="mother" participantClassName="Mother">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{38D044A6-AFC5-0694-B1B0-6EDE0898496B}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of the mother.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="role" className="RecordTarget" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="RecordTarget">
+				<derivationSupplier associationEndName="participation" className="Mother" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.141" containerDiagramName="Main" shapeId="Sheet.237">
+				<position x="1.87" y="5.866"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.141">
+						<position x="1.87" y="5.866"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="partnerChildHealth" participantClassName="PartnerChildHealth">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{C66451BE-78A1-23C5-52EC-6498DE1A830F}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of the partner child health organisation.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="role" className="PrimaryInformationRecipient" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="PrimaryInformationRecipient">
+				<derivationSupplier associationEndName="participation" className="PartnerChildHealth" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.151" containerDiagramName="Main" shapeId="Sheet.243">
+				<position x="1.897" y="6.947"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.151">
+						<position x="1.897" y="6.947"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="1" name="responsibleChildHealth" participantClassName="ResponsibleChildHealth">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{262FE75B-7941-1CD2-FA9C-50ED3A320708}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of the responsible child health organisation.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="role" className="Tracker" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Tracker">
+				<derivationSupplier associationEndName="participation" className="ResponsibleChildHealth" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.229" containerDiagramName="Main" shapeId="Sheet.161">
+				<position x="7.402" y="7.021"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.229">
+						<position x="7.402" y="7.021"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="participant" participantClassName="DeliveryLocationChoice">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{BC2524B0-34A8-DB0C-F10E-CF725E33CB06}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of the delivery location.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="role" className="Location" staticModelDerivationId="1"/>
+				<participantClassSpecialization className="IdentifiedDeliveryLocation" traversalName="participantIdentifiedDeliveryLocation"/>
+				<participantClassSpecialization className="DeliveryLocation" traversalName="participantDeliveryLocation"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Location">
+				<derivationSupplier associationEndName="participation" className="DeliveryLocationChoice" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.167" containerDiagramName="Main" shapeId="Sheet.259">
+				<position x="9.932" y="8.142"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.167">
+						<position x="11.837" y="7.456"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="locatedPlaceOfBirth" participantClassName="PlaceOfBirth">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-09T12:23:42" id="{90A2F810-04E9-4D6F-8B10-E03CEBE13806}"/>
+						<text>Link to the entity representing the place of birth.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="player" className="DeliveryLocation" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="DeliveryLocation">
+				<derivationSupplier associationEndName="playedRole" className="PlaceOfBirth" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.167" containerDiagramName="Main" shapeId="Sheet.249">
+				<position x="9.932" y="7.503"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.167">
+						<position x="11.837" y="6.676"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="locatedPlaceOfBirth" participantClassName="PlaceOfBirth">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-12-11T15:54:55" id="{70A1D3FB-F3C5-41EC-83CF-396A21713BB3}"/>
+						<text>The place of birth</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="player" className="IdentifiedDeliveryLocation" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="IdentifiedDeliveryLocation">
+				<derivationSupplier associationEndName="playedRole" className="PlaceOfBirth" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.171" containerDiagramName="Main" shapeId="Sheet.181">
+				<position x="4.744" y="2.388"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.171">
+						<position x="4.744" y="2.388"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="performer" participantClassName="Performer2">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{1DCFA5C2-0355-75EB-5B11-184168966586}"/>
+						<text/>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="outboundParticipation" className="PrimaryCareProvision" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="PrimaryCareProvision">
+				<derivationSupplier associationEndName="act" className="Performer2" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.171" containerDiagramName="Main" shapeId="Sheet.175">
+				<position x="5.236" y="3.169"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.171">
+						<position x="5.236" y="3.169"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="primaryCareProvision" participantClassName="PrimaryCareProvision">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{614699CC-DD03-BEE7-F2BA-5BE13FFF58DD}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of patient care provision given by a health care provider.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="act" className="Subject" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Subject">
+				<derivationSupplier associationEndName="participation" className="PrimaryCareProvision" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.187" containerDiagramName="Main" shapeId="Sheet.181">
+				<position x="4.744" y="0.589"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.187">
+						<position x="4.744" y="0.589"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="primaryCareProviderWithDetail" participantClassName="PrimaryCareProviderWithDetail">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-15T12:55:55" id="{D927BFBE-9D3F-8FCF-A672-FA56CC478DBE}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of the mother's primary care provider.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="role" className="Performer2" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Performer2">
+				<derivationSupplier associationEndName="participation" className="PrimaryCareProviderWithDetail" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.197" containerDiagramName="Main" shapeId="Sheet.187">
+				<position x="5.732" y="0.589"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.197">
+						<position x="7.9" y="0.565"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="healthCarePrimaryCarePractice" participantClassName="PrimaryCarePractice">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-07T17:14:13" id="{06E411E9-56DC-426B-8146-3159A89B256C}"/>
+						<text>The practice entity playing the role of primary care provider.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="player" className="PrimaryCareProviderWithDetail" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="PrimaryCareProviderWithDetail">
+				<derivationSupplier associationEndName="playedRole" className="PrimaryCarePractice" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.197" containerDiagramName="Main" shapeId="Sheet.201">
+				<position x="9.656" y="1.711"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.197">
+						<position x="9.663" y="0.955"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="0" name="scopedSeniorPartnerRole" participantClassName="SeniorPartnerRole">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-07T17:15:04" id="{653986C5-02DE-4B4D-B1B9-02A18D775099}"/>
+						<text>The senior partner scoping the primary care entity.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="scopedRole" className="PrimaryCarePractice" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="PrimaryCarePractice">
+				<derivationSupplier associationEndName="scoper" className="SeniorPartnerRole" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.211" containerDiagramName="Main" shapeId="Sheet.201">
+				<position x="9.656" y="2.359"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.211">
+						<position x="9.178" y="3.387"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="assignedSeniorPartner" participantClassName="SeniorPartner">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-07T17:15:28" id="{A75F5925-5096-4713-AD00-0FDBE62EF1FE}"/>
+						<text>The entity assigned to play the role of senior partner.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="player" className="SeniorPartnerRole" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="SeniorPartnerRole">
+				<derivationSupplier associationEndName="playedRole" className="SeniorPartner" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.225" containerDiagramName="Main" shapeId="Sheet.215">
+				<position x="5.682" y="8.367"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.225">
+						<position x="4.823" y="8.692"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="true" maximumMultiplicity="1" minimumMultiplicity="1" name="assignedNotifierPerson" participantClassName="NotifierPerson">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-07T17:16:03" id="{33A49CF5-EDBB-4072-AA9D-2C3525CB4B86}"/>
+						<text>The entity assigned to play the role of notifier.</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="player" className="Notifier" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Notifier">
+				<derivationSupplier associationEndName="playedRole" className="NotifierPerson" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement connectToShapeId="Sheet.215" containerDiagramName="Main" shapeId="Sheet.231">
+				<position x="4.896" y="7.867"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.215">
+						<position x="4.896" y="7.867"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection conformance="R" isMandatory="false" maximumMultiplicity="1" minimumMultiplicity="1" name="notifier" participantClassName="Notifier">
+				<annotations>
+					<otherAnnotation type="html">
+						<historyItem dateTime="2006-11-14T21:29:38" id="{DF7264AE-017B-FF60-8011-80D88242A059}"/>
+						<text>
+							<p>
+								<font face="times new roman,times" size="3">A link to details of the notifying person for the birth.</font>
+							</p>
+						</text>
+					</otherAnnotation>
+				</annotations>
+				<derivationSupplier associationEndName="role" className="Author2" staticModelDerivationId="1"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="Author2">
+				<derivationSupplier associationEndName="participation" className="Notifier" staticModelDerivationId="1"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+</staticModel>

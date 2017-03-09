@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+PSIS Summary query response schema.
+
+This is the response to a "PSIS Summary" query. It contains
+the clinical statements for a given patient that correspond to a 
+summary ID.
+
+The format of this response is almost identical to the "queryResponseStatement"
+(get event item by event item ID), but it will return multiple statements
+rather than an individual statement.
+
+The metadata elements of this response are in the "urn:npfit:psisqr"
+namespace, with the "psis" prefix. The original HL7 of the event is in the
+"urn:hl7-org:v3" namespace, with no prefix.
+
+	
+11 August 2004
+-->
+<xs:schema targetNamespace="urn:npfit:psisqr" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:hl7="urn:hl7-org:v3" xmlns="urn:npfit:psisqr">
+	<!-- 
+	This schema requires the HL7 datatypes schema. 
+	It is important for the import element to specify the namespace, otherwise
+	it is not possible to refer to the datatypes defined in that schema.
+	-->
+	<xs:import namespace="urn:hl7-org:v3" schemaLocation="../dt/datatypes.xsd"/>
+	<xs:element name="queryResponseSummary">
+		<xs:annotation>
+			<xs:documentation>
+			queryResponseSummary is the root element of the response
+			for a "get summary" request.
+
+			It will contain zero-to-many event items.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="recordTarget" type="recordTarget"/>
+				<xs:element name="eventItem" type="eventItem" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="recordTarget">
+		<xs:annotation>
+			<xs:documentation>
+			The recordTarget structure within the PSIS namespace mirrors the
+			recordTarget/patient/id structure within HL7.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="patient" type="patient"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="patient">
+		<xs:annotation>
+			<xs:documentation>
+			This patient element and the id within it represent the NHS number
+			of the patient. The id is of type II-IE (Identifier External),
+			so it has a root attribute (one of three OIDs that each represent
+			a type of NHS number) and an extension attribute (the NHS number itself)
+		</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="hl7:II"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="eventItem">
+		<xs:sequence>
+			<xs:element name="eventItemID" type="hl7:II">
+				<xs:annotation>
+					<xs:documentation>
+			eventItemID is the unique ID of the event item 
+
+			It's of type II-IG (Identifier Global) so it has a root attribute that is 
+			the ID, and no other attributes.
+		</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="persistenceDate" type="psisDate">
+				<xs:annotation>
+					<xs:documentation>
+			The date at which the event was entered into PSIS, in yyyyMMddhhmmss format. This
+			does not necessarily correspond to the date on which the event occurred.
+
+			This is an HL7 timestamp field, which can have a number of different formats, but 
+			PSIS will only use the form that has a value attribute containing a date in the
+			format yyyyMMddhhmmss.
+		</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="eventItemStatus" type="psisDataStatus">
+				<xs:annotation>
+					<xs:documentation>
+			The current status of the event item, inherited from the status of the event.
+			See the further comments below.
+		</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="eventItemType" type="hl7:CS">
+				<xs:annotation>
+					<xs:documentation>
+		The type of event item - such as "OBS" for Observation, or "SUP" for Supply. This doesn't
+		necessarily correspond to the element name of the event item (like "Observation").
+		
+		The code is extracted from the classCode of the clinical statement.
+
+		It's of type CS (Coded Simple), so it has a code attribute, that contains the type,
+		and no other attributes.
+		</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="creType" type="hl7:CV">
+				<xs:annotation>
+					<xs:documentation>
+		The CRE type of the clinical statement.
+
+		(see /Vocabulary/CREType.htm in the MiM for the list of valid CRE types)
+
+		This is of type CV (Coded Value - Coded with Code System) so it will have a 
+		codeSystem attribute that will always contain 
+			"2.16.840.1.113883.2.1.3.2.4.17.56"
+		and a code attribute that holds the CRE type.
+		</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="eventID" type="hl7:II">
+				<xs:annotation>
+					<xs:documentation>
+			eventID is the unique ID of the event. 
+
+			It's of type II-IG (Identifier Global) so it has a root attribute that is 
+			the ID, and no other attributes.
+		</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hl7Data" type="hl7"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="hlData" type="hl7"/>
+	<xs:complexType name="hl7">
+		<xs:annotation>
+			<xs:documentation>
+	  An HL7 data element contains XML statements that conform to the HL7 schema. 
+        </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="urn:hl7-org:v3" processContents="lax"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="psisDataStatus">
+		<xs:annotation>
+			<xs:documentation>
+	This is a CV-CP field (Coded Value-Coded Plain), that will have attributes of
+	codeSystem, code, and displayName.
+
+	The codeSystem OID will always be the same, and refers to the PSISDataStatus NPfIT
+	vocabulary.
+
+	The possible values of the status (contained with the "code" attribute) are:
+		1 - Event is normal 
+		2 - Event has been nullified
+		3 - Event has been replaced
+
+	These correspond to the displayName values of "Normal", "Nullified" and "Replaced".
+	</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="hl7:CV">
+				<xs:attribute name="code" use="required">
+					<xs:simpleType>
+						<xs:restriction base="hl7:cs">
+							<xs:enumeration value="1"/>
+							<xs:enumeration value="2"/>
+							<xs:enumeration value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="codeSystem" type="hl7:uid" use="required"/>
+				<xs:attribute name="displayName" use="optional">
+					<xs:simpleType>
+						<xs:restriction base="hl7:st">
+							<xs:enumeration value="Normal"/>
+							<xs:enumeration value="Nullified"/>
+							<xs:enumeration value="Replaced"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="psisDate">
+		<xs:annotation>
+			<xs:documentation>
+	The psisDate type constrains the HL7 TS (timestamp) to use only its
+	simplest form - a value attribute containing a date/time in the format
+	yyyyMMddhhmmss.
+	</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="hl7:TS">
+				<xs:attribute name="value" use="required">
+					<xs:simpleType>
+						<xs:restriction base="hl7:ts">
+							<xs:pattern value="[0-9]{14,14}"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,460 @@
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Tim Ireland (NHS Information Authority) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v3" targetNamespace="urn:hl7-org:v3" elementFormDefault="qualified">
+	<xs:include schemaLocation="datatypes.xsd"/>
+	<xs:simpleType name="II.NPfIT.root.oid">
+		<xs:restriction base="uid">
+			<xs:pattern value="([0-9][0-9]*)(\.[0-9][0-9]*)*">
+				<xs:annotation>
+					<xs:documentation>
+						Pattern facet to carry only oid in root of an II data type
+					</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="II.NPfIT.root.uuid">
+		<xs:restriction base="uid">
+			<xs:pattern value="[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}">
+				<xs:annotation>
+					<xs:documentation>
+						Pattern facet to allow upper case hex in the uuid in root of II data type
+					</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="II.NPfIT.oid.list">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.4.1"/>
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.3"/>
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.4"/>
+			<xs:enumeration value="1.2.826.0.1285.0.2.0.65"/>
+			<xs:enumeration value="1.2.826.0.1285.0.2.0.67"/>
+			<xs:enumeration value="1.2.826.0.1285.0.1.10"/>
+			<xs:enumeration value="1.2.826.0.1285.0.2.0.109"/>
+			<xs:enumeration value="1.2.826.0.1285.0.1.10"/>
+			<xs:enumeration value="1.2.826.0.1285.0.2.0.107"/>
+			<xs:enumeration value="1.2.826.0.1285.0.2.1.104"/>
+			<xs:enumeration value="2.16.840.1.113883.2.1.4.3"/>
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II">
+				<xs:attribute name="root" type="II.NPfIT.root.oid" use="optional"/>
+				<xs:attribute name="extension" type="st" use="optional"/>
+				<xs:attribute name="nullFlavor" type="cs_NullFlavor" use="optional"/>
+				<xs:attribute name="updateMode" type="cs_UpdateMode" use="prohibited"/>
+				<xs:attribute name="assigningAuthorityName" type="st" use="prohibited"/>
+				<xs:attribute name="displayable" type="bl" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.oid.mandatory.type1">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.root.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="st" use="required"/>
+				<xs:attribute name="nullFlavor" type="cs_NullFlavor" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.root.oid" use="required"/>
+				<xs:attribute name="extension" type="st" use="required"/>
+				<xs:attribute name="nullFlavor" type="cs_NullFlavor" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.uuid.required">
+		<xs:complexContent>
+			<xs:restriction base="II">
+				<xs:attribute name="root" type="II.NPfIT.root.uuid" use="optional"/>
+				<xs:attribute name="extension" type="st" use="prohibited"/>
+				<xs:attribute name="nullFlavor" type="cs_NullFlavor" use="optional"/>
+				<xs:attribute name="updateMode" type="cs_UpdateMode" use="prohibited"/>
+				<xs:attribute name="assigningAuthorityName" type="st" use="prohibited"/>
+				<xs:attribute name="displayable" type="bl" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.uuid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.uuid.required">
+				<xs:attribute name="root" type="II.NPfIT.root.uuid" use="required"/>
+				<xs:attribute name="extension" type="st" use="prohibited"/>
+				<xs:attribute name="nullFlavor" type="cs_NullFlavor" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.Patient.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.4.1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="II.NPfIT.Patient.extension">
+		<xs:restriction base="st">
+			<xs:pattern value="[0-9]{10}">
+				<xs:annotation>
+					<xs:documentation>
+						Pattern facet to allow only ten digits for NHS Number
+					</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.Patient.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.Patient.oid"/>
+				<xs:attribute name="extension" type="II.NPfIT.Patient.extension"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.Patient.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.Patient.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="II.NPfIT.Patient.extension" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.Patient.Temporary1.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="II.NPfIT.Patient.Temporary2.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="II.NPfIT.Patient.Temporary.extension">
+		<xs:restriction base="st">
+			<xs:pattern value="[A-Za-z][A-Za-z0-9\-]*">
+				<xs:annotation>
+					<xs:documentation>
+						Pattern facet to other temporary NHS numbers
+					</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.Patient.Temporary1.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.Patient.Temporary1.oid"/>
+				<xs:attribute name="extension" type="II.NPfIT.Patient.Temporary.extension"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.Patient.Temporary1.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.Patient.Temporary1.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="II.NPfIT.Patient.Temporary.extension" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.Patient.Temporary2.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.Patient.Temporary2.oid"/>
+				<xs:attribute name="extension" type="II.NPfIT.Patient.Temporary.extension"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.Patient.Temporary2.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.Patient.Temporary2.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="II.NPfIT.Patient.Temporary.extension" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.PersonSDS.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="1.2.826.0.1285.0.2.0.65"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="II.NPfIT.PersonSDS.extension">
+		<xs:restriction base="st">
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.PersonSDS.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.PersonSDS.oid"/>
+				<xs:attribute name="extension" type="II.NPfIT.PersonSDS.extension"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.PersonSDS.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.PersonSDS.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="II.NPfIT.PersonSDS.extension" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.AgentPersonSDS.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="1.2.826.0.1285.0.2.0.67"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="II.NPfIT.AgentPersonSDS.extension">
+		<xs:restriction base="st">
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.AgentPersonSDS.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.AgentPersonSDS.oid"/>
+				<xs:attribute name="extension" type="st"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.AgentPersonSDS.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.AgentPersonSDS.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="II.NPfIT.AgentPersonSDS.extension" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.OrganizationSDS.Type1.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="1.2.826.0.1285.0.1.10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="II.NPfIT.OrganizationSDS.Type1.extension">
+		<xs:restriction base="st">
+			<xs:pattern value="[A-Za-z][A-Za-z0-9\-]*"/>
+			<!-- <xs:pattern value="[A-Z][0-9]{5}"/>-->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.OrganizationSDS.Type1.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.OrganizationSDS.Type1.oid"/>
+				<xs:attribute name="extension" type="st"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.OrganizationSDS.Type1.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.OrganizationSDS.Type1.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="st" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.OrganizationSDS.Type2.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="1.2.826.0.1285.0.2.0.109"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="II.NPfIT.OrganizationSDS.Type2.extension">
+		<xs:restriction base="st">
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.OrganizationSDS.Type2.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.OrganizationSDS.Type2.oid"/>
+				<xs:attribute name="extension" type="II.NPfIT.OrganizationSDS.Type2.extension"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.OrganizationSDS.Type2.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.OrganizationSDS.Type2.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="II.NPfIT.OrganizationSDS.Type2.extension" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.Organization.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="1.2.826.0.1285.0.1.10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.Organization.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.Organization.oid"/>
+				<xs:attribute name="extension" type="st"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.Organization.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.Organization.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="st" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.DeviceSDS.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="1.2.826.0.1285.0.2.0.107"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="II.NPfIT.DeviceSDS.extension">
+		<xs:restriction base="st">
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.DeviceSDS.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.DeviceSDS.oid"/>
+				<xs:attribute name="extension" type="II.NPfIT.DeviceSDS.extension"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.DeviceSDS.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.DeviceSDS.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="II.NPfIT.DeviceSDS.extension" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.SystemSDS.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.DeviceSDS.oid.required"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.SystemSDS.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.DeviceSDS.oid.mandatory"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.Device.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.DeviceSDS.oid.required"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.Device.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.DeviceSDS.oid.mandatory"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.HealthCareProvider.Type1.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="1.2.826.0.1285.0.1.10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.HealthCareProvider.Type1.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.HealthCareProvider.Type1.oid"/>
+				<xs:attribute name="extension" type="st"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.HealthCareProvider.Type1.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.HealthCareProvider.Type1.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="st" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.HealthCareProvider.Type2.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="1.2.826.0.1285.0.2.0.65"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.HealthCareProvider.Type2.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.HealthCareProvider.Type2.oid"/>
+				<xs:attribute name="extension" type="st"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.HealthCareProvider.Type2.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.HealthCareProvider.Type2.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="st" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.SDSRole.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="1.2.826.0.1285.0.2.1.104"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.SDSRole.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.SDSRole.oid"/>
+				<xs:attribute name="extension" type="st"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.SDSRole.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.SDSRole.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="st" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.GpPractice.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.4.3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.GpPractice.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.GpPractice.oid"/>
+				<xs:attribute name="extension" type="st"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.GpPractice.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.GpPractice.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="st" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="II.NPfIT.Message.oid">
+		<xs:restriction base="II.NPfIT.root.oid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="II.NPfIT.Message.extension">
+		<xs:restriction base="st">
+			<xs:pattern value="[A-Z]{4}_IN[0-9]{6}UK[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="II.NPfIT.Message.oid.required">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.required">
+				<xs:attribute name="root" type="II.NPfIT.Message.oid"/>
+				<xs:attribute name="extension" type="II.NPfIT.Message.extension"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="II.NPfIT.Message.oid.mandatory">
+		<xs:complexContent>
+			<xs:restriction base="II.NPfIT.oid.mandatory.type1">
+				<xs:attribute name="root" type="II.NPfIT.Message.oid" use="prohibited"/>
+				<xs:attribute name="extension" type="II.NPfIT.Message.extension" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

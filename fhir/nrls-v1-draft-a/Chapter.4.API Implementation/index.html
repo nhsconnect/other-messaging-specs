@@ -1,0 +1,341 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+			<title>NRLS Record Locator Service - FHIR Implementation Guide</title>
+
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="author" content="HSCIC" />        
+			<meta name="publisher version" content=	"FHIR-Furnace : 2.7.6075.24962" />
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		
+			<link href="../dist/css/fhir.css" rel="stylesheet" />
+	 
+			<!-- Bootstrap core CSS -->
+			<link href="../dist/css/bootstrap.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-fhir.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-glyphicons.css" rel="stylesheet" />
+
+			<!-- Project extras -->
+			
+			<link href="../dist/css/pygments-manni.css" rel="stylesheet" />
+
+			<script src="../dist/js/jquery.js"> </script>
+			<script src="../dist/js/bootstrap.min.js"> </script>
+
+			<script src="../dist/js/fhir.js"> </script>
+			
+				<script>
+				  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+				  ga('create', 'UA-67795986-1', 'auto');
+				  ga('send', 'pageview');
+
+				</script>
+			
+			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+				<script src="../dist/js/html5shiv.js"></script>
+				<script src="../dist/js/respond.min.js"></script>
+			<![endif]-->
+
+			<!-- Favicons -->
+			<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../dist/images/apple-touch-icon-144-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../dist/images/apple-touch-icon-114-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../dist/images/apple-touch-icon-72-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" href="../dist/images/apple-touch-icon-57-precomposed.png" />
+			<link rel="shortcut icon" href="../dist/images/favicon.ico" />
+	</head>
+	
+	<body>  
+		
+		<!-- segment-header -->
+		<div id="segment-header" class="segment">
+            
+            <div class="container">
+                <!-- container -->
+                <a id="logo" href="http://www.digital.nhs.uk" target="_blank">
+                    <img src="../dist/images/logo.png" alt="logo NHS Digital" />
+                </a>
+                <div id="specificationName">
+         
+                        <b>NRLS Record Locator Service</b>
+                  
+                </div>
+
+            </div>
+            <div class="container">
+                <!-- container -->
+            </div>
+        </div>
+        
+		<!-- /segment-header -->
+		
+		
+		<div id="segment-navbar" class="segment">
+            <!-- segment-navbar -->
+            <div id="stripe"> </div>
+            <div class="container">
+                <!-- container -->
+                <!-- HEADER CONTENT -->
+
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <button data-target=".navbar-inverse-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                        </button>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <ul class="nav navbar-nav">   
+
+											<li>
+												<a href='../Chapter.1.About/index.html'>About</a>
+											</li>
+											<li>
+												<a href='../Chapter.2.Change History/index.html'>Change History</a>
+											</li>
+											<li>
+												<a href='../Chapter.4.API Implementation/index.html'>API Implementation</a>
+											</li>
+											<li>
+												<a href='../Chapter.5.FHIR RESTful/index.html'>FHIR RESTful</a>
+											</li>
+											<li>
+												<a href='../Chapter.6.Examples/examples.html'>Examples</a>
+											</li>
+											<li>
+												<a href='../Chapter.7.Valuesets/valuesets.html'>Valuesets</a>
+											</li>
+											<li>
+												<a href='../Chapter.8.Glossary/index.html'>Glossary</a>
+											</li>
+
+                            </ul>
+							
+                            <p class="navbar-text pull-right" style="padding-right: 10px;padding-top: 3px;">
+                                <span class="label label-default"  style="font-size: 95%;">Version 1.0 : DRAFT A</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </nav>				
+            </div>
+        </div>
+		
+		<div id="segment-breadcrumb" class="segment">
+            <!-- segment-breadcrumb -->
+            <div class="container">
+                <!-- container -->
+                <ul class="breadcrumb"></ul>
+            </div>
+            <!-- /container -->
+        </div>
+        <div id="segment-content" class="segment">
+            <!-- segment-content -->
+            <div class="container">
+                <!-- container -->
+                <div class="row">
+                    <div class="inner-wrapper">
+						<!-- CONTENT CONTENT -->
+                        <div class="col-12">
+							
+							
+							
+							
+							
+									<div class="panel panel - default">
+											<h2>RESTful API Architecture</h2>
+<p>The NRLS REST API is a constrained version of the HL7 <a href="http://hl7.org/fhir/http.html">FHIR DSTU2</a> RESTful API.</p>
+<hr />
+<p>This section provides an overview of the Spine 2 NRLS FHIR interface. The objective of Sprint 2 is to specify a first draft of RESTful FHIR API design approaches to the following proof of concept NRLS use cases: </p>
+<ul>
+<li>UC-1 Register a locally held Patient Document on the NRLS</li>
+<li>UC-2 Remove a NRLS Record</li>
+<li>UC-3 Search for Patient Documents using the NRLS</li>
+</ul>
+<!--- It should be read in conjunction with the [National Record Locator Requirements v.06] use case documentation and the DRAFT NRLS FHIR conformance statement. --->
+<p>NB: Business rules have NOT yet been agreed for these use cases.</p>
+<p><strong>Spine Integration Pre-requisites</strong></p>
+<p>For all use cases described, it is assumed that NRLS client systems will be capable of performing Patient Demographic Service (PDS) tracing of patients to obtain NHS Number, Date of Birth and current GP organisation. </p>
+<p><strong>NRLS FHIR Conformance statement</strong></p>
+<p>The NRLS FHIR conformance statement defines the expected capabilities of the server that will provide the FHIR RESTful functionality of the NRLS. The DRAFT <a href="NRLS-Conformance-1-0.xml">NRLS-Conformance-1-0</a> profile represents the NRLS FHIR conformance statement. It is a constrained version of the HL7 FHIR DSTU2 <a href="http://hl7.org/fhir/conformance.html">Conformance resource</a> and is published as a 'work in progress' version and as such is subject to change.  </p>
+<p><strong>Example Conformance Interactions:</strong></p>
+<p>A conformance interaction will retrieve the NRLS FHIR server conformance statement. The interaction is performed by an HTTP GET or OPTIONS command as shown:  </p>
+<pre><code>GET [base]/metadata {?_format=[mime-type]}
+OPTIONS [base] {?_format=[mime-type]}
+</code></pre>
+
+<p><strong>Pre-requisite PDS Interaction:</strong></p>
+<p>Get Patient using the PDS Mini Services Spine FHIR interface. This call uses the NHS Number to find the patient on PDS. If a patient is successfully traced, the PDS will return a bundle with Patient (including logical id) and GP Organisation resources.</p>
+<p><strong>Example HTTP GET Patient operation:</strong></p>
+<p>HTTP GET command used to retrieve the Patient and GP Organisation resources on PDS Mini Services using the parameters 'NHS Number' and '_include=Patient:careprovider', encoded in the URL:</p>
+<pre><code>GET [base]/Patient?identifier=http://fhir.nhs.net/Id/nhs-number|7021341152&amp;_include=Patient:careprovider
+</code></pre>
+
+<hr />
+<h3>NRLS Sprint 2 RESTful FHIR Interactions</h3>
+<p><div><img src="NRLSSwimLanes.png" alt="structure" /><div></p>
+<hr />
+<h3>UC-1 Register a locally held Patient Document on the NRLS</h3>
+<p>For the pilot, this use case is concerned with the functionality to allow a suitable user or system to register a locally held EPaCCs record on the NRLS. The full detail of the patient EPaCCs Record will not be stored within the NRLS EPaCCs record. </p>
+<p>The &quot;<strong>Register NRLS Record</strong>&quot; API uses the 'create' RESTful FHIR interaction (aka operation) to register that a patient's EPaCCs record is available to NRLS consumer systems. The registry will only record meta data about the record that is being registered on the NRLS e.g. document type, document author, document created/ registered dates and the URL of the referenced document etc.</p>
+<p>The 'create' interaction is performed by an HTTP POST of the NRLS-DocumentReference-1-0 resource to the NRLS Registry endpoint. </p>
+<p><strong>Example 'Register NRLS Record' HTTP POST operation:</strong></p>
+<p>HTTP POST command is shown:</p>
+<pre><code>POST [base]/DocumentReference   
+</code></pre>
+
+<p>Assuming successful URL submission, there are several possible responses to the registry request:</p>
+<ul>
+<li><strong>HTTP 201-Record Created:</strong> The entry has been successfully created and the NRLS returns an HTTP Location header containing the 'server' assigned logical Id of the created resource.</li>
+<li><strong>HTTP 400-Bad Request:</strong> Resource could not be parsed or failed basic FHIR validation rules</li>
+<li><strong>HTTP 404-Not Found:</strong> Resource type not supported, or not a FHIR end-point</li>
+<li><strong>HTTP 422-Unprocessable Entity:</strong> The proposed resource violated applicable FHIR profiles or server business rules.</li>
+</ul>
+<hr />
+<h3>UC-2 Remove a NRLS Record</h3>
+<p>For the pilot, this use case relates to functionality to allow a clinical user or EPaCCs System to remove a NRLS EPaCCs record/ make a reference to one or more EPaCCs records on the NRLS unavailable. This may be for a number of reasons including:</p>
+<ol>
+<li>One of more patient EPaCCs records have been deleted / removed from the local EPaCCs system.</li>
+<li>The patient may have dissented to share any records referenced on NRLS.</li>
+</ol>
+<p>The &quot;<strong>Remove NRLS Record</strong>&quot; API uses either a RESTful 'delete' or a 'conditional delete' interaction (with no request body) to remove a NRLS-DocumentReference-1-0 from the registry, making that record unavailable via record discovery. </p>
+<p><strong>Example HTTP DELETE operation:</strong></p>
+<p>HTTP DELETE command that removes an existing resource by logical id:</p>
+<pre><code>DELETE [base]/DocumentReference/69372
+</code></pre>
+
+<p>NB: The custodian/ contributer system MUST use the NRLS assigned logical id to delete the NRLS-DocumentReference-1-0 from the registry. </p>
+<p><strong>Example HTTP (Conditional) DELETE operations:</strong></p>
+<p>The conditional delete interaction allows a client to delete an existing resource based on parameters encoded within the URL, rather than by a specific logical id.</p>
+<p>HTTP DELETE command with a parameter of 'NHS Number' encoded in the URL:</p>
+<pre><code>DELETE [base]/DocumentReference?subject=[base]/Patient/7021341152
+</code></pre>
+
+<p>HTTP DELETE command with chain parameters 'NHS Number' and 'Document Type' encoded in the URL:</p>
+<pre><code>DELETE [base]/DocumentReference?subject=[base]/Patient/7021341152&amp;type.coding=http://snomed.info/sct|861421000000109
+</code></pre>
+
+<p>HTTP DELETE command with chain parameters 'NHS Number' and 'index date' encoded in the URL:</p>
+<pre><code>DELETE [base]/DocumentReference?subject=[base]/Patient/7021341152&amp;indexed=&lt;=2016-01-01
+</code></pre>
+
+<p>Assuming successful URL submission, there are two possible outcomes to the delete request:</p>
+<ul>
+<li><strong>HTTP 204-No Content:</strong> The record either does not exist or has been successfully deleted.</li>
+<li><strong>HTTP 404-No match to delete:</strong> The parameters used to identify the record were not met.</li>
+</ul>
+<p>NB: Server conformance (such as Multiple matches and version history) has NOT yet been agreed for deletion of NRLS records. </p>
+<hr />
+<h3>UC-3 Search for Patient Documents using the NRLS</h3>
+<p>For the pilot, this use case relates to the process of:</p>
+<ol>
+<li>Users and systems using the NRLS to search for Patient Documents associated with a specific patient.</li>
+<li>The NRLS presenting a flag / search results indicating that a patient has one or more locally held Patient Documents.</li>
+</ol>
+<p>These search results will include relevant metadata about the Patient Document information that signposts / directs the user to the full detail of the Patient Document. Metadata will include:</p>
+<ul>
+<li>Type of Patient Document</li>
+<li>Author of Patient Document</li>
+<li>Date and time Patient Document created / updated</li>
+<li>Date and time Patient Document registered on the NRLS</li>
+<li>A URL that will allow an Accessing Clinical User to access the full detail of the Patient Document referenced by the NRLS</li>
+</ul>
+<p>The &quot;<strong>Discover NRLS Record</strong>&quot; API comprises RESTful search interactions using the HTTP GET command:</p>
+<p><strong>Example Discover NRLS Record HTTP GET operations:</strong></p>
+<p>HTTP GET command with the referenced Patient 'logical id' as the subject, and the _elements parameter consisting of the base element 'content':</p>
+<pre><code>GET [base]/DocumentReference?subject=[base]/Patient/69372&amp;_elements=content
+</code></pre>
+
+<p>HTTP GET command with the simple search parameter 'NHS Number', encoded in the URL:</p>
+<pre><code>GET [base]/DocumentReference?subject=[base]/Patient/7021341152
+</code></pre>
+
+<p>HTTP GET command with the chained query parameters 'NHS Number' and 'Document type', encoded in the URL:</p>
+<pre><code>GET [base]/DocumentReference?subject=[base]/Patient/7021341152&amp;type.coding=http://snomed.info/sct|861421000000109
+</code></pre>
+
+<p>HTTP GET command with the chained query parameters 'Practitioner logical id' and 'Organization logical id', encoded in the URL:</p>
+<pre><code>GET [base]/DocumentReference?author=[base]/Practitioner/69373&amp;custodian=[base]/Organization/69374
+</code></pre>
+
+<p>HTTP GET command with the simple search parameter 'created date', encoded in the URL:</p>
+<pre><code>GET [base]/DocumentReference?created=2016-03-08
+</code></pre>
+
+<p>HTTP GET command with the simple date/time range search parameters (using parameter value prefixes), encoded in the URL:</p>
+<pre><code>GET [base]/DocumentReference?created=ge2016-03-08&amp;created=le2016-03-25
+</code></pre>
+
+<p>Assuming successful URL submission, there is one possible outcome to a search request:</p>
+<ul>
+<li><strong>HTTP 200-Request was successfully executed</strong></li>
+</ul>
+<p>The NRLS server determines which of the set of resources it serves meet the specific criteria, and returns the results of the search e.g. NRLS-DocumentReference-1-0 in the HTTP response as a 'searchset' bundle. </p>
+<p><strong>Note:</strong> Although an HTTP response 200 OK indicates the request was successful, the bundle could return a 0 (zero) total value indicating no record was found. This is an XML example of the <a href="../Examples/Profile.RecordLocatorDiscover/Bundle-Example2.xml">Bundle</a> with a 0 (zero) total value indicating no record was found.</p>
+<hr />
+<p><strong>Paging</strong></p>
+<p>If the result list of a NRLS FHIR RESTful search interaction is long, the FHIR server, may use paging to break up this result list. It is proposed that the FHIR server will conform to this method <a href="https://tools.ietf.org/html/rfc5005">RFC 5005 (Feed Paging and Archiving)</a> for sending continuation links to the client when returning a search Bundle. </p>
+<hr />
+<p><strong>Managing Return Errors</strong></p>
+<p>The Spine-OperationOutcome-1-0 resource profile can be used to convey specific detailed processable error information e.g. it may be returned with any HTTP 4xx or 5xx responses.</p>
+
+									</div>
+							
+						
+					   </div>                      
+                    </div>
+                    <!-- /inner-wrapper -->                   
+                </div>
+                <!-- /row -->              
+            </div>
+            <!-- /container -->           
+        </div>
+    <!-- /segment-content -->
+
+        <div id="segment-footer" class="segment">
+            <!-- segment-footer -->
+            <div class="container">
+                <!-- container -->
+                <div class="inner-wrapper">
+					<div id="explanatoryline">
+                         <img src="../dist/images/explanatoryline.png" alt="Information and technology for better health and care" />
+						 <p>
+                        Copyright &copy; 2016 Health and Social Care Information Centre<br/>
+						NHS Digital is the trading name of the Health and Social Care Information Centre.
+                    </p>
+                    </div>
+				<div id="hl7-nav">
+                    <a id="hl7-logo" href="http://www.hl7.org" target="_blank">
+                        <img src="../dist/images/hl7-logo.png" alt="visit the hl7 website" />
+                    </a>
+					<p>
+					FHIR&reg; is the registered trademark of HL7<br/>
+					and is used with the permission of HL7.
+					</p>
+				</div>
+					<p>
+						<!--<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> -->
+                    </p>
+                </div>
+                <!-- /inner-wrapper -->
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-post-footer" class="segment">
+            <!-- segment-post-footer -->
+            <div class="container">
+                <!-- container -->
+            </div>
+            <!-- /container -->
+        </div>
+	</body>
+</html>

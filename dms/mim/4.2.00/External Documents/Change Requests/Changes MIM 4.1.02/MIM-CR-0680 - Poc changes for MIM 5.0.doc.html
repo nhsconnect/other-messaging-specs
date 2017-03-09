@@ -1,0 +1,798 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>MIM-CR-0680 - Poc changes for MIM 5.0</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+p.MsoBodyTextIndent2, li.MsoBodyTextIndent2, div.MsoBodyTextIndent2
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:58.5pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	font-size:10.0pt;
+	font-family:"Comic Sans MS";}
+pre
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+ /* Page Definitions */
+ @page Section1
+	{size:612.0pt 792.0pt;
+	margin:49.5pt 58.5pt 54.0pt 54.0pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-GB>
+
+<div class=Section1>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=643
+ style='width:482.0pt;margin-left:-1.7pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=285 colspan=4 valign=top style='width:214.1pt;border:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Domain Name:  POC</span></b></p>
+  <p class=MsoNormal><b><span lang=EN-US>&nbsp;</span></b></p>
+  </td>
+  <td width=357 colspan=3 valign=top style='width:267.9pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>&nbsp;</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=273 colspan=3 valign=top style='width:205.1pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Change Request No: </span></b></p>
+  <p class=MsoNormal><span style='font-family:Arial'>MIM-CR-0680</span></p>
+  <p class=MsoNormal><b><span lang=EN-US>&nbsp;</span></b></p>
+  </td>
+  <td width=192 colspan=3 valign=top style='width:144.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Type: </span></b></p>
+  </td>
+  <td width=177 valign=top style='width:132.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Priority: </span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=201 colspan=2 valign=top style='width:151.1pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Date Raised: 27/02/06</span></b></p>
+  <p class=MsoNormal><b><span lang=EN-US>&nbsp;</span></b></p>
+  </td>
+  <td width=221 colspan=3 valign=top style='width:165.45pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Raised by:KZS</span></b></p>
+  <p class=MsoNormal><b><span lang=EN-US>&nbsp;</span></b></p>
+  </td>
+  <td width=221 colspan=2 valign=top style='width:165.45pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Status:</span></b></p>
+  <p class=MsoNormal><b><span lang=EN-US>                Completed</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:none;
+  border-bottom:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;background:silver;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Short Title of Issue</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>CR for Bugzilla issues  15062,15197,15413,15414,15415,15503,16005,15271,15505,15918,15920,15922,16006,16007,16011,16024,16026,16035,16105</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;background:silver;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Description</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+   style='border-collapse:collapse;border:none'>
+   <tr style='height:31.15pt'>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    background:#99CC00;padding:0cm 5.4pt 0cm 5.4pt;height:31.15pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Bugzilla Issue number</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border:solid windowtext 1.0pt;
+    border-left:none;background:#99CC00;padding:0cm 5.4pt 0cm 5.4pt;height:
+    31.15pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Description of issue </span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border:solid windowtext 1.0pt;
+    border-left:none;background:#99CC00;padding:0cm 5.4pt 0cm 5.4pt;height:
+    31.15pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Resolution</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15062</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman"'>Medication CMETs</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>Description: Nullified is another possible value of statusCode (i.e. to</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>strike-out a</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>Medication statement sent in error)</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>All medication CMETs need the
+    constraint changing for status code to allow nullified.</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>A further change to / add new constraint
+    to the generic ActRef on bottom of model to indicate that an ActRef with a
+    type code of “RPLC” must be present when status code is nullified. </span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15197</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman"'>Description: CRs missing   CR348 CR444 CR164</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Add missing CRs</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15413</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i>Medication CMETs</i></b></p>
+    <p class=MsoNormal><b><i>Description: The use for this attribute has not
+    been defined and is marked for</i></b></p>
+    <p class=MsoNormal><b><i>future</i></b></p>
+    <p class=MsoNormal><b><i>use in medication management. The incorrect use of
+    this attribute is</i></b></p>
+    <p class=MsoNormal><b><i>clinically unsafe.</i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Document in tabular views (as per
+    ETP domain) that this attribute is reserved for future use.</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15414</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i>Medication CMETs</i></b></p>
+    <p class=MsoNormal><b><i>Description: The use for this attribute has not
+    been defined and is marked for</i></b></p>
+    <p class=MsoNormal><b><i>future</i></b></p>
+    <p class=MsoNormal><b><i>use in medication management. The incorrect use of
+    this attribute is</i></b></p>
+    <p class=MsoNormal><b><i>clinically unsafe.</i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Document in tabular views (as per
+    ETP domain) that this attribute is reserved for future use.</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15415</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman"'>A_RequestMedicationSupply (UKCT_RM140400UK02)</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>Description: The supply act has textual dosage instructions. This is not valid</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>in HL7.</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>Any dosage instructions need to be on a substance administration class.</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Change model and tabular view etc
+    to refer to supply instructions as per ETP</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15503</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Discharge message </span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>There needs to be a mechanism to
+    refer to the original admission from within the discharge message </span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Add a note to indicate the
+    existing ActRef can be used for this purpose. </span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>16005</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman";
+    color:black'>Description: Table view comments state if the observation occurs more than</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>once,</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>multiple dates / date ranges shall be recorded</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>Supplier resolution: Shouldnt the observation class be recorded multiple times,</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>not just the</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>date?  If just the date, the cardinality for this field is 1..1</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Amend tabular view to indicate
+    that if multiple date ranges are required then multiple observations are
+    required.</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15271</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman";
+    color:black'>ParticipationMode is incorrectly documented in some provision of care Tabular views. The text needs </span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>to indicate that this attribute is required it not &quot;ELECTRONIC&quot;</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Check and align all tabular views
+    ti have the same text to indicate that this attribute is required if mode
+    is not  electronic </span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15505</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman";
+    color:black'>The discharge and care event messages have contextControl code incorrectly </span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>defined as optional</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Change models to have
+    contextcontrolCodew to be mandatory</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15918</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman";
+    color:black'>Description: There is a constraint that RecommendationReviewDate is mandatory</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>if the</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>validity interval is open, but it is not clear from the MIM how the</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>validity interval is carried. Presumably this is carried in the</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>effectiveTime, but this is never stated.</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman";
+    color:black'>Validity is carried in the primaryInformationRecipient.time as per note on RMIM</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman";color:black'>will change tabular view / note to make this clearer</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15920</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i>Description: Both examples value xsitype=ED
+    mediaType=text/x-h7uk-html, yet the</i></b></p>
+    <p class=MsoNormal><b><i>following htm file Message Constraints for the ED
+    Datatype Presentation</i></b></p>
+    <p class=MsoNormal><b><i>Text.htm indicates then following mediaType value</i></b></p>
+    <p class=MsoNormal><b><i>mediaType=text/x-npfit-xhtml  It looks like the
+    MiM dataType example for </i></b></p>
+    <p class=MsoNormal><b><i>Encapsulated Data Limited HTML (f)    Note - Not
+    for use with Presentation</i></b></p>
+    <p class=MsoNormal><b><i>Text. has erroneously been pasted in these
+    Presentation Text examples</i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Example messages need changing</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15922</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman"'>Description: PresentationText.confidentialityCode removed. This is not</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>indicated in the</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>change history.</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Need to include in a change
+    history somewhere</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>16006</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>A_ClinicalStatementChoiceObservation/referenceRange/referenceReferenceValue/interpretationCode</span></i></b></p>
+    <pre><b><i><span style='font-family:"Times New Roman"'>Description: This data field is defined as a CS (Coded Simple</span></i></b><span
+    style='color:black'> </span><b><i><span style='font-family:"Times New Roman"'>Value which is</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>constrained</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>to the Coded Only data type flavour), yet the vocabulary lists an OID. </span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>Should this data field be defined as a CD, CE or CV data type with Coded</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>Plain or Coded with Code System data type flavour?</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Correct the model to use CV
+    datatype</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>16007</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>A_ClinicalStatementChoice
+    RoleChoice</span></i></b></p>
+    <pre><b><i><span style='font-family:"Times New Roman"'>Description: This role participation is used in the performer, author and</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>informant</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>participations.  The RoleChoice class is listed 3 times in the modular view</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>linking it to 3 instances of the ClinicalStatementChoice.</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Fix tabular view by removing
+    extra instances</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>16011</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>A_AdministrationMedicationCourse</span></i></b></p>
+    <pre><b><i><span style='font-family:"Times New Roman"'>Description: ManufacturedMaterial/code is defined using the Coded Plain</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>datatype</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>flavour.  In the SubstanceAdministration and Supply Clinical Statements, it</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>is defined using the CD datatype with OriginalText and Qualifier(s).  </span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Tabular view is incorrect and
+    needs fixing with correct description</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>16024</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman"'>A_ClinicalStatementChoice/subject/subjectRole/documentSubject/name</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>Description: The table view comments state that one or more names of the person</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>who is</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>the subject of the clinical statement may be included however, the</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>cardinality of the field is 1..1.</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Change datatype to set PN</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>16026</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>A_ClinicalStatementChoice
+    Consent/effectiveTime</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Need to change tabular view to
+    clarify this</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>16035</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>GP summary.code needs to be
+    mandatory in messages</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Change models to correct this</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>16105</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman"'>Description: The R-MIM for both Discharge(text) and Discharge contains</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>Discharge</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>Notification representation of effective Time with description Time</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>Discharge message created  however in the tabular view it is described as</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>the date the discharge notification is created. </span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>The discharge time is carried
+    else where but this needs clarification in the tabular view</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15923</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'><pre><b><i><span style='font-family:"Times New Roman"'>Description: The xhtmlNPfITPresentationText.xsd schema is not incorporated in</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>the PoC</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>domain message schemas. How should the data content of</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>PresentationText.value be validated when it is in xhtml format? Trying to</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>avoid a three step process of validating the whole PoC message first, then</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>extracting the PresentationText.value content and validating that</span></i></b></pre><pre><b><i><span
+    style='font-family:"Times New Roman"'>seperately.</span></i></b></pre>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Need to add new datatype and
+    change schemas as required to get this to work. </span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>15924</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i>Description: </i></b></p>
+    <p class=MsoNormal><b><i>1. No namespace is declared in the
+    xhtmlNPfITPresentationText.xsd</i></b></p>
+    <p class=MsoNormal><b><i>schema for the namespace npfit  </i></b></p>
+    <p class=MsoNormal><b><i>&nbsp;</i></b></p>
+    <p class=MsoNormal><b><i>2.Certain attributes are not declared in the</i></b></p>
+    <p class=MsoNormal><b><i>xhtmlNPfITPresentationText.xsd schema. (e.g. p, li
+    and others can have id and class attributes but these are not declared in
+    the</i></b></p>
+    <p class=MsoNormal><b><i>xhtmlNPfITPresentationText.xsd)</i></b></p>
+    <p class=MsoNormal><b><i> </i></b></p>
+    <p class=MsoNormal><b><i>3. New file added, xhtmlNPfITPresentation</i></b></p>
+    <p class=MsoNormal><b><i>Text, differ from xhtmlNPfIT with new and deleteed
+    elements/tags. Which is</i></b></p>
+    <p class=MsoNormal><b><i>correct and no documentation of changes ?</i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>Add namespace</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>Fix schema</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    <p class=MsoNormal><b><i><span lang=EN-US>Document all change to this
+    schema</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=78 valign=top style='width:58.25pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+    <td width=288 valign=top style='width:216.0pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal><b><i><span lang=EN-US>&nbsp;</span></i></b></p>
+    </td>
+   </tr>
+  </table>
+  <p class=MsoNormal></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;background:silver;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Perceived Impact</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:11.35pt'>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:11.35pt'>
+  <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.3pt'>
+  <td width=141 valign=top style='width:106.1pt;border:solid windowtext 1.0pt;
+  border-top:none;background:#E6E6E6;padding:0cm 5.4pt 0cm 5.4pt;height:11.3pt'>
+  <p class=MsoNormal><b><u><span lang=EN-US>Backward Compatibility Status</span></u></b></p>
+  </td>
+  <td width=501 colspan=6 valign=top style='width:375.9pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:11.3pt'>
+  <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;background:silver;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Reason for issue being raised</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Bugzilla issues</span></p>
+  <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;background:silver;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>Suggested Action</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>As resolution column</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;background:silver;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US>CTT Resolution and Current Status</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=643 colspan=7 valign=top style='width:482.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>Proposed Change: </span></p>
+  <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+  <p class=MsoNormal><span lang=EN-US>As above</span></p>
+  <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr height=0>
+  <td width=141 style='border:none'></td>
+  <td width=60 style='border:none'></td>
+  <td width=72 style='border:none'></td>
+  <td width=12 style='border:none'></td>
+  <td width=137 style='border:none'></td>
+  <td width=43 style='border:none'></td>
+  <td width=177 style='border:none'></td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

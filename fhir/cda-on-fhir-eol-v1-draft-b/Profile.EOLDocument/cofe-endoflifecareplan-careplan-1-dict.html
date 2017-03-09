@@ -1,0 +1,875 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+			<title>EOLDocument - FHIR Implementation Guide</title>
+
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="author" content="HSCIC" />        
+			<meta name="publisher version" content=	"FHIR-Furnace : 2.7.6137.25942" />
+		
+			<link href="../dist/css/fhir.css" rel="stylesheet" />
+	 
+			<!-- Bootstrap core CSS -->
+			<link href="../dist/css/bootstrap.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-fhir.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-glyphicons.css" rel="stylesheet" />
+
+			<!-- Project extras -->
+			
+			<link href="../dist/css/pygments-manni.css" rel="stylesheet" />
+
+			<script src="../dist/js/jquery.js"> </script>
+			<script src="../dist/js/bootstrap.min.js"> </script>
+
+			<script src="../dist/js/fhir.js"> </script>
+			
+				<script>
+				  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+				  ga('create', 'UA-67795986-1', 'auto');
+				  ga('send', 'pageview');
+
+				</script>
+			
+			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+				<script src="../dist/js/html5shiv.js"></script>
+				<script src="../dist/js/respond.min.js"></script>
+			<![endif]-->
+
+			<!-- Favicons -->
+			<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../dist/images/apple-touch-icon-144-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../dist/images/apple-touch-icon-114-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../dist/images/apple-touch-icon-72-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" href="../dist/images/apple-touch-icon-57-precomposed.png" />
+			<link rel="shortcut icon" href="../dist/images/favicon.ico" />
+	</head>
+	
+	<body>  
+		
+		<!-- segment-header -->
+		<div id="segment-header" class="segment">
+            
+            <div class="container">
+                <!-- container -->
+                <a id="logo" href="http://www.digital.nhs.uk" target="_blank">
+                    <img src="../dist/images/logo.png" alt="logo NHS Digital" />
+                </a>
+                <div id="specificationName">
+         
+                        <b>EOLDocument</b>
+                  
+                </div>
+
+            </div>
+            <div class="container">
+                <!-- container -->
+            </div>
+        </div>
+        
+		<!-- /segment-header -->
+		
+		
+		<div id="segment-navbar" class="segment">
+            <!-- segment-navbar -->
+            <div id="stripe"> </div>
+            <div class="container">
+                <!-- container -->
+                <!-- HEADER CONTENT -->
+
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <button data-target=".navbar-inverse-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                        </button>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <ul class="nav navbar-nav">   
+
+											<li>
+												<a href='../Chapter.1.About/index.html'>About</a>
+											</li>
+											<li>
+												<a href='../Chapter.2.Change History/index.html'>Change History</a>
+											</li>
+											<li>
+												<a href='../Chapter.3.FHIR Document Architecture/index.html'>FHIR Document Architecture</a>
+											</li>
+											<li>
+												<a href='../Chapter.4.FHIR Document/index.html'>FHIR Document</a>
+											</li>
+											<li>
+												<a href='../Chapter.5.Examples/examples.html'>Examples</a>
+											</li>
+											<li>
+												<a href='../Chapter.7.Glossary/index.html'>Glossary</a>
+											</li>
+
+                            </ul>
+							
+                            <p class="navbar-text pull-right" style="padding-right: 10px;padding-top: 3px;">
+                                <span class="label label-default"  style="font-size: 95%;">Version 1.0 : DRAFT B</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </nav>				
+            </div>
+        </div>
+		
+		<div id="segment-breadcrumb" class="segment">
+            <!-- segment-breadcrumb -->
+            <div class="container">
+                <!-- container -->
+                <ul class="breadcrumb"></ul>
+            </div>
+            <!-- /container -->
+        </div>
+        <div id="segment-content" class="segment">
+            <!-- segment-content -->
+            <div class="container">
+                <!-- container -->
+                <div class="row">
+                    <div class="inner-wrapper">
+						<!-- CONTENT CONTENT -->
+                        <div class="col-12">
+							
+							
+							
+<div class="panel panel - default" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="panel-heading">
+    <h3 class="panel-title">COFE-EndOfLifeCarePlan-CarePlan-1</h3>
+  </div>
+  <div class="panel-body">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        <b>COFE-EndOfLifeCarePlan-CarePlan-1</b>
+      </p>
+      <table class="dict">
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan"></a>
+            <b>CarePlan</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Describes the intention of how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..*</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/careplan.html" xmlns="http://www.w3.org/1999/xhtml">CarePlan</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Aliases</td>
+          <td>Care Team</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.Care Funding Details"></a>
+            <b>CarePlan.extension(Care Funding Details)</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Optional Extensions Element - found in all resources.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.Planned Review Date"></a>
+            <b>CarePlan.extension(Planned Review Date)</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Date the record is due for review. Date to be set at creation of the record and at review date by professional, in consultation with the person.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.identifier"></a>
+            <b>CarePlan.identifier</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>This records identifiers associated with this care plan that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#identifier" xmlns="http://www.w3.org/1999/xhtml">Identifier</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Need to allow connection to a wider workflow.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.identifier.value"></a>
+            <b>CarePlan.identifier.value</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The portion of the identifier typically displayed to the user and which is unique within the context of the system.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>If the value is a full URI, then the system SHALL be urn:ietf:rfc:3986.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Example</td>
+          <td>11a98de8-4c44-424c-bb6d-0049c4d2b777</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.subject"></a>
+            <b>CarePlan.subject</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Identifies the patient or group whose intended care is described by the plan.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.status"></a>
+            <b>CarePlan.status</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/terminologies.html">Binding</a>
+          </td>
+          <td>
+            <div class="binding-description" xmlns="http://www.w3.org/1999/xhtml">
+              <p>Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.</p>
+              <p>The codes SHALL be taken from <a href="http://hl7.org/fhir/ValueSet/care-plan-status">http://hl7.org/fhir/ValueSet/care-plan-status</a></p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#code" xmlns="http://www.w3.org/1999/xhtml">Code</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#ismodifier">Is Modifier</a>
+          </td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Allows clinicians to determine whether the plan is actionable or not.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>active</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.period"></a>
+            <b>CarePlan.period</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Indicates when the plan did (or is intended to) come into effect and end.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#period" xmlns="http://www.w3.org/1999/xhtml">Period</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Allows tracking what plan(s) are in effect at a particular time.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>Any activities scheduled as part of the plan should be constrained to the specified period.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.period.start"></a>
+            <b>CarePlan.period.start</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The start of the period. The boundary is inclusive.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1 ?</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#datetime" xmlns="http://www.w3.org/1999/xhtml">DateTime</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>If the low element is missing, the meaning is that the low boundary is not known.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.period.end"></a>
+            <b>CarePlan.period.end</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1 ?</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#datetime" xmlns="http://www.w3.org/1999/xhtml">DateTime</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.author"></a>
+            <b>CarePlan.author</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Identifies the individual(s) or ogranization who is responsible for the content of the care plan.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..2</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>Choice of: <ul><li></li><li></li></ul></td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>Collaborative care plans may have multiple authors.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.category"></a>
+            <b>CarePlan.category</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>Identifies what "kind" of plan this is to support differentiation between multiple co-existing plans; e.g. "Home health", "psychiatric", "asthma", "disease management", "wellness plan", etc.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/terminologies.html">Binding</a>
+          </td>
+          <td>
+            <div class="binding-description" xmlns="http://www.w3.org/1999/xhtml">
+              <p>A set of codes to identify observation type used in the End of Life CDA domain.</p>
+              <p>The codes SHALL be taken from <a href="eol-cda-observation-type-1.html">http://fhir.nhs.net/ValueSet/eol-cda-observation-type-1</a></p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#codeableconcept" xmlns="http://www.w3.org/1999/xhtml">CodeableConcept</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Used for filtering what plan(s) are retrieved and displayed to different types of users.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>There may be multiple axis of categorization and one plan may serve multiple purposes.  In some cases, this may be redundant with references to CarePlan.concern.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.category.coding"></a>
+            <b>CarePlan.category.coding</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>A reference to a code defined by a terminology system.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/terminologies.html">Binding</a>
+          </td>
+          <td>
+            <div class="binding-description" xmlns="http://www.w3.org/1999/xhtml">
+              <p>A set of codes to identify observation type used in the End of Life CDA domain.</p>
+              <p>The codes SHALL be taken from <a href="eol-cda-observation-type-1.html">http://fhir.nhs.net/ValueSet/eol-cda-observation-type-1</a></p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#coding" xmlns="http://www.w3.org/1999/xhtml">Coding</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.category.coding.system"></a>
+            <b>CarePlan.category.coding.system</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The identification of the code system that defines the meaning of the symbol in the code.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#uri" xmlns="http://www.w3.org/1999/xhtml">Uri</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Need to be unambiguous about the source of the definition of the symbol.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td>
+            <p>The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>http://fhir.nhs.net/ValueSet/eol-cda-observation-type-1</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.category.coding.code"></a>
+            <b>CarePlan.category.coding.code</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#code" xmlns="http://www.w3.org/1999/xhtml">Code</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Need to refer to a particular code in the system.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>EOLCP</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.category.coding.display"></a>
+            <b>CarePlan.category.coding.display</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>A representation of the meaning of the code in the system, following the rules of the system.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Need to be able to carry a human-readable meaning of the code for readers that do not know  the system.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fixed Value</td>
+          <td>EOL Care Plan</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.Plan Agreed"></a>
+            <b>CarePlan.note(Plan Agreed)</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>General notes about the care plan not covered elsewhere.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>0..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#annotation" xmlns="http://www.w3.org/1999/xhtml">Annotation</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Requirements</td>
+          <td>
+            <p>Used to capture information that applies to the plan as a whole that doesn't fit into discrete elements.</p>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="structure">
+            <a name="CarePlan.note.text"></a>
+            <b>CarePlan.note.text</b>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Definition</td>
+          <td>
+            <p>The text of the annotation.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/conformance-rules.html#conformance">Control</a>
+          </td>
+          <td>1..1</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html">Type</a>
+          </td>
+          <td>
+            <a href="http://www.hl7.org/fhir/DSTU2/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a>
+          </td>
+        </tr>
+        <tr>
+          <td width="150px">Comments</td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>							
+							
+							
+						
+					   </div>                      
+                    </div>
+                    <!-- /inner-wrapper -->                   
+                </div>
+                <!-- /row -->              
+            </div>
+            <!-- /container -->           
+        </div>
+    <!-- /segment-content -->
+
+        <div id="segment-footer" class="segment">
+            <!-- segment-footer -->
+            <div class="container">
+                <!-- container -->
+                <div class="inner-wrapper">
+					<div id="explanatoryline">
+                         <img src="../dist/images/explanatoryline.png" alt="Information and technology for better health and care" />
+						 <p>
+                        Copyright &copy; 2016 Health and Social Care Information Centre<br/>
+						NHS Digital is the trading name of the Health and Social Care Information Centre.
+                    </p>
+                    </div>
+				<div id="hl7-nav">
+                    <a id="hl7-logo" href="http://www.hl7.org" target="_blank">
+                        <img src="../dist/images/hl7-logo.png" alt="visit the hl7 website" />
+                    </a>
+					<p>
+					FHIR&reg; is the registered trademark of HL7<br/>
+					and is used with the permission of HL7.
+					</p>
+				</div>
+					<p>
+						<!--<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> -->
+                    </p>
+                </div>
+                <!-- /inner-wrapper -->
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-post-footer" class="segment">
+            <!-- segment-post-footer -->
+            <div class="container">
+                <!-- container -->
+            </div>
+            <!-- /container -->
+        </div>
+	</body>
+</html>

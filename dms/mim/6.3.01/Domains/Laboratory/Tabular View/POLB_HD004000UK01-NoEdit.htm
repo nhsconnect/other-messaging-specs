@@ -1,0 +1,2118 @@
+<HTML><HEAD><TITLE>Result Event Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content=POLB_HD004000UK01 name=Entry>
+<META content=POLB_HD004000UK01 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Result Event - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="POLB_RM004000UK01.htm"><B>POLB_RM004000UK01</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=LaboratoryReport><B>LaboratoryReport</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;LaboratoryReport_c title=POLB_HD004000UK01#LaboratoryReport_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A&nbsp;Laboratory report is sent by a laboratory service provider to the laboratory service requester when some results are available. Reports and results&nbsp;may be In-progress or Completed. The report and its components are in fulfillment of a Placer Request.</B>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=LaboratoryReport>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ENTRY</B>} )<A>{<B> Fixed="<FONT color=red>ENTRY</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;LaboratoryReport/$classCode title=POLB_HD004000UK01#LaboratoryReport.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an entry.</P>
+<UL>
+<LI>Fixed value: "ENTRY"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;LaboratoryReport/$moodCode title=POLB_HD004000UK01#LaboratoryReport.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..2] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#LIST"><B>LIST</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;LaboratoryReport/$id title=POLB_HD004000UK01#LaboratoryReport.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A list of identifiers for&nbsp;this report. 
+<P>The first (mandatory) identifier is a local identifier allocated by the originating system.<SPAN style="FONT-SIZE: 12pt">&nbsp;<SPAN class=938060214-15022006>It is made up of two parts, a root and extension. The Root will be an OID allocated to the&nbsp;system that generates the extension and will be at such a level that the combination of the Root and Extension is universally unique. The extension will be a human readable&nbsp;string generated by the system and may not be unique&nbsp;across the whole system.</SPAN> </SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006></SPAN><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006>E.g. There are many systems that are configured on a departmental basis and the same range of human readable&nbsp;strings are used in&nbsp;multiple departments. In such cases, the Root OID shall be allocated at such a level that the&nbsp;human readable portion is unique within that Root OID.</SPAN> </SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006></SPAN><SPAN class=938060214-15022006><B><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">&lt;</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: maroon">id</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">root</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: black">9.99.999.99.10.2</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">extension</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="0001192992</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"/&gt;</SPAN> </B></SPAN></P>
+<P><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"></SPAN><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"><FONT color=#000000 size=3>Where 9.99.999.99.&nbsp; identifies the Hospital organization and 9.99.999.99.10.2 identifies the&nbsp;ID scheme within the&nbsp;Laboratory system that generated the extension.</FONT> </SPAN></SPAN></P>
+<P><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"></SPAN><SPAN style="FONT-SIZE: 12pt">The second identifier is for possible future use</SPAN> </P></NOTE></SPAN></SPAN></SPAN></SPAN></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/SnomedCT.htm">SnomedCT</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;LaboratoryReport/$code title=POLB_HD004000UK01#LaboratoryReport.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Generally limited to 'Laboratory Report' unless the report is an Investigation Centric report on multiple specimens such as a Dynamic Function Test, Microbiology Bacterial Screen&nbsp;or a compound Microbiological procedure (C&amp;S, Ova Cysts, Parasites) where each of the components will have a separate procedure and result.</P>
+<P>It shall not carry any procedure concept ID&nbsp;with a pre-coordinated specimen type nor any specific procedure that carries a result and shall only be populated with a concept ID from the national subset of Investigations (SNOMED Lab Investigations Subset_UK_20060401) that represents a compound investigation&nbsp;including those that are performed on multiple specimens.&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>text</B> (<A href="../../../Data Types/DataTypes.htm#ED"><B>ED</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;LaboratoryReport/$text title=POLB_HD004000UK01#LaboratoryReport.text style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The text (ED) attribute carries a CDA XML rendering of the Laboratory report. This shall only use CDA XML compliant xml tags and shall represent the Laboratory report as required by the sending system. The report shall represent all structured clinical data in the rest of the message payload and may represent information not carried as structured payload. The items that should be coded are identified in the W5.&nbsp;Provision is made for the carriage of embedded images within the report (See CDA XML definition in HL7 Ballot). It is recommended that the size of the image shall be restricted to that which would have been printed on the report at an appropriate resolution.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActStatus</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;LaboratoryReport/$statusCode title=POLB_HD004000UK01#LaboratoryReport.statusCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This identifies the status of the report.</P>
+<P>Shall only be:-&nbsp;Active, Completed or Nullified.</P>
+<P>Active reports shall be updated by a following report and are 'In-progress'. There may be multiple 'Active' reports prior to receipt of a 'Completed' report.</P>
+<P>Completed reports indicate that the fulfiller has completed all the items in the report and does not expect to send any further update to the report. This does NOT mean that a further report will not follow and in some circumstances, further updates may be sent by the fulfiller when additional information comes to light.</P>
+<P>The Coded&nbsp;Simple datatype is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;Act Status vocabulary and is constrained in this release to 'Active', 'Completed' or, in the case of a Nullified interaction, 'Nullified'.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;LaboratoryReport/$effectiveTime title=POLB_HD004000UK01#LaboratoryReport.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The effective date carries the clinically significant time for the report. This is generally the collection time of the specimen on which the work was performed. In certain types of report, there is more than one specimen on which the report is based. In such circumstances, the effective time of the report is the most clinically significant time. In a Dynamic function test, this would be the start time of the test. In a Multi-sample microbiological screen, all specimens will have been collected at approximately the same time and the time of the first serves as the clinically significant time for the screen.</P>
+<P>For a Creatinine Clearance&nbsp;request, the effective time would be the start collection time of the Urine specimen.&nbsp;</P>
+<P>See also the author.time field.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>priorityCode</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/PriorityType.htm">PriorityType</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;LaboratoryReport/$priorityCode title=POLB_HD004000UK01#LaboratoryReport.priorityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifies the priority of the report as determined by the reporting department. Value is constrained to be 'Routine' or 'Urgent'.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=RecordTarget><B>recordTarget</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;/LaboratoryReport/recordTarget title=POLB_HD004000UK01#/LaboratoryReport/recordTarget style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Refers to the patient who is the subject of the laboratory report.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RCT</B>} )<A>{<B> Fixed="<FONT color=red>RCT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/recordTarget/$typeCode title=POLB_HD004000UK01#LaboratoryReport/recordTarget.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the role of patient as record target.</P>
+<UL>
+<LI>Fixed value: "RCT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/recordTarget/$contextControlCode title=POLB_HD004000UK01#LaboratoryReport/recordTarget.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act. 
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>patient</B> (<A href="#Patient"><B>Patient</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/recordTarget/patient-Patient title=POLB_HD004000UK01#LaboratoryReport/recordTarget/patient-Patient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The patient who is the record target.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Performer><B>performer</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;/LaboratoryReport/performer title=POLB_HD004000UK01#/LaboratoryReport/performer style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>The Performer of the Observations and report. Generally the performing department.</B> </NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PRF</B>} )<A>{<B> Fixed="<FONT color=red>PRF</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/performer/$typeCode title=LaboratoryReport/performer.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a performer.</P>
+<UL>
+<LI>Fixed value: "PRF"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/performer/$contextControlCode title=POLB_HD004000UK01#LaboratoryReport/performer.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>time</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/performer/$time title=POLB_HD004000UK01#LaboratoryReport/performer.time style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Time performed. If provided, generally a point in time which can be indicated using the "centre" attribute.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>role</B> (<B><A href="#AgentChoice">AgentChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/performer/participant+AgentChoice title=POLB_HD004000UK01#LaboratoryReport/performer/participant+AgentChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Provides for individuals or organisations to be shown as the performer of the work that the report represents.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Author><B>author</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;/LaboratoryReport/author title=POLB_HD004000UK01#/LaboratoryReport/author style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Refers to the person or&nbsp;department responsible for authorising the&nbsp; laboratory report. In most cases, this will be the department in which the work was performed. In some instances, e.g. Histopathology reports, there may be a requirement to identify the actual person authoring the report.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/author/$typeCode title=POLB_HD004000UK01#LaboratoryReport/author.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the author of the report.</P>
+<UL>
+<LI>Fixed value "AUT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/author/$contextControlCode title=POLB_HD004000UK01#LaboratoryReport/author.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>time</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/author/$time title=POLB_HD004000UK01#LaboratoryReport/author.time style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>When the person authorised the information contained in the Laboratory Report.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>role</B> (<B><A href="#AgentChoice">AgentChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/author/participant+AgentChoice title=POLB_HD004000UK01#LaboratoryReport/author/participant+AgentChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The Author of a Laboratory report may be filled by the department responsible for the report, the person representing the department or the actual author of the report. In many cases, the department will be used unless there is a reason for identification of a specific person as may occur with Histopathology reporting.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PrimaryInformationRecipient><B>primaryInformationRecipient</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;/LaboratoryReport/primaryInformationRecipient title=POLB_HD004000UK01#/LaboratoryReport/primaryInformationRecipient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Refers to the person or department who is the primary business recipient of the laboratory report. This is generally the Health Care Professional responsible for the patient at the time of the encounter that gave rise to the request.</B> </NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PRCP</B>} )<A>{<B> Fixed="<FONT color=red>PRCP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/primaryInformationRecipient/$typeCode title=POLB_HD004000UK01#LaboratoryReport/primaryInformationRecipient.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the role&nbsp;of primary recipient.</P>
+<UL>
+<LI>Fixed value: "PRCP"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/primaryInformationRecipient/$contextControlCode title=POLB_HD004000UK01#LaboratoryReport/primaryInformationRecipient.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>role</B> (<B><A href="#AgentChoice">AgentChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/primaryInformationRecipient/participant+AgentChoice title=POLB_HD004000UK01#LaboratoryReport/primaryInformationRecipient/participant+AgentChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Provides for an individual or organisation to be shown as the recipient of the report.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Specimen><B>specimen</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;/LaboratoryReport/specimen title=POLB_HD004000UK01#/LaboratoryReport/specimen style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Identifies the specimen/isolate which was the subject of the investigation(s)</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SPC</B>} )<A>{<B> Fixed="<FONT color=red>SPC</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/specimen/$typeCode title=POLB_HD004000UK01#LaboratoryReport/specimen.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the specimen associated with the report.</P>
+<UL>
+<LI>Fixed value "SPC"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/specimen/$contextControlCode title=POLB_HD004000UK01#LaboratoryReport/specimen.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>sequenceNumber</B> (<A href="../../../Data Types/DataTypes.htm#INT"><B>INT</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/specimen/$sequenceNumber title=POLB_HD004000UK01#LaboratoryReport/specimen.sequenceNumber style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the order (1,2,3 etc.) of this specimen within several possible at this level of the report.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="COCT_HD080200UK01-NoEdit.htm">specimen</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="COCT_RM080200UK01.htm"><SMALL>[CMET:&nbsp;COCT_MT080200UK01]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/specimen/specimen+COCT_MT080200UK01 title=POLB_HD004000UK01#LaboratoryReport/specimen/specimen+COCT_MT080200UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Carries information on the specimen/isolate and any specimen collection information</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Tracker><B>tracker</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;/LaboratoryReport/tracker title=POLB_HD004000UK01#/LaboratoryReport/tracker style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Refers to&nbsp;people or departments who are identified as copy recipients of the laboratory report&nbsp;.</B> </P>
+<P><B>There can be zero, one&nbsp;or many copy recipients.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>TRC</B>} )<A>{<B> Fixed="<FONT color=red>TRC</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/tracker/$typeCode title=POLB_HD004000UK01#LaboratoryReport/tracker.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a tracker.</P>
+<UL>
+<LI>Fixed value: "TRC"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/tracker/$contextControlCode title=POLB_HD004000UK01#LaboratoryReport/tracker.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>role</B> (<B><A href="#AgentChoice">AgentChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#Participation;LaboratoryReport/tracker/participant+AgentChoice title=POLB_HD004000UK01#LaboratoryReport/tracker/participant+AgentChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Provides for an individual or an organisation to be in receipt of a Copy-to report.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Component1><B>component</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;/LaboratoryReport/component title=POLB_HD004000UK01#/LaboratoryReport/component style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Provides structure to the report, allowing different levels of detail.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/component/$typeCode title=LaboratoryReport/component.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value: "COMP"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/component/$contextControlCode title=POLB_HD004000UK01#LaboratoryReport/component.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/component/$contextConductionInd title=POLB_HD004000UK01#LaboratoryReport/component.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>sequenceNumber</B> (<A href="../../../Data Types/DataTypes.htm#INT"><B>INT</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/component/$sequenceNumber title=POLB_HD004000UK01#LaboratoryReport/component.sequenceNumber style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An optional integer to allow relative ordering of this relationship among other like-type relationships having the same source Act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/component/$seperatableInd title=POLB_HD004000UK01#LaboratoryReport/component.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.</P>
+<P>If the source act&nbsp;is intended to&nbsp;be interpreted independently the value shall be "true" otherwise the value shall be "false".</P>
+<P>The value of seperatableInd shall be evaluated for each usage of the relationship.</P>
+<P>In this context&nbsp;the seperatableInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/component/$templateId title=POLB_HD004000UK01#LaboratoryReport/component.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that supports the linkage of clinical statements using the "Component" mechanism. 
+<P>The Identifier&nbsp;External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain&nbsp;&nbsp;the OID "2.16.840.1.113883.2.1.3.2.4.18.2" </LI>
+<LI>The <I>extension</I> shall contain the template ID&nbsp;"CSAB_RM-NPfITUK10.component".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>target</B> (<B><A href="#ObservationEventChoice">ObservationEventChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/component/observationEventChoice-ObservationEventChoice title=POLB_HD004000UK01#LaboratoryReport/component/observationEventChoice-ObservationEventChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The ObservationEventChoice provides the mechnaism for a report to be composed of individual observations, batteries of observations and isolates on which individual observations or&nbsp;batteries of observations are performed.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=PertinentInformation><B>pertinentInformation</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;/LaboratoryReport/pertinentInformation style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=InFulfillmentOf1><B>inFulfillmentOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;/LaboratoryReport/inFulfillmentOf title=POLB_HD004000UK01#/LaboratoryReport/inFulfillmentOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Provides the link between the request and the fulfilling results.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>FLFS</B>} )<A>{<B> Fixed="<FONT color=red>FLFS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/inFulfillmentOf/$typeCode title=LaboratoryReport/inFulfillmentOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is fulfilling a request.</P>
+<UL>
+<LI>Fixed value: "FLFS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/inFulfillmentOf/$contextControlCode title=POLB_HD004000UK01#LaboratoryReport/inFulfillmentOf.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/inFulfillmentOf/$contextConductionInd title=POLB_HD004000UK01#LaboratoryReport/inFulfillmentOf.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If true, associations in the parent act are conducted across the ActRelationship to the child act.</P>
+<P>In this context the contextConductionInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/inFulfillmentOf/$templateId title=POLB_HD004000UK01#LaboratoryReport/inFulfillmentOf.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that supports the linkage of clinical statements using the "Reference" mechanism.</P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The root attribute shall contain&nbsp; the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</LI>
+<LI>The extension shall contain the template ID "CSAB_RM-NPfITUK10.sourceOf1".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>priorPlacerOrder</B> (<A href="#PlacerOrder"><B>PlacerOrder</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/inFulfillmentOf/priorPlacerOrder-PlacerOrder style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=ReplacementOf1><B>replacementOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;/LaboratoryReport/replacementOf title=POLB_HD004000UK01#/LaboratoryReport/replacementOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>
+<P><B>This identifies a report that is being replaced by a new report event because the previous report was incorrect and is being replaced by a new report act.</B> </P>
+<P><B>This is NOT used for updating or correcting a report with additional or more up to date information, but rather when the original report should be disregarded and the new report take its place. This is not a supersession of one report by another. In general a more up to date report can replace another without need for an explicit replacementOf relation.</B> </P></B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RPLC</B>} )<A>{<B> Fixed="<FONT color=red>RPLC</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/replacementOf/$typeCode title=POLB_HD004000UK01#LaboratoryReport/replacementOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the act relationship is one of replacement.</P>
+<UL>
+<LI>Fixed value: "RPLC"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/replacementOf/$contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/replacementOf/$contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/replacementOf/$templateId title=POLB_HD004000UK01#LaboratoryReport/replacementOf.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that supports the linkage of clinical statements using the "Direct Relationship" mechanism. </P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The root attribute shall contain&nbsp; the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</LI>
+<LI>The extension shall contain the template ID "CSAB_RM-NPfITUK10.sourceOf2".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>priorPriorReportEvent</B> (<A href="#PriorReportEvent"><B>PriorReportEvent</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;LaboratoryReport/replacementOf/priorPriorReportEvent-PriorReportEvent style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Reason><B>reason</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;/LaboratoryReport/reason title=POLB_HD004000UK01#/LaboratoryReport/reason style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Reason for the request</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Patient><B>Patient</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Patient;Patient_c title=POLB_HD004000UK01#Patient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Details about the patient.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Patient>Used by: </A></FONT><A href="#LaboratoryReport"><B>LaboratoryReport</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PAT</B>} )<A>{<B> Fixed="<FONT color=red>PAT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Patient;Patient/$classCode title=POLB_HD004000UK01#Patient.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of a patient.</P>
+<UL>
+<LI>Fixed value: "PAT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Patient;Patient/$id title=POLB_HD004000UK01#Patient.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The NHS number that identifies the patient.</P>
+<P>An Instance Identifier (Identifier&nbsp;External flavour) representing the NHS number that identifies the patient. </P>
+<UL>
+<LI>The <I>root</I> attribute shall contain the&nbsp;OID for&nbsp;NHS Number </LI>
+<LI>The <I>extension</I> attribute contains the 10 digit NHS Number</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>patientPerson</B> (<A href="#Person"><B>Person</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Patient;Patient/patientPerson-Person title=Patient/patientPerson-Person style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the person who is the identified patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AgentChoice><B>AgentChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Role;participant+AgentChoice_c title=POLB_HD004000UK01#participant+AgentChoice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Organisation or person</B> </NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AgentChoice>Used by: </A></FONT><A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B><I>either </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM120500UK03.htm">UKCT_MT120501UK03</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Role;participant+AgentChoice/participant_R_AgentNPFITOrgSDSUniversal+UKCT_MT120501UK03 title=POLB_HD004000UK01#participant+AgentChoice/participant_R_AgentNPFITOrgSDSUniversal+UKCT_MT120501UK03 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET to identify an organization associated with the Report. Full details of the organization are available from SDS. Details of the scoping organization are either not required or available from SDS.</P>
+<P>This CMET should only be used if an individual health care professional&nbsp;is not available.</P>
+<P><B>Only the following Classes and Attributes from this CMET shall be included in this message.&nbsp; Classes and attributes that are not detailed below are not to be used in this message.</B> </P>
+<P><B>AgentOrgSDS.id</B> - shall carry&nbsp;a nationally agreed identifier for the role being played.&nbsp; This&nbsp;shall be&nbsp;a code from a national coding scheme.</P>
+<P>A national code is carried in the following way:</P>
+<UL>
+<LI>The root attribute shall contain the OID that identifies the coding scheme. </LI>
+<LI>The extension attribute shall contain the code.</LI></UL>
+<P><B>AgentOrgSDS.code</B> - shall carry&nbsp;a code from the HL7 vocabulary RoleCode to identify the type of role that the agent is playing. 
+<P><B>OrganizationSDS.id</B> - shall carry&nbsp;a valid SDS identifier that uniquely identifies the Organization.&nbsp;&nbsp; This could come from a number of SDS sets including (but not limited to) Organizations and Workgroups: </P>
+<UL>
+<LI>The root attribute shall be the OID for the SDS code set </LI>
+<LI>The extension attribute shall contain the code.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM120300UK02.htm">UKCT_MT120301UK02</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Role;participant+AgentChoice/participant_R_AgentNPFITPersonSDSUniversal+UKCT_MT120301UK02 title=POLB_HD004000UK01#participant+AgentChoice/participant_R_AgentNPFITPersonSDSUniversal+UKCT_MT120301UK02 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT&nbsp;CMET&nbsp;to identify&nbsp;a person associated with the Report. Full details of the person and role profile are available from SDS.</P>
+<P><B>This CMET should be used in preference to UKCT_MT120501UK03.</B> </P>
+<P><B>Only the following Classes and Attributes from this CMET shall be included in this message.&nbsp; Classes and attributes that are not detailed below are not to be used in this message.</B> </P>
+<P><B>AgentPersonSDS.id</B> shall &nbsp;carry An SDS identifier that uniquely identifies the role of the Person in the following way: </P>
+<UL>
+<LI>The root attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.67. </LI>
+<LI>The extension attribute shall contain the SDS Role Profile ID. </LI></UL>
+<P><B>PersonSDS.id</B> shall&nbsp;carry an&nbsp;SDS identifier that uniquely identifies the Person in the following way: </P>
+<UL>
+<LI>The root attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.65. </LI>
+<LI>The extension attribute shall contain the SDS User ID.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AgentChoice><B>AgentChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Role;participant+AgentChoice_c title=POLB_HD004000UK01#participant+AgentChoice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AgentChoice>Used by: </A></FONT><A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AgentChoice><B>AgentChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Role;participant+AgentChoice_c title=POLB_HD004000UK01#participant+AgentChoice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AgentChoice>Used by: </A></FONT><A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AgentChoice><B>AgentChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Role;participant+AgentChoice_c title=POLB_HD004000UK01#participant+AgentChoice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AgentChoice>Used by: </A></FONT><A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ObservationEventChoice><B>ObservationEventChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;ObservationEventChoice_c title=POLB_HD004000UK01#ObservationEventChoice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>The ObservationEventChoice allows for the messaging of reported events in a defined structure. The level of recursion is limited by the constraints on the Component recursion.</B> </NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ObservationEventChoice>Used by: </A></FONT><A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Component2><B>component</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;component/ObservationEventChoice/component title=POLB_HD004000UK01#component/ObservationEventChoice/component style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>This recursion allows for one choice to have other acts from the choice as component acts.&nbsp;This is subject to the following constraint:-</B> </P>
+<P><B><I>If </I></B></P>
+<P><B>source is ObservationReport; then target may be any choice </B></P>
+<P><B><I>else if</I> </B></P>
+<P><B>source is ObservationBattery; then Target must be ObservationEvent </B></P>
+<P><B><I>else if</I> </B></P>
+<P><B>source is SpecimenObservationCluster; then target must be</B> <B>&nbsp; ObservationBattery or ObservationEvent </B></P>
+<P><B><I>else if</I> </B></P>
+<P><B>source is ObservationEvent; then target must be ObservationEvent.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/component/$typeCode title=ObservationEventChoice/component.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value: "COMP"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/component/$contextControlCode title=POLB_HD004000UK01#ObservationEventChoice/component.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/component/$contextConductionInd title=POLB_HD004000UK01#ObservationEventChoice/component.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If true, associations in the parent act are conducted across the ActRelationship to the child act.</P>
+<P>In this context the contextConductionInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>sequenceNumber</B> (<A href="../../../Data Types/DataTypes.htm#INT"><B>INT</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/component/$sequenceNumber title=POLB_HD004000UK01#ObservationEventChoice/component.sequenceNumber style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the order (1,2,3 etc.) of the target Act within several possible at this level of the report.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/component/$seperatableInd title=POLB_HD004000UK01#ObservationEventChoice/component.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.</P>
+<P>If the source act&nbsp;is intended to&nbsp;be interpreted independently the value shall be "true" otherwise the value shall be "false".</P>
+<P>The value of seperatableInd shall be evaluated for each usage of the relationship.</P>
+<P>In this context&nbsp;the seperatableInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/component/$templateId title=POLB_HD004000UK01#ObservationEventChoice/component.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that supports the linkage of clinical statements using the "Component" mechanism. 
+<P>The Identifier&nbsp;External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain&nbsp;&nbsp;the OID "2.16.840.1.113883.2.1.3.2.4.18.2" </LI>
+<LI>The <I>extension</I> shall contain the template ID&nbsp;"CSAB_RM-NPfITUK10.component".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>target</B> (<B><A href="#ObservationEventChoice">ObservationEventChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/component/observationEventChoice-ObservationEventChoice title=POLB_HD004000UK01#ObservationEventChoice/component/observationEventChoice-ObservationEventChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The contained component.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=PertinentInformation><B>pertinentInformation</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;component/ObservationEventChoice/pertinentInformation title=POLB_HD004000UK01#component/ObservationEventChoice/pertinentInformation style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Conveys relevant clinical information.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/pertinentInformation/$typeCode title=POLB_HD004000UK01#ObservationEventChoice/pertinentInformation.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates pertinent information.</P>
+<UL>
+<LI>Fixed&nbsp;value: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/pertinentInformation/$contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/pertinentInformation/$contextConductionInd title=POLB_HD004000UK01#ObservationEventChoice/pertinentInformation.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/pertinentInformation/$templateId title=POLB_HD004000UK01#ObservationEventChoice/pertinentInformation.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that supports the linkage of clinical statements using the "Direct Relationship" mechanism. </P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The root attribute shall contain&nbsp; the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</LI>
+<LI>The extension shall contain the template ID "CSAB_RM-NPfITUK10.sourceOf2".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>target</B> (<B><A href="#SupportingClinicalInformationChoice">SupportingClinicalInformationChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/pertinentInformation/pertinentSupportingClinicalInformationChoice+SupportingClinicalInformationChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=InFulfillmentOf2><B>inFulfillmentOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;component/ObservationEventChoice/inFulfillmentOf title=POLB_HD004000UK01#component/ObservationEventChoice/inFulfillmentOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Provides the mechanism for the linking of a performed&nbsp;(Fulfiller) act to the request (Placer) act that is being fulfilled.</B> </P>
+<P><B>These are different acts and may be different SnCT concepts. A single Fulfilling act may fulfill one or more Placer request acts or multiple Fulfilling acts may be performed in fulfillment of a single Placer request act.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>FLFS</B>} )<A>{<B> Fixed="<FONT color=red>FLFS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/inFulfillmentOf/$typeCode title=POLB_HD004000UK01#ObservationEventChoice/inFulfillmentOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is fulfilling a request.</P>
+<UL>
+<LI>Fixed value: "FLFS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/inFulfillmentOf/$contextControlCode title=POLB_HD004000UK01#ObservationEventChoice/inFulfillmentOf.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/inFulfillmentOf/$contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/inFulfillmentOf/$templateId title=POLB_HD004000UK01#ObservationEventChoice/inFulfillmentOf.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that supports the linkage of clinical statements using the "Reference" mechanism.</P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The root attribute shall contain&nbsp; the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</LI>
+<LI>The extension shall contain the template ID "CSAB_RM-NPfITUK10.sourceOf1".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>priorPlacerOrder</B> (<A href="#PlacerOrder"><B>PlacerOrder</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/inFulfillmentOf/priorPlacerOrder-PlacerOrder title=POLB_HD004000UK01#ObservationEventChoice/inFulfillmentOf/priorPlacerOrder-PlacerOrder style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifies the Placer Request act being fulfilled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=ReplacementOf2><B>replacementOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;component/ObservationEventChoice/replacementOf title=POLB_HD004000UK01#component/ObservationEventChoice/replacementOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Refers to a previous&nbsp;act that this act&nbsp;is intended to replace. Replacement is used where the replacing act has a different Act.code but is of the same act type.</B>&nbsp;<B>In&nbsp;normal update&nbsp;circumstances no replacementOf is needed, the same act is messaged with the same id and updated fields. The interaction will identify to the receiving system&nbsp;intent of the message.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RPLC</B>} )<A>{<B> Fixed="<FONT color=red>RPLC</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/replacementOf/$typeCode title=POLB_HD004000UK01#ObservationEventChoice/replacementOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>&nbsp;Indicates that this is in replacement of</P>
+<UL>
+<LI>Fixed value: "RPLC" </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/replacementOf/$contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/replacementOf/$contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/replacementOf/$templateId title=POLB_HD004000UK01#ObservationEventChoice/replacementOf.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that supports the linkage of clinical statements using the "Direct Relationship" mechanism. </P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The root attribute shall contain&nbsp; the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</LI>
+<LI>The extension shall contain the template ID "CSAB_RM-NPfITUK10.sourceOf2".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>priorPriorActEvent</B> (<A href="#PriorActEvent"><B>PriorActEvent</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/replacementOf/priorPriorActEvent-PriorActEvent style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Reason><B>reason</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Act;component/ObservationEventChoice/reason title=POLB_HD004000UK01#component/ObservationEventChoice/reason style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Identifies the reason (generally clinical) for the request. This is usually provided by the placer of the request.</B>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RSON</B>} )<A>{<B> Fixed="<FONT color=red>RSON</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/reason/$typeCode title=POLB_HD004000UK01#ObservationEventChoice/reason.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>&nbsp;Indicates that this is a "has reason" relationshop</P>
+<UL>
+<LI>Fixed value: "RSON" </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/reason/$contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/reason/$contextConductionInd title=POLB_HD004000UK01#ObservationEventChoice/reason.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/reason/$templateId title=POLB_HD004000UK01#ObservationEventChoice/reason.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that supports the linkage of clinical statements using the "Direct Relationship" mechanism. </P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The root attribute shall contain&nbsp; the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</LI>
+<LI>The extension shall contain the template ID "CSAB_RM-NPfITUK10.sourceOf2".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>target</B> (<B><A href="#SupportingClinicalInformationChoice">SupportingClinicalInformationChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEventChoice/reason/justifyingSupportingClinicalInformationChoice+SupportingClinicalInformationChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B><I>either </I></FONT>: <B><A href="#ObservationBattery">ObservationBattery</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;ObservationEventChoice/generalizes-ObservationBattery title=POLB_HD004000UK01#ObservationEventChoice/generalizes-ObservationBattery style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A set of related observations performed on a single specimen</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="#ObservationEvent">ObservationEvent</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;ObservationEventChoice/generalizes-ObservationEvent title=POLB_HD004000UK01#ObservationEventChoice/generalizes-ObservationEvent style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An individual observation</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="#ObservationReport">ObservationReport</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;ObservationEventChoice/generalizes-ObservationReport title=POLB_HD004000UK01#ObservationEventChoice/generalizes-ObservationReport style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A sub-report within the overall Laboratory Report</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="#SpecimenObservationCluster">SpecimenObservationCluster</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;ObservationEventChoice/generalizes-SpecimenObservationCluster title=POLB_HD004000UK01#ObservationEventChoice/generalizes-SpecimenObservationCluster style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A group of observations or batteries of observations performed on an single Identified Isolate.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=PriorReportEvent><B>PriorReportEvent</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PriorReportEvent_c title=POLB_HD004000UK01#PriorReportEvent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>This is only used where a report is being withdrawan and replaced with a different report, not an updated report. Normal Update interaction is used with the same report ID &amp; new interaction ID</B> </NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=PriorReportEvent>Used by: </A></FONT><A href="#LaboratoryReport"><B>LaboratoryReport</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ENTRY</B>} )<A>{<B> Fixed="<FONT color=red>ENTRY</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PriorReportEvent/$classCode title=POLB_HD004000UK01#PriorReportEvent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Fixed at 'ENTRY'</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PriorReportEvent/$moodCode title=POLB_HD004000UK01#PriorReportEvent.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Fixed at 'EVN'</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PriorReportEvent/$id title=POLB_HD004000UK01#PriorReportEvent.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The ID of the Prior report that is being replaced. The new report is a 'different' report not an update to the original.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActStatus</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PriorReportEvent/$statusCode title=POLB_HD004000UK01#PriorReportEvent.statusCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Shall be set to 'Obsolete'</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Person><B>Person</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Person;Person_c title=POLB_HD004000UK01#Person_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Demographic details of the&nbsp;patient</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Person>Used by: </A></FONT><A href="#Patient"><B>Patient</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PSN</B>} )<A>{<B> Fixed="<FONT color=red>PSN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Person;Person/$classCode title=POLB_HD004000UK01#Person.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a person.</P>
+<UL>
+<LI>Fixed value: "PSN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Person;Person/$determinerCode title=POLB_HD004000UK01#Person.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable person.</P>
+<UL>
+<LI>Fixed value: "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>name</B> (<A href="../../../Data Types/DataTypes.htm#PN"><B>PN</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Person;Person/$name title=POLB_HD004000UK01#Person.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide zero or more structured names of the patient.</P>
+<P>Zero or one occurrence of the usual name may be provided.</P>
+<P>Zero or more occurrences of alias names may also be provided.</P>
+<P>Zero or one occurrence of a preferred name may also be provided.</P>
+<P>The following sub-elements are used to carry components of a structured name:</P>
+<UL>
+<LI>A single instance of the <I>prefix</I> element is used to carry a name title, for example, Mr, Mrs, Ms etc; </LI>
+<LI>One or more instances of the <I>given</I> element are used to carry given names (or forenames) or initials, with the order in which they are carried in the message being significant, i.e. the first occurrence of the <I>given</I> element is used to carry the first given name, the second occurrence of the <I>given</I> element is used to carry the second given name etc; </LI>
+<LI>A single instance of the <I>family</I> element is used to carry the family name (or surname); </LI>
+<LI>A single instance of the <I>suffix</I> element is used to carry a name prefix, for example, Jnr, Snr etc.</LI></UL>
+<P>Where the usual name is being carried, this is required to be indicated with a value of "L" in the <I>use</I> attribute.</P>
+<P>Where an alias name is being carried, this is required to be indicated with a value of "A" in the <I>use</I> attribute.</P>
+<P>Where a preferred name is being carried, this is required to be indicated with a value of "PREFERRED" in the <I>use</I> attribute.</P>
+<P>For the usual name type, the <I>validTime</I> sub-element may be used to indicate dates from and to which the name was/is to be effective, in the following way:</P>
+<UL>
+<LI>The <I>low</I> sub-element of the <I>validTime</I> element may optionally be present with the date from which the name was effective provided in YYYYMMDD format in the <I>value</I> attribute; </LI>
+<LI>The <I>high</I> sub-element of the validTime element may optionally be present with the date to which the name was/is to be effective provided in YYYYMMDD format in the <I>value</I> attribute.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>administrativeGenderCode</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/Sex.htm"><B>Sex</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Person;Person/$administrativeGenderCode title=POLB_HD004000UK01#Person.administrativeGenderCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the current registered sex of the patient in coded form.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the <U>Sex</U> vocabulary;</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>birthTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Person;Person/$birthTime title=POLB_HD004000UK01#Person.birthTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the date the patient was born.</P>
+<P>The date may be given in one of the following formats:</P>
+<UL>
+<LI>YYYYMMDD where the full date of birth is known; </LI>
+<LI>YYYYMM or YYYY where the full date of birth is not known.</LI></UL>
+<P>One of the Date Only or Date Month or Date Year datatype flavours is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>value</I> attribute will contain the date value in one of the formats indicated.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>addr</B> (<A href="../../../Data Types/DataTypes.htm#AD"><B>AD</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Person;Person/$addr title=POLB_HD004000UK01#Person.addr style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Carries the patient's home address.</P>
+<P>An address is composed of the following components:</P>
+<UL>
+<LI>Between one and five unstructured address lines; </LI>
+<LI>Postcode; </LI></UL>
+<P>Other optional parts of AD datatypes are not required (eg.&nbsp;use, addressKey and usablePeriod).</P>
+<UL>
+<LI>An effective from date may be provided for every address; an effective to date may also be provided for any address.</LI></UL>
+<P>The first of these components is required to be present with any address.</P>
+<P>The following sub-elements are used to carry the components of an address:</P>
+<UL>
+<LI>Between one and five <I>streetAddressLine</I> elements are used to carry unstructured address lines, with the order in which they are carried in the message being significant, i.e. the first occurrence of the <I>streetAddressLine</I> element is used to carry the first line of address, the second occurrence of the <I>streetAddressLine</I> element is used to carry the second line of address etc; </LI>
+<LI>A <I>postalCode</I> element is used to carry a postcode; </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>ethnicGroupCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/EthnicCategorySnCT.htm"><B>EthnicCategorySnCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Person;Person/$ethnicGroupCode title=POLB_HD004000UK01#Person.ethnicGroupCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The clinically significant Ethnicity of the patient. This is important in the interpretation of some results and may have reference ranges based upon it. It is not the ethnicity by which the patient chooses to be identified but the genetically significant parentage.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ObservationBattery><B>ObservationBattery</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationBattery_c title=POLB_HD004000UK01#ObservationBattery_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A group of related observations carried out on a single Specimen/Isolate.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ObservationBattery>Used by: </A></FONT><A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A>, <A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>BATTERY</B>} )<A>{<B> Fixed="<FONT color=red>BATTERY</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationBattery/$classCode title=POLB_HD004000UK01#ObservationBattery.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a battery of investigations</P>
+<UL>
+<LI>Fixed value: "BATTERY"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationBattery/$moodCode title=POLB_HD004000UK01#ObservationBattery.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..2] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#LIST"><B>LIST</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationBattery/$id title=POLB_HD004000UK01#ObservationBattery.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A list of&nbsp; identifiers for this&nbsp;observation battery.</P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt">The first (mandatory) identifier is a local identifier allocated by the originating system.<SPAN style="FONT-SIZE: 12pt">&nbsp;<SPAN class=938060214-15022006>It is made up of two parts, a root and extension. The Root will be an OID allocated to the&nbsp;system that generates the extension and will be at such a level that the combination of the Root and Extension is universally unique. The extension will be a human readable&nbsp;string generated by the system and may not be unique&nbsp;across the whole system.</SPAN> </SPAN></SPAN></SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006></SPAN><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006>E.g. There are many systems that are configured on a departmental basis and the same range of human readable&nbsp;strings are used in&nbsp;multiple departments. In such cases, the Root OID shall be allocated at such a level that the&nbsp;human readable portion is unique within that Root OID.</SPAN> </SPAN></SPAN></SPAN>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006></SPAN><SPAN class=938060214-15022006><B><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">&lt;</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: maroon">id</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">root</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: black">9.99.999.99.10.2</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">extension</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="0001192992</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"/&gt;</SPAN> </B></SPAN></SPAN></SPAN>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"></SPAN><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"><FONT color=#000000 size=3>Where 9.99.999.99.&nbsp; identifies the Hospital organization and 9.99.999.99.10.2 identifies the&nbsp;ID scheme within the&nbsp;Laboratory system that generated the extension.</FONT> </SPAN></SPAN></SPAN></SPAN>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"><FONT color=#000000 size=3>A</FONT></SPAN></SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt">s well as conveying a real world business identifier that the observation battery may have, the presence of an id allows this act to be "replaced" in a future message should that be necessary (see replacementOf).</SPAN> </SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"></SPAN><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt">The second id is for possible future use ("snapshot" id).</SPAN> </SPAN></SPAN></P></SPAN></SPAN></SPAN></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/SnomedCT.htm"><B>SnomedCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationBattery/$code title=POLB_HD004000UK01#ObservationBattery.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This is used to carry the code value for any battery of tests (FBC, U&amp;E, etc) carried out in fulfillment of part or all of a request act. This is a required attribute and shall be populated with a concept ID from the national subset of Investigations (SNOMED Lab Investigations Subset_UK_20060401) that are defined as 'Batteries'.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActStatus</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationBattery/$statusCode title=POLB_HD004000UK01#ObservationBattery.statusCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The status of a reported act may be 'Active', 'Completed', 'Aborted' or, when sent as part of a Nullify interaction, it shall be 'Nullified'.</P>
+<P>If a Battery is replaced, the status of the replaced battery shall be 'Obsolete'.</P>
+<P>'Active' batteries are those for which all components are not 'Completed' or 'Aborted'. 'Completed' batteries shall have all components either 'Completed' or 'Aborted'.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;Act Status vocabulary and is constrained in this release to 'Active', 'Completed', 'Aborted'&nbsp;or, in the case of a Nullified interaction, 'Nullified'.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationBattery/$effectiveTime title=POLB_HD004000UK01#ObservationBattery.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifies the clinically significant time of the battery. This will generally be the time at which the specimen on which the battery component acts where preformed.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>priorityCode</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/PriorityType.htm"><B>PriorityType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationBattery/$priorityCode title=POLB_HD004000UK01#ObservationBattery.priorityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifies the priority of the act by the Fulfiller. This may highlight urgent results to the Placer</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Specimen><B>specimen</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationEventChoice/ObservationBattery/specimen title=POLB_HD004000UK01#ObservationEventChoice/ObservationBattery/specimen style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The specimen.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ObservationEvent><B>ObservationEvent</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEvent_c title=POLB_HD004000UK01#ObservationEvent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>An individual observation performed by the Fulfiller. This may be a component part of an Entry, Cluster or Battery.</B> <B>Observations are the only Act class that may carry a 'Value'.</B> <B>The Observation may also carry 'Laboratory Clinical Comments' at all report levels</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ObservationEvent>Used by: </A></FONT><A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A>, <A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A>, <A href="#ObservationEvent"><B>ObservationEvent</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEvent/$classCode title=POLB_HD004000UK01#ObservationEvent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an observation.</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEvent/$moodCode title=POLB_HD004000UK01#ObservationEvent.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..2] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#LIST"><B>LIST</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEvent/$id title=POLB_HD004000UK01#ObservationEvent.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt">A list of&nbsp; identifiers for&nbsp;this observation.</SPAN> </SPAN></SPAN></SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"></SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt">The first (mandatory) identifier is a local identifier allocated by the originating system.<SPAN style="FONT-SIZE: 12pt">&nbsp;<SPAN class=938060214-15022006>It is made up of two parts, a root and extension. The Root will be an OID allocated to the&nbsp;system that generates the extension and will be at such a level that the combination of the Root and Extension is universally unique. The extension will be a human readable&nbsp;string generated by the system and may not be unique&nbsp;across the whole system.</SPAN> </SPAN></SPAN></SPAN></SPAN></SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006></SPAN><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006>E.g. There are many systems that are configured on a departmental basis and the same range of human readable&nbsp;strings are used in&nbsp;multiple departments. In such cases, the Root OID shall be allocated at such a level that the&nbsp;human readable portion is unique within that Root OID.</SPAN> </SPAN></SPAN></SPAN></SPAN></SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006></SPAN><SPAN class=938060214-15022006><B><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">&lt;</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: maroon">id</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">root</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: black">9.99.999.99.10.2</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">extension</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="0001192992</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"/&gt;</SPAN> </B></SPAN></SPAN></SPAN></SPAN></SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"></SPAN><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"><FONT color=#000000 size=3>Where 9.99.999.99.&nbsp; identifies the Hospital organization and 9.99.999.99.10.2 identifies the&nbsp;ID scheme within the&nbsp;Laboratory system that generated the extension.</FONT> </SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"></SPAN></SPAN></SPAN></SPAN></SPAN><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt">As well as conveying a real world business identifier that the observation may have, the presence of an id allows this act to be "replaced" in a future message should that be necessary (see replacementOf).</SPAN> </SPAN></SPAN></SPAN></SPAN></SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt">The second id is for possible future use ("snapshot" id).</SPAN> </SPAN></SPAN></SPAN></SPAN></SPAN></P></NOTE></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/SnomedCT.htm"><B>SnomedCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEvent/$code title=POLB_HD004000UK01#ObservationEvent.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This is used to carry the code value for any&nbsp;single observation (Sodium measurement, Haemoglobin,White cell count, Cervical smear etc) carried out in fulfillment of part or all of a request act. Where it is a component of a Battery, the Battery may be the fulfilling act.&nbsp;This is a required attribute and shall be populated with a concept ID from the national subset of Investigations (SNOMED Lab Investigations Subset_UK_20060401).</P>
+<P>This may be post-coordinated by an Investigation Method from <SPAN lang=EN-US>SNOMED lab investigation method subset_UK_20060401 </SPAN>and/or a Component (Substance) taken from the appropriate National Snomed CT Subset.</P>
+<P>E.g. Susceptability Test &lt;has method&gt; Disk Diffusion &lt;has component&gt; Ampicillin.</P>
+<P>NOTE: See current issues in Implementation Manual.</P>
+<P>(The interpretation result of the susceptibility test shall always be carried in 'InterpretationCode' (S/R/I) and any measurement such as a zone size in 'Value').</P>
+<P>In most cases in the Laboratory report this will be part of a Code - Value pair where the code identifies the observation and Value carries the result of that observation. This is clearly true for measurements with numerical results which cannot be post-coordinated in Snomed but, where the result is coded, it may be carried as a pre or&nbsp;Post coordinated term or a qualifier value carried in 'Value'.&nbsp;&nbsp;Concepts from the Snomed 'Clinical Findings' hirearchy&nbsp;shall not have 'Values'.</P>
+<P>Work is currently underway in the HL7 Terminfo group and in Snomed to define exact use of Snomed within HL7 v3</P>
+<P>For Laboratory Clinical Comments, the SnCT Concept "Laboratory Clinical Comment" (ID TBA) is used in the Act.code and the comment as Text in the Value. The nature of the recursion allows for Observations to be components of all levels within the message so comments may be components of Reports, Batteries or other observations.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActStatus</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEvent/$statusCode title=POLB_HD004000UK01#ObservationEvent.statusCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The status of a reported act may be 'Active', 'Completed', 'Aborted' or, when sent as part of a Nullify interaction, it shall be 'Nullified'.</P>
+<P>'Active'&nbsp;Observations are those for which the result is 'interim' and will be finalised at a later time.</P>
+<P>Where an observation act&nbsp;is replaced by a new observation act (different Act.code), the status of the replaced observation shall be set to 'Obsolete'.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;Act Status vocabulary and is constrained in this release to 'Active', 'Completed','Aborted' or, in the case of a Nullified interaction, 'Nullified'.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEvent/$effectiveTime title=POLB_HD004000UK01#ObservationEvent.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifies the clinically significant time of the Observation. This will generally be the time at which the specimen on which the&nbsp;observation was preformed was collected.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>priorityCode</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/PriorityType.htm"><B>PriorityType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEvent/$priorityCode title=POLB_HD004000UK01#ObservationEvent.priorityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifies the priority of the act by the fulfiller. This may highlight urgent results to the Placer. Valid contents are 'Routine' or 'Urgent' only</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#ANY"><B>ANY</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEvent/$value title=POLB_HD004000UK01#ObservationEvent.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The value may be Numeric, Coded (SnCT),&nbsp;Time&nbsp;or Text.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>interpretationCode</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A>&gt;</B> {<B>CNE</B>:<A href="../../../Vocabulary/ObservationInterpretationSnCT.htm"><B>ObservationInterpretationSnCT</B></A>}) </TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEvent/$interpretationCode title=POLB_HD004000UK01#ObservationEvent.interpretationCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>One or more codes specifying a rough qualitative interpretation of the observation such as "High", "Low", "Outside&nbsp;Range", "Significant Change", "Resistant", "Susceptible", etc.</P>
+<P>Use is restricted to the&nbsp;ObservationInterpretation SnCT Vocabulary&nbsp;and may contain a value from both ObsInterpretationChange Subset:(Significant Change, Highly Significant Change) and ObsInterpretationNormality subsets (High, Low, Outside Range), at the same time. This allows for a result to be interpreted as both High/Low values with respect to the&nbsp;used Range&nbsp;and RCV Significant Change etc.</P>
+<P>The type of range is carried in the Criterion (see below)</P>
+<P>In most instances where a value is carried in the interpretationCode, there will also be a value in observation.value and an associated &nbsp;interpretationRange.</P>
+<P>However, in the reporting of Microbiological Susceptibility test interpretations ObsInterpretationSusceptibility subset (Resistant, Susceptible, Intermediate)&nbsp; there will often not be a value. Where Susceptibility interpretation is reported with a value (MIC, MBC, zone size&nbsp;etc) <B>the value</B> shall carry the actual value of the result; <B>and the interpretationCode</B> the interpretation of Susceptible, Intermediate or Resistant.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Specimen><B>specimen</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEventChoice/ObservationEvent/specimen title=POLB_HD004000UK01#ObservationEventChoice/ObservationEvent/specimen style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The specimen.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=DerivedFrom><B>derivedFrom</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEventChoice/ObservationEvent/derivedFrom title=POLB_HD004000UK01#ObservationEventChoice/ObservationEvent/derivedFrom style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>The derivedFrom relationship provides a mechnanism for the handling of Calculated results. Where the value of&nbsp;act 'A' is calculated from acts 'B' and 'C', those acts may be associated with act 'A' using a derivedFrom relationship where it is semantically important to convey this relationship.</B>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>DRIV</B>} )<A>{<B> Fixed="<FONT color=red>DRIV</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEvent/derivedFrom/$typeCode title=POLB_HD004000UK01#ObservationEvent/derivedFrom.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the act relationship is one of derivation.</P>
+<UL>
+<LI>Fixed value: "DRIV"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>inversionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEvent/derivedFrom/$inversionInd title=POLB_HD004000UK01#ObservationEvent/derivedFrom.inversionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The inversionInd is fixed at "false" indicating that the meaning of ActRelationship.typeCode is not reversed.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEvent/derivedFrom/$contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEvent/derivedFrom/$contextConductionInd title=POLB_HD004000UK01#ObservationEvent/derivedFrom.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEvent/derivedFrom/$templateId title=POLB_HD004000UK01#ObservationEvent/derivedFrom.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that supports the linkage of clinical statements using the "Direct Relationship" mechanism. </P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The root attribute shall contain&nbsp; the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</LI>
+<LI>The extension shall contain the template ID "CSAB_RM-NPfITUK10.sourceOf2".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>inputObservationEvent</B> (<A href="#ObservationEvent"><B>ObservationEvent</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEvent/derivedFrom/inputObservationEvent-ObservationEvent title=POLB_HD004000UK01#ObservationEvent/derivedFrom/inputObservationEvent-ObservationEvent style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Link to the individual&nbsp;observation that takes part in the derived value.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=ReferenceRange><B>referenceRange</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Observation;ObservationEventChoice/ObservationEvent/referenceRange title=POLB_HD004000UK01#ObservationEventChoice/ObservationEvent/referenceRange style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Provides for the carrying of ranges upon which any interpretation of the result in the source act are based. Typically used for 'Reference Ranges' or 'Normal Population Ranges'. These are generally only used for Numerical results.</B> </NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>REFV</B>} )<A>{<B> Fixed="<FONT color=red>REFV</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEvent/referenceRange/$typeCode title=ObservationEvent/referenceRange.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that there are reference values.</P>
+<UL>
+<LI>Fixed value: "REFV"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEvent/referenceRange/$contextControlCode title=POLB_HD004000UK01#ObservationEvent/referenceRange.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEvent/referenceRange/$contextConductionInd title=POLB_HD004000UK01#ObservationEvent/referenceRange.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>referenceInterpretationRange</B> (<A href="#InterpretationRange"><B>InterpretationRange</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;ObservationEvent/referenceRange/referenceInterpretationRange-InterpretationRange title=POLB_HD004000UK01#ObservationEvent/referenceRange/referenceInterpretationRange-InterpretationRange style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The interpretation range.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ObservationReport><B>ObservationReport</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationReport_c title=POLB_HD004000UK01#ObservationReport_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>This is only used in those circumstances where a Laboratory Report contains sub-reports carried out on different specimens and each consists of multiple components&nbsp;(Batteries/Observations).</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ObservationReport>Used by: </A></FONT><A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A>, <A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ENTRY</B>} )<A>{<B> Fixed="<FONT color=red>ENTRY</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationReport/$classCode title=POLB_HD004000UK01#ObservationReport.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an entry.</P>
+<UL>
+<LI>Fixed value: "ENTRY"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationReport/$moodCode title=POLB_HD004000UK01#ObservationReport.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..2] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#LIST"><B>LIST</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationReport/$id title=POLB_HD004000UK01#ObservationReport.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A list of&nbsp; identifiers for this observation report.</P>
+<P>The first (mandatory) identifier is a local identifier allocated by the originating system.<SPAN style="FONT-SIZE: 12pt">&nbsp;<SPAN class=938060214-15022006>It is made up of two parts, a root and extension. The Root will be an OID allocated to the&nbsp;system that generates the extension and will be at such a level that the combination of the Root and Extension is universally unique. The extension will be a human readable&nbsp;string generated by the system and may not be unique&nbsp;across the whole system.</SPAN> </SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006></SPAN><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006>E.g. There are many systems that are configured on a departmental basis and the same range of human readable&nbsp;strings are used in&nbsp;multiple departments. In such cases, the Root OID shall be allocated at such a level that the&nbsp;human readable portion is unique within that Root OID.</SPAN> </SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006></SPAN><SPAN class=938060214-15022006><B><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">&lt;</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: maroon">id</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">root</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: black">9.99.999.99.10.2</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">extension</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="0001192992</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"/&gt;</SPAN> </B></SPAN></P>
+<P><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"></SPAN><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"><FONT color=#000000 size=3>Where 9.99.999.99.&nbsp; identifies the Hospital organization and 9.99.999.99.10.2 identifies the&nbsp;ID scheme within the&nbsp;Laboratory system that generated the extension.</FONT> </SPAN></SPAN></P>
+<P><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"></SPAN><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt">As well as conveying a real world business identifier that the observation may have, the presence of an id allows this act to be "replaced" in a future message should that be necessary (see replacementOf).</SPAN> </SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN style="FONT-SIZE: 12pt">The second id is for possible future use ("snapshot" id).</SPAN> </SPAN></P></NOTE></SPAN></SPAN></SPAN></SPAN></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/SnomedCT.htm"><B>SnomedCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationReport/$code title=POLB_HD004000UK01#ObservationReport.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Similar to the Laboratory report, this shall carry the code Laboratory Report unless one of the special types (DFT, screen etc.) and shall be taken from&nbsp; <SPAN lang=EN-US>SNOMED lab investigation subset_UK_20060401.</SPAN> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActStatus</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationReport/$statusCode title=POLB_HD004000UK01#ObservationReport.statusCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifies if the report is 'Active',&nbsp;'Completed' or, in a Nullify interaction, 'Nullified'.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;Act Status vocabulary and is constrained in this release to 'Active', 'Completed' or, in the case of a Nullified interaction, 'Nullified'.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationReport/$effectiveTime title=POLB_HD004000UK01#ObservationReport.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This is the clinically significant time of the sub-report. It is&nbsp;generally the collection time of the specimen in the report.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>priorityCode</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/PriorityType.htm"><B>PriorityType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationReport/$priorityCode title=POLB_HD004000UK01#ObservationReport.priorityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Fulfillers priority of the report. Routine or Urgent.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..*] </B></FONT><A name=Specimen><B>specimen</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationEventChoice/ObservationReport/specimen title=POLB_HD004000UK01#ObservationEventChoice/ObservationReport/specimen style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The specimen.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SpecimenObservationCluster><B>SpecimenObservationCluster</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;SpecimenObservationCluster_c title=POLB_HD004000UK01#SpecimenObservationCluster_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Specifically for the reporting of observations performed on a single, identified isolate. The SpecimenObservationCluster has a fixed SnCT Act.code</B> </NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SpecimenObservationCluster>Used by: </A></FONT><A href="#LaboratoryReport"><B>LaboratoryReport</B></A>, <A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A>, <A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>CLUSTER</B>} )<A>{<B> Fixed="<FONT color=red>CLUSTER</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;SpecimenObservationCluster/$classCode title=POLB_HD004000UK01#SpecimenObservationCluster.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is&nbsp;a cluster.</P>
+<UL>
+<LI>Fixed value: "CLUSTER"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;SpecimenObservationCluster/$moodCode title=POLB_HD004000UK01#SpecimenObservationCluster.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..2] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#LIST"><B>LIST</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;SpecimenObservationCluster/$id title=POLB_HD004000UK01#SpecimenObservationCluster.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<DIV style="BACKGROUND-COLOR: white">
+<P>The first (mandatory) identifier is a local identifier allocated by the originating system.<SPAN style="FONT-SIZE: 12pt">&nbsp;<SPAN class=938060214-15022006>It is made up of two parts, a root and extension. The Root will be an OID allocated to the&nbsp;system that generates the extension and will be at such a level that the combination of the Root and Extension is universally unique. The extension will be a human readable&nbsp;string generated by the system and may not be unique&nbsp;across the whole system.</SPAN> </SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006><SPAN class=938060214-15022006>E.g. There are many systems that are configured on a departmental basis and the same range of human readable&nbsp;strings are used in&nbsp;multiple departments. In such cases, the Root OID shall be allocated at such a level that the&nbsp;human readable portion is unique within that Root OID.</SPAN> </SPAN><SPAN class=938060214-15022006></SPAN></P>
+<P><SPAN class=938060214-15022006><B><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">&lt;</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: maroon">id</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">root</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: black">9.99.999.99.10.2</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">extension</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="0001192992</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"/&gt;</SPAN> </B></SPAN></P>
+<P><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"><FONT color=#000000 size=3>Where 9.99.999.99.&nbsp; identifies the Hospital organization and 9.99.999.99.10.2 identifies the&nbsp;ID scheme within the&nbsp;Laboratory system that generated the extension.</FONT> </SPAN></SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt">The second identifier is for possible future use</SPAN> </P></DIV></NOTE></SPAN></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>197421000000107</B>} )<A>{<B> Fixed="<FONT color=red>197421000000107</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;SpecimenObservationCluster/$code title=POLB_HD004000UK01#SpecimenObservationCluster.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This is fixed as 197421000000107 - Isolate identified (Finding). The associated Entity carries the identity of the isolate and the Role the ID</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActStatus</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;SpecimenObservationCluster/$statusCode title=POLB_HD004000UK01#SpecimenObservationCluster.statusCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>May be Active, Completed, Aborted, Nullified.&nbsp;</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;Act Status vocabulary and is constrained in this release to 'Active', 'Completed' or, in the case of a Nullified interaction, 'Nullified'.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;SpecimenObservationCluster/$effectiveTime title=POLB_HD004000UK01#SpecimenObservationCluster.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Clinically significant time for the specimen&nbsp;in which the isolate was detected. (Specimen Collection Time)&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Specimen><B>specimen</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#ActHeir;ObservationEventChoice/SpecimenObservationCluster/specimen title=POLB_HD004000UK01#ObservationEventChoice/SpecimenObservationCluster/specimen style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The specimen.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SupportingClinicalInformationChoice><B>SupportingClinicalInformationChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;pertinentSupportingClinicalInformationChoice+SupportingClinicalInformationChoice_c title=POLB_HD004000UK01#pertinentSupportingClinicalInformationChoice+SupportingClinicalInformationChoice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>SupportingClinicalInformationChoice provides for the carriage of any clinical information in support of the request. This may be an observation,&nbsp;medical procedure, a clinical condition, substance administration&nbsp;etc.&nbsp;</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SupportingClinicalInformationChoice>Used by: </A></FONT><A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A>, <A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B><I>either </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM140700UK03.htm">UKCT_MT140701UK03</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;pertinentSupportingClinicalInformationChoice+SupportingClinicalInformationChoice/pertinentSupportingClinicalInformationChoice_A_AdministerMedicationCourseUniversal+UKCT_MT140701UK03 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM140200UK03.htm">UKCT_MT140201UK03</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;pertinentSupportingClinicalInformationChoice+SupportingClinicalInformationChoice/pertinentSupportingClinicalInformationChoice_A_AdministerMedicationSingleUniversal+UKCT_MT140201UK03 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM141100UK01.htm">UKCT_MT141101UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;pertinentSupportingClinicalInformationChoice+SupportingClinicalInformationChoice/pertinentSupportingClinicalInformationChoice_A_ObservationUniversal+UKCT_MT141101UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM144010UK01.htm">UKCT_MT144010UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;pertinentSupportingClinicalInformationChoice+SupportingClinicalInformationChoice/pertinentSupportingClinicalInformationChoice_A_ProcedureUniversal+UKCT_MT144010UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=PlacerOrder><B>PlacerOrder</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PlacerOrder_c title=POLB_HD004000UK01#PlacerOrder_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>The Placer&nbsp;Order is the Act(s) being fulfilled by the Fulfiller Act.</B> </P>
+<P><B>Each Requested act shall be fulfilled by the fulfiller. The Laboratory Report may fulfill, partially or completely one or more Placer Orders. Observations Events or Observation Batteries may fulfill, partially or fully,&nbsp;one or more&nbsp;Observation Requests</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=PlacerOrder>Used by: </A></FONT><A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A>, <A href="#LaboratoryReport"><B>LaboratoryReport</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ACT</B>} )<A>{<B> Fixed="<FONT color=red>ACT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PlacerOrder/$classCode title=POLB_HD004000UK01#PlacerOrder.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an act. The value should correspond to that of the Act being fulfilled ie. ACT (in the case of 'group' requests) or OBS.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RQO</B>} )<A>{<B> Fixed="<FONT color=red>RQO</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PlacerOrder/$moodCode title=POLB_HD004000UK01#PlacerOrder.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a request.</P>
+<UL>
+<LI>Fixed value: "RQO"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PlacerOrder/$id title=POLB_HD004000UK01#PlacerOrder.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The placer allocated "local" identifier of the Placer Request.being fulfilled </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=PriorActEvent><B>PriorActEvent</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PriorActEvent_c title=POLB_HD004000UK01#PriorActEvent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>The act being replaced.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=PriorActEvent>Used by: </A></FONT><A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ACT</B>} )<A>{<B> Fixed="<FONT color=red>ACT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PriorActEvent/$classCode title=POLB_HD004000UK01#PriorActEvent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an entry.</P>
+<UL>
+<LI>Fixed value: "ENTRY"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PriorActEvent/$moodCode title=POLB_HD004000UK01#PriorActEvent.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PriorActEvent/$id title=POLB_HD004000UK01#PriorActEvent.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This carries the identifier of the report that is being replaced. It corresponds to the&nbsp;locally allocated id from the earlier report's LaboratoryReport Act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActStatus</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#ActHeir;PriorActEvent/$statusCode title=POLB_HD004000UK01#PriorActEvent.statusCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The Coded Simple datatype is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;Act Status vocabulary and is constrained in this case to 'Obsolete'.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SupportingClinicalInformationChoice><B>SupportingClinicalInformationChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Act;justifyingSupportingClinicalInformationChoice+SupportingClinicalInformationChoice_c title=POLB_HD004000UK01#justifyingSupportingClinicalInformationChoice+SupportingClinicalInformationChoice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>SupportingClinicalInformationChoice provides for the carriage of any clinical information in support of the request. This may be an observation,&nbsp;medical procedure, a clinical condition, substance administration&nbsp;etc.&nbsp;</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SupportingClinicalInformationChoice>Used by: </A></FONT><A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A>, <A href="#ObservationEventChoice"><B>ObservationEventChoice</B></A></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=InterpretationRange><B>InterpretationRange</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;InterpretationRange_c title=POLB_HD004000UK01#InterpretationRange_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>This Act carries the Interpretation Range against which the&nbsp;source act was/may be&nbsp;interpreted. This is generally a Reference Range but may also be a Reference Change Value (RCV). Both may be carried in the same message for each appropriate observation Event.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=InterpretationRange>Used by: </A></FONT><A href="#ObservationEvent"><B>ObservationEvent</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;InterpretationRange/$classCode title=POLB_HD004000UK01#InterpretationRange.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an observation.</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN.CRT</B>} )<A>{<B> Fixed="<FONT color=red>EVN.CRT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;InterpretationRange/$moodCode title=POLB_HD004000UK01#InterpretationRange.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event criterion.</P>
+<UL>
+<LI>Fixed value: "EVN.CRT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#PQ"><B>PQ</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;InterpretationRange/$value title=POLB_HD004000UK01#InterpretationRange.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Carries the actual value(s) of the Interpretation range that have been used for interpretation of the Observation Event value in the source act. It should be noted that a value does not have to be present in the Source act in order to provide an interpretation of Susceptibility.</P>
+<P>EITHER:-</P>
+<P>The Value shall be a numerical (interval) which may have a Low and&nbsp;High, a Low or a High value.</P>
+<P>Generally, interpretation ranges are nn.nn - nn.nn but in some instances, there may only&nbsp;be a High value(&nbsp;&lt; nn.nn) or a Low value&nbsp;(&gt; nn.nn)</P>
+<P>OR:-</P>
+<P>The Value may be a Reference Change Value (RCV)&nbsp;95% probability or RCV 99% probability value as an absolute, real number with associated units&nbsp;or a&nbsp;percentage.&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>interpretationCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ObservationInterpretation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;InterpretationRange/$interpretationCode title=POLB_HD004000UK01#InterpretationRange.interpretationCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Default to &nbsp;'N'. Indicates that this is a 'Normal' <B>type</B> value range (not a normal value)</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Precondition><B>precondition</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=POLB_HD004000UK01#Observation;referenceRange/InterpretationRange/precondition title=POLB_HD004000UK01#referenceRange/InterpretationRange/precondition style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Links the Interpretation Range to the Criterion on which that range is based. </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PRCN</B>} )<A>{<B> Fixed="<FONT color=red>PRCN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;InterpretationRange/precondition/$typeCode title=POLB_HD004000UK01#InterpretationRange/precondition.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a precondition</P>
+<UL>
+<LI>Fixed value: "PRCN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;InterpretationRange/precondition/$contextControlCode title=POLB_HD004000UK01#InterpretationRange/precondition.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;InterpretationRange/precondition/$contextConductionInd title=POLB_HD004000UK01#InterpretationRange/precondition.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>criterion</B> (<A href="#Criterion"><B>Criterion</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=POLB_HD004000UK01#ActRelationship;InterpretationRange/precondition/criterion-Criterion title=POLB_HD004000UK01#InterpretationRange/precondition/criterion-Criterion style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The criterion constraint.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Criterion><B>Criterion</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;Criterion_c title=POLB_HD004000UK01#Criterion_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A Criterion is a constraint on the source act. The source act is subject to the constraint. The constraint for an Interpretation Range may be a Sex or Age parameter etc.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Criterion>Used by: </A></FONT><A href="#InterpretationRange"><B>InterpretationRange</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;Criterion/$classCode title=POLB_HD004000UK01#Criterion.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an observation.</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN.CRT</B>} )<A>{<B> Fixed="<FONT color=red>EVN.CRT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;Criterion/$moodCode title=POLB_HD004000UK01#Criterion.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event criterion.</P>
+<UL>
+<LI>Fixed value: "EVN.CRT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/RangeCriterionSnCT.htm"><B>RangeCriterionSnCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;Criterion/$code title=POLB_HD004000UK01#Criterion.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the type of&nbsp; Interpretation&nbsp;Range. This is currently limited to:-<FONT face=Arial size=2> </P>
+<P><FONT face=Arial size=2>220221000000104 | Range criteria (qualifier value)</FONT> </P>
+<P><FONT face=Arial size=2><FONT face="Times New Roman" size=3>Additional information on the Type of range shall be carried in Criterion.text as a text string.
+<P>E.g. Normal Population Reference Range, Sex based Range etc.</P>
+<P>Or for Reference Change Value reporting:-</P></FONT></FONT>
+<P><FONT face=Arial size=2>220231000000102 | Reference change value 95% probability of significance (qualifier value)</FONT> </P>
+<P><FONT face=Arial size=2>220241000000106 | Reference change value 99% probability of significance (qualifier value)</FONT> </P></NOTE></FONT></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>text</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;Criterion/$text title=POLB_HD004000UK01#Criterion.text style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Carries a text description of the Range Criteria when RangeCriteriaSnCT has a value of&nbsp; <FONT face=Arial size=2>220221000000104 | Range criteria (qualifier value)</FONT> </P>
+<P>This may be Population Based, Age related, Sex related, Ethnicity related etc&nbsp;or be more explicit such as&nbsp;Normal Range for 1 - 4 yr olds etc.</P>
+<P>The Criterion does NOT carry the actual range itself. This is carried in the 'Value' of the Interpretation Range</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#ANY"><B>ANY</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=POLB_HD004000UK01#Observation;Criterion/$value title=POLB_HD004000UK01#Criterion.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>In future this may be used to carry the value of the criterion. For a Sex related criterion, this may be Male, Female; for an Age related criterion, this may be an Age interval 1y - 12y or &lt; 19y etc.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

@@ -1,0 +1,805 @@
+<html><head><meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<title>CMET Implementation Manual</title>
+<style>
+<!--
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Arial;}
+h3           { font-family: Arial; font-size: 12pt; font-weight: bold }
+h1
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:2.0cm;
+	text-indent:-2.0cm;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:Arial;}
+h2
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:2.0cm;
+	text-indent:-2.0cm;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-style:italic;}
+a:link
+	{color:blue;}
+a:visited
+	{color:purple;
+	text-decoration:none;}
+p.TitlePanelHeader
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	font-size:10.0pt;
+	font-family:Verdana;
+	font-weight:bold;}
+span.TitlePanelbold
+	{font-family:Verdana;
+	font-weight:bold;}
+span.TitlePanelstd
+	{font-family:Verdana;}
+p.TitlePanelblocktext
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	font-size:7.0pt;
+	font-family:Verdana;
+	text-transform:uppercase;
+	font-weight:bold;}
+span.TitlePanelitalic
+	{font-family:Verdana;
+	font-style:italic;}
+p.Un-numberedHeading1
+	{margin-top:3.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+span.TableHeading
+	{font-family:Arial;
+	font-weight:bold;}
+p.TableText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Arial;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head><STYLE>
+A {text-decoration: none;} 
+	{margin-bottom:0cm;}
+div.index1 {
+font-family:Arial;
+font-size:12.0pt;}
+
+div.index1 {
+font-family:Arial;
+font-size:12.0pt;)	
+-->
+</STYLE>  
+
+
+
+<body lang=EN-GB link=blue vlink=purple><div class=Section1><table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'><tr style='page-break-inside:avoid'><td width=144 rowspan=7 valign=top style='width:108.25pt;border:none;
+  border-right:solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm'><p class=MsoNormal><span
+  lang=EN-US><img src="../../../Core/Change_files/image001.jpg" width="139" height="89"></span></p></td>
+		<td width=521 colspan=4 valign=top style='width:391.0pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 2.85pt 0cm 2.85pt'><p class=TitlePanelHeader>NPfIT Common Message Element Types 
+		Implementation Manual</p></td></tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=TitlePanelstd><span style='font-size:7.0pt'>Programme</span></span></p></td>
+		<td valign=top style='border-right:1.0pt solid windowtext; border-top:1.0pt solid windowtext; border-bottom:1.0pt solid windowtext; width:126px;border-left:medium none;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=TitlePanelstd><span style='font-size:7.0pt'>NPFIT</span></span></p></td>
+		<td colspan=2 valign=top style='border-right:1.0pt solid windowtext; border-top:1.0pt solid windowtext; border-bottom:1.0pt solid windowtext; width:323px;border-left:medium none;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=TitlePanelblocktext>DOCUMENT NUMBER</p></td></tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=TitlePanelstd><span style='font-size:7.0pt'>Sub-Prog/Project</span></span></p></td>
+		<td valign=top style='width:126px;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=TitlePanelstd><span style='font-size:7.0pt'>Comms &amp; Messaging</span></span></p></td>
+		<td valign=middle style='border-top:medium none;border-left:medium none;
+  border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm' colspan="2" rowspan="3" align="center">
+			<p align="center">NPFIT-FNT-TO-DPM-0602</td></tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=TitlePanelstd><span style='font-size:7.0pt'>Prog. Director</span></span></p></td>
+		<td valign=top style='width:126px;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal>
+		<span class="TitlePanelstd"><span style="font-size: 7pt">Paul</span><span style='font-size:7.0pt'> Jones</span></span></p></td>
+		</tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=TitlePanelstd><span style='font-size:7.0pt'>Sub-Prog/Proj Mgr</span></span></p></td>
+		<td valign=top style='width:126px;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal>
+		<span class="TitlePanelstd"><span style="font-size: 7pt">Ken Lunn</span></span></p></td></tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=TitlePanelstd><span style='font-size:7.0pt'>Author</span></span></p></td>
+		<td valign=top style='width:126px;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=TitlePanelstd><span style='font-size:7.0pt'>C</span><span style="font-size: 7pt">&amp;M 
+		Development Team</span></span></p></td>
+		<td valign=top style='width:132px;border-top:medium none;
+  border-left:medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=TitlePanelstd><span style='font-size:7.0pt'>Version No.</span></span></p></td>
+		<td width=165 valign=top style='width:123.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class="TitlePanelstd">
+		<span style="font-size: 7pt">4.2.00</span></span></p></td></tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=TitlePanelstd>
+		<span style='font-size:7.0pt'>Contact</span></span></p></td>
+		<td valign=top style='width:126px;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal>
+		<span class="TitlePanelstd"><span style="font-size: 7pt">Richard 
+		Kavanagh</span></span></p></td>
+		<td valign=top style='width:132px;border-top:medium none;
+  border-left:medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=TitlePanelstd><span style='font-size:7.0pt'>Status</span></span></p></td>
+		<td width=165 valign=top style='width:123.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=TitlePanelstd><span style='font-size:7.0pt'>Issued</span></span></p></td></tr></table><p class=MsoNormal>&nbsp;</p><div class=MsoNormal align=center style='text-align:center'><hr size=2 width="100%" align=center></div><p class=MsoNormal>&nbsp;</p><p class=Un-numberedHeading1>Contents</p><div class="index1" div id="fp_TOC" class="fp_TOC"><a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;Overview</a><br><a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp;&nbsp;CMET Definitions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.1">2.1&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITPerson 
+- UKCT_MT120201UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.2">2.2&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITPerson 
+- UKCT_MT120201UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.3">2.3&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITPersonSDS - UKCT_MT120301UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.4">2.4&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITOrg 
+- UKCT_MT120401UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.5">2.5&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITOrg 
+- UKCT_MT120401UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.6">2.6&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITOrgSDS 
+- UKCT_MT120501UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.7">2.7&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITOrgSDS - UKCT_MT120501UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.8">2.8&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITDevice - UKCT_MT120601UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.9">2.9&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITDeviceSDS - UKCT_MT120701UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.10">2.10&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITIdentified 
+- UKCT_MT120801UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.11">2.11&nbsp;&nbsp;&nbsp;&nbsp;R_Patient 
+- COCT_MT050012UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.12">2.12&nbsp;&nbsp;&nbsp;&nbsp;R_Patient 
+- COCT_MT050012UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.13">2.13&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITPersonSDSWithRoleId - UKCT_MT120901UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.14">2.14&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITSystemSDSMandated - UKCT_MT121001UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.15">2.15&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITOrgGeneral - UKCT_MT160017UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.16">2.16&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITPersonGeneral - UKCT_MT160018UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.17">2.17&nbsp;&nbsp;&nbsp;&nbsp;A_Documentation 
+- UKCT_MT144035UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.18">2.18&nbsp;&nbsp;&nbsp;&nbsp;A_SocialContext - UKCT_MT144036UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.19">2.19&nbsp;&nbsp;&nbsp;&nbsp;A_CareEvent - UKCT_MT144037UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.20">2.20&nbsp;&nbsp;&nbsp;&nbsp;A_Problem 
+- UKCT_MT144038UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.21">2.21&nbsp;&nbsp;&nbsp;&nbsp;A_LinkAssertion - 
+UKCT144039UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.22">2.22&nbsp;&nbsp;&nbsp;&nbsp;A_MedicationRecordMinimal - UKCT_MT144040UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.23">2.23&nbsp;&nbsp;&nbsp;&nbsp;A_RiskToPerson - UKCT_MT144041UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.24">2.24&nbsp;&nbsp;&nbsp;&nbsp;A_Diagnosis - UKCT_MT144042UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.25">2.25&nbsp;&nbsp;&nbsp;&nbsp;A_Finding 
+	- UKCT_MT144043UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.26">2.26&nbsp;&nbsp;&nbsp;&nbsp;A_FamilyHistory - 
+UKCT_MT144044UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.27">2.27&nbsp;&nbsp;&nbsp;&nbsp;A_Investigation - 
+UKCT_MT144045UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.28">2.28&nbsp;&nbsp;&nbsp;&nbsp;A_PersonalPreference - 
+UKCT_MT144046UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.29">2.29&nbsp;&nbsp;&nbsp;&nbsp;A_Service - 
+UKCT_MT144047UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.30">2.30&nbsp;&nbsp;&nbsp;&nbsp;A_AllergyOrAdverseReactionDE 
+- UKCT_MT144048UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.31">2.31&nbsp;&nbsp;&nbsp;&nbsp;A_ProvisionOfAdviceAndInformation - 
+UKCT_MT144049UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.32">2.32&nbsp;&nbsp;&nbsp;&nbsp;A_AdministrativeProcedure - 
+UKCT_MT144050UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.33">2.33&nbsp;&nbsp;&nbsp;&nbsp;A_PresentationText - 
+UKCT_MT144051UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.34">2.34&nbsp;&nbsp;&nbsp;&nbsp;A_AllergyOrAdverseReactionIdent 
+- UKCT_MT144053UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.35">2.35&nbsp;&nbsp;&nbsp;&nbsp;A_RiskToPatient - 
+UKCT_MT144054UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.36">2.36&nbsp;&nbsp;&nbsp;&nbsp;A_Treatment - 
+UKCT_MT144055UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.37">2.37&nbsp;&nbsp;&nbsp;&nbsp;A_Refusal - 
+UKCT_MT144056UK01</a><br><a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp;&nbsp;CRE type to CMET class mapping</a><br><a href="#_Toc_Section_4">4&nbsp;&nbsp;&nbsp;&nbsp;Changes for version 4.2.00</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1">4.1&nbsp;&nbsp;&nbsp;&nbsp;<font face="arial">The following CMETS have been added</font></a></div><p class=MsoNormal>&nbsp;</p><p class=MsoNormal>&nbsp;</p><div class=MsoNormal align=center style='text-align:center'><hr size=2 width="100%" align=center></div><p class=MsoNormal>&nbsp;</p><p class=Un-numberedHeading1>Change History</p>
+	<table class=MsoTableGrid border=1 cellspacing=3 cellpadding=0 width=731
+ style='width:548.15pt' id="table2"><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=TableHeading><span style='font-size:10.0pt'>In Version</span></span></p></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=TableHeading><span style='font-size:10.0pt'>Author</span></span></p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=TableHeading><span style='font-size:10.0pt'>Date</span></span></p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=TableHeading><span style='font-size:10.0pt'>Amendment Details</span></span></p></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>1.0</p></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Core Technical Team</p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>10/5/04</p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>First Issue</p></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>1.1</p></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Core Technical Team</p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>25/6/04</p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Updated for new versions of Medication Management CMETs</p></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>1.2</p></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Core Technical Team</p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>03/09/04</p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Updated to enable wrapper audit requirements and to include new SDS OIDs.</p></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>1.3</p></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Core Technical Team</p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>17/09/04</p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Added ETP CMETs to support ETP to PPA messaging. Minor modifications to Agent CMET examples.</p></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>1.4</p></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Core Technical Team</p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>24/09/04</p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Corrected version number for messages, COCT_MT050012UK04 and COCT_MT090120UK04.</p></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>1.5</p></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Core Technical Team</p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>29/10/04</p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Included new OID and included CMET for GP2GP, RCCT_MT120100UK01. Removal of most of COCT type of CMETs used for Medication Management.</p><p class=TableText>Added new versions of UKCT_MT120101 and UKCT_MT120201 for Med. Man.</p></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>1.6</p></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Core Technical Team</p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>06/12/04</p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Modified hyperlinks for MM CMET's to point to their respective baseline model's tabular view in MM Tabular Views directory. Added paragraph (3) to clarify reasons for artefact name differences between CMET and associated tabular view.</p></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>1.7</p></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>Core Technical Team</p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>07/01/05</p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>The artefact identifier for the GP2GP specific R_AgentRole CMET has been reverted back to its original identifier.</p><p class=TableText>Included 10 new CMETS (UKCT_MT140101 - UKCT_MT141001) used for POC.</p></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'><p class="TableText"><font size="2">1.8</font></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'><p class="TableText"><font size="2">Core Technical Team</font></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class="TableText"><font size="2">31/03/05</font></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class="TableText"><font size="2">Removed unused versions of CMETs , New version of POC Clinical statement choice CMET. 
+	</font></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="TableText">1.9</td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="TableText">Core Technical Team</td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="TableText">30/06/05</td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="TableText"><font size="2">Includes MIM-CR-0399, MIM-CR-0436 &amp; 
+		MIM-CR-0612</font></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="TableText"><font face="Arial">1.10</font></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="TableText"><font face="Arial">C&amp;M Development Team</font></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="TableText">30<font face="Arial">/09/05</font></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="TableText"><font face="Arial">Changes to support new version 
+		of POC messages. </font><font size="2" face="Arial">Added new version of ETP R_Patient CMET that 
+		conforms to PDS patient structure.</font></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="MsoNormal"><font size="2">1.11</font></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="MsoNormal"><font size="2">C&amp;M Development Team</font></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="MsoNormal"><font size="2">16/12/05</font></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="MsoNormal"><font size="2">Reinstate MIM-CR-0612. Includes 
+		MIM-CR-0660</font><p class="MsoNormal"><font size="2">Changes to 
+		recommendation CMET and clinical statement choice CMET organizer mood 
+		codes.</font></td></tr><tr><td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<font size="2" face="Arial">1.13</font></td><td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<font size="2" face="Arial">C&amp;M Development Team</font></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<font face="Arial" size="2">15/03/06</font></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<font size="2" face="Arial">Changes to medication CMETS, addition of new CMETS and 
+		removal of deprecated CMETs and change to tabular definition in Patient 
+		CMET.Minor changes to Clinical statement choice CMET tabular view</font></td></tr>
+		<tr>
+		<td valign=top style='width:121px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=TableText>
+		4.1.03</p></td>
+		<td valign=top style='width:89px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=TableText>
+		C&amp;M development</p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>
+		07/06/2006</p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>First Issue</p></td></tr>
+		<tr>
+		<td valign=top style='width:121px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=TableText>
+		4.1.04</p></td>
+		<td valign=top style='width:89px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=TableText>
+		C&amp;M development</p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>
+		02/08/2006</p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>
+		Changes to following CMETS</p>
+		<ul>
+			<li>
+			<p class=TableText>A_LinkAssertion</p></li>
+			<li>
+			<p class=TableText>A_Problem</p></li>
+			<li>
+			<p class=TableText>A_AllergyOrAdverseReactionDE</p></li>
+			<li>
+			<p class=TableText>A_AllergyOrAdverseReactionIdent</p></li>
+			<li>
+			<p class=TableText>A_Finding</p></li>
+		</ul>
+		</td>
+		</tr>
+	<tr>
+		<td valign=top style='width:121px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=TableText>
+		4.2.00</p></td>
+		<td valign=top style='width:89px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=TableText>
+		C&amp;M development</p></td><td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=TableText>
+		02/08/2006</p></td><td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class=TableText>Added following CMETS (from CMET IM
+		<font size="2" face="Arial">1.13</font>)</p>
+		<ul>
+			<li>
+			<p class=TableText>R_AgentNPFITPerson - UKCT_MT120201UK03</p></li>
+			<li>
+			<p class=TableText>R_AgentNPFITPerson - UKCT_MT120201UK04</p></li>
+			<li>
+			<p class=TableText>R_AgentNPFITOrg - UKCT_MT120401UK02</p></li>
+			<li>
+			<p class=TableText>R_AgentNPFITOrg - UKCT_MT120401UK03</p></li>
+			<li>
+			<p class=TableText>R_AgentNPFITOrgSDS - UKCT_MT120501UK02</p></li>
+			<li>
+			<p class=TableText>R_AgentNPFITIdentified - UKCT_MT120801UK01</p>
+			</li>
+			<li>
+			<p class=TableText>R_Patient - COCT_MT050012UK04</p></li>
+			<li>
+			<p class=TableText>R_Patient - COCT_MT050012UK05</p></li>
+		</ul>
+		<p class=TableText>Descriptions in tabular views for CMETs used by GP 
+		summary have been further clarified</p>
+		<p class=TableText>Descriptions in of CMETs in this file have been 
+		further clarified</p>
+		</td>
+	</tr>
+	</table><p class=MsoNormal>&nbsp;</p><div class=MsoNormal align=center style='text-align:center'><hr size=2 width="100%" align=center></div><p class=MsoNormal>&nbsp;</p>  <h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;Overview</h1>	<p class=MsoNormal>A CMET (Common Message Element Type) is a message fragment that is available for use in any number of messages across multiple domains.  They are used within the NPfIT messages to assist consistent implementation of common components.</p><p class=MsoNormal>&nbsp;</p><p class=MsoNormal>This document acts as a central repository for the definition of all CMETs that are used by NPfIT messages.  Individual messages that utilise CMETs, provide links to the RMIMs and tabular views in the document.</p><p class=MsoNormal>&nbsp;</p><div class=MsoNormal align=center style='text-align:center'><hr size=2 width="100%" align=center></div><p class=MsoNormal>&nbsp;</p>  <h1><a name=_Toc_Section_2></a>2&nbsp;&nbsp;&nbsp;&nbsp;CMET Definitions</h1>	<p class=MsoNormal>&nbsp;</p>  <h2><a name=UKCT_MT120201UK03</a><a name=_Toc_Section_2.1></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITPerson 
+- UKCT_MT120201UK03</h2>	<div class="Section1">
+		<p class="MsoNormal">Identifies or provides detailed information about a 
+		person fulfilling an Agent role when it is not known whether all details 
+		of one or more of:</p>
+		<ul style="MARGIN-TOP: 0cm" type="disc">
+			<li class="MsoNormal">the role being played
+			</li>
+			<li class="MsoNormal">the person acting as the Agent
+			</li>
+			<li class="MsoNormal">the organization in which the role is being 
+			played</li>
+		</ul>
+		<p class="MsoNormal">are not available from SDS (Spine Directory 
+		Services).</p>
+		<p class="MsoNormal">This version adds an optional person identifier.</div>
+	<p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM120300UK02.htm"
+title="View R-MIM"><span style='color:windowtext'>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM120200UK03.htm"><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></a></span></a>     <a
+href="../Tabular%20View/UKCT_HD120300UK02-NoEdit.htm" title="View Tabular View"><span
+style='color:windowtext'>
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD120200UK03-NoEdit.htm"><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></a></span></a>     <span
+style='color:windowtext'><a title="View Schema" href="../../../Schemas/UKCT_MT120201UK03.xsd"><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></a></span></a>    <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX120301UK03.xml" title="View Example"><span
+style='color:#0000CC'><a title="View Example" href="../../../Examples/UKCT_EX120201UK03.xml"><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></a></span></a></span></p>  <h2><a name=UKCT_MT120201UK04</a><a name=_Toc_Section_2.2></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITPerson 
+- UKCT_MT120201UK04</h2>	<div class="Section1">
+		<p class="MsoNormal">Latest version that supports a scoping 
+		organisation.</div>
+	<p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM120300UK02.htm"
+title="View R-MIM"><span style='color:windowtext'>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM120200UK04.htm"><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></a></span></a>     <a
+href="../Tabular%20View/UKCT_HD120300UK02-NoEdit.htm" title="View Tabular View"><span
+style='color:windowtext'>
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD120200UK04-NoEdit.htm"><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></a></span></a>     <span
+style='color:windowtext'><a title="View Schema" href="../../../Schemas/UKCT_MT120201UK04.xsd"><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></a></span></a>    <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX120301UK03.xml" title="View Example"><span
+style='color:#0000CC'><a title="View Example" href="../../../Examples/UKCT_EX120201UK04.xml"><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></a></span></a></span></p>  <h2><a name=UKCT_MT120301UK02</a><a name=_Toc_Section_2.3></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITPersonSDS - UKCT_MT120301UK02</h2>	<p class=MsoNormal>Identifies a person fulfilling an Agent role, when full details of the person and role and organization are available from SDS (Spine Directory Services).</p><p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM120300UK02.htm"
+title="View R-MIM"><span style='color:windowtext'><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></span></a>     <a
+href="../Tabular%20View/UKCT_HD120300UK02-NoEdit.htm" title="View Tabular View"><span
+style='color:windowtext'><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></span></a>     <span
+style='color:windowtext'><a title="View Schema" href="../../../Schemas/UKCT_MT120301UK02.xsd"><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></a></span></a>    <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX120301UK03.xml" title="View Example"><span
+style='color:#0000CC'><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></span></a></span></p>  <h2><a name=UKCT_MT120401UK02</a><a name=_Toc_Section_2.4></a>2.4&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITOrg 
+- UKCT_MT120401UK02</h2>	<p class=MsoNormal>Identifies or provides detailed information about an 
+	organization fulfilling an Agent role when it is not known whether the 
+	organization is known to SDS (Spine Directory Services).</p><p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM120300UK02.htm"
+title="View R-MIM"><span style='color:windowtext'>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM120400UK02.htm"><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></a></span></a>     <a
+href="../Tabular%20View/UKCT_HD120300UK02-NoEdit.htm" title="View Tabular View"><span
+style='color:windowtext'>
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD120400UK02-NoEdit.htm"><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></a></span></a>     <span
+style='color:windowtext'><a title="View Schema" href="../../../Schemas/UKCT_MT120401UK02.xsd"><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></a></span></a>    <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX120301UK03.xml" title="View Example"><span
+style='color:#0000CC'><a title="View Example" href="../../../Examples/UKCT_EX120401UK02.xml"><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></a></span></a></span></p>  <h2><a name=UKCT_MT120401UK03</a><a name=_Toc_Section_2.5></a>2.5&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITOrg 
+- UKCT_MT120401UK03</h2>	<div class="Section1">
+		<p class="MsoNormal">Identifies or provides detailed information about 
+		an organization fulfilling an Agent role when it is not known whether 
+		the organization is known to SDS (Spine Directory Services).&nbsp; This 
+		version adds optional location/place information for an organization.</div>
+	<p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM120300UK02.htm"
+title="View R-MIM"><span style='color:windowtext'>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM120400UK03.htm"><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></a></span></a>     <a
+href="../Tabular%20View/UKCT_HD120300UK02-NoEdit.htm" title="View Tabular View"><span
+style='color:windowtext'>
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD120400UK03-NoEdit.htm"><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></a></span></a>     <span
+style='color:windowtext'><a title="View Schema" href="../../../Schemas/UKCT_MT120401UK03.xsd"><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></a></span></a>    <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX120301UK03.xml" title="View Example"><span
+style='color:#0000CC'><a title="View Example" href="../../../Examples/UKCT_EX120401UK03.xml"><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></a></span></a></span></p>  <h2><a name=UKCT_MT120501UK02</a><a name=_Toc_Section_2.6></a>2.6&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITOrgSDS 
+- UKCT_MT120501UK02</h2>	<div class="Section1">
+		<p class="MsoNormal">Identifies an organization fulfilling an Agent 
+		role, when full details of the organization are available from SDS 
+		(Spine Directory Services).</div>
+	<p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM120300UK02.htm"
+title="View R-MIM"><span style='color:windowtext'>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM120500UK02.htm"><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></a></span></a>     <a
+href="../Tabular%20View/UKCT_HD120300UK02-NoEdit.htm" title="View Tabular View"><span
+style='color:windowtext'>
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD120500UK02-NoEdit.htm"><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></a></span></a>     <span
+style='color:windowtext'><a title="View Schema" href="../../../Schemas/UKCT_MT120501UK02.xsd"><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></a></span></a>    <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX120301UK03.xml" title="View Example"><span
+style='color:#0000CC'><a title="View Example" href="../../../Examples/UKCT_EX120501UK03.xml"><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></a></span></a></span></p>  <h2><a name=UKCT_MT120501UK03</a><a name=_Toc_Section_2.7></a>2.7&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITOrgSDS - UKCT_MT120501UK03</h2>	<p class=MsoNormal>Identifies an organization fulfilling an Agent role, when full details of the organization are available from SDS (Spine Directory Services).&nbsp; This version adds optional location/place information for an organization.</p><p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM120500UK02.htm"
+title="View RMIM"><span style='color:windowtext'></span><span style='color:windowtext'></span><span style='color:windowtext'> </span>
+	<span style='color:windowtext'><a title="View RMIM" href="../Tabular%20View/UKCT_RM120500UK03.htm"><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD120500UK03-NoEdit.htm"><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a title="View Schema" href="../../../Schemas/UKCT_MT120501UK03.xsd"><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+	<span
+style='color:#0000CC'>
+	<a title="View Example" href="../../../Examples/UKCT_EX120501UK04.xml"><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></a></span></p>
+	<p class=MsoNormal>&nbsp;</p>
+	<div class="Section1">
+		<h2><a name=UKCT_MT120601UK02</a><a name=_Toc_Section_2.8></a>2.8&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITDevice - UKCT_MT120601UK02</h2>		<p class="MsoNormal">Identifies or provides detailed information about a 
+		device fulfilling an Agent role when it is not known whether the device 
+		is known to SDS (Spine Directory Services).</p>
+		<p class="MsoNormal">
+		&nbsp;<p class="MsoNormal">
+		<span style="COLOR: windowtext">
+		<a title="View RMIM" href="../Tabular%20View/UKCT_RM120600UK02.htm">
+		<img height="16" alt="View R-MIM" src="../../../Core/Components_files/image003.gif" width="16" border="0"></a></span></a>&nbsp;&nbsp;&nbsp;
+		<span style="COLOR: windowtext">
+		<a title="View Tabular View" href="../Tabular%20View/UKCT_HD120600UK02-NoEdit.htm">
+		<img height="16" alt="View Tabular View" src="../../../Core/Components_files/image004.gif" width="16" border="0"></a></span></a>&nbsp;&nbsp;&nbsp;
+		<span style="COLOR: windowtext">
+		<a title="View Schema" href="../../../Schemas/UKCT_MT120601UK02.xsd"><img height="16" src="../../../Core/Components_files/image005.gif" width="16" border="0"></a></span></a>&nbsp;&nbsp;&nbsp;
+		<span style="COLOR: #0000cc">
+		<a title="View Example" href="../../../Examples/UKCT_EX120601UK02.xml"><img height="16" alt="View Example" src="../../../Core/Components_files/image006.gif" width="16" border="0"></a></a></span></div>
+	<h2><a name=UKCT_MT120701UK02</a><a name=_Toc_Section_2.9></a>2.9&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITDeviceSDS - UKCT_MT120701UK02</h2>	<p class=MsoNormal>Identifies a device fulfilling an Agent role, when full details of the device are available from SDS (Spine Directory Services).</p><p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_HD120700UK02-NoEdit.htm"
+title="View RMIM"><span style='color:windowtext'>
+	<a title="View RMIM" href="../Tabular%20View/UKCT_RM120700UK02.htm"><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></a></span></a>     <a
+href="../Tabular%20View/UKCT_HD120700UK02-NoEdit.htm" title="View Tabular View"><span
+style='color:windowtext'><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></span></a>     <a
+href="../../../Schemas/UKCT_MT120701UK02.xsd" title="View Schema"><span
+style='color:windowtext'><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></span></a>     <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX120701UK03.xml" title="View Example"><span
+style='color:#0000CC'><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></span></a></span></p>  <h2><a name=UKCT_MT120801UK01</a><a name=_Toc_Section_2.10></a>2.10&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITIdentified 
+- UKCT_MT120801UK01</h2>	<p class=MsoNormal>Identifies a specific role, full details of which are 
+	available from elsewhere in this message.</p><p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM120300UK02.htm"
+title="View R-MIM"><span style='color:windowtext'>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM120800UK01.htm"><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></a></span></a>     <a
+href="../Tabular%20View/UKCT_HD120300UK02-NoEdit.htm" title="View Tabular View"><span
+style='color:windowtext'>
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD120800UK01-NoEdit.htm"><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></a></span></a>     <span
+style='color:windowtext'><a title="View Schema" href="../../../Schemas/UKCT_MT120801UK01.xsd"><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></a></span></a>    <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX120301UK03.xml" title="View Example"><span
+style='color:#0000CC'><a title="View Example" href="../../../Examples/UKCT_EX120801UK01.xml"><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></a></span></a></span></p>  <h2><a name=COCT_MT050012UK04</a><a name=_Toc_Section_2.11></a>2.11&nbsp;&nbsp;&nbsp;&nbsp;R_Patient 
+- COCT_MT050012UK04</h2>	<div class="Section1">
+		<p class="MsoNormal">ETP Flavour to identify the patient with the 
+		supporting details of name, address, etc.</div>
+	<p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM120300UK02.htm"
+title="View R-MIM"><span style='color:windowtext'>
+	<a title="View R-MIM" href="../Tabular%20View/COCT_RM050012UK04.htm"><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></a></span></a>     <a
+href="../Tabular%20View/UKCT_HD120300UK02-NoEdit.htm" title="View Tabular View"><span
+style='color:windowtext'>
+	<a title="View Tabular View" href="../Tabular%20View/COCT_HD050012UK04-NoEdit.htm"><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></a></span></a>     <span
+style='color:windowtext'><a title="View Schema" href="../../../Schemas/COCT_MT050012UK04.xsd"><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></a></span></a>    <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX120301UK03.xml" title="View Example"><span
+style='color:#0000CC'><a title="View Example" href="../../../Examples/COCT_EX050012UK04.xml"><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></a></span></a></span></p>  <h2><a name=COCT_MT050012UK05</a><a name=_Toc_Section_2.12></a>2.12&nbsp;&nbsp;&nbsp;&nbsp;R_Patient 
+- COCT_MT050012UK05</h2>	<p class=MsoNormal>Identifies a specific role, full details of which are 
+	available from elsewhere in this message.</p><p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM120300UK02.htm"
+title="View R-MIM"><span style='color:windowtext'>
+	<a title="View R-MIM" href="../Tabular%20View/COCT_RM050012UK05.htm"><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></a></span></a>     <a
+href="../Tabular%20View/UKCT_HD120300UK02-NoEdit.htm" title="View Tabular View"><span
+style='color:windowtext'>
+	<a title="View Tabular View" href="../Tabular%20View/COCT_HD050012UK05-NoEdit.htm"><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></a></span></a>     <span
+style='color:windowtext'><a title="View Schema" href="../../../Schemas/COCT_MT050012UK05.xsd"><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></a></span></a>    <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX120301UK03.xml" title="View Example"><span
+style='color:#0000CC'><a title="View Example" href="../../../Examples/COCT_EX050012UK05.xml"><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></a></span></a></span></p>  <h2><a name=UKCT_MT120901UK01</a><a name=_Toc_Section_2.13></a>2.13&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITPersonSDSWithRoleId - UKCT_MT120901UK01</h2>	<p class=MsoNormal style='text-autospace:none'><span lang=X-NONE>Identifies a person fulfilling a specific role. SDS User Id, Role Profile Id and Role Id are mandatory. Full details of the person and role profile are available from SDS.</span></p><p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM120900UK01.htm"
+title="View RMIM"><span style='color:windowtext'><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></span></a>     <a
+href="../Tabular%20View/UKCT_HD120900UK01-NoEdit.htm" title="View Tabular View"><span
+style='color:windowtext'><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></span></a>     <a
+href="../../../Schemas/UKCT_MT120901UK01.xsd" title="View Schema"><span
+style='color:windowtext'><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></span></a>     <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX120901UK01.xml" title="View Example"><span
+style='color:#0000CC'><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></span></a></span></p>  <h2><a name=UKCT_MT121001UK01</a><a name=_Toc_Section_2.14></a>2.14&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITSystemSDSMandated - UKCT_MT121001UK01</h2>	<p class=MsoNormal style='text-autospace:none'><span lang=X-NONE>Identifies a mandatory system which could be software or hardware. Full details of the system are available from SDS. </span></p><p class=MsoNormal>&nbsp;</p><p class=MsoNormal><a href="../Tabular%20View/UKCT_RM121000UK01.htm"
+title="View RMIM"><span style='color:windowtext'><img border=0 src="../../../Core/Components_files/image003.gif" alt="View R-MIM" width="16" height="16"></span></a>&nbsp;&nbsp;&nbsp;<a title="View Tabular View"> <span
+style='color:windowtext'></span><span
+style='color:windowtext'></span><span
+style='color:windowtext'><a title="View Tabular View" href="../Tabular%20View/UKCT_HD121000UK01-NoEdit.htm"><img border=0
+src="../../../Core/Components_files/image004.gif" alt="View Tabular View" width="16" height="16"></a></span>     <a
+href="../../../Schemas/UKCT_MT121001UK01.xsd" title="View Schema"><span
+style='color:windowtext'><img border=0
+src="../../../Core/Components_files/image005.gif" width="16" height="16"></span></a>     <span style='color:#0000CC'><a
+href="../../../Examples/UKCT_EX121001UK01.xml" title="View Example"><span
+style='color:#0000CC'><img border=0
+src="../../../Core/Components_files/image006.gif" alt="View Example" width="16" height="16"></span></a></span></p>  <h2><a name=UKCT_MT160017UK01</a><a name=_Toc_Section_2.15></a>2.15&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITOrgGeneral - UKCT_MT160017UK01</h2>	<p class=MsoNormal>Identifies an organization fulfilling an Agent role when </p>
+	<ul>
+		<li>
+		<p class=MsoNormal>The playing organization details maybe or may not be 
+		held on SDS</p></li>
+		<li>
+		<p class=MsoNormal>The scoping organization details maybe or may not be 
+		not held on SDS</p></li>
+	</ul>
+	<p class=MsoNormal>&nbsp;</p>
+	<p class=MsoNormal>If there is a record of the organization on SDS in either 
+	instance then the SDS choice MUST be used. </p>
+	<p class=MsoNormal>&nbsp;</p>
+	<p class=MsoNormal>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM160017UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD160017UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp; &nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT160017UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX160017UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp;&nbsp&nbsp;&nbsp;&nbsp</p>
+	<h2><a name=UKCT_MT160018UK01</a><a name=_Toc_Section_2.16></a>2.16&nbsp;&nbsp;&nbsp;&nbsp;R_AgentNPFITPersonGeneral - UKCT_MT160018UK01</h2>	<p class=MsoNormal>Identifies a person fulfilling an Agent role when</p><ul style='margin-top:0cm' type=disc><li class=MsoNormal>
+		the role being played maybe or may not be held on SDS</li><li class=MsoNormal>
+		the person playing the role may or may not be held on SDS</li><li class=MsoNormal>the organization in which the role is being played 
+		maybe or may not be held on SDS</li></ul>
+		<p></p>
+	<p class=MsoNormal>If there is a record of the role , person or organization on SDS in any&nbsp; 
+	instance then the SDS choice MUST be used. </p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM160018UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD160018UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp
+	<a title="View Schema" href="../../../Schemas/UKCT_MT160018UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX160018UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp</p>
+	<h2><a name=UKCT_MT144035UK01</a><a name=_Toc_Section_2.17></a>2.17&nbsp;&nbsp;&nbsp;&nbsp;A_Documentation 
+- UKCT_MT144035UK01</h2>	<p class="MsoNormal">
+	CMET for</p>
+	<ul>
+		<li>
+		<p class="MsoNormal">Care professional documentation&nbsp;&nbsp;&nbsp;&nbsp;
+		</p></li>
+		<li>
+		<p class="MsoNormal">Third party correspondence&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</p></li>
+		<li>
+		<p class="MsoNormal">Patient or carer correspondence&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</p></li>
+	</ul>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class=MsoNormal>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144035UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144035UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144035UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp; </p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class="MsoNormal">Used when any of the above <st1:processed OriginalText="CREs"
+w:st="on">CREs (Care Record Element)</st1:processed> are being represented.</p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	&nbsp;</p>  <h2><a name=UKCT_MT144036UK01</a><a name=_Toc_Section_2.18></a>2.18&nbsp;&nbsp;&nbsp;&nbsp;A_SocialContext - UKCT_MT144036UK01</h2>	<p class="MsoNormal">
+	CMET for observations that relate to</p>
+	<ul>
+		<li>
+		<p class="MsoNormal">Lifestyle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144036UK01_01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+        <li>
+		<p class="MsoNormal">Smoking&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144036UK01_02.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+		<li>
+		<p class="MsoNormal">Alcohol intake&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144036UK01_03.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+		<li>
+		<p class="MsoNormal">Social or Personal circumstance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144036UK01_04.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+	</ul>
+	<p>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144036UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144036UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144036UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a></p>
+	<p class="MsoNormal">This <st1:ignored w:st="on">CMET</st1:ignored> should 
+	be used for the recording of information under the <st1:ignored w:st="on">
+	Care</st1:ignored>
+	Record Elements Social or Personal circumstances and Lifestyle.</p>
+	<p class="MsoNormal">This <st1:ignored w:st="on">CMET</st1:ignored> has a 
+	choice of 4 Act which should be used in particular circumstances each will 
+	be described in turn.</p>
+	<p>
+	&nbsp;</p>  <h2><a name=UKCT_MT144037UK01</a><a name=_Toc_Section_2.19></a>2.19&nbsp;&nbsp;&nbsp;&nbsp;A_CareEvent - UKCT_MT144037UK01</h2>	<p class="MsoNormal">
+	CMET for recording of care events including but not limited to those which 
+	are</p>
+	<ul>
+		<li>
+		<p class="MsoNormal">Intended</p></li>
+		<li>
+		<p class="MsoNormal">Requested</p></li>
+		<li>
+		<p class="MsoNormal">Promised</p></li>
+		<li>
+		<p class="MsoNormal">Proposed</p></li>
+		<li>
+		<p class="MsoNormal">Booked</p></li>
+	</ul>
+	<p>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144037UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144037UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144037UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144037UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp;&nbsp</p>  <h2><a name=UKCT_MT144038UK02</a><a name=_Toc_Section_2.20></a>2.20&nbsp;&nbsp;&nbsp;&nbsp;A_Problem 
+- UKCT_MT144038UK02</h2>	<p class="MsoNormal">
+	CMET for highlighting a clinical statement as a problem.</p>
+	<ul>
+		<li>
+		<p class="MsoNormal">Problem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144038UK02_01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+        <li>
+		<p class="MsoNormal">Problem &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144038UK02_02.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+	</ul>
+	<p>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144038UK02.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144038UK02-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144038UK02.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+	<h2><a name=_Toc_Section_2.21></a>2.21&nbsp;&nbsp;&nbsp;&nbsp;A_LinkAssertion - 
+UKCT144039UK02</h2>	<p class="MsoNormal">
+	CMET for link assertion relationships such as but not limited to</p>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class="MsoNormal">
+	
+	<ul>
+	<li><p class="MsoNormal">Problem link assertion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144039UK02_01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+		<li>
+		<p class="MsoNormal">Problem member assertion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144039UK02_02.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p></li>
+		<li>
+		<p class="MsoNormal">Has reason assertion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144039UK02_03.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+	</ul>
+	<p class="MsoNormal"></p>
+	<p>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144039UK02.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144039UK02-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp 
+	<a title="View Schema" href="../../../Schemas/UKCT_MT144039UK02.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a></p>
+	<h2><a name=UKCT_MT144040UK01</a><a name=_Toc_Section_2.22></a>2.22&nbsp;&nbsp;&nbsp;&nbsp;A_MedicationRecordMinimal - UKCT_MT144040UK01</h2>	<p class=MsoNormal>
+	CMET to represent a minimal medication record&nbsp; including</p>
+	<ul>
+		<li>
+		<p class=MsoNormal>Current repeat medication&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144040UK01_01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+		<li>
+		<p class=MsoNormal>Acute medication&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144040UK01_02.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+		<li>
+		<p class=MsoNormal>Discontinued medication&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144040UK01_03.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+		<li>
+		<p class=MsoNormal>Administered medication&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144040UK01_04.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+	</ul>
+	<p>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144040UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a></a>&nbsp;&nbsp;&nbsp; 
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144040UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp; 
+	<a title="View Schema" href="../../../Schemas/UKCT_MT144040UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a></p>  
+	<h2><a name=UKCT_MT144041UK01</a><a name=_Toc_Section_2.23></a>2.23&nbsp;&nbsp;&nbsp;&nbsp;A_RiskToPerson - UKCT_MT144041UK01</h2>	<p class=MsoNormal>
+	CMET to highlight a clinical statement as a risk to persons other than the 
+	patient.</p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144041UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a></a>&nbsp;&nbsp;&nbsp; 
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144041UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp; 
+	<a title="View Schema" href="../../../Schemas/UKCT_MT144041UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144041UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p>  <h2><a name=UKCT_MT144042UK01</a><a name=_Toc_Section_2.24></a>2.24&nbsp;&nbsp;&nbsp;&nbsp;A_Diagnosis - UKCT_MT144042UK01</h2>	<p class=MsoNormal>
+	CMET to represent diagnoses.</p>
+	<ul>
+		<li>
+		<p class=MsoNormal>Diagnosis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144042UK02_01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p></li>
+		<li>
+		<p class=MsoNormal>Diagnosis with linked finding&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		<a title="View Example" href="../../../Examples/UKCT_EX144042UK02_02.xml">
+		<img border='0' src='../../../Core/Components_files/image006.gif'></a></p>
+		</li>
+		<li>
+		<p class=MsoNormal>Diagnosis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		<a title="View Example" href="../../../Examples/UKCT_EX144042UK02_03.xml">
+		<img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		</p></li>
+	</ul>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144042UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a></a>&nbsp;&nbsp;&nbsp; 
+	<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144042UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp; 
+	<a title="View Schema" href="../../../Schemas/UKCT_MT144042UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	</p>  <h2><a name=UKCT_MT144043UK02</a><a name=_Toc_Section_2.25></a>2.25&nbsp;&nbsp;&nbsp;&nbsp;A_Finding 
+	- UKCT_MT144043UK02</h2>	<p class=MsoNormal>
+	CMET to represent findings such as by not limited to</p>
+	<ul>
+		<li>
+		<p class=MsoNormal>Blood pressure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144043UK02_01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+		<li>
+		<p class=MsoNormal>Height&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144043UK02_02.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p></li>
+		<li>
+		<p class=MsoNormal>Weight&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144043UK02_03.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+		<li>
+		<p class=MsoNormal>Temperature&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144043UK02_04.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p></li>
+		<li>
+		<p class=MsoNormal>Clinical findings &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144043UK02_05.xml">
+		<img border='0' src='../../../Core/Components_files/image006.gif'></a></p>
+		</li>
+		<li>
+		<p class=MsoNormal>Clinical finding&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/UKCT_EX144043UK02_06.xml">
+		<img border='0' src='../../../Core/Components_files/image006.gif'></a></p>
+		</li>
+	</ul>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144043UK02.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144043UK02-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144043UK02.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp</p>  <h2><a name=UKCT_MT144044UK01</a><a name=_Toc_Section_2.26></a>2.26&nbsp;&nbsp;&nbsp;&nbsp;A_FamilyHistory - 
+UKCT_MT144044UK01</h2>	<p class="MsoNormal">
+	CMET to represent observations related to family history.</p>
+	<p>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144044UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144044UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144044UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144044UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p>  <h2><a name=UKCT_MT144045UK01</a><a name=_Toc_Section_2.27></a>2.27&nbsp;&nbsp;&nbsp;&nbsp;A_Investigation - 
+UKCT_MT144045UK01</h2>	<p class="MsoNormal">
+	CMET to represent investigative procedures</p>
+	<p>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144045UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144045UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144045UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144045UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p>  <h2><a name=UKCT_MT144046UK01</a><a name=_Toc_Section_2.28></a>2.28&nbsp;&nbsp;&nbsp;&nbsp;A_PersonalPreference - 
+UKCT_MT144046UK01</h2>	<p class="MsoNormal">
+	CMET to represent personal preferences of the patient</p>
+	<p>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144046UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144046UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144046UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144046UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p>  <h2><a name=UKCT_MT144047UK01</a><a name=_Toc_Section_2.29></a>2.29&nbsp;&nbsp;&nbsp;&nbsp;A_Service - 
+UKCT_MT144047UK01</h2>	<p class="MsoNormal">
+	CMET to represent services and providers of the service to the patient</p>
+	<p>
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144047UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144047UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144047UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144047UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p>  <h2><a name=UKCT_MT144048UK02</a><a name=_Toc_Section_2.30></a>2.30&nbsp;&nbsp;&nbsp;&nbsp;A_AllergyOrAdverseReactionDE 
+- UKCT_MT144048UK02</h2>	<p class="MsoNormal">
+	CMET to represent an occurrence of a known allergy or adverse reaction 
+	event.</p>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class="MsoNormal">
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144048UK02.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144048UK02-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144048UK02.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144048UK02.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp;</p>
+	<h2><a name=UKCT_MT144049UK01</a><a name=_Toc_Section_2.31></a>2.31&nbsp;&nbsp;&nbsp;&nbsp;A_ProvisionOfAdviceAndInformation - 
+UKCT_MT144049UK01</h2>	<p class="MsoNormal">
+	CMET to represent advice or information given to a patient or the patient's 
+	representive</p>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class="MsoNormal">
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144049UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144049UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144049UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144049UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p>
+	<h2><a name=UKCT_MT144050UK01</a><a name=_Toc_Section_2.32></a>2.32&nbsp;&nbsp;&nbsp;&nbsp;A_AdministrativeProcedure - 
+UKCT_MT144050UK01</h2>	<p class="MsoNormal">
+	CMET to represent an administrative procedure.</p>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class="MsoNormal">
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144050UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144050UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144050UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144050UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p>
+	<h2><a name=UKCT_MT144051UK01</a><a name=_Toc_Section_2.33></a>2.33&nbsp;&nbsp;&nbsp;&nbsp;A_PresentationText - 
+UKCT_MT144051UK01</h2>	<p class="MsoNormal">
+	CMET to represent the presentation text act and its CRE type organizer.</p>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class="MsoNormal">
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144051UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144051UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144051UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144051UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp;</p>  <h2><a name=UKCT_MT144053UK02</a><a name=_Toc_Section_2.34></a>2.34&nbsp;&nbsp;&nbsp;&nbsp;A_AllergyOrAdverseReactionIdent 
+- UKCT_MT144053UK02</h2>	<p class="MsoNormal">
+	CMET to represent an identified allergy or adverse reaction.</p>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class="MsoNormal">
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144053UK02.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144053UK02-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144053UK02.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144053UK02.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a></p>
+	<h2><a name=UKCT_MT144054UK01</a><a name=_Toc_Section_2.35></a>2.35&nbsp;&nbsp;&nbsp;&nbsp;A_RiskToPatient - 
+UKCT_MT144054UK01</h2>	<p class="MsoNormal">
+	CMET to represent an identified risk to a patient.</p>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class="MsoNormal">
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144054UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144054UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144054UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144054UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp;</p>
+	<h2><a name=UKCT_MT144055UK01</a><a name=_Toc_Section_2.36></a>2.36&nbsp;&nbsp;&nbsp;&nbsp;A_Treatment - 
+UKCT_MT144055UK01</h2>	<p class="MsoNormal">
+	CMET to represent treatment given to the patient.</p>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class="MsoNormal">
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144055UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144055UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144055UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144055UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp;</p>
+	<h2><a name=UKCT_MT144056UK01</a><a name=_Toc_Section_2.37></a>2.37&nbsp;&nbsp;&nbsp;&nbsp;A_Refusal - 
+UKCT_MT144056UK01</h2>	<p class="MsoNormal">
+	CMET to represent the patients refusal to share information.</p>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class="MsoNormal">
+	<a title="View R-MIM" href="../Tabular%20View/UKCT_RM144056UK01.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Tabular View" href="../Tabular%20View/UKCT_HD144056UK01-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a>&nbsp;&nbsp;&nbsp<a title="View Schema" href="../../../Schemas/UKCT_MT144056UK01.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Example" href="../../../Examples/UKCT_EX144056UK01.xml"><img border='0' src='../../../Core/Components_files/image006.gif'></a>&nbsp;</p>
+	<h1><a name=_Toc_Section_3></a>3&nbsp;&nbsp;&nbsp;&nbsp;CRE type to CMET class mapping</h1>	<p class="MsoNormal">For messages that make use of CRE type the mapping of CRE types to CMET 
+	and CMET classes is given in <b>
+	<a href="CMET%20to%20CREtype%20mapping.htm">this table</a></b>.<p class="MsoNormal">
+	Note this can be tested using this <b>
+	<a href="CMETToCRETypeMapping.xml.sch">schematron</a></b><h1><a name=_Toc_Section_4></a>4&nbsp;&nbsp;&nbsp;&nbsp;Changes for version 4.2.00</h1>	<h2><a name=_Toc_Section_4.1></a>4.1&nbsp;&nbsp;&nbsp;&nbsp;<font face="arial">The following CMETS have been added</font></h2>	<div class="Section1">
+		<ul>
+			<li>
+			<p class=TableText><font size="3">R_AgentNPFITPerson - 
+			UKCT_MT120201UK03</font></p></li>
+			<li>
+			<p class=TableText><font size="3">R_AgentNPFITPerson - 
+			UKCT_MT120201UK04</font></p></li>
+			<li>
+			<p class=TableText><font size="3">R_AgentNPFITOrg - 
+			UKCT_MT120401UK02</font></p></li>
+			<li>
+			<p class=TableText><font size="3">R_AgentNPFITOrg - 
+			UKCT_MT120401UK03</font></p></li>
+			<li>
+			<p class=TableText><font size="3">R_AgentNPFITOrgSDS - 
+			UKCT_MT120501UK02</font></p></li>
+			<li>
+			<p class=TableText><font size="3">R_AgentNPFITIdentified - 
+			UKCT_MT120801UK01</font></p></li>
+			<li>
+			<p class=TableText><font size="3">R_Patient - COCT_MT050012UK04</font></p>
+			</li>
+			<li>
+			<p class=TableText><font size="3">R_Patient - COCT_MT050012UK05</font></p>
+			</li>
+		</ul>
+	</div>
+	<p><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p class="MsoNormal">&nbsp;</div>
+</body></html>

@@ -1,0 +1,40 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:cfh-nhs-uk:npfit" xmlns:hl7="urn:hl7-org:v3" targetNamespace="urn:cfh-nhs-uk:npfit" elementFormDefault="qualified">
+	<xs:import namespace="urn:hl7-org:v3" schemaLocation="BatchCommon.xsd"/>
+	<xs:complexType name="BatchControlActItemRespond">
+		<xs:complexContent>
+			<xs:extension base="hl7:BatchControlActRespond">
+				<xs:attribute name="interaction" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>This maps to /hl7:Message/hl7:interactionId@root</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="messageId" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>This maps to /hl7:Message/hl7:id@extension</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="refToMessageId" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>This maps to /npfit:batchControlActEvent/npfit:batchControlActItem@messageId of the parent Batch Request Message</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BatchControlActItemRequest">
+		<xs:complexContent>
+			<xs:extension base="hl7:BatchControlActRequest">
+				<xs:attribute name="interaction" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>This maps to /hl7:Message/hl7:interactionId@root</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="messageId" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>This maps to /hl7:Message/hl7:id@extension</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:hl7-org:v3" elementFormDefault="qualified">
+	<!--
+***************************************************************************
+* XML schema for message type MCCI_MT020000GB02
+* Source information:
+* 
+* Rendered by: 	Static Model Designer
+* Rendered on: 	Fri Dec 07 14:18:07 GMT 2012
+* Version : 	02
+* 
+* 
+* Generated for  XMLITS version NHS CFH XSD ITS Transform 1.0.0
+* 
+* 
+* Copyright (c) 2008,2009,2010  .
+*  All rights reserved.Redistribution and use in source and binary forms,
+*  with or without modification, are permitted provided that the following conditions
+*  are met:
+*  1. Redistributions of source code must retain the above copyright
+*     notice, this list of conditions and the following disclaimer.
+*  2. Redistributions in binary form must reproduce the above copyright
+*     notice, this list of conditions and the following disclaimer in the
+*     documentation and/or other materials provided with the distribution.
+*  3. All advertising materials mentioning features or use of this software
+*     must display the following acknowledgement:
+*       This product includes software developed by .
+*  THIS SOFTWARE IS PROVIDED BY . AND CONTRIBUTORS "AS IS" AND
+*  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+*  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+*  ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+*  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+*  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+*  OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+*  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+*  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+*  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+*  SUCH DAMAGE.
+* 
+***************************************************************************
+-->
+	<xs:annotation>
+		<xs:documentation>
+			<p>RIM :DEFN=UK=RIM=0229R1</p>
+			<p>DATATYPE :DEFN=UV=DT=1.0;DEFN=UK=DT=3.6;</p>
+			<p>VOCABULARY :DEFN=UV=VO=913-20091020;DEFN=UK=VO=7.6;</p>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../dt/infrastructureRoot.xsd"/>
+	<xs:include schemaLocation="../VocabularySchemas/InfVocab.xsd"/>
+	<xs:include schemaLocation="../dt/datatypeflavours.xsd"/>
+	<xs:include schemaLocation="../TemplateSchemas/NPFIT-100020_Role.xsd"/>
+	<xs:element name="BusinessResponseMessage" type="MCCI_MT020000GB02.BusinessResponseMessage"/>
+	<xs:complexType name="MCCI_MT020000GB02.AcknowledgedMessageIdentifier">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="id" type="II.NHS.IdentifierType2" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="controlActEvent" type="MCCI_MT020000GB02.ControlActEvent" nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.Acknowledgement">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="conveyingTransmission" type="MCCI_MT020000GB02.AcknowledgedMessageIdentifier" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="acknowledgementDetail" type="MCCI_MT020000GB02.AcknowledgementDetail1" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="typeCode" type="cs" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.AcknowledgementDetail1">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="code" type="CV" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="text" type="ST" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="typeCode" type="cs" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.Author">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:choice>
+				<xs:group ref="NPFIT-100020_Role"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="typeCode" type="cs" use="required" fixed="AUT"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.Author1">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:choice>
+				<xs:group ref="NPFIT-100020_Role"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="typeCode" type="cs" use="required" fixed="AUT"/>
+		<xs:attribute name="contextControlCode" type="cs" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.BusinessResponseMessage">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="id" type="II.NHS.IdentifierType2" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="creationTime" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:restriction base="TS">
+							<xs:attribute name="value" type="ts" use="required"/>
+							<xs:attribute name="nullFlavor" type="cs_NullFlavor" use="prohibited"/>
+							<xs:attribute name="updateMode" type="cs" use="prohibited"/>
+						</xs:restriction>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="interactionId" type="II.NPfIT.oid.required" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="acknowledgedBy3" type="MCCI_MT020000GB02.Acknowledgement" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="communicationFunction1" type="MCCI_MT020000GB02.CommunicationFunctionRcv" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="communicationFunction" type="MCCI_MT020000GB02.CommunicationFunctionSnd" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="controlActEvent1" type="MCCI_MT020000GB02.ControlActEvent1" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="acknowledgedBy2" type="MCCI_MT020000GB02.ManifestItemAck" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.CommunicationFunctionRcv">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="entity" type="MCCI_MT020000GB02.Entity" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="typeCode" type="cs" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.CommunicationFunctionSnd">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="entity" type="MCCI_MT020000GB02.Entity" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="typeCode" type="cs" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.ControlActEvent">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="author" type="MCCI_MT020000GB02.Author" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="reason" type="MCCI_MT020000GB02.Reason" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="classCode" type="cs" use="required" fixed="CACT"/>
+		<xs:attribute name="moodCode" type="cs" use="required" fixed="EVN"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.ControlActEvent1">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="author" type="MCCI_MT020000GB02.Author1" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="classCode" type="cs" use="required" fixed="CACT"/>
+		<xs:attribute name="moodCode" type="cs" use="required" fixed="EVN"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.DetectedIssueEvent">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="code" type="CD" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="text" type="ST" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="classCode" type="cs" use="required" fixed="ALRT"/>
+		<xs:attribute name="moodCode" type="cs" use="required" fixed="EVN"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.Entity">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="id" type="II.NHS.IdentifierType3" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="classCode" type="cs" use="required" fixed="ENT"/>
+		<xs:attribute name="determinerCode" type="cs" use="required" fixed="INSTANCE"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.ManifestItem">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="id" type="II.NHS.GenericType1" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="controlActEvent" type="MCCI_MT020000GB02.ControlActEvent" nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.ManifestItemAck">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="conveyingTransmission" type="MCCI_MT020000GB02.ManifestItem" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="acknowledgementDetail" type="MCCI_MT020000GB02.ManifestItemAckDetail" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="typeCode" type="cs" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.ManifestItemAckDetail">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="code" type="CV" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="text" type="ST" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="typeCode" type="cs" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MCCI_MT020000GB02.Reason">
+		<xs:sequence>
+			<xs:group ref="InfrastructureRootElementsGroupAll"/>
+			<xs:element name="detectedIssueEvent" type="MCCI_MT020000GB02.DetectedIssueEvent" nillable="true" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InfrastructureRootAttributes"/>
+		<xs:attribute name="typeCode" type="cs" use="required" fixed="RSON"/>
+	</xs:complexType>
+</xs:schema>

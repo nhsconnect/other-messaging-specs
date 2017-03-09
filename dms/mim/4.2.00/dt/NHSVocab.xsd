@@ -1,0 +1,4379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3" targetNamespace="urn:hl7-org:v3" elementFormDefault="qualified">
+	<xs:include schemaLocation="datatypes.xsd"/>
+	<xs:simpleType name="AccessReasonCode_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="07"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AccessReasonCode_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Public interest"/>
+			<xs:enumeration value="Required by statute"/>
+			<xs:enumeration value="Court order"/>
+			<xs:enumeration value="Best interests of patient"/>
+			<xs:enumeration value="Justified through Health &amp; Social Care Act regulations"/>
+			<xs:enumeration value="Other"/>
+			<xs:enumeration value="Express consent to research given"/>
+			<xs:enumeration value="Express consent to clinical audit given"/>
+			<xs:enumeration value="Express consent to financial audit given"/>
+			<xs:enumeration value="Express consent to other audit given"/>
+			<xs:enumeration value="Express consent to public health investigation given"/>
+			<xs:enumeration value="Express consent given for the purposes of service management"/>
+			<xs:enumeration value="Express consent given in order to respond to patient enquiry"/>
+			<xs:enumeration value="Express consent given for other purpose(s)"/>
+			<xs:enumeration value="A colleague outside the team is responding to a patient referral"/>
+			<xs:enumeration value="patient self-referral"/>
+			<xs:enumeration value="registered patient"/>
+			<xs:enumeration value="express patient consent to access"/>
+			<xs:enumeration value="subject access request"/>
+			<xs:enumeration value="court order or other legal demand"/>
+			<xs:enumeration value="patient complaint / litigation"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AccessReasonCode_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_AccessReasonCode">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="AccessReasonCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="AccessReasonCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_AccessReasonCode">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="AccessReasonCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="AccessReasonCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_AccessReasonCode">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="AccessReasonCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="AccessReasonCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_AccessReasonCode">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="AccessReasonCode_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="AcknowledgementDetailType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="ER"/>
+			<xs:enumeration value="WG"/>
+			<xs:enumeration value="IF"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AcknowledgementDetailType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Error"/>
+			<xs:enumeration value="Warning"/>
+			<xs:enumeration value="For Information"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CS_AcknowledgementDetailType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="AcknowledgementDetailType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="AcknowledgementType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="AA"/>
+			<xs:enumeration value="AE"/>
+			<xs:enumeration value="AR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AcknowledgementType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Application Acknowledgement Accept"/>
+			<xs:enumeration value="Application Acknowledgement Error"/>
+			<xs:enumeration value="Application Acknowledgement Reject"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CS_AcknowledgementType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="AcknowledgementType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="AlertCode_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="True"/>
+			<xs:enumeration value="False"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AlertCode_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Yes"/>
+			<xs:enumeration value="Dont Know"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AlertCode_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_AlertCode">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="AlertCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="AlertCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_AlertCode">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="AlertCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="AlertCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_AlertCode">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="AlertCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="AlertCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_AlertCode">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="AlertCode_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="CancellationReason_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="0001"/>
+			<xs:enumeration value="0002"/>
+			<xs:enumeration value="0003"/>
+			<xs:enumeration value="0004"/>
+			<xs:enumeration value="0005"/>
+			<xs:enumeration value="0006"/>
+			<xs:enumeration value="0007"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CancellationReason_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Prescribing Error"/>
+			<xs:enumeration value="Clinical contra-indication"/>
+			<xs:enumeration value="Change to medication treatment regime"/>
+			<xs:enumeration value="Clinical grounds"/>
+			<xs:enumeration value="At the Patients request"/>
+			<xs:enumeration value="At the Pharmacists request"/>
+			<xs:enumeration value="Notification of Death"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CancellationReason_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.27"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_CancellationReason">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="CancellationReason_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="CancellationReason_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_CancellationReason">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="CancellationReason_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="CancellationReason_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_CancellationReason">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="CancellationReason_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="CancellationReason_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_CancellationReason">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="CancellationReason_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="ConfirmationRespType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ConfirmationRespType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Short"/>
+			<xs:enumeration value="Historic"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ConfirmationRespType_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_ConfirmationRespType">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="ConfirmationRespType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="ConfirmationRespType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_ConfirmationRespType">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="ConfirmationRespType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="ConfirmationRespType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_ConfirmationRespType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="ConfirmationRespType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="ConfirmationRespType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_ConfirmationRespType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="ConfirmationRespType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="Consent_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Consent_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Express consent"/>
+			<xs:enumeration value="Express dissent"/>
+			<xs:enumeration value="No"/>
+			<xs:enumeration value="Yes"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Consent_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_Consent">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="Consent_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="Consent_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_Consent">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="Consent_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="Consent_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_Consent">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="Consent_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="Consent_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_Consent">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="Consent_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="CorrespondenceCode_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CorrespondenceCode_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Yes"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CorrespondenceCode_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_CorrespondenceCode">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="CorrespondenceCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="CorrespondenceCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_CorrespondenceCode">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="CorrespondenceCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="CorrespondenceCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_CorrespondenceCode">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="CorrespondenceCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="CorrespondenceCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_CorrespondenceCode">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="CorrespondenceCode_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="DeathNotification_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DeathNotification_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="(Informal) death notice received via an update from a local NHS Organisation such as GP or Trust"/>
+			<xs:enumeration value="(Formal) death notice received from Registrar of Deaths"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DeathNotification_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_DeathNotification">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DeathNotification_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DeathNotification_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_DeathNotification">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DeathNotification_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DeathNotification_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_DeathNotification">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DeathNotification_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DeathNotification_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_DeathNotification">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="DeathNotification_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="DemographicObservationType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="17"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DemographicObservationType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Request response"/>
+			<xs:enumeration value="Serial Change Number"/>
+			<xs:enumeration value="Death notification"/>
+			<xs:enumeration value="Consent to NHS Care Record sharing"/>
+			<xs:enumeration value="Call centre call-back consent"/>
+			<xs:enumeration value="Consent supplementary comments"/>
+			<xs:enumeration value="Healthspace registration"/>
+			<xs:enumeration value="Preferred contact method"/>
+			<xs:enumeration value="Preferred contact times"/>
+			<xs:enumeration value="Matching level"/>
+			<xs:enumeration value="Preferred written communication format"/>
+			<xs:enumeration value="NHAIS registration"/>
+			<xs:enumeration value="Shared secret"/>
+			<xs:enumeration value="Previous NHS contact"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DemographicObservationType_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_DemographicObservationType">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DemographicObservationType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DemographicObservationType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_DemographicObservationType">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DemographicObservationType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DemographicObservationType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_DemographicObservationType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DemographicObservationType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DemographicObservationType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_DemographicObservationType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="DemographicObservationType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="DetailsRespType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DetailsRespType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Simple"/>
+			<xs:enumeration value="Comprehensive"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DetailsRespType_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_DetailsRespType">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DetailsRespType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DetailsRespType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_DetailsRespType">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DetailsRespType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DetailsRespType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_DetailsRespType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DetailsRespType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DetailsRespType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_DetailsRespType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="DetailsRespType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="DetectedIssueQualifier_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="ER"/>
+			<xs:enumeration value="WG"/>
+			<xs:enumeration value="IF"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DetectedIssueQualifier_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Error"/>
+			<xs:enumeration value="Warning"/>
+			<xs:enumeration value="For Information"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DetectedIssueQualifier_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.104"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_DetectedIssueQualifier">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DetectedIssueQualifier_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DetectedIssueQualifier_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_DetectedIssueQualifier">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DetectedIssueQualifier_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DetectedIssueQualifier_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_DetectedIssueQualifier">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DetectedIssueQualifier_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DetectedIssueQualifier_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_DetectedIssueQualifier">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="DetectedIssueQualifier_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="DispenseReturnReason_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="0001"/>
+			<xs:enumeration value="0002"/>
+			<xs:enumeration value="0003"/>
+			<xs:enumeration value="0004"/>
+			<xs:enumeration value="0005"/>
+			<xs:enumeration value="0006"/>
+			<xs:enumeration value="0007"/>
+			<xs:enumeration value="0008"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DispenseReturnReason_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Patient non-attendance"/>
+			<xs:enumeration value="Unable to dispense medication on prescriptions"/>
+			<xs:enumeration value="Patient requested release"/>
+			<xs:enumeration value="Another dispenser requested release on behalf of the patient"/>
+			<xs:enumeration value="Invalid digital signature"/>
+			<xs:enumeration value="Rejected due to version problem"/>
+			<xs:enumeration value="Prescription otherwise invalid or unreadable"/>
+			<xs:enumeration value="Prescription expired"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DispenseReturnReason_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.28"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_DispenseReturnReason">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DispenseReturnReason_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DispenseReturnReason_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_DispenseReturnReason">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DispenseReturnReason_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DispenseReturnReason_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_DispenseReturnReason">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DispenseReturnReason_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DispenseReturnReason_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_DispenseReturnReason">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="DispenseReturnReason_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="DispensingEndorsement_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="LS"/>
+			<xs:enumeration value="AI"/>
+			<xs:enumeration value="BB"/>
+			<xs:enumeration value="IP"/>
+			<xs:enumeration value="MF"/>
+			<xs:enumeration value="NCSO"/>
+			<xs:enumeration value="ND"/>
+			<xs:enumeration value="PC"/>
+			<xs:enumeration value="PNC"/>
+			<xs:enumeration value="RC"/>
+			<xs:enumeration value="XP"/>
+			<xs:enumeration value="ZD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DispensingEndorsement_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Limited Stability"/>
+			<xs:enumeration value="Additional Information -"/>
+			<xs:enumeration value="Broken Bulk"/>
+			<xs:enumeration value="Invoice Price"/>
+			<xs:enumeration value="Measured &amp; Fitted"/>
+			<xs:enumeration value="No Cheaper Stock Obtainable"/>
+			<xs:enumeration value="Not Dispensed"/>
+			<xs:enumeration value="Prescriber Contacted"/>
+			<xs:enumeration value="Prescriber Not Contacted"/>
+			<xs:enumeration value="Rebate Claimed"/>
+			<xs:enumeration value="Out of Pocket Expenses"/>
+			<xs:enumeration value="Zero Discount (List B only)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DispensingEndorsement_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.29"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_DispensingEndorsement">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DispensingEndorsement_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DispensingEndorsement_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_DispensingEndorsement">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DispensingEndorsement_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DispensingEndorsement_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_DispensingEndorsement">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DispensingEndorsement_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DispensingEndorsement_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_DispensingEndorsement">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="DispensingEndorsement_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="DissentOverride_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DissentOverride_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="No override"/>
+			<xs:enumeration value="Access made in the public interest"/>
+			<xs:enumeration value="Access required by statute"/>
+			<xs:enumeration value="Access required by Court Order"/>
+			<xs:enumeration value="Access made in the best interests of a patient who now lacks the mental capacity to give consent, either temporarily (because, for example, they are unconscious) or permanently"/>
+			<xs:enumeration value="Access made in the best interests of a non-competent child patient when the parent or guardian of the child has refused to give consent, and where there is insufficient time to obtain a court order."/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DissentOverride_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.60"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_DissentOverride">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DissentOverride_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DissentOverride_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_DissentOverride">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DissentOverride_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DissentOverride_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_DissentOverride">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DissentOverride_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DissentOverride_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_DissentOverride">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="DissentOverride_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="EhrLocationType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="001"/>
+			<xs:enumeration value="002"/>
+			<xs:enumeration value="003"/>
+			<xs:enumeration value="004"/>
+			<xs:enumeration value="006"/>
+			<xs:enumeration value="007"/>
+			<xs:enumeration value="008"/>
+			<xs:enumeration value="009"/>
+			<xs:enumeration value="010"/>
+			<xs:enumeration value="011"/>
+			<xs:enumeration value="012"/>
+			<xs:enumeration value="013"/>
+			<xs:enumeration value="014"/>
+			<xs:enumeration value="015"/>
+			<xs:enumeration value="016"/>
+			<xs:enumeration value="017"/>
+			<xs:enumeration value="018"/>
+			<xs:enumeration value="019"/>
+			<xs:enumeration value="020"/>
+			<xs:enumeration value="021"/>
+			<xs:enumeration value="022"/>
+			<xs:enumeration value="023"/>
+			<xs:enumeration value="024"/>
+			<xs:enumeration value="025"/>
+			<xs:enumeration value="026"/>
+			<xs:enumeration value="510"/>
+			<xs:enumeration value="520"/>
+			<xs:enumeration value="990"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EhrLocationType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Client's or Patient's Home"/>
+			<xs:enumeration value="Health Centre"/>
+			<xs:enumeration value="Other GMP Premises"/>
+			<xs:enumeration value="Ward on NHS Hospital Site"/>
+			<xs:enumeration value="Hospice"/>
+			<xs:enumeration value="Other voluntary or private hospital or nursing home"/>
+			<xs:enumeration value="Group Home managed by the NHS"/>
+			<xs:enumeration value="Group home managed by local authority"/>
+			<xs:enumeration value="Group Home managed by voluntary or private agents"/>
+			<xs:enumeration value="Other residential care homes managed by local authority"/>
+			<xs:enumeration value="Other residential care home man voluntary/private agents"/>
+			<xs:enumeration value="NHS day care facility on NHS hospital site"/>
+			<xs:enumeration value="NHS day care facility on other site"/>
+			<xs:enumeration value="Day centre managed by local authority"/>
+			<xs:enumeration value="Day centre managed by voluntary or private agents"/>
+			<xs:enumeration value="NHS consultant clinic premises on a NHS hospital site"/>
+			<xs:enumeration value="NHS consultant clinic premises off a NHS hospital site"/>
+			<xs:enumeration value="Health clinic managed by the NHS"/>
+			<xs:enumeration value="Health Clinic managed by voluntary or private agents"/>
+			<xs:enumeration value="Resource centre on NHS hospital site"/>
+			<xs:enumeration value="Resource centre managed by the NHS off NHS hospital site"/>
+			<xs:enumeration value="Resource centre managed by local authority"/>
+			<xs:enumeration value="Resource centre managed by voluntary or private agents"/>
+			<xs:enumeration value="Professional staff group department on NHS hospital site"/>
+			<xs:enumeration value="Professional staff group dept manage NHS off hosp site"/>
+			<xs:enumeration value="Antenatal Clinic"/>
+			<xs:enumeration value="Postnatal Clinic"/>
+			<xs:enumeration value="Joint Consultant Clinics"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CS_EhrLocationType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="EhrLocationType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="HealthspaceRegistration_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HealthspaceRegistration_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Not registered for use"/>
+			<xs:enumeration value="Registered for use"/>
+			<xs:enumeration value="Provisional registration granted"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HealthspaceRegistration_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_HealthspaceRegistration">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="HealthspaceRegistration_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="HealthspaceRegistration_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_HealthspaceRegistration">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="HealthspaceRegistration_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="HealthspaceRegistration_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_HealthspaceRegistration">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="HealthspaceRegistration_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="HealthspaceRegistration_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_HealthspaceRegistration">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="HealthspaceRegistration_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="HistoricDataIndicator_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HistoricDataIndicator_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="No history required"/>
+			<xs:enumeration value="Retrieve all historic information"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HistoricDataIndicator_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.36"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_HistoricDataIndicator">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="HistoricDataIndicator_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="HistoricDataIndicator_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_HistoricDataIndicator">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="HistoricDataIndicator_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="HistoricDataIndicator_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_HistoricDataIndicator">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="HistoricDataIndicator_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="HistoricDataIndicator_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_HistoricDataIndicator">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="HistoricDataIndicator_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="HL7StandardVersionCode_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="V3NPfIT2.0"/>
+			<xs:enumeration value="V3NPfIT2.1"/>
+			<xs:enumeration value="V3NPfIT2.2"/>
+			<xs:enumeration value="V3NPfIT2.3"/>
+			<xs:enumeration value="V3NPfIT3.0"/>
+			<xs:enumeration value="V3NPfIT3.1"/>
+			<xs:enumeration value="V3NPfIT3.1.01"/>
+			<xs:enumeration value="V3NPfIT3.1.02"/>
+			<xs:enumeration value="V3NPfIT3.1.03"/>
+			<xs:enumeration value="V3NPfIT3.1.04"/>
+			<xs:enumeration value="V3NPfIT3.1.05"/>
+			<xs:enumeration value="V3NPfIT3.1.06"/>
+			<xs:enumeration value="V3NPfIT3.1.07"/>
+			<xs:enumeration value="V3NPfIT3.1.08"/>
+			<xs:enumeration value="V3NPfIT3.1.09"/>
+			<xs:enumeration value="V3NPfIT3.1.10"/>
+			<xs:enumeration value="V3NPfIT4.0.0"/>
+			<xs:enumeration value="V3NPfIT4."/>
+			<xs:enumeration value="V3NPfIT4.1.01"/>
+			<xs:enumeration value="V3NPfIT4.1.02"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HL7StandardVersionCode_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+			<xs:enumeration value="Overall version description for UK use"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CS_HL7StandardVersionCode">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="HL7StandardVersionCode_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="InformationSensitivity_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="Y"/>
+			<xs:enumeration value="B"/>
+			<xs:enumeration value="S"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InformationSensitivity_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Stop noted"/>
+			<xs:enumeration value="Business reason"/>
+			<xs:enumeration value="Sensitive"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InformationSensitivity_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_InformationSensitivity">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="InformationSensitivity_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="InformationSensitivity_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_InformationSensitivity">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="InformationSensitivity_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="InformationSensitivity_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_InformationSensitivity">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="InformationSensitivity_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="InformationSensitivity_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_InformationSensitivity">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="InformationSensitivity_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="Interpretation_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="HI"/>
+			<xs:enumeration value="LO"/>
+			<xs:enumeration value="OR"/>
+			<xs:enumeration value="PA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Interpretation_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Above high reference limit"/>
+			<xs:enumeration value="Below low reference limit"/>
+			<xs:enumeration value="Outside reference range"/>
+			<xs:enumeration value="Potentially abnormal"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Interpretation_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_Interpretation">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="Interpretation_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="Interpretation_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_Interpretation">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="Interpretation_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="Interpretation_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_Interpretation">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="Interpretation_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="Interpretation_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_Interpretation">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="Interpretation_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="InterpreterRequiredIndicator_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InterpreterRequiredIndicator_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Interpreter not required"/>
+			<xs:enumeration value="Interpreter required"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InterpreterRequiredIndicator_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.39"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_InterpreterRequiredIndicator">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="InterpreterRequiredIndicator_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="InterpreterRequiredIndicator_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_InterpreterRequiredIndicator">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="InterpreterRequiredIndicator_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="InterpreterRequiredIndicator_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_InterpreterRequiredIndicator">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="InterpreterRequiredIndicator_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="InterpreterRequiredIndicator_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_InterpreterRequiredIndicator">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="InterpreterRequiredIndicator_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="ItemStatus_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="0001"/>
+			<xs:enumeration value="0002"/>
+			<xs:enumeration value="0003"/>
+			<xs:enumeration value="0004"/>
+			<xs:enumeration value="0005"/>
+			<xs:enumeration value="0006"/>
+			<xs:enumeration value="0007"/>
+			<xs:enumeration value="0008"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ItemStatus_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Item fully dispensed"/>
+			<xs:enumeration value="Item not dispensed"/>
+			<xs:enumeration value="Item dispensed - partial"/>
+			<xs:enumeration value="Item not dispensed owing"/>
+			<xs:enumeration value="Item cancelled"/>
+			<xs:enumeration value="Expired"/>
+			<xs:enumeration value="Item to be dispensed"/>
+			<xs:enumeration value="Item with dispenser"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ItemStatus_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.23"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_ItemStatus">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="ItemStatus_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="ItemStatus_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_ItemStatus">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="ItemStatus_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="ItemStatus_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_ItemStatus">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="ItemStatus_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="ItemStatus_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_ItemStatus">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="ItemStatus_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="JobRoleName_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="NR0010"/>
+			<xs:enumeration value="NR0020"/>
+			<xs:enumeration value="NR0030"/>
+			<xs:enumeration value="NR0040"/>
+			<xs:enumeration value="NR0050"/>
+			<xs:enumeration value="NR0055"/>
+			<xs:enumeration value="NR0060"/>
+			<xs:enumeration value="NR0070"/>
+			<xs:enumeration value="NR0080"/>
+			<xs:enumeration value="NR0090"/>
+			<xs:enumeration value="NR0100"/>
+			<xs:enumeration value="NR0110"/>
+			<xs:enumeration value="NR0120"/>
+			<xs:enumeration value="NR0130"/>
+			<xs:enumeration value="NR0140"/>
+			<xs:enumeration value="NR0150"/>
+			<xs:enumeration value="NR0160"/>
+			<xs:enumeration value="NR0170"/>
+			<xs:enumeration value="NR0180"/>
+			<xs:enumeration value="NR0190"/>
+			<xs:enumeration value="NR0200"/>
+			<xs:enumeration value="NR0210"/>
+			<xs:enumeration value="NR0215"/>
+			<xs:enumeration value="NR0220"/>
+			<xs:enumeration value="NR0230"/>
+			<xs:enumeration value="NR0240"/>
+			<xs:enumeration value="NR0243"/>
+			<xs:enumeration value="NR0247"/>
+			<xs:enumeration value="NR0250"/>
+			<xs:enumeration value="NR0260"/>
+			<xs:enumeration value="NR0270"/>
+			<xs:enumeration value="NR0280"/>
+			<xs:enumeration value="NR0290"/>
+			<xs:enumeration value="NR0295"/>
+			<xs:enumeration value="NR0300"/>
+			<xs:enumeration value="NR0310"/>
+			<xs:enumeration value="NR0320"/>
+			<xs:enumeration value="NR0330"/>
+			<xs:enumeration value="NR0340"/>
+			<xs:enumeration value="NR0350"/>
+			<xs:enumeration value="NR0360"/>
+			<xs:enumeration value="NR0370"/>
+			<xs:enumeration value="NR0380"/>
+			<xs:enumeration value="NR0390"/>
+			<xs:enumeration value="NR0400"/>
+			<xs:enumeration value="NR0410"/>
+			<xs:enumeration value="NR0420"/>
+			<xs:enumeration value="NR0430"/>
+			<xs:enumeration value="NR0440"/>
+			<xs:enumeration value="NR0450"/>
+			<xs:enumeration value="NR0460"/>
+			<xs:enumeration value="NR0470"/>
+			<xs:enumeration value="NR0480"/>
+			<xs:enumeration value="NR0490"/>
+			<xs:enumeration value="NR0500"/>
+			<xs:enumeration value="NR0510"/>
+			<xs:enumeration value="NR0520"/>
+			<xs:enumeration value="NR0530"/>
+			<xs:enumeration value="NR0540"/>
+			<xs:enumeration value="NR0550"/>
+			<xs:enumeration value="NR0560"/>
+			<xs:enumeration value="NR0570"/>
+			<xs:enumeration value="NR0580"/>
+			<xs:enumeration value="NR0590"/>
+			<xs:enumeration value="NR0600"/>
+			<xs:enumeration value="NR0610"/>
+			<xs:enumeration value="NR0620"/>
+			<xs:enumeration value="NR0630"/>
+			<xs:enumeration value="NR0640"/>
+			<xs:enumeration value="NR0650"/>
+			<xs:enumeration value="NR0660"/>
+			<xs:enumeration value="NR0670"/>
+			<xs:enumeration value="NR0680"/>
+			<xs:enumeration value="NR0690"/>
+			<xs:enumeration value="NR0700"/>
+			<xs:enumeration value="NR0710"/>
+			<xs:enumeration value="NR0720"/>
+			<xs:enumeration value="NR0730"/>
+			<xs:enumeration value="NR0740"/>
+			<xs:enumeration value="NR0750"/>
+			<xs:enumeration value="NR0760"/>
+			<xs:enumeration value="NR0770"/>
+			<xs:enumeration value="NR0780"/>
+			<xs:enumeration value="NR0790"/>
+			<xs:enumeration value="NR0800"/>
+			<xs:enumeration value="NR0810"/>
+			<xs:enumeration value="NR0820"/>
+			<xs:enumeration value="NR0830"/>
+			<xs:enumeration value="NR0840"/>
+			<xs:enumeration value="NR0850"/>
+			<xs:enumeration value="NR0860"/>
+			<xs:enumeration value="NR0870"/>
+			<xs:enumeration value="NR0880"/>
+			<xs:enumeration value="NR0890"/>
+			<xs:enumeration value="NR0900"/>
+			<xs:enumeration value="NR0910"/>
+			<xs:enumeration value="NR0920"/>
+			<xs:enumeration value="NR0930"/>
+			<xs:enumeration value="NR0940"/>
+			<xs:enumeration value="NR0950"/>
+			<xs:enumeration value="NR0955"/>
+			<xs:enumeration value="NR0960"/>
+			<xs:enumeration value="NR0965"/>
+			<xs:enumeration value="NR0970"/>
+			<xs:enumeration value="NR0975"/>
+			<xs:enumeration value="NR0980"/>
+			<xs:enumeration value="NR0985"/>
+			<xs:enumeration value="NR0990"/>
+			<xs:enumeration value="NR1000"/>
+			<xs:enumeration value="NR1010"/>
+			<xs:enumeration value="NR1020"/>
+			<xs:enumeration value="NR1030"/>
+			<xs:enumeration value="NR1040"/>
+			<xs:enumeration value="NR1050"/>
+			<xs:enumeration value="NR1060"/>
+			<xs:enumeration value="NR1070"/>
+			<xs:enumeration value="NR1080"/>
+			<xs:enumeration value="NR1090"/>
+			<xs:enumeration value="NR1100"/>
+			<xs:enumeration value="NR1110"/>
+			<xs:enumeration value="NR1120"/>
+			<xs:enumeration value="NR1130"/>
+			<xs:enumeration value="NR1140"/>
+			<xs:enumeration value="NR1150"/>
+			<xs:enumeration value="NR1160"/>
+			<xs:enumeration value="NR1170"/>
+			<xs:enumeration value="NR1180"/>
+			<xs:enumeration value="NR1190"/>
+			<xs:enumeration value="NR1200"/>
+			<xs:enumeration value="NR1210"/>
+			<xs:enumeration value="NR1220"/>
+			<xs:enumeration value="NR1230"/>
+			<xs:enumeration value="NR1240"/>
+			<xs:enumeration value="NR1250"/>
+			<xs:enumeration value="NR1260"/>
+			<xs:enumeration value="NR1270"/>
+			<xs:enumeration value="NR1280"/>
+			<xs:enumeration value="NR1290"/>
+			<xs:enumeration value="NR1300"/>
+			<xs:enumeration value="NR1310"/>
+			<xs:enumeration value="NR1320"/>
+			<xs:enumeration value="NR1330"/>
+			<xs:enumeration value="NR1340"/>
+			<xs:enumeration value="NR1350"/>
+			<xs:enumeration value="NR1360"/>
+			<xs:enumeration value="NR1370"/>
+			<xs:enumeration value="NR1380"/>
+			<xs:enumeration value="NR1390"/>
+			<xs:enumeration value="NR1400"/>
+			<xs:enumeration value="NR1410"/>
+			<xs:enumeration value="NR1420"/>
+			<xs:enumeration value="NR1430"/>
+			<xs:enumeration value="NR1440"/>
+			<xs:enumeration value="NR1450"/>
+			<xs:enumeration value="NR1460"/>
+			<xs:enumeration value="NR1470"/>
+			<xs:enumeration value="NR1480"/>
+			<xs:enumeration value="NR1490"/>
+			<xs:enumeration value="NR1500"/>
+			<xs:enumeration value="NR1510"/>
+			<xs:enumeration value="NR1520"/>
+			<xs:enumeration value="NR1530"/>
+			<xs:enumeration value="NR1540"/>
+			<xs:enumeration value="NR1543"/>
+			<xs:enumeration value="NR1547"/>
+			<xs:enumeration value="NR1550"/>
+			<xs:enumeration value="NR1560"/>
+			<xs:enumeration value="NR1570"/>
+			<xs:enumeration value="NR1580"/>
+			<xs:enumeration value="NR1590"/>
+			<xs:enumeration value="NR1600"/>
+			<xs:enumeration value="NR1610"/>
+			<xs:enumeration value="NR1620"/>
+			<xs:enumeration value="NR1630"/>
+			<xs:enumeration value="NR1640"/>
+			<xs:enumeration value="NR1650"/>
+			<xs:enumeration value="NR1660"/>
+			<xs:enumeration value="NR1670"/>
+			<xs:enumeration value="NR1680"/>
+			<xs:enumeration value="NR1690"/>
+			<xs:enumeration value="NR1700"/>
+			<xs:enumeration value="NR1710"/>
+			<xs:enumeration value="NR1720"/>
+			<xs:enumeration value="NR1730"/>
+			<xs:enumeration value="NR1740"/>
+			<xs:enumeration value="NR1750"/>
+			<xs:enumeration value="NR1760"/>
+			<xs:enumeration value="NR1770"/>
+			<xs:enumeration value="NR1780"/>
+			<xs:enumeration value="NR1790"/>
+			<xs:enumeration value="NR1800"/>
+			<xs:enumeration value="NR1810"/>
+			<xs:enumeration value="NR1820"/>
+			<xs:enumeration value="NR1830"/>
+			<xs:enumeration value="NR1840"/>
+			<xs:enumeration value="NR1850"/>
+			<xs:enumeration value="NR1860"/>
+			<xs:enumeration value="NR1870"/>
+			<xs:enumeration value="NR1880"/>
+			<xs:enumeration value="NR1890"/>
+			<xs:enumeration value="NR1900"/>
+			<xs:enumeration value="NR1910"/>
+			<xs:enumeration value="NR1920"/>
+			<xs:enumeration value="NR1930"/>
+			<xs:enumeration value="NR1940"/>
+			<xs:enumeration value="NR1950"/>
+			<xs:enumeration value="NR1960"/>
+			<xs:enumeration value="NR1970"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="JobRoleName_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Medical Director"/>
+			<xs:enumeration value="Clinical Director - Medical"/>
+			<xs:enumeration value="Professor"/>
+			<xs:enumeration value="Senior Lecturer"/>
+			<xs:enumeration value="Consultant"/>
+			<xs:enumeration value="Dental surgeon acting as Hospital Consultant"/>
+			<xs:enumeration value="Special salary scale in Public Health Medicine"/>
+			<xs:enumeration value="Associate Specialist"/>
+			<xs:enumeration value="Staff Grade"/>
+			<xs:enumeration value="Hospital Practitioner"/>
+			<xs:enumeration value="Clinical Assistant"/>
+			<xs:enumeration value="Specialist Registrar"/>
+			<xs:enumeration value="Senior Registrar (Closed )"/>
+			<xs:enumeration value="Registrar (Closed)"/>
+			<xs:enumeration value="Senior House Officer"/>
+			<xs:enumeration value="House Officer - Pre Registration"/>
+			<xs:enumeration value="House Officer - Post Registration"/>
+			<xs:enumeration value="Trust Grade Doctor - House Officer level"/>
+			<xs:enumeration value="Trust Grade Doctor - SHO level"/>
+			<xs:enumeration value="Trust Grade Doctor - Specialist Registrar level"/>
+			<xs:enumeration value="Trust Grade Doctor - Career Grade level"/>
+			<xs:enumeration value="Director of Public Health"/>
+			<xs:enumeration value="Asst. Clinical Medical Officer"/>
+			<xs:enumeration value="Clinical Medical Officer"/>
+			<xs:enumeration value="Senior Clinical Medical Officer"/>
+			<xs:enumeration value="'Other' Community Health Service"/>
+			<xs:enumeration value="Other' Community Health Service - Social Care Worker"/>
+			<xs:enumeration value="Other' Community Health Service - Admin Clerk"/>
+			<xs:enumeration value="General Dental Practitioner"/>
+			<xs:enumeration value="General Medical Practitioner"/>
+			<xs:enumeration value="Salaried General Practitioner"/>
+			<xs:enumeration value="Regional Dental Officer"/>
+			<xs:enumeration value="Dental Clinical Director - Dental"/>
+			<xs:enumeration value="Dental Assistant Clinical Director"/>
+			<xs:enumeration value="Dental Officer"/>
+			<xs:enumeration value="Senior Dental Officer"/>
+			<xs:enumeration value="Salaried Dental Practitioner"/>
+			<xs:enumeration value="Student Nurse - Adult Branch"/>
+			<xs:enumeration value="Student Nurse - Child Branch"/>
+			<xs:enumeration value="Student Nurse - Mental Health Branch"/>
+			<xs:enumeration value="Student Nurse - Learning Disabilities Branch"/>
+			<xs:enumeration value="Student Midwife"/>
+			<xs:enumeration value="Student Health Visitor"/>
+			<xs:enumeration value="Student District Nurse"/>
+			<xs:enumeration value="Student School Nurse"/>
+			<xs:enumeration value="Student Practice Nurse"/>
+			<xs:enumeration value="Student Occupational Health Nurse"/>
+			<xs:enumeration value="Student Community Paediatric Nurse"/>
+			<xs:enumeration value="Student Community Mental Health Nurse"/>
+			<xs:enumeration value="Student Community Learning Disabilities Nurse"/>
+			<xs:enumeration value="Student Chiropodist"/>
+			<xs:enumeration value="Student Dietitian"/>
+			<xs:enumeration value="Student Occupational Therapist"/>
+			<xs:enumeration value="Student Orthoptist"/>
+			<xs:enumeration value="Student Physiotherapist"/>
+			<xs:enumeration value="Student Radiographer - Diagnostic"/>
+			<xs:enumeration value="Student Radiographer - Therapeutic"/>
+			<xs:enumeration value="Student Speech &amp; Language Therapist"/>
+			<xs:enumeration value="Art, Music &amp; Drama Student"/>
+			<xs:enumeration value="Student Psychotherapist"/>
+			<xs:enumeration value="Director of Nursing"/>
+			<xs:enumeration value="Nurse Consultant"/>
+			<xs:enumeration value="Nurse Manager"/>
+			<xs:enumeration value="Modern Matron"/>
+			<xs:enumeration value="Specialist Nurse Practitioner"/>
+			<xs:enumeration value="Sister/Charge Nurse"/>
+			<xs:enumeration value="Staff Nurse"/>
+			<xs:enumeration value="Enrolled Nurse"/>
+			<xs:enumeration value="Midwife - Consultant"/>
+			<xs:enumeration value="Midwife - Specialist Practitioner"/>
+			<xs:enumeration value="Midwife - Manager"/>
+			<xs:enumeration value="Midwife - Sister/Charge Nurse"/>
+			<xs:enumeration value="Midwife"/>
+			<xs:enumeration value="Community Practitioner"/>
+			<xs:enumeration value="Community Nurse"/>
+			<xs:enumeration value="Art Therapist"/>
+			<xs:enumeration value="Art Therapist Consultant"/>
+			<xs:enumeration value="Art Therapist Manager"/>
+			<xs:enumeration value="Art Therapist Specialist Practitioner"/>
+			<xs:enumeration value="Chiropodist/Podiatrist"/>
+			<xs:enumeration value="Chiropodist/Podiatrist Consultant"/>
+			<xs:enumeration value="Chiropodist/Podiatrist Manager"/>
+			<xs:enumeration value="Chiropodist/Podiatrist Specialist Practitioner"/>
+			<xs:enumeration value="Dietitian"/>
+			<xs:enumeration value="Dietitian Consultant"/>
+			<xs:enumeration value="Dietitian Manager"/>
+			<xs:enumeration value="Dietitian Specialist Practitioner"/>
+			<xs:enumeration value="Drama Therapist"/>
+			<xs:enumeration value="Drama Therapist Consultant"/>
+			<xs:enumeration value="Drama Therapist Manager"/>
+			<xs:enumeration value="Drama Therapist Specialist Practitioner"/>
+			<xs:enumeration value="Multi Therapist"/>
+			<xs:enumeration value="Multi Therapist Consultant"/>
+			<xs:enumeration value="Multi Therapist Manager"/>
+			<xs:enumeration value="Multi Therapist Specialist Practitioner"/>
+			<xs:enumeration value="Music Therapist"/>
+			<xs:enumeration value="Music Therapist Consultant"/>
+			<xs:enumeration value="Music Therapist Manager"/>
+			<xs:enumeration value="Music Therapist Specialist Practitioner"/>
+			<xs:enumeration value="Occupational Therapist"/>
+			<xs:enumeration value="Speech &amp; Language Therapist"/>
+			<xs:enumeration value="Occupational Therapist Consultant"/>
+			<xs:enumeration value="Speech &amp; Language Therapist Consultant"/>
+			<xs:enumeration value="Occupational Therapist Manager"/>
+			<xs:enumeration value="Speech &amp; Language Therapist Manager"/>
+			<xs:enumeration value="Occupational Therapy Specialist Practitioner"/>
+			<xs:enumeration value="Speech &amp; Language Therapist Specialist Practitioner"/>
+			<xs:enumeration value="Orthoptist"/>
+			<xs:enumeration value="Orthoptist Consultant"/>
+			<xs:enumeration value="Orthoptist Manager"/>
+			<xs:enumeration value="Orthoptist Specialist Practitioner"/>
+			<xs:enumeration value="Orthotist"/>
+			<xs:enumeration value="Orthotist Consultant"/>
+			<xs:enumeration value="Orthotist Manager"/>
+			<xs:enumeration value="Orthotist Specialist Practitioner"/>
+			<xs:enumeration value="Paramedic"/>
+			<xs:enumeration value="Paramedic Consultant"/>
+			<xs:enumeration value="Paramedic Manager"/>
+			<xs:enumeration value="Paramedic Specialist Practitioner"/>
+			<xs:enumeration value="Physiotherapist"/>
+			<xs:enumeration value="Physiotherapist Consultant"/>
+			<xs:enumeration value="Physiotherapist Manager"/>
+			<xs:enumeration value="Physiotherapist Specialist Practitioner"/>
+			<xs:enumeration value="Prosthetist"/>
+			<xs:enumeration value="Prosthetist Consultant"/>
+			<xs:enumeration value="Prosthetist Manager"/>
+			<xs:enumeration value="Prosthetist Specialist Practitioner"/>
+			<xs:enumeration value="Radiographer - Diagnostic"/>
+			<xs:enumeration value="Radiographer - Diagnostic, Consultant"/>
+			<xs:enumeration value="Radiographer - Diagnostic, Manager"/>
+			<xs:enumeration value="Radiographer - Diagnostic, Specialist Practitioner"/>
+			<xs:enumeration value="Radiographer - Therapeutic"/>
+			<xs:enumeration value="Radiographer - Therapeutic, Consultant"/>
+			<xs:enumeration value="Radiographer - Therapeutic, Manager"/>
+			<xs:enumeration value="Radiographer - Therapeutic, Specialist Practitioner"/>
+			<xs:enumeration value="Clinical Director"/>
+			<xs:enumeration value="Optometrist"/>
+			<xs:enumeration value="Pharmacist"/>
+			<xs:enumeration value="Psychotherapist"/>
+			<xs:enumeration value="Clinical Psychologist"/>
+			<xs:enumeration value="Chaplain"/>
+			<xs:enumeration value="Social Worker"/>
+			<xs:enumeration value="Approved Social Worker"/>
+			<xs:enumeration value="Youth Worker"/>
+			<xs:enumeration value="Specialist Practitioner"/>
+			<xs:enumeration value="Practitioner"/>
+			<xs:enumeration value="Technician - PS&amp;T"/>
+			<xs:enumeration value="Osteopath"/>
+			<xs:enumeration value="Healthcare Scientist"/>
+			<xs:enumeration value="Consultant Healthcare Scientist"/>
+			<xs:enumeration value="Biomedical Scientist"/>
+			<xs:enumeration value="Technician - Healthcare Scientists"/>
+			<xs:enumeration value="Therapist"/>
+			<xs:enumeration value="Health Care Support Worker"/>
+			<xs:enumeration value="Social Care Support Worker"/>
+			<xs:enumeration value="Home Help"/>
+			<xs:enumeration value="Healthcare Assistant"/>
+			<xs:enumeration value="Nursery Nurse"/>
+			<xs:enumeration value="Play Therapist"/>
+			<xs:enumeration value="Play Specialist"/>
+			<xs:enumeration value="Technician - Add'l Clinical Services"/>
+			<xs:enumeration value="Technical Instructor"/>
+			<xs:enumeration value="Associate Practitioner"/>
+			<xs:enumeration value="Associate Practitioner - Nurse"/>
+			<xs:enumeration value="Associate Practitioner - General Practitioner"/>
+			<xs:enumeration value="Counsellor"/>
+			<xs:enumeration value="Helper/Assistant"/>
+			<xs:enumeration value="Dental Surgery Assistant"/>
+			<xs:enumeration value="Medical Laboratory Assistant"/>
+			<xs:enumeration value="Phlebotomist"/>
+			<xs:enumeration value="Cytoscreener"/>
+			<xs:enumeration value="Student Technician"/>
+			<xs:enumeration value="Trainee Scientist"/>
+			<xs:enumeration value="Trainee Practitioner"/>
+			<xs:enumeration value="Nursing Cadet"/>
+			<xs:enumeration value="Healthcare Cadet"/>
+			<xs:enumeration value="Pre-reg Pharmacist"/>
+			<xs:enumeration value="Assistant Psychologist"/>
+			<xs:enumeration value="Assistant Psychotherapist"/>
+			<xs:enumeration value="Call Operator"/>
+			<xs:enumeration value="Gateway Worker"/>
+			<xs:enumeration value="Support, Time, Recovery Worker"/>
+			<xs:enumeration value="Clerical Worker"/>
+			<xs:enumeration value="Receptionist"/>
+			<xs:enumeration value="Secretary"/>
+			<xs:enumeration value="Personal Assistant"/>
+			<xs:enumeration value="Medical Secretary"/>
+			<xs:enumeration value="Officer"/>
+			<xs:enumeration value="Manager"/>
+			<xs:enumeration value="Senior Manager"/>
+			<xs:enumeration value="Technician - Admin &amp; Clerical"/>
+			<xs:enumeration value="Accountant"/>
+			<xs:enumeration value="Librarian"/>
+			<xs:enumeration value="Interpreter"/>
+			<xs:enumeration value="Analyst"/>
+			<xs:enumeration value="Adviser"/>
+			<xs:enumeration value="Researcher"/>
+			<xs:enumeration value="Control Assistant"/>
+			<xs:enumeration value="Architect"/>
+			<xs:enumeration value="Lawyer"/>
+			<xs:enumeration value="Surveyor"/>
+			<xs:enumeration value="Chair"/>
+			<xs:enumeration value="Chief Executive"/>
+			<xs:enumeration value="Finance Director"/>
+			<xs:enumeration value="Other Executive Director"/>
+			<xs:enumeration value="Board Level Director"/>
+			<xs:enumeration value="Non Executive Director"/>
+			<xs:enumeration value="Childcare Co-ordinator"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="JobRoleName_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.124"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_JobRoleName">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="JobRoleName_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="JobRoleName_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_JobRoleName">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="JobRoleName_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="JobRoleName_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_JobRoleName">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="JobRoleName_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="JobRoleName_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_JobRoleName">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="JobRoleName_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="LRType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="07"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LRType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Subject Access Request"/>
+			<xs:enumeration value="Responding to Patient Complaint"/>
+			<xs:enumeration value="Granted to Colleague by User"/>
+			<xs:enumeration value="Express consent"/>
+			<xs:enumeration value="Court Order"/>
+			<xs:enumeration value="Referral"/>
+			<xs:enumeration value="Patient Registration"/>
+			<xs:enumeration value="Self Claimed Relationship"/>
+			<xs:enumeration value="Patient Self-referral"/>
+			<xs:enumeration value="Other"/>
+			<xs:enumeration value="General Practice Registration"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LRType_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_LRType">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="LRType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="LRType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_LRType">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="LRType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="LRType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_LRType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="LRType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="LRType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_LRType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="LRType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="ManifestItemType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="interaction"/>
+			<xs:enumeration value="batchSeqNo"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ManifestItemType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Interaction id of the payload item"/>
+			<xs:enumeration value="batch sequence number of the payload item"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CS_ManifestItemType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="ManifestItemType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="NhaisRegistration_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="X"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NhaisRegistration_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="No current NHAIS posting"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NhaisRegistration_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_NhaisRegistration">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="NhaisRegistration_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="NhaisRegistration_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_NhaisRegistration">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="NhaisRegistration_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="NhaisRegistration_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_NhaisRegistration">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="NhaisRegistration_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="NhaisRegistration_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_NhaisRegistration">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="NhaisRegistration_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="NOKCode_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NOKCode_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Yes"/>
+			<xs:enumeration value="No"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NOKCode_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.13"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_NOKCode">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="NOKCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="NOKCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_NOKCode">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="NOKCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="NOKCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_NOKCode">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="NOKCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="NOKCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_NOKCode">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="NOKCode_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="NotDispensedReason_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="0001"/>
+			<xs:enumeration value="0002"/>
+			<xs:enumeration value="0003"/>
+			<xs:enumeration value="0004"/>
+			<xs:enumeration value="0005"/>
+			<xs:enumeration value="0006"/>
+			<xs:enumeration value="0007"/>
+			<xs:enumeration value="0009"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NotDispensedReason_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Not required as instructed by the patient"/>
+			<xs:enumeration value="Clinically unsuitable"/>
+			<xs:enumeration value="Owings note issued to patient"/>
+			<xs:enumeration value="Prescription cancellation"/>
+			<xs:enumeration value="Prescription cancellation due to death"/>
+			<xs:enumeration value="Illegal NHS prescription"/>
+			<xs:enumeration value="Prescribed out of scope item"/>
+			<xs:enumeration value="Not allowed on FP10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NotDispensedReason_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.31"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_NotDispensedReason">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="NotDispensedReason_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="NotDispensedReason_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_NotDispensedReason">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="NotDispensedReason_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="NotDispensedReason_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_NotDispensedReason">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="NotDispensedReason_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="NotDispensedReason_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_NotDispensedReason">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="NotDispensedReason_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="OrganizationRoleName_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="ALL"/>
+			<xs:enumeration value="AMB"/>
+			<xs:enumeration value="AMPUT"/>
+			<xs:enumeration value="BMTC"/>
+			<xs:enumeration value="BMTU"/>
+			<xs:enumeration value="BREAST"/>
+			<xs:enumeration value="CANC"/>
+			<xs:enumeration value="CAPC"/>
+			<xs:enumeration value="CARD"/>
+			<xs:enumeration value="CATH"/>
+			<xs:enumeration value="CCU"/>
+			<xs:enumeration value="CHEST"/>
+			<xs:enumeration value="CHR"/>
+			<xs:enumeration value="COAG"/>
+			<xs:enumeration value="CRS"/>
+			<xs:enumeration value="CVDX"/>
+			<xs:enumeration value="DADDR"/>
+			<xs:enumeration value="DERM"/>
+			<xs:enumeration value="DX"/>
+			<xs:enumeration value="ECHO"/>
+			<xs:enumeration value="ENDO"/>
+			<xs:enumeration value="ENDOS"/>
+			<xs:enumeration value="ENT"/>
+			<xs:enumeration value="EPIL"/>
+			<xs:enumeration value="ER"/>
+			<xs:enumeration value="ETU"/>
+			<xs:enumeration value="FMC"/>
+			<xs:enumeration value="GACH"/>
+			<xs:enumeration value="GI"/>
+			<xs:enumeration value="GIDX"/>
+			<xs:enumeration value="GIM"/>
+			<xs:enumeration value="GYN"/>
+			<xs:enumeration value="HAND"/>
+			<xs:enumeration value="HD"/>
+			<xs:enumeration value="HEM"/>
+			<xs:enumeration value="HOSP"/>
+			<xs:enumeration value="HTN"/>
+			<xs:enumeration value="HU"/>
+			<xs:enumeration value="ICU"/>
+			<xs:enumeration value="IEC"/>
+			<xs:enumeration value="INFD"/>
+			<xs:enumeration value="INV"/>
+			<xs:enumeration value="LYMPH"/>
+			<xs:enumeration value="MGEN"/>
+			<xs:enumeration value="MHSP"/>
+			<xs:enumeration value="MOBL"/>
+			<xs:enumeration value="NCCF"/>
+			<xs:enumeration value="NCCS"/>
+			<xs:enumeration value="NEPH"/>
+			<xs:enumeration value="NEUR"/>
+			<xs:enumeration value="NS"/>
+			<xs:enumeration value="OB"/>
+			<xs:enumeration value="OF"/>
+			<xs:enumeration value="OMS"/>
+			<xs:enumeration value="ONCL"/>
+			<xs:enumeration value="OPH"/>
+			<xs:enumeration value="ORTHO"/>
+			<xs:enumeration value="PAINCL"/>
+			<xs:enumeration value="PC"/>
+			<xs:enumeration value="PEDC"/>
+			<xs:enumeration value="PEDCARD"/>
+			<xs:enumeration value="PEDE"/>
+			<xs:enumeration value="PEDE"/>
+			<xs:enumeration value="PEDGI"/>
+			<xs:enumeration value="PEDGI"/>
+			<xs:enumeration value="PEDHEM"/>
+			<xs:enumeration value="PEDHEM"/>
+			<xs:enumeration value="PEDHO"/>
+			<xs:enumeration value="PEDHO"/>
+			<xs:enumeration value="PEDICU"/>
+			<xs:enumeration value="PEDICU"/>
+			<xs:enumeration value="PEDID"/>
+			<xs:enumeration value="PEDID"/>
+			<xs:enumeration value="PEDNEPH"/>
+			<xs:enumeration value="PEDNEPH"/>
+			<xs:enumeration value="PEDNICU"/>
+			<xs:enumeration value="PEDNICU"/>
+			<xs:enumeration value="PEDRHEUM"/>
+			<xs:enumeration value="PEDRHEUM"/>
+			<xs:enumeration value="PEDU"/>
+			<xs:enumeration value="PHARM"/>
+			<xs:enumeration value="PHU"/>
+			<xs:enumeration value="PLS"/>
+			<xs:enumeration value="POD"/>
+			<xs:enumeration value="PRC"/>
+			<xs:enumeration value="PREV"/>
+			<xs:enumeration value="PROCTO"/>
+			<xs:enumeration value="PROFF"/>
+			<xs:enumeration value="PROS"/>
+			<xs:enumeration value="PSI"/>
+			<xs:enumeration value="PSY"/>
+			<xs:enumeration value="PSYCHF"/>
+			<xs:enumeration value="RADDX"/>
+			<xs:enumeration value="RH"/>
+			<xs:enumeration value="RHEUM"/>
+			<xs:enumeration value="RHU"/>
+			<xs:enumeration value="RTF"/>
+			<xs:enumeration value="SLEEP"/>
+			<xs:enumeration value="SNF"/>
+			<xs:enumeration value="SPMED"/>
+			<xs:enumeration value="SU"/>
+			<xs:enumeration value="SURF"/>
+			<xs:enumeration value="TR"/>
+			<xs:enumeration value="TRAVEL"/>
+			<xs:enumeration value="URO"/>
+			<xs:enumeration value="WND"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrganizationRoleName_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Allergy clinic"/>
+			<xs:enumeration value="Ambulance"/>
+			<xs:enumeration value="Amputee clinic"/>
+			<xs:enumeration value="Bone marrow transplant clinic"/>
+			<xs:enumeration value="Bone marrow transplant unit"/>
+			<xs:enumeration value="Breast clinic"/>
+			<xs:enumeration value="Child and adolescent neurology clinic"/>
+			<xs:enumeration value="Child and adolescent psychiatry clinic"/>
+			<xs:enumeration value="Ambulatory Health Care Facilities; Clinic/Centre; Rehabilitation: Cardiac Facilities"/>
+			<xs:enumeration value="Cardiac catheterization lab"/>
+			<xs:enumeration value="Coronary care unit"/>
+			<xs:enumeration value="Chest unit"/>
+			<xs:enumeration value="Chronic Care Facility"/>
+			<xs:enumeration value="Coagulation clinic"/>
+			<xs:enumeration value="Colon and rectal surgery clinic"/>
+			<xs:enumeration value="Cardiovascular diagnostics or therapeutics unit"/>
+			<xs:enumeration value="Delivery Address"/>
+			<xs:enumeration value="Dermatology clinic"/>
+			<xs:enumeration value="Diagnostics or therapeutics unit"/>
+			<xs:enumeration value="Echocardiography lab"/>
+			<xs:enumeration value="Endocrinology clinic"/>
+			<xs:enumeration value="Ambulatory Health Care Facilities; Clinic/Centre; Endoscopy"/>
+			<xs:enumeration value="Otorhinolaryngology clinic"/>
+			<xs:enumeration value="Epilepsy unit"/>
+			<xs:enumeration value="Emergency room"/>
+			<xs:enumeration value="Emergency trauma unit"/>
+			<xs:enumeration value="Family medicine clinic"/>
+			<xs:enumeration value="General acute care hospital"/>
+			<xs:enumeration value="Gastroenterology clinic"/>
+			<xs:enumeration value="Gastroenterology diagnostics or therapeutics lab"/>
+			<xs:enumeration value="General internal medicine clinic"/>
+			<xs:enumeration value="Gynecology clinic"/>
+			<xs:enumeration value="Hand clinic"/>
+			<xs:enumeration value="Hemodialysis unit"/>
+			<xs:enumeration value="Hematology clinic"/>
+			<xs:enumeration value="Hospital"/>
+			<xs:enumeration value="Hypertension clinic"/>
+			<xs:enumeration value="Hospital unit"/>
+			<xs:enumeration value="Intensive care unit"/>
+			<xs:enumeration value="Impairment evaluation center"/>
+			<xs:enumeration value="Infectious disease clinic"/>
+			<xs:enumeration value="Infertility clinic"/>
+			<xs:enumeration value="Lympedema clinic"/>
+			<xs:enumeration value="Medical genetics clinic"/>
+			<xs:enumeration value="Military Hospital"/>
+			<xs:enumeration value="Mobile Unit"/>
+			<xs:enumeration value="Nursing or custodial care facility"/>
+			<xs:enumeration value="Neurology critical care and stroke unit"/>
+			<xs:enumeration value="Nephrology clinic"/>
+			<xs:enumeration value="Neurology clinic"/>
+			<xs:enumeration value="Neurosurgery unit"/>
+			<xs:enumeration value="Obstetrics clinic"/>
+			<xs:enumeration value="Outpatient facility"/>
+			<xs:enumeration value="Ambulatory Health Care Facilities; Clinic/Centre; Surgery, Oral/Maxillofacial"/>
+			<xs:enumeration value="Medical oncology clinic"/>
+			<xs:enumeration value="Opthalmology clinic"/>
+			<xs:enumeration value="Orthopedics clinic"/>
+			<xs:enumeration value="Ambulatory Health Care Facilities; Clinic/Centre; Pain"/>
+			<xs:enumeration value="Ambulatory Health Care Facilities; Clinic/Centre; Primary Care"/>
+			<xs:enumeration value="Pediatrics clinic"/>
+			<xs:enumeration value="Pediatric cardiology clinic"/>
+			<xs:enumeration value="Pediatric endocrinology clinic"/>
+			<xs:enumeration value="Pediatric endocrinology clinic"/>
+			<xs:enumeration value="Pediatric gastroenterology clinic"/>
+			<xs:enumeration value="Pediatric gastroenterology clinic"/>
+			<xs:enumeration value="Pediatric hematology clinic"/>
+			<xs:enumeration value="Pediatric hematology clinic"/>
+			<xs:enumeration value="Pediatric oncology clinic"/>
+			<xs:enumeration value="Pediatric oncology clinic"/>
+			<xs:enumeration value="Pediatric intensive care unit"/>
+			<xs:enumeration value="Pediatric intensive care unit"/>
+			<xs:enumeration value="Pediatric infectious disease clinic"/>
+			<xs:enumeration value="Pediatric infectious disease clinic"/>
+			<xs:enumeration value="Pediatric nephrology clinic"/>
+			<xs:enumeration value="Pediatric nephrology clinic"/>
+			<xs:enumeration value="Pediatric neonatal intensive care unit"/>
+			<xs:enumeration value="Pediatric neonatal intensive care unit"/>
+			<xs:enumeration value="Pediatric rheumatology clinic"/>
+			<xs:enumeration value="Pediatric rheumatology clinic"/>
+			<xs:enumeration value="Pediatric unit"/>
+			<xs:enumeration value="Pharmacy"/>
+			<xs:enumeration value="Hospital Units; Psychiatric Unit"/>
+			<xs:enumeration value="Plastic surgery clinic"/>
+			<xs:enumeration value="Ambulatory Health Care Facilities; Clinic/Centre; Podiatric"/>
+			<xs:enumeration value="Pain rehabilitation center"/>
+			<xs:enumeration value="Preventive medicine clinic"/>
+			<xs:enumeration value="Proctology clinic"/>
+			<xs:enumeration value="Provider's Office"/>
+			<xs:enumeration value="Prosthodontics clinic"/>
+			<xs:enumeration value="Psychology clinic"/>
+			<xs:enumeration value="Psychiatry clinic"/>
+			<xs:enumeration value="Psychatric Care Facility"/>
+			<xs:enumeration value="Ambulatory Health Care Facilities; Clinic/Centre; Radiology"/>
+			<xs:enumeration value="Hospitals; Rehabilitation Hospital"/>
+			<xs:enumeration value="Rheumatology clinic"/>
+			<xs:enumeration value="Hospital Units; Rehabilitation Unit"/>
+			<xs:enumeration value="Residential treatment facility"/>
+			<xs:enumeration value="Sleep disorders unit"/>
+			<xs:enumeration value="Nursing &amp; Custodial Care Facilities; Skilled Nursing Facility"/>
+			<xs:enumeration value="Sports medicine clinic"/>
+			<xs:enumeration value="Surgery clinic"/>
+			<xs:enumeration value="Residential Treatment Facilities; Substance Use Rehabilitation Facility"/>
+			<xs:enumeration value="Transplant clinic"/>
+			<xs:enumeration value="Travel and geographic medicine clinic"/>
+			<xs:enumeration value="Urology clinic"/>
+			<xs:enumeration value="Wound clinic"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrganizationRoleName_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.125"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_OrganizationRoleName">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="OrganizationRoleName_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="OrganizationRoleName_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_OrganizationRoleName">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="OrganizationRoleName_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="OrganizationRoleName_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_OrganizationRoleName">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="OrganizationRoleName_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="OrganizationRoleName_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_OrganizationRoleName">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="OrganizationRoleName_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="OrganizationType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="001"/>
+			<xs:enumeration value="002"/>
+			<xs:enumeration value="003"/>
+			<xs:enumeration value="004"/>
+			<xs:enumeration value="005"/>
+			<xs:enumeration value="006"/>
+			<xs:enumeration value="007"/>
+			<xs:enumeration value="008"/>
+			<xs:enumeration value="009"/>
+			<xs:enumeration value="010"/>
+			<xs:enumeration value="011"/>
+			<xs:enumeration value="012"/>
+			<xs:enumeration value="013"/>
+			<xs:enumeration value="014"/>
+			<xs:enumeration value="015"/>
+			<xs:enumeration value="016"/>
+			<xs:enumeration value="017"/>
+			<xs:enumeration value="018"/>
+			<xs:enumeration value="019"/>
+			<xs:enumeration value="020"/>
+			<xs:enumeration value="021"/>
+			<xs:enumeration value="999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrganizationType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="General Medical Practice"/>
+			<xs:enumeration value="General Dental Practice"/>
+			<xs:enumeration value="Community Pharmacy"/>
+			<xs:enumeration value="Community Opticians"/>
+			<xs:enumeration value="Primary Care Trust"/>
+			<xs:enumeration value="Strategic Health Authority"/>
+			<xs:enumeration value="Special Health Authority"/>
+			<xs:enumeration value="Acute Trust"/>
+			<xs:enumeration value="Care Trust"/>
+			<xs:enumeration value="Community Trust"/>
+			<xs:enumeration value="Diagnostic and Investigation Centre"/>
+			<xs:enumeration value="Walk-in Centre"/>
+			<xs:enumeration value="NHS Direct"/>
+			<xs:enumeration value="Local Authority Social Services Department"/>
+			<xs:enumeration value="Nursing Home"/>
+			<xs:enumeration value="Residential Home"/>
+			<xs:enumeration value="Hospice"/>
+			<xs:enumeration value="Ambulance Trust"/>
+			<xs:enumeration value="Private Hospital"/>
+			<xs:enumeration value="GMP Deputising Service"/>
+			<xs:enumeration value="Nursing Agency"/>
+			<xs:enumeration value="Not specified"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrganizationType_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.94"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_OrganizationType">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="OrganizationType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="OrganizationType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_OrganizationType">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="OrganizationType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="OrganizationType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_OrganizationType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="OrganizationType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="OrganizationType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_OrganizationType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="OrganizationType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PatientCareProvisionType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="P1"/>
+			<xs:enumeration value="P2"/>
+			<xs:enumeration value="P3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PatientCareProvisionType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Primary care"/>
+			<xs:enumeration value="Nominated pharmacy"/>
+			<xs:enumeration value="Medical appliance"/>
+			<xs:enumeration value="Dispensing Doctor"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PatientCareProvisionType_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.37"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_PatientCareProvisionType">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PatientCareProvisionType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PatientCareProvisionType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_PatientCareProvisionType">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PatientCareProvisionType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PatientCareProvisionType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_PatientCareProvisionType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PatientCareProvisionType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PatientCareProvisionType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PatientCareProvisionType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PatientCareProvisionType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PersonRelationshipType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="07"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PersonRelationshipType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Spouse"/>
+			<xs:enumeration value="Partner"/>
+			<xs:enumeration value="Parent"/>
+			<xs:enumeration value="Next of kin"/>
+			<xs:enumeration value="Guardian"/>
+			<xs:enumeration value="Foster parent"/>
+			<xs:enumeration value="Step parent"/>
+			<xs:enumeration value="Polygamous partner"/>
+			<xs:enumeration value="Child"/>
+			<xs:enumeration value="Dependant"/>
+			<xs:enumeration value="Non-dependant"/>
+			<xs:enumeration value="Mother"/>
+			<xs:enumeration value="Father"/>
+			<xs:enumeration value="Sister"/>
+			<xs:enumeration value="Brother"/>
+			<xs:enumeration value="Relative"/>
+			<xs:enumeration value="Proxy Contact"/>
+			<xs:enumeration value="Proxy Communication"/>
+			<xs:enumeration value="Proxy -- Contact and Communication"/>
+			<xs:enumeration value="Carer"/>
+			<xs:enumeration value="Self"/>
+			<xs:enumeration value="Not Known"/>
+			<xs:enumeration value="Not specified"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PersonRelationshipType_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_PersonRelationshipType">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PersonRelationshipType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PersonRelationshipType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_PersonRelationshipType">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PersonRelationshipType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PersonRelationshipType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_PersonRelationshipType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PersonRelationshipType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PersonRelationshipType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PersonRelationshipType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PersonRelationshipType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PreferredContactMethod_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PreferredContactMethod_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Letter"/>
+			<xs:enumeration value="Visit"/>
+			<xs:enumeration value="Telephone"/>
+			<xs:enumeration value="E-mail"/>
+			<xs:enumeration value="Minicom (Textphone)"/>
+			<xs:enumeration value="Telephone contact via proxy"/>
+			<xs:enumeration value="Sign language"/>
+			<xs:enumeration value="No Telephone contact"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PreferredContactMethod_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.16"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_PreferredContactMethod">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PreferredContactMethod_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PreferredContactMethod_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_PreferredContactMethod">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PreferredContactMethod_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PreferredContactMethod_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_PreferredContactMethod">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PreferredContactMethod_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PreferredContactMethod_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PreferredContactMethod">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PreferredContactMethod_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PreferredWrittenCommunicationFormat_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PreferredWrittenCommunicationFormat_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Large print"/>
+			<xs:enumeration value="Braille"/>
+			<xs:enumeration value="Audio tape"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PreferredWrittenCommunicationFormat_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.17"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_PreferredWrittenCommunicationFormat">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PreferredWrittenCommunicationFormat_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PreferredWrittenCommunicationFormat_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_PreferredWrittenCommunicationFormat">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PreferredWrittenCommunicationFormat_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PreferredWrittenCommunicationFormat_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_PreferredWrittenCommunicationFormat">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PreferredWrittenCommunicationFormat_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PreferredWrittenCommunicationFormat_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PreferredWrittenCommunicationFormat">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PreferredWrittenCommunicationFormat_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PrescriberEndorsement_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="CC"/>
+			<xs:enumeration value="SLS"/>
+			<xs:enumeration value="ACBS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PrescriberEndorsement_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="No Charge Contraceptive"/>
+			<xs:enumeration value="Selected List Scheme"/>
+			<xs:enumeration value="Advisory Committee Recommended"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PrescriberEndorsement_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_PrescriberEndorsement">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriberEndorsement_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriberEndorsement_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_PrescriberEndorsement">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriberEndorsement_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriberEndorsement_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_PrescriberEndorsement">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriberEndorsement_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriberEndorsement_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PrescriberEndorsement">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PrescriberEndorsement_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PrescriptionAnnotation_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="Code"/>
+			<xs:enumeration value="PS"/>
+			<xs:enumeration value="IS"/>
+			<xs:enumeration value="NDR"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="PE"/>
+			<xs:enumeration value="EX"/>
+			<xs:enumeration value="SI"/>
+			<xs:enumeration value="ES"/>
+			<xs:enumeration value="RT"/>
+			<xs:enumeration value="DI"/>
+			<xs:enumeration value="AI"/>
+			<xs:enumeration value="JU"/>
+			<xs:enumeration value="RR"/>
+			<xs:enumeration value="RJ"/>
+			<xs:enumeration value="PRRR"/>
+			<xs:enumeration value="DRRR"/>
+			<xs:enumeration value="DNRR"/>
+			<xs:enumeration value="CP"/>
+			<xs:enumeration value="CRR"/>
+			<xs:enumeration value="CR"/>
+			<xs:enumeration value="PRR"/>
+			<xs:enumeration value="PT"/>
+			<xs:enumeration value="DSP"/>
+			<xs:enumeration value="PTT"/>
+			<xs:enumeration value="RD"/>
+			<xs:enumeration value="PPRR"/>
+			<xs:enumeration value="PSD"/>
+			<xs:enumeration value="AD"/>
+			<xs:enumeration value="AT"/>
+			<xs:enumeration value="WTD"/>
+			<xs:enumeration value="RPI"/>
+			<xs:enumeration value="PWT"/>
+			<xs:enumeration value="PWR"/>
+			<xs:enumeration value="TI"/>
+			<xs:enumeration value="PID"/>
+			<xs:enumeration value="RPL"/>
+			<xs:enumeration value="PRID"/>
+			<xs:enumeration value="PRDT"/>
+			<xs:enumeration value="WID"/>
+			<xs:enumeration value="IDT"/>
+			<xs:enumeration value="LADT"/>
+			<xs:enumeration value="CP"/>
+			<xs:enumeration value="WT"/>
+			<xs:enumeration value="WR"/>
+			<xs:enumeration value="PSI"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PrescriptionAnnotation_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Description (and related table name)"/>
+			<xs:enumeration value="PrescriptionStatus"/>
+			<xs:enumeration value="ItemStatus"/>
+			<xs:enumeration value="NotDispensedReason"/>
+			<xs:enumeration value="DispenserEndorsement"/>
+			<xs:enumeration value="PrescriberEndorsement"/>
+			<xs:enumeration value="PrescriptionChargeExemption"/>
+			<xs:enumeration value="Supply Instructions"/>
+			<xs:enumeration value="Evidence Seen"/>
+			<xs:enumeration value="Running Total"/>
+			<xs:enumeration value="Dose Instructions"/>
+			<xs:enumeration value="Additional Instructions"/>
+			<xs:enumeration value="Justification for Use"/>
+			<xs:enumeration value="DispenseReturnReason"/>
+			<xs:enumeration value="ReimbursementRejectionReason"/>
+			<xs:enumeration value="PrescriptionReleaseRejectionReason"/>
+			<xs:enumeration value="ETPSpineRejectionReasons"/>
+			<xs:enumeration value="ETPSpineRejectionReasons"/>
+			<xs:enumeration value="Charge Paid"/>
+			<xs:enumeration value="CancellationResponseReason"/>
+			<xs:enumeration value="CancellationReason"/>
+			<xs:enumeration value="ETPSPineRejectionReasons"/>
+			<xs:enumeration value="Prescription Type"/>
+			<xs:enumeration value="Dispensing Site Preference"/>
+			<xs:enumeration value="Prescription Treatment Type"/>
+			<xs:enumeration value="Review Date"/>
+			<xs:enumeration value="Parent Prescription Rejection Reason"/>
+			<xs:enumeration value="Protocol Condition"/>
+			<xs:enumeration value="Medication administration Instructions"/>
+			<xs:enumeration value="Medication administration type"/>
+			<xs:enumeration value="When to discontinue a medication administration"/>
+			<xs:enumeration value="Repeat Prescription Instance"/>
+			<xs:enumeration value="PrescriptionWithdrawType"/>
+			<xs:enumeration value="PrescriptionWithdrawReason"/>
+			<xs:enumeration value="Token Issued"/>
+			<xs:enumeration value="Prescription Identifier"/>
+			<xs:enumeration value="Replacement Information"/>
+			<xs:enumeration value="Previous Issue Identifier"/>
+			<xs:enumeration value="Previous Issue Date"/>
+			<xs:enumeration value="Withdraw Statement Identifier"/>
+			<xs:enumeration value="Issue Date"/>
+			<xs:enumeration value="Last Activity Date"/>
+			<xs:enumeration value="Cancellation Pending"/>
+			<xs:enumeration value="PrescriptionWithdrawType"/>
+			<xs:enumeration value="PrescriptionWithdrawReason"/>
+			<xs:enumeration value="Prescription Supporting Information"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PrescriptionAnnotation_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_PrescriptionAnnotation">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriptionAnnotation_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriptionAnnotation_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_PrescriptionAnnotation">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriptionAnnotation_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriptionAnnotation_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_PrescriptionAnnotation">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriptionAnnotation_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriptionAnnotation_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PrescriptionAnnotation">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PrescriptionAnnotation_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PrescriptionChargeExemption_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="0001"/>
+			<xs:enumeration value="0002"/>
+			<xs:enumeration value="0003"/>
+			<xs:enumeration value="0004"/>
+			<xs:enumeration value="0005"/>
+			<xs:enumeration value="0006"/>
+			<xs:enumeration value="0007"/>
+			<xs:enumeration value="0008"/>
+			<xs:enumeration value="0009"/>
+			<xs:enumeration value="0010"/>
+			<xs:enumeration value="0011"/>
+			<xs:enumeration value="0012"/>
+			<xs:enumeration value="0013"/>
+			<xs:enumeration value="0014"/>
+			<xs:enumeration value="0015"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PrescriptionChargeExemption_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Patient has paid appropriate charges"/>
+			<xs:enumeration value="is under 16 years of age"/>
+			<xs:enumeration value="is 16, 17 or 18 and in full-time education"/>
+			<xs:enumeration value="is 60 years of age or over"/>
+			<xs:enumeration value="has a valid maternity exemption certificate"/>
+			<xs:enumeration value="has a valid medical exemption certificate"/>
+			<xs:enumeration value="has a valid prescription pre-payment certificate"/>
+			<xs:enumeration value="has a War Pension exemption certificate"/>
+			<xs:enumeration value="is named on a current HC2 charges certificate"/>
+			<xs:enumeration value="was prescribed free-of-charge contraceptives"/>
+			<xs:enumeration value="gets income support (IS)"/>
+			<xs:enumeration value="gets income based Job Seeker's Allowance (JSA (IB))"/>
+			<xs:enumeration value="is entitled to, or named on a VALID NHS tax credit exemption certificate"/>
+			<xs:enumeration value="has a partner who gets Pension Credit Guarantee Credit (PGCC)"/>
+			<xs:enumeration value="Patient does not need to pay the prescription charge"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PrescriptionChargeExemption_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.33"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_PrescriptionChargeExemption">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriptionChargeExemption_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriptionChargeExemption_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_PrescriptionChargeExemption">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriptionChargeExemption_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriptionChargeExemption_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_PrescriptionChargeExemption">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriptionChargeExemption_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriptionChargeExemption_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PrescriptionChargeExemption">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PrescriptionChargeExemption_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PrescriptionStatus_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="0001"/>
+			<xs:enumeration value="0002"/>
+			<xs:enumeration value="0003"/>
+			<xs:enumeration value="0004"/>
+			<xs:enumeration value="0005"/>
+			<xs:enumeration value="0006"/>
+			<xs:enumeration value="0007"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PrescriptionStatus_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="To be Dispensed"/>
+			<xs:enumeration value="With Dispenser"/>
+			<xs:enumeration value="With Dispenser - Active"/>
+			<xs:enumeration value="Expired"/>
+			<xs:enumeration value="Cancelled"/>
+			<xs:enumeration value="Dispensed"/>
+			<xs:enumeration value="Not Dispensed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PrescriptionStatus_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.35"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_PrescriptionStatus">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriptionStatus_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriptionStatus_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_PrescriptionStatus">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriptionStatus_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriptionStatus_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_PrescriptionStatus">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PrescriptionStatus_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PrescriptionStatus_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PrescriptionStatus">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PrescriptionStatus_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PreviousNhsContact_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PreviousNhsContact_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="No"/>
+			<xs:enumeration value="Yes"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PreviousNhsContact_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.38"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_PreviousNhsContact">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PreviousNhsContact_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PreviousNhsContact_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_PreviousNhsContact">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PreviousNhsContact_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PreviousNhsContact_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_PreviousNhsContact">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PreviousNhsContact_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PreviousNhsContact_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PreviousNhsContact">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PreviousNhsContact_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="ProcessingID_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="D"/>
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="T"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProcessingID_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Debugging"/>
+			<xs:enumeration value="Production"/>
+			<xs:enumeration value="Training"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CS_ProcessingID">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="ProcessingID_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="ProcessingMode_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="I"/>
+			<xs:enumeration value="R"/>
+			<xs:enumeration value="T"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProcessingMode_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Archive mode"/>
+			<xs:enumeration value="Initial load"/>
+			<xs:enumeration value="Restore from Archive"/>
+			<xs:enumeration value="Current processing"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CS_ProcessingMode">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="ProcessingMode_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PSISDataStatus_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PSISDataStatus_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Normal"/>
+			<xs:enumeration value="Withdrawn"/>
+			<xs:enumeration value="Replaced"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PSISDataStatus_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.59"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_PSISDataStatus">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PSISDataStatus_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PSISDataStatus_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_PSISDataStatus">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PSISDataStatus_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PSISDataStatus_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_PSISDataStatus">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PSISDataStatus_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PSISDataStatus_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PSISDataStatus">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PSISDataStatus_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PSISMetadataType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PSISMetadataType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="PSIS Persistence date"/>
+			<xs:enumeration value="PSIS status"/>
+			<xs:enumeration value="Parent event ID"/>
+			<xs:enumeration value="Parent interaction type"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PSISMetadataType_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.57"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_PSISMetadataType">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PSISMetadataType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PSISMetadataType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_PSISMetadataType">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PSISMetadataType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PSISMetadataType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_PSISMetadataType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PSISMetadataType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PSISMetadataType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PSISMetadataType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PSISMetadataType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="QueryResponse_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="ID"/>
+			<xs:enumeration value="NF"/>
+			<xs:enumeration value="OK"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="QueryResponse_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Issue detected"/>
+			<xs:enumeration value="No data found"/>
+			<xs:enumeration value="Data found"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CS_QueryResponse">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="QueryResponse_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="RegisteringAuthorityType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="a"/>
+			<xs:enumeration value="b"/>
+			<xs:enumeration value="c"/>
+			<xs:enumeration value="d"/>
+			<xs:enumeration value="e"/>
+			<xs:enumeration value="f"/>
+			<xs:enumeration value="g"/>
+			<xs:enumeration value="h"/>
+			<xs:enumeration value="i"/>
+			<xs:enumeration value="j"/>
+			<xs:enumeration value="k"/>
+			<xs:enumeration value="l"/>
+			<xs:enumeration value="m"/>
+			<xs:enumeration value="n"/>
+			<xs:enumeration value="o"/>
+			<xs:enumeration value="p"/>
+			<xs:enumeration value="q"/>
+			<xs:enumeration value="r"/>
+			<xs:enumeration value="s"/>
+			<xs:enumeration value="t"/>
+			<xs:enumeration value="u"/>
+			<xs:enumeration value="v"/>
+			<xs:enumeration value="w"/>
+			<xs:enumeration value="x"/>
+			<xs:enumeration value="y"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RegisteringAuthorityType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Strategic Health Authority"/>
+			<xs:enumeration value="Director of Health and Social Care"/>
+			<xs:enumeration value="NHS Trust"/>
+			<xs:enumeration value="GP Practice"/>
+			<xs:enumeration value="Other NHS Organisation"/>
+			<xs:enumeration value="Armed Forces"/>
+			<xs:enumeration value="MOD Hospital"/>
+			<xs:enumeration value="IM&amp;T Service"/>
+			<xs:enumeration value="Special Trustee"/>
+			<xs:enumeration value="University"/>
+			<xs:enumeration value="Other Statutory Authority"/>
+			<xs:enumeration value="NHS Administration Unit"/>
+			<xs:enumeration value="Breast Screening Unit"/>
+			<xs:enumeration value="Pathology Laboratory"/>
+			<xs:enumeration value="Department of Health"/>
+			<xs:enumeration value="Other Government Department"/>
+			<xs:enumeration value="Registered non-NHS Provider"/>
+			<xs:enumeration value="Unregistered non-NHS Provider (except Local Authority)"/>
+			<xs:enumeration value="Non-NHS Commissioner (except Local Authority)"/>
+			<xs:enumeration value="Local Authority"/>
+			<xs:enumeration value="Pharmacy"/>
+			<xs:enumeration value="Appliance Contractor"/>
+			<xs:enumeration value="Specialised Services Commissioning Consortium"/>
+			<xs:enumeration value="Primary Care Trust"/>
+			<xs:enumeration value="NHAIS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RegisteringAuthorityType_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_RegisteringAuthorityType">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="RegisteringAuthorityType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="RegisteringAuthorityType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_RegisteringAuthorityType">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="RegisteringAuthorityType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="RegisteringAuthorityType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_RegisteringAuthorityType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="RegisteringAuthorityType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="RegisteringAuthorityType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_RegisteringAuthorityType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="RegisteringAuthorityType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="SCReasonCode_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="07"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SCReasonCode_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Referral Cancellation (Closure)"/>
+			<xs:enumeration value="Workgroup Closure (Freeze)"/>
+			<xs:enumeration value="Patient is deceased (Freeze)"/>
+			<xs:enumeration value="Timed out through lack of use (Freeze)"/>
+			<xs:enumeration value="Further Timed out (Closure)"/>
+			<xs:enumeration value="Relationship Termination"/>
+			<xs:enumeration value="Closure of Case"/>
+			<xs:enumeration value="Referral acceptance"/>
+			<xs:enumeration value="Referral rejection"/>
+			<xs:enumeration value="Referral abandonment"/>
+			<xs:enumeration value="Referral discharge"/>
+			<xs:enumeration value="Patient registration"/>
+			<xs:enumeration value="Patient deregistration"/>
+			<xs:enumeration value="Self-referral cessation"/>
+			<xs:enumeration value="Closure of Subject Access Request"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SCReasonCode_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.22"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_SCReasonCode">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="SCReasonCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="SCReasonCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_SCReasonCode">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="SCReasonCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="SCReasonCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_SCReasonCode">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="SCReasonCode_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="SCReasonCode_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_SCReasonCode">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="SCReasonCode_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="SearchParameter_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SearchParameter_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Alphanumeric"/>
+			<xs:enumeration value="Algorithmic"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SearchParameter_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.39"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_SearchParameter">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="SearchParameter_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="SearchParameter_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_SearchParameter">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="SearchParameter_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="SearchParameter_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_SearchParameter">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="SearchParameter_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="SearchParameter_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_SearchParameter">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="SearchParameter_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="Sex_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Sex_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Not known"/>
+			<xs:enumeration value="Male"/>
+			<xs:enumeration value="Female"/>
+			<xs:enumeration value="Not specified"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Sex_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.16.25"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_Sex">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="Sex_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="Sex_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_Sex">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="Sex_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="Sex_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_Sex">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="Sex_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="Sex_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_Sex">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="Sex_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="TextType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="PresentationText"/>
+			<xs:enumeration value="SupportingText"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Presentation Text"/>
+			<xs:enumeration value="Supporting Text"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextType_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.126"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_TextType">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="TextType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="TextType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_TextType">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="TextType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="TextType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_TextType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="TextType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="TextType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_TextType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="TextType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="UpdateType_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UpdateType_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Change to existing data"/>
+			<xs:enumeration value="Correction to existing data"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UpdateType_codeSystem">
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CD_UpdateType">
+		<xs:complexContent>
+			<xs:extension base="ANY">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="qualifier" type="CR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="group" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="qualifier" type="CR" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="UpdateType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="UpdateType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CE_UpdateType">
+		<xs:complexContent>
+			<xs:restriction base="CE">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+					<xs:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="UpdateType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="UpdateType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CV_UpdateType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="UpdateType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="UpdateType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_UpdateType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="UpdateType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="x_RelatedPerson_code">
+		<xs:restriction base="cs">
+			<xs:enumeration value="AGNT"/>
+			<xs:enumeration value="GUARD"/>
+			<xs:enumeration value="PRS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="x_RelatedPerson_displayName">
+		<xs:restriction base="st">
+			<xs:enumeration value="Agent"/>
+			<xs:enumeration value="Guardian"/>
+			<xs:enumeration value="Personal Relationship"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CS_x_RelatedPerson">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="x_RelatedPerson_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

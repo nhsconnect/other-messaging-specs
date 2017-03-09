@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>FGM Risk Indication System - FHIR Implementaton Guide</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="HSCIC" />        
+        <meta name="publisher version" content=	"FHIR-Furnace : 2.5.5945.24449" />
+	
+        <link href="../dist/css/fhir.css" rel="stylesheet" />
+ 
+        <!-- Bootstrap core CSS -->
+        <link href="../dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="../dist/css/bootstrap-fhir.css" rel="stylesheet" />
+        <link href="../dist/css/bootstrap-glyphicons.css" rel="stylesheet" />
+
+        <!-- Project extras -->
+        <link href="../dist/css/project.css" rel="stylesheet" />
+        <link href="../dist/css/pygments-manni.css" rel="stylesheet" />
+
+        <script src="../dist/js/jquery.js"> </script>
+        <script src="../dist/js/bootstrap.min.js"> </script>
+
+        <script src="../dist/js/fhir.js"> </script>
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="../dist/js/html5shiv.js"></script>
+            <script src="../dist/js/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../dist/images/apple-touch-icon-144-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../dist/images/apple-touch-icon-114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../dist/images/apple-touch-icon-72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="../dist/images/apple-touch-icon-57-precomposed.png" />
+        <link rel="shortcut icon" href="../dist/images/favicon.png" />
+
+    </head>
+    <body>
+
+        <div id="segment-header" class="segment">
+            <!-- segment-header -->
+            <div class="container">
+                <!-- container -->
+                <a id="logo" href="http://www.hscic.gov.uk">
+                    <img src="../dist/images/logo.png" alt="logo hscic" />
+                </a>
+                <div id="hl7-status">
+                    <div id="hl7-igname">
+                        <b>FGM Risk Indication System</b>
+                    </div>
+                </div>
+
+                <div id="hl7-nav">
+                    <a id="hl7-logo" href="http://www.hl7.org">
+                        <img src="../dist/images/hl7-logo.png" width="42" height="50" alt="visit the hl7 website" />
+                    </a>
+                </div>
+                <!--hl7-search-->
+            </div>
+            <div class="container">
+                <!-- container -->
+            </div>
+        </div>
+        <!-- /segment-header -->
+
+
+        <div id="segment-navbar" class="segment">
+            <!-- segment-navbar -->
+            <div id="stripe"> </div>
+            <div class="container">
+                <!-- container -->
+                <!-- HEADER CONTENT -->
+
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <button data-target=".navbar-inverse-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                        </button>
+                        <a href="index.html" class="navbar-brand hidden">FHIR</a>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <ul class="nav navbar-nav">
+
+                                        <li>
+                                            <a href='../Chapter.1.About/index.html'>About</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.2.Change History/index.html'>Change History</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.4.FHIR Messaging Implementation/index.html'>FHIR Messaging Implementation</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.6.FHIR Messages/index.html'>FHIR Messages</a>
+                                        </li>
+
+                            </ul>
+                            <p class="navbar-text pull-right" style="padding-right: 10px;padding-top: 3px;">
+                                <span class="label label-default"  style="font-size: 95%;">Version 1.0 : RC1</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+
+        <div id="segment-breadcrumb" class="segment">
+            <!-- segment-breadcrumb -->
+            <div class="container">
+                <!-- container -->
+                <ul class="breadcrumb"></ul>
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-content" class="segment">
+            <!-- segment-content -->
+            <div class="container">
+                <!-- container -->
+                <div class="row">
+                    <div class="inner-wrapper">
+                        <!-- CONTENT CONTENT -->
+                        <div class="col-12">
+                           <h2>FHIR Messaging Architecture</h2>
+<p><strong>FGM Risk Indication System Spine 2 interface Overview</strong></p>
+<p>This section provides FGM implementers with an overview of the FGM Risk Indication System Spine 2 FHIR interface also known as the 'FGM Service'.  </p>
+<p>It should be read in conjunction with the 'FGM Service' Implementation Guide: <a href="FGM_implementation_guide-v1.pdf">FGM_implementation_guide-v1</a>.</p>
+<p>The FGM Service provides a read only interface to the Spine 2 FGM Risk Indication System in order to access the FGM status of a patient. The FGM Service is based on the <a href="http://hl7.org/fhir/messaging.html">HL7 FHIR DSTU2 1.0.1 Messaging Implementation</a> (Sept 2015) Messaging Implementation. </p>
+<p><strong>FGM Risk Indication System Spine 2 Interactions</strong></p>
+<p>The FGM Risk Indication System Spine 2 interface supports 5 interactions:</p>
+<ul>
+<li><strong>QU01-FGM Query Request:</strong> The client will construct a FHIR FGM query message and send it to the SPINE.</li>
+<li><strong>QU02-SMSP FGM Query Request:</strong> The SMSP will construct a FHIR FGM query message and send it to the SPINE.</li>
+</ul>
+<p>Assuming successful transport, there are three possible outcomes to the Query Request:</p>
+<ul>
+<li><strong>RSP01-Invalid Query:</strong> SPINE rejects the FGM query due to business rules around the query construct.</li>
+<li><strong>RSP02-FGM Entry Found:</strong> SPINE executes the FGM query and there is an FGM risk entry for the patient.</li>
+<li><strong>RSP03-No FGM Entry Found:</strong> SPINE executes the FGM query and there is no FGM risk entry for the patient.</li>
+</ul>
+<p><strong>FGM Risk Indication System Spine 2 Interaction Diagram</strong>
+</br></p>
+<p>The diagram shows the FGM Risk Indication System Spine 2 Interactions:
+</br></p>
+<div style="display: block;"><img  src="FGMFHIRInteractions.png" alt="Interactions"></div>  
+<p><br></p>
+<p><strong>FGM FHIR Message Patterns and Structures</strong></p>
+<p>In FHIR messaging, a &quot;message&quot; is sent from a source application to a destination application when an event happens. Events mostly correspond to things that happen in the real world. </p>
+<p>The FGM Service utilises a synchronous request / response pattern. It is synchronous with respect to HTTP connections which means that only a single HTTP connection 
+is required to perform a complete request.</p>
+<p>This message communication pattern is similar to the Spine 1 'Web Service Mode'. However, as the FHIR message payload
+contains the required sender and receiver endpoint information there is no longer any need to support the legacy HL7 v3 transport wrapper, WS-Addressing or for the SOAP header information within the structure.</p>
+<p>The FGM request / response FHIR message payloads consist of combined FHIR resources that are bundled together within a FHIR Bundle wrapper to form the FHIR message structure. The Bundle resource is a container for a collection of resources identified by the type &quot;message&quot;, with the first 
+resource in the bundle being a MessageHeader resource.</p>
+<p>The MessageHeader resource has a message event code (MessageHeader.event.code) that identifies the nature of the request/ response message. The message event in FGM is the SOAPAction (service and action) URI once carried as an HTTP Header e.g. urn:nhs:names:services:clinicals-sync:FGMQuery_1_0</p>
+<p>The MessageHeader.source.endpoint and  the MessageHeader.destination.endpoint elements identify the sender and receiver addresses and are used for authorisation and audit purposes. An example of a sender address URN is: urn:nhs:addressing:asid:047192794544</p>
+<p>Any resources referenced in the MessageHeader or child resources must be included in the bundle.</p>
+<p><strong>QU01-FGM Query Request Bundle</strong></p>
+<p>The FGM Query Request Bundle is conveyed when the FGM Service is queried by an NHS system that uses Spine RBAC. The 'Spine-Message-Bundle-1-0' bundle resource profile is used as a container to collect the FGM RIS Query resources in the following combined order:</p>
+<ul>
+<li>Spine-Request-MessageHeader-1-0 (Message Event = urn:nhs:names:services:clinicals-sync:FGMQuery_1_0) <a href="../Profile.FGMRISQueryRequest/spine-request-messageheader-1-0.html">spine-request-messageheader-1-0</a>. </li>
+<li>Spine-RIS-Parameters-1-0 <a href="../Profile.FGMRISQueryRequest/spine-ris-parameters-1-0.html">spine-ris-parameters-1-0</a> </li>
+<li>Spine-Practitioner-1-0 <a href="../Profile.FGMRISQueryRequest/spine-practitioner-1-0.html">spine-practitioner-1-0</a></li>
+<li>Spine-Organization-1-0 <a href="../Profile.FGMRISQueryRequest/spine-organization-1-0.html">spine-organization-1-0</a> </li>
+</ul>
+<p>The diagram shows the bundling of the FGM Query resources within the FHIR message payload, transported over HTTP:</p>
+<div style="display: block;"><img  src="FGMFHIRQueryRequestBundle.png" alt="FGMFHIRQueryRequestBundle"></div>  
+<p><br></p>
+<p><strong>QU02-SMSP FGM Query Request Bundle</strong></p>
+<p>The SMSP FGM Query Request Bundle is conveyed when the FGM Service is queried by an NHS system that does not use Spine RBAC. The 'Spine-Message-Bundle-1-0' bundle resource profile is used as a container to collect the SMSP FGM RIS Query resources in the following combined order:</p>
+<ul>
+<li>Spine-Request-MessageHeader-1-0 (Message Event = urn:nhs:names:services:clinicals-sync:FGMQuery_1_0) <a href="../Profile.FGMRISQueryRequest/spine-request-messageheader-1-0.html">spine-request-messageheader-1-0</a>. </li>
+<li>Spine-RIS-Parameters-1-0 <a href="../Profile.FGMRISQueryRequest/spine-ris-parameters-1-0.html">spine-ris-parameters-1-0</a> </li>
+</ul>
+<p>NB: The MessageHeader.source.endpoint element carries the ASID identifier used to audit non-smartcard interactions with the FGM Service.</p>
+<p>The diagram shows the bundling of the FGM Query resources within the FHIR message payload, transported over HTTP:</p>
+<div style="display: block;"><img  src="FGMSMSPFHIRQueryRequestBundle.png" alt="FGMSMSPFHIRQueryRequestBundle"></div>  
+<p><br></p>
+<p><strong>RSP01-Invalid Query Bundle</strong></p>
+<p>The 'Spine-Message-Bundle-1-0' Bundle resource profile is used in the FGM outbound interface as a container to collect the 'Invalid Query' FGM RIS Query Response resources in the following combined order:</p>
+<ul>
+<li>Spine-Response-MessageHeader-1-0 (Message Event = urn:nhs:names:services:clinicals-sync:FGMQueryResponse_1_0) <a href="../Profile.FGMRISQueryRequestResponse/spine-response-messageheader-1-0.html">spine-response-messageheader-1-0</a> </li>
+<li>Spine-OperationOutcome-1-0 (Spine Response Code = FGM-0002 or FGM-9999) <a href="../Profile.FGMRISQueryRequestResponse/spine-operationoutcome-1-0.html">spine-operationoutcome-1-0</a> </li>
+</ul>
+<p>The diagram shows the bundling of the 'Invalid Query' FGM RIS Query Response resources within the FHIR message payload, transported over HTTP:</p>
+<div style="display: block;"><img  src="FGMNoRecordFound.png" alt="FGMNoRecordFound"></div>  
+<p><br></p>
+<p><strong>RSP02-FGM Entry Found Bundle</strong></p>
+<p>The 'Spine-Message-Bundle-1-0' bundle resource profile is used in the FGM outbound interface as a container to collect the 'FGM Found' FGM RIS Query Response resources in the following combined order:</p>
+<ul>
+<li>Spine-Response-MessageHeader-1-0 (Message Event = urn:nhs:names:services:clinicals-sync:FGMQueryResponse_1_0) <a href="../Profile.FGMRISQueryRequestResponse/spine-response-messageheader-1-0.html">spine-response-messageheader-1-0</a> </li>
+<li>Spine-RIS-Flag-1-0 <a href="../Profile.FGMRISQueryRequestResponse/spine-ris-flag-1-0.html">spine-ris-flag-1-0</a> </li>
+<li>Spine-RIS-Patient-1-0 <a href="../Profile.FGMRISQueryRequestResponse/spine-ris-patient-1-0.html">spine-ris-patient-1-0</a></li>
+</ul>
+<p>The diagram shows the bundling of the 'FGM Found' FGM RIS Query Response resources within the FHIR message payload, transported over HTTP:</p>
+<div style="display: block;"><img  src="FGMFoundBundle.png" alt="FGMFoundBundle"></div>  
+<p><br></p>
+<p><strong>RSP03-No FGM Entry Found Bundle</strong></p>
+<p>The 'Spine-Message-Bundle-1-0' Bundle resource profile is used in the FGM outbound interface as a container to collect the 'No FGM Found' FGM RIS Query Response resources in the following combined order:</p>
+<ul>
+<li>Spine-Response-MessageHeader-1-0 (Message Event = urn:nhs:names:services:clinicals-sync:FGMQueryResponse_1_0) <a href="../Profile.FGMRISQueryRequestResponse/spine-response-messageheader-1-0.html">spine-response-messageheader-1-0</a> </li>
+<li>Spine-OperationOutcome-1-0 (Spine Response Code = FGM-0001) <a href="../Profile.FGMRISQueryRequestResponse/spine-operationoutcome-1-0.html">spine-operationoutcome-1-0</a> </li>
+</ul>
+<p>The diagram shows the bundling of the 'No FGM Found' FGM RIS Query Response resources within the FHIR message payload, transported over HTTP:</p>
+<div style="display: block;"><img  src="FGMNoRecordFound.png" alt="FGMNoRecordFound"></div>  
+<p><br></p>
+<p><strong>Further Information</strong></p>
+<p>For more information about FHIR messaging please visit: <a href="http://hl7.org/fhir/messaging.html">HL7 FHIR DSTU2 1.0.1 Messaging Implementation</a> and for the 'FGM Service' see: <a href="FGM_implementation_guide-v1.pdf">FGM_implementation_guide-v1</a>: FGM_implementation_guide-v1.pdf.</p>
+<p>Quick links to FHIR reference implementations and implementation tool downloads are available from the <a href="http://hl7.org/fhir/index.html">FHIR DSTU2 1.0.1</a> (Sept 2015) specification.</p>
+
+                        </div>                      
+                    </div>
+                    <!-- /inner-wrapper -->                   
+                </div>
+                <!-- /row -->              
+            </div>
+            <!-- /container -->           
+        </div>
+    <!-- /segment-content -->
+
+        <div id="segment-footer" class="segment">
+            <!-- segment-footer -->
+            <div class="container">
+                <!-- container -->
+                <div class="inner-wrapper">
+                    <p>
+                        &copy; HSCIC 2015+. FHIR Implementation Guide. 
+                    </p>
+<!--                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> -->
+                    </p>
+                </div>
+                <!-- /inner-wrapper -->
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-post-footer" class="segment hidden">
+            <!-- segment-post-footer -->
+            <div class="container">
+                <!-- container -->
+            </div>
+            <!-- /container -->
+        </div>
+        
+    </body>
+</html>

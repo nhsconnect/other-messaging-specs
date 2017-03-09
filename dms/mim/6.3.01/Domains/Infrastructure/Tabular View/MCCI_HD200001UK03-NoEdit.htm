@@ -1,0 +1,1074 @@
+<HTML><HEAD><TITLE>Send Batch Wrapper Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="Send Batch Wrapper" name=Entry>
+<META content=MCCI_HD200001UK03 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Send Batch Wrapper - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="MCCI_RM200001UK03.htm"><B>MCCI_RM200001UK03</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=BatchRequest><B>BatchRequest</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Batch;BatchRequest_c title=BatchRequest_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman"><B>The Send Batch wrapper forms the outer wrapper for a batch of message interactions.</B></font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=BatchRequest>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Transmission;BatchRequest/$id title=BatchRequest.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">A unique identifier for this batch.</font></P>
+<P><font face="Times New Roman">The Identifier Global datatype flavour is used to carry this information as follows:</font></P>
+<UL>
+<LI><font face="Times New Roman">A DCE <b>UUID</b> is held in the<I> root</I> attribute</font></LI></UL>
+<P><font face="Times New Roman">This batch identifier is used to match a batch of interactions with one or more batch responses. It shall be echoed in the TargetBatch.id attribute present in the batch application acknowledgement wrapper of one or more batch responses responding to this batch. 
+</font> </P><font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>creationTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Transmission;BatchRequest/$creationTime title=MCCI_HD200001UK03#BatchRequest.creationTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">The date and time that the sending system created the batch message.</font></P></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>transmissionQuantity</B> (<A href="../../../Data Types/DataTypes.htm#INT"><B>INT</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Batch;BatchRequest/$transmissionQuantity title=BatchRequest.transmissionQuantity style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">A count of individual message interactions contained within this batch message.</font></P></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>versionCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/HL7StandardVersionCode.htm"><B>HL7StandardVersionCode</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Batch;BatchRequest/$versionCode title=MCCI_HD200001UK03#BatchRequest.versionCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<DIV id=MCCI_IN200001UK02#Batch;BatchRequest/$versionCode contentEditable=false style="WIDTH: 100%; HEIGHT: 84.48%; BACKGROUND-COLOR: white">
+<DIV style="BACKGROUND-COLOR: white" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<P><font face="Times New Roman">A code which identifies the version of the NPfIT Message Implementation Manual that describes the HL7 version 3 standard used to format the batch message. 
+</font> </P>
+<P><font face="Times New Roman">The Coded Only datatype flavour is used to carry this information as follows:</font></P>
+<UL>
+<LI><font face="Times New Roman">The <I>code</I> attribute shall contain a value from the list of codes in the
+<b>HL7StandardVersionCode</b> vocabulary.</font></LI></UL></DIV></DIV>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>interactionId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Batch;BatchRequest/$interactionId title=MCCI_HD200001UK03#BatchRequest.interactionId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<DIV id=MCCI_IN200001UK02#Batch;BatchRequest/$interactionId contentEditable=false style="WIDTH: 100%; HEIGHT: 85.12%; BACKGROUND-COLOR: white">
+<DIV style="BACKGROUND-COLOR: white" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<P><font face="Times New Roman">The fixed value interaction identifier that identifies a Send Batch interchange.</font></P>
+<P><font face="Times New Roman">The Identifier External datatype flavour is used to carry this information as follows:</font></P>
+<UL>
+<LI><font face="Times New Roman">The<I> root </I>attribute shall contain an OID with the value <b>&quot;2.16.840.1.113883.2.1.3.2.4.12&quot;</b> 
+</font> </LI>
+<LI><font face="Times New Roman">The <I>extension </I>attribute shall contain the value <b>"MCCI_IN200001UKnn"</b> where
+<b>nn</b> is the latest version number</font></LI></UL></DIV></DIV>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>batchSequenceNo</B> (<A href="#BatchSequenceNo"><B>BatchSequenceNo</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Transmission;BatchRequest/batchSequenceNo-BatchSequenceNo title=MCCI_HD200001UK03#batchSequenceNo-BatchSequenceNo style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">A class carrying the sequence number of the batch message within the sequence of batch messages relating to a single business process.</font></P></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..*] </B></FONT><B>manifestItem</B> (<A href="#ManifestItem"><B>ManifestItem</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Transmission;BatchRequest/manifestItem-ManifestItem title=MCCI_HD200001UK03#manifestItem-ManifestItem style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">A class&nbsp;which will occur once for each message interaction in the batch.</font></P></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>communicationFunctionRcv</B> (<A href="#CommunicationFunctionRcv"><B>CommunicationFunctionRcv</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Transmission;BatchRequest/communicationFunctionRcv-CommunicationFunctionRcv title=MCCI_HD200001UK03#Transmission/communicationFunctionRcv-CommunicationFunctionRcv style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Identifying information about the system receiving the message.</font></P></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>communicationFunctionSnd</B> (<A href="#CommunicationFunctionSnd"><B>CommunicationFunctionSnd</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Transmission;BatchRequest/communicationFunctionSnd-CommunicationFunctionSnd title=MCCI_HD200001UK03#communicationFunctionSnd-CommunicationFunctionSnd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Identifying information about the system sending the message.</font></P></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>batchControlActEvent</B> (<A href="#BatchControlActEvent"><B>BatchControlActEvent</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#ControlAct;BatchRequest/batchControlActEvent title=MCCI_HD200001UK03#batchControlActEvent style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">The Control Act for the Batch itself.</font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=BatchSequenceNo><B>BatchSequenceNo</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#AttentionLine;BatchSequenceNo_c title=MCCI_HD200001UK03#BatchSequenceNo_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<DIV style="BACKGROUND-COLOR: white" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<P><FONT color=#000000 face="Times New Roman"><B>A parameter carrying a batch sequence number attribute.</B></FONT></P>
+<P><FONT color=#000000 face="Times New Roman"><B>The batch sequence number (BSN) is managed by the sender of a batch message.</B></FONT></P>
+<DIV class=Section1 style="BACKGROUND-COLOR: white">
+<P class=MsoNormal><FONT face=Verdana color=#000000><SPAN style="FONT-WEIGHT: 700; FONT-FAMILY: Times New Roman">The BSN is a mechanism for describing the order in which batch messages (either request or response) are sent. This mechanism is used where a business process at the sender generates multiple batch requests or responses. </SPAN></FONT></P>
+<P class=MsoNormal><FONT face=Verdana color=#000000><SPAN style="FONT-WEIGHT: 700; FONT-FAMILY: Times New Roman">BSNs must be unique within a single business process. This allows both the sender of the request and the sender of the response to manage sequencing independently. </SPAN></FONT></P>
+<P class=MsoNormal><FONT color=#000000><B><SPAN style="FONT-FAMILY: Times New Roman">T</SPAN><FONT face=Verdana><SPAN style="FONT-FAMILY: Times New Roman">he BSN will allow the receiver to physically order the in-going interactions for further processing; thus preserving message order. Message ordering is not mandatory behaviour it is the responsibility of <SPAN class=GramE>the receiver</SPAN> to determine whether it is required. </SPAN></FONT></B></FONT></P>
+<P class=MsoNormal><FONT face=Verdana color="#000000"><SPAN style="FONT-WEIGHT: 700; FONT-FAMILY: Times New Roman">The BSN can assist the receiver in determining missing batch messages within a sequence. A missing batch message is determined at the receiver by analysing BSNs, and looking for gaps. However, the BSN<FONT color=#000000> does not aid the receiver in identifying a lost last Send Batch message. Hence, it is the responsibility of the sender to determine that batch requests have gone missing and have not been processed by the receiver. Application specific behaviour is required to recover from a missing interaction.</FONT></SPAN></FONT></P>
+<P class=MsoNormal><FONT face=Verdana><SPAN style="FONT-WEIGHT: 700; FONT-FAMILY: Times New Roman"><FONT color=#000000>Due to the behavioural characteristics of batching, the responses to the individual messages in a request batch interaction can be sent in more than one response interaction. For correlation purposes, the BSN of the batch request interaction is provided in the batch response in an <SPAN class=SpellE>AttentionLine</SPAN> item for an individual message response.</FONT></SPAN></FONT></P></DIV></DIV>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=BatchSequenceNo>Used by: </A></FONT><A href="#BatchRequest"><B>BatchRequest</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#AttentionLine;BatchSequenceNo/$value title=BatchSequenceNo.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<DIV style="BACKGROUND-COLOR: white" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<P><font face="Times New Roman">The batch sequence number will be carried in an identifier using the Identifier External datatype flavour as follows:</font></P>
+<UL>
+<LI><font face="Times New Roman">The<I> root </I>attribute shall contain an OID with the value <b>&quot;2.16.840.1.113883.2.1.3.2.4.18.10&quot;
+</b> </font> </LI>
+<LI><font face="Times New Roman">The <I>extension </I>attribute shall carry the sequence number 
+</font> </LI></UL>
+<P><font face="Times New Roman">The sequence number shall start at <b>0</b> for the first send batch message in a related sequence of batch messages and increment by 
+<b>1</b> for each subsequent batch message. The maximum number is <b>99999999</b>. If the maximum is reached, the sender must re-start at 
+<b>0</b>. </font> </P></DIV><font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ManifestItem><B>ManifestItem</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#AttentionLine;ManifestItem_c title=ManifestItem_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">A class carrying a set of values relating to a specific message interaction present in the batch message. Typically this class will be repeated for each message interaction. 
+</font> </P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ManifestItem>Used by: </A></FONT><A href="#BatchRequest"><B>BatchRequest</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>payloadId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#AttentionLine;ManifestItem/$payloadId title=MCCI_HD200001UK03#ManifestItem.payloadId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">The unique identifier for a specific message interaction contained within the batch. <BR><BR>The Identifier Global datatype flavour is used to carry this information as follows:
+</font>
+<UL>
+<LI><font face="Times New Roman">A&nbsp;DCE <b>UUID</b> is held in the&nbsp;<I>root </I>attribute</NOTE></font></LI></UL></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..*] </B></FONT><B>manifestValue</B> (<A href="#ManifestValue"><B>ManifestValue</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#AttentionLine;ManifestItem/manifestValue-ManifestValue title=MCCI_HD200001UK03#manifestValue-ManifestValue style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">A value relating to the message interaction identified in payloadId.</font></P>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=CommunicationFunctionRcv><B>CommunicationFunctionRcv</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#CommunicationFunction;CommunicationFunctionRcv_c title=CommunicationFunctionRcv_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P align=left xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman"><B>Details about the receiving system.</B></font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=CommunicationFunctionRcv>Used by: </A></FONT><A href="#BatchRequest"><B>BatchRequest</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RCV</B>} )<A>{<B> Fixed="<FONT color=red>RCV</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#CommunicationFunction;CommunicationFunctionRcv/$typeCode title=CommunicationFunctionRcv.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P align=left xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Indicates that the communication function being served is the receiver.</font></P>
+<UL>
+<LI><font face="Times New Roman">Fixed value "<B>RCV</B>". </font> </LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>device</B> (<A href="#Device"><B>Device</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#CommunicationFunction;CommunicationFunctionRcv/device-Device title=MCCI_HD200001UK03#CommunicationFunction/device-Device style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Identifying information about the sending device.</font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=CommunicationFunctionSnd><B>CommunicationFunctionSnd</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#CommunicationFunction;CommunicationFunctionSnd_c title=MCCI_HD200001UK03#CommunicationFunctionSnd_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P align=left xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman"><B>Details about the sending system.</B></font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=CommunicationFunctionSnd>Used by: </A></FONT><A href="#BatchRequest"><B>BatchRequest</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SND</B>} )<A>{<B> Fixed="<FONT color=red>SND</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#CommunicationFunction;CommunicationFunctionSnd/$typeCode title=MCCI_HD200001UK03#CommunicationFunctionSnd.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P align=left xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Indicates that the communication function being served is the sender.</font></P>
+<UL>
+<LI><font face="Times New Roman">Fixed value "<B>SND</B>". </font> </LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>device</B> (<A href="#Device"><B>Device</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#CommunicationFunction;CommunicationFunctionSnd/device-Device title=MCCI_HD200001UK03#CommunicationFunction/device-Device style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Identifying information about the sending device.</font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=BatchControlActEvent><B>BatchControlActEvent</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#ControlAct;batchControlActEvent_c title=MCCI_HD200001UK03#batchControlActEvent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman"><B>A batch Control Act which is mandatory and occurs once within each batch. It allows those participations that are common to all interactions in a batch, author and author1, to be carried once only.</B></font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=BatchControlActEvent>Used by: </A></FONT><A href="#BatchRequest"><B>BatchRequest</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>CACT</B>} )<A>{<B> Fixed="<FONT color=red>CACT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Act;batchControlActEvent/$classCode title=MCCI_HD200001UK03#batchControlActEvent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P align=left xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Indicates that this is Control Act.</font></P>
+<UL>
+<LI><font face="Times New Roman">Fixed value "<B>CACT</B>". </font> </LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Act;batchControlActEvent/$moodCode title=batchControlActEvent.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Indicates that 
+this is an event.</font></P>
+<UL>
+<LI><font face="Times New Roman">Fixed value "<B>EVN</B>". </font> </LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..2] </B></FONT><A name=Author><B>author1</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=MCCI_HD200001UK03#Act;BatchRequest/batchControlActEvent/author1 title=MCCI_HD200001UK03#author1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman"><B>A participation referring to one or more systems that are involved in the initiation of the batch message.</B></font></P>
+<P><font face="Times New Roman"><B>One instance of the participation is mandatory and shall carry the accredited service id of the system in use at the time the batch message is initiated.</B></font></P>
+<P><font face="Times New Roman"><B>One instance of the participation is optional and may carry the workstation id of the system being used by the logged in user at the time the batch message is initiated</B>.</font></P></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#Participation;batchControlActEvent/author1/$typeCode title=author1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Indicates that the role has author responsibility.</P>
+<UL>
+<LI>Fixed value "<B>AUT</B>". </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD121000UK01-NoEdit.htm">agent</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM121000UK01.htm"><SMALL>[CMET:&nbsp;UKCT_MT121001UK01]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#Participation;batchControlActEvent/author1/agent+UKCT_MT121001UK01 title=MCCI_HD200001UK03#agent+UKCT_MT121001UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<DIV style="BACKGROUND-COLOR: white" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<P>NPfIT CMET to identify a mandatory system which could be software or hardware. Full details of the system are available from SDS.</P>
+<P>In this context the system is a system in use at the time the message is 
+initiated. This shall be represented by either the SDS Accredited Application Instance Id held in the SDS directory as the Accredited System Identifier or a locally identifiedworkstation id.</P></DIV></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Author2><B>author</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=MCCI_HD200001UK03#Act;BatchRequest/batchControlActEvent/author title=MCCI_HD200001UK03#author style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<DIV style="BACKGROUND-COLOR: white" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<P><font face="Times New Roman"><B>A participation referring to a person who is logged in at the time the message is initiated.</B></font></P>
+<P><font face="Times New Roman"><B>The participation is optional. It shall be present when the message is initiated by a person. It shall not be present when the message is automatically initiated by a system.</B></font></P></DIV></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#Participation;batchControlActEvent/author/$typeCode title=author.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Indicates that the role has author responsibility.</P>
+<UL>
+<LI>Fixed value "<B>AUT</B>".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD120900UK01-NoEdit.htm">agent</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM120900UK01.htm"><SMALL>[CMET:&nbsp;UKCT_MT120901UK01]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#Participation;batchControlActEvent/author/agent+UKCT_MT120901UK01 title=MCCI_HD200001UK03#Participation/agent+UKCT_MT120901UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<DIV style="BACKGROUND-COLOR: white" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<P>NPfIT CMET to identify a person fulfilling a specific role where the Person, Role Profile and JobRole are all mandatory. Full details of the person, role profile and job role are available from SDS.</P>
+<P>In this context the person is the signed in user for the user session responsible for initiating the message. The person shall be identified by SDS Role Profile ID, SDS User Id and SDS Role Id.</P></DIV></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..*] </B></FONT><A name=Subject2><B>subject</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=MCCI_HD200001UK03#Act;BatchRequest/batchControlActEvent/subject title=MCCI_HD200001UK03#Act/subject style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman"><B>Refers to the subject act of the message.</B> 
+</font> 
+<P><font face="Times New Roman"><B>Mandatory when the interaction carries a domain payload.</B></font></P></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SUBJ</B>} )<A>{<B> Fixed="<FONT color=red>SUBJ</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#ActRelationship;batchControlActEvent/subject/$typeCode title=subject.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the domain payload entry point act is the subject of the Control Act. </P>
+<UL>
+<LI>Fixed value "<B>SUBJ</B>" </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#ActRelationship;batchControlActEvent/subject/$contextConductionInd title=subject.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A value indicating whether any of the other participations, e.g. "author", are inherited by the domain payload. <BR><BR>In this context the value attribute is a fixed value of "false" indicating that none of the author participations shall be inherited.</P></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>controlAct</B> (<A href="#ControlAct"><B>ControlAct</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#ActRelationship;batchControlActEvent/subject/controlAct-ControlAct title=MCCI_HD200001UK03#ActRelationship/controlAct-ControlAct style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The control act for each item in the batch.</P></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ManifestValue><B>ManifestValue</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#AttentionLine;ManifestValue_c title=MCCI_HD200001UK03#ManifestValue_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman"><B>A unique identifier relating to a single message interaction contained in the batch. <BR>In this instance the batch response mandates the inclusion of a single identifier per message interaction:</B> 
+</font> </P>
+<UL>
+<LI><B><font face="Times New Roman">interaction identifier&nbsp; </font> </LI></B></UL></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ManifestValue>Used by: </A></FONT><A href="#ManifestItem"><B>ManifestItem</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>manifestItemKey </B>(<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id="MCCI_HD200001UK03#AttentionLine;ManifestValue/$manifestItemKey " title=MCCI_HD200001UK03#ManifestValue.manifestItemKey style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">A keyword identifying the type of identifier.<BR><BR>Any of the CodedValue datatype flavours can be used to carry this information as follows: 
+</font> 
+<UL>
+<LI><font face="Times New Roman">The <i>code</i> attribute shall contain a value from the list of codes in the
+<b>ManifestItemType</b> vocabulary. 
+</font> 
+<P><font face="Times New Roman">There shall be one fixed keyword value available in this instance:</font></P>
+<OL>
+<LI><font face="Times New Roman"><I>"</I></font><B><font face="Times New Roman">interaction</font><I><font face="Times New Roman">" 
+</font> </LI></I></B></OL></LI></UL></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>manifestItemValue</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#AttentionLine;ManifestValue/$manifestItemValue title=MCCI_HD200001UK03#ManifestValue.manifestItemValue style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">The value pertaining to the keyword carried in manifestItemKey.<BR>Where the keyword is "interaction", the value shall be the interaction identifier of the interaction identified by payloadId.<BR><BR>The Identifier External datatype flavour is used to carry this information as follows: 
+</font> 
+<UL>
+<LI><font face="Times New Roman">The <i>root</i> attribute shall contain an OID with the value <b>&quot;2.16.840.1.113883.2.1.3.2.4.12&quot;.
+</b> 
+</font> 
+<LI><font face="Times New Roman">The <i>extension</i> attribute shall carry the interaction identifier. </NOTE>
+</font></LI></UL></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Device><B>Device</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Device;Device_c title=MCCI_HD200001UK03#Device style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman"><B>The Device class&nbsp;represents the sender and receiver.</B></font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Device>Used by: </A></FONT><A href="#CommunicationFunctionRcv"><B>CommunicationFunctionRcv</B></A>, <A href="#CommunicationFunctionSnd"><B>CommunicationFunctionSnd</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>DEV</B>} )<A>{<B> Fixed="<FONT color=red>DEV</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Device;Device/$classCode title=MCCI_HD200001UK03#Device.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P align=left xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Indicates that the entity is a device.</font></P>
+<UL>
+<LI><font face="Times New Roman">Fixed value "<B>DEV</B>". </font> </LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Device;Device/$determinerCode title=MCCI_HD200001UK03#Device.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Indicates that the entity is a single instance.</font></P>
+<UL>
+<LI><font face="Times New Roman">Fixed value "<B>INSTANCE</B>". </font> </LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Device;Device/$id title=MCCI_HD200001UK03#Device.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<DIV style="BACKGROUND-COLOR: white" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<P><font face="Times New Roman">A single&nbsp;unique&nbsp;identifier of the accredited system that represents the party who is&nbsp;either sending or receiving the batch. 
+</font> </P>
+<P><font face="Times New Roman">The accredited system is represented by the SDS Accredited Application Instance Id held in the SDS directory as the Accredited System Identifier (ASID).</font></P>
+<P><font face="Times New Roman">The level of resolution of the ASID is dependent on the implementation. Domain implementation guidance SHALL specify the level at which the ASID should be resolved to ensure the sending and receiving end business applications can be identified.</font></P>
+<P><font face="Times New Roman">This is carried in the following way:</font></P>
+<UL>
+<LI><font face="Times New Roman">The <I>root</I> attribute shall contain an OID with the value <b>&quot;1.2.826.0.1285.0.2.0.107&quot;
+</b> </font> </LI>
+<LI><font face="Times New Roman">the <I>extension</I> attribute shall contain the appropriate identifier. 
+</font> </LI></UL>
+<P><font face="Times New Roman">A set of ids allows more than one address identifying the party to be present. This requirement does not exist at present but may be identified in the future.</font></P></DIV>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>agencyFor</B> (<A href="#Agent"><B>Agent</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Device;Device/agencyFor-Agent title=MCCI_HD200001UK03#agencyFor-Agent style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P align=left xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">An agent role linking device and organisation.</font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Agent><B>Agent</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#RoleHeir;Agent_c title=Agent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P align=left xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman"><B>An agent linking device and organisation.</B></font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Agent>Used by: </A></FONT><A href="#Device"><B>Device</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AGNT</B>} )<A>{<B> Fixed="<FONT color=red>AGNT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#RoleHeir;Agent/$classCode title=MCCI_HD200001UK03#Agent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Indicates that the role is that of an agent.</font></P>
+<UL>
+<LI><font face="Times New Roman">Fixed value "<B>AGNT</B>". </font> </LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>representedOrganization</B> (<A href="#Organization"><B>Organization</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#RoleHeir;Agent/representedOrganization-Organization title=MCCI_HD200001UK03#representedOrganization-Organization style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">Identifying information about the organisation.</font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ControlAct><B>ControlAct</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#ControlAct;ControlAct_c title=ControlAct style="WIDTH: 479px; HEIGHT: 115px; BACKGROUND-COLOR: white">
+<font face="Times New Roman">
+<b>The Control Act carries administrative information&nbsp;related to the &quot;controlled 
+act&quot; that is being communicated in the message. It is intended that there will 
+be a control act for each request item within the batch.</b></NOTE></font></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ControlAct>Used by: </A></FONT><A href="#BatchControlActEvent"><B>BatchControlActEvent</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>CACT</B>} )<A>{<B> Fixed="<FONT color=red>CACT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#ControlAct;ControlAct/$classCode title=MCCI_HD200001UK03#ControlAct.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P align=left xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Indicates that this is Control Act.</font></P>
+<UL>
+<LI><font face="Times New Roman">Fixed value "<B>CACT</B>". </font> </LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#ControlAct;ControlAct/$moodCode title=MCCI_HD200001UK03#ControlAct.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<font face="Times New Roman">Indicates that the control act mood is an event.</font></P>
+<UL>
+<LI><font face="Times New Roman">Fixed value "<B>EVN</B>". </font> </LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#ControlAct;ControlAct/$id title=MCCI_HD200001UK03#ControlAct.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">&nbsp;A unique identifier for this ControlAct.
+</font>
+<P><font face="Times New Roman">The Identifier Global datatype flavour is used to carry this information as follows:</font></P>
+<UL>
+<LI><font face="Times New Roman">A DCE <b>UUID</b> is held in the<I> root</I> attribute</font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Component><B>component</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=MCCI_HD200001UK03#ControlAct;subject/ControlAct/component title=MCCI_HD200001UK03#component style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman"><B>Indicates the PayloadInteraction is a component of ControlAct.</B></font></P>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#ActRelationship;ControlAct/component/$typeCode title=component.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component. </P>
+<UL>
+<LI>Fixed value: <B>"COMP"</B></LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>payloadInteraction</B> (<A href="#PayloadInteraction"><B>PayloadInteraction</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#ActRelationship;ControlAct/component/payloadInteraction-PayloadInteraction title=MCCI_HD200001UK03#component/payloadInteraction-PayloadInteraction style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The PayloadInteraction is the unique identifier for the item within the batch. This is used to identify which response corresponds to which batch request item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Subject><B>subject</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=MCCI_HD200001UK03#ControlAct;subject/ControlAct/subject title=MCCI_HD200001UK03#ControlAct/subject style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman"><B>Refers to the subject act of the message.</B> 
+</font> 
+<P><font face="Times New Roman"><B>Mandatory when the interaction carries a domain payload.</B></font></P></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SUBJ</B>} )<A>{<B> Fixed="<FONT color=red>SUBJ</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#ActRelationship;ControlAct/subject/$typeCode title=subject.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the domain payload entry point act is the subject of the Control Act. </P>
+<UL>
+<LI>Fixed value "<B>SUBJ</B>" </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>act</B> (<A href="#Act"><B>Act</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#ActRelationship;ControlAct/subject/act-Act title=MCCI_HD200001UK03#subject/act-Act style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>The stub for the domain defined content.</B></P></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Reason><B>reasonOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=MCCI_HD200001UK03#ControlAct;subject/ControlAct/reasonOf title=MCCI_HD200001UK03#subject/ControlAct/reasonOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman"><B>Identifies the relationship between the control act and the detected issue event.</B></font></P></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RSON</B>} )<A>{<B> Fixed="<FONT color=red>RSON</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#ActRelationship;ControlAct/reasonOf/$typeCode title=reasonOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a reason.</P>
+<UL>
+<LI>Fixed value: "<b>RSON</b>"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>justifiedDetectedIssueEvent</B> (<A href="#DetectedIssueEvent"><B>DetectedIssueEvent</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=MCCI_HD200001UK03#ActRelationship;ControlAct/reasonOf/justifiedDetectedIssueEvent-DetectedIssueEvent title=MCCI_HD200001UK03#justifiedDetectedIssueEvent-DetectedIssueEvent style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of the detected issue.</P></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>queryByParameter</B> (<A href="#QueryByParameter"><B>QueryByParameter</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#ControlAct;ControlAct/queryByParameter-QueryByParameter title=MCCI_HD200001UK03#ControlAct/queryByParameter-QueryByParameter style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman"><B>Information about the query, in this case this enables a batch of query requests.&nbsp;</B></font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Organization><B>Organization</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#EntityHeir;Organization_c title=MCCI_HD200001UK03#Organization style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman"><B>The organisation of the sender or receiver of the batch. </B>
+</font></P>
+<P><font face="Times New Roman"><B>This construct supports copy recipient addressing. See additional documentation of scoped personRole below.</B></font></P>
+<P><font face="Times New Roman"><B>Where domain specific implementation guidance describing it's population is given, it may also be used in conjunction with an Accredited System Identifier to support addressing of an end system. </B>
+</font></P>
+<P><font face="Times New Roman"><B>These SHALL be the only two cases where it is used.</B></font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Organization>Used by: </A></FONT><A href="#Agent"><B>Agent</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ENT</B>} )<A>{<B> Fixed="<FONT color=red>ENT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#EntityHeir;Organization/$classCode title=MCCI_HD200001UK03#Organization.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">&nbsp;Indicates that this is an organisation
+</font>
+<UL>
+<LI><font face="Times New Roman">Fixed value "<b>ENT</b>".</font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#EntityHeir;Organization/$determinerCode title=MCCI_HD200001UK03#Organization.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">&nbsp;Indicates that the entity is a single instance.
+</font>
+<UL>
+<LI><font face="Times New Roman">Fixed value "<b>INSTANCE</b>".</font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#EntityHeir;Organization/$id title=MCCI_HD200001UK03#Organization.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">An SDS identifier that uniquely identifies the organisation of the intended recipient. This is carried in the following way: 
+</font> 
+<UL>
+<LI><font face="Times New Roman">The <I>root</I> attribute shall contain an OID with the value <b>&quot;1.2.826.0.1285.0.1.10&quot;
+</b> </font> </LI>
+<LI><font face="Times New Roman">the <I>extension</I> attribute shall contain the SDS <b>Organisation ID.</b></font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD120500UK03-NoEdit.htm">scopedRole2</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM120500UK03.htm"><SMALL>[CMET:&nbsp;UKCT_MT120501UK03]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#EntityHeir;Organization/scopedRole2+UKCT_MT120501UK03 title=MCCI_HD200001UK03#scopedRole2+UKCT_MT120501UK03 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">NPfIT CMET identifying a person fulfilling a specific role. Full details of the person and role profile are available from SDS.</font></P>
+<P><font face="Times New Roman">This construct shall only be used to identify the specific person recipient of a Copy interaction. This shall be the default for addressing copy messages unless 
+superseded by specific domain implementation guidance.</font></P>
+<P><font face="Times New Roman">Under no circumstances shall this construct be used for any other addressing.</font></P>
+<P><font face="Times New Roman">In this context the person is the named intended recipient of the message who shall be identified by an SDS Role Profile Id and an SDS User Id.
+</font> </P><EMPH></EMPH><font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><b><u>
+<a href="../../CMETs/Tabular%20View/UKCT_HD120300UK02-NoEdit.htm">scoped</a></u><a href="../../CMETs/Tabular%20View/UKCT_HD120300UK02-NoEdit.htm">Role1</a></b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM120300UK02.htm"><SMALL>[CMET:&nbsp;UKCT_MT120301UK02]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#EntityHeir;Organization/roleName+UKCT_MT120301UK02 title=MCCI_HD200001UK03#roleName+UKCT_MT120301UK02 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">NPfIT CMET identifying an Organization fulfilling a specific role. Full details of the organization are available from SDS. Details of the scoping organization are either not required or available from SDS.</font></P>
+<P><font face="Times New Roman">This construct shall only be used where domain specific guidance describing it's population is given.</font></P>
+<P><font face="Times New Roman">In this context the optional CMET identifies an SDS workgroup id as the recipient of the message. The only attribute that may be populated in this context is UKCT_MT120501UK03.OrganizationSDS.id as follows:</font></P>
+<UL>
+<LI><font face="Times New Roman">The <I>root</I> attribute shall contain an OID with the value <b>&quot;1.2.826.0.1285.0.2.0.109&quot;</b></font></LI>
+<LI><font face="Times New Roman">The <I>extension</I> attribute shall contain the SDS <b>workgroup id</b>. 
+</font> </LI></UL><EMPH></EMPH><font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=QueryByParameter><B>QueryByParameter</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#QueryByParameter;QueryByParameter_c title=MCCI_HD200001UK03#QueryByParameter style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman"><B>Information about the query, in this case this enables a batch of query requests.&nbsp;Note: 
+This must be used for query requests.</B></font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=QueryByParameter>Used by: </A></FONT><A href="#ControlAct"><B>ControlAct</B></A></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=PayloadInteraction><B>PayloadInteraction</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Observation;PayloadInteraction_c title=PayloadInteraction_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Times New Roman; font-weight:700">This id&nbsp;enables&nbsp;a Response item to be matched with the correct Query/Request item.</SPAN></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=PayloadInteraction>Used by: </A></FONT><A href="#ControlAct"><B>ControlAct</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Observation;PayloadInteraction/$classCode title=MCCI_HD200001UK03#PayloadInteraction.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">Indicates that this is an observation. 
+</font> 
+<UL>
+<LI><font face="Times New Roman">Fixed value "<b>OBS</b>".</font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Observation;PayloadInteraction/$moodCode title=MCCI_HD200001UK03#PayloadInteraction.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">Indicates that this is an&nbsp;event. 
+</font> 
+<UL>
+<LI><font face="Times New Roman">Fixed value "<b>EVN</b>".</font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Observation;PayloadInteraction/$id title=MCCI_HD200001UK03#PayloadInteraction.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<DIV style="BACKGROUND-COLOR: white" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<P><font face="Times New Roman">The unique identifier for a specific message interaction contained within the batch. <BR><BR>The Identifier Global datatype flavour is used to carry this information as follows:
+</font>
+<UL>
+<LI><font face="Times New Roman">A&nbsp;DCE <b>UUID</b> is held in the&nbsp;<I>root </I>attribute</NOTE></font></LI></UL></DIV><font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/InfrastructureAnnotation.htm"><B>InfrastructureAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Observation;PayloadInteraction/$code title=MCCI_HD200001UK03#PayloadInteraction.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">Indicates that this is an&nbsp;PayloadInteraction.
+</font> 
+<UL>
+<LI><font face="Times New Roman">The <i>codeSystem</i> attribute shall contain an OID with the value</font><b><font face="Times New Roman"> &quot;</font></b><span style="font-family: Times New Roman; font-weight: 700">2.16.840.1.113883.2.1.3.2.4.17.163</span><font face="Times New Roman"><b>&quot;</b></font></LI>
+<LI><font face="Times New Roman">The&nbsp;<I>code</I> attribute shall be <b>&quot;PIT&quot;</b>.</font></LI>
+<LI><font face="Times New Roman">The <I>displayName </I>shall be <b>&quot;Payload Interaction&quot;</b>.</font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Act><B>Act</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#ActHeir;Act_c title=MCCI_HD200001UK03#Act style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">This is the stub for the domain defined content. This must not contain a 
+query. For a query the QueryByParameter class should be used.</font></P></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Act>Used by: </A></FONT><A href="#ControlAct"><B>ControlAct</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ACT</B>} )<A>{<B> Fixed="<FONT color=red>ACT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#ActHeir;Act/$classCode title=MCCI_HD200001UK03#Act.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">Indicates that this is an act. 
+</font> 
+<UL>
+<LI><font face="Times New Roman">Fixed value "<b>ACT</b>".</font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#ActHeir;Act/$moodCode title=MCCI_HD200001UK03#Act.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">Indicates that this is an&nbsp;event. 
+</font> 
+<UL>
+<LI><font face="Times New Roman">Fixed value "<b>EVN</b>".</font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=DetectedIssueEvent><B>DetectedIssueEvent</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Observation;DetectedIssueEvent_c title=MCCI_HD200001UK03#DetectedIssueEvent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><FONT style="BACKGROUND-COLOR: #ffffff">
+<P><font face="Times New Roman"><B>Details of the business&nbsp;issue or error that has been detected by the receiving system. </B>
+</font></P>
+<P><font face="Times New Roman"><B>A business&nbsp;issue or error is defined as being one that is related to the information&nbsp;conveyed by the&nbsp;message evaluated in context by the processing application.</B>&nbsp;</font></P></FONT></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=DetectedIssueEvent>Used by: </A></FONT><A href="#ControlAct"><B>ControlAct</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ALRT</B>} )<A>{<B> Fixed="<FONT color=red>ALRT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Observation;DetectedIssueEvent/$classCode title=MCCI_HD200001UK03#DetectedIssueEvent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">Indicates that this is an alert. 
+</font> 
+<UL>
+<LI><font face="Times New Roman">Fixed value "<b>ALRT</b>".</font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Observation;DetectedIssueEvent/$moodCode title=MCCI_HD200001UK03#DetectedIssueEvent.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">Indicates that this is an&nbsp;event. 
+</font> 
+<UL>
+<LI><font face="Times New Roman">Fixed value "<b>EVN</b>".</font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/ActDetectedIssueCode.htm"><B>ActDetectedIssueCode</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=MCCI_HD200001UK03#Observation;DetectedIssueEvent/$code title=MCCI_HD200001UK03#DetectedIssueEvent.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><font face="Times New Roman">This&nbsp;allows the responding system to&nbsp;record the&nbsp;business issue or error&nbsp;that has been detected.</font></P>
+<P><font face="Times New Roman">All business issues and errors shall be reported using DetectedIssueEvent.code. The code shall contain a qualifier sub element&nbsp;to indicate the severity of the issue or error.&nbsp;</font></P>
+<P><font face="Times New Roman">The Coded&nbsp;Qualified datatype flavour&nbsp;shall be&nbsp;used to carry this information as follows:</font></P>
+<UL>
+<LI><font face="Times New Roman">The <I>code</I> attribute is required and&nbsp;shall contain a value from one of the code systems identified&nbsp;under 
+<b>ActDetectedIssueCode</b> </font> </LI>
+<LI><font face="Times New Roman">The <I>displayName</I> attribute is optional and may contain the textual description of the code 
+</font> </LI>
+<LI><font face="Times New Roman">The <I>codeSystem</I> attribute is required and&nbsp;shall contain an OID as appropriate. 
+</font> </LI>
+<LI><font face="Times New Roman">The <I>originalText</I>&nbsp;sub element&nbsp;is optional and may contain the text&nbsp;used&nbsp;as the basis for the coding&nbsp; 
+</font> </LI>
+<LI><font face="Times New Roman">The <I>qualifier</I> sub element is required and&nbsp; shall contain one of the&nbsp;qualifier codes identified under DetectedIssueQualifier together with the appropriate OID.</font></LI></UL>
+<font face="Times New Roman"></NOTE></font></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

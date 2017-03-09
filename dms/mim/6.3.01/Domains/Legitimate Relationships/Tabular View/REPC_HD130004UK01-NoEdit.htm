@@ -1,0 +1,351 @@
+<HTML><HEAD><TITLE>Add User to Workgroup Response Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="Add User to Workgroup Response" name=Entry>
+<META content=REPC_HD130004UK01 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Add User to Workgroup Response - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne style="LEFT: 172px; VISIBILITY: hidden; TOP: 337px">Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="REPC_RM130004UK01.htm"><B>REPC_RM130004UK01</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AddToWorkgroupResponse><B>AddToWorkgroupResponse</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#ActHeir;AddToWorkgroupResponse_c title=REPC_HD130004UK01#AddToWorkgroupResponse_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Response to indicate the success or otherwise of adding a user to a workgroup.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AddToWorkgroupResponse>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>REG</B>} )<A>{<B> Fixed="<FONT color=red>REG</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#Act;AddToWorkgroupResponse/$classCode title=REPC_HD130004UK01#AddToWorkgroupResponse.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a registration.</P>
+<UL>
+<LI>Fixed Value: "REG"</LI></UL>
+<P>The classCode is carried as an attribute of the <I>AddToWorkgroupResponse </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#Act;AddToWorkgroupResponse/$moodCode title=REPC_HD130004UK01#AddToWorkgroupResponse.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an Event.</P>
+<UL>
+<LI>Fixed Value: "EVN"</LI></UL>
+<P>The moodCode is carried as an attribute of the <I>AddToWorkgroupResponse </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/SDSRegistrationType.htm"><B>SDSRegistrationType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#Act;AddToWorkgroupResponse/$code title=REPC_HD130004UK01#AddToWorkgroupResponse.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to provide the type of registration.</P>
+<P>In this context, the type of registration is the addition of a user (User Role Profile) to a Workgroup.</P>
+<P>The Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain value "01" (Add User To Workgroup) from the list of codes in the <U>SDSRegistrationType</U> vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the <U>SDSRegistrationType</U> vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Subject><B>subject</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD130004UK01#Act;/AddToWorkgroupResponse/subject title=REPC_HD130004UK01#/AddToWorkgroupResponse/subject style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>A heading for providing a link to the subject of the registration event.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBJ</B>} )<A>{<B> Fixed="<FONT color=red>SBJ</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130004UK01#Participation;AddToWorkgroupResponse/subject/$typeCode title=REPC_HD130004UK01#AddToWorkgroupResponse/subject.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the subject of the registration event.</P>
+<UL>
+<LI>Fixed Value: "SBJ"</LI></UL>
+<P>The typeCode is carried as an attribute of the <I>subject </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>agentPersonSDS</B> (<A href="#AgentPersonSDS"><B>AgentPersonSDS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130004UK01#Participation;AddToWorkgroupResponse/subject/agentPersonSDS-AgentPersonSDS title=REPC_HD130004UK01#AddToWorkgroupResponse/subject/agentPersonSDS-AgentPersonSDS style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of the User Role Profile to which the Workgroup&nbsp;was requested&nbsp;to be added in the original request.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AgentPersonSDS><B>AgentPersonSDS</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#RoleHeir;AgentPersonSDS_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AgentPersonSDS>Used by: </A></FONT><A href="#AddToWorkgroupResponse"><B>AddToWorkgroupResponse</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AGNT</B>} )<A>{<B> Fixed="<FONT color=red>AGNT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#RoleHeir;AgentPersonSDS/$classCode title=AgentPersonSDS.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of an agent.</P>
+<UL>
+<LI>Fixed value: "AGNT"</LI></UL>
+<P>The classCode is carried as an attribute of the&nbsp;<I>AgentPersonSDS </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#RoleHeir;AgentPersonSDS/$id title=REPC_HD130004UK01#AgentPersonSDS.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An SDS identifier that uniquely identifies the role profile&nbsp;of the person.&nbsp;&nbsp; This is carried in the following way: </P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.67 </LI>
+<LI>the <I>extension</I> attribute shall contain the SDS&nbsp;Role Profile&nbsp;ID, known in the External Interface Specification as Role Profile Code.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Subject2><B>subjectOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD130004UK01#RoleHeir;subject/AgentPersonSDS/subjectOf title=REPC_HD130004UK01#subject/AgentPersonSDS/subjectOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing a link to an observation that the URP is subject to.</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBJ</B>} )<A>{<B> Fixed="<FONT color=red>SBJ</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130004UK01#Participation;AgentPersonSDS/subjectOf/$typeCode title=REPC_HD130004UK01#AgentPersonSDS/subjectOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the subject of the associated observation.</P>
+<UL>
+<LI>Fixed Value: "SBJ"</LI></UL>
+<P>The typeCode is carried as an attribute of the <I>subjectOf </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>alreadyAMember</B> (<A href="#AlreadyAMember"><B>AlreadyAMember</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130004UK01#Participation;AgentPersonSDS/subjectOf/alreadyAMember-AlreadyAMember title=REPC_HD130004UK01#AgentPersonSDS/subjectOf/alreadyAMember-AlreadyAMember style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of whether or not the URP was already a member of the specified workgroup, when the original Add User To Workgroup Request was received.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AlreadyAMember><B>AlreadyAMember</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#Observation;AlreadyAMember_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AlreadyAMember>Used by: </A></FONT><A href="#AgentPersonSDS"><B>AgentPersonSDS</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#Observation;AlreadyAMember/$classCode title=REPC_HD130004UK01#AlreadyAMember.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an observation.</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL>
+<P>The classCode is carried as an attribute of the <I>AlreadyAMember </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#Observation;AlreadyAMember/$moodCode title=REPC_HD130004UK01#AlreadyAMember.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an observation which has occurred.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL>
+<P>The moodCode is carried as an attribute of the <I>AlreadyAMember </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/SDSObservationType.htm"><B>SDSObservationType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#Observation;AlreadyAMember/$code title=REPC_HD130004UK01#AlreadyAMember.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to provide the type of observation.</P>
+<P>In this context, the type of observation is the workgroup membership status of the User Role Profile, specifically whether or not they were already a member of the workgroup specified in the original Add User To Workgroup Request.</P>
+<P>The Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain value "02" (Already&nbsp;a member of the identified workgroup) from the list of codes in the <U>SDSObservationType</U> vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the <U>SDSObservationType</U> vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130004UK01#Observation;AlreadyAMember/$value title=REPC_HD130004UK01#AlreadyAMember.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If present and set to 'true', indicates that the URP is already a member of the workgroup (the workgroup is already present in the identified URP), and that no action was taken. If not present, indicates that the request was successful and the URP was added to the workgroup.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

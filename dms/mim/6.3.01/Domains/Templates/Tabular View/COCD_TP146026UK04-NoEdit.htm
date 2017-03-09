@@ -1,0 +1,1064 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>RiskToPatient Tabular View</title><style type="text/css">
+	table {empty-cells: show}
+</style><script language="JavaScript1.2">
+				
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+
+</script><style>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#maindiv {
+	overflow: auto; 
+	width: 100%; 
+	height: 90%; 
+	}
+
+
+.hypertext
+{
+	position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+}
+
+.actclass
+{
+	background-color: red;
+}
+
+.entclass
+{
+	background-color: lightgreen;;
+}
+
+.roleclass
+{
+	background-color: yellow;;
+}
+.otherclass
+{
+	background-color: blue;
+}
+.choiceclass
+{
+	background-color: gray;
+}
+.actrelclass
+{
+	background-color: pink;
+}
+.partclass
+{
+	background-color: cyan;
+}
+.rolelinkclass
+{
+	background-color: lightyellow;
+}
+
+</style></head>
+   <body onload="checkDOM('ds')">
+      <h1>RiskToPatient - tabular view</h1><span id="ds" class="hypertext">No Current Link To Vocabulary</span><span id="cwe" class="hypertext">Coded With Extensions</span><span id="cne" class="hypertext">Coded No Extensions</span><p><b>Fri Nov 09 12:57:43 GMT 2007</b></p>
+      <table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="black">
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+         <tr>
+            <td height="35" colspan="2"><a href="COCD_TP146026UK04.htm"><b>COCD_TP146026UK04</b></a></td>
+            <td height="35" nowrap="yes"></td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass"><a name="RiskToPatient"><b>RiskToPatient</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>Information which has been identified as a risk to the patient.</strong>
+                     <br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#"><b></b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ActClass</b></a> } ) {<b> Fixed="<font color="red">OBS</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>Indicates that this is an observation.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>moodCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ActMood</b></a> } ) {<b> Fixed="<font color="red">EVN</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>Indicates that this is an event.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>code</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/SnomedCT.htm" target="_top"><b>SnomedCT</b></a> } ) {<b> Fixed="<font color="red">222701000000104</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>A fixed code taken from snomedCT indicating that this is a Risk To Patient observation.<br>
+                        
+                     </p>
+                     
+                     <p>The Coded Value (CV) with CDA URL datatype/flavour shall be used to  carry this information as follows: </p>
+                     
+                     <ul>
+                        
+                        <li>The <i>code</i> attribute shall contain a code from the relevant  	vocabulary 
+                        </li>
+                        
+                        <li>The <i>codeSystem</i> attribute shall contain the OID for SnomedCT  	
+                        </li>
+                        
+                        <li>The <i>displayName</i> attribute shall carry a description associated  	with the code in SnomedCT 
+                        </li>
+                        
+                        <li>The <i>originalText</i> element can be used to carry a <i>reference</i>  	element. This can link the coded item to the relevant text in the CDA  	section 
+                        </li>
+                        
+                     </ul>  Note the implementation guidance for the domain where this template is used  should be consulted regarding correct usage
+                     of the <i>originalText</i>  element.
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>effectiveTime</b> (<a href="../../../Data Types/DataTypes.htm#IVL"><b>IVL</b></a><b>&lt;<a href="../../../Data Types/DataTypes.htm#TS"><b>TS</b></a>&gt;</b>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     <span style="font-size: 12pt">When the risk was valid or the time from which it is valid.<br>
+                        </span>
+                     
+                     <div>
+                        
+                        <p class="" style="background: white none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial"></p>
+                        
+                        <p class="" style="background: white none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                           <span style="font-size: 12pt">The date range shall be carried as follows: </span>
+                           
+                        </p>
+                        
+                        <p class="" style="background: white none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                           <span style="font-size: 12pt">If both a start date and an end date are present the Date or Time Interval Complete datatype shall be used:</span>
+                           
+                        </p>
+                        
+                        <ul>
+                           
+                           <li class="" style="background: white none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                              <span style="font-size: 12pt">The<em>low</em>      attribute shall contain the start date.</span>
+                              
+                           </li>
+                           
+                           <li class="" style="background: white none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                              <span style="font-size: 12pt">The <em>high</em>      attribute shall contain the end date.</span>
+                              
+                           </li>
+                           
+                        </ul>
+                        
+                        <p class="" style="background: white none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                           <span style="font-size: 12pt">If only a start date is present the Date or Time Interval After datatype shall be used:</span>
+                           
+                        </p>
+                        
+                        <ul>
+                           
+                           <li class="" style="background: white none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                              <span style="font-size: 12pt">The <em>low</em>      attribute shall contain the start date.</span>
+                              
+                           </li>
+                           
+                        </ul>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>id</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>
+                        <span style="font-size: 12pt">This is a unique identifier for this instance of a RiskToPatient.</span>
+                        
+                     </p>
+                     
+                     <div>
+                        
+                        <p class=""></p>
+                        
+                        <p class="">
+                           <span style="font-size: 12pt">The Identifier Global datatype flavour is used to carry the first identifier as follows:</span>
+                           
+                        </p>
+                        
+                        <ul>
+                           
+                           <li>
+                              <span style="font-size: 12pt">The <em>root</em> attribute shall contain a DCE UUID.</span>
+                              
+                           </li>
+                           
+                        </ul>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>statusCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ActStatus</b></a> } ) {<b> Default="<font color="red">completed</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>The status of the Risk To Patient observation. <br>
+                        
+                     </p>
+                     
+                     <p>                                         The Coded Only datatype flavour is used to carry this information as follows:<br>
+                        
+                     </p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute will contain a one of the following codes from the Act Status vocabulary:
+                        </li>
+                        
+                        <ul>
+                           
+                           <li>nullified</li>
+                           
+                           <li>completed</li>
+                           
+                        </ul>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>templateId</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>) {<b> Fixed="<font color="red">COCD_TP146026UK04#RiskToPatient</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>The fixed value of this attribute provides a unique identifier for the  template and the classname within that template.</p>
+                     
+                     <p>The IdentifierExternal datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</li>
+                        
+                        <li>The extension attribute shall contain the fixed value.</li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2" class="partclass"><font color="green"><b>[0..1] </b></font><b><a id="RiskToPatient/author"></a>author</b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>
+                        <strong>
+                           <span style="font-size: 12pt">Refers to the person who is the author of the risk to patient observation.</span>
+                           </strong>
+                        
+                     </p>
+                     
+                     <p>
+                        <strong>
+                           <span style="font-size: 12pt">This is the person who deemed something to be a risk to patient.<br>
+                              <br>
+                              </span>
+                           </strong>
+                        <span style="font-size: 12pt">This author is only required if the author is different from the inherited author. </span>
+                        
+                     </p>
+                     <br>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>typeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ParticipationType</b></a> } ) {<b> Fixed="<font color="red">AUT</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  <span style="font-size: 11pt; font-family: &#34;Times New Roman&#34;">Indicates that this is an author.</span>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contextControlCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ContextControl</b></a> } ) {<b> Fixed="<font color="red">OP</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     <span style="font-size: 12pt">Specifies how this author contributes to the context of the risk to patient observation and whether it may be propagated to
+                        descendent acts whose association allows such propagation.</span>
+                     
+                     <div>
+                        
+                        <p style="background: white none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial"></p>
+                        
+                        <p style="background: white none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                           <span style="font-size: 12pt">"O" (Overriding)- the association replaces any context of the same or more specific type that has been conducted from the
+                              parent act. </span>
+                           
+                        </p>
+                        <span style="font-size: 12pt">"P" (Propagating)- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to
+                           "true."</span>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contentId</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>) {<b> "<a href="../Document%20files/NPFIT-000005_Role.htm"><font color="red">NPFIT-000005#Role</font></a>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>This attribute, when valued in an instance, provides a unique forward pointing identifier for a template which constrains
+                        the classes and attributes which follow. 
+                     </p>
+                     
+                     <p>The attribute is intended simply as a structural navigational aid and should not be relied upon as an indicator of semantic
+                        meaning.
+                     </p>
+                     
+                     <p>The IdentifierExternal datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain the OID "2.16.840.1.113883.2.1.3.2.4.18.16"</li>
+                        
+                        <li>The extension attribute shall contain the template artifact Id.</li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>functionCode</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/AuthorFunctionType.htm" target="_top"><b>AuthorFunctionType</b></a> } ) {<b> Fixed="<font color="red">OA</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>A code from the vocabulary shown indicating the function of the document author<br>
+                        
+                     </p>
+                     
+                     <p>The  Coded Plain flavour of Coded Value (CV) datatype shall be used to carry this information  as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <i>code</i> attribute shall contain the value  
+                        </li>
+                        
+                        <li>The <i>codeSystem</i> attribute shall contain the OID for the vocabulary  concerned
+                        </li>
+                        
+                        <li>The  <i>displayName</i> attribute shall contain the text associated with the code
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>templateId</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>) {<b> Fixed="<font color="red">COCD_TP146026UK04#author</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>The fixed value of this attribute provides a unique identifier for the  template and the classname within that template.</p>
+                     
+                     <p>The IdentifierExternal datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</li>
+                        
+                        <li>The extension attribute shall contain the fixed value.</li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [R] </b></font><b>time</b> (<a href="../../../Data Types/DataTypes.htm#TS"><b>TS</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  <span style="font-size: 11pt">The time at which the author authored the risk to patient observation.</span>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>participant</b> (<a href="#AuthorChoice"><b>AuthorChoice</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A link to the choice of informant templates.<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2" class="actrelclass"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="RiskToPatient/entryRelationship"></a>entryRelationship</b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>Refers a reference to a coded entry which is considered to be  a risk to patient.</strong>
+                     <br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>typeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ActRelationshipType</b></a> } ) {<b> Fixed="<font color="red">SUBJ</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>indicates this is a has subject relationship.<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contextConductionInd</b> (<a href="../../../Data Types/DataTypes.htm#BL"><b>BL</b></a>) {<b> Fixed="<font color="red">false</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>If true, associations in the parent act are conducted across the  ActRelationship to the child act.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contentId</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>) {<b> "<a href="../Document%20files/NPFIT-000011_ActRef.htm"><font color="red">NPFIT-000011#ActRef</font></a>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>This attribute, when valued in an instance, provides a unique forward pointing identifier for a template which constrains
+                        the classes and attributes which follow. 
+                     </p>
+                     
+                     <p>The attribute is intended simply as a structural navigational aid and should not be relied upon as an indicator of semantic
+                        meaning.
+                     </p>
+                     
+                     <p>The IdentifierExternal datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain the OID "2.16.840.1.113883.2.1.3.2.4.18.16"</li>
+                        
+                        <li>The extension attribute shall contain the template artifact Id.</li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>seperatableInd</b> (<a href="../../../Data Types/DataTypes.htm#BL"><b>BL</b></a>) {<b> Fixed="<font color="red">false</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>Indicates if the source Act is to be interpreted independently of the  target Act. </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>templateId</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>) {<b> Fixed="<font color="red">COCD_TP146026UK04#entryRelationship</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>The fixed value of this attribute provides a unique identifier for the  template and the classname within that template.</p>
+                     
+                     <p>The IdentifierExternal datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</li>
+                        
+                        <li>The extension attribute shall contain the fixed value.</li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>codedEntryReference</b> (<a href="#CodedEntryReference"><b>CodedEntryReference</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A link to the choice of clinical statement references.<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2" class="partclass"><font color="green"><b>[0..1] </b></font><b><a id="RiskToPatient/informant"></a>informant</b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     <strong>Refers to who informed about the risk to patient.</strong>
+                     <br>
+                     <br> This is only required if the Informant different from the inherited Informant.
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>typeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ParticipationType</b></a> } ) {<b> Fixed="<font color="red">INF</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  <span style="font-size: 11pt; font-family: &#34;Times New Roman&#34;">Indicates that this is an informant.</span>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contextControlCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ContextControl</b></a> } ) {<b> Fixed="<font color="red">OP</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     <font size="3"> Specifies how this informant contributes to the context of the risk to patient observation and whether it may be propagated
+                        to descendent acts whose association allows such propagation.</font>
+                     
+                     <p style="background: white none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt">"O" (Overriding)- the association replaces any context of the same or more specific type that has been conducted from the
+                           parent act. </span>
+                        
+                     </p>
+                     <span style="font-size: 12pt">"P" (Propagating)- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to
+                        "true."</span>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contentId</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>) {<b> "<a href="../Document%20files/NPFIT-000002_Role.htm"><font color="red">NPFIT-000002#Role</font></a>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>This attribute, when valued in an instance, provides a unique forward pointing identifier for a template which constrains
+                        the classes and attributes which follow. 
+                     </p>
+                     
+                     <p>The attribute is intended simply as a structural navigational aid and should not be relied upon as an indicator of semantic
+                        meaning.
+                     </p>
+                     
+                     <p>The IdentifierExternal datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain the OID "2.16.840.1.113883.2.1.3.2.4.18.16"</li>
+                        
+                        <li>The extension attribute shall contain the template artifact Id.</li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>templateId</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>) {<b> Fixed="<font color="red">COCD_TP146026UK04#informant</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>The fixed value of this attribute provides a unique identifier for the  template and the classname within that template.</p>
+                     
+                     <p>The IdentifierExternal datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</li>
+                        
+                        <li>The extension attribute shall contain the fixed value.</li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>participant</b> (<a href="#InformantChoice"><b>InformantChoice</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">A link to the choice of informant templates. </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="choiceclass"><a name="InformantChoice"><b>InformantChoice</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>Refers to the choice of informant of the risk to patient observation.<br>
+                        </strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#RiskToPatient"><b>RiskToPatient</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td colspan="10" height="1"></td>
+         </tr>
+         <tr>
+            <td colspan="2" width="50%"><font color="green"><b>[1..1] </b><i>either </i></font>: <b><a href="../Document%20files/NPFIT-000002_Role.htm">Template2</a></b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A link to the choice of templates for an informant.<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="choiceclass"><a name="AuthorChoice"><b>AuthorChoice</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>Refers to the choice of authors of the risk to patient observation.<br>
+                        </strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#RiskToPatient"><b>RiskToPatient</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td colspan="10" height="1"></td>
+         </tr>
+         <tr>
+            <td colspan="2" width="50%"><font color="green"><b>[1..1] </b><i>either </i></font>: <b><a href="../Document%20files/NPFIT-000005_Role.htm">Template1</a></b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A link to the author templates.<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="choiceclass"><a name="CodedEntryReference"><b>CodedEntryReference</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>A choice of clinical statement references.</strong>
+                     <br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#RiskToPatient"><b>RiskToPatient</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td colspan="10" height="1"></td>
+         </tr>
+         <tr>
+            <td colspan="2" width="50%"><font color="green"><b>[1..1] </b><i>either </i></font>: <b><a href="../Document%20files/NPFIT-000011_ActRef.htm">Template</a></b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A link to the clinical statement reference templates.<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+      </table>
+   </body>
+</html>

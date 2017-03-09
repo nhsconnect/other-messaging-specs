@@ -1,0 +1,369 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Request Appointment Confirmation Tabular View</title><meta name="Entry" content="Request Appointment Confirmation"><meta name="Identifier" content="PRSC_HD150002UK01"><style type="text/css">
+	table {empty-cells: show}
+</style><script language="JavaScript1.2">
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</script><style>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</style></head><body onload="checkDOM('ds')"><h1>Request Appointment Confirmation - tabular view</h1><span id="ds" class="hypertext">No Current Link To Vocabulary</span><span id="cwe" class="hypertext">Coded With Extensions</span><span id="cne" class="hypertext">Coded No Extensions</span><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="black"><tr bgcolor="black"><td height="4" colspan="10"></td></tr><tr><td height="35" colspan="2"><a href="PRSC_RM150002UK01.htm"><b>PRSC_RM150002UK01</b></a></td><td height="35" nowrap="yes"></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="RequestAppointmentConfirmation"><b>RequestAppointmentConfirmation</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActHeir;RequestAppointmentConfirmation_c"><B>Confirmation of an appointment request.</B></NOTE></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="RequestAppointmentConfirmation">Used by: </a></font></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>PCPR</b>} )<a>{<b> Fixed="<font color="red">PCPR</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Act;RequestAppointmentConfirmation/$classCode">
+<P>Indicates that this is a patient care provision.</P>
+<UL>
+<LI>Fixed value "<B>PCPR</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>RQO</b>} )<a>{<b> Fixed="<font color="red">RQO</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Act;RequestAppointmentConfirmation/$moodCode">
+<P>Indicates that this Act is in <b>request</b> mood..</P>
+<UL>
+<LI>Fixed value: "<b>RQO</b>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>id</b> (<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>)</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Act;RequestAppointmentConfirmation/$id">
+<P>This identifier is globally unique across all records. </P>
+<P>It identifies this instance of a&nbsp;service request<B>.</B> </P>
+<P>The Identifier Global datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>A&nbsp;UUID is held in the&nbsp;<I>root</I> attribute</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[1..1] </b></font><a name="Subject"><b>subject</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Act;/RequestAppointmentConfirmation/subject">
+<P><B>Refers to the patient&nbsp;for whom the&nbsp;appointment is being confirmed.</B></P></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>SBJ</b>} )<a>{<b> Fixed="<font color="red">SBJ</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Participation;RequestAppointmentConfirmation/subject/$typeCode">
+<P>Indicates that this is a subject.</P>
+<UL>
+<LI>Fixed value : "<B>SBJ</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>patient</b> (<a href="#Patient"><b>Patient</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Participation;RequestAppointmentConfirmation/subject/patient-Patient">Information about the patient who is the subject.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[1..1] </b></font><a name="PertinentInformation"><b>pertinentInformation2</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Act;/RequestAppointmentConfirmation/pertinentInformation2">
+	<b>Refers to the pathway ID for the referral.</b></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>PERT</b>} )<a>{<b> Fixed="<font color="red">PERT</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/pertinentInformation2/$typeCode">
+<P>Indicates pertinent information.</P>
+<UL>
+<LI>Fixed value: "<B>PERT</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>pertinentPathwayId</b> (<a href="#PathwayId"><b>PathwayId</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/pertinentInformation2/pertinentPathwayId-PathwayId">
+		Information about the pathway ID.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[1..1] </b></font><a name="PertinentInformation2"><b>pertinentInformation1</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Act;/RequestAppointmentConfirmation/pertinentInformation1"><B>Refers to&nbsp;a Care Record Element Category which is pertinent to the Out of Hours Care Event Report.</B> </NOTE></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>PERT</b>} )<a>{<b> Fixed="<font color="red">PERT</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/pertinentInformation1/$typeCode">
+<P>Indicates pertinent information.</P>
+<UL>
+<LI>Fixed value: "<B>PERT</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>pertinentReferral</b> (<a href="#ReferralInformation"><b>ReferralInformation</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/pertinentInformation1/pertinentReferral-ReferralInformation">Information about the referral.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[1..1] </b></font><a name="PertinentInformation3"><b>pertinentInformation3</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Act;/RequestAppointmentConfirmation/pertinentInformation3">
+	<b>Refers to the type of request being made.</b></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>PERT</b>} )<a>{<b> Fixed="<font color="red">PERT</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/pertinentInformation3/$typeCode">
+<P>Indicates pertinent information.</P>
+<UL>
+<LI>Fixed value: "<B>PERT</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>pertinentRequestType</b> (<a href="#RequestType"><b>RequestType</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/pertinentInformation3/pertinentRequestType-RequestType">
+		Information about the type of request being made.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[0..*] </b></font><a name="PertinentInformation4"><b>pertinentInformation4</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Act;/RequestAppointmentConfirmation/pertinentInformation4">
+	<b>Refers to the start time of the wait.</b></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>PERT</b>} )<a>{<b> Fixed="<font color="red">PERT</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/pertinentInformation4/$typeCode">
+<P>Indicates pertinent information.</P>
+<UL>
+<LI>Fixed value: "<B>PERT</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>pertinentWaitStartTime</b> (<a href="#WaitStartTime"><b>WaitStartTime</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/pertinentInformation4/pertinentWaitStartTime-WaitStartTime">
+		Information about the wait start time.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[1..1] </b></font><a name="InFulfillmentOf2"><b>inFulfillmentOf</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Act;/RequestAppointmentConfirmation/inFulfillmentOf">
+<P><B>Refers to the original&nbsp;request for a scheduled service.</B></P></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>FLFS</b>} )<a>{<b> Fixed="<font color="red">FLFS</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/inFulfillmentOf/$typeCode">
+<P>Indicates that this is fulfilling a request.</P>
+<UL>
+<LI>Fixed value: "<B>FLFS</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>priorRequestedService</b> (<a href="#RequestedService"><b>RequestedService</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/inFulfillmentOf/priorRequestedService-RequestedService">Information about the previous service request that the&nbsp;confirmed appointment&nbsp;is in fulfilment of.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[1..1] </b></font><a name="InFulfillmentOf"><b>fulfillment</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Act;/RequestAppointmentConfirmation/fulfillment"><B>Refers to the appointment that has been scheduled to fulfill&nbsp;the requested service.</B></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>FLFS</b>} )<a>{<b> Fixed="<font color="red">FLFS</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/fulfillment/$typeCode">
+<P>Indicates that this is fulfilling a request.</P>
+<UL>
+<LI>Fixed value: "<B>FLFS</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>appointmentSlot</b> (<a href="#AppointmentSlot"><b>AppointmentSlot</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActRelationship;RequestAppointmentConfirmation/fulfillment/appointmentSlot-AppointmentSlot">
+<P>Information about the appointment that is fulfilling the service request.</P></div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="Patient"><b>Patient</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Patient;Patient_c"><B>
+<P>Details about the patient.</P></B></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="Patient">Used by: </a></font><a href="#RequestAppointmentConfirmation"><b>RequestAppointmentConfirmation</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>PAT</b>} )<a>{<b> Fixed="<font color="red">PAT</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Patient;Patient/$classCode title=Patient.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that the role is that of a patient.<UL>
+<LI>Fixed value: "<b>PAT</b>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>id</b> (<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>)</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Patient;Patient/$id title=Patient.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+To provide the nationally recognised identifier for the patient, the NHS number. 
+<P>The Identifier External datatype flavour is used to carry this information as follows:-</P>
+<P>An NHS number is carried in the following way:</P>
+<UL>
+<LI>The <b>root</b> attribute will contain an <b>OID</b> with the value "<b>2.16.840.1.113883.2.1.4.1</b>" </LI>
+<LI>The <b>extension</b> attribute will contain the NHS number.</LI></UL>
+<P>Only new permanent NHS numbers can be used to identify patients.</P></NOTE></DIV></TD></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="PathwayId"><b>PathwayId</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActHeir;PathwayId_c">
+	<b>Information about the pathway ID for the referral.</b></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="PathwayId">Used by: </a></font><a href="#RequestAppointmentConfirmation"><b>RequestAppointmentConfirmation</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>INFRM</b>} )<a>{<b> Fixed="<font color="red">INFRM</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#ActHeir;ReferralInformation/$classCode0 title=PRSC_HD040100UK10#ReferralInformation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Code to indicate inform.<UL>
+<LI>Fixed value: "<B>INFRM</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#ActHeir;ReferralInformation/$moodCode0 title=PRSC_HD040100UK10#ReferralInformation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Code to indicate this is an event.<UL>
+<LI>Fixed value: "<B>EVN</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>id</b> (<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>)</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActHeir;PathwayId/$id">
+	The ID attribute shall be populated as follows:<ul>
+		<li>The <i>root</i> attribute shall be populated with the OID <b>
+		2.16.840.1.113883.2.1.3.2.4.20.1</b></li>
+		<li><span class="237562515-15062007"><strong style="font-weight: 400">
+		<font face="Times New Roman">The <i>extension</i> attribute shall be 
+		populated with the pathway identifier.</font></strong></span></li>
+	</ul>
+	</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="ReferralInformation"><b>ReferralInformation</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActHeir;ReferralInformation_c">
+<P><B>Information about the referral.</B></P></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="ReferralInformation">Used by: </a></font><a href="#RequestAppointmentConfirmation"><b>RequestAppointmentConfirmation</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>INFRM</b>} )<a>{<b> Fixed="<font color="red">INFRM</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#ActHeir;ReferralInformation/$classCode title=PRSC_HD040100UK10#ReferralInformation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Code to indicate inform.<UL>
+<LI>Fixed value: "<B>INFRM</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#ActHeir;ReferralInformation/$moodCode title=PRSC_HD040100UK10#ReferralInformation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Code to indicate this is an event.<UL>
+<LI>Fixed value: "<B>EVN</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>effectiveTime</b> (<a href="../../../Data%20Types/DataTypes.htm#TS"><b>TS</b></a>)</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#ActHeir;ReferralInformation/$effectiveTime title=PRSC_HD040100UK10#ReferralInformation.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+The date of the decision to refer.</NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>priorityCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/PriorityType.htm"><b>PriorityType</b></a>} )</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#ActHeir;ReferralInformation/$priorityCode title=PRSC_HD040100UK10#ReferralInformation.priorityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+A code specifying the&nbsp;level of urgency applying to the referral.<P>The Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;<U>PriorityType</U> vocabulary;</LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the&nbsp;<U>PriorityType</U>&nbsp; vocabulary</LI>
+<LI>The <I>code</I> attribute shall default to value "1", Routine</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[1..1] </b></font><a name="Author"><b>author</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#ActHeir;pertinentInformation1/ReferralInformation/author"><B>
+<P>Refers to the referring HCP.</P></B></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>AUT</b>} )<a>{<b> Fixed="<font color="red">AUT</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Participation;ReferralInformation/author/$typeCode">
+<P>Indicates the role&nbsp;of author of the request.</P>
+<UL>
+<LI>Fixed value: "<B>AUT</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>agentPersonSDS</b> (<a href="#AgentPersonSDS"><b>AgentPersonSDS</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Participation;ReferralInformation/author/agentPersonSDS-AgentPersonSDS">Information about the referring HCP.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="RequestType"><b>RequestType</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Observation;RequestType_c">
+<B>An indicator of the type of request to be created after the seamless transition is performed.&nbsp; This will be an externally maintained list of values.</B><P><B>Example values are:</B></P>
+<OL>
+<LI><B>Appointment Request</B></LI>
+<LI><B>Diagnostic</B></LI>
+<LI><B>Advice &amp; Guidance</B></LI></OL></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="RequestType">Used by: </a></font><a href="#RequestAppointmentConfirmation"><b>RequestAppointmentConfirmation</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>OBS</b>} )<a>{<b> Fixed="<font color="red">OBS</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="486">
+<DIV id=PRPA_HD000001UK02#Observation;RequestType/$classCode title=PRPA_HD000001UK02#RequestType.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that this is an <B>observation</B>.<UL>
+<LI>Fixed value: "<B>OBS</B>"</LI></UL></NOTE></DIV></TD>
+	</tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="486">
+<DIV id=PRPA_HD000001UK02#Observation;RequestType/$moodCode title=PRPA_HD000001UK02#RequestType.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that this is an event.<UL>
+<LI>Fixed value: "<B>EVN</B>"</LI></UL></NOTE></DIV></TD>
+	</tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>code</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/CaBAnnotation.htm"><b>CaBAnnotation</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Observation;RequestType/$code">The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>CaBAnnotation</B> vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.140</B>"</LI>
+<LI>The <B>code </B>attribute shall contain the vocabulary code "<B>REQTY</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>value</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cwe')" onmouseover="popUp(event,'cwe')"><b>CWE</b></a>:<a href="../../../Vocabulary/RequestType.htm"><b>RequestType</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Observation;RequestType/$value">An indicator of the type of request to be created after the seamless transition is performed.&nbsp; 
+<P>&nbsp;The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>RequestType&nbsp; </B>vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.152</B>"</LI>
+<LI>The <B>code</B> attribute shall contain an appropriate code from the <B>RequestType&nbsp;</B>vocabulary. </LI></UL>
+<P><B>RequestType </B>will be an external list of values maintained by Choose 
+and Book</P></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="WaitStartTime"><b>WaitStartTime</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Observation;WaitStartTime_c">
+	<b><font face="Times New Roman" size="3">Information about a wait start 
+	time. Note: there can be multiple waiting times associated with a referral. 
+	E.g. 13 weeks, 18 weeks.</font></b> </div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="WaitStartTime">Used by: </a></font><a href="#RequestAppointmentConfirmation"><b>RequestAppointmentConfirmation</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>OBS</b>} )<a>{<b> Fixed="<font color="red">OBS</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="486">
+<DIV id=PRPA_HD000001UK02#Observation;RequestType/$classCode0 title=PRPA_HD000001UK02#RequestType.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that this is an <B>observation</B>.<UL>
+<LI>Fixed value: "<B>OBS</B>"</LI></UL></NOTE></DIV></TD>
+	</tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="486">
+<DIV id=PRPA_HD000001UK02#Observation;RequestType/$moodCode0 title=PRPA_HD000001UK02#RequestType.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that this is an event.<UL>
+<LI>Fixed value: "<B>EVN</B>"</LI></UL></NOTE></DIV></TD>
+	</tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>code</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/CaBAnnotation.htm"><b>CaBAnnotation</b></a>} )</td><td width="50%">
+	<div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Observation;RequestType/$code0">The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>CaBAnnotation</B> vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.140</B>"</LI>
+<LI>The <B>code </B>attribute shall contain the vocabulary code "<b>WST</b>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>effectiveTime</b> (<a href="../../../Data%20Types/DataTypes.htm#TS"><b>TS</b></a>)</td><td width="50%">
+	<div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Observation;RequestType/$value0">
+		The time at which the wait began.</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>value</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cwe')" onmouseover="popUp(event,'cwe')"><b>CWE</b></a>:<a href="../../../Vocabulary/CaBWaitStartTimeType.htm"><b>CaBWaitStartTimeType</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Observation;WaitStartTime/$value">An indicator of the type of request to be created after the seamless transition is performed.&nbsp; 
+<P>&nbsp;The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <b>
+CaBWaitStartTimeType </b>vocabulary with the value "<b>2.16.840.1.113883.2.1.3.2.4.16.48</b>"</LI>
+<LI>The <B>code</B> attribute shall contain an appropriate code from the <b>
+CaBWaitStartTimeType </b>vocabulary. </LI></UL>
+<P> <b>
+CaBWaitStartTimeType </b>will be an external list of values maintained by 
+Choose and Book.</P></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="RequestedService"><b>RequestedService</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Supply;RequestedService_c"><B>
+<P>Details about the requested service.</P></B></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="RequestedService">Used by: </a></font><a href="#RequestAppointmentConfirmation"><b>RequestAppointmentConfirmation</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>SPLY</b>} )<a>{<b> Fixed="<font color="red">SPLY</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Supply;RequestedService/$classCode title=RequestedService.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that this is a supply act.<UL>
+<LI>Fixed value: "<B>SPLY</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>PRMS</b>} )<a>{<b> Fixed="<font color="red">PRMS</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Supply;RequestedService/$moodCode title=RequestedService.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that there&nbsp;is a promise to fulfil&nbsp;a service request.<UL>
+<LI>Fixed value: "<B>PRMS</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>id</b> (<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>)</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Supply;RequestedService/$id title=RequestedService.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+This identifier is unique within the Choose and Book Service. It identifies the Unique Booking Reference Number (<B>UBRN</B>) allocated to the service request for which an appointment has been made<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The&nbsp;<I>root</I> attribute shall contain an OID with the value 2.16.840.1.113883.2.1.3.2.4.1 </LI>
+<LI>The <I>extension</I> attribute shall contain the <B>UBRN</B></LI></UL></NOTE></DIV></TD></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="AppointmentSlot"><b>AppointmentSlot</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Supply;AppointmentSlot_c"><B>
+<P>Details about an appointment slot.</P></B></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="AppointmentSlot">Used by: </a></font><a href="#RequestAppointmentConfirmation"><b>RequestAppointmentConfirmation</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>SPLY</b>} )<a>{<b> Fixed="<font color="red">SPLY</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Supply;AppointmentSlot/$classCode title=AppointmentSlot.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that this is a supply act.<UL>
+<LI>Fixed value: "<B>SPLY</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>SLOT</b>} )<a>{<b> Fixed="<font color="red">SLOT</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Supply;AppointmentSlot/$moodCode title=PRSC_HD040100UK10#AppointmentSlot.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that this is a slot.<UL>
+<LI>Fixed value: "<B>SLOT</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>id</b> (<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>)</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Supply;AppointmentSlot/$id title=AppointmentSlot.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+This&nbsp;identifies the Unique Slot Reference Number (<B>USRN</B>) allocated to the appointment slot that is being confirmed.<P>The Identifier Global datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>A&nbsp;UUID is held in the&nbsp;<I>root</I> attribute</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="AgentPersonSDS"><b>AgentPersonSDS</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#RoleHeir;AgentPersonSDS_c">
+<P><B>Details about the role of referring HCP.</B></P></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="AgentPersonSDS">Used by: </a></font><a href="#ReferralInformation"><b>ReferralInformation</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>AGNT</b>} )<a>{<b> Fixed="<font color="red">AGNT</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#RoleHeir;AgentPersonSDS/$classCode title=PRSC_HD040100UK10#AgentPersonSDS.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that this is an Agent<UL>
+<LI>Fixed value: "<B>AGNT</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>id</b> (<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>)</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#RoleHeir;AgentPersonSDS/$id title=PRSC_HD040100UK10#AgentPersonSDS.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+An SDS identifier that uniquely identifies the Role of the referring HCP.&nbsp;&nbsp;This is carried in the following way: 
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.67 </LI>
+<LI>the <I>extension</I> attribute shall contain the SDS&nbsp;Role Profile&nbsp;ID</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>agentPersonSDS</b> (<a href="#PersonSDS"><b>PersonSDS</b></a>)</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#RoleHeir;AgentPersonSDS/agentPersonSDS-PersonSDS title=PRSC_HD040100UK10#AgentPersonSDS/agentPersonSDS-PersonSDS style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+A link to the Agent playing the role.</NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>representedOrganisationSDS</b> (<a href="#OrganisationSDS"><b>OrganisationSDS</b></a>)</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#RoleHeir;AgentPersonSDS/representedOrganisationSDS-OrganisationSDS title=PRSC_HD040100UK10#AgentPersonSDS/representedOrganisationSDS-OrganisationSDS style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+A link to the Organisation represented by the agent.</NOTE></DIV></TD></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="PersonSDS"><b>PersonSDS</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Person;PersonSDS_c">
+<P><B>Details about the referring HCP.</B></P></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="PersonSDS">Used by: </a></font><a href="#AgentPersonSDS"><b>AgentPersonSDS</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>PSN</b>} )<a>{<b> Fixed="<font color="red">PSN</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Person;PersonSDS/$classCode title=PRSC_HD040100UK10#PersonSDS.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that the entity is a person.<UL>
+<LI>Fixed value: "<B>PSN</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>determinerCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>INSTANCE</b>} )<a>{<b> Fixed="<font color="red">INSTANCE</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Person;PersonSDS/$determinerCode title=PRSC_HD040100UK10#PersonSDS.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that the entity is a single identifiable person.<UL>
+<LI>Fixed value: "<B>INSTANCE</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[2..2] </b></font><b>id</b> (<a href="../../../Data%20Types/DataTypes.htm#LIST"><b>LIST</b></a><b>&lt;<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>&gt;</b>)</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Person;PersonSDS/$id title=PRSC_HD040100UK10#PersonSDS.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+An&nbsp;identifier&nbsp;for the&nbsp;person.<P>The Identifier External datatype flavour is used to carry this information.</P>
+<P>The person is required to be&nbsp;identified using an SDS User Identifier carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value <SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA; mso-bidi-font-family: Arial">1.2.826.0.1285.0.2.0.65</SPAN> </LI>
+<LI>The <I>extension</I> attribute shall contain the SDS User Id</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="OrganisationSDS"><b>OrganisationSDS</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRSC_HD150002UK01#Organization;OrganisationSDS_c">
+<P><B>Details about the referring HCP's organisation</B></P></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="OrganisationSDS">Used by: </a></font><a href="#AgentPersonSDS"><b>AgentPersonSDS</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>ORG</b>} )<a>{<b> Fixed="<font color="red">ORG</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Organization;OrganisationSDS/$classCode title=PRSC_HD040100UK10#OrganisationSDS.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that this is an Organisation<UL>
+<LI>Fixed value: "<B>ORG</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>determinerCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>INSTANCE</b>} )<a>{<b> Fixed="<font color="red">INSTANCE</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Organization;OrganisationSDS/$determinerCode title=PRSC_HD040100UK10#OrganisationSDS.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that the entity is a single identifiable organisation.<UL>
+<LI>Fixed value: "<B>INSTANCE</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>id</b> (<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>)</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK10#Organization;OrganisationSDS/$id title=PRSC_HD040100UK10#OrganisationSDS.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+An identifier of the&nbsp;Organisation.<P>The Identifier External datatype flavour is used to carry this information.</P>
+<P>The HCP is identified using an SDS&nbsp;Organisation Identifier carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value <SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA; mso-bidi-font-family: 'Times New Roman'">1.2.826.0.1285.0.1.10</SPAN> </LI>
+<LI>The <I>extension</I> attribute shall contain the SDS&nbsp;Organisation Id</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="black"><td height="4" colspan="10"></td></tr></table></body></html>

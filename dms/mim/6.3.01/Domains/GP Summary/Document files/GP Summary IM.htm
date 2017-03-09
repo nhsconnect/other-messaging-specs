@@ -1,0 +1,982 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>GP Summary Implementation Manual</title>
+<link rel="stylesheet" href="../../../Core/Stylesheets/IMCommon_v2.css" type="text/css">
+</head>
+
+<body lang="EN-GB" link="blue" vlink="purple">
+
+<div id="header">
+	<p>GP Summary Implementation Manual - Version 2.8 [Issued]</p>
+</div>
+<div id="content">
+	<div class="Section1">
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Contents</p>
+		<div class="index1" div id="fp_TOC" class="fp_TOC">
+			<a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;Overview</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.1">1.1&nbsp;&nbsp;&nbsp;&nbsp;Error Correction</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.1.1">1.1.1&nbsp;&nbsp;&nbsp;&nbsp;Message update 
+		of incorrect information</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.1.2">1.1.2&nbsp;&nbsp;&nbsp;&nbsp;Message Replacement</a><br><a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp;&nbsp;Use Cases</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.1">2.1&nbsp;&nbsp;&nbsp;&nbsp;GP Summary Use 
+		Cases</a><br><a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp;&nbsp;GP Summary Initial 
+		upload to PSIS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.2">3.2&nbsp;&nbsp;&nbsp;&nbsp;GP Summary Update 
+		to PSIS</a><br><a href="#_Toc_Section_4">4&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1">4.1&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary sending system REPC_AR150004UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.2">4.2&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary receiving system ( PSIS ) REPC_AR150005UK01</a><br><a href="#_Toc_Section_5">5&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.1">5.1&nbsp;&nbsp;&nbsp;&nbsp;	Initial Communication of GP Summary ( text ) to PSIS - REPC_TE150004UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.2">5.2&nbsp;&nbsp;&nbsp;&nbsp;	Update of GP Summary to PSIS - REPC_TE150005UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.3">5.3&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary withdrawal - REPC_TE150006UK01 </a><br><a href="#_Toc_Section_6">6&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.1">6.1&nbsp;&nbsp;&nbsp;&nbsp;GP Summary Interactions</a><br><a href="#_Toc_Section_7">7&nbsp;&nbsp;&nbsp;&nbsp;Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1">7.1&nbsp;&nbsp;&nbsp;&nbsp;	Initial GP Summary ( text ) - REPC_IN150015UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.2">7.2&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary - REPC_IN150016UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.3">7.3&nbsp;&nbsp;&nbsp;&nbsp;	Withdraw Initial GP Summary ( text ) - REPC_IN150017UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.4">7.4&nbsp;&nbsp;&nbsp;&nbsp;	Withdraw GP Summary - REPC_IN150018UK02</a><br><a href="#_Toc_Section_8">8&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_8.1">8.1&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary ( text ) - REPC_MT150002UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_8.1.1">8.1.1&nbsp;&nbsp;&nbsp;&nbsp;Scenario : 
+		A GP Practice does its GP Summary initial upload to PSIS.</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_8.2">8.2&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary - REPC_MT150007UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_8.2.1">8.2.1&nbsp;&nbsp;&nbsp;&nbsp;Scenario : 
+		A GP Practice does a GP Summary update to PSIS.</a><br><a href="#_Toc_Section_9">9&nbsp;&nbsp;&nbsp;&nbsp;Glossary of Terms</a><br><a href="#_Toc_Section_10">10&nbsp;&nbsp;&nbsp;&nbsp;Changes for version 
+		2.8</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_10.1">10.1&nbsp;&nbsp;&nbsp;&nbsp;Changes to Example 
+		Messages.</a><br><a href="#_Toc_Section_11">11&nbsp;&nbsp;&nbsp;&nbsp;Changes for version 
+		2.7</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_11.1">11.1&nbsp;&nbsp;&nbsp;&nbsp;Changes to IM 
+		content</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_11.2">11.2&nbsp;&nbsp;&nbsp;&nbsp;Changes to tabular 
+		views</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_11.3">11.3&nbsp;&nbsp;&nbsp;&nbsp;Changes to examples</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_11.4">11.4&nbsp;&nbsp;&nbsp;&nbsp;Other changes 
+		that affect this domain</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_11.5">11.5&nbsp;&nbsp;&nbsp;&nbsp;Change requests 
+		for this release</a></div>
+		<p class="Un-numberedHeading1">&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Change History</p>
+		<table border="1" width="85%" id="table120">
+			<!-- MSTableType="nolayout" -->
+			<tr>
+				<td width="147" valign="top"><b>In Version</b></td>
+				<td width="178" valign="top"><b>Author</b></td>
+				<td width="74" valign="top"><b>Date</b></td>
+				<td valign="top"><b>Amendment Details</b></td>
+			</tr>
+			<tr>
+				<td width="147" valign="top">2.5</td>
+				<td width="178" valign="top">Core Technical Team</td>
+				<td width="74" valign="top">11/07/2006</td>
+				<td valign="top">The whole of this domain has been remodelled using 
+				a&nbsp; CMET approach for CRE types.</td>
+			</tr>
+			<tr>
+				<td width="147" valign="top">2.6</td>
+				<td width="178" valign="top">Core Technical Team</td>
+				<td width="74" valign="top">07/08/2006</td>
+				<td valign="top">Change to messages after meeting with suppliers 
+				- details listed in change history. </td>
+			</tr>
+			<tr>
+				<td width="147" valign="top">2.7</td>
+				<td width="178" valign="top">Core Technical Team</td>
+				<td width="74" valign="top">30/11/2006</td>
+				<td valign="top">Fixes for Bugzilla issues 20080. </td>
+			</tr>
+			<tr>
+				<td width="147" valign="top">2.8</td>
+				<td width="178" valign="top">Core Technical Team</td>
+				<td width="74" valign="top">22/03/2007</td>
+				<td valign="top">Moved XML Example files to a subdirectory within 
+				the Examples directory </td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<p class="MsoNormal">&nbsp;</p>
+		<h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;Overview</h1>		<p class="MsoNormal">Phase 1 of Provision of Care focuses on discharge and 
+		shared care processes and the associated communications between primary 
+		care and secondary care. The message definitions within this document support 
+		the following Care communications:</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<ul style="margin-top:0cm" type="disc">
+			<li class="MsoNormal">GP summary</li>
+		</ul>
+		<p class="MsoNormal" style="margin-left: 18.0pt">&nbsp;</p>
+		<p class="MsoNormal" style="margin-left: 18.0pt">All clinical statements 
+		carried within messages shall be classified by one and only one CRE category</p>
+		<h2><a name=_Toc_Section_1.1></a>1.1&nbsp;&nbsp;&nbsp;&nbsp;Error Correction</h2>		<p class="MsoNormal">If a message is sent in error, then the sending system 
+		should send a ‘Notify Message Withdrawal’ message. For example, this withdrawal 
+		message would be used if a message was sent with an incorrect patient NHS 
+		Number. </p>
+		<h3><a name=_Toc_Section_1.1.1></a>1.1.1&nbsp;&nbsp;&nbsp;&nbsp;Message update 
+		of incorrect information</h3>		<p class="MsoNormal"><br>
+		If a message was sent and subsequently was found to have incorrect information 
+		then the initial message should be withdrawn using ‘Notify Message Withdrawal, 
+		and replaced with a new message using message replacement. The status of 
+		the withdrawn Event will be set to withdrawn. </p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">Note:</p>
+		<ol>
+			<li>
+			<p class="MsoNormal">This means if a message had one piece of information 
+			which was incorrect then all of the message should be withdrawn and 
+			replaced with a new message which corrects the error.</p>
+			</li>
+			<li>
+			<p class="MsoNormal">This should not be used to progress data that was 
+			true at the time of sending but to replace only information which was 
+			never true.</p>
+			</li>
+			<li>
+			<p class="MsoNormal">This mechanism should not be used for withdrawing 
+			information when a patient has expressed their dissent to NCRS record 
+			sharing.</p>
+			</li>
+		</ol>
+		<h3><a name=_Toc_Section_1.1.2></a>1.1.2&nbsp;&nbsp;&nbsp;&nbsp;Message Replacement</h3>		<p class="MsoNormal"><br>
+		If a new message contains information that completely supersedes a previous 
+		message, but the existing information was correct, then the new message 
+		should be sent as a complete message replacement. The status of the replaced 
+		Event will be set to replaced. </p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">Note:</p>
+		<ol>
+			<li>
+			<p class="MsoNormal">This means if a message had one piece of information 
+			which was incorrect then all of the message should be withdrawn and 
+			replaced with a new message which corrects the error.</p>
+			</li>
+			<li>
+			<p class="MsoNormal">Note that if it is subsequently found that the 
+			replaced information was actually incorrect, then a ‘Notify Message 
+			Withdrawal’ message must be sent to withdraw the replaced message. The 
+			status of the event carried by the withdrawn message will be set to 
+			withdrawn.</p>
+			</li>
+			<li>
+			<p class="MsoNormal">For GP Summary messages if there is an existing 
+			GP summary (text) or GP summary&nbsp; message on PSIS then that message 
+			MUST be replaced by the new message being sent. This will be done by 
+			referencing the id of the existing message on PSIS in the message reference 
+			act of the new message being sent. </p>
+			</li>
+		</ol>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">The following messages in this domain may be withdrawn 
+		using the generic &#39;Notify withdrawal message&#39;.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<table border="1" width="77%" id="table101">
+			<!-- MSTableType="nolayout" -->
+			<tr>
+				<td>
+				<p class="MsoNormal">GP Summary</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<p class="MsoNormal">GP Summary (text)</p>
+				</td>
+			</tr>
+		</table>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<p class="MsoNormal">&nbsp;</p>
+		<h1><a name=_Toc_Section_2></a>2&nbsp;&nbsp;&nbsp;&nbsp;Use Cases</h1>		<h2><a name=_Toc_Section_2.1></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;GP Summary Use 
+		Cases</h2>		<p><font face="Arial">The use case diagrams supporting the GP Summary domain 
+		can be viewed by following the link below :</font></p>
+		<p><font face="Arial">
+		<a href="../../../External%20Documents/GPSummaryUseCasesv2.0/index.htm">
+		GP Summary Use Case Diagrams v2.0</a></font></p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<p class="MsoNormal">&nbsp;</p>
+		<h1><a name=_Toc_Section_3></a>3&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</h1>		<h2><a name=_Toc_Section_3.1></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;GP Summary Initial 
+		upload to PSIS</h2>		<p><font face="Arial">RoseTree GP Practice patient record system has passed 
+		the necessary data quality checks, filtered the correct data from Peter 
+		Parker&#39;s patient record and been scheduled to do its GP Summary upload. 
+		The system has been configured to automatically send GP summaries. Peter 
+		Parker’s summary is next in the queue of summaries on the GP system and 
+		his GP Summary is sent by the GP practice system to PSIS as an initial GP 
+		summary message. </font></p>
+		<h2><a name=_Toc_Section_3.2></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;GP Summary Update 
+		to PSIS</h2>		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">Peter Parker visits Dr Franks at RoseTree Practice 
+		complaining of a rash which has developed after he started taking antibiotics 
+		prescribed the day before by another doctor at the practice. Dr Franks diagnoses 
+		a possible allergy to Penicillin. After telling Peter not to take any more 
+		of the antibiotics, he prescribes some new antibiotics which do not contain 
+		any Penicillin.<br>
+		He advises Peter that this information should be updated as an allergy on 
+		Peter&#39;s record on PSIS. Peter agrees that this is a good idea and&nbsp; 
+		agrees to the information being sent. Dr Franks updates Peter&#39;s record with 
+		the allergy and new medication details on the GP system and the system asks 
+		if he wants to update the patient GP summary on PSIS. Dr Franks confirms 
+		he does and the system sends an updated GP summary message which contains 
+		the previous GP Summary with the new medication and allergy information 
+		added.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_4></a>4&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</h1>		<p class="MsoNormal">The applications involved in the GP Summary processes 
+		play specific roles.&nbsp; These, along with the interactions associated with 
+		each role, are identified below.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=REPC_AR150004UK01></a><a name=_Toc_Section_4.1></a>4.1&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary sending system REPC_AR150004UK01</h2>		<p class="MsoNormal">The GP Summary sending system&nbsp; is responsible 
+		for initiating the following Provision of Care interactions: Upload of GP 
+		Summary to PSIS.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">GP Summary sending system&nbsp; interactions
+		<a title="View Interaction" href="#_Toc_Section_5" style="color: blue">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=REPC_AR150005UK01></a><a name=_Toc_Section_4.2></a>4.2&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary receiving system ( PSIS ) REPC_AR150005UK01</h2>		<p class="MsoNormal">The GP Summary receiving&nbsp; system&nbsp; ( PSIS 
+		) is responsible for storing the GP summary and make available for future 
+		use.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">GP Summary receiving system ( PSIS ) interactions
+		<a title="View Interaction" href="#_Toc_Section_5" style="color: blue">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<p class="MsoNormal">&nbsp;</p>
+		<h1><a name=_Toc_Section_5></a>5&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</h1>		<h2><a name=REPC_TE150004UK01></a><a name=_Toc_Section_5.1></a>5.1&nbsp;&nbsp;&nbsp;&nbsp;	Initial Communication of GP Summary ( text ) to PSIS - REPC_TE150004UK01</h2>		<p><font face="Arial">The trigger event for the initial GP Summary upload 
+		is that the GP practice system has passed data quality checks and has filtered 
+		the correct data from the patient&#39;s record and has been scheduled to do 
+		its GP Summary upload. This may be a bulk process on the sending system 
+		in that summaries for all the permanently registered patient&#39;s will have 
+		initial summaries created. However, each patient&#39;s summary is sent as a 
+		distinct, separate interaction . Note :- no message batching process is 
+		used for GP Summary.</font></p>
+		<p><font face="Arial">The GP Summary business process model and relevant 
+		documentation included in this release of the MIM should be referred to 
+		for further information concerning when an initial GP Summary should be 
+		sent.</font></p>
+		<table class="MsoNormalTable" border="1" cellspacing="3" cellpadding="0" id="table121">
+			<tr>
+				<td width="158" valign="top" style="width:118.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeadings">
+				<span style="font-size:10.0pt;
+  ">Structured Name</span></span></p>
+				</td>
+				<td width="476" valign="top" style="width:356.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><font size="2">Initial Communication of GP 
+				Summary (text) to PSIS</font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="158" valign="top" style="width:118.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeadings">
+				<span style="font-size:10.0pt;
+  ">Type&nbsp; </span></span></p>
+				</td>
+				<td width="476" valign="top" style="width:356.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span style="font-size:10.0pt">State Transition</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="158" valign="top" style="width:118.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeadings">
+				<span style="font-size:10.0pt;
+  ">State Transition&nbsp; </span></span></p>
+				</td>
+				<td width="476" valign="top" style="width:356.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><font size="2">GP Summary text message is sent 
+				to PSIS</font></p>
+				</td>
+			</tr>
+		</table>
+		<h2><a name=REPC_TE150005UK01></a><a name=_Toc_Section_5.2></a>5.2&nbsp;&nbsp;&nbsp;&nbsp;	Update of GP Summary to PSIS - REPC_TE150005UK01</h2>		<p class="MsoNormal">The trigger event for the Update of the GP Summary 
+		to PSIS is that information has been made available to the GP which requires 
+		a change to any GP Summary data held on PSIS. </p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal"><font face="Arial">Note there may not be any data held 
+		in an existing &quot;Initial GP Summary&quot; or &quot;GP Summary&quot; on PSIS, in this case 
+		the GP Summary will populate PSIS.&quot;</font></p>
+		<p class="MsoNormal"><br>
+		For full details on events which will require an update GP summary message 
+		refer to the GP Summary business process model and relevant documentation 
+		included in this release of the MIM.&nbsp;&nbsp;&nbsp; </p>
+		<p class="MsoNormal">&nbsp;</p>
+		<table class="MsoNormalTable" border="1" cellspacing="3" cellpadding="0" id="table122">
+			<tr>
+				<td width="158" valign="top" style="width:118.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeadings">
+				<span style="font-size:10.0pt;
+  ">Structured Name</span></span></p>
+				</td>
+				<td width="476" valign="top" style="width:356.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><font size="2">Update of GP Summary to PSIS</font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="158" valign="top" style="width:118.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeadings">
+				<span style="font-size:10.0pt;
+  ">Type&nbsp; </span></span></p>
+				</td>
+				<td width="476" valign="top" style="width:356.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span style="font-size:10.0pt">State Transition</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="158" valign="top" style="width:118.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeadings">
+				<span style="font-size:10.0pt;
+  ">State Transition&nbsp; </span></span></p>
+				</td>
+				<td width="476" valign="top" style="width:356.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><font size="2">GP Summary message is sent to 
+				PSIS</font></p>
+				</td>
+			</tr>
+		</table>
+		<h2><a name=REPC_TE150006UK01></a><a name=_Toc_Section_5.3></a>5.3&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary withdrawal - REPC_TE150006UK01 </h2>		<p><font face="Arial" size="3">For the GP Summary message to be withdrawn,&nbsp; 
+		the trigger event is the realisation that the GP Summary message was in 
+		error, in that it contained an error and should never have been sent.</font></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<table class="MsoNormalTable" border="1" cellspacing="3" cellpadding="0" id="table2">
+			<tr>
+				<td width="158" valign="top" style="width:118.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeadings">
+				<span style="font-size:10.0pt;
+  ">Structured Name</span></span></p>
+				</td>
+				<td width="476" valign="top" style="width:356.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><font size="2">GP Summary Message withdrawal</font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="158" valign="top" style="width:118.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeadings">
+				<span style="font-size:10.0pt;
+  ">Type&nbsp; </span></span></p>
+				</td>
+				<td width="476" valign="top" style="width:356.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span style="font-size:10.0pt">State Transition</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="158" valign="top" style="width:118.55pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeadings">
+				<span style="font-size:10.0pt;
+  ">State Transition&nbsp; </span></span></p>
+				</td>
+				<td width="476" valign="top" style="width:356.8pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><font size="2">GP Summary message is withdrawn</font></p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<p class="MsoNormal">&nbsp;</p>
+		<h1><a name=_Toc_Section_6></a>6&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</h1>		<h2><a name=_Toc_Section_6.1></a>6.1&nbsp;&nbsp;&nbsp;&nbsp;GP Summary Interactions</h2>		<p><map name="FPMap2">
+		<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" shape="rect" coords="280, 203, 431, 268" alt="View Interaction">
+		<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" shape="rect" coords="283, 376, 454, 425" alt="View Interaction">
+		<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" shape="rect" coords="283, 541, 447, 600" alt="View Interaction">
+		<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" shape="rect" coords="280, 717, 454, 764" alt="View Interaction">
+		<area href="#_Toc_Section_3.1" shape="rect" coords="47, 65, 230, 122" alt="View Application Role">
+		<area href="#_Toc_Section_3.2" shape="rect" coords="477, 59, 667, 122" alt="View Application Role">
+		<area href="#REPC_IN150015UK05&lt;/a" shape="rect" coords="279, 142, 435, 190" alt="View Interaction">
+		<area href="#_Toc_Section_7.3" shape="rect" coords="283, 314, 451, 366" alt="View Interaction">
+		<area href="#REPC_IN150016UK05&lt;/a" shape="rect" coords="273, 481, 452, 529" alt="View Interaction">
+		<area href="#_Toc_Section_7.4" shape="rect" coords="284, 656, 457, 706" alt="View Interaction">
+		</map>
+		<img border="0" src="interaction_diagrams/GP%20Summary%20interacion_diagram.gif" usemap="#FPMap2" width="720" height="819"></p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<p class="MsoNormal">&nbsp;</p>
+		<h1><a name=_Toc_Section_7></a>7&nbsp;&nbsp;&nbsp;&nbsp;Interactions</h1>		<h2><a name=REPC_IN150015UK05></a><a name=_Toc_Section_7.1></a>7.1&nbsp;&nbsp;&nbsp;&nbsp;	Initial GP Summary ( text ) - REPC_IN150015UK05</h2>		<p class="MsoNormal">The GP Summary communicates an initial summary of the 
+		patient record held on a GP system to PSIS.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table15">
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Sending Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span class="TableHeading">
+				<span style="font-weight: 400">GP Summary sending system</span></span></p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span class="TableHeading">
+				<span style="font-weight:normal;">
+				<a title="View Application Role" href="#_Toc_Section_4.1" style="color: blue">
+				REPC_AR150004UK01</a></span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">PSIS </p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_4.2" style="color: blue">
+				REPC_AR150005UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Initial Communication of GP Summary ( text 
+				)</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Trigger Event" href="#_Toc_Section_5.1" style="color: blue">
+				REPC_TE150004UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Transmission Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Send Message Payload</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+				MCCI_MT010101UK12</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Control Act Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Control Act</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+				MCAI_MT040101UK03</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Message Type</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">GP Summary ( text )</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Message Type" href="#_Toc_Section_8.1" style="color: blue">
+				REPC_MT150002UK05</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">
+		<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/REPC_IN150015UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table16">
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Reason</span></span></p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Interaction</span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Application Acknowledgement</p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Application Acknowledgement</p>
+				<p class="TableText">
+				<a title="View Application Acknowledgment" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+				MCCI_IN010000UK13</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=REPC_IN150016UK05></a><a name=_Toc_Section_7.2></a>7.2&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary - REPC_IN150016UK05</h2>		<p class="MsoNormal">The GP Summary communicates an update summary of the 
+		patient record held on a GP system to PSIS.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table19">
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Sending Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span class="TableHeading">
+				<span style="font-weight: 400">GP Summary sending system</span></span></p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span class="TableHeading">
+				<span style="font-weight:normal;">
+				<a title="View Application Role" href="#_Toc_Section_4.1" style="color: blue">
+				REPC_AR150004UK01</a></span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">PSIS </p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_4.2" style="color: blue">
+				REPC_AR150005UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Update of GP Summary to PSIS</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Trigger Event" href="#_Toc_Section_5.2" style="color: blue">
+				REPC_TE150005UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Transmission Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Send Message Payload</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+				MCCI_MT010101UK12</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Control Act Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Control Act</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+				MCAI_MT040101UK03</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Message Type</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">GP Summary</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Message Type" href="#_Toc_Section_8.2" style="color: blue">
+				REPC_MT150007UK05</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">
+		<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/REPC_IN150016UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table20">
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Reason</span></span></p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Interaction</span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Application Acknowledgement</p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Application Acknowledgement</p>
+				<p class="TableText">
+				<a title="View Application Acknowledgment" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+				MCCI_IN010000UK13</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=REPC_IN150017UK02></a><a name=_Toc_Section_7.3></a>7.3&nbsp;&nbsp;&nbsp;&nbsp;	Withdraw Initial GP Summary ( text ) - REPC_IN150017UK02</h2>		<p class="MsoNormal">Withdrawal of GP Summary ( text ).</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table21">
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Sending Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span class="TableHeading">
+				<span style="font-weight: 400">GP Summary sending system</span></span></p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_4.1" style="color: blue">
+				REPC_AR150004UK01</a><span class="TableHeading"></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Receiving Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">PSIS </p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_4.2" style="color: blue">
+				REPC_AR150005UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Trigger Event</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">GP Summary withdrawal</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Trigger Event" style="color: blue" href="#_Toc_Section_5.3">
+				REPC_TE150006UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Transmission Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Send Message Payload</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+				MCCI_MT010101UK12</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Control Act Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Control Act</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+				MCAI_MT040101UK03</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Message Type</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Generic withdrawal message</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Message Type" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.5" style="color: blue">
+				UKCI_MT000001UK02</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">
+		<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/REPC_IN150017UK02.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table22" width="721">
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Reason</span></span></p>
+				</td>
+				<td valign="top" style="width:340px;padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Interaction</span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Application Acknowledgement</p>
+				</td>
+				<td valign="top" style="width:340px;padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+				<p class="TableText">Application Acknowledgement</p>
+				<p class="TableText">
+				<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+				MCCI_IN010000UK13</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=REPC_IN150018UK02></a><a name=_Toc_Section_7.4></a>7.4&nbsp;&nbsp;&nbsp;&nbsp;	Withdraw GP Summary - REPC_IN150018UK02</h2>		<p class="MsoNormal">Withdrawal of GP Summary.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table25">
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Sending Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span class="TableHeading">
+				<span style="font-weight: 400">GP Summary sending system</span></span></p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_4.1" style="color: blue">
+				REPC_AR150004UK01</a><span class="TableHeading"></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Receiving Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">PSIS </p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_4.2" style="color: blue">
+				REPC_AR150005UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Trigger Event</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">GP Summary withdrawal</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Trigger Event" style="color: blue" href="#_Toc_Section_5.3">
+				REPC_TE150006UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Transmission Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Send Message Payload</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+				MCCI_MT010101UK12</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Control Act Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Control Act</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+				MCAI_MT040101UK03</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Message Type</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Generic withdrawal message</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Message Type" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.5" style="color: blue">
+				UKCI_MT000001UK02</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">
+		<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/REPC_IN150018UK02.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table26">
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Reason</span></span></p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Interaction</span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Application Acknowledgement</p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Application Acknowledgement</p>
+				<p class="TableText">
+				<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+				MCCI_IN010000UK13</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_8></a>8&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</h1>		<h2><a name=REPC_MT150002UK05></a><a name=_Toc_Section_8.1></a>8.1&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary ( text ) - REPC_MT150002UK05</h2>		<p class="MsoNormal">The GP Summary communicates a summary of the &quot;patient&#39;s&quot; 
+		record held on the GP system to PSIS.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">
+		<a title="View R-MIM" style="color: blue" href="../Tabular%20View/REPC_RM150002UK05.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" style="color: blue" href="../Tabular%20View/REPC_HD150002UK05-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" style="color: blue" href="../../../Schemas/REPC_MT150002UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h3><a name=_Toc_Section_8.1.1></a>8.1.1&nbsp;&nbsp;&nbsp;&nbsp;Scenario : 
+		A GP Practice does its GP Summary initial upload to PSIS.</h3>		<p class="MsoNormal"><font face="Arial">GP Summary ( text )&nbsp;&nbsp;&nbsp;
+		<a title="View Example" style="color: blue" href="../../../Examples/GP%20Summary/REPC_EX150002UK05_01.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></font></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal"><font face="Arial">GP Summary ( text ) no data found&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/GP%20Summary/REPC_EX150002UK05_02.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif"></a></font></p>
+		<h2><a name=REPC_MT150007UK05></a><a name=_Toc_Section_8.2></a>8.2&nbsp;&nbsp;&nbsp;&nbsp;	GP Summary - REPC_MT150007UK05</h2>		<p class="MsoNormal">The GP Summary communicates a summary of the patient&#39;s 
+		record held on the GP system to PSIS.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">
+		<a title="View R-MIM" style="color: blue" href="../Tabular%20View/REPC_RM150007UK05.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" style="color: blue" href="../Tabular%20View/REPC_HD150007UK05-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" style="color: blue" href="../../../Schemas/REPC_MT150007UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h3><a name=_Toc_Section_8.2.1></a>8.2.1&nbsp;&nbsp;&nbsp;&nbsp;Scenario : 
+		A GP Practice does a GP Summary update to PSIS.</h3>		<font face="Arial">
+		<p class="MsoNormal">GP Summary update&nbsp;&nbsp;&nbsp;
+		<a title="View Example" style="color: blue" href="../../../Examples/GP%20Summary/REPC_EX150007UK05_01.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">GP Summary no data found&nbsp;&nbsp;&nbsp;
+		<a title="View Example" style="color: blue" href="../../../Examples/GP%20Summary/REPC_EX150007UK05_02.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">GP Summary patient refused consent for upload&nbsp;&nbsp;&nbsp;
+		<a title="View Example" style="color: blue" href="../../../Examples/GP%20Summary/REPC_EX150007UK05_03.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_9></a>9&nbsp;&nbsp;&nbsp;&nbsp;Glossary of Terms</h1>		<table class="MsoTableGrid" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+			<tr>
+				<td width="198" valign="top" style="width:118.8pt;padding:0cm 5.4pt 5.65pt 5.4pt">
+				<p class="MsoNormal"><b>PSIS</b></p>
+				</td>
+				<td width="647" valign="top" style="width:388.15pt;padding:0cm 5.4pt 5.65pt 5.4pt">
+				<p class="MsoNormal">Personal Spine Information Service.</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="198" valign="top" style="width:118.8pt;padding:0cm 5.4pt 5.65pt 5.4pt">
+				<p class="MsoNormal"><b>ETP</b></p>
+				</td>
+				<td width="647" valign="top" style="width:388.15pt;padding:0cm 5.4pt 5.65pt 5.4pt">
+				<p class="MsoNormal">Electronic transfer of Prescriptions.</p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_10></a>10&nbsp;&nbsp;&nbsp;&nbsp;Changes for version 
+		2.8</h1>		<h2><a name=_Toc_Section_10.1></a>10.1&nbsp;&nbsp;&nbsp;&nbsp;Changes to Example 
+		Messages.</h2>		<p class="MsoNormal">The XML Example files have been moved to a subdirectory 
+		within the Examples directory. </p>
+		<h1><a name=_Toc_Section_11></a>11&nbsp;&nbsp;&nbsp;&nbsp;Changes for version 
+		2.7</h1>		<h2><a name=_Toc_Section_11.1></a>11.1&nbsp;&nbsp;&nbsp;&nbsp;Changes to IM 
+		content</h2>		<p class="MsoNormal">The wording in section 5.2 has been changed </p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">from&nbsp; - &quot;Note there may not be any data on PSIS 
+		to update, in this case the update message will upload data to PSIS.&quot;</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">to - Note there may not be any data held in an existing 
+		&quot;Initial GP Summary&quot; or &quot;GP Summary&quot; on PSIS, in this case the GP Summary 
+		will populate PSIS.&quot; (Bugzilla ref 20019)</p>
+		<h2><a name=_Toc_Section_11.2></a>11.2&nbsp;&nbsp;&nbsp;&nbsp;Changes to tabular 
+		views</h2>		<p class="MsoNormal">The description of the replacement message reference 
+		has been clarified with regards to indicating that PSIS Event and Message 
+		UUID are identical for GP Summary. (Bugzilla ref 20018)</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=_Toc_Section_11.3></a>11.3&nbsp;&nbsp;&nbsp;&nbsp;Changes to examples</h2>		<p class="MsoNormal">The presentation text within the example messages have 
+		been amended as a result of ongoing clinical reviews.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=_Toc_Section_11.4></a>11.4&nbsp;&nbsp;&nbsp;&nbsp;Other changes 
+		that affect this domain</h2>		<p class="MsoNormal">The schema for Finding CMET has had the incorrect Systolic 
+		Snomed code corrected from 271649005 to 271649006 ( Bugzilla ref 20011 )</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=_Toc_Section_11.5></a>11.5&nbsp;&nbsp;&nbsp;&nbsp;Change requests 
+		for this release</h2>		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal"><b>
+		<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.2.00/CR-0738%20Tabular%20Views%20for%20CMETs%20require%20further%20description.htm">&nbsp;CR-0738</a></b></p>
+		<p>&nbsp;</p>
+	</div>
+	</font>
+	<p>&nbsp;</p>
+</div>
+
+</body>
+
+</html>

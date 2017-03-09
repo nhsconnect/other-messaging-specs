@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Bundle xml example-->
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../Schemas/bundle.xsd">
+	<id value="f690747f-c965-4eac-9440-11f0ed975dcc"/>
+	<meta>
+		<profile value="http://fhir.nhs.net/StructureDefinition/adw-message-bundle-1-0"/>
+	</meta>
+	<type value="message"/>
+	<entry>
+		<resource>
+			<MessageHeader>
+				<id value="547537f7-324f-42aa-bf59-34da961d7cbb"/>
+				<meta>
+					<profile value="http://fhir.nhs.net/StructureDefinition/adw-discharge-notice-reject-response-message-header-1-0"/>
+				</meta>
+				<timestamp value="2016-07-25T13:30:00+00:00"/>
+				<event>
+					<system value="http://fhir.nhs.net/ValueSet/adw-message-event-1-0"/>
+					<code value="975831000000106"/>
+				</event>
+				<response>
+					<!-- id of the message header this is the response to -->
+					<identifier value="7de62d4d-76bd-4ddc-b0cb-7b87dbfb009a"/>
+					<code value="ok"/>
+				</response>
+				<source>
+					<name value="Local Authority Sending System"/>
+					<endpoint value="urn:nhs-uk:addressing:ods:V396BB"/>
+				</source>
+				<destination>
+					<name value="Hospital Receiving System"/>
+					<endpoint value="urn:nhs-uk:addressing:ods:RFM8C2"/>
+				</destination>
+				<author>
+					<!-- The local authority social worker -->
+					<reference value="Practitioner/184b48a4-6c9e-4e04-be3e-fc4c54baa2df">
+					</reference>
+				</author>
+				<receiver>
+					<!-- The hospital liaison -->
+					<reference value="Practitioner/7692d673-a7a0-42ba-b630-8c463a04b67a"/>
+				</receiver>
+				<responsible>
+					<reference value="Organization/63386324-c252-4413-b8b8-fda31d0b7639"/>
+				</responsible>
+				<reason>
+					<coding>
+						<system value="http://fhir.nhs.net/ValueSet/adw-discharge-notice-reject-reason-1-0"/>
+						<code value="SNA"/>
+						<display value="The previously arranged services to be provided by social services are no longer available on discharge."/>
+					</coding>
+					<text value="Services have been discontinued by the Local Authority."/>
+				</reason>
+				<data>
+					<reference value="ReferralRequest/c2273514-4e61-4152-a943-9d6201241e49"/>
+				</data>
+			</MessageHeader>
+		</resource>
+	</entry>
+	<entry>
+		<resource>
+			<ReferralRequest>
+				<id value="c2273514-4e61-4152-a943-9d6201241e49"/>
+				<!--This GUID for the id is unique for each type of referral request-->
+				<meta>
+					<profile value="http://fhir.nhs.net/StructureDefinition/adw-referral-request-rejected-1-0"/>
+					<!--This is taken from the url value of http://fhir.nhs.net/StructureDefinition/adw-referral-request-1-0 found in the profile-->
+				</meta>
+				<status value="rejected"/>
+				<identifier>
+					<value value="311fcae7-32a7-4a8e-a15c-eebae3a246b9"/>
+					<!--The value of this identifier will be the same across all referrals to tie all these together-->
+				</identifier>
+				<patient>
+					<reference value="Patient/5feebe84-186d-4e21-9fde-8ab4e7f19bb8"/>
+				</patient>
+				<!-- Hospital Liaison, a hospital Discharge Co-ordinator -->
+				<requester>
+					<reference value="Practitioner/7692d673-a7a0-42ba-b630-8c463a04b67a">
+					</reference>
+				</requester>
+				<!-- Local Authority Social Services' Team -->
+				<recipient>
+					<reference value="Organization/1def78ec-71e9-493a-98b2-11e450adcb61"/>
+				</recipient>
+				<encounter>
+					<reference value="Encounter/ac2c0d54-6f5c-4ad5-90b2-0e9e3197148c"/>
+				</encounter>
+			</ReferralRequest>
+		</resource>
+	</entry>
+	<entry>
+		<resource>
+			<Patient>
+				<id value="5feebe84-186d-4e21-9fde-8ab4e7f19bb8"/>
+				<!--Identifies the profile being used-->
+				<meta>
+					<profile value="http://fhir.nhs.net/StructureDefinition/adw-patient-1-0"/>
+				</meta>
+				<!--Primary patient identifier i.e. NHS number-->
+				<identifier>
+					<use value="official"/>
+					<system value="http://fhir.nhs.net/Id/nhs-number"/>
+					<value value="9413946000"/>
+				</identifier>
+				<identifier>
+					<system value="http://fhir.nhs.net/Id/hospital-patient-identifier"/>
+					<value value="A1234521"/>
+					<assigner>
+						<!-- This can be a reference to the profile elsewhere in the message or just text -->
+						<reference value="Organization/5d87e89d-343f-47b2-8a72-c9073f8559b1"/>
+					</assigner>
+				</identifier>
+				<name>
+					<family value="Jones"/>
+					<given value="Barry"/>
+				</name>
+				<gender value="male"/>
+				<birthDate value="1941-01-01"/>
+			</Patient>
+		</resource>
+	</entry>
+	<entry>
+		<resource>
+			<Practitioner>
+				<id value="7692d673-a7a0-42ba-b630-8c463a04b67a"/>
+				<meta>
+					<!--Identifies the profile being used-->
+					<profile value="http://fhir.nhs.net/StructureDefinition/adw-practitioner-1-0"/>
+				</meta>
+				<identifier>
+					<use value="official"/>
+					<system value="http://fhir.nhs.net/Id/sds-user-identifier"/>
+					<value value="055555750555"/>
+				</identifier>
+				<name>
+					<family value="Gulliver"/>
+					<given value="Leticia"/>
+				</name>
+				<telecom>
+					<system value="email"/>
+					<value value="leticia.gulliver@nhs.net"/>
+					<use value="work"/>
+				</telecom>
+				<telecom>
+					<system value="phone"/>
+					<value value="0191223344"/>
+					<use value="work"/>
+				</telecom>
+				<practitionerRole>
+					<managingOrganization>
+						<reference value="Organization/5d87e89d-343f-47b2-8a72-c9073f8559b1"/>
+					</managingOrganization>
+					<!-- Indicates the practitioner's role(s) i.e. Discharge co-ordinator-->
+					<role>
+						<coding>
+							<system value="http://fhir.nhs.net/ValueSet/job-role-name-1-0"/>
+							<code value="NR2060"/>
+							<display value="Discharge coordinator"/>
+						</coding>
+						<text value="Hospital Liaison"/>
+					</role>
+				</practitionerRole>
+			</Practitioner>
+		</resource>
+	</entry>
+	<entry>
+		<resource>
+			<Practitioner>
+				<id value="184b48a4-6c9e-4e04-be3e-fc4c54baa2df"/>
+				<meta>
+					<!--Identifies the profile being used-->
+					<profile value="http://fhir.nhs.net/StructureDefinition/adw-practitioner-1-0"/>
+				</meta>
+				<identifier>
+					<use value="official"/>
+					<system value="http://www.hpc-uk.org"/>
+					<value value="SW7777777"/>
+					<assigner>
+						<!-- This can be a reference to the profile elsewhere in the message or just text -->
+						<reference value="Health and Care Professions' Council"/>
+					</assigner>
+				</identifier>
+				<name>
+					<family value="Jones"/>
+					<given value="Lee"/>
+				</name>
+				<telecom>
+					<system value="email"/>
+					<value value="lee.jones@nhs.net"/>
+					<use value="work"/>
+					<rank value="2"/>
+					<period>
+						<start value="2015-10-02"/>
+					</period>
+				</telecom>
+				<telecom>
+					<system value="phone"/>
+					<value value="0191223888"/>
+					<use value="work"/>
+					<rank value="1"/>
+				</telecom>
+				<practitionerRole>
+					<managingOrganization>
+						<reference value="Organization/1def78ec-71e9-493a-98b2-11e450adcb61"/>
+					</managingOrganization>
+					<!-- Indicates the practitioner's role(s) i.e. Discharge co-ordinator-->
+					<role>
+						<coding>
+							<system value="http://fhir.nhs.net/ValueSet/job-role-name-1-0"/>
+							<code value="NR1340"/>
+							<display value="Approved Social Worker"/>
+							<userSelected value="true"/>
+						</coding>
+						<text value="Local Authority Contact (Social Worker)"/>
+					</role>
+				</practitionerRole>
+			</Practitioner>
+		</resource>
+	</entry>
+	<entry>
+		<resource>
+			<Organization>
+				<id value="5d87e89d-343f-47b2-8a72-c9073f8559b1"/>
+				<meta>
+					<!--Identifies the profile being used-->
+					<profile value="http://fhir.nhs.net/StructureDefinition/adw-organization-1-0"/>
+				</meta>
+				<!--Organisation identifier -->
+				<identifier>
+					<use value="official"/>
+					<system value="http://fhir.nhs.net/Id/ods-organization-code"/>
+					<value value="RFM8C2"/>
+				</identifier>
+				<!-- Type of organisation. -->
+				<type>
+					<coding>
+						<system value="http://hl7.org/fhir/ValueSet/organization-type"/>
+						<code value="prov"/>
+						<display value="Healthcare Provider"/>
+					</coding>
+					<text value="Hospital"/>
+				</type>
+				<name value="Hebburn Hospital"/>
+			</Organization>
+		</resource>
+	</entry>
+	<entry>
+		<resource>
+			<Organization>
+				<id value="63386324-c252-4413-b8b8-fda31d0b7639"/>
+				<meta>
+					<!--Identifies the profile being used-->
+					<profile value="http://fhir.nhs.net/StructureDefinition/adw-organization-1-0"/>
+				</meta>
+				<!--Organisation identifier -->
+				<identifier>
+					<use value="official"/>
+					<system value="http://fhir.nhs.net/Id/ods-organization-code"/>
+					<value value="V396BB"/>
+				</identifier>
+				<!-- Type of organisation. -->
+				<type>
+					<coding>
+						<system value="http://hl7.org/fhir/ValueSet/organization-type"/>
+						<code value="govt"/>
+						<display value="Government"/>
+					</coding>
+					<text value="Local Authority"/>
+				</type>
+				<name value="Hebburn Council"/>
+			</Organization>
+		</resource>
+	</entry>
+	<entry>
+		<resource>
+			<Organization>
+				<id value="1def78ec-71e9-493a-98b2-11e450adcb61"/>
+				<meta>
+					<!--Identifies the profile being used-->
+					<profile value="http://fhir.nhs.net/StructureDefinition/adw-social-services-team-organization-1-0"/>
+				</meta>
+				<!-- Type of organisation. -->
+				<type>
+					<coding>
+						<system value="http://hl7.org/fhir/ValueSet/organization-type"/>
+						<code value="team"/>
+						<display value="Organizational team"/>
+					</coding>
+					<text value="Local Authority Social Services' Team"/>
+				</type>
+				<name value="Hebburn Social Services' Community Team"/>
+				<partOf>
+					<reference value="Organization/63386324-c252-4413-b8b8-fda31d0b7639"/>
+				</partOf>
+			</Organization>
+		</resource>
+	</entry>
+	<entry>
+		<resource>
+			<Encounter>
+				<id value="ac2c0d54-6f5c-4ad5-90b2-0e9e3197148c"/>
+				<meta>
+					<profile value="http://fhir.nhs.net/StructureDefinition/adw-response-encounter-1-0"/>
+				</meta>
+				<identifier>
+					<value value="2562b8b6-c0db-424a-8c6b-0fa43b0d6c2f"/>
+				</identifier>
+				<status value="in-progress"/>
+				<class value="inpatient"/>
+				<patient>
+					<reference value="Patient/5feebe84-186d-4e21-9fde-8ab4e7f19bb8"/>
+				</patient>
+				<location>
+					<location>
+						<reference value="Location/ffae77a3-692e-42d4-85d9-1c0eff544ee7"/>
+						<display value="Collier Ward"/>
+					</location>
+				</location>
+				<serviceProvider>
+					<reference value="Organization/5d87e89d-343f-47b2-8a72-c9073f8559b1"/>
+				</serviceProvider>
+			</Encounter>
+		</resource>
+	</entry>
+	<entry>
+		<resource>
+			<Location>
+				<id value="ffae77a3-692e-42d4-85d9-1c0eff544ee7"/>
+				<meta>
+					<!--Identifies the profile being used-->
+					<profile value="http://fhir.nhs.net/StructureDefinition/adw-location-1-0"/>
+				</meta>
+				<identifier>
+					<use value="official"/>
+					<system value="http://fhir.nhs.net/Id/ods-organization-code"/>
+					<value value="RFM7C7"/>
+				</identifier>
+				<name value="Collier Ward"/>
+				<managingOrganization>
+					<reference value="Organization/5d87e89d-343f-47b2-8a72-c9073f8559b1"/>
+					<display value="Hebburn Hospital"/>
+				</managingOrganization>
+			</Location>
+		</resource>
+	</entry>
+</Bundle>

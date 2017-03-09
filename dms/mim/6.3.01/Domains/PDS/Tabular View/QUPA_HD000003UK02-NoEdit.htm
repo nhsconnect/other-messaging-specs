@@ -1,0 +1,541 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>PdsRetrievalQuery Tabular View</title><style type="text/css">
+	table {empty-cells: show}
+</style><script language="JavaScript1.2">
+				
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+
+</script><style>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#maindiv {
+	overflow: auto; 
+	width: 100%; 
+	height: 90%; 
+	}
+
+
+.hypertext
+{
+	position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+}
+
+.actclass
+{
+	background-color: red;
+}
+
+.entclass
+{
+	background-color: lightgreen;;
+}
+
+.roleclass
+{
+	background-color: yellow;;
+}
+.otherclass
+{
+	background-color: blue;
+}
+.choiceclass
+{
+	background-color: gray;
+}
+.actrelclass
+{
+	background-color: pink;
+}
+.partclass
+{
+	background-color: cyan;
+}
+.rolelinkclass
+{
+	background-color: lightyellow;
+}
+
+</style></head>
+   <body onload="checkDOM('ds')">
+      <h1>PdsRetrievalQuery - tabular view</h1><span id="ds" class="hypertext">No Current Link To Vocabulary</span><span id="cwe" class="hypertext">Coded With Extensions</span><span id="cne" class="hypertext">Coded No Extensions</span><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="black">
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+         <tr>
+            <td height="35" colspan="2"><a href="QUPA_RM000003UK02.htm"><b>QUPA_RM000003UK02</b></a></td>
+            <td height="35" nowrap="yes"></td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="Query"><b>Query</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">A heading for providing information about the query, in this case, a request to find a Service User record on the PDS and
+                  retrieve data from it.
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="Query">Used by: </a></font><a href="#"><b></b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="Query/historicDataIndicator"></a>historicDataIndicator</b> (<a href="#HistoricDataIndicator"><b>HistoricDataIndicator</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>A heading for providing information about the historicDataIndicator parameter. The historicDataIndicator parameter shall occur
+                     one time to indicate whether or not historic data relating to the retrievalItem parameters is required to be returned in the
+                     response to the query.
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="Query/person.id"></a>person.id</b> (<a href="#Person.id"><b>Person.id</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>A heading for providing information about the perspn.id parameter.<br>
+                     <br>The person.id parameter shall exactly once.<br>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..*] </b></font><b><a id="Query/retrievalItem"></a>retrievalItem</b> (<a href="#RetrievalItem"><b>RetrievalItem</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>A heading for providing information about the person identifier parameter.<br>
+                     <br>The person identifier parameter may occur zero or one time providing an identifier of the person being searched for. <br>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="Person.id"><b>Person.id</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>A heading for providing information about the person identifier parameter.<br>
+                     <br>The person identifier parameter may occur zero or one time providing an identifier of the person being searched for.
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="Person.id">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">Person.id</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>A literal text string identifying the parameter item.</div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>To provide the value of the parameter item (identified in the associated semanticsText element) to be searched.</p>
+                     
+                     <p>In this context, the value element provides an identifier of the person that is to be searched for. This identifier will be
+                        one of:
+                     </p>
+                     
+                     <ul>
+                        
+                        <li>NHS number;</li>
+                        
+                        <li>Temporary NHS number issued by an NHAIS registration authority;</li>
+                        
+                        <li>Old format NHS number.</li>
+                        
+                     </ul>
+                     
+                     <p>The Identifier External datatype flavour is used to carry this information as follows:-</p>
+                     
+                     <p>A NHS number is carried in the following way:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute will contain an OID with the value "2.16.840.1.113883.2.1.4.1";</li>
+                        
+                        <li>The extension attribute will contain the NHS number itself.</li>
+                        
+                     </ul>
+                     
+                     <p>A Temporary NHS number issued by an NHAIS registration authority or an old format NHS number is carried in the following way:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute will contain an OID with the value "2.16.840.1.113883.2.1.3.2.4.3";</li>
+                        
+                        <li>The extension attribute will contain the Temporary NHS number issued by an NHAIS registration authority or the old NHS number
+                           itself.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="HistoricDataIndicator"><b>HistoricDataIndicator</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>A heading for providing information about the historicDataIndicator parameter. The historicDataIndicator parameter shall occur
+                     one time to indicate whether or not historic data relating to the retrievalItem parameters is required to be returned in the
+                     response to the query. <br>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="HistoricDataIndicator">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">HistoricDataIndicator</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">A literal text string identifying the parameter item.</div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/HistoricDataIndicator.htm" target="_top"><b>HistoricDataIndicator</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>To provide the value of the parameter item (identified in the associated semanticsText element) to be searched.</p>
+                  
+                  <p>In this context, the value element provides a code to indicate whether or not historic data relating to the retrievalItem
+                     parameters is required to be returned in the response to the query.
+                  </p>
+                  
+                  <p>When set to "1", the history is returned for the following items:</p>
+                  
+                  <ul>
+                     
+                     <li>Named</li>
+                     
+                     <li>Address</li>
+                     
+                     <li>Telecom</li>
+                     
+                     <li>Relationship</li>
+                     
+                     <li>CareProvider</li>
+                     
+                     <li>SupersededIds (Effective To dates only)</li>
+                     
+                  </ul>
+                  
+                  <p>The Coded with Code System datatype flavour is used to carry this information as follows:</p>
+                  
+                  <ul>
+                     
+                     <li>The <em>code</em> attribute will contain a value from the list of codes in the <u>HistoricDataIndicator</u> vocabulary;
+                     </li>
+                     
+                     <li>The <em>codeSystem</em> attribute will contain the OID referenced in the <u>HistoricDataIndicator</u> vocabulary.
+                     </li>
+                     
+                  </ul>
+                  
+                  <p>
+                     <strong>NB: Where a PDS Retrieval Query message is part of a batch of PDS Retrieval Query messages, only value "0" (No history required)
+                        shall be used.</strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="RetrievalItem"><b>RetrievalItem</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">A heading for providing information about the retrievalItem parameter.The retrievalItem parameter shall occur zero, one or
+                  many times, each occurrence present identifying a data item / group of data items to be retrieved.Where no retrievalItem parameters
+                  are provided, just the Serial Change Number shall be retrieved.
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="RetrievalItem">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A literal text string identifying the item to be retrieved.</p>
+                  
+                  <p>The following literal text strings shall be used to identify the data items/groups of data that are to be retrieved:</p>
+                  
+                  <ol>
+                     
+                     <li>"supercededId" (all previous or superceded nationally recognised identifiers);</li>
+                     
+                     <li>"person.nameUsual" (current usual name);</li>
+                     
+                     <li>"person.nameOther" (previous/alias/preferred names);</li>
+                     
+                     <li>"person.otherDemographics" (birth date/death date/status of death notification/sex/delivery time/birth order);</li>
+                     
+                     <li>"consent" (Consent to NHS Care Record sharing/date last changed);</li>
+                     
+                     <li>"person.confidentiality" (Sensitivity information status/reason for removal/previous NHS contact);</li>
+                     
+                     <li>"callCentreData" (call centre call-back consent/shared secret);</li>
+                     
+                     <li>"person.addressTelecom" (usual addresses/temporary addresses/correspondence addresses/telecommunication contact details);</li>
+                     
+                     <li>"person.misc" (preferred language/interpreter required/preferred contact method/preferred contact times/preferred communication
+                        format/healthspace);
+                     </li>
+                     
+                     <li>"pharmacy" (all pharmacy details);</li>
+                     
+                     <li>"guardian" (all legal guardian details);</li>
+                     
+                     <li>"proxy" (all proxy details);</li>
+                     
+                     <li>"personalRelationship" (all family/close contacts details);</li>
+                     
+                     <li>"primaryCare" (primary care registration information);</li>
+                     
+                     <li>"person.fullDemographics" (all of 1-6 above);</li>
+                     
+                     <li>"person.allData" (all person data);</li>
+                     
+                     <li>"person.placeOfBirth" (Place of Birth);</li>
+                     
+                     <li>"person.reasonForRemoval" (Reason for Removal related data);</li>
+                     
+                     <li>"paperRecordTracking" (Details the location of the patients Paper Records);</li>
+                     
+                     <li>"nhaisPosting" (NHAIS Posting data)</li>
+                     
+                  </ol>
+                  
+                  <p>NOTE: when DSA or NHAIS is retrieving person.reasonForRemoval, they get back the actual value (or nothing if there is a null
+                     value), but when other systems are retrieving person.reasonForRemoval, they get back value X (or nothing if there is a null
+                     value).
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+      </table>
+   </body>
+</html>

@@ -1,0 +1,603 @@
+<html>
+<head>
+<title>PSIS Event Query Tabular View</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="PSIS Event Query" name="Entry">
+<meta content="QUPC_HD140100UK04" name="Identifier">
+<style type="text/css">
+	table {empty-cells: show}
+</style>
+<script language="JavaScript1.2">
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</script>
+<style>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+}
+</style>
+</head>
+
+<body onload="checkDOM('ds')">
+
+<h1>PSIS Event Query - tabular view</h1>
+<span class="hypertext" id="ds" style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</span>
+<span class="hypertext" id="cwe">Coded With Extensions</span>
+<span class="hypertext" id="cne" style="LEFT: 156px; VISIBILITY: hidden; TOP: 3415px">Coded No Extensions</span>
+<table bordercolor="black" cellspacing="0" cellpadding="2" rules="cols" border="1" frame="vsides">
+	<tr bgcolor="black">
+		<td colspan="10" height="4"></td>
+	</tr>
+	<tr>
+		<td colspan="2" height="35"><a href="QUPC_RM140000UK04.htm"><b>QUPC_RM140000UK04</b></a></td>
+		<td nowrap height="35"></td>
+	</tr>
+	<tr bgcolor="black">
+		<td colspan="10" height="3"></td>
+	</tr>
+	<tr valign="top">
+		<td bgcolor="yellow" colspan="2"><a name="ControlActEvent"><b>ControlActEvent</b></a></td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#ControlAct;ControlActEvent_c" title="ControlActEvent_c" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p><b>The controlling act of the query provides access to the query parameters.</b> </p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="black">
+		<td colspan="10" height="3"></td>
+	</tr>
+	<tr class="hmd">
+		<td align="right"></td>
+		<td colspan="10"><font color="gray"><a name="ControlActEvent">Used by:
+		</a></font></td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+		classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> 
+		{<a onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><b>CNE</b></a>:<b>CACT</b>} 
+		)<a>{<b> Fixed=&quot;<font color="red">CACT</font>&quot;</b> }</a></td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#Act;ControlActEvent/$classCode" title="ControlActEvent.classCode" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p>Indicates that this is a control act.</p>
+			<ul>
+				<li>Fixed value: &quot;CACT&quot;</li>
+			</ul>
+			<p>The classCode is carried as an attribute of the <i>ControlActEvent</i> element.</p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+		moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> 
+		{<a onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} 
+		)<a>{<b> Fixed=&quot;<font color="red">EVN</font>&quot;</b> }</a></td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#Act;ControlActEvent/$moodCode" title="ControlActEvent.moodCode" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p>Indicates that the control act mood is an event.</p>
+			<ul>
+				<li>Fixed value: &quot;EVN&quot;</li>
+			</ul>
+			<p>The moodCode is carried as an attribute of the <i>ControlActEvent</i> 
+			element.</p>
+			
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" bgcolor="#d0ffff" colspan="2"><font color="green"><b>[0..1]
+		</b></font><a name="Author"><b>author</b></a></td>
+		<td style="BACKGROUND-COLOR: white">
+		<div id="QUPC_HD140100UK04#Act;/ControlActEvent/author" title="QUPC_HD140100UK04#Act/author" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<b>
+			<p><b>A participation referring to a person who is logged in at the time the message is initiated.</b> </p>
+			<b>
+			<p><b>The participation is optional. </b></p>
+			<p><b>CONSTRAINT:<br>
+			An instance shall be present when the message is initiated by a person. 
+			It shall not be present when the message is automatically initiated by a system/system.</b></p>
+			<p><b>CONSTRAINT:<br>An instance shall be present if DissentOverride.value &gt; 0, i.e. is overriden.</b></b></p>
+			</b></div>
+		</td>
+	</tr>
+	<tr>
+		<td width="4%"></td>
+		<td bgcolor="white" colspan="10">
+		<table bordercolor="gray" cellspacing="0" cellpadding="2" rules="cols" width="100%" border="1" frame="vsides">
+			<tr bgcolor="gray">
+				<td colspan="10" height="1"></td>
+			</tr>
+			<tr valign="top">
+				<td width="48%" colspan="2"><font color="green"><b>[1..1] </b>
+				</font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> 
+				{<a onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><b>CNE</b></a>:<b>AUT</b>} 
+				)<a>{<b> Fixed=&quot;<font color="red">AUT</font>&quot;</b> }</a></td>
+				<td style="BACKGROUND-COLOR: white" width="52%">
+				<div id="QUPC_HD140100UK04#Participation;ControlActEvent/author/$typeCode" title="author.typeCode" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+					<p>Indicates that the role has author responsibility.</p>
+					<ul>
+						<li>Fixed value: &quot;AUT&quot;</li>
+					</ul>
+					<p>The typeCode is carried as an attribute of the <i>author</i> element.</p>
+					
+				</div>
+				</td>
+			</tr>
+			<tr bgcolor="gray">
+				<td colspan="10" height="1"></td>
+			</tr>
+			<tr valign="top">
+				<td width="48%" colspan="2"><font color="green"><b>[1..1] </b>
+				</font><b>
+				<a href="../../CMETs/Tabular%20View/UKCT_HD120900UK01-NoEdit.htm">
+				participant</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="../../CMETs/Tabular%20View/UKCT_RM120900UK01.htm">
+				<small>[CMET: UKCT_MT120901UK01]</small></a></td>
+				<td style="BACKGROUND-COLOR: white" width="52%">
+				<div id="QUPC_HD140100UK04#Participation;ControlActEvent/author/participant+UKCT_MT120901UK01" title="QUPC_HD140100UK04#participant+UKCT_MT120901UK01" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+					<p>NPfIT CMET to identify a person fulfilling a specific role 
+					where the Person, Role Profile and Job Role are all mandatory. 
+					Full details of the person, role profile and job role are available from SDS.</p>
+					<p>In this context the person is the signed in user for the user session responsible for initiating the message.</p>
+					
+				</div>
+				</td>
+			</tr>
+			<tr bgcolor="gray">
+				<td colspan="10" height="2"></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" bgcolor="#d0ffff" colspan="2"><font color="green"><b>[1..2]
+		</b></font><a name="Author2"><b>author1</b></a></td>
+		<td style="BACKGROUND-COLOR: white">
+		<div id="QUPC_HD140100UK04#Act;/ControlActEvent/author1" title="QUPC_HD140100UK04#author1" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p><b>A participation referring to one or more systems that are involved 
+			in the initiation of the message.</b> </p>
+			<p><b>One instance of the participation is mandatory and shall carry 
+			the accredited service id of the system in use at the time the message is initiated.</b> </p>
+			<p><b>One instance of the participation is optional and may carry the 
+			workstation id of the system being used by the logged in user at the time the message is initiated.</b> </p>
+			
+		</div>
+		</td>
+	</tr>
+	<tr>
+		<td width="4%"></td>
+		<td bgcolor="white" colspan="10">
+		<table bordercolor="gray" cellspacing="0" cellpadding="2" rules="cols" width="100%" border="1" frame="vsides">
+			<tr bgcolor="gray">
+				<td colspan="10" height="1"></td>
+			</tr>
+			<tr valign="top">
+				<td width="48%" colspan="2"><font color="green"><b>[1..1] </b>
+				</font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> 
+				{<a onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><b>CNE</b></a>:<b>AUT</b>} 
+				)<a>{<b> Fixed=&quot;<font color="red">AUT</font>&quot;</b> }</a></td>
+				<td style="BACKGROUND-COLOR: white" width="52%">
+				<div id="QUPC_HD140100UK04#Participation;ControlActEvent/author1/$typeCode" title="author1.typeCode" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+					<p>Indicates that the role has author responsibility.</p>
+					<ul>
+						<li>Fixed value: &quot;AUT&quot;</li>
+					</ul>
+					<p>The typeCode is carried as an attribute of the <i>author1</i> element.</p>
+				</div>
+				</td>
+			</tr>
+			<tr bgcolor="gray">
+				<td colspan="10" height="1"></td>
+			</tr>
+			<tr valign="top">
+				<td width="48%" colspan="2"><font color="green"><b>[1..1] </b>
+				</font><b>
+				<a href="../../CMETs/Tabular%20View/UKCT_HD121000UK01-NoEdit.htm">
+				participant</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="../../CMETs/Tabular%20View/UKCT_RM121000UK01.htm">
+				<small>[CMET: UKCT_MT121001UK01]</small></a></td>
+				<td style="BACKGROUND-COLOR: white" width="52%">
+				<div id="QUPC_HD140100UK04#Participation;ControlActEvent/author1/participant+UKCT_MT121001UK01" title="QUPC_HD140100UK04#participant+UKCT_MT121001UK01" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+					<p>NPfIT CMET to identify a mandatory system which could be software or hardware. Full details of the system are available from SDS.</p>
+					<p>In this context the system is a system in use at the time the message is initiated.</p>
+				</div>
+				</td>
+			</tr>
+			<tr bgcolor="gray">
+				<td colspan="10" height="2"></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+		query</b> (<a href="#Query"><b>Query</b></a>)</td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#ControlAct;ControlActEvent/query-Query" title="QUPC_HD140100UK04#query-Query" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p><b>A link to information about the query.</b> </p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="black">
+		<td colspan="10" height="3"></td>
+	</tr>
+	<tr valign="top">
+		<td bgcolor="yellow" colspan="2"><a name="Query"><b>Query</b></a></td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#QueryByParameter;Query_c" title="QUPC_HD140100UK04#Query_c" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p><b>Information about the query, in this case, a request for all the 
+			contents of a specified PSIS Event that has been previously discovered by use of a PSIS Event List Query.</b></p>
+			
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="black">
+		<td colspan="10" height="3"></td>
+	</tr>
+	<tr class="hmd">
+		<td align="right"></td>
+		<td colspan="10"><font color="gray"><a name="Query">Used by: </a></font>
+		<a href="#ControlActEvent"><b>ControlActEvent</b></a></td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+		dissentOverride</b> (<a href="#DissentOverride"><b>DissentOverride</b></a>)</td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#QueryByParameter;Query/dissentOverride-DissentOverride" title="QUPC_HD140100UK04#dissentOverride-DissentOverride" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p><b>A link to details of Dissent Override.</b> </p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+		eventRecord</b> (<a href="#EventRecord"><b>EventRecord</b></a>)</td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#QueryByParameter;Query/eventRecord-EventRecord" title="QUPC_HD140100UK04#eventRecord-EventRecord" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p><b>A link to one of the query parameters.</b></p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+		nHSNumber</b> (<a href="#NHSNumber"><b>NHSNumber</b></a>)</td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#QueryByParameter;Query/nHSNumber-NHSNumber" title="QUPC_HD140100UK04#nHSNumber-NHSNumber" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p><b>A link to one of the query parameters.</b></p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="black">
+		<td colspan="10" height="3"></td>
+	</tr>
+	<tr valign="top">
+		<td bgcolor="yellow" colspan="2"><a name="DissentOverride"><b>DissentOverride</b></a></td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#ParameterItem;DissentOverride_c" title="DissentOverride_c" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p><b>To provide information about Dissent Override.</b> </p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="black">
+		<td colspan="10" height="3"></td>
+	</tr>
+	<tr class="hmd">
+		<td align="right"></td>
+		<td colspan="10"><font color="gray"><a name="DissentOverride">Used by:</a></font><a href="#Query"><b>Query</b></a></td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>value</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> 
+		{<a onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/DissentOverride.htm"><b>DissentOverride</b></a>} 
+		)</td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#ParameterItem;DissentOverride/$value" title="QUPC_HD140100UK04#DissentOverride.value" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p>To provide the value of the Dissent Override parameter.</p>
+			<p>Where &quot;No override&quot; is being indicated, the Coded with Code System 
+			datatype flavour is used to carry this information as follows:</p>
+			<ul>
+				<li>The <i>code</i> attribute will contain value &quot;0&quot; from the list 
+				of codes in the <u>DissentOverride</u> vocabulary; </li>
+				<li>The <i>codeSystem</i> attribute will contain the OID referenced in the <u>DissentOverride</u> vocabulary.</li>
+			</ul>
+			<p>Where an override reason is being indicated, the Coded with Original 
+			Text datatype flavour is used to carry this information as follows:</p>
+			<ul>
+				<li>The <i>code</i> attribute will contain a value other than &quot;0&quot; 
+				from the list of codes in the <u>DissentOverride</u> vocabulary;
+				</li>
+				<li>The <i>codeSystem</i> attribute will contain the OID referenced in the <u>DissentOverride</u> vocabulary; </li>
+				<li>The <i>displayName</i> attribute will contain the text meaning of the code; </li>
+				<li>The <i>originalText</i> sub-element will contain the textual 
+				explanation of the reason for dissent override upon which the code is based.</li>
+			</ul>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+		semanticsText</b> (<a href="../../../Data%20Types/DataTypes.htm#ST"><b>ST</b></a>)</td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#ParameterItem;DissentOverride/$semanticsText" title="DissentOverride.semanticsText" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p>A literal text string identifying the parameter item.</p>
+			<p><b>Example</b> </p>
+			<p><span style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;semanticsText&gt;DissentOverride&lt;/semanticsText&gt;</span>
+			</p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="black">
+		<td colspan="10" height="3"></td>
+	</tr>
+	<tr valign="top">
+		<td bgcolor="yellow" colspan="2"><a name="EventRecord"><b>EventRecord</b></a></td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#ParameterItem;EventRecord_c" title="EventRecord_c" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p><b>This query parameter holds the identifier for a specific Event. 
+			The requesting system shall have previously retreived the identifier 
+			using a PSIS query that includes an Event identifier in its response.</b>
+			</p>
+			<p><b>The EventRecord parameter shall occur once.</b> </p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="black">
+		<td colspan="10" height="3"></td>
+	</tr>
+	<tr class="hmd">
+		<td align="right"></td>
+		<td colspan="10"><font color="gray"><a name="EventRecord">Used by: </a>
+		</font><a href="#Query"><b>Query</b></a></td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+		value</b> (<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>)</td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#ParameterItem;EventRecord/$value" title="EventRecord.value" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p>To provide the identifying value of the Event being queried. The 
+			whole Event (message payload) is returned in a successful response.
+			</p>
+			<p>The Identifier Global datatype flavour is used to carry this information 
+			as follows:</p>
+			<ul>
+				<li>The <i>root</i> attribute will contain a DCE UUID.</li>
+			</ul>
+			<p><b>Example</b> </p>
+			<p><span style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;value root=&quot;BBBBE26A-A9D1-A411-F824-9E7A00A33753&quot;/&gt;</span>
+			</p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+		semanticsText</b> (<a href="../../../Data%20Types/DataTypes.htm#ST"><b>ST</b></a>)</td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#ParameterItem;EventRecord/$semanticsText" title="EventRecord.semanticsText" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p>A literal text string identifying the parameter item.</p>
+			<p><b>Example</b> </p>
+			<p><span style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;semanticsText&gt;EventRecord&lt;/semanticsText&gt;</span>
+			</p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="black">
+		<td colspan="10" height="3"></td>
+	</tr>
+	<tr valign="top">
+		<td bgcolor="yellow" colspan="2"><a name="NHSNumber"><b>NHSNumber</b></a></td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#ParameterItem;NHSNumber_c" title="NHSNumber_c" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p><b>This query parameter holds the NHS number of the patient for whom the event list is being requested.</b></p>
+			<p><b>The NHSNumber parameter shall occur once.</b></p>
+			
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="black">
+		<td colspan="10" height="3"></td>
+	</tr>
+	<tr class="hmd">
+		<td align="right"></td>
+		<td colspan="10"><font color="gray"><a name="NHSNumber">Used by: </a>
+		</font><a href="#Query"><b>Query</b></a></td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+		value</b> (<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>)</td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#ParameterItem;NHSNumber/$value" title="QUPC_HD140100UK04#NHSNumber.value" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p>To provide the value of the NHS number for the patient.</p>
+			<p>The Identifier External datatype flavour is used to carry this information as follows:-</p>
+			<ul>
+				<li>The <i>root</i> attribute will contain an OID with the value 
+				&quot;2.16.840.1.113883.2.1.4.1&quot;; </li>
+				<li>The <i>extension</i> attribute will contain the NHS number itself.</li>
+			</ul>
+			<p><b>Example</b> </p>
+			<p><span style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;!-- NHS number --&gt;<br>
+			&lt;value root=&quot;2.16.840.1.113883.2.1.4.1&quot; extension=&quot;9900002784&quot;/&gt;</span></p>	
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="gray">
+		<td colspan="10" height="1"></td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+		semanticsText</b> (<a href="../../../Data%20Types/DataTypes.htm#ST"><b>ST</b></a>)</td>
+		<td style="BACKGROUND-COLOR: white" width="50%">
+		<div id="QUPC_HD140100UK04#ParameterItem;NHSNumber/$semanticsText" title="NHSNumber.semanticsText" style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+			<p>A literal text string identifying the parameter item.</p>
+			<p><b>Example</b> </p>
+			<p><span style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;semanticsText&gt;NHSNumber&lt;/semanticsText&gt;</span>
+			</p>
+		</div>
+		</td>
+	</tr>
+	<tr bgcolor="black">
+		<td colspan="10" height="4"></td>
+	</tr>
+</table>
+</body>
+</html>

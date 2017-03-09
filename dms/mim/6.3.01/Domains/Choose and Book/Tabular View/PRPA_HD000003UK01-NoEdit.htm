@@ -1,0 +1,528 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Request Service Tabular View</title><meta name="Entry" content="Request Service"><meta name="Identifier" content="PRPA_HD000001UK07"><style type="text/css">
+	table {empty-cells: show}
+</style><script language="JavaScript1.2">
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</script><style>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</style></head><body onload="checkDOM('ds')"><h1>Request Service - tabular view</h1><span id="ds" class="hypertext">No Current Link To Vocabulary</span><span id="cwe" class="hypertext">Coded With Extensions</span><span id="cne" class="hypertext">Coded No Extensions</span><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="black"><tr bgcolor="black"><td height="4" colspan="10"></td></tr><tr><td height="35" colspan="2"><b>
+	<a href="PRPA_RM000003UK01.htm">PRPA_RM000003UK01</a></b></td><td height="35" nowrap="yes"></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="RequestService"><b>RequestService</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#ActHeir;RequestService_c">
+	<div id="PRPA_HD010100UK06#ActHeir;RequestService_c" title="PRPA_HD010100UK06#RequestService_c" style="width: 100%; height: 100%; background-color: white;">
+		<b>The Request Service message represents a request for a service from a 
+		service requester to the Choose and Book Service.</b></div>
+	</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="RequestService">Used by: </a></font></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>PCPR</b>} )<a>{<b> Fixed="<font color="red">PCPR</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;RequestService/$classCode title=PRPA_HD010100UK06#RequestService.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that this is a <B>patient care provision</B>.<UL>
+<LI>Fixed value: "<B>PCPR</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;RequestService/$moodCode title=PRPA_HD010100UK06#RequestService.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Indicates that this is an <B>event</B>.<UL>
+<LI>Fixed value: "<B>EVN</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>id</b> (<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>)</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;RequestService/$id title=PRPA_HD010100UK06#RequestService.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+This identifier is globally unique across all records.<P>It identifies this instance of a service request.</P>
+<P>The Identifier Global datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>A UUID is held in the <B>root </B>attribute.</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>code</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/CaBAnnotation.htm"><b>CaBAnnotation</b></a>} )</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;RequestService/$code title=PRPA_HD010100UK06#RequestService.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+A code which identifies this Act.<P>The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>CaBAnnotation</B> vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.140</B>"</LI>
+<LI>The <B>code </B>attribute shall contain the vocabulary code "<B>RSERV</B>"</LI></UL></NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>effectiveTime</b> (<a href="../../../Data%20Types/DataTypes.htm#TS"><b>TS</b></a>)</td>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK06#Act;RequestService/$effectiveTime title=PRPA_HD010100UK06#RequestService.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+Date/time that the request was made.</NOTE></DIV></TD></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>priorityCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/PriorityType.htm"><b>PriorityType</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;RequestService/$priorityCode">
+<P>Priority of the referral or advice and guidance request. This is the existing MiM vocabulary <B>PriorityType</B>.</P>
+<P>The Coded Value (<B>CV</B>) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <B>codeSystem</B> attribute shall contain the <B>OID</B> for the <B>PriorityType</B> vocabulary with the value "<B>2.16.840.1.113883.2.1.3.2.4.17.95</B>"</LI>
+<LI>The <B>code</B> attribute shall contain a value from the <B>PriorityType</B> vocabulary.</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[1..1] </b></font><a name="Subject"><b>subject</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;/RequestService/subject"><B>Refers to the patient for whom this service is being requested.</B></NOTE></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>SBJ</b>} )<a>{<b> Fixed="<font color="red">SBJ</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Participation;RequestService/subject/$typeCode">
+<P>Indicates&nbsp;that this is a <B>subject</B>.</P>
+<UL>
+<LI>Fixed value: "<B>SBJ</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>patient</b> (<a href="#Patient"><b>Patient</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Participation;RequestService/subject/patient-Patient">
+	ndicates information about the patient who is the subject.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[1..1] </b></font><a name="Author"><b>author</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;/RequestService/author"><B>Refers to the person or organisation who originated the request.</B></NOTE></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>AUT</b>} )<a>{<b> Fixed="<font color="red">AUT</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Participation;RequestService/author/$typeCode">
+<P>Indicates that the participant is the <B>author</B> of the request.</P>
+<UL>
+<LI>Fixed value: "<B>AUT</B>"</LI></UL></div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b><a href="../../CMETs/Tabular View/UKCT_HD120300UK02-NoEdit.htm">agent</a></b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../CMETs/Tabular View/UKCT_RM120300UK02.htm"><small>[CMET:&nbsp;UKCT_MT120301UK02]</small></a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Participation;RequestService/author/agent+UKCT_MT120301UK02">
+	NPfIT CMET to identify a person fulfilling a specific role. Full details of 
+	the person and role profile are available from SDS.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[0..*] </b></font><a name="Component"><b>component2</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;/RequestService/component2">
+	<div id="PRPA_HD010100UK06#Act;/RequestService/component2" title="PRPA_HD010100UK06#/RequestService/component2" style="width: 100%; height: 100%; background-color: white;">
+		<b>Refers to a choice for representation of the problem for which a 
+		referral is being made. The choices are:</b><ul>
+			<li><b>Coded Problem</b></li>
+			<li><b>Non coded Problem</b></li>
+		</ul>
+	</div>
+	</div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>COMP</b>} )<a>{<b> Fixed="<font color="red">COMP</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#ActRelationship;RequestService/component2/$typeCode">
+		<div id="PRPA_HD010100UK06#ActRelationship;RequestService/component2/$typeCode" title="PRPA_HD010100UK06#RequestService/component2.typeCode" style="width: 100%; height: 100%; background-color: white;">
+			Indicates that this is a component.<ul>
+				<li>Fixed value: &quot;<b>COMP</b>&quot;</li>
+			</ul>
+		</div>
+		</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>target</b> (<b><a href="#ProblemChoice">ProblemChoice</a></b>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#ActRelationship;RequestService/component2/problemChoice-ProblemChoice">
+		Indicates a choice of referral problem representation.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[0..1] </b></font><a name="Component2"><b>component1</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;/RequestService/component1">
+	<b>Refers to the specialty of the service classification.</b></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>COMP</b>} )<a>{<b> Fixed="<font color="red">COMP</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#ActRelationship;RequestService/component1/$typeCode">
+		<div id="PRPA_HD010100UK06#ActRelationship;RequestService/component1/$typeCode" title="PRPA_HD010100UK06#RequestService/component1.typeCode" style="width: 100%; height: 100%; background-color: white;">
+			Indicates that this is a component.<ul>
+				<li>Fixed value: &quot;<b>COMP</b>&quot;</li>
+			</ul>
+		</div>
+		</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>specialty</b> (<a href="#Specialty"><b>Specialty</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#ActRelationship;RequestService/component1/specialty-Specialty">
+		Indicates specialty information.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[1..1] </b></font><a name="Component3"><b>component3</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;/RequestService/component3">
+	<b>Refers to a code specifying the type of service being requested.</b></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>COMP</b>} )<a>{<b> Fixed="<font color="red">COMP</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#ActRelationship;RequestService/component3/$typeCode">
+		<div id="PRPA_HD010100UK06#ActRelationship;RequestService/component3/$typeCode" title="PRPA_HD010100UK06#RequestService/component3.typeCode" style="width: 100%; height: 100%; background-color: white;">
+			Indicates that this is a component.<ul>
+				<li>Fixed value: &quot;<b>COMP</b>&quot;</li>
+			</ul>
+		</div>
+		</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>requestType</b> (<a href="#RequestType"><b>RequestType</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#ActRelationship;RequestService/component3/requestType-RequestType">
+		Indicates request type information.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[0..*] </b></font><a name="Component4"><b>component4</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;/RequestService/component4">
+	<div id="PRPA_HD010100UK06#Act;/RequestService/component3" title="PRPA_HD010100UK06#/RequestService/component2" style="width: 100%; height: 100%; background-color: white;">
+		<b>Refers to a choice for representation of the procedure for which the 
+		referral is being made. The choices are:</b><ul>
+			<li><b>Coded procedure</b></li>
+			<li><b>Non coded procedure</b></li>
+		</ul>
+	</div>
+	</div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>COMP</b>} )<a>{<b> Fixed="<font color="red">COMP</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#ActRelationship;RequestService/component4/$typeCode">
+		Indicates that this is a component.<ul>
+			<li>Fixed value: &quot;<b>COMP</b>&quot;</li>
+		</ul>
+		</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>target</b> (<b><a href="#ProcedureChoice">ProcedureChoice</a></b>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#ActRelationship;RequestService/component4/procedureChoice-ProcedureChoice">
+		Indicates a choice of referral procedure representation.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" bgcolor="d0ffff" width="50%"><font color="green"><b>[1..1] </b></font><a name="PertinentInformation"><b>pertinentInformation</b></a></td><td><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;/RequestService/pertinentInformation">
+	<b>Refers to the sensitivity of the referral.</b></div></td></tr><tr><td width="4%"></td><td colspan="10" bgcolor="white"><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="gray" width="100%"><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>PERT</b>} )<a>{<b> Fixed="<font color="red">PERT</font>"</b> }</a></td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#ActRelationship;RequestService/pertinentInformation/$typeCode">
+		<div id="PRPA_HD010100UK06#ActRelationship;RequestService/pertinentInformation/$typeCode" title="PRPA_HD010100UK06#RequestService/pertinentInformation.typeCode" style="width: 100%; height: 100%; background-color: white;">
+			Indicates that this is <b>pertinent information</b>.<ul>
+				<li>Fixed value: &quot;<b>PERT</b>&quot;</li>
+			</ul>
+		</div>
+		</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="48%"><font color="green"><b>[1..1] </b></font><b>pertinentContentSensitiveInd</b> (<a href="#ContentSensitiveInd"><b>ContentSensitiveInd</b></a>)</td><td width="52%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#ActRelationship;RequestService/pertinentInformation/pertinentContentSensitiveInd-ContentSensitiveInd">
+		Indicates information about the content sensitivity of the referral.</div></td></tr><tr bgcolor="gray"><td height="2" colspan="10"></td></tr></table></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="Patient"><b>Patient</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Patient;Patient_c">
+	<b>The patient who is the record target, and for whom this service is being 
+	requested.</b></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="Patient">Used by: </a></font><a href="#RequestService"><b>RequestService</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>PAT</b>} )<a>{<b> Fixed="<font color="red">PAT</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Patient;Patient/$classCode">
+	<div id="PRPA_HD010100UK06#Patient;Patient/$classCode" title="PRPA_HD010100UK06#Patient.classCode" style="width: 100%; height: 100%; background-color: white;">
+		Indicates that this role is of type <b>patient</b>.<ul>
+			<li>Fixed value: &quot;<b>PAT</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>id</b> (<a href="../../../Data%20Types/DataTypes.htm#II"><b>II</b></a>)</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Patient;Patient/$id">
+	<div id="PRPA_HD010100UK06#Patient;Patient/$id" title="PRPA_HD010100UK06#Patient.id" style="width: 100%; height: 100%; background-color: white;">
+		Provides NHS Number, the nationally recognised identifier for the 
+		patient.<p>The Identifier External datatype flavour is used to carry 
+		this information as follows:</p>
+		<ul>
+			<li>The <b>root</b> attribute will contain an <b>OID</b> with the 
+			value &quot;<b>2.16.840.1.113883.2.1.4.1</b>&quot;</li>
+			<li>The <b>extension</b> attribute will contain the NHS Number.</li>
+		</ul>
+		<p>Only new, permanent NHS Numbers can be used to identify patients in 
+		Choose and Book.</div>
+	</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="ProblemChoice"><b>ProblemChoice</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;ProblemChoice_c">
+	<b>A choice of ways to represent the problem for which this referral is 
+	being made.</b></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="ProblemChoice">Used by: </a></font><a href="#RequestService"><b>RequestService</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr bgcolor="gray"><td colspan="10" height="1"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b><i>either </i></font>: <b><a href="#CodedProblem">CodedProblem</a></b></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;ProblemChoice/generalizes-CodedProblem">
+	A clinical (coded) description of the referral problem. This will be a 
+	SNOMED clinical term.</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><i>  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ...   </i></font>: <b><a href="#NonCodedProblem">NonCodedProblem</a></b></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;ProblemChoice/generalizes-NonCodedProblem">
+	A textual representation of a clinical concept for the referral problem.</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="Specialty"><b>Specialty</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;Specialty_c">
+	<b>The specialty of the service classification.</b></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="Specialty">Used by: </a></font><a href="#RequestService"><b>RequestService</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>OBS</b>} )<a>{<b> Fixed="<font color="red">OBS</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;Specialty/$classCode">
+	<div id="PRPA_HD010100UK06#Observation;Specialty/$classCode" title="PRPA_HD010100UK06#Specialty.classCode" style="width: 100%; height: 100%; background-color: white;">
+		Indicates that this is an <b>observation</b>.<ul>
+			<li>Fixed value: &quot;<b>OBS</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;Specialty/$moodCode">
+	<div id="PRPA_HD010100UK06#Observation;Specialty/$moodCode" title="PRPA_HD010100UK06#Specialty.moodCode" style="width: 100%; height: 100%; background-color: white;">
+		Indicates that this is an <b>event</b>.<ul>
+			<li>Fixed value: &quot;<b>EVN</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>code</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/CaBAnnotation.htm"><b>CaBAnnotation</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;Specialty/$code">
+	<div id="PRPA_HD010100UK06#Observation;Specialty/$code" title="PRPA_HD010100UK06#Specialty.code" style="width: 100%; height: 100%; background-color: white;">
+		A code which identifies this Act.<p>The Coded Value (<b>CV</b>) datatype 
+		shall be used to carry this information as follows:</p>
+		<ul>
+			<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> for 
+			the <b>CaBAnnotation</b> vocabulary with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.17.140</b>&quot;</li>
+			<li>The <b>code </b>attribute shall contain the vocabulary code &quot;<b>SPEC</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>value</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/Specialty.htm"><b>Specialty</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;Specialty/$value">
+	<div id="PRPA_HD010100UK06#Observation;Specialty/$value" title="PRPA_HD010100UK06#Specialty.value" style="width: 100%; height: 100%; background-color: white;">
+		An indicator of the specialty to be used when searching for services 
+		when the seamless transition is performed.<p>The Coded Value (<b>CV</b>) 
+		datatype shall be used to carry this information as follows:</p>
+		<ul>
+			<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> for 
+			the <b>Specialty</b> vocabulary with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.17.156</b>&quot;</li>
+			<li>The <b>code</b> attribute shall contain an appropriate code from 
+			the <b>Specialty</b> vocabulary. </li>
+		</ul>
+		<p><b>Specialty</b> will be an external list of values maintained by 
+		Choose and Book.</div>
+	</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="RequestType"><b>RequestType</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;RequestType_c">
+	<div id="PRPA_HD010100UK06#Observation;RequestType_c" title="PRPA_HD010100UK06#RequestType_c" style="width: 100%; height: 100%; background-color: white;">
+		<b>A&nbsp;code specifying the type of service being requested.</b><p><b>
+		Example values are:</b></p>
+		<ol>
+			<li><b>Appointment Request</b></li>
+			<li><b>Diagnostic</b></li>
+			<li><b>Advice &amp; Guidance</b></li>
+		</ol>
+	</div>
+	</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="RequestType">Used by: </a></font><a href="#RequestService"><b>RequestService</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>OBS</b>} )<a>{<b> Fixed="<font color="red">OBS</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;RequestType/$classCode">
+	<div id="PRPA_HD010100UK06#Observation;RequestType/$classCode" title="PRPA_HD010100UK06#RequestType.classCode" style="width: 100%; height: 100%; background-color: white;">
+		Indicates that this is an <b>observation</b>.<ul>
+			<li>Fixed value: &quot;<b>OBS</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;RequestType/$moodCode">
+	<div id="PRPA_HD010100UK06#Observation;RequestType/$moodCode" title="PRPA_HD010100UK06#RequestType.moodCode" style="width: 100%; height: 100%; background-color: white;">
+		Indicates that this is an <b>event</b>.<ul>
+			<li>Fixed value: &quot;<b>EVN</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>code</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/CaBAnnotation.htm"><b>CaBAnnotation</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;RequestType/$code">
+	<div id="PRPA_HD010100UK06#Observation;RequestType/$code" title="PRPA_HD010100UK06#RequestType.code" style="width: 100%; height: 100%; background-color: white;">
+		A code which identifies this Act.<p>The Coded Value (<b>CV</b>) datatype 
+		shall be used to carry this information as follows:</p>
+		<ul>
+			<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> for 
+			the <b>CaBAnnotation</b> vocabulary with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.17.140</b>&quot;</li>
+			<li>The <b>code </b>attribute shall contain the vocabulary code &quot;<b>REQTY</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>value</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/RequestType.htm"><b>RequestType</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;RequestType/$value">
+	<div id="PRPA_HD010100UK06#Observation;RequestType/$value" title="PRPA_HD010100UK06#RequestType.value" style="width: 100%; height: 100%; background-color: white;">
+		An indicator of the type of request to be created after the seamless 
+		transition is performed.
+		<p>&nbsp;The Coded Value (<b>CV</b>) datatype shall be used to carry this 
+		information as follows:</p>
+		<ul>
+			<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> for 
+			the <b>RequestType</b>&nbsp; vocabulary with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.17.152</b>&quot;</li>
+			<li>The <b>code</b> attribute shall contain an appropriate code from 
+			the <b>RequestType</b> vocabulary. </li>
+		</ul>
+		<p><b>RequestType</b> will be an external list of values maintained by 
+		Choose and Book.</div>
+	</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="ProcedureChoice"><b>ProcedureChoice</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;ProcedureChoice_c">
+	<b>&nbsp;choice of ways to represent the procedure for which this referral 
+	is being made.</b></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="ProcedureChoice">Used by: </a></font><a href="#RequestService"><b>RequestService</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr bgcolor="gray"><td colspan="10" height="1"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b><i>either </i></font>: <b><a href="#CodedProcedure">CodedProcedure</a></b></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;ProcedureChoice/generalizes-CodedProcedure">
+	A clinical (coded) description of the referral procedure. This will be a 
+	SNOMED clinical term.</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><i>  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ...   </i></font>: <b><a href="#NonCodedProcedure">NonCodedProcedure</a></b></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Act;ProcedureChoice/generalizes-NonCodedProcedure">
+	A textual representation of a clinical concept for the referral procedure.</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="ContentSensitiveInd"><b>ContentSensitiveInd</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;ContentSensitiveInd_c">
+	<b>Information about the content sensitivity of the referral. This will be 
+	set to &#39;true&#39; if the request is content sensitive.</b></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="ContentSensitiveInd">Used by: </a></font><a href="#RequestService"><b>RequestService</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>OBS</b>} )<a>{<b> Fixed="<font color="red">OBS</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;ContentSensitiveInd/$classCode">
+	<div id="PRPA_HD010100UK06#Observation;ContentSensitiveInd/$classCode" title="PRPA_HD010100UK06#ContentSensitiveInd.classCode" style="width: 100%; height: 100%; background-color: white;">
+		Indicates that this is an <b>observation</b>.<ul>
+			<li>Fixed value: &quot;<b>OBS</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;ContentSensitiveInd/$moodCode">
+	<div id="PRPA_HD010100UK06#Observation;ContentSensitiveInd/$moodCode" title="PRPA_HD010100UK06#ContentSensitiveInd.moodCode" style="width: 100%; height: 100%; background-color: white;">
+		Indicates that this is an <b>event</b>.<ul>
+			<li>Fixed value: &quot;<b>EVN</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>code</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/CaBAnnotation.htm"><b>CaBAnnotation</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;ContentSensitiveInd/$code">
+	<div id="PRPA_HD010100UK06#Observation;ContentSensitiveInd/$code" title="PRPA_HD010100UK06#ContentSensitiveInd.code" style="width: 100%; height: 100%; background-color: white;">
+		A code which identifies this Act.<p>The Coded Value (<b>CV</b>) datatype 
+		shall be used to carry this information as follows:</p>
+		<ul>
+			<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> for 
+			the <b>CaBAnnotation</b> vocabulary with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.17.140</b>&quot;</li>
+			<li>The <b>code </b>attribute shall contain the vocabulary code &quot;<b>CSI</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>value</b> (<a href="../../../Data%20Types/DataTypes.htm#BL"><b>BL</b></a>)</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;ContentSensitiveInd/$value">
+	<div id="PRPA_HD010100UK06#Observation;ContentSensitiveInd/$value" title="PRPA_HD010100UK06#ContentSensitiveInd.value" style="width: 100%; height: 100%; background-color: white;">
+		Indicates the value of the indicator, in a Boolean datatype.</div>
+	</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="CodedProblem"><b>CodedProblem</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;CodedProblem_c">
+	<b>A clinical (coded) description of the problem for which the referral is 
+	being made. This will be a SNOMED clinical term.</b></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="CodedProblem">Used by: </a></font><a href="#RequestService"><b>RequestService</b></a>, <a href="#ProblemChoice"><b>ProblemChoice</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>OBS</b>} )<a>{<b> Fixed="<font color="red">OBS</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;CodedProblem/$classCode">
+	<div id="PRPA_HD010100UK06#Observation;CodedReason/$classCode" title="PRPA_HD010100UK06#CodedReason.classCode" style="width: 100%; height: 100%; background-color: white;">
+		Indicates that this is an <b>observation</b>.<ul>
+			<li>Fixed value: &quot;<b>OBS</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;CodedProblem/$moodCode">
+	<div id="PRPA_HD010100UK06#Observation;CodedReason/$moodCode" title="PRPA_HD010100UK06#CodedReason.moodCode" style="width: 100%; height: 100%; background-color: white;">
+		Indicates that this is an <b>event</b>.<ul>
+			<li>Fixed value: &quot;<b>EVN</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>code</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/CaBAnnotation.htm"><b>CaBAnnotation</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;CodedProblem/$code">
+	<div id="PRPA_HD010100UK06#Observation;CodedReason/$code" title="PRPA_HD010100UK06#CodedReason.code" style="width: 100%; height: 100%; background-color: white;">
+		A code which identifies this Act.<p>The Coded Value (<b>CV</b>) datatype 
+		shall be used to carry this information as follows:</p>
+		<ul>
+			<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> for 
+			the <b>CaBAnnotation</b> vocabulary with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.17.140</b>&quot;</li>
+			<li>The <b>code </b>attribute shall contain the vocabulary code &quot;<b>CPROB</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>value</b> (<a href="../../../Data%20Types/DataTypes.htm#CD"><b>CD</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>SNOMEDCT</b>} )<a>{<b> Fixed="<font color="red">SNOMEDCT</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;CodedProblem/$value">
+	<div id="PRPA_HD010100UK06#Observation;CodedReason/$value" title="PRPA_HD010100UK06#CodedReason.value" style="width: 100%; height: 100%; background-color: white;">
+		A SNOMED code, qualified as appropriate, which describes the reason for 
+		this referral.<p>The Concept Descriptor (<b>CD</b>) datatype shall be 
+		used to carry this information as follows:</p>
+		<ul>
+			<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> for
+			<b>SNOMEDCT</b> with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.15</b>&quot;</li>
+			<li>The <b>code</b> attribute shall carry an appropriate <b>SNOMED</b> 
+			code.</li>
+			<li>The <b>displayName</b> attribute may carry the display name of 
+			the <b>SNOMED</b> code.</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="NonCodedProblem"><b>NonCodedProblem</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;NonCodedProblem_c">
+	<b>A textual representation of a clinical concept for the problem for which 
+	the referral is being made.</b></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="NonCodedProblem">Used by: </a></font><a href="#RequestService"><b>RequestService</b></a>, <a href="#ProblemChoice"><b>ProblemChoice</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>OBS</b>} )<a>{<b> Fixed="<font color="red">OBS</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;NonCodedProblem/$classCode">
+	<div id="PRPA_HD010100UK06#Observation;NonCodedReason/$classCode" title="PRPA_HD010100UK06#NonCodedReason.classCode" style="width: 100%; height: 100%; background-color: white;">
+		Indicates that this is an <b>observation</b>.<ul>
+			<li>Fixed value: &quot;<b>OBS</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;NonCodedProblem/$moodCode">
+	<div id="PRPA_HD010100UK06#Observation;NonCodedReason/$moodCode" title="PRPA_HD010100UK06#NonCodedReason.moodCode" style="width: 100%; height: 100%; background-color: white;">
+		Indicates that this is an <b>event</b>.<ul>
+			<li>Fixed value: &quot;<b>EVN</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>code</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/CaBAnnotation.htm"><b>CaBAnnotation</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;NonCodedProblem/$code">
+	<div id="PRPA_HD010100UK06#Observation;NonCodedReason/$code" title="PRPA_HD010100UK06#NonCodedReason.code" style="width: 100%; height: 100%; background-color: white;">
+		A code which identifies this Act.<p>The Coded Value (<b>CV</b>) datatype 
+		shall be used to carry this information as follows:</p>
+		<ul>
+			<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> for 
+			the <b>CaBAnnotation</b> vocabulary with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.17.140</b>&quot;</li>
+			<li>The <b>code </b>attribute shall contain the vocabulary code &quot;<b>NPROB</b>&quot;</li>
+		</ul>
+	</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>text</b> (<a href="../../../Data%20Types/DataTypes.htm#ST"><b>ST</b></a>)</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;NonCodedProblem/$text">
+	A textual representation of a clinical concept for the referral reason.</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[0..1] </b></font><b>value</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/ReasonQualifier.htm"><b>ReasonQualifier</b></a>} )</td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;NonCodedProblem/$value">
+	<div id="PRPA_HD010100UK06#Observation;NonCodedReason/$value" title="PRPA_HD010100UK06#NonCodedReason.value" style="width: 100%; height: 100%; background-color: white;">
+		A code denoting the status of the supplied textual referral reason.<p>
+		The Coded Value (<b>CV</b>) datatype shall be used to carry this 
+		information as follows:</p>
+		<ul>
+			<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> for 
+			the <b>ReasonQualifier</b> vocabulary with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.17.155</b>&quot;</li>
+			<li>The <b>code </b>attribute shall contain an appropriate code from 
+			the <b>ReasonQualifier</b> vocabulary.</li>
+		</ul>
+		<p><b>ReasonQualifier</b> will be an external list of values maintained 
+		by Choose and Book.</div>
+	</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="CodedProcedure"><b>CodedProcedure</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;CodedProcedure_c">
+	<b>A clinical (coded) description of the procedure for which the referral is 
+	being made. This will be a SNOMED clinical term.</b></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="CodedProcedure">Used by: </a></font><a href="#RequestService"><b>RequestService</b></a>, <a href="#ProcedureChoice"><b>ProcedureChoice</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>OBS</b>} )<a>{<b> Fixed="<font color="red">OBS</font>"</b> }</a></td><td width="50%">
+	<div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;CodedProblem/$classCode0">
+		<div id="PRPA_HD010100UK06#Observation;CodedReason/$classCode0" title="PRPA_HD010100UK06#CodedReason.classCode" style="width: 100%; height: 100%; background-color: white;">
+			Indicates that this is an <b>observation</b>.<ul>
+				<li>Fixed value: &quot;<b>OBS</b>&quot;</li>
+			</ul>
+		</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td><td width="50%">
+	<div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;CodedProblem/$moodCode0">
+		<div id="PRPA_HD010100UK06#Observation;CodedReason/$moodCode0" title="PRPA_HD010100UK06#CodedReason.moodCode" style="width: 100%; height: 100%; background-color: white;">
+			Indicates that this is an <b>event</b>.<ul>
+				<li>Fixed value: &quot;<b>EVN</b>&quot;</li>
+			</ul>
+		</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>code</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/CaBAnnotation.htm"><b>CaBAnnotation</b></a>} )</td><td width="50%">
+	<div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;CodedProblem/$code0">
+		<div id="PRPA_HD010100UK06#Observation;CodedReason/$code0" title="PRPA_HD010100UK06#CodedReason.code" style="width: 100%; height: 100%; background-color: white;">
+			A code which identifies this Act.<p>The Coded Value (<b>CV</b>) 
+			datatype shall be used to carry this information as follows:</p>
+			<ul>
+				<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> 
+				for the <b>CaBAnnotation</b> vocabulary with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.17.140</b>&quot;</li>
+				<li>The <b>code </b>attribute shall contain the vocabulary code 
+				&quot;<b>CPROC</b>&quot;</li>
+			</ul>
+		</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>value</b> (<a href="../../../Data%20Types/DataTypes.htm#CD"><b>CD</b></a> {<a onmouseout="popUp(event,'cwe')" onmouseover="popUp(event,'cwe')"><b>CWE</b></a>:<b>SNOMEDCT</b>} )<a>{<b> Fixed="<font color="red">SNOMEDCT</font>"</b> }</a></td><td width="50%">
+	<div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;CodedProblem/$value0">
+		<div id="PRPA_HD010100UK06#Observation;CodedReason/$value0" title="PRPA_HD010100UK06#CodedReason.value" style="width: 100%; height: 100%; background-color: white;">
+			A SNOMED code, qualified as appropriate, which describes the reason 
+			for this referral.<p>The Concept Descriptor (<b>CD</b>) datatype 
+			shall be used to carry this information as follows:</p>
+			<ul>
+				<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> 
+				for <b>SNOMEDCT</b> with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.15</b>&quot;</li>
+				<li>The <b>code</b> attribute shall carry an appropriate <b>
+				SNOMED</b> code.</li>
+				<li>The <b>displayName</b> attribute may carry the display name 
+				of the <b>SNOMED</b> code.</li>
+			</ul>
+		</div>
+	</div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr valign="top"><td bgcolor="yellow" colspan="2"><a name="NonCodedProcedure"><b>NonCodedProcedure</b></a></td><td width="50%"><div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;NonCodedProcedure_c">
+	<b>A textual representation of a clinical concept for the proecure for which 
+	the referral is being made.</b></div></td></tr><tr bgcolor="black"><td height="3" colspan="10"></td></tr><tr class="hmd"><td align="right" colspan="1"></td><td colspan="10"><font color="gray"><a name="NonCodedProcedure">Used by: </a></font><a href="#RequestService"><b>RequestService</b></a>, <a href="#ProcedureChoice"><b>ProcedureChoice</b></a></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>OBS</b>} )<a>{<b> Fixed="<font color="red">OBS</font>"</b> }</a></td><td width="50%">
+	<div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;NonCodedProblem/$classCode0">
+		<div id="PRPA_HD010100UK06#Observation;NonCodedReason/$classCode0" title="PRPA_HD010100UK06#NonCodedReason.classCode" style="width: 100%; height: 100%; background-color: white;">
+			Indicates that this is an <b>observation</b>.<ul>
+				<li>Fixed value: &quot;<b>OBS</b>&quot;</li>
+			</ul>
+		</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b>EVN</b>} )<a>{<b> Fixed="<font color="red">EVN</font>"</b> }</a></td><td width="50%">
+	<div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;NonCodedProblem/$moodCode0">
+		<div id="PRPA_HD010100UK06#Observation;NonCodedReason/$moodCode0" title="PRPA_HD010100UK06#NonCodedReason.moodCode" style="width: 100%; height: 100%; background-color: white;">
+			Indicates that this is an <b>event</b>.<ul>
+				<li>Fixed value: &quot;<b>EVN</b>&quot;</li>
+			</ul>
+		</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>code</b> (<a href="../../../Data%20Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/CaBAnnotation.htm"><b>CaBAnnotation</b></a>} )</td><td width="50%">
+	<div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;NonCodedProblem/$code0">
+		<div id="PRPA_HD010100UK06#Observation;NonCodedReason/$code0" title="PRPA_HD010100UK06#NonCodedReason.code" style="width: 100%; height: 100%; background-color: white;">
+			A code which identifies this Act.<p>The Coded Value (<b>CV</b>) 
+			datatype shall be used to carry this information as follows:</p>
+			<ul>
+				<li>The <b>codeSystem</b> attribute shall contain the <b>OID</b> 
+				for the <b>CaBAnnotation</b> vocabulary with the value &quot;<b>2.16.840.1.113883.2.1.3.2.4.17.140</b>&quot;</li>
+				<li>The <b>code </b>attribute shall contain the vocabulary code 
+				&quot;<b>NPROC</b>&quot;</li>
+			</ul>
+		</div>
+	</div></td></tr><tr bgcolor="gray"><td height="1" colspan="10"></td></tr><tr valign="top"><td colspan="2" width="50%"><font color="green"><b>[1..1] </b></font><b>text</b> (<a href="../../../Data%20Types/DataTypes.htm#ST"><b>ST</b></a>)</td><td width="50%">
+	<div style="height: 100%; width: 100%;" contenteditable="true" id="PRPA_HD000001UK07#Observation;NonCodedProblem/$text0">
+		A textual representation of a clinical concept for the referral reason.</div></td></tr><tr bgcolor="black"><td height="4" colspan="10"></td></tr></table></body></html>

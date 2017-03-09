@@ -1,0 +1,766 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 10 (filtered)">
+<title>Batching - When Multiple Versions are a Problem</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h4
+	{margin-right:0cm;
+	margin-left:0cm;
+	background:white;
+	font-size:12.0pt;
+	font-family:Arial;
+	color:maroon;}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+span.MsoFootnoteReference
+	{vertical-align:super;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+span.cardinality
+	{font-weight:normal;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-GB link=blue vlink=purple>
+
+<div class=Section1>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt'>Multi-Version Batch
+Implementation</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt'>Draft for discussion –
+v0.9</span></b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Damian Murphy, 10 June 2005</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b>Introduction</b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>This document details the
+implementation of multi-version batches, from a structural viewpoint.</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b>Static vs Dynamic Schema Definitions </b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Current HL7 tooling assumes
+that a message is defined by a “static” data model that applies to all
+instances of that message. This has the advantage that, during test-readiness
+and accreditation processes, message instances can be validated simply with
+reference to a single XML schema document, the identity of which is known by
+virtue of the message type. There are, however, a variety of disadvantages,
+most of which arise from this approach requiring that all possible run-time
+content types are specified at design time. </span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>This static data model for a
+message means that the “validation root” and the “document root” are identical.
+In XML implementations, this is the simple and most common case. However it is
+not mandated by the XML schema specifications, which explicitly distinguish
+between a validation root and a document root<a href="#_ftn1" name="_ftnref1"
+title=""><span class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:11.0pt;font-family:"Times New Roman"'>[1]</span></span></span></a>.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The concept that, at any
+point in a message, a container might be common, with variable content, implies
+that the XML schema document against which the XML document instance should be
+validated is known only at run-time. According to the XML schema specification,
+the XML schema document can be assembled “lazily” (i.e. at run time as the XML
+document instance is processed) provided that, once a schema fragment for a
+particular element is determined, it is fixed for the rest of the processing of
+the XML document instance<a href="#_ftn2" name="_ftnref2" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:11.0pt;font-family:"Times New Roman"'>[2]</span></span></span></a>.
+In an HL7 message payload, shared element definitions (for example, data types)
+are constant during the processing of a message, and payload-specific
+definitions are uniquely identified (via the “payload id uniqifier”) as
+belonging to a particular payload.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><b>Dynamic Schema Processing Pattern</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Unlike static definitions,
+where the complete schema document is known before the message is parsed, the
+dynamic model makes use of “any content models”. Examples of these can be seen
+in 3.1.x MiM documents, in the schema for the “ControlActEvent” (Infrastructure
+domain), where the definition of the ControlActEvent/subject element includes
+“&lt;xs:any/&gt;”. </span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>This allows, literally, “any”
+XML content to be added as a child node of the ControlActEvent/subject element.
+As such, a message processor requires additional guidance to indicate what the
+actual content is. In schema documents generated by current HL7 tooling, this
+additional guidance is unnecessary because the “any” content model is never
+implemented. However, there is a general case where the detailed types for any
+given message instance is not known at design time<a href="#_ftn3"
+name="_ftnref3" title=""><span class=MsoFootnoteReference><span
+class=MsoFootnoteReference><span style='font-size:11.0pt;font-family:"Times New Roman"'>[3]</span></span></span></a>
+– for example where batches must be transmitted that may contain content of
+diverse versions.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Use of an “any content model”
+allows these run-time cases to be handled using a container model that supports
+a means to inform the receiving processor what sort of structure it is getting,
+and a way to document the sorts of structure that it is allowed to get (such
+that it is able to reject particular types of content on the grounds that they
+are invalid in its current context).</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Two patterns are identified.
+On the one hand, grouping content of the same type presents performance
+benefits to receiving systems on the grounds that they do not need to process
+the collection of same-type content in detail. This would also allow the batch
+processor to be implemented as an adapter to older code that handled only a
+collection of content of a single type. On the other, some systems may persist
+objects such that the details of the object version are less important than
+other data – such as the date on which a request was made. For those systems
+the need to group by content type (version) may impose a severe performance
+penalty.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The first pattern, with
+content grouped by type, may be achieved with realisations of the pattern:</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='page-break-after:avoid'><img width=554 height=184
+src="Multi-Version_Batch_Implementation_files/image001.gif"></p>
+
+<p class=MsoCaption>Figure 1. Type-grouped pattern</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Here, the “BatchPayload”
+element exists to provide a payload root, which may contain multiple batches,
+one per content type. Each batch has 1..* instances of content of a single
+type, where the type information is held for the receiver, in the templateId<a
+href="#_ftn4" name="_ftnref4" title=""><span class=MsoFootnoteReference><span
+class=MsoFootnoteReference><span style='font-size:11.0pt;font-family:"Times New Roman"'>[4]</span></span></span></a>
+attribute. The Batch/component content model is “any” in the implementing XML
+schema document. Note that the “AbstractBatchContent” class is a documenting
+placeholder only – it is never expressed in the implementation. The HL7 typeId<a
+href="#_ftn5" name="_ftnref5" title=""><span class=MsoFootnoteReference><span
+class=MsoFootnoteReference><span style='font-size:11.0pt;font-family:"Times New Roman"'>[5]</span></span></span></a>
+attribute in this case is for information only. The Batch/id attribute is
+optional and is provided to support batch manifests – the LIST&lt;II&gt;
+allowing the identifiers for each of the batch items to be specified.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Constraints on allowed
+content types for any given realisation may be given as constraints on the
+values that Batch/templateId and AbstractBatchContent/typeId can carry. It is
+recommended that the constraint be carried formally in the
+AbstractBatchContent/typeId and, at XML schema generation time, this constraint
+implemented as a “simpleType” enumeration on the Batch/templateId/@extension
+content definition.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>In the second instance, the
+AbstractBatchContent items are not grouped by type – each instance is
+identified by the templateId attribute of its containing component
+ActRelationship. This relies on there being multiple &lt;component&gt; elements
+contained within the BatchPayload instance:</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='page-break-after:avoid'><img width=554 height=163
+src="Multi-Version_Batch_Implementation_files/image002.gif"></p>
+
+<p class=MsoCaption>Figure 2. Flat-type pattern</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Again, at design time it is
+likely that a constraint be applied to the AbstractBatchContent/typeId, but to
+enforce this in an XML schema document would require the expression of the
+content/templateId such that templateId/@extension implements the constraint on
+what content types may actually be held.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>In both patterns, there is support
+but no requirement for ordering in the batch. The content ids are UUIDs with no
+natural ordering<a href="#_ftn6" name="_ftnref6" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:11.0pt;font-family:"Times New Roman"'>[6]</span></span></span></a>,
+and any ordering should be implemented using the optional sequenceNumber<a
+href="#_ftn7" name="_ftnref7" title=""><span class=MsoFootnoteReference><span
+class=MsoFootnoteReference><span style='font-size:11.0pt;font-family:"Times New Roman"'>[7]</span></span></span></a>.
+</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><b>Batch Handling Atomicity</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>No statement is made here
+about the atomicity of batch content. That is, whether all the content of a
+batch must succeed, or whether they can be permitted to fail in detail, is not
+specified as part of this pattern. Such processing modes are
+application-dependent – and applications MUST specify their exception mode
+(atomic or otherwise). To support reporting of failure in detail, realisations
+of AbstractBatchContent MUST be uniquely identifiable.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><b>Processing Model</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The processing model assumed
+for such “dynamic” batches is for a receiver to be able to validate the
+container (with its “any type” content), and then to handle the content
+specified at run-time. As an example<a href="#_ftn8" name="_ftnref8" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:11.0pt;font-family:"Times New Roman"'>[8]</span></span></span></a>,
+consider a receiver implementing a DOM processor and a factory pattern<a
+href="#_ftn9" name="_ftnref9" title=""><span class=MsoFootnoteReference><span
+class=MsoFootnoteReference><span style='font-size:11.0pt;font-family:"Times New Roman"'>[9]</span></span></span></a>.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>In this case, the inbound XML
+message is parsed into an object tree. For each “Batch” element, the templateId
+content is used to retrieve an instance of the appropriate handler from the
+factory. Each sub-tree rooted beneath the “Batch” is then passed to the
+handler.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><b>Message Batches</b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Batching is intended to
+collect multiple messages for logistic convenience, or to meet a business
+requirement. Based on this, it is assumed that anything that can be sent in a batch
+could equally be sent as a series of individual messages and, as such, that the
+sender and recipient are always common. Therefore, batching is a payload
+&quot;thing&quot; and should be supported by&nbsp;the extant&nbsp;version of
+the transmission and control act infrastructure. Note that this requires that
+any applications that implement batching, define their mechanisms for handling
+exceptions in detail (i.e. where some batch members fail, whilst others
+succeed), and to support this, it must be possible to identify a specific item
+in a batch.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Batching must support
+multi-versioned content. To do otherwise requires either that a requesting
+system make separate requests for each current version, or that a responder makes
+multiple responses - one for each current version. Whilst this might happen as
+a result of the details of a particular service implementation, making it a
+requirement of the messaging system is an error.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Batching may support multiple
+content types. Whether such a feature is actually used in any given service
+implementation is dependent on the details of that implementation and of its
+business and architectural models. It is not something which should be enforced
+by the messaging systems.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The introduction of
+dynamic-schema container classes in the payload of HL7 messages satisfies the
+requirements for multi-versioned batches, and where needed, for multiple
+content types. The use of “abstract” classes in models – as found in the “Act”
+class in 3.1.x MiM “Trigger Event Control Act” – is applied to “container”
+classes in payloads to permit the carriage of various content versions and
+types, identified at run time using HL7 typeId attributes.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Note that two levels are
+required to carry multiple content types in the same batch. This is because the
+HL7 tool set does not permit *..* cardinality on act relationships, only n..*.
+As such, the root payload element will carry 1..* act relationships to the
+batch containers, and each batch container will be a control act that has a
+subject act relationship with an “any” content model, and will carry the HL7
+typeId attribute to indicate what the actual content is at run time.</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b>XML Schema Documents and Transforms</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The HL7 payload models shown
+above use an “abstract” class that is never instantiated. The inclusion of such
+classes is currently unsupported by the HL7 RMIM Designer tools and, as such,
+the standard XML schema generator will write an XML schema document that
+includes the AbstractPrescriptionResponse as a concrete class. </span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Whilst support for such
+abstract classes is an aim for improved modelling tools, in the meantime the
+“standard” output may be trivially converted into that required by post-processing
+with an XSL transform. This conversion follows the rule that the standard XML
+schema document is copied except that:</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt'><span
+style='font-size:11.0pt'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Element declarations
+(&lt;xs:element&gt;) that have abstract types, the “any content model”, have
+&lt;xs:any/&gt; substituted for the standard element.</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt'><span
+style='font-size:11.0pt'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Complex type declarations
+(&lt;xs:complexType&gt;) for abstract types are omitted.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The transform given at
+appendix 1 implements these copying rules. To support this interim solution, we
+adopt the naming convention shown in figures 1 and 2. Abstract classes are
+indicated by names of the form “Abstract*”. </span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b>Schema Generator Implementation Requirements for the
+Flat-Typed Pattern</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The “flat batch” pattern has
+two possible implementations, depending on the XML schema generator’s
+interpretation of the following moety:</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><img
+width=385 height=77 src="Multi-Version_Batch_Implementation_files/image003.gif"></p>
+
+<p class=MsoCaption align=center style='text-align:center'>Figure 3 - Act relationships</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>In this case, there is an
+optional one-to-many relationship between “anAct” and “anotherAct”, where the
+relationship itself has some properties. It may alternatively be represented as
+one of:</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><img
+width=496 height=42 src="Multi-Version_Batch_Implementation_files/image004.gif"></p>
+
+<p class=MsoCaption align=center style='text-align:center'>Figure 4 - Multi-association</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><img
+width=496 height=42 src="Multi-Version_Batch_Implementation_files/image005.gif"></p>
+
+<p class=MsoCaption align=center style='text-align:center'>Figure 5 - Multi-child</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The XML schema generator
+currently in use explicitly generates “multi-association” outputs where the
+cardinality of the “sourceOf” child elements of “anAct” is specified in the XML
+schema document. The cardinality of “anotherAct” in the “sourceOf” element is
+unspecified and defaults to 1..1 as defined in the W3 XML Schema Specification,
+part 1.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Implementations of the XML
+schema generator that produce “multi-child” output will not support
+“flat-typed” pattern batching. The output of such a generator would equate to a
+“type-grouped” pattern. Because a “multi-child” schema generator would offer
+apparent efficiencies in on-the-wire message size, any new versions of such a
+tool require testing for this behaviour before being deployed in an environment
+where multi-content batching of the type described in this document, is in use.</span></p>
+
+<b><span style='font-size:11.0pt;font-family:"Times New Roman"'><br clear=all
+style='page-break-before:always'>
+</span></b>
+
+<p class=MsoNormal><b><span style='font-size:11.0pt'>Appendix 1. “Placeholder”
+Transform</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;?xml
+version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;xsl:stylesheet
+version=&quot;1.0&quot;
+xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;
+xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>  &lt;xsl:output
+version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; indent=&quot;yes&quot;/&gt; </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>  &lt;!--</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     Multi-Version-Placeholder-Transform</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     Version:
+1.2, 10 June 2005</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     Damian
+Murphy &lt;damian.murphy@npfit.nhs.uk&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     NHS
+Connecting For Health NPfIT Comms &amp; Messaging Team</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     Clone
+XML schema document, removing type declarations for abstract types, and
+replacing</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         abstract
+element declarations with xs:anyType content models.</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         TODO:
+Put a check into the &quot;xs:any&quot; model writer to make sure that the
+parent Act carries the HL7</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         templateId
+&quot;attribute&quot; (i.e. element declaration)</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>  --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>  &lt;xsl:template
+match=&quot;/&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     &lt;xsl:apply-templates/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>  &lt;/xsl:template&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>  </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>  &lt;xsl:template
+match=&quot;@*|node()&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     &lt;xsl:copy&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         &lt;xsl:for-each
+select=&quot;@*&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>            &lt;xsl:variable
+name=&quot;aName&quot; select=&quot;name()&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>            &lt;xsl:attribute
+name=&quot;{$aName}&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>               &lt;xsl:value-of
+select=&quot;.&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>            &lt;/xsl:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         &lt;/xsl:for-each&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>          &lt;xsl:for-each
+select=&quot;*&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>               &lt;xsl:call-template
+name=&quot;process&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                   &lt;xsl:with-param
+name=&quot;this&quot;  select=&quot;.&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>               &lt;/xsl:call-template&gt;                   </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>          &lt;/xsl:for-each&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     &lt;/xsl:copy&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>  &lt;/xsl:template&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>  </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>  &lt;xsl:template
+name=&quot;process&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     &lt;xsl:param
+name=&quot;this&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     &lt;xsl:variable
+name=&quot;eName&quot; select=&quot;name($this)&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     &lt;xsl:choose&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         &lt;!--</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>            Just
+skip a complexType declaration for an Abstract type</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         &lt;xsl:when
+test=&quot;($eName = 'xs:complexType') and contains($this/@name,'.Abstract')&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         &lt;!--
+</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>            Use
+&lt;xs:any/&gt; in place of an element declaration with an Abstract type </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         &lt;xsl:when
+test=&quot;($eName = 'xs:element') and
+contains($this/@type,'.Abstract')&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>            &lt;xsl:element
+name=&quot;xs:any&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         &lt;/xsl:when&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>        &lt;!--</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>            Otherwise
+just clone the node</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         --&gt;       </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         &lt;xsl:otherwise&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>            &lt;xsl:element
+name=&quot;{$eName}&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>               &lt;xsl:for-each
+select=&quot;$this/@*&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                   &lt;xsl:variable
+name=&quot;aName&quot; select=&quot;name()&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                   &lt;xsl:attribute
+name=&quot;{$aName}&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                      &lt;xsl:value-of
+select=&quot;.&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                   &lt;/xsl:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>               &lt;/xsl:for-each&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>               &lt;xsl:choose&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                   &lt;xsl:when
+test=&quot;not($this/*)&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                      &lt;xsl:value-of
+select=&quot;string($this)&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                   &lt;/xsl:when&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                   &lt;xsl:otherwise&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                      &lt;xsl:for-each
+select=&quot;$this/*&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                          &lt;xsl:call-template
+name=&quot;process&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xsl:with-param
+name=&quot;this&quot; select=&quot;.&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                          &lt;/xsl:call-template&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                      &lt;/xsl:for-each&gt;                  </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                   &lt;/xsl:otherwise&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>               &lt;/xsl:choose&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>            &lt;/xsl:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>         &lt;/xsl:otherwise&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>     &lt;/xsl:choose&gt;    </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>  &lt;/xsl:template&gt;  </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;/xsl:stylesheet&gt;</span></p>
+
+</div>
+
+<div><br clear=all>
+
+<hr align=left size=1 width="33%">
+
+<div id=ftn1>
+
+<p class=MsoFootnoteText><a href="#_ftnref1" name="_ftn1" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[1]</span></span></span></a>
+<a href="http://www.w3.org/TR/xmlschema-1/#key-vr">http://www.w3.org/TR/xmlschema-1/#key-vr</a>
+(section 5.2, “Assessing Schema Validity)</p>
+
+</div>
+
+<div id=ftn2>
+
+<p class=MsoFootnoteText><a href="#_ftnref2" name="_ftn2" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[2]</span></span></span></a>
+<a href="http://www.w3.org/TR/xmlschema-1/#schema-loc">http://www.w3.org/TR/xmlschema-1/#schema-loc</a>
+</p>
+
+</div>
+
+<div id=ftn3>
+
+<p class=MsoFootnoteText><a href="#_ftnref3" name="_ftn3" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[3]</span></span></span></a>
+Although the allowed set of content types may be known at design time, and may
+be constrained in the batch container definition.</p>
+
+</div>
+
+<div id=ftn4>
+
+<p class=MsoFootnoteText><a href="#_ftnref4" name="_ftn4" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[4]</span></span></span></a>
+The templateId is used to carry information on “what is coming” – that is it is
+read by the receiving message processor and used to determine the detailed type
+of what follows.</p>
+
+</div>
+
+<div id=ftn5>
+
+<p class=MsoFootnoteText><a href="#_ftnref5" name="_ftn5" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[5]</span></span></span></a>
+The typeId is used to carry information on the detailed type of “self”, so it
+exists in the abstract content model to provide information on what it “can
+be”.</p>
+
+</div>
+
+<div id=ftn6>
+
+<p class=MsoFootnoteText><a href="#_ftnref6" name="_ftn6" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[6]</span></span></span></a>
+This is currently subject to review – in the case where a requirement is
+identified for an order to be imposed on batch content, this will be supported
+by the inclusion of a sequence number in the batch container.</p>
+
+</div>
+
+<div id=ftn7>
+
+<p class=MsoFootnoteText><a href="#_ftnref7" name="_ftn7" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[7]</span></span></span></a>
+Some “natural ordering” of the batch items themselves may be implemented provided
+that the batch message is fully parsed before processing, but that type of
+behaviour is outside the scope of this document and use of the sequenceNumber
+is recommended rather than introducing a dependency on logic that is not
+expressed in the payload.</p>
+
+</div>
+
+<div id=ftn8>
+
+<p class=MsoFootnoteText><a href="#_ftnref8" name="_ftn8" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[8]</span></span></span></a>
+This is given for simplicity, similar but more efficient processes may be
+implemented using event-driven models.</p>
+
+</div>
+
+<div id=ftn9>
+
+<p class=MsoFootnoteText><a href="#_ftnref9" name="_ftn9" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[9]</span></span></span></a>
+See the “Gang of Four” Abstract Factory Pattern, for example at: http://www.tml.hut.fi/~pnr/Tik-76.278/gof/html/Abstract-factory.html</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

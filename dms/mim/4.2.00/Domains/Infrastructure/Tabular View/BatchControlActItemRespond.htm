@@ -1,0 +1,216 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-gb">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Message</title>
+</head>
+
+<body>
+
+<table border="1" width="100%">
+	<tr>
+		<td width="386" bordercolor="#000000" bgcolor="#FFFF00"><b>Message</b></td>
+		<td bordercolor="#000000"><b>This document describes the mapping of the 
+		Message class in the RMIM into a local ITS.</b></td>
+	</tr>
+	<tr>
+		<td width="386">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="386" bgcolor="#00FFFF"><b>BatchControlActItemRespond</b></td>
+		<td><b>
+	<font face="Times New Roman">A message 
+	Control Act which is mandatory and occurs for each message interaction. It 
+	carries the interaction identifier and unique message identifier of the 
+	message interaction and the unique identifier of the message being responded 
+	to.</font></b></td>
+	</tr>
+	<tr>
+		<td width="386">[1..1]&nbsp; <b>interaction</b> (<a href="../../../Data%20Types/DataTypes.htm#II">II</a>)</td>
+		<td>The interaction identifier is a unique reference to the message 
+		type, trigger event and application roles that send and receive the 
+		message.<P>The Identifier&nbsp;External datatype flavour is used to carry 
+		this information as follows:</P><UL><LI>The<I> root</I>&nbsp;attribute shall 
+			contain an&nbsp;OID with the value 2.16.840.1.113883.2.1.3.2.4.12&nbsp; </LI><LI>
+			The <I>extension </I>attribute shall contain the&nbsp;interaction 
+			identifier</LI></UL></td>
+	</tr>
+	<tr>
+		<td width="386">[1..1] <b>messageId</b> (<a href="../../../Data%20Types/DataTypes.htm#II">II</a>)</td>
+		<td><font face="Times New Roman">A unique identifier for this 
+		acknowledgement or response message. <br>
+		<br>
+		The Identifier Global datatype flavour is used to carry this information 
+		as follows:<br>
+		<br>
+		A DCE UUID is held in the root attribute<br>
+&nbsp;</font></td>
+	</tr>
+	<tr>
+		<td width="386">[1..1] <b>refToMessageId </b>(<a href="../../../Data%20Types/DataTypes.htm#II">II</a>)</td>
+		<td>The unique identifier of the message being acknowledged. This is the 
+		identifier from the BatchControlActItemRequest.messageId attribute of 
+		the message being acknowledged.<br>
+		<br>
+		The Identifier Global datatype flavour is used to carry this information 
+		as follows:<ul>
+			<li>A UUID is held in the root attribute </li>
+		</ul>
+		</td>
+	</tr>
+	<tr>
+		<td width="386" bgcolor="#00FFFF">[0..*]&nbsp; <b>reason</b></td>
+		<td><b>Identifies the relationship between the control act and the 
+		detected issue event.</b><p><b>Mandatory when an error has been detected 
+		by the receiving system during it's processing of the message being 
+		acknowledged.</b></td>
+	</tr>
+	<tr>
+		<td width="386">[1..1]&nbsp; <b>typeCode </b>(<a href="../../../Data%20Types/DataTypes.htm#CS">CS</a>)</td>
+		<td>Indicates that this is a reason.<ul>
+			<li>Fixed value: &quot;RSON&quot;</li>
+		</ul>
+		</td>
+	</tr>
+	<tr>
+		<td width="386">[1..1]&nbsp; <b>justifyingDetectedIssueEvent</b></td>
+		<td>Details of the detected issue.</td>
+	</tr>
+	<tr>
+		<td width="386" bgcolor="#00FFFF"><b>DetectedIssueEvent</b></td>
+		<td><b>Details of the error that has been detected by the receiving 
+		system. </b>
+		<p><font face="Times New Roman"><b>A structural error&nbsp; is defined 
+		as one</b> <b>relating to the delivery of the message or it's structure.<br>
+		A business issue or error is defined as being one that is related to the 
+		information conveyed by the message evaluated in context by the 
+		processing application.</b></font></td>
+	</tr>
+	<tr>
+		<td width="386">[1..1]&nbsp; <b>classCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS">CS</a>)</td>
+		<td>Indicates that the act is an alert.<ul>
+			<li>Fixed value: &quot;ALRT&quot;</li>
+		</ul>
+		</td>
+	</tr>
+	<tr>
+		<td width="386">[1..1]&nbsp; <b>moodCode</b> (<a href="../../../Data%20Types/DataTypes.htm#CS">CS</a>)</td>
+		<td>Indicates that this is an alert that has occurred.<ul>
+			<li>Fixed value: &quot;EVN&quot;.</li>
+		</ul>
+		</td>
+	</tr>
+	<tr>
+		<td width="386">[1..1]&nbsp; <b>code </b>(<a href="../../../Data%20Types/DataTypes.htm#CD">CD</a> {CNE:<b><a href="../../../Vocabulary/ActDetectedIssueCode.htm">ActDetectedIssueCode</a></b>})</td>
+		<td><p>
+	<b><font face="Times New Roman">Structural Error</font></b></p>
+		<p>
+	<font face="Times New Roman">In a batched interaction, a structural error is 
+	reported in the DetectedIssueEvent related to the interaction in error. The 
+	code shall contain a qualifier sub element to indicate the severity of the 
+	issue. NB. In a non batched interaction a structural error would be reported 
+	in the acknowledgementDetail class of the transmission wrapper where the 
+	typeCode and code attributes would carry the severity code and error code 
+	respectively. </font></p>
+		<p>
+	<font face="Times New Roman">The Coded Qualified datatype flavour shall be 
+	used to carry this information as follows:</font></p>
+		<ul>
+			<li><font face="Times New Roman">The <i>code</i> attribute shall 
+			contain a code from the AcknowledgementExceptionCode vocabulary</font></li>
+			<li><font face="Times New Roman">The <i>codeSystem</i> attribute 
+			shall contain the appropriate OID</font></li>
+			<li><font face="Times New Roman">The <i>displayName </i>attribute is 
+			optional and shall contain the textual description of the code</font></li>
+			<li><font face="Times New Roman">The <i>originalText</i> sub element 
+			is optional and may contain the text used as the basis for the 
+			coding </font></li>
+			<li><font face="Times New Roman">The <i>qualifier </i>sub element is 
+			required and shall contain one of the qualifier codes identified 
+			under DetectedIssueQualifier together with the appropriate OID.</font></li>
+		</ul>
+		<p><font face="Times New Roman">This concept implies the setting of 
+		Batch.Message.acknowledgement.typeCode to &quot;AR&quot; - Application 
+		Acknowledgement Reject in MIM 4.1.01.</font></p>
+		<p>
+	<b><font face="Times New Roman">Business Error</font></b></p>
+		<p><font face="Times New Roman">All business issues and errors shall be 
+		reported using DetectedIssueEvent.code. The code shall contain a 
+		qualifier sub element to indicate the severity of the issue or error.
+		<br>
+		<br>
+		The Coded Qualified datatype flavour shall be used to carry this 
+		information as follows:</font></p>
+		<ul>
+			<li><font face="Times New Roman">The <i>code</i> attribute is 
+			required and shall contain a value from one of the code systems 
+			identified under ActDetectedIssueCode </font></li>
+			<li><font face="Times New Roman">The <i>displayName</i> attribute is 
+			optional and may contain the textual description of the code</font></li>
+			<li><font face="Times New Roman">The <i>codeSystem</i> attribute is 
+			required and shall contain an OID as appropriate.</font></li>
+			<li><font face="Times New Roman">The <i>originalText</i> sub element 
+			is optional and may contain the text used as the basis for the 
+			coding </font></li>
+			<li><font face="Times New Roman">The <i>qualifier</i> sub element is 
+			required and shall contain one of the qualifier codes identified 
+			under DetectedIssueQualifier together with the appropriate OID.</font></li>
+		</ul>
+		<p>
+	<font face="Times New Roman">This concept implies the setting of Batch.Message.acknowledgement.typeCode 
+	to &quot;AE&quot; - Application Acknowledgement Error in MIM 4.1.01.</font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="386" bgcolor="#00FFFF">[0..1]<b>&nbsp; subject</b></td>
+		<td><b>Refers to the subject act of the message.</b><p><b>Mandatory when 
+		the interaction carries a domain payload.</b></td>
+	</tr>
+	<tr>
+		<td width="386">[1..1]&nbsp; <b>typeCode</b></td>
+		<td>Indicates that a domain payload entry point act is the subject of 
+		the Control Act.
+		<ul>
+			<li>Fixed value &quot;SUBJ&quot;</li>
+		</ul>
+		</td>
+	</tr>
+	<tr>
+		<td width="386">[1..1]&nbsp; <b>contextConductionInd</b></td>
+		<td>A value indicating whether any of the other participations, eg. 
+		&quot;author&quot;, are inherited by the domain payload. <br>
+		<br>
+		In this context the value attribute is a fixed value of &quot;false&quot; 
+		indicating that none of the author participations shall be inherited.</td>
+	</tr>
+	<tr>
+		<td width="386">[0..1]&nbsp; <b>queryAck</b></td>
+		<td>Information related to a query response.</td>
+	</tr>
+	<tr>
+		<td width="386" bgcolor="#FFFF00"><b>Batch Subject</b></td>
+		<td><b>The entry point into the domain payload.</b></td>
+	</tr>
+	<tr>
+		<td width="386" bgcolor="#FFFF00"><b>QueryAck</b></td>
+		<td><b>Information related to a query response.</b><p><b>Mandatory when 
+		the interaction is a query response.</b></td>
+	</tr>
+	<tr>
+		<td width="386">[1..1]&nbsp; <b>queryResponseCode </b>(<a href="../../../Data%20Types/DataTypes.htm#CD">CS</a> {<b>CNE:<a href="../../../Vocabulary/QueryResponse.htm">QueryResponse</a></b>})</td>
+		<td>This allows the responding system to return a code that classifies 
+		the general nature of the query response.<br>
+		<br>
+		The Coded Only datatype flavour is used to carry this information as 
+		follows:<br>
+		<br>
+		The code attribute shall contain a value from the list of codes in the 
+		QueryResponse vocabulary.</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

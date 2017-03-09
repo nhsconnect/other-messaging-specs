@@ -1,0 +1,554 @@
+<HTML><HEAD><TITLE>PS Reimbursement Claim Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="PS Reimbursement Claim" name=Entry>
+<META content=PORX_HD142005UK30 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>PS Reimbursement Claim - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="PORX_RM142005UK30.htm"><B>PORX_RM142005UK30</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ReimbursmentClaim><B>ReimbursmentClaim</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;ReimbursmentClaim_c title=PORX_HD142005UK30#ReimbursmentClaim_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>This is the message sent from the ETP component to the Reimbursement Authority. It consists of various received messages 'wrapped' together and precursored by a reimbursement claim.</B> </P>
+<P><B>Reference: W5 14.4.7.1</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ReimbursmentClaim>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INFO</B>} )<A>{<B> Fixed="<FONT color=red>INFO</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#Act;ReimbursmentClaim/$classCode title=PORX_HD142005UK30#ReimbursmentClaim.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code indicating that the PSReimbursementClaim focal act&nbsp;is for information purposes only</P>
+<UL>
+<LI>Fixed value: "INFO"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#Act;ReimbursmentClaim/$moodCode title=Act.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#Act;ReimbursmentClaim/$id title=PORX_HD142005UK30#ReimbursmentClaim.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The&nbsp;globally unique identifier for&nbsp;this instance of a&nbsp;PS Reimbursement Claim.&nbsp;</P>
+<P>The <B>Identifier Global</B> datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>the root attribute will contain a UUID .</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#Act;ReimbursmentClaim/$effectiveTime title=Act.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The date and timestamp of this message.</P>
+<P>The date-timestamp must be given with&nbsp;the following precision:</P>
+<UL>
+<LI>YYYYMMDDHHMMSS</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Component1><B>component1</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD142005UK30#Act;/ReimbursmentClaim/component1 title=PORX_HD142005UK30#/ReimbursmentClaim/component1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>&nbsp;A link to the component&nbsp;PS&nbsp;Claim Information message.</B> </NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component1/$typeCode title=ReimbursmentClaim/component1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value: "COMP"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component1/$contextConductionInd title=component1.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P>
+<P>In this context the contextConductionInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component1/$seperatableInd title=component1.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.</P>
+<P>If the source act is intended to be interpreted independently the value shall be "true" otherwise the value shall be "false".</P>
+<P>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.</P>
+<P>In this context the seperatableInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component1/$templateId title=PORX_HD142005UK30#ReimbursmentClaim/component1.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifier used to define the set of allowable types and versions of component&nbsp;PS Claim Information message.</P>
+<P>The <B>External Identifier</B> datatype flavour is used to hold this information as follows: </P>
+<UL>
+<LI>the <I>root</I> attribute shall contain the value of the OID value referenced in the <A href="../../../vocabulary/PSClaimMessageType.htm">PSClaimMessageType</A> vocabulary </LI>
+<LI>the <I>extension</I> attribute&nbsp;shall contain&nbsp;a value from the list of coded identifiers&nbsp;in the <A href="../../../vocabulary/PSClaimMessageType.htm">PSClaimMessageType</A> vocabulary</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>abstractPSClaim</B> (<A href="#AbstractPSClaim"><B>AbstractPSClaim</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component1/abstractPSClaim-AbstractPSClaim title=PORX_HD142005UK30#ReimbursmentClaim/component1/abstractPSClaim-AbstractPSClaim style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The component&nbsp;PS Claim Information message.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Component2><B>component3</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD142005UK30#Act;/ReimbursmentClaim/component3 title=PORX_HD142005UK30#/ReimbursmentClaim/component3 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A link to the</B> <B>component&nbsp;PS&nbsp;Notification message.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component3/$typeCode title=component3.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value&nbsp;: "COMP"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component3/$contextConductionInd title=component3.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P>
+<P>In this context the contextConductionInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component3/$seperatableInd title=ReimbursmentClaim/component3.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.</P>
+<P>If the source act is intended to be interpreted independently the value shall be "true" otherwise the value shall be "false".</P>
+<P>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.</P>
+<P>In this context the seperatableInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component3/$templateId title=PORX_HD142005UK30#ReimbursmentClaim/component3.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifier used to define the set of allowable types and versions of component&nbsp;PS Notification message.</P>
+<P>The <B>External Identifier</B> datatype flavour is used to hold this information as follows: </P>
+<UL>
+<LI>the <I>root</I> attribute shall contain the value of the OID value referenced in the <A href="../../../vocabulary/PSNotificationMessageType.htm">PSNotificationMessageType</A> vocabulary </LI>
+<LI>the <I>extension</I> attribute&nbsp;shall contain&nbsp;a value from the list of coded identifiers&nbsp;in the <A href="../../../vocabulary/PSNotificationMessageType.htm">PSNotificationMessageType</A> vocabulary</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>abstractPSNotification</B> (<A href="#AbstractPSNotification"><B>AbstractPSNotification</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component3/abstractPSNotification-AbstractPSNotification title=PORX_HD142005UK30#ReimbursmentClaim/component3/abstractPSNotification-AbstractPSNotification style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The component&nbsp;PS Notification message.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Component3><B>component2</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD142005UK30#Act;/ReimbursmentClaim/component2 title=PORX_HD142005UK30#/ReimbursmentClaim/component2 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>A link to the</B> <B>component&nbsp;PS&nbsp;Notification with Claim Information message.</B> </NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component2/$typeCode title=ReimbursmentClaim/component2.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value: "COMP"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component2/$contextConductionInd title=ReimbursmentClaim/component2.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If "true", associations in the parent act are conducted across the ActRelationship to the child act.</P>
+<P>In this context the contextConductionInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component2/$seperatableInd title=ReimbursmentClaim/component2.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.</P>
+<P>If the source act is intended to be interpreted independently the value shall be "true" otherwise the value shall be "false".</P>
+<P>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.</P>
+<P>In this context the seperatableInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component2/$templateId title=PORX_HD142005UK30#ReimbursmentClaim/component2.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifier used to define the set of allowable types and versions of component&nbsp;PSNotification with Claim Information message.</P>
+<P>The <B>External Identifier</B> datatype flavour is used to hold this information as follows: </P>
+<UL>
+<LI>the <I>root</I> attribute shall contain the value of the OID value referenced in the <A href="../../../vocabulary/PSNotificationWithClaimMessageType.htm">PSNotificationWithClaimMessageType</A> vocabulary </LI>
+<LI>the <I>extension</I> attribute&nbsp;shall contain&nbsp;a value from the list of coded identifiers&nbsp;in the <A href="../../../vocabulary/PSNotificationWithClaimMessageType.htm">PSNotificationWithClaimMessageType</A> vocabulary</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>abstractPSNotificationWithClaim</B> (<A href="#AbstractPSNotificationWithClaim"><B>AbstractPSNotificationWithClaim</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD142005UK30#ActRelationship;ReimbursmentClaim/component2/abstractPSNotificationWithClaim-AbstractPSNotificationWithClaim title=PORX_HD142005UK30#ReimbursmentClaim/component2/abstractPSNotificationWithClaim-AbstractPSNotificationWithClaim style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The component&nbsp;PS Notification with Claim Information message.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AbstractPSClaim><B>AbstractPSClaim</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSClaim_c title=PORX_HD142005UK30#AbstractPSClaim_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B><B><B>Abstract placeholder for a&nbsp;PS&nbsp;Claim Information message payload.&nbsp; </B>
+<P><B>The placeholder and its contents are <I>never</I> instantiated, but&nbsp;are instead replaced by an actual&nbsp;PS&nbsp;Claim Information message from the following set of allowable types and versions:&nbsp;&nbsp; </B></P>
+<UL>
+<LI><B>PORX_MT142002UK05</B> </LI><LI><a href="PORX_RM142002UK31.htm">
+PORX_MT142002UK31</a></LI></UL>
+<P><B>The type and version of the replacement message&nbsp;is indicated by the typeId attribute and must match the value of the templateId of the component link. </B></P></B></B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AbstractPSClaim>Used by: </A></FONT><A href="#ReimbursmentClaim"><B>ReimbursmentClaim</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INFO</B>} )<A>{<B> Fixed="<FONT color=red>INFO</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSClaim/$classCode title=PORX_HD142005UK30#AbstractPSClaim.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code indicating that the&nbsp;PS Claim Information message&nbsp;is for information purposes only</P>
+<UL>
+<LI>Fixed value: "INFO"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSClaim/$moodCode title=PORX_HD142005UK30#AbstractPSClaim.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSClaim/$id title=PORX_HD142005UK30#AbstractPSClaim.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>UUID identifying&nbsp;an instance of a service request. This identifier is universally unique across all records. It is in the form of a UUID.</P>
+<P>This is the unique number of the&nbsp;act that identifies the payload of the message.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>typeId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSClaim/$typeId title=PORX_HD142005UK30#AbstractPSClaim.typeId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifier used to define the set of allowable types and versions of&nbsp;PS Claim message.</P>
+<P>The <B>External Identifier</B> datatype flavour is used to hold this information as follows: </P>
+<UL>
+<LI>the <I>root</I> attribute shall contain the value of the <B>Type Identifiers</B> OID =&nbsp;2.16.840.1.113883.2.1.3.2.4.18.7 </LI>
+<LI>the <I>extension</I> attribute shall contain a type identifier value that is equal to the artifact id of the PS Claim message.&nbsp;</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AbstractPSNotification><B>AbstractPSNotification</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSNotification_c title=PORX_HD142005UK30#AbstractPSNotification_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Abstract placeholder for a&nbsp;PS&nbsp;Notification message payload.&nbsp; </B></P>
+<P><B>The placeholder and its contents are <I>never</I> instantiated, but&nbsp;are instead replaced by an actual&nbsp;PS&nbsp;Notification message from the following set of allowable types and versions:&nbsp;&nbsp; </B></P>
+<UL>
+<LI><B>PORX_MT024003UK05</B> </LI><LI><B><a href="PORX_RM024003UK31.htm">
+PORX_MT024003UK31</a></B></LI></UL>
+<P><B>The type and version of the replacement message&nbsp;is indicated by the typeId attribute and must match the value of the templateId of the component link. </B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AbstractPSNotification>Used by: </A></FONT><A href="#ReimbursmentClaim"><B>ReimbursmentClaim</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INFO</B>} )<A>{<B> Fixed="<FONT color=red>INFO</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSNotification/$classCode title=AbstractPSNotification.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code indicating that the&nbsp;PS Notification message&nbsp;is for information purposes only</P>
+<UL>
+<LI>Fixed value: "INFO"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSNotification/$moodCode title=PORX_HD142005UK30#AbstractPSNotification.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSNotification/$id title=PORX_HD142005UK30#AbstractPSNotification.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>UUID identifying&nbsp;an instance of a service request. This identifier is universally unique across all records. It is in the form of a UUID.</P>
+<P>This is the unique number of the&nbsp;act that identifies the payload of the message.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>typeId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSNotification/$typeId title=PORX_HD142005UK30#AbstractPSNotification.typeId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifier used to define the set of allowable types and versions of&nbsp;PS Notification message.</P>
+<P>The <B>External Identifier</B> datatype flavour is used to hold this information as follows: </P>
+<UL>
+<LI>the <I>root</I> attribute shall contain the value of the <B>Type Identifiers</B> OID =&nbsp;2.16.840.1.113883.2.1.3.2.4.18.7 </LI>
+<LI>the <I>extension</I> attribute shall contain a type identifier value that is equal to the artifact id of the&nbsp;PS Notification message.&nbsp;</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AbstractPSNotificationWithClaim><B>AbstractPSNotificationWithClaim</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSNotificationWithClaim_c title=PORX_HD142005UK30#AbstractPSNotificationWithClaim_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B><B><B>
+<P><B>Abstract placeholder for a&nbsp;PS&nbsp;Notification with Claim Information message payload.&nbsp; </B></P>
+<P><B>The placeholder and its contents are <I>never</I> instantiated, but&nbsp;are instead replaced by an actual&nbsp;PS&nbsp;Notification with Claim Information message from the following set of allowable types and versions:&nbsp;&nbsp; </B></P>
+<UL>
+<LI><B>PORX_MT142003UK05</B> </LI><LI><a href="PORX_RM142003UK31.htm">
+PORX_MT142003UK31</a></LI></UL>
+<P><B>The type and version of the replacement message&nbsp;is indicated by the typeId attribute and must match the value of the templateId of the component link. </B></P></B></B></B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AbstractPSNotificationWithClaim>Used by: </A></FONT><A href="#ReimbursmentClaim"><B>ReimbursmentClaim</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INFO</B>} )<A>{<B> Fixed="<FONT color=red>INFO</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSNotificationWithClaim/$classCode title=PORX_HD142005UK30#AbstractPSNotificationWithClaim.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code indicating that the&nbsp;PS Notification with Claim Information message&nbsp;is for information purposes only</P>
+<UL>
+<LI>Fixed value: "INFO"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSNotificationWithClaim/$moodCode title=PORX_HD142005UK30#AbstractPSNotificationWithClaim.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSNotificationWithClaim/$id title=PORX_HD142005UK30#AbstractPSNotificationWithClaim.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>UUID identifying&nbsp;an instance of a service request. This identifier is universally unique across all records. It is in the form of a UUID.</P>
+<P>This is the unique number of the&nbsp;act that identifies the payload of the message.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>typeId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD142005UK30#ControlAct;AbstractPSNotificationWithClaim/$typeId title=PORX_HD142005UK30#AbstractPSNotificationWithClaim.typeId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifier used to define the set of allowable types and versions of&nbsp;PS Notification with Claim message.</P>
+<P>The <B>External Identifier</B> datatype flavour is used to hold this information as follows: </P>
+<UL>
+<LI>the <I>root</I> attribute shall contain the value of the <B>Type Identifiers</B> OID =&nbsp;2.16.840.1.113883.2.1.3.2.4.18.7 </LI>
+<LI>the <I>extension</I> attribute shall contain a type identifier value that is equal to the artifact id of the&nbsp;PS Notification with Claim message.&nbsp;</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

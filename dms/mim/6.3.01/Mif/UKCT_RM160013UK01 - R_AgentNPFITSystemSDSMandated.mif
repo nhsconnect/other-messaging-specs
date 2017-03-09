@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="WINDOWS-1252"?>
+<staticModel name="UKCT_RM160013UK01" packageKind="root" title="UKCT_RM160013UK01 - R_AgentNPFITSystemSDSMandated" representationKind="flat" isSerializable="true" isAbstract="false" xsi:schemaLocation="urn:hl7-org:v3/mif C:\PROGRA~1\HL7\System\schemas\mifStaticModelFlat.xsd" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<packageLocation root="DEFN" section="HM" name="UKCT_RM160013UK01" subSection="UK" domain="CT" version="01" artifact="RM-deprecated" realm="UK" id="160013"/>
+	<header>
+		<renderingInformation schemaVersion="1" application="NHS R-MIM Designer 2.99.KJ.00" renderingTime="2007-02-14T16:59:02"/>
+		<legalese copyrightOwner="NHS Connecting for Health"/>
+	</header>
+	<graphicRepresentation presentation="HL7">
+		<graphElement name="Main">
+			<position x="0.0" y="0.0"/>
+			<size width="5.359" height="2.236"/>
+		</graphElement>
+	</graphicRepresentation>
+	<derivationSupplier staticModelDerivationId="1">
+		<targetStaticModel root="DEFN" version="1" realm="UV" artifact="RIM"/>
+	</derivationSupplier>
+	<ownedEntryPoint className="AgentSystemSDS" name="R_AgentNPFITSystemSDSMandated" id="UKCT_RM160013UK01" isAbstract="false">
+		<annotations>
+			<description>
+				<text>
+					<p>Identifies a mandatory system which could be</p>
+					<p>software or hardware. Full details of the system</p>
+					<p>are available from SDS.</p>
+				</text>
+			</description>
+		</annotations>
+		<graphicRepresentation>
+			<graphElement shapeId="UKCT_RM160013UK01" isHeightAutoSize="false" isWidthAutoSize="false" containerDiagramName="Main" nodeOrientation="Down">
+				<position x="0.028" y="0.028"/>
+				<size width="2.483" height="0.719"/>
+				<anchorage connectToShapeId="Sheet.1">
+					<position x="1.269" y="0.747"/>
+					<graphEdge>
+						<anchor>
+							<position x="1.269" y="1.577"/>
+						</anchor>
+					</graphEdge>
+				</anchorage>
+			</graphElement>
+		</graphicRepresentation>
+	</ownedEntryPoint>
+	<ownedClass>
+		<class name="AgentSystemSDS" isAbstract="false">
+			<derivationSupplier staticModelDerivationId="1" className="Role"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement shapeId="Sheet.1" containerDiagramName="Main" shapeTemplate="Role" isWidthAutoSize="true" isHeightAutoSize="true">
+					<position x="0.647" y="1.577"/>
+					<size width="1.257" height="0.5"/>
+				</graphElement>
+			</graphicRepresentation>
+			<attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="true" conformance="R" fixedValue="AGNT" isStructural="true">
+				<derivationSupplier staticModelDerivationId="1" className="Role" attributeName="classCode"/>
+				<type name="CS"/>
+				<supplierDomainSpecification domainName="AGNT" codingStrength="CNE"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedClass>
+		<class name="SystemSDS" isAbstract="false">
+			<derivationSupplier staticModelDerivationId="1" className="Device"/>
+			<graphicRepresentation presentation="HL7">
+				<graphElement shapeId="Sheet.11" containerDiagramName="Main" shapeTemplate="Entity" isWidthAutoSize="false" isHeightAutoSize="true">
+					<position x="3.229" y="1.476"/>
+					<size width="2.121" height="0.75"/>
+				</graphElement>
+			</graphicRepresentation>
+			<attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="true" conformance="R" fixedValue="DEV" isStructural="true">
+				<derivationSupplier staticModelDerivationId="1" className="Device" attributeName="classCode"/>
+				<type name="CS"/>
+				<supplierDomainSpecification domainName="DEV" codingStrength="CNE"/>
+			</attribute>
+			<attribute name="determinerCode" sortKey="2" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="true" conformance="R" fixedValue="INSTANCE" isStructural="true">
+				<derivationSupplier staticModelDerivationId="1" className="Device" attributeName="determinerCode"/>
+				<type name="CS"/>
+				<supplierDomainSpecification domainName="INSTANCE" codingStrength="CNE"/>
+			</attribute>
+			<attribute name="id" sortKey="3" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="true" conformance="R">
+				<annotations>
+					<designComments>
+						<text>&lt;p&gt;SDS System/Workstation Id&lt;/p&gt;</text>
+					</designComments>
+				</annotations>
+				<derivationSupplier staticModelDerivationId="1" className="Device" attributeName="id"/>
+				<type name="II"/>
+			</attribute>
+		</class>
+	</ownedClass>
+	<ownedAssociation>
+		<graphicRepresentation>
+			<graphElement shapeId="Sheet.1" connectToShapeId="Sheet.11" containerDiagramName="Main">
+				<position x="1.904" y="2.077"/>
+				<graphEdge>
+					<anchor connectToShapeId="Sheet.11">
+						<position x="3.23" y="2.038"/>
+					</anchor>
+				</graphEdge>
+			</graphElement>
+		</graphicRepresentation>
+		<connections>
+			<traversableConnection name="agentSystemSDS" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="true" participantClassName="SystemSDS">
+				<derivationSupplier staticModelDerivationId="1" className="AgentSystemSDS" associationEndName="player"/>
+			</traversableConnection>
+			<nonTraversableConnection participantClassName="AgentSystemSDS">
+				<derivationSupplier staticModelDerivationId="1" className="SystemSDS" associationEndName="playedRole"/>
+			</nonTraversableConnection>
+		</connections>
+	</ownedAssociation>
+</staticModel>

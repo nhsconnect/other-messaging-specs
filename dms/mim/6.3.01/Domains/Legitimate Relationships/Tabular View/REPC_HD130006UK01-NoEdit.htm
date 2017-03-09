@@ -1,0 +1,351 @@
+<HTML><HEAD><TITLE>Remove User from Workgroup Response Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="Remove User from Workgroup Response" name=Entry>
+<META content=REPC_HD130006UK01 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Remove User from Workgroup Response - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne style="LEFT: 162px; VISIBILITY: hidden; TOP: 223px">Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="REPC_RM130006UK01.htm"><B>REPC_RM130006UK01</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=RemoveFromWorkgroupResponse><B>RemoveFromWorkgroupResponse</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#ActHeir;RemoveFromWorkgroupResponse_c title=REPC_HD130006UK01#RemoveFromWorkgroupResponse_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Response to indicate the success or otherwise of removing a user&nbsp;from a workgroup.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=RemoveFromWorkgroupResponse>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>REG</B>} )<A>{<B> Fixed="<FONT color=red>REG</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#Act;RemoveFromWorkgroupResponse/$classCode title=REPC_HD130006UK01#RemoveFromWorkgroupResponse.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a registration.</P>
+<UL>
+<LI>Fixed Value: "REG"</LI></UL>
+<P>The classCode is carried as an attribute of the <I>RemoveFromWorkgroupResponse </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#Act;RemoveFromWorkgroupResponse/$moodCode title=REPC_HD130006UK01#RemoveFromWorkgroupResponse.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an Event.</P>
+<UL>
+<LI>Fixed Value: "EVN"</LI></UL>
+<P>The moodCode is carried as an attribute of the <I>RemoveFromWorkgroupResponse </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/SDSRegistrationType.htm"><B>SDSRegistrationType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#Act;RemoveFromWorkgroupResponse/$code title=REPC_HD130006UK01#RemoveFromWorkgroupResponse.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to provide the type of registration.</P>
+<P>In this context, the type of registration is the removal of a user (User Role Profile)&nbsp;from a Workgroup.</P>
+<P>The Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain value "02" (Remove User&nbsp;From Workgroup) from the list of codes in the <U>SDSRegistrationType</U> vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the <U>SDSRegistrationType</U> vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Subject><B>subject</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD130006UK01#Act;/RemoveFromWorkgroupResponse/subject title=REPC_HD130006UK01#/RemoveFromWorkgroupResponse/subject style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>A heading for providing a link to the subject of the registration event.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBJ</B>} )<A>{<B> Fixed="<FONT color=red>SBJ</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130006UK01#Participation;RemoveFromWorkgroupResponse/subject/$typeCode title=REPC_HD130006UK01#RemoveFromWorkgroupResponse/subject.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the subject of the registration event.</P>
+<UL>
+<LI>Fixed Value: "SBJ"</LI></UL>
+<P>The typeCode is carried as an attribute of the <I>subject </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>agentPersonSDS</B> (<A href="#AgentPersonSDS"><B>AgentPersonSDS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130006UK01#Participation;RemoveFromWorkgroupResponse/subject/agentPersonSDS-AgentPersonSDS title=REPC_HD130006UK01#RemoveFromWorkgroupResponse/subject/agentPersonSDS-AgentPersonSDS style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of the User Role Profile&nbsp;from which the Workgroup&nbsp;was requested&nbsp;to be removed in the original request.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AgentPersonSDS><B>AgentPersonSDS</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#RoleHeir;AgentPersonSDS_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AgentPersonSDS>Used by: </A></FONT><A href="#RemoveFromWorkgroupResponse"><B>RemoveFromWorkgroupResponse</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AGNT</B>} )<A>{<B> Fixed="<FONT color=red>AGNT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#RoleHeir;AgentPersonSDS/$classCode title=AgentPersonSDS.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of an agent.</P>
+<UL>
+<LI>Fixed value: "AGNT"</LI></UL>
+<P>The classCode is carried as an attribute of the&nbsp;<I>AgentPersonSDS </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#RoleHeir;AgentPersonSDS/$id title=REPC_HD130006UK01#AgentPersonSDS.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An SDS identifier that uniquely identifies the role profile&nbsp;of the person.&nbsp;&nbsp; This is carried in the following way: </P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.67 </LI>
+<LI>the <I>extension</I> attribute shall contain the SDS&nbsp;Role Profile&nbsp;ID, known in the External Interface Specification as Role Profile Code.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Subject2><B>subjectOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD130006UK01#RoleHeir;subject/AgentPersonSDS/subjectOf title=REPC_HD130006UK01#subject/AgentPersonSDS/subjectOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>
+<P><B>A heading for providing a link to an observation that the URP is subject to.</B></P></B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBJ</B>} )<A>{<B> Fixed="<FONT color=red>SBJ</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130006UK01#Participation;AgentPersonSDS/subjectOf/$typeCode title=REPC_HD130006UK01#AgentPersonSDS/subjectOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the subject of the associated observation.</P>
+<UL>
+<LI>Fixed Value: "SBJ"</LI></UL>
+<P>The typeCode is carried as an attribute of the <I>subjectOf </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>wasNotAMember</B> (<A href="#WasNotAMember"><B>WasNotAMember</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130006UK01#Participation;AgentPersonSDS/subjectOf/wasNotAMember-WasNotAMember title=REPC_HD130006UK01#AgentPersonSDS/subjectOf/wasNotAMember-WasNotAMember style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of whether or not the URP was&nbsp;not actually a member of the specified workgroup, when the original Remove User&nbsp;From Workgroup Request was received.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=WasNotAMember><B>WasNotAMember</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#Observation;WasNotAMember_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=WasNotAMember>Used by: </A></FONT><A href="#AgentPersonSDS"><B>AgentPersonSDS</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#Observation;WasNotAMember/$classCode title=REPC_HD130006UK01#WasNotAMember.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an observation.</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL>
+<P>The classCode is carried as an attribute of the <I>AlreadyAMember </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#Observation;WasNotAMember/$moodCode title=REPC_HD130006UK01#WasNotAMember.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an observation which has occurred.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL>
+<P>The moodCode is carried as an attribute of the <I>AlreadyAMember </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/SDSObservationType.htm"><B>SDSObservationType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#Observation;WasNotAMember/$code title=REPC_HD130006UK01#WasNotAMember.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to provide the type of observation.</P>
+<P>In this context, the type of observation is the workgroup membership status of the User Role Profile, specifically whether or not they were&nbsp;not actually&nbsp;a member of the workgroup specified in the original Remove User&nbsp;From Workgroup Request.</P>
+<P>The Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain value "03" (Was not a member of the identified workgroup) from the list of codes in the <U>SDSObservationType</U> vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the <U>SDSObservationType</U> vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130006UK01#Observation;WasNotAMember/$value title=REPC_HD130006UK01#WasNotAMember.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If present and set to 'true', indicates that the URP was not a member of the workgroup (the workgroup was not found in the identified URP), and that no action was taken. If not present, indicates that the request was successful and the URP was removed from the workgroup.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

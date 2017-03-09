@@ -1,0 +1,519 @@
+<HTML><HEAD><TITLE>A_PatientMovement Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content=A_PatientMovement name=Entry>
+<META content=UKCT_HD144006UK01 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>A_PatientMovement - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=3 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="UKCT_RM144006UK01.htm"><B>UKCT_RM144006UK01</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Transportation><B>Transportation</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#ActHeir;Transportation_c title=UKCT_HD144006UK01#Transportation_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>A CMET 
+	describing the origin of a patient prior to the attached care event taking 
+	place and the destination (actually or intended ) following the care event.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=2><FONT color=gray><A name=Transportation>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>TRNS</B>} )<A>{<B> Fixed="<FONT color=red>TRNS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Act;Transportation/$classCode title=Act.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a transportation act.</P>
+<UL>
+<LI>Fixed value "TRNS" </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>x_ActMoodOrdPrmsEvn</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Act;Transportation/$moodCode title=Act.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the mood of the transportation act.</P>
+<P>Must be one of the following</P>
+<UL>
+<LI>&quot;EVN&quot; for transportation that has occurred</LI>
+<LI>&quot;PRMS&quot; for promised transportation</LI>
+<LI>&quot;RQO&quot; for requested transportation</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data%20Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Act;Transportation/$effectiveTime title=UKCT_HD144006UK01#Transportation.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The date and time the transportation of the patient occurred , was 
+requested for or is promised for.</P>
+<p>A&nbsp;date range shall be carried as follows: </p>
+<p>If both a start date and an end date are present the Date or Time Interval 
+Complete datatype shall be used:</p>
+<ul>
+	<li>The&nbsp;<i>low</i> attribute shall contain the start date 
+	</li>
+	<li>The <i>high</i> attribute shall contain the end date.</li>
+</ul>
+<p>If only a start date is present the Date or Time Interval After datatype 
+shall be used:</p>
+<ul>
+	<li>The <i>low</i> attribute shall contain the start date.</li>
+</ul>
+<p>If only an end date is present the Date or Time Interval Before datatype 
+shall be used:</p>
+<ul>
+	<li>The <i>high</i> attribute shall contain the end date.</li>
+</ul>
+<p>If the exact time is not known then the Center attribute can be used</p>
+<ul>
+	<li>The center attribute shall contain a time stamp </li>
+</ul>
+<P>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Author><B>author</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=UKCT_HD144006UK01#Act;/Transportation/author title=UKCT_HD144006UK01#/Transportation/author style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Refers to the person responsible for authorising the Transportation Event.</B> </P>
+<P><b><font color="#FF0000">Only required if author is different to author 
+inherited via context conduction</font></b></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=2>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144006UK01#Participation;Transportation/author/$typeCode title=Transportation/author.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the role&nbsp;of author of this Transportation Event.</P>
+<UL>
+<LI>Fixed value: "AUT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OP</B>} )<A>{<B> Fixed="<FONT color=red>OP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144006UK01#Participation;Transportation/author/$contextControlCode title=author.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Fixed&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act. 
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>time</B> (<A href="../../../Data%20Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144006UK01#Participation;Transportation/author/$time title=Transportation/author.time style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The&nbsp;date and time the author authorised the information contained in the Transportation Event.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>modeCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ParticipationMode</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144006UK01#Participation;Transportation/author/$modeCode title=Participation.modeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The mode in which the participant participated in the transportation act.</P>
+<P>Required if not "ELECTRONIC"&nbsp;</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;ParticipationMode vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD142100UK01-NoEdit.htm">agent</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM142100UK01.htm"><SMALL>[CMET:&nbsp;UKCT_MT142101UK01]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144006UK01#Participation;Transportation/author/agent+UKCT_MT142101UK01 title=UKCT_HD144006UK01#Transportation/author/agent+UKCT_MT142101UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET to identify the person who is the author.</P>
+<P>The tabular view for this CMET describes its usage.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Destination><B>destination</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=UKCT_HD144006UK01#Act;/Transportation/destination title=UKCT_HD144006UK01#/Transportation/destination style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Refers to the destination location of the patient.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=2>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>DST</B>} )<A>{<B> Fixed="<FONT color=red>DST</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144006UK01#Participation;Transportation/destination/$typeCode title=UKCT_HD144006UK01#Transportation/destination.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the location type.</P>
+<UL>
+<LI>Fixed value: "DST"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<tr>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OP</B>} )<A>{<B> Fixed="<FONT color=red>OP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144006UK01#Participation;Transportation/author/$contextControlCode0 title=author.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.<UL>
+<LI>Fixed&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act. 
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P></NOTE></DIV></TD>
+</tr>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<tr>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>role</B> (<B><a href="#LocationChoice">LocationChoice</a></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144006UK01#Participation;Transportation/destination/participant+LocationSourceChoice title=UKCT_HD144006UK01#Transportation/destination/participant+LocationSourceChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to the organisation or other location which details the&nbsp;destination 
+represented by a choice of a CMET or a non organisation location type.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Origin><B>origin</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=UKCT_HD144006UK01#Act;/Transportation/origin title=UKCT_HD144006UK01#/Transportation/origin style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Refers to the source location of the patient.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=2>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ORG</B>} )<A>{<B> Fixed="<FONT color=red>ORG</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144006UK01#Participation;Transportation/origin/$typeCode title=UKCT_HD144006UK01#Transportation/origin.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the location type.</P>
+<UL>
+<LI>Fixed value: "ORG"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<tr>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OP</B>} )<A>{<B> Fixed="<FONT color=red>OP</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144006UK01#Participation;Transportation/author/$contextControlCode1 title=author.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.<UL>
+<LI>Fixed&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act. 
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P></NOTE></DIV></TD>
+</tr>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<tr>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>role</B> (<B><a href="#LocationChoice">LocationChoice</a></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144006UK01#Participation;Transportation/origin/participant+LocationSourceChoice title=UKCT_HD144006UK01#Transportation/origin/participant+LocationSourceChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to the organisation or other non organisation type of location which 
+details the origin represented by a choice.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=LocationChoice><B>LocationChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Role;participant+LocationSourceChoice_c title=UKCT_HD144006UK01#participant+LocationSourceChoice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>A choice of CMETs that represent locations from which a patient can originate or go to following the care episode.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=2><FONT color=gray><A name=LocationChoice>Used by: </A></FONT><A href="#Transportation"><B>Transportation</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B><I>either </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM142000UK01.htm">UKCT_MT142001UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Role;participant+LocationSourceChoice/participant_R_AgentNPFITPoCOrgUniversal+UKCT_MT142001UK01 title=UKCT_HD144006UK01#participant+LocationSourceChoice/participant_R_AgentNPFITPoCOrgUniversal+UKCT_MT142001UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET to identify the organization which is the&nbsp; location.</P>
+<P>The tabular view for this CMET describes its usage.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: 
+<b><a href="#IncidentalLocation">IncidentalLocation</A></b></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Role;participant+LocationSourceChoice/generalizes-ServiceDeliveryLocation title=UKCT_HD144006UK01#participant+LocationSourceChoice/generalizes-ServiceDeliveryLocation style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to the incidental location.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><a name="IncidentalLocation"><b>IncidentalLocation</b></a></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#RoleHeir;ServiceDeliveryLocation_c title=UKCT_HD144006UK01#ServiceDeliveryLocation_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Details the Service Delivery Location from which the patient originated or was sent for further care.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=2><FONT color=gray><A name=ServiceDeliveryLocation>Used by: </A></FONT><A href="#Transportation"><B>Transportation</B></A>, <B>
+<a href="#LocationChoice">LocationChoice</a></B></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SDLOC</B>} )<A>{<B> Fixed="<font color="#FF0000">IS</font><FONT color=red>DLOC</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#RoleHeir;ServiceDeliveryLocation/$classCode title=UKCT_HD144006UK01#ServiceDeliveryLocation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is a incidental service delivery location.</P>
+<UL>
+<LI>Fixed value: "ISDLOC"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data%20Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/LocationTypeSnCT.htm"><B>LocationTypeSnCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#RoleHeir;ServiceDeliveryLocation/$code title=UKCT_HD144006UK01#ServiceDeliveryLocation.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A SnomedCT code identifying the kind of location being described (e.g. normal residence, ambulance, public place)</P>
+<P>The Coded&nbsp; Plain flavour of the Coded&nbsp;Value (CV) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute shall contain a value from the list of codes in the&nbsp; vocabulary </LI>
+<LI>The <I>code System</I> attribute shall contain&nbsp;the OID for SnomedCT </LI>
+<LI>The <I>display text</I> attribute will carry a description for the code from the coding system&nbsp;.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>location</B> (<A href="#Place"><B>Place</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#RoleHeir;ServiceDeliveryLocation/location-Place title=UKCT_HD144006UK01#ServiceDeliveryLocation/location-Place style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of the individual place playing the role of the Location</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Place><B>Place</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Place;Place_c title=Place style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>An entity describing a place that is not an organization recognised by SDS.&nbsp; If Place is used, at least one of&nbsp;the non-structural attributes&nbsp;SHALL be used.</B>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=2><FONT color=gray><A name=Place>Used by: </A></FONT><A href="#ServiceDeliveryLocation"><B>ServiceDeliveryLocation</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PLC</B>} )<A>{<B> Fixed="<FONT color=red>PLC</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Place;Place/$classCode title=Place.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a place</P>
+<UL>
+<LI>Fixed value: "PLC" </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data%20Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Place;Place/$determinerCode title=Place.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable place</P>
+<UL>
+<LI>Fixed value: "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>name</B> (<A href="../../../Data%20Types/DataTypes.htm#TN"><B>TN</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Place;Place/$name title=Place.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The optional name of the place</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>telecom</B> (<A href="../../../Data%20Types/DataTypes.htm#TEL"><B>TEL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Place;Place/$telecom title=Place.telecom style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An optional telecom&nbsp;contact for the place</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>addr</B> (<A href="../../../Data%20Types/DataTypes.htm#AD"><B>AD</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Place;Place/$addr title=Place.addr style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An optional address&nbsp;of the place</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>positionText</B> (<A href="../../../Data%20Types/DataTypes.htm#ED"><B>ED</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Place;Place/$positionText title=Place.positionText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An optional grid reference. It may be as precise as required.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>gpsText</B> (<A href="../../../Data%20Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144006UK01#Place;Place/$gpsText title=Place.gpsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An optional GPS reference.&nbsp; It may be as precise as required.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

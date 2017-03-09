@@ -1,0 +1,1105 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>Discharge Implementation Manual</title>
+<link rel="stylesheet" href="../../../Core/Stylesheets/IMCommon_v3.css" type="text/css">
+</head>
+<body lang="EN-GB">
+<div id="header"><p>Discharge Implementation Manual - Version 3.6</p></div>
+<div id="content">
+<div class="Section1">
+    <p class="MsoMIM">&nbsp;</p>
+    <p class="MsoMIM">&nbsp;</p>
+	<p class="Un-numberedHeading1">Contents</p>
+	<div class="index1" div id="fp_TOC" class="fp_TOC">
+		<a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;Overview</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.1">1.1&nbsp;&nbsp;&nbsp;&nbsp;Domain Compliancy Statement</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.2">1.2&nbsp;&nbsp;&nbsp;&nbsp;Error Correction 
+	using CDA replacement</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.3">1.3&nbsp;&nbsp;&nbsp;&nbsp;Use of templates</a><br><a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</a><br><a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp;&nbsp;Discharge Report Originating System - 
+	POCD_AR150001UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.2">3.2&nbsp;&nbsp;&nbsp;&nbsp;Discharge 
+	Report Primary Receiving System - POCD_AR150002UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.3">3.3&nbsp;&nbsp;&nbsp;&nbsp;Discharge Report Receiving System (PSIS) 
+	- POCD_AR150003UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.4">3.4&nbsp;&nbsp;&nbsp;&nbsp;Discharge Report Copy Recipient - 
+	POCD_AR150004UK02</a><br><a href="#_Toc_Section_4">4&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1">4.1&nbsp;&nbsp;&nbsp;&nbsp;Discharge Report - POCD_TE150001UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.2">4.2&nbsp;&nbsp;&nbsp;&nbsp;Discharge Report Nullify By Replacement - POCD_TE150002UK01</a><br><a href="#_Toc_Section_5">5&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.1">5.1&nbsp;&nbsp;&nbsp;&nbsp;Discharge interactions</a><br><a href="#_Toc_Section_6">6&nbsp;&nbsp;&nbsp;&nbsp;Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.1">6.1&nbsp;&nbsp;&nbsp;&nbsp;Recipient responsibilities</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.2">6.2&nbsp;&nbsp;&nbsp;&nbsp;Originator 
+	Responsibilities</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.3">6.3&nbsp;&nbsp;&nbsp;&nbsp;Primary Recipient Discharge Report - POCD_IN150001UK06
+</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.4">6.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS 
+	Discharge Report - POCD_IN150002UK06
+</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.5">6.5&nbsp;&nbsp;&nbsp;&nbsp;Copy 
+	Discharge Report - POCD_IN150003UK06
+</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.6">6.6&nbsp;&nbsp;&nbsp;&nbsp;Nullify 
+Discharge Report - POCD_IN150004UK06
+</a><br><a href="#_Toc_Section_7">7&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1">7.1&nbsp;&nbsp;&nbsp;&nbsp;Discharge 
+Report - POCD_MT150001UK06
+</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1.1">7.1.1&nbsp;&nbsp;&nbsp;&nbsp;Examples for Scenario Mary - Maternity Discharge</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1.2">7.1.2&nbsp;&nbsp;&nbsp;&nbsp;Examples for Scenario 
+John - PICU Discharge</a><br><a href="#_Toc_Section_8">8&nbsp;&nbsp;&nbsp;&nbsp;Glossary of Terms</a></div><div class=MsoMIM align=center style='text-align:center'><hr size=2 width="100%" align=center></div><p class=MsoMIM>&nbsp;</p><p class=Un-numberedHeading1>Change History&nbsp;&nbsp;&nbsp;
+	<a title="View Change History" style="color: blue" href="ChangeHistory/DischargeReportCH.htm">
+	<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p><div class=MsoMIM align=center style='text-align:center'><hr size=2 width="100%" align=center></div>  <h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;Overview</h1>
+	<p class="MsoMIM"><font face="Arial">&quot;Summary Care Record Phase 4 
+	Implementation&quot; includes discharge and the associated communications between PSIS, secondary 
+	care and primary care. The&nbsp; CDA document definitions within this 
+	Implementation manual support the following care 
+	communications:</font></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<ul>
+		<li><font face="Arial">Discharge Report</font></li>
+	</ul>
+		<p class="MsoMIM"><font face="Arial">Some types of information require the use of CRE-types whereas others prohibit the use of CRE-types - refer to the 
+		Implementation Guidance for Suppliers or PSIS Integration Strategy 
+		documents for the recommended use of CRE-types.</font></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">The CRE Section holds a list of ID's which are 
+		associated with the coded entries. The coded entries have a &lt;reference&gt; 
+		to the &lt;content&gt; in a text section which allows linking therefore 
+		enabling indirect association with a CRE-type. </p>
+	<p class="MsoMIM">Refer to the latest version of&nbsp; &quot;<b>NPFIT-ELIBR-AREL-P1R2-0178 
+	Technical Guidance for Implementation of Templated CDA Domains</b>&quot;&nbsp; for further information on how sections and 
+		entries are linked with text.</p>
+	<h2><a name=_Toc_Section_1.1></a>1.1&nbsp;&nbsp;&nbsp;&nbsp;Domain Compliancy Statement</h2>
+	<p class="MsoMIM">This CDA domain document utilised within this domain 
+	complies with the conformance statement from &quot;HL7 Clinical Document 
+	Architecture, Release 2.0&quot; (2006 Normative Edition), namely :</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">&quot;<i>A conformant CDA document is one that at a minimum 
+	validates against the CDA Schema, and that restricts its use of coded 
+	vocabulary to values allowable within the specified vocabulary domains.</i>&quot;</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">This CDA specifications described in this domain makes 
+	use of a templating mechanism that supports both entry-level and 
+	section-level templating. NHS CFH have implemented the HL7 guidelines for 
+	CDA and have included localisations to aid the navigation of the CDA 
+	document.</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">In the absence of any other machine enforceable 
+	templating constraint mechanism the NHS CFH approach is being pre-adopted.</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<h2><a name=_Toc_Section_1.2></a>1.2&nbsp;&nbsp;&nbsp;&nbsp;Error Correction 
+	using CDA replacement</h2>
+	<p class="MsoMIM">If a document is sent in error, then the sending system 
+	should send a replacement document with the correct information using CDA 
+	replacement update semantics.</p>
+	<p class="MsoMIM">Documents can also be withdrawn by a receiving system 
+	see section 6.1 for further details.</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">Where this is not possible to use the 
+	above mechanism because no correcting document is available then the 
+	previous document is required to be nullified. A ‘nullify 
+	document’ document should be used and further details of this type of replacement is 
+	contained in the infrastructure domain.</p>
+	<p class="MsoMIM">&nbsp;</p
+	
+	>  <h2><a name=_Toc_Section_1.3></a>1.3&nbsp;&nbsp;&nbsp;&nbsp;Use of templates</h2>
+	<p class="MsoMIM">This domain uses templates, for further information on templates refer to 
+	the latest version of&nbsp; <b>&quot;NPFIT-ELIBR-AREL-P1R2-0178 Technical Guidance for 
+	Implementation of Templated CDA Domains&quot;&nbsp; </b></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<div class="MsoMIM" align="center" style="text-align:center">
+		<hr size="3" width="100%" align="center"></div>
+	<h1><a name=_Toc_Section_2></a>2&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</h1>
+	<p class="MsoMIM">This domain contains two storyboards:</p>
+	<ul>
+		<li>
+		<p class="MsoMIM">Mary - Maternity Discharge</li>
+	<li>
+	<p class="MsoMIM">John - PICU Discharge</li>
+</ul>
+<p class="MsoMIM"><b>Both of these may be found in the business documentation
+<a href="../../../External%20Documents/PSIS%20CRS_CSA/BusinessModels/index.htm">
+here</a>.</b></p>
+		<hr size="3" width="100%" align="center">  <h1><a name=_Toc_Section_3></a>3&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</h1>
+	<p class="MsoMIM">The applications involved in the Discharge 
+	processes play specific roles.&nbsp; These, along with the interactions associated 
+	with each role, are identified below.</p>
+	<h2><a name=POCD_AR150001UK02></a><a name=_Toc_Section_3.1></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;Discharge Report Originating System - 
+	POCD_AR150001UK02</h2>
+	<p class="MsoMIM">The Discharge Report Originating System is 
+	responsible for sending the following Discharge interactions:</p>
+	<ul>
+		<li>
+		<p class="MsoMIM"><i>MUST always issue a 'PSIS Discharge Report', with PSIS as a Primary Recipient.
+
+		</i></p></li>
+		<li>
+		<p class="MsoMIM"><i>MUST issue a 'Primary Recipient Discharge Report'  to a recipient (or recipients) where the report contains an implied action  for that recipient.
+		</i></p></li>
+		<li>
+		<p class="MsoMIM"><i>MAY issue a 'Copy Discharge Report' to a recipient where the report is for information or does not contain an implied action. The recipient should be a copy-to  (tracker) recipient in this case
+		</i></p></li>
+	</ul>
+<p class="MsoMIM">Primary Recipient Discharge Report&nbsp;&nbsp;&nbsp;&nbsp;
+<a title="View Interaction" href="#_Toc_Section_5">
+<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+<p class="MsoMIM">PSIS Discharge Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a title="View Interaction" href="#_Toc_Section_5"><img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+<p class="MsoMIM">Copy Discharge Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a title="View Interaction" href="#_Toc_Section_5"><img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+<p class="MsoMIM"></a></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">The Discharge Report Originating System receives 
+	responses to the above interactions from the Receiving System.&nbsp;
+	</p>
+	<h2><a name=POCD_AR150002UK02></a><a name=_Toc_Section_3.2></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;Discharge 
+	Report Primary Receiving System - POCD_AR150002UK02</h2>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">The Discharge Primary Report Receiving System receives 
+	and should indicate to the user that recommendations are contained in the document of the following Discharge interaction:</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">Primary Recipient Discharge Report&nbsp;&nbsp;&nbsp;&nbsp; <a title="View Interaction" href="#_Toc_Section_5">
+	<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+	<p class="MsoMIM">The Discharge Report Primary Receiving System receives 
+	and MUST act on the following Discharge interaction:</p>
+	<p class="MsoMIM">Nullify Discharge Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a title="View Interaction" href="#_Toc_Section_5">
+	<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">
+	Discharge Report Primary Receiving System 
+	initiates responses for the above interactions to the Discharge Report 
+	Originating System.</p>
+	<h2><a name=POCD_AR150003UK02></a><a name=_Toc_Section_3.3></a>3.3&nbsp;&nbsp;&nbsp;&nbsp;Discharge Report Receiving System (PSIS) 
+	- POCD_AR150003UK02</h2>
+	<p class="MsoMIM">The Discharge Report Receiving System (PSIS) 
+	receives processes and stores the following Discharge interactions:</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">PSIS Discharge Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a title="View Interaction" href="#_Toc_Section_5"><img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">The Discharge Report Receiving System 
+	(PSIS) receives and MUST act on the following Discharge interactions:</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">Nullify Discharge Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a title="View Interaction" href="#_Toc_Section_5">
+	<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">The Discharge Report Receiving System (PSIS) 
+	initiates responses for the above interactions to the Discharge Report 
+	Originating System.</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<h2><a name=POCD_AR150004UK02></a><a name=_Toc_Section_3.4></a>3.4&nbsp;&nbsp;&nbsp;&nbsp;Discharge Report Copy Recipient - 
+	POCD_AR150004UK02</h2>
+	<p class="MsoMIM">The Discharge Report Copy Recipient receives 
+	the following Discharge interaction:</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">Copy Discharge Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a title="View Interaction" href="#_Toc_Section_5">
+	<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">The Discharge Report Copy Recipient receives 
+	and MUST act on the following Discharge interaction:</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">Nullify Discharge Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a title="View Interaction" href="#_Toc_Section_5">
+	<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">The Discharge Report Copy Recipient initiates responses for the above interactions to the Discharge Report 
+	Originating System.</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<h1><a name=_Toc_Section_4></a>4&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</h1>
+	<h2><a name=POCD_TE150001UK01></a><a name=_Toc_Section_4.1></a>4.1&nbsp;&nbsp;&nbsp;&nbsp;Discharge Report - POCD_TE150001UK01</h2>
+	<p class="MsoMIM">A Discharge Report trigger event indicates that a Discharge Report is ready to send from the originating system.</p>
+	<h2><a name=POCD_TE150002UK01></a><a name=_Toc_Section_4.2></a>4.2&nbsp;&nbsp;&nbsp;&nbsp;Discharge Report Nullify By Replacement - POCD_TE150002UK01</h2>
+	<p class="MsoMIM">For the Discharge Report document to be nullified the 
+	trigger event is the realisation that the Discharge Report document was sent 
+	in error, in that it contained an error and should never have been sent and 
+	that no correct Discharge Report&nbsp; document is available to send.</p>
+	<p class="MsoMIM">&nbsp;</p>
+		<hr size="3" width="100%" align="center">
+	<p class="MsoMIM">&nbsp;</p>
+	<h1><a name=_Toc_Section_5></a>5&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</h1>
+	<h2><a name=_Toc_Section_5.1></a>5.1&nbsp;&nbsp;&nbsp;&nbsp;Discharge interactions</h2>
+	<p>&nbsp;</p>
+	<p class="MsoMIM"><b>Note - Application 
+	Acknowledgements are sent to originating systems for notification of 
+	successful or failure handling by the receiving application.</b></p>
+&nbsp;<p>
+
+<div id="bbe1ab88-955d-4803-8c86-890f1e5ae99e">
+		<img class="MsoMIM" src="discharge_interactions.png" border="0" usemap="#bbe1ab88-955d-4803-8c86-890f1e5ae99e" />
+		<map name="bbe1ab88-955d-4803-8c86-890f1e5ae99e">
+			<area href="#POCD_AR150001UK02" type="rect" coords="29, 58, 252, 110" />
+			<area href="#POCD_AR150002UK02" type="rect" coords="469, 58, 692, 110" />
+			<area href="#POCD_IN150001UK06" type="rect" coords="256, 132, 465, 169" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 192, 448, 229" />
+			<area href="#POCD_IN150004UK06" type="rect" coords="288, 252, 433, 289" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 312, 448, 349" />
+			<area href="#POCD_AR150003UK02" type="rect" coords="469, 388, 692, 440" />
+			<area href="#POCD_IN150002UK06" type="rect" coords="291, 462, 430, 499" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 522, 448, 559" />
+			<area href="#POCD_IN150004UK06" type="rect" coords="288, 582, 433, 619" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 642, 448, 679" />
+			<area href="#POCD_AR150004UK02" type="rect" coords="469, 718, 692, 770" />
+			<area href="#POCD_IN150003UK06" type="rect" coords="290, 792, 430, 829" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 852, 448, 889" />
+			<area href="#POCD_IN150004UK06" type="rect" coords="288, 912, 433, 949" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 972, 448, 1009" />
+
+		</map>
+	</div>
+
+
+	</p>
+
+	<div class="MsoMIM" align="center" style="text-align:center">
+		<hr size="3" width="100%" align="center"></div>
+		
+	<h1><a name=_Toc_Section_6></a>6&nbsp;&nbsp;&nbsp;&nbsp;Interactions</h1>
+	<p class="MsoMIM"><b>Note:- For CDA domains the interactions are bound to 
+	the &quot;<font color="#FF0000"><a href="../../CDA/NPFiT%20CDA%20using%20Templates.htm#_Toc_Section_3">NPfIT 
+	CDA generic model</a></font>&quot; and use the &quot;<font color="#FF0000"><a href="../../CDA/NPFiT%20CDA%20using%20Templates.htm#_Toc_Section_4">NPfIT 
+	CDA generic schema</a></font>&quot; instead of the &quot;NPfIT Domain CDA
+	model schema&quot;. <br>
+	The CDA Domain models are used for conformance checking of NPfIT templates 
+	after transforming the &quot;Generic NPfIT CDA&quot; instance to &quot;NPfIT Domain CDA&quot; 
+	instance.</b></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">The recipient and sender responsibilities stated in 
+	section 6.2 onwards are additional&nbsp; to the standard CDA recipient and 
+	originator responsibilities. </p>
+	<p class="MsoMIM">An NPfIT perspective of the standard CDA 
+	responsibilities are detailed within this section.</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<h2><a name=_Toc_Section_6.1></a>6.1&nbsp;&nbsp;&nbsp;&nbsp;Recipient responsibilities</h2>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM"><b>Assume default values where they are defined in this 
+	specification, and where the instance does not contain a value : </b></p>
+	<ul>
+		<li>
+		<p class="MsoMIM">Where CDA defines default values, the recipient 
+		must assume these values in the event that no value is contained in a 
+		CDA instance.</li>
+	</ul>
+	<p class="MsoMIM">&nbsp;<br>
+	<b>Parse and interpret the complete CDA header : </b></p>
+	<ul>
+		<li>
+		<p class="MsoMIM">A recipient of a CDA document must be able to parse 
+		and interpret the complete CDA header. </li>
+		<li>
+		<p class="MsoMIM">Because applications may choose to display 
+		demographic and other CDA header data drawn from a central master 
+		directory, the rendering of the CDA document header is at the discretion 
+		of the recipient. </li>
+		<li>
+		<p class="MsoMIM">An NPfIT style sheet is included within the MIM 
+		.Use of this style sheets is at the discretion of the recipient. </li>
+	</ul>
+	<p class="MsoMIM"><br>
+	<b>Parse and interpret the CDA body sufficiently to be able to render it :</b>
+	</p>
+	<ul>
+		<li>
+		<p class="MsoMIM">Where a system receives a document outside of its 
+		conformance level it may chose to only render the document </li>
+		<li>
+		<p class="MsoMIM">A recipient of a CDA document must be able to parse 
+		and interpret the body of a CDA document sufficiently to be able to 
+		render it, using the following rendering rules: </li>
+		<li>
+		<p class="MsoMIM">The CDA structured Body, the label of a section, as 
+		conveyed in the Section.title component, must be rendered.</li>
+		<li>
+		<p class="MsoMIM">A recipient of a CDA document is not required to 
+		parse and interpret the complete set of CDA entries contained within the 
+		CDA body only those applicable to the receiving systems conformance 
+		level. </li>
+		<li>
+		<p class="MsoMIM">A recipient of a CDA document on receipt of a 
+		document equal to or less than it's conformance level is required to 
+		validate a CDA document against referenced templates.</li>
+		<li>
+		<p class="MsoMIM">A recipient of a CDA document on receipt of a 
+		document with templates higher than it's conformance is not required 
+		process those coded entries and should render the textual representation 
+		only.</li>
+	</ul>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM"><b>Error handling </b></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">Possible Scenario&nbsp; </p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">The GP recognises that reports sent to him about his 
+	patient is not actually his patient.<br>
+	<br>
+	<b>Example 1</b></p>
+	<p class="MsoMIM">Incorrect NHS number used by originator. Document 
+	arrives saying this is for John Smith, NHS #, DOB etc. Where the NHS# the GP 
+	system is for Jane Smith etc.</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM"><b>Example 2</b><br>
+	Report arrives at GP, in the next consultation with patient GP discuss 
+	report with patient, who denies he had the care. How this could occur, if 
+	someone turns up to AE and uses someone else name, address, DOB etc. <br>
+&nbsp;</p>
+	<p class="MsoMIM">A recipient on receipt of such a invalid / incorrect 
+	document may deal with errors by either</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<ul>
+		<li>
+		<p class="MsoMIM">Sending an Application Acknowledgement to the 
+		originating system stating the error type using one of the error codes 
+		from the code list for the domain contained in the relevant External 
+		Interface Specification. </li>
+	</ul>
+	<p class="MsoMIM">or</p>
+	<ul>
+		<li>
+		<p class="MsoMIM">The receiving system may nullify the document&nbsp; 
+		using a &quot;nullify document&quot; document which MUST be sent to all recipients 
+		and the originating system.&nbsp;&nbsp; </li>
+	</ul>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM"><b>Note - Application 
+	Acknowledgements are sent to originating systems for notification of 
+	successful or failure handling by the receiving application.</b></p>
+	<h2><a name=_Toc_Section_6.2></a>6.2&nbsp;&nbsp;&nbsp;&nbsp;Originator 
+	Responsibilities</h2>
+	<p class="MsoMIM"><br>
+	<b>Properly construct CDA 
+	Narrative Blocks : </b></p>
+	<ul>
+		<li>
+		<p class="MsoMIM">An originator of a CDA document must ensure that the 
+	attested portion of the document body is structured such that a recipient, 
+	adhering to the recipient responsibilities above, will correctly render the 
+	document. </li>
+	</ul>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM"><b>The CDA structured Body: </b></p>
+	<ul>
+		<li>
+		<p class="MsoMIM">The label of a section must be conveyed in 
+	the Section.title component.</li>
+		<li>
+		<p class="MsoMIM">The attested narrative contents of a section 
+	must be placed in the Section.text field, regardless of whether information 
+		is also conveyed in CDA entries. Attested multimedia referenced by URL 
+		in the narrative must not be carried in the document sent to PSIS. </li>
+		<li>
+		<p class="MsoMIM">An originator of a CDA document is not required to 
+		fully encode all narrative into CDA entries within the CDA body only 
+		those applicable to the sending systems conformance level.&nbsp;<p class="MsoMIM">&nbsp;</p>
+		</li>
+	</ul>
+	<p class="MsoMIM"><b>Error handling </b></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">An Originating system on receipt of an Application 
+		Acknowledgement containing the one of the error codes from the code list 
+		for the domain contained in the relevant External Interface 
+		Specification should initiate a work stream to rectify any error by&nbsp; 
+		either</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<ul>
+		<li>
+		<p class="MsoMIM">Replacing the invalid document with a new correct 
+		version</p></li>
+	</ul>
+	<p class="MsoMIM">&nbsp;or </p>
+	<ul>
+		<li>
+		<p class="MsoMIM">by nullifying the invalid document using the 
+		&quot;Nullify Document&quot;&nbsp; document which MUST be sent to all recipients.It should also nullify any local cache / copy as 
+		necessary.</p></li>
+	</ul>
+	<p class="MsoMIM">&nbsp;&nbsp;&nbsp;
+		</p>
+	<p class="MsoMIM">An Originating system on receipt of a &quot;Nullify 
+	Document&quot; document for any document it has sent, should initiate a work 
+	stream to rectify any error including nullifying any local cache / copy as 
+	necessary.&nbsp; </p>
+	<p class="MsoMIM">&nbsp;</p>
+	
+	<h2><a name=POCD_IN150001UK06></a><a name=_Toc_Section_6.3></a>6.3&nbsp;&nbsp;&nbsp;&nbsp;Primary Recipient Discharge Report - POCD_IN150001UK06
+</h2>
+	<p class="MsoMIM">
+	Communicates a Discharge Report to a primary recipient where the recipient 
+	is recommended to act upon information carried in the document.</span></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table121">
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Sending Role</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText"><span class="TableHeading">Discharge 
+			Report Originating System </span></p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText"><span class="TableHeading">
+			<span style="font-weight:normal;">
+			<a title="View Application Role" href="#POCD_AR150001UK02" style="color: blue">
+			POCD_AR150001UK02</a></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report Receiving System</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Application Role" href="#POCD_AR150002UK02" style="color: blue">
+			POCD_AR150002UK02</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Trigger Event" href="#POCD_TE150001UK01" style="color: blue">
+			POCD_TE150001UK01</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading"><span style="font-size:10.0pt;">Transmission Wrapper</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Send Message Payload</p></td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+			MCCI_MT010101UK12</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Control Act Wrapper</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Control Act</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+			MCAI_MT040101UK03</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Message Type</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Message Type" style="color: blue" href="#POCD_MT150001UK06">
+			POCD_MT150001UK06
+</a></p>
+			</td>
+		</tr>
+	</table>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">
+	<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN150001UK06.xsd">
+	<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+	<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table122">
+		<tr>
+			<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Reason</span></span></p>
+			</td>
+			<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Interaction</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">On receipt of document </p>
+			</td>
+			<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Application Acknowledgement</p>
+			<p class="TableText">
+			<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+			MCCI_IN010000UK13</a></p>
+			</td>
+		</tr>
+	</table>
+	<p class="TableText">&nbsp;</p>
+	<p class="MsoMIM"><b>The receiving system should replace any copy of the 
+	document stored or cached on the system on receiving a new version of a 
+	document. </b></p>
+	<h2><a name=POCD_IN150002UK06></a><a name=_Toc_Section_6.4></a>6.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS 
+	Discharge Report - POCD_IN150002UK06
+</h2>
+	<p class="MsoMIM"><font size="3">Communicates a Discharge Report to PSIS 
+	for processing and storage.</font><font size="2"><br>
+&nbsp;</font></p>
+	<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table123">
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Sending Role</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText"><span class="TableHeading">Discharge 
+			Report Originating System</span></p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Application Role" href="#POCD_AR150001UK02" style="color: blue">
+			POCD_AR150001UK02</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Receiving Role</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report Receiving System (PSIS)</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Application Role" href="#POCD_AR150003UK02" style="color: blue">
+			POCD_AR150003UK02</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Trigger Event" href="#POCD_TE150001UK01" style="color: blue">
+			POCD_TE150001UK01</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Transmission Wrapper</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Send Message Payload</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+			MCCI_MT010101UK12</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Control Act Wrapper</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Control Act</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+			MCAI_MT040101UK03</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Message Type</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Message Type" style="color: blue" href="#POCD_MT150001UK06">
+			POCD_MT150001UK06
+</a></p>
+			</td>
+		</tr>
+	</table>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">
+	<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN150002UK06.xsd">
+	<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+	<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table124">
+		<tr>
+			<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Reason</span></span></p>
+			</td>
+			<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Interaction</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+	<font size="2">
+			On receipt of document
+
+			</p>
+			</td>
+			<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Application Acknowledgement</p>
+			<p class="TableText">
+			<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+			MCCI_IN010000UK13</a></p>
+			</td>
+		</tr>
+	</table>
+	<p class="TableText">&nbsp;</p>
+	<p class="MsoMIM"><b>The receiving system should replace any copy of the 
+	document stored or cached on the system on receiving a new version of a 
+	document. </b></p>
+	<h2><a name=POCD_IN150003UK06></a><a name=_Toc_Section_6.5></a>6.5&nbsp;&nbsp;&nbsp;&nbsp;Copy 
+	Discharge Report - POCD_IN150003UK06
+</h2>
+	<p class="MsoMIM"><font size="3">Communicates a Discharge Report to a 
+	copy recipient where the document is for information only and NO system 
+	action is defined.</font></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM"><font size="3">
+	Note :- if the receiving system does store , process or act on information 
+	contained in this document in any way, then it must process any replacement 
+	document received in a suitable manner.</font></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table131">
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Sending Role</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText"><span class="TableHeading">Discharge 
+			Report Originating System</span></p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Application Role" href="#POCD_AR150001UK02" style="color: blue">
+			POCD_AR150001UK02</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Receiving Role</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report Copy Recipient</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Application Role" href="#POCD_AR150004UK02" style="color: blue">
+			POCD_AR150004UK02</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report</p></td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Trigger Event" href="#POCD_TE150001UK01" style="color: blue">
+			POCD_TE150001UK01</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Transmission Wrapper</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Send Message Payload</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+			MCCI_MT010101UK12</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Control Act Wrapper</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Trigger Event Control Act</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+			MCAI_MT040101UK03</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Message Type</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Message Type" style="color: blue" href="#POCD_MT150001UK06">
+			POCD_MT150001UK06
+</a></p>
+			</td>
+		</tr>
+	</table>
+	<p class="TableText"><span style="color: #0000FF">&nbsp;</span></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">
+	<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN150003UK06.xsd">
+	<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+	<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table132">
+		<tr>
+			<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Reason</span></span></p>
+			</td>
+			<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;">Interaction</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+	<font size="2">
+			On receipt of document
+
+			</p>
+			</td>
+			<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Application Acknowledgement</p>
+			<p class="TableText">
+			<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+			MCCI_IN010000UK13</a></p>
+			</td>
+		</tr>
+	</table>
+	<p class="TableText">&nbsp;</p>
+	<p class="MsoMIM"><b>The receiving system should replace any copy of the 
+	document stored or cached on the system on receiving a new version of a 
+	document. </b></p>
+	<p class="TableText">&nbsp;</p>
+	<h2><a name=POCD_IN150004UK06></a><a name=_Toc_Section_6.6></a>6.6&nbsp;&nbsp;&nbsp;&nbsp;Nullify 
+Discharge Report - POCD_IN150004UK06
+</h2>
+	<p class="MsoMIM"><font size="3">Communicates the nullification (by replacement) of any Discharge Report sent to 
+	any recipient.</font></p>
+	<p class="MsoMIM"><font size="3">Must be sent to all information 
+	recipients (including trackers) and originating system.</font></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table125">
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Sending Role</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report Originating System</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText"><span class="TableHeading">
+			<span style="font-weight:normal;">
+			<a title="View Application Role" href="#POCD_AR150001UK02" style="color: blue">
+			POCD_AR150001UK02</a></span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report Primary Receiving System</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Application Role" href="#POCD_AR150002UK02" style="color: blue">
+			POCD_AR150002UK02</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report Receiving System (PSIS)&nbsp; </p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Application Role" href="#POCD_AR150003UK02" style="color: blue">
+			POCD_AR150003UK02</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report Copy Recipient</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Application Role" href="#POCD_AR150004UK02" style="color: blue">
+			POCD_AR150004UK02</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Discharge Report Withdrawal</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Trigger Event" style="color: blue" href="#POCD_TE150002UK01">
+			POCD_TE150002UK01</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Transmission Wrapper</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Send Message Payload</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+			MCCI_MT010101UK12</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Control Act Wrapper</span></span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Trigger Event Control Act</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+			MCAI_MT040101UK03</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+  <span class="TableHeading">Message Type</span></p>
+			</td>
+			<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Nullification Document</p>
+			</td>
+			<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+			<a href="../../Nullification/Document%20files/Nullification%20IM.htm#_Toc_Section_5.1">
+			POCD_MT130001UK05
+</a></p>
+			</td>
+		</tr>
+	</table>
+	<p class="TableText">&nbsp;</p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">
+	<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN150004UK06.xsd">
+	<img border="0" src="../../../Core/Components_files/image002.gif" width="18" height="15"></a></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+	<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table126">
+		<tr>
+			<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Reason</span></span></p>
+			</td>
+			<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="MsoMIM"><span class="TableHeading">
+			<span style="font-size:10.0pt;
+  ">Interaction</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">
+	<font size="2">
+			On receipt of document
+
+			</p>
+			</td>
+			<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+			<p class="TableText">Application Acknowledgement</p>
+			<p class="TableText">
+			<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+			MCCI_IN010000UK13</a></p>
+			</td>
+		</tr>
+	</table>
+	<p class="TableText">&nbsp;</p>
+	<p class="MsoMIM"><b>The receiving system must also nullify any copy of 
+	the document stored or cached on the system. </b></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<div class="MsoMIM" align="center" style="text-align:center">
+		<hr size="3" width="100%" align="center"></div>
+	<h1><a name=_Toc_Section_7></a>7&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</h1>
+	<h2><a name=POCD_MT150001UK06></a><a name=_Toc_Section_7.1></a>7.1&nbsp;&nbsp;&nbsp;&nbsp;Discharge 
+Report - POCD_MT150001UK06
+</h2>
+	<p class="MsoMIM"><font size="3">The Discharge Report informs the recipient that responsibility 
+	for the service user has been transferred and contains a summary of care events 
+	and care data.</font></p>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">&nbsp;<a title="View R-MIM" style="color: blue" href="../Tabular%20View/POCD_RM150001UK06.htm"><img border="0" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Tabular View" style="color: blue" href="../Tabular%20View/POCD_HD150001UK06-NoEdit.htm">
+	<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Schema" style="color: blue" href="../../../Schemas/POCD_MT150001UK06.xsd">
+	<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Templates" style="color: blue" href="../Tabular%20View/POCD_RM150001UK06-TemplateList.htm">
+	<img border="0" src="../../../Core/Components_files/image010.GIF" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+	<a title="View References" style="color: blue" href="../Tabular%20View/POCD_RM150001UK06-Reference%20Usage.htm">
+	<img border="0" src="../../../Core/Components_files/image011.GIF" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+	<a title="View MIF" style="color: blue" href="../../../Mif/POCD_RM150001UK06-DischargeReport.mif">
+	<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a></p>
+    <h3><a name=_Toc_Section_7.1.1></a>7.1.1&nbsp;&nbsp;&nbsp;&nbsp;Examples for Scenario Mary - Maternity Discharge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h3>
+	<p class="MsoMIM">
+	Mary's Discharge report&nbsp;&nbsp;&nbsp;&nbsp;
+	<a style="color: blue; text-decoration: none" href="../../../Examples/Discharge/POCD_EX150001UK06_05.xml">
+	<img title="Example" border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp; </p>
+	<p class="MsoMIM">
+	&nbsp;</p>  <h3><a name=_Toc_Section_7.1.2></a>7.1.2&nbsp;&nbsp;&nbsp;&nbsp;Examples for Scenario 
+John - PICU Discharge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h3>
+	<p class="MsoMIM">
+	John's Discharge report&nbsp;&nbsp;&nbsp;&nbsp;
+	<a style="color: blue; text-decoration: none" href="../../../Examples/Discharge/POCD_EX150001UK06_08.xml">
+	<img title="Example" border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp; </p>
+	<p class="MsoMIM">
+	&nbsp;</p>
+	<p class="MsoMIM">
+	<b>&quot;The Information Examples and Example Messages published in this MiM have 
+	been validated both clinically and technically. An extended set of examples, 
+	produced in collaboration with suppliers and including rendering rules for 
+	all templates, will be published separately from this MIM.&quot;</b><br>
+&nbsp;</p>
+	<font face="Arial">
+	<div class="MsoMIM" align="center" style="text-align:center">
+		<hr size="3" width="100%" align="center"></div>
+	<h1><a name=_Toc_Section_8></a>8&nbsp;&nbsp;&nbsp;&nbsp;Glossary of Terms</h1>
+	<table class="MIMGlossaryTable " border="1" cellspacing="0" cellpadding="2">
+		<tr>
+			<td>Application Acknowledgement</td>
+			<td>A response from one application to another indicating 
+			that a message has been received and is valid.</td>
+		</tr>
+		<tr>
+			<td>Application Role</td>
+			<td>The role played by the application in a particular interaction.</td>
+		</tr>
+		<tr>
+			<td>Data type</td>
+			<td>The structural format of the data carried in an attribute</td>
+		</tr>
+		<tr>
+			<td>Data Type Flavour</td>
+			<td>A subdivision of a particular data type</td>
+		</tr>
+		<tr>
+			<td>DCE UUID</td>
+			<td>Universally Unique Identifier</td>
+		</tr>
+		<tr>
+			<td>ED</td>
+			<td>Emergency Department. Previously known as Accident &amp; Emergency</td>
+		</tr>
+		<tr>
+			<td>EHR</td>
+			<td>Electronic Healthcare Record</td>
+		</tr>
+		<tr>
+			<td>Legitimate Relationship</td>
+			<td>A Legitimate Relationship is a relationship between a clinician (or 
+			NHS organisation work group) and a patient, that gives the clinician, 
+			or workgroup member, certain levels of entitlement to access that patient’s 
+			health record maintained on National Systems.</td>
+		</tr>
+		<tr>
+			<td>NHS CRS</td>
+			<td>NHS Care Record Service</td>
+		</tr>
+		<tr>
+			<td>OID</td>
+			<td>Object Identifier, a unique identifier e.g. used to identify coding systems</td>
+		</tr>
+		<tr>
+			<td>Provider</td>
+			<td>An alternative term for a fulfiller</td>
+		</tr>
+		<tr>
+			<td>PCT</td>
+			<td>Primary CareTrust, responsible for primary and community health services within 
+			a geographical boundary.</td>
+		</tr>
+		<tr>
+			<td>PDS</td>
+			<td>Patient Demographic Service</td>
+		</tr>
+		<tr>
+			<td>PSIS</td>
+			<td>Personal Spine Information Service.</td>
+		</tr>
+		<tr>
+			<td>Requestor</td>
+			<td>The HCP responsible for the request</td>
+		</tr>
+		<tr>
+			<td>SDS</td>
+			<td>Spine Directory Service</td>
+		</tr>
+		<tr>
+			<td>Service User</td>
+			<td>A person who is registered on the PDS</td>
+		</tr>
+	</table>
+	<a name="_Changes"></a></div>
+
+</div>
+</body>
+</html>

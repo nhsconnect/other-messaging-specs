@@ -1,0 +1,402 @@
+<HTML><HEAD><TITLE>Confirm Batch Response for Legitimate Relationship Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="Confirm Batch Response for Legitimate Relationship" name=Entry>
+<META content=REPC_HD130100UK02 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Confirm Batch Response for Legitimate Relationship - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="REPC_RM130000UK02.htm"><B>REPC_RM130000UK02</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ConfirmationList><B>ConfirmationList</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#WorkingList;ConfirmationList_c title=REPC_HD130100UK02#ConfirmationList_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Response to Confirm if Legitimate Relationship exists for a list of Patient Identifiers that have been entered as query parameter items.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ConfirmationList>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>LIST</B>} )<A>{<B> Fixed="<FONT color=red>LIST</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Act;ConfirmationList/$classCode title=REPC_HD130100UK02#ConfirmationList.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a List.</P>
+<UL>
+<LI>Fixed Value: "LIST"</LI></UL>
+<P>The classCode is carried as an attribute of the ConfirmationList element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Act;ConfirmationList/$moodCode title=REPC_HD130100UK02#ConfirmationList.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an Event.</P>
+<UL>
+<LI>Fixed Value: "EVN"</LI></UL>
+<P>The moodCode is carried as an attribute of the&nbsp;<I>ConfirmationList&nbsp;</I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..10000] </B></FONT><A name=Component2><B>component</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD130100UK02#Act;/ConfirmationList/component title=REPC_HD130100UK02#/ConfirmationList/component style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of each component in the ConfirmationList list.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130100UK02#ActRelationship;ConfirmationList/component/$typeCode title=REPC_HD130100UK02#ConfirmationList/component.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value "COMP" </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>target</B> (<B><A href="#ResponseOptions">ResponseOptions</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130100UK02#ActRelationship;ConfirmationList/component/responseOptions-ResponseOptions title=REPC_HD130100UK02#ConfirmationList/component/responseOptions-ResponseOptions style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Response options available for each patient Id in the list.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ResponseOptions><B>ResponseOptions</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Act;ResponseOptions_c title=REPC_HD130100UK02#ResponseOptions_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A description of the Choices available for each patient Identifier in the List.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ResponseOptions>Used by: </A></FONT><A href="#ConfirmationList"><B>ConfirmationList</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=RecordTarget><B>recordTarget</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD130100UK02#Act;component/ResponseOptions/recordTarget title=REPC_HD130100UK02#component/ResponseOptions/recordTarget style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Refers to the patient who is the subject of the query response.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RCT</B>} )<A>{<B> Fixed="<FONT color=red>RCT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130100UK02#Participation;ResponseOptions/recordTarget/$typeCode title=REPC_HD130100UK02#ResponseOptions/recordTarget.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the role of patient as record target.</P>
+<UL>
+<LI>Fixed value: "RCT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>patient</B> (<A href="#Patient"><B>Patient</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD130100UK02#Participation;ResponseOptions/recordTarget/patient-Patient title=REPC_HD130100UK02#ResponseOptions/recordTarget/patient-Patient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Link to the Patient who is the Record Target</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B><I>either </I></FONT>: <B><A href="#DetectedIssueEvent">DetectedIssueEvent</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Act;ResponseOptions/generalizes-DetectedIssueEvent title=REPC_HD130100UK02#ResponseOptions/generalizes-DetectedIssueEvent style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Reason for a patient identifier failure.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="#LRStatus">LRStatus</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Act;ResponseOptions/generalizes-LRStatus title=REPC_HD130100UK02#ResponseOptions/generalizes-LRStatus style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Boolean value for LR existence.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=DetectedIssueEvent><B>DetectedIssueEvent</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Observation;DetectedIssueEvent_c title=REPC_HD130100UK02#DetectedIssueEvent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Details of the business&nbsp;issue or error that has been detected by the receiving system. </B>
+<P><B>A business&nbsp;issue or error is defined as being one that is related to the information&nbsp;conveyed by the&nbsp;message evaluated in context by the processing application.</B>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=DetectedIssueEvent>Used by: </A></FONT><A href="#ConfirmationList"><B>ConfirmationList</B></A>, <A href="#ResponseOptions"><B>ResponseOptions</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ALRT</B>} )<A>{<B> Fixed="<FONT color=red>ALRT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Observation;DetectedIssueEvent/$classCode title=REPC_HD130100UK02#DetectedIssueEvent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the act is an alert.</P>
+<UL>
+<LI>Fixed value: "ALRT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Observation;DetectedIssueEvent/$moodCode title=REPC_HD130100UK02#DetectedIssueEvent.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an alert that has occurred.</P>
+<UL>
+<LI>Fixed value: "EVN".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/ActDetectedIssueCode.htm"><B>ActDetectedIssueCode</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Observation;DetectedIssueEvent/$code title=REPC_HD130100UK02#DetectedIssueEvent.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This&nbsp;allows the responding system to&nbsp;record the&nbsp;business issue or error&nbsp;that has been detected.</P>
+<P>All business issues and errors shall be reported using DetectedIssueEvent.code. The code shall contain a qualifier sub element&nbsp;to indicate the severity of the issue or error.&nbsp;</P>
+<P>The Coded&nbsp;Qualified datatype flavour&nbsp;shall be&nbsp;used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute is required and shall contain a value from one of the code systems identified&nbsp;under ActDetectedIssueCode </LI>
+<LI>The <I>displayName</I> attribute is optional and may contain the textual description of the code </LI>
+<LI>The <I>codeSystem</I> attribute is required and shall contain an OID as appropriate. </LI>
+<LI>The <I>originalText</I>&nbsp;sub element&nbsp;is optional and may contain the text&nbsp;used&nbsp;as the basis for the coding&nbsp; </LI>
+<LI>The <I>qualifier</I> sub element is required and&nbsp; shall contain one of the&nbsp;qualifier codes identified under DetectedIssueQualifier together with the appropriate OID.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=LRStatus><B>LRStatus</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Observation;LRStatus_c title=REPC_HD130100UK02#LRStatus_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This Act identifies the status of the Legitimate Relationship for a&nbsp;particular patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=LRStatus>Used by: </A></FONT><A href="#ConfirmationList"><B>ConfirmationList</B></A>, <A href="#ResponseOptions"><B>ResponseOptions</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Observation;LRStatus/$classCode title=REPC_HD130100UK02#LRStatus.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an observation.</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Observation;LRStatus/$moodCode title=REPC_HD130100UK02#LRStatus.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the control act mood is an event.</P>
+<UL>
+<LI>Fixed value "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Observation;LRStatus/$value title=REPC_HD130100UK02#LRStatus.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A value stating the existence or absence of an active&nbsp;Legitimate Relationship record.</P>
+<P><SPAN class=242012808-18102004><FONT face=Arial size=2>The BL (Boolean) data type is designed to carry a 'True/False' status. Where it is essential that a value is carried, the field is set to Mandatory. Mandatory requires a value and may not carry 'Null Flavours' The BN datatype is a reserved HL7 internal datatype and must not be used.</FONT></SPAN></P>
+<P><FONT face=Arial size=2>The XML used to represent an attribute that is a Mandatory BL data type is identical to that used to represent a BN.</FONT></P><FONT face=Arial size=2>
+<P>The false value does not denote a failed message. It means that there&nbsp;are no&nbsp;Active LRs for this patient.</P></FONT></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Patient><B>Patient</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Patient;Patient_c title=REPC_HD130100UK02#Patient_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of Patient who is the record target.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Patient>Used by: </A></FONT><A href="#ResponseOptions"><B>ResponseOptions</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PAT</B>} )<A>{<B> Fixed="<FONT color=red>PAT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Patient;Patient/$classCode title=REPC_HD130100UK02#Patient.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of a patient.</P>
+<UL>
+<LI>Fixed value "PAT" Patient</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD130100UK02#Patient;Patient/$id title=REPC_HD130100UK02#Patient.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The NHS number that identifies the patient.</P>
+<P>NHS numbers are composed of ten numerics. </P>
+<UL>
+<LI>The <I>root</I> element identifies the&nbsp; NHS patient numbering scheme&nbsp;represented by&nbsp;OID 2.16.840.1.113883.2.1.4.1 </LI>
+<LI>the <I>extension</I> contains the actual identifier.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

@@ -1,0 +1,1977 @@
+<html>
+
+<head>
+<meta name="domain" content="PSIS Query">
+<title>PSIS Query Implementation Manual</title>
+<link rel="stylesheet" href="../../../Core/Stylesheets/IMCommon_v2.css" type="text/css">
+<style type="text/css">
+p { font-family: arial; } 
+</style>
+</head>
+
+<body lang="EN-GB" link="blue" vlink="purple">
+
+<div id="header">
+	<p>PSIS Query Implementation Manual - Version 2.5 </p>
+</div>
+<div id="content">
+	<div class="Section1">
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p class="MsoNormal"><b><a name=_Toc_Section_><font size="5"></font></a>
+		<font size="5">Contents</font></b></p>
+		<div class="index1" div id="fp_TOC" class="fp_TOC">
+			<a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;General Information</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.1">1.1 Overview</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.2">1.2 Batching</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.3"><font face="Arial">1.3 Back Office Admin 
+		Interactions</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.4"><font face="Arial">1.4 Schematron</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.5">1.5&nbsp;&nbsp;&nbsp;&nbsp;Known Issues</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.5.1">1.5.1 Context Conduction</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.6"><font face="Arial">1.6 Authors and Control 
+		Acts</font></a><br><a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.1">2.1&nbsp;&nbsp;&nbsp;&nbsp;Sally’s Follow-up 
+		Appointment with her GP</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.2">2.2&nbsp;&nbsp;&nbsp;&nbsp;Ethel attends the 
+		Emergency Department</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.3">2.3&nbsp;&nbsp;&nbsp;&nbsp;Patient Has No 
+		Records On PSIS </a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.4">2.4&nbsp;&nbsp;&nbsp;&nbsp;LSP System Synchronises 
+		with PSIS</a><br><a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Query Placer - QUPC_AR160001UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.2">3.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Query Fulfiller - QUPC_AR160002UK01</a><br><a href="#_Toc_Section_4">4&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1">4.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Query - QUPC_TE160001UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.2">4.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Query Response - QUPC_TE160002UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.3">4.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Query - QUPC_TE160003UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.4">4.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Query Response - QUPC_TE160004UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.5">4.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Query - QUPC_TE160007UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.6">4.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Query Response - QUPC_TE160008UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.7">4.7&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation Query - QUPC_TE160009UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.8">4.8&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation Query Response - QUPC_TE160010UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.9">4.9&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document List Query - QUPC_TE160201UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.10">4.10&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document Query - QUPC_TE160202UK01</a><br><a href="#_Toc_Section_5">5&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.1">5.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List 
+		Query Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.2">5.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Query 
+		Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.3">5.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Query 
+		Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.4">5.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation 
+		Query Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.5">5.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document 
+		List Query Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.6">5.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document 
+		Query Interactions</a><br><a href="#_Toc_Section_6">6&nbsp;&nbsp;&nbsp;&nbsp;Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.1">6.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Data Request - QUPC_IN160101UK05 </a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.2">6.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Data Retrieval - QUPC_IN160102UK05 </a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.3">6.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Data Request - QUPC_IN160103UK05 </a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.4">6.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Data Retrieval - QUPC_IN160104UK05 </a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.5">6.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Data Request - QUPC_IN160107UK05 </a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.6">6.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Data Retrieval QUPC_IN160108UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.7">6.7&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation List Data Request - QUPC_IN160109UK05 </a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.8">6.8&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation List Data Retrieval QUPC_IN160110UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.9">6.9&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document List Data Request - QUPC_IN160201UK04 </a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.10">6.10&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document Data Request - QUPC_IN160202UK04</a><br><a href="#_Toc_Section_7">7&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1">7.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Query - QUPC_MT160001UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1.1">7.1.1 Example for Sally&#39;s Follow-up 
+		Appointment With Her GP (Emergency Department)</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.2">7.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Query Response - QUPC_MT160002UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.3">7.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Query - QUPC_MT160003UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.3.1">7.3.1 Example for Sally&#39;s Follow-up 
+		Appointment With Her GP (Emergency Department)</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.3.2">7.3.2 Example for Scenario for Ethel 
+		- Adult attending Cardiology Rapid Access Chest Pain Clinic (Outpatient 
+		Report)</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.4">7.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Query Response - QUPC_MT160004UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.4.1">7.4.1 Example for Sally&#39;s Follow-up 
+		Appointment With Her GP (Emergency Department)</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.5">7.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Query - QUPC_MT160007UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.6">7.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Query Response - QUPC_MT160008UK05</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.7">7.7&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation List Query - QUPC_MT160009UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.8">7.8&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation List Query Response - QUPC_MT160010UK05</a><br><a href="#_Toc_Section_8">8&nbsp;&nbsp;&nbsp;&nbsp;Glossary of Terms</a></div>
+		<p><a href="#_Toc_Section_9">9&nbsp;&nbsp;&nbsp; Conformance 
+		to HL7</a></p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<p>&nbsp;</p>
+		<p><b>Change History&nbsp;</b>&nbsp;&nbsp;
+		<a title="View Change History" style="color: blue;" href="Change%20History/PSIS_Q_CH.htm">
+		<img src="../../../Core/Contents_files/Document.gif" border="0" height="20" width="30"></a></p>
+		<p>&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<p>&nbsp;</p>
+		<h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;General Information</h1>		<h2><a name=_Toc_Section_1.1></a>1.1 Overview</h2>
+		<p>&nbsp;</p>
+		<p>PSIS Queries provide a mechanism for clinicians to 
+		gain access to the NHS Care Record Spine for an individual service user 
+		(patient). Local systems will query the service user’s NHS Care Record and 
+		populate screens with NHS Care Record data. </p>
+		<p>&nbsp;</p>
+		<p>This version of PSIS-Query relates to PSIS 2008.</p>
+		<p>&nbsp;</p>
+		<p>In this version the following queries and associated 
+		responses are specified: <br>
+&nbsp;</p>
+		<ul style="margin-top:0cm" type="disc">
+			<li class="MsoNormal"><b>PSIS Document List Query</b> - requests a list 
+			of metadata about documents with optional parameters. <br>
+&nbsp;</li>
+			<li class="MsoNormal"><b>PSIS Document Query</b> - data is requested 
+			for a single specified Document where the identifier has been retrieved 
+			using another query message. This is the only query which returns a 
+			message payload. Only one document can be queried on at a time. To query 
+			multiple documents, batching must be used.<br>
+&nbsp;</li>
+			<li class="MsoNormal"><b>PSIS CRE List Query</b> - a list of documents 
+			containing a given CRE type is returned. When a parent CRE type is queried 
+			on metadata about documents of that CRE type and child CRE types will 
+			be returned. No indication of the CRE type will be returned in the list 
+			response. Metadata about GP Summaries will not be included in the response.
+			<br>
+&nbsp;</li>
+			<li class="MsoNormal"><b>PSIS Synchronisation List Query</b> - metadata 
+			is retrieved about all documents that been persisted on PSIS within 
+			the stated date/date-range parameter. All documents (active and inactive) 
+			will be returned with this query.</li>
+		</ul>
+		<p>Further information on business flow for PSIS Query 
+		can be found in the Integration Strategy.<br>
+&nbsp;</p>
+		<h2><a name=_Toc_Section_1.2></a>1.2 Batching</h2>
+		<p>In order to process several document requests and 
+		responses, the batching solution as used by PDS should be implemented. This 
+		is detailed in the Infrastructure section of this MIM.</p>
+		<p>&nbsp;</p>
+		<p>Batching is intended to be used with the Document 
+		Query and Response.</p>
+		<p>&nbsp;</p>
+		<h2><a name=_Toc_Section_1.3></a><font face="Arial">1.3 Back Office Admin 
+		Interactions</font></h2>
+		<p>This version of PSIS Query is the first to include 
+		interactions which are not intended for Accredited System use. The PSIS-Admin 
+		interactions have been included in the MIM so that back office developers 
+		(associated with Spine applications) can reference the interaction, message 
+		specifications and IDs. New trigger events have also been created for these 
+		interactions.</p>
+		<p>&nbsp;</p>
+		<p>The PSIS-Admin interactions will use existing queries 
+		however operate on a different group of documents on PSIS. Currently the 
+		Document and Document List queries have PSIS-Admin interactions. When used 
+		with the standard PSIS interactions these queries (except Synchronisation 
+		List query) work against only active documents, when used with PSIS-Admin 
+		interactions these queries work with both active and inactive documents.</p>
+		<p>&nbsp;</p>
+		<p>Spine will reject the use of PSIS-Admin interaction 
+		from unauthorised systems. Authorised systems will consist of back-office 
+		administrative applications internal to the spine.</p>
+		<p>&nbsp;</p>
+		<h2><a name=_Toc_Section_1.4></a><font face="Arial">1.4 Schematron</font></h2>
+		<p><font face="Arial">A schematron is provided at
+		<a href="../../../Schematrons/PSIS_Query_Schematron.xml">\work\schematrons\PSIS_Query_Schematron.xml</a> 
+		which validates the constraints illustrated in the PSIS Query &#39;request&#39; 
+		messages with regards to dissent override values requiring the existence 
+		of certain authors. The inclusion of this schematron is for optional use 
+		and helps enforce the cross-wrapper constraints between the query control 
+		act wrapper and payload.</font></p>
+		<h2><a name=_Toc_Section_1.5></a>1.5&nbsp;&nbsp;&nbsp;&nbsp;Known Issues</h2>		<h3><a name=_Toc_Section_1.5.1></a>1.5.1 Context Conduction</h3>
+		<p>PSIS will not support the HL7 concept of Context Conduction 
+		when indexing meta-data. It should be noted that PSIS will only index acts 
+		which are explicitly stated. Where they are inferred, e.g. for some authors 
+		in CDA documents at Section level, these will not be indexed or returned 
+		in queries for that section.</p>
+		<p>&nbsp;</p>
+		<h2><a name=_Toc_Section_1.6></a><font face="Arial">1.6 Authors and Control 
+		Acts</font></h2>
+		<p>In order to remain consistent with other domains that 
+		contain queries, all queries now use the standard control acts from the 
+		Infrastructure domain. The PSIS Query RMIMs no longer illustrate the control 
+		acts as part of the query payload however they are included as part of the 
+		interaction - see Interaction tables in <a href="#_Toc_Section_6">Section 
+		6</a>. A PowerPoint presentation is available which helps explain these 
+		concepts in
+		<a href="../../../External%20Documents/PSIS%20Query/AuthorMappingPSIS.ppt">
+		\work\External Documents\PSIS Query\AuthorMappingPSIS.ppt</a>.</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_2></a>2&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</h1>		<h2><a name=_Toc_Section_2.1></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;Sally’s Follow-up 
+		Appointment with her GP</h2>		<p>Sally attends her local GP surgery for an appointment; 
+		following on from an ED visit.</p>
+		<p>The GP selects on his local system to retrieve a list 
+		of events over the last year relating to Sally – the local system sends 
+		the request <a href="#_Toc_Section_7.1">[PSIS Document List Query]</a> to 
+		PSIS. The system presents a list of active documents received by PSIS in 
+		the past year <a href="#_Toc_Section_7.2">[PSIS Document List Query Response]</a>. 
+		The list contains a recent ED Report which shows the date and time the report 
+		was received by PSIS, the Document Type (i.e. Emergency Department Report), 
+		the name of the Author and the name of Organisation the letter originated 
+		from.<br>
+&nbsp;</p>
+		<blockquote>
+			<table border="1" width="59%" id="table20">
+				<tr>
+					<td width="16%"><font face="Arial" size="2"><b>Patient</b></font></td>
+					<td width="69%"><font face="Arial" size="2"><b>9900002830</b></font></td>
+				</tr>
+				<tr>
+					<td colspan="2" bgcolor="#C0C0C0"><b>
+					<font size="2" face="Arial">24 May 2006 10:30, GP Summary</font></b></td>
+				</tr>
+				<tr>
+					<td width="16%" height="25"><b><font size="2" face="Arial">
+					Author</font></b></td>
+					<td height="25" width="69%"><font size="2" face="Arial">Dr. 
+					Elsa Tretton (ID=100066325412, Role=200036553321)</font></td>
+				</tr>
+				<tr>
+					<td width="16%">&nbsp;</td>
+					<td width="69%">&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="2" bgcolor="#C0C0C0"><b>
+					<font size="2" face="Arial">12 Jun 2006, 19:20 , Discharge from Inpatient Care (Not Sealed)</font></b></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Author</font></b></td>
+					<td width="69%"><font size="2" face="Arial">David Davis 
+					(ID=100088837201, Role=200099836475)</font></td>
+				</tr>
+				<tr>
+					<td width="16%" height="22"><b><font size="2" face="Arial">
+					Job Role</font></b></td>
+					<td height="22" width="69%"><font size="2" face="Arial">
+					Consultant (R0050)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Organisation</font></b></td>
+					<td width="69%"><font size="2" face="Arial">City Hospital 
+					(ID=XZ947)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Custodian</font></b></td>
+					<td width="69%"><font size="2" face="Arial">Lancashire 
+					Hospital Trust (ID=XZ9)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Encounter</font></b></td>
+					<td width="69%"><font size="2" face="Arial">11-Jun-2006 
+					08:00 to 12-Jun-2006 15:45, Gastroenterology department 
+					(309926000)</font></td>
+				</tr>
+				<tr>
+					<td width="16%">&nbsp;</td>
+					<td width="69%">&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="2" bgcolor="#C0C0C0"><b>
+					<font size="2" face="Arial">27 Aug 2006, 18:07 Emergency Department Report *</font></b></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Author</font></b></td>
+					<td width="69%"><font size="2" face="Arial">Natalie Wallace 
+					(ID=100099876439, RPC=200025166218)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Job Role</font></b></td>
+					<td width="69%"><font size="2" face="Arial">Staff Nurse 
+					(R0620)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Organisation</font></b></td>
+					<td width="69%"><font size="2" face="Arial">St. Elsewhere’s 
+					Hospital (XZ901)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Custodian</font></b></td>
+					<td width="69%"><font size="2" face="Arial">Lancashire 
+					Hospital Trust (XZ9)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Encounter</font></b></td>
+					<td width="69%"><font size="2" face="Arial">26-Aug-2006 
+					17:50 to 27-Aug-2006 15:30, Accident an Emergency department 
+					(225728007)</font></td>
+				</tr>
+			</table>
+			<p><font face="Arial" size="2">* Taken from Emergency Department Domain</font></p>
+		</blockquote>
+		<p><font face="Arial">The ED doctor selects the ED Report and the local 
+		system retrieves the letter from PSIS&nbsp; <a href="#_Toc_Section_7.3">
+		[PSIS Document Query]</a>. PSIS sends the letter to the local System
+		<a href="#_Toc_Section_7.4">&nbsp;[PSIS Document Query Response]</a> in 
+		the same format as it was last uploaded to PSIS. The local system displays 
+		the document in a readable format.<br>
+&nbsp;</font></p>
+		<h2><a name=_Toc_Section_2.2></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;Ethel attends the 
+		Emergency Department</h2>		<p>Ethel is brought in to the Emergency Department with 
+		crushing chest pains. She’s tells the triage nurse that she has been diagnosed 
+		with a heart problem.<br>
+		<br>
+		The triage nurse checks <st1:found w:st="on">
+		PSIS</st1:found> for all previous medication given to Ethel
+		<a href="#_Toc_Section_7.5">[PSIS CRE List Query for the Diagnoses CRE type]</a>. <st1:found w:st="on">
+		PSIS</st1:found> 
+		returns a list of Ethel’s medication <a href="#_Toc_Section_7.6">
+		[PSIS CRE List Query Response]</a>
+		and they are presented 
+		on the local system.<br>
+&nbsp;</p>
+		<blockquote>
+			<table border="1" width="59%" id="table21">
+				<tr>
+					<td width="16%"><font face="Arial" size="2"><b>Patient</b></font></td>
+					<td width="69%"><b><font size="2" face="Arial">9999208759</font></b></td>
+				</tr>
+				<tr>
+					<td colspan="2" bgcolor="#C0C0C0"><b>
+					<font size="2" face="Arial">15-Jan-2006, 14:15, Discharge from Inpatient Care</font></b></td>
+				</tr>
+				<tr>
+					<td width="16%" height="25"><b><font size="2" face="Arial">
+					Author</font></b></td>
+					<td height="25" width="69%"><font size="2" face="Arial">Ian 
+					Crane (ID=100065439987, RPC=200076662019)</font></td>
+				</tr>
+				<tr>
+					<td width="16%" height="22"><b><font size="2" face="Arial">
+					Job Role</font></b></td>
+					<td height="22" width="69%"><font size="2" face="Arial">
+					Consultant (R0050)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Organisation</font></b></td>
+					<td width="69%"><font size="2" face="Arial">City Hospital 
+					(ID=XZ947)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Custodian</font></b></td>
+					<td width="69%"><font size="2" face="Arial">Lancashire 
+					Hospital Trust (ID=XZ9)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Encounter</font></b></td>
+					<td width="69%"><font size="2" face="Arial">06-Jan-2006 
+					10:00 to 15-Jan-2006 09:30, Thoracic surgery department 
+					(309970009)</font></td>
+				</tr>
+				<tr>
+					<td width="16%">&nbsp;</td>
+					<td width="69%">&nbsp;</td>
+				</tr>
+				<tr>
+					<td width="85%" colspan="2" bgcolor="#C0C0C0"><b>
+					<font size="2" face="Arial">05-May-2006, 16:45, Outpatient Clinic Attendance</font></b></td>
+				</tr>
+				<tr>
+					<td width="16%" height="25"><b><font size="2" face="Arial">
+					Author</font></b></td>
+					<td height="25" width="69%">
+					<font size="2" face="Arial">Harry Pollock (ID=100055467301, 
+					RPC=200009873019)</font></td>
+				</tr>
+				<tr>
+					<td width="16%" height="22"><b><font size="2" face="Arial">
+					Job Role</font></b></td>
+					<td height="22" width="69%"><font size="2" face="Arial">
+					Consultant (R0050)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Organisation</font></b></td>
+					<td width="69%"><font size="2" face="Arial">St. Elsewhere’s 
+					Hospital (XZ901)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Custodian</font></b></td>
+					<td width="69%"><font size="2" face="Arial">Lancashire 
+					Hospital Trust (XZ9)</font></td>
+				</tr>
+				<tr>
+					<td width="16%"><b><font size="2" face="Arial">Encounter</font></b></td>
+					<td width="69%"><font size="2" face="Arial">05-May-2006 
+					14:00 to 05-May-2006 16:20, Cardiology Department 
+					(309915006)</font></td>
+				</tr>
+			</table>
+		</blockquote>
+		<p>
+		The triage nurse selects 
+		the outpatient report from the Cardiology Department to view the full report
+		<a href="#_Toc_Section_7.3">[PSIS Document Query]</a>. 
+		The report is returned &nbsp;<a href="#_Toc_Section_7.4">[PSIS Document 
+		Query Response]</a> and viewed on the 
+		local system.</p>
+		<h2><a name=_Toc_Section_2.3></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;Patient Has No 
+		Records On PSIS </h2>		<p>Dr Sugden has a new 
+		patient, Jane Robinson, who’s previous GP was not PSIS compliant. He gains 
+		the necessary LR to be able to access Jane&#39;s record.<br>
+		<br>
+		Dr Sugden again uses his local system to request a list of Care Events from 
+		PSIS <a href="#_Toc_Section_7.1">[PSIS Document List Query]</a>. After confirming 
+		that the appropriate access rights exist, PSIS attempts to retrieve a list 
+		of all events recorded. <br>
+		<br>
+		As Jane&#39;s previous GP was not PSIS compliant PSIS cannot find any documents 
+		for her and returns the appropriate error code to the local system
+		<a href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">
+		[Query Act Failed] </a>– with the appropriate error code(s).&nbsp;&nbsp;&nbsp;
+		</p>
+		<h2><a name=_Toc_Section_2.4></a>2.4&nbsp;&nbsp;&nbsp;&nbsp;LSP System Synchronises 
+		with PSIS</h2>		<p><font face="Arial">A local system routinely identifies the need to refresh 
+		its local cache of PSIS National Summary Care Records. It identifies the 
+		date of the last synchronisation (for each of the patient’s record individually) 
+		between the spine and the local system.<br>
+		<br>
+		The local system requests a list of documents with a received date or changed 
+		date between the last synchronisation date and the current local system 
+		date (for each patient in turn) <a href="#_Toc_Section_7.7">&nbsp;[PSIS 
+		Synchronisation List Query]</a>. </font></p>
+		<p>&nbsp;</p>
+		<p><font face="Arial">PSIS returns a list of meta-data about the requested 
+		documents to the requesting local system&nbsp;
+		<a href="#_Toc_Section_7.8">[PSIS Synchronisation List Query Response]</a>.
+		</font></p>
+		<p>&nbsp;</p>
+		<p><font face="Arial">The local system then uses the metadata to calculate 
+		the size of messages and send batches of document requests to return responses 
+		which are within the TMS size limit (~5MB).</font></p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_3></a>3&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</h1>		<p>The applications involved in the PSIS Query processes 
+		play specific roles.&nbsp; These, along with the interactions associated with 
+		each role, are identified below.</p>
+		<h2><a name=QUPC_AR160001UK01></a><a name=_Toc_Section_3.1></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Query Placer - QUPC_AR160001UK01</h2>		<p>The PSIS Query Placer will initiate any of the PSIS 
+		queries. </p>
+		<p>&nbsp;</p>
+		<p>PSIS Query Placer Interactions&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a>
+		</p>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_AR160002UK01></a><a name=_Toc_Section_3.2></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Query Fulfiller - QUPC_AR160002UK01</h2>		<p>The PSIS Query Fulfiller will respond to any one of 
+		the PSIS queries. A response will either carry data as requested or will 
+		be a response which carries a reason for there being no data returned.</p>
+		<p>&nbsp;</p>
+		<p>PSIS Query Fulfiller Interactions&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a>
+		</p>
+		<p>&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<p>&nbsp;</p>
+		<h1><a name=_Toc_Section_4></a>4&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</h1>		<h2><a name=QUPC_TE160001UK01></a><a name=_Toc_Section_4.1></a>4.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Query - QUPC_TE160001UK01</h2>		<p>The PSIS Document List Query trigger event indicates 
+		that the query originator has initiated a PSIS Document List Query to obtain 
+		a list of Documents for a specific service user. </p>
+		<h2><a name=QUPC_TE160002UK01></a><a name=_Toc_Section_4.2></a>4.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Query Response - QUPC_TE160002UK01</h2>		<p>The PSIS Document List Response trigger event indicates 
+		that data has been found on PSIS which satisfies the specified criteria 
+		defined in the PSIS Document List Query.</p>
+		<h2><a name=QUPC_TE160003UK01></a><a name=_Toc_Section_4.3></a>4.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Query - QUPC_TE160003UK01</h2>		<p>The PSIS Document Query trigger event indicates that 
+		the query originator has initiated a PSIS Document Query to obtain a specified 
+		Documents for a specific service user.</p>
+		<h2><a name=QUPC_TE160004UK01></a><a name=_Toc_Section_4.4></a>4.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Query Response - QUPC_TE160004UK01</h2>		<p>The PSIS Document Response trigger event indicates 
+		that data has been found on PSIS which satisfies the specified criteria 
+		defined in the PSIS Document Query.</p>
+		<h2><a name=QUPC_TE160007UK01></a><a name=_Toc_Section_4.5></a>4.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Query - QUPC_TE160007UK01</h2>		<p>The PSIS CRE List Query trigger event indicates that 
+		the query originator has initiated a PSIS CRE List Query to obtain a list 
+		of clinical sections in Documents for a particular CRE-Type for a specific 
+		service user.</p>
+		<h2><a name=QUPC_TE160008UK01></a><a name=_Toc_Section_4.6></a>4.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Query Response - QUPC_TE160008UK01</h2>		<p>The PSIS CRE List Query Response trigger event indicates 
+		that data has been found on PSIS which satisfies the specified criteria 
+		defined in the PSIS CRE List Query.</p>
+		<h2><a name=QUPC_TE160009UK01></a><a name=_Toc_Section_4.7></a>4.7&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation Query - QUPC_TE160009UK01</h2>		<p>The PSIS Synchronisation Query trigger event indicates 
+		that the query originator has initiated a PSIS Synchronisation Query to 
+		obtain a list of updated information about a specific service user. </p>
+		<h2><a name=QUPC_TE160010UK01></a><a name=_Toc_Section_4.8></a>4.8&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation Query Response - QUPC_TE160010UK01</h2>		<p>The PSIS Synchronisation Query Response trigger event 
+		indicates that data has been found on PSIS which satisfies the specified 
+		criteria defined in the PSIS Synchronisation Query Response.</p>
+		<h2><a name=QUPC_TE160201UK01></a><a name=_Toc_Section_4.9></a>4.9&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document List Query - QUPC_TE160201UK01</h2>		<p>The PSIS-Admin Document List Query trigger event indicates 
+		that the query originator has initiated a PSIS Document List Query to obtain 
+		a list of Documents for a specific service user. </p>
+		<h2><a name=QUPC_TE160202UK01></a><a name=_Toc_Section_4.10></a>4.10&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document Query - QUPC_TE160202UK01</h2>		<p>The PSIS-Admin Document Query trigger event indicates 
+		that the query originator has initiated a PSIS Document Query to obtain 
+		a specified Documents for a specific service user.</p>
+		<p>&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<p>&nbsp;</p>
+		<h1><a name=_Toc_Section_5></a>5&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</h1>		<h2><a name=_Toc_Section_5.1></a>5.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List 
+		Query Interactions</h2>		<p style="page-break-after:avoid">
+		<img src="interaction_diagrams/PSISdoclist.png" border="0" usemap="#9fb8529a-c7f1-4ae8-b6c0-eb68b8bcfd47" />
+		<map name="9fb8529a-c7f1-4ae8-b6c0-eb68b8bcfd47">
+		<area href="#QUPC_AR160001UK01" type="rect" coords="50, 60, 230, 110" />
+		<area href="#QUPC_AR160002UK01" type="rect" coords="490, 60, 670, 110" />
+		<area href="#QUPC_IN160101UK05" type="rect" coords="260, 132, 461, 169" />
+		<area href="#QUPC_IN160102UK05" type="rect" coords="258, 192, 462, 229" />
+		<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3" type="rect" coords="293, 252, 427, 289" />
+		</map></p>
+		<h2><a name=_Toc_Section_5.2></a>5.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Query 
+		Interactions</h2>		<p>
+		<img src="interaction_diagrams/PSISdoc.png" border="0" usemap="#5229bae0-ea18-4cc8-ada0-c76108e81098" />
+		<map name="5229bae0-ea18-4cc8-ada0-c76108e81098">
+		<area href="#QUPC_AR160001UK01" type="rect" coords="50, 60, 230, 110" />
+		<area href="#QUPC_AR160002UK01" type="rect" coords="490, 60, 670, 110" />
+		<area href="#QUPC_IN160103UK05" type="rect" coords="271, 132, 449, 169" />
+		<area href="#QUPC_IN160104UK05" type="rect" coords="270, 192, 451, 229" />
+		<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3" type="rect" coords="293, 252, 427, 289" />
+		</map></p>
+		<h2><a name=_Toc_Section_5.3></a>5.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Query 
+		Interactions</h2>		<p style="page-break-after:avoid">
+		<img src="interaction_diagrams/PSIScre.png" border="0" usemap="#e586c69e-7ab4-46a7-b5ea-03e9cfd5185e" />
+		<map name="e586c69e-7ab4-46a7-b5ea-03e9cfd5185e">
+		<area href="#QUPC_AR160001UK01" type="rect" coords="50, 60, 230, 110" />
+		<area href="#QUPC_AR160002UK01" type="rect" coords="490, 60, 670, 110" />
+		<area href="#QUPC_IN160107UK05" type="rect" coords="259, 132, 461, 169" />
+		<area href="#QUPC_IN160108UK05" type="rect" coords="258, 192, 463, 229" />
+		<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3" type="rect" coords="293, 252, 427, 289" />
+		</map></p>
+		<h2><a name=_Toc_Section_5.4></a>5.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation 
+		Query Interactions</h2>		<p><map name="d26722c0-d5e6-42a0-bf05-2e7f2e44e2cf">
+		<area href="#QUPC_AR160001UK01" type="rect" coords="50, 60, 230, 110" />
+		<area href="#QUPC_AR160002UK01" type="rect" coords="490, 60, 670, 110" />
+		<area href="#QUPC_IN160109UK05" type="rect" coords="255, 132, 465, 169" />
+		<area href="#QUPC_IN160110UK05" type="rect" coords="254, 192, 467, 229" />
+		<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3" type="rect" coords="293, 252, 427, 289" />
+		</map>
+		<img src="interaction_diagrams/PSISsync.png" border="0" usemap="#d26722c0-d5e6-42a0-bf05-2e7f2e44e2cf" />
+		</p>
+		<h2><a name=_Toc_Section_5.5></a>5.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document 
+		List Query Interactions</h2>		<p>
+		<img src="interaction_diagrams/PSISAdList1.png" border="0" usemap="#b74fdc43-b0ad-4f2e-b8bd-11912cf91095" />
+		<map name="b74fdc43-b0ad-4f2e-b8bd-11912cf91095">
+		<area href="#QUPC_AR160001UK01" type="rect" coords="50, 60, 230, 110" />
+		<area href="#QUPC_AR160002UK01" type="rect" coords="490, 60, 670, 110" />
+		<area href="#QUPC_IN160201UK04" type="rect" coords="240, 132, 480, 169" />
+		<area href="#QUPC_IN160102UK05" type="rect" coords="258, 192, 462, 229" />
+		<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3" type="rect" coords="293, 252, 427, 289" />
+		</map></p>
+		<p>&nbsp;</p>
+		<h2><a name=_Toc_Section_5.6></a>5.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document 
+		Query Interactions</h2>		<p>
+		<img src="interaction_diagrams/PSISAdDoc1.png" border="0" usemap="#683a4a3f-110f-4b03-b989-2996b0a37108" />
+		<map name="683a4a3f-110f-4b03-b989-2996b0a37108">
+		<area href="#QUPC_AR160001UK01" type="rect" coords="50, 60, 230, 110" />
+		<area href="#QUPC_AR160002UK01" type="rect" coords="490, 60, 670, 110" />
+		<area href="#QUPC_IN160202UK04" type="rect" coords="251, 132, 469, 169" />
+		<area href="#QUPC_IN160104UK05" type="rect" coords="270, 192, 451, 229" />
+		<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3" type="rect" coords="293, 252, 427, 289" />
+		</map></p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_6></a>6&nbsp;&nbsp;&nbsp;&nbsp;Interactions</h1>		<h2><a name=QUPC_IN160101UK05></a><a name=_Toc_Section_6.1></a>6.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Data Request - QUPC_IN160101UK05 </h2>		<p>The PSIS Document List Data Request interaction occurs 
+		when a request for a list of the details of all the messages sent to PSIS 
+		for a specific patient is started. The PSIS Query Placer
+		sends a PSIS Document List Data Request, with 
+		specific query parameters, to the PSIS Query Fulfiller.</p>
+		<p>&nbsp;</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0">
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Sending Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				PSIS 
+				Query Placer </font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Application Role" href="#_Toc_Section_3.1">QUPC_AR160001UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Receiving Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">PSIS Query Fulfiller</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Application Role" href="#_Toc_Section_3.2">QUPC_AR160002UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Trigger Event</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">PSIS Document List 
+				Query</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Trigger Event" href="#_Toc_Section_4.1">QUPC_TE160001UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Transmission Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">Send Message Payload</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1">
+				MCCI_MT010101UK12</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Control Act Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">Query Control Act</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.6">
+				QUQI_MT050000UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Message Type</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">PSIS Document List 
+				Query</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Message Type" href="#_Toc_Section_7.1">QUPC_MT160001UK02</a></font></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View Interaction Schema" href="../../../Schemas/QUPC_IN160101UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p>&nbsp;</p>
+		<p>Receiver Responsibilities</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" width="684" style="width:513.35pt;">
+			<tr style="height:12.2pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt">
+				<p>Reason</p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt">
+				<p>Interaction</p>
+				</td>
+			</tr>
+			<tr style="height:13.05pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt">
+				<p><font size="2" face="Arial">Query Data Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt">
+				<p><font size="2" face="Arial">PSIS Document List 
+				Data Retrieval:</font></p>
+				<p><a href="#_Toc_Section_6.2">
+				<font size="2" face="Arial">QUPC_IN160102UK05<br>
+&nbsp;</font></a></p>
+				</td>
+			</tr>
+			<tr style="height:13.85pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt">
+				<p><font size="2" face="Arial">No Query Data Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;  height:13.85pt">
+				<p><font size="2" face="Arial">Query Act Failed</font></p>
+				<p>
+				<a title="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">
+				<font size="2" face="Arial">QUQI_IN010000UK14</font></a></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_IN160102UK05></a><a name=_Toc_Section_6.2></a>6.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Data Retrieval - QUPC_IN160102UK05 </h2>		<p style="text-autospace:none">The PSIS Document List 
+		Data Retrieval interaction occurs when all the PSIS Document List Query 
+		criteria are met and there is relevant clinical data present on PSIS. The 
+		PSIS Query Fulfiller sends a PSIS Document List Data Retrieval to the PSIS 
+		Query Placer.</p>
+		<p style="text-autospace:none">Only active documents will 
+		be returned to accredited systems.</p>
+		<p style="text-autospace:none">&nbsp;</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" id="table7">
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Sending Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Query Fulfiller</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.2">
+				<font size="2" face="Arial">QUPC_AR160002UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Receiving Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS 
+				Query Placer</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.1">
+				<font size="2" face="Arial">QUPC_AR160001UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt" height="20">
+				<p><font size="2">Trigger Event</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt" height="20">
+				<p><font size="2" face="Arial">PSIS Document List 
+				Query Response</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt" height="20">
+				<p>
+				<a title="View Trigger Event" href="#_Toc_Section_4.2">
+				<font size="2" face="Arial">QUPC_TE160002UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Transmission Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Application Acknowledgement</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.2">
+				<font size="2" face="Arial">MCCI_MT020101UK12</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Control Act Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Query Acknowledgement 
+				Response</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.4">
+				<font size="2" face="Arial">QUQI_MT030101UK03</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Message Type</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Document List 
+				Query Response</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Message Type" href="#_Toc_Section_7.2">
+				<font size="2" face="Arial">QUPC_MT160002UK05</font></a></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<p><a href="../../../Schemas/QUPC_IN160102UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a>&nbsp;
+		</p>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_IN160103UK05></a><a name=_Toc_Section_6.3></a>6.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Data Request - QUPC_IN160103UK05 </h2>		<p>The PSIS Document Data Request interaction occurs when 
+		a request for all the contents of a specified PSIS Document that has been 
+		previously discovered by use of a PSIS Document List Query is started. The 
+		PSIS Query Placer sends a PSIS Document Data Request, with specific query 
+		parameters, to the PSIS Query Fulfiller.</p>
+		<p>&nbsp;</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0">
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Sending Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS 
+				Query Placer </font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.1">
+				<font size="2" face="Arial">QUPC_AR160001UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Receiving Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Query Fulfiller</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.2">
+				<font size="2" face="Arial">QUPC_AR160002UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Trigger Event</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Document Query</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Trigger Event" href="#_Toc_Section_4.3">
+				<font size="2" face="Arial">QUPC_TE160003UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Transmission Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Send Message Payload</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1">
+				<font size="2" face="Arial">MCCI_MT010101UK12</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Control Act Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Query Control Act</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.6">
+				<font size="2" face="Arial">QUQI_MT050000UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Message Type</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Document Query</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Message Type" href="#_Toc_Section_7.3">
+				<font size="2" face="Arial">QUPC_MT160003UK02</font></a></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View Interaction Schema" href="../../../Schemas/QUPC_IN160103UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p>&nbsp;</p>
+		<p>Receiver Responsibilities</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" width="684" style="width:513.35pt;">
+			<tr style="height:12.2pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt">
+				<p>Reason</p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt">
+				<p>Interaction</p>
+				</td>
+			</tr>
+			<tr style="height:13.05pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt">
+				<p><font size="2" face="Arial">Query Data Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt">
+				<p><font size="2" face="Arial">PSIS Document Data 
+				Retrieval:</font></p>
+				<p><a href="#_Toc_Section_6.4">
+				<font size="2" face="Arial">QUPC_IN160104UK05</font></a></p>
+				</td>
+			</tr>
+			<tr style="height:13.85pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt">
+				<p><font size="2" face="Arial">No Query Data Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt">
+				<p><font size="2" face="Arial">Query Act Failed</font></p>
+				<p>
+				<a title="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">
+				<font size="2" face="Arial">QUQI_IN010000UK14</font></a></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_IN160104UK05></a><a name=_Toc_Section_6.4></a>6.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Data Retrieval - QUPC_IN160104UK05 </h2>		<p style="text-autospace:none">The PSIS Document Data 
+		Retrieval interaction occurs when all the PSIS Document Query criteria are 
+		met and there is relevant clinical data present on PSIS. The PSIS Query 
+		Fulfiller sends a PSIS Document Data Retrieval carrying the requested Document 
+		to the PSIS Query Placer.</p>
+		<p style="text-autospace:none">Only active documents will 
+		be returned to accredited systems.</p>
+		<p>&nbsp;</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" id="table8">
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Sending Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Query Fulfiller</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.2">
+				<font size="2" face="Arial">QUPC_AR160002UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Receiving Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS 
+				Query Placer</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.1">
+				<font size="2" face="Arial">QUPC_AR160001UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Trigger Event</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Document Query 
+				Response</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Trigger Event" href="#_Toc_Section_4.4">
+				<font size="2" face="Arial">QUPC_TE160004UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Transmission Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Application Acknowledgement</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.2">
+				<font size="2" face="Arial">MCCI_MT020101UK12</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Control Act Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Query Acknowledgement 
+				Response</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.4">
+				<font size="2" face="Arial">QUQI_MT030101UK03</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Message Type</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Document Query 
+				Response</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Message Type" href="#_Toc_Section_7.4">
+				<font size="2" face="Arial">QUPC_MT160004UK05</font></a></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<p><a href="../../../Schemas/QUPC_IN160104UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a>&nbsp;&nbsp;
+		</p>
+		<h2><a name=QUPC_IN160107UK05></a><a name=_Toc_Section_6.5></a>6.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Data Request - QUPC_IN160107UK05 </h2>		<p>The PSIS CRE List Data Request interaction occurs when 
+		a request for a list of documents containing a clinical statement classified 
+		by a given CRE type is sent. The PSIS Query Placer sends a PSIS CRE List 
+		Data Request, with specific query parameters, to the PSIS Query Fulfiller.</p>
+		<p>&nbsp;</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" id="table1">
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Sending Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				PSIS 
+				Query Placer</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Application Role" href="#_Toc_Section_3.1">QUPC_AR160001UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Receiving Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">PSIS Query Fulfiller</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Application Role" href="#_Toc_Section_3.2">QUPC_AR160002UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Trigger Event</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">PSIS CRE Query</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Trigger Event" href="#_Toc_Section_4.5">QUPC_TE160007UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Transmission Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">Send Message Payload</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1">
+				MCCI_MT010101UK12</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Control Act Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">Query Control Act</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.6">
+				QUQI_MT050000UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Message Type</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">PSIS CRE List Query</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Message Type" href="#_Toc_Section_7.5">QUPC_MT160007UK02</a></font></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View Interaction Schema" href="../../../Schemas/QUPC_IN160107UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p>&nbsp;</p>
+		<p>Receiver Responsibilities</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" width="684" style="width:513.35pt;" id="table2">
+			<tr style="height:12.2pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;  height:12.2pt">
+				<p>Reason</p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;  height:12.2pt">
+				<p>Interaction</p>
+				</td>
+			</tr>
+			<tr style="height:13.05pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;  height:13.05pt">
+				<p><font face="Arial" size="2">Query Data Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt">
+				<p><font face="Arial" size="2">PSIS CRE List Data 
+				Retrieval:</font></p>
+				<p><font face="Arial" size="2">
+				<a title="View Interaction" href="#_Toc_Section_6.6">QUPC_IN160108UK05</a></font></p>
+				</td>
+			</tr>
+			<tr style="height:13.85pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt; height:13.85pt">
+				<p><font face="Arial" size="2">No Query Data Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt">
+				<p><font face="Arial" size="2">Query Act Failed:</font></p>
+				<p><font face="Arial" size="2">
+				<a title="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">
+				QUQI_IN010000UK14</a></font></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_IN160108UK05></a><a name=_Toc_Section_6.6></a>6.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Data Retrieval QUPC_IN160108UK05</h2>		<p style="text-autospace:none">The PSIS CRE List Data 
+		Retrieval interaction occurs when all the PSIS CRE List Query Request criteria 
+		are met and there is an NHS Care Record for the patient held on PSIS. The 
+		PSIS Query Fulfiller sends a PSIS CRE List Data Retrieval containing the 
+		appropriate list of CRE related documents to the PSIS Query Placer.</p>
+		<p style="text-autospace:none">Only active documents will 
+		be returned to accredited systems.</p>
+		<p style="text-autospace:none">&nbsp;</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" id="table10">
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Sending Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Query Fulfiller</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial">
+				<a title="View Application Role" href="#_Toc_Section_3.2">
+				<font size="2">QUPC_AR160002UK01</font></a><font size="2">
+				</font></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Receiving Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS 
+				Query Placer</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.1">
+				<font size="2" face="Arial">QUPC_AR160001UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Trigger Event</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS CRE List Query 
+				Response</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Trigger Event" href="#_Toc_Section_4.6">
+				<font size="2" face="Arial">QUPC_TE160008UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Transmission Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Application Acknowledgement</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.2">
+				<font size="2" face="Arial">MCCI_MT020101UK12</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Control Act Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Query Acknowledgement 
+				Response</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.4">
+				<font size="2" face="Arial">QUQI_MT030101UK03</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Message Type</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS CRE List Query 
+				Response</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Message Type" href="#_Toc_Section_7.6">
+				<font size="2" face="Arial">QUPC_MT160008UK05</font></a></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<p><a href="../../../Schemas/QUPC_IN160108UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a>&nbsp;&nbsp;
+		</p>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_IN160109UK05></a><a name=_Toc_Section_6.7></a>6.7&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation List Data Request - QUPC_IN160109UK05 </h2>		<p>The PSIS Synchronisation List Data Request interaction 
+		occurs when a request from a service user to return all the care information 
+		held on PSIS about him/her is started. The PSIS Query Placer sends a PSIS 
+		Synchronisation List Query Request, with specific query parameters to the 
+		PSIS Query Fulfiller.</p>
+		<p>&nbsp;</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" id="table3">
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Sending Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS 
+				Query Placer</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.1">
+				<font size="2" face="Arial">QUPC_AR160001UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Receiving Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Query Fulfiller</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.2">
+				<font size="2" face="Arial">QUPC_AR160002UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Trigger Event</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Complete Record 
+				Query Started</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Trigger Event" href="#_Toc_Section_4.7">
+				<font size="2" face="Arial">QUPC_TE160009UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Transmission Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Send Message Payload</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1">
+				<font size="2" face="Arial">MCCI_MT010101UK12</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Control Act Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Query Control Act</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.6">
+				<font size="2" face="Arial">QUQI_MT050000UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Message Type</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Synchronisation 
+				List Query</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Message Type" href="#_Toc_Section_7.7">
+				<font size="2" face="Arial">QUPC_MT160009UK03</font></a></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View Interaction Schema" href="../../../Schemas/QUPC_IN160109UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p>&nbsp;</p>
+		<p>Receiver Responsibilities</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" width="684" style="width:513.35pt;" id="table4">
+			<tr style="height:12.2pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;  height:12.2pt">
+				<p>Reason</p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;  height:12.2pt">
+				<p>Interaction</p>
+				</td>
+			</tr>
+			<tr style="height:13.05pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;  height:13.05pt">
+				<p><font face="Arial" size="2">Query Data Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt">
+				<p><font face="Arial" size="2">PSIS Synchronisation 
+				List Data Retrieval:</font></p>
+				<p><font face="Arial" size="2">
+				<a title="View Interaction" href="#_Toc_Section_6.8">QUPC_IN160110UK05</a></font></p>
+				</td>
+			</tr>
+			<tr style="height:13.85pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt; height:13.85pt">
+				<p><font face="Arial" size="2">No Query Data Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt">
+				<p><font face="Arial" size="2">Query Act Failed:</font></p>
+				<p><font face="Arial" size="2">
+				<a title="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">
+				QUQI_IN010000UK14</a></font></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_IN160110UK05></a><a name=_Toc_Section_6.8></a>6.8&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation List Data Retrieval QUPC_IN160110UK05</h2>		<p>The PSIS Synchronisation 
+		List Data Retrieval interaction occurs when all the Synchronisation List 
+		Query Request criteria are met and there is relevant clinically data present 
+		on PSIS. The PSIS Query Fulfiller sends a PSIS Synchronisation List Data 
+		Retrieval carrying the appropriate documents to the PSIS Query Placer.</p>
+		<p style="text-autospace:none">Active and inactive documents 
+		will be returned to all systems.</p>
+		<p style="text-autospace:none">&nbsp;</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" id="table6">
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Sending Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Query Fulfiller</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial">
+				<a title="View Application Role" href="#_Toc_Section_3.1">
+				<font size="2">QUPC_AR160001UK01</font></a><font size="2">
+				</font></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Receiving Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS 
+				Query Placer</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.2">
+				<font size="2" face="Arial">QUPC_AR160002UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Trigger Event</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Complete Record 
+				Data Retrieval</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Trigger Event" href="#_Toc_Section_4.8">
+				<font size="2" face="Arial">QUPC_TE160010UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Transmission Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Application Acknowledgement</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.2">
+				<font size="2" face="Arial">MCCI_MT020101UK12</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Control Act Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Query Acknowledgement 
+				Response</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.4">
+				<font size="2" face="Arial">QUQI_MT030101UK03</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Message Type</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Synchronisation 
+				Query List Response</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Message Type" href="#_Toc_Section_7.8">
+				<font size="2" face="Arial">QUPC_MT160010UK05</font></a></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<p><a href="../../../Schemas/QUPC_IN160110UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a>&nbsp;&nbsp;
+		</p>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_IN160201UK04></a><a name=_Toc_Section_6.9></a>6.9&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document List Data Request - QUPC_IN160201UK04 </h2>		<p>The PSIS-Admin Document List Data Request interaction 
+		occurs when a request for a list of the details of all messages/documents 
+		sent to PSIS for a specific patient is started. The PSIS Query Placer
+		sends a PSIS Document List Data Request with specific 
+		query parameters to the PSIS Query Fulfiller.</p>
+		<p>&nbsp;</p>
+		<p><b>NOTE</b>: This interaction is only for authorised 
+		users only and is intended for back office use. This interaction uses the 
+		PSIS Document List Query however will return a different results set which 
+		includes both active and inactive documents.&nbsp; The spine will reject 
+		the use of this query when instigated by a LSP-ASID based system.</p>
+		<p>&nbsp;</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" id="table14">
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Sending Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				PSIS 
+				Query Placer </font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Application Role" href="#_Toc_Section_3.1">QUPC_AR160001UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Receiving Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">PSIS Query Fulfiller</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Application Role" href="#_Toc_Section_3.2">QUPC_AR160002UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Trigger Event</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">PSIS Document List 
+				Query</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Trigger Event" href="#_Toc_Section_4.9">QUPC_TE160201UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Transmission Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">Send Message Payload</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1">
+				MCCI_MT010101UK12</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Control Act Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">Query Control Act</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.6">
+				QUQI_MT050000UK01</a></font></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Message Type</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">PSIS Document List 
+				Query</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font face="Arial" size="2">
+				<a title="View Message Type" href="#_Toc_Section_7.1">QUPC_MT160001UK02</a></font></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View Interaction Schema" href="../../../Schemas/QUPC_IN160201UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p>&nbsp;</p>
+		<p>Receiver Responsibilities</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" width="684" style="width:513.35pt;" id="table16">
+			<tr style="height:12.2pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt">
+				<p>Reason</p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt">
+				<p>Interaction</p>
+				</td>
+			</tr>
+			<tr style="height:13.05pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt">
+				<p><font size="2" face="Arial">Query Data Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt">
+				<p><font size="2" face="Arial">PSIS Document List 
+				Data Retrieval:</font></p>
+				<p><a href="#_Toc_Section_6.2">
+				<font size="2" face="Arial">QUPC_IN160102UK05<br>
+&nbsp;</font></a></p>
+				</td>
+			</tr>
+			<tr style="height:13.85pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt">
+				<p><font size="2" face="Arial">No Query Data Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;  height:13.85pt">
+				<p><font size="2" face="Arial">Query Act Failed</font></p>
+				<p>
+				<a title="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">
+				<font size="2" face="Arial">QUQI_IN010000UK14</font></a></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_IN160202UK04></a><a name=_Toc_Section_6.10></a>6.10&nbsp;&nbsp;&nbsp;&nbsp;PSIS-Admin Document Data Request - QUPC_IN160202UK04</h2>		<p>The PSIS-Admin Document Data Request interaction occurs 
+		when a request for all the contents of a specified PSIS Document that has 
+		been previously discovered by use of a PSIS Document List Query is started. 
+		The PSIS Query Placer sends a PSIS Document Data Request, with specific 
+		query parameters, to the PSIS Query Fulfiller.</p>
+		<p style="text-autospace:none">Active and inactive documents 
+		will be returned.</p>
+		<p style="text-autospace:none">&nbsp;</p>
+		<p>&nbsp;</p>
+		<p><b>NOTE</b>: This interaction is only for authorised 
+		users only and is intended for back office use. This interaction uses the 
+		PSIS Document Query however will return a different results set which includes 
+		both active and inactive documents.&nbsp; The spine will reject the use 
+		of this query when instigated by a LSP-ASID based system.</p>
+		<p>&nbsp;</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" id="table17">
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Sending Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS 
+				Query Placer </font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.1">
+				<font size="2" face="Arial">QUPC_AR160001UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Receiving Role</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Query Fulfiller</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Application Role" href="#_Toc_Section_3.2">
+				<font size="2" face="Arial">QUPC_AR160002UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Trigger Event</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Document Query</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Trigger Event" href="#_Toc_Section_4.10">
+				<font size="2" face="Arial">QUPC_TE160202UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Transmission Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Send Message Payload</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1">
+				<font size="2" face="Arial">MCCI_MT010101UK12</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Control Act Wrapper</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">Query Control Act</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.6">
+				<font size="2" face="Arial">QUQI_MT050000UK01</font></a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="175" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2">Message Type</font></p>
+				</td>
+				<td width="274" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p><font size="2" face="Arial">PSIS Document Query</font></p>
+				</td>
+				<td width="224" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p>
+				<a title="View Message Type" href="#_Toc_Section_7.3">
+				<font size="2" face="Arial">QUPC_MT160003UK02</font></a></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View Interaction Schema" href="../../../Schemas/QUPC_IN160202UK04.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p>&nbsp;</p>
+		<p>Receiver Responsibilities</p>
+		<table class="Heading2Char" border="1" cellspacing="3" cellpadding="0" width="684" style="width:513.35pt;" id="table18">
+			<tr style="height:12.2pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt">
+				<p>Reason</p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt">
+				<p>Interaction</p>
+				</td>
+			</tr>
+			<tr style="height:13.05pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt">
+				<p><font size="2" face="Arial">Query Data Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt">
+				<p><font size="2" face="Arial">PSIS Document Data 
+				Retrieval:</font></p>
+				<p><a href="#_Toc_Section_6.4">
+				<font size="2" face="Arial">QUPC_IN160104UK05</font></a></p>
+				</td>
+			</tr>
+			<tr style="height:13.85pt">
+				<td width="338" valign="top" style="width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt">
+				<p><font size="2" face="Arial">No Query No Data 
+				Found</font></p>
+				</td>
+				<td width="338" valign="top" style="width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt">
+				<p><font size="2" face="Arial">Query Act Failed</font></p>
+				<p>
+				<a title="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">
+				<font size="2" face="Arial">QUQI_IN010000UK14</font></a></p>
+				</td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<p>&nbsp;</p>
+		<h1><a name=_Toc_Section_7></a>7&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</h1>		<h2><a name=QUPC_MT160001UK02></a><a name=_Toc_Section_7.1></a>7.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Query - QUPC_MT160001UK02</h2>		<p>The PSIS Document List Query message allows the user 
+		to request a list of documents on PSIS for either a given Service User using 
+		the appropriate parameters.</p>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View R-MIM" href="../Tabular%20View/QUPC_RM160001UK02.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif" width="19" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/QUPC_HD160001UK02-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/QUPC_MT160001UK02.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/QUPC_RM160001UK02-PSISDocumentListQuery.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a></p>
+		<p>&nbsp;</p>
+		<h3><a name=_Toc_Section_7.1.1></a>7.1.1 Example for Sally&#39;s Follow-up 
+		Appointment With Her GP (Emergency Department)</h3>
+		<p>
+		<a title="View Storyboard" href="#_Toc_Section_2.1">
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/PSIS%20Query/QUPC_EX160001UK02.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+		<p>&nbsp;</p>
+		<p>A version which includes the Infrastructure wrapper, 
+		Query Control Act and message payload and can be validated using the interaction 
+		(dynamic) schema, also with the schematron is included
+		<a title="View Example" href="../../../Examples/PSIS%20Query/QUPC_EX160001UK02inf.xml">
+		here
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a>.</p>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_MT160002UK05></a><a name=_Toc_Section_7.2></a>7.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document List Query Response - QUPC_MT160002UK05</h2>		<p>The PSIS Document List Query Response is a response 
+		to the PSIS Document List Query and provides a list of Documents and associated 
+		PSIS MetaData for a given Service User or Document Set ID.</p>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View R-MIM" href="../Tabular%20View/QUPC_RM160002UK05.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif" width="19" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/QUPC_HD160002UK05-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/QUPC_MT160002UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../../../Examples/PSIS%20Query/QUPC_EX160002UK05.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a>&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/QUPC_RM160002UK05-PSISDocumentListQueryResponse.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a></p>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_MT160003UK02></a><a name=_Toc_Section_7.3></a>7.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Query - QUPC_MT160003UK02</h2>		<p>The PSIS Document Query message allows the user to 
+		request all the contents of a specified PSIS Document that has been previously 
+		discovered by use of a PSIS Document List Query.</p>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View R-MIM" href="../Tabular%20View/QUPC_RM160003UK02.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif" width="19" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/QUPC_HD160003UK02-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/QUPC_MT160003UK02.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/QUPC_RM160003UK02-PSISDocumentQuery.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a></p>
+		<p>&nbsp;</p>
+		<h3><a name=_Toc_Section_7.3.1></a>7.3.1 Example for Sally&#39;s Follow-up 
+		Appointment With Her GP (Emergency Department)</h3>
+		<p>
+		<a title="View Storyboard" href="#_Toc_Section_2.1">
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/PSIS%20Query/QUPC_EX160003UK02_01.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+		<h3><a name=_Toc_Section_7.3.2></a>7.3.2 Example for Scenario for Ethel 
+		- Adult attending Cardiology Rapid Access Chest Pain Clinic (Outpatient 
+		Report)</h3>
+		<p>
+		<a title="View Storyboard" href="#_Toc_Section_2.2">
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/PSIS%20Query/QUPC_EX160003UK02_03.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_MT160004UK05></a><a name=_Toc_Section_7.4></a>7.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Document Query Response - QUPC_MT160004UK05</h2>		<p>The PSIS Document Query Response is a response to the 
+		PSIS Document Query and provides the entire contents of a document with 
+		associated PSIS metadata identified by the PSIS Document UUID.</p>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View R-MIM" href="../Tabular%20View/QUPC_RM160004UK05.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif" width="19" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/QUPC_HD160004UK05-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../../../Schemas/QUPC_MT160004UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/QUPC_RM160004UK05-PSISDocumentQueryResponse.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a></p>
+		<h3><a name=_Toc_Section_7.4.1></a>7.4.1 Example for Sally&#39;s Follow-up 
+		Appointment With Her GP (Emergency Department)</h3>
+		<p>
+		<a title="View Storyboard" href="#_Toc_Section_2.1">
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Example" href="../../../Examples/PSIS%20Query/QUPC_EX160004UK05_01.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		</p>
+		<h2><a name=QUPC_MT160007UK02></a><a name=_Toc_Section_7.5></a>7.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Query - QUPC_MT160007UK02</h2>		<p>The PSIS CRE List Query Request requests a list of 
+		documents for a given service users record for a given CRE type and optional 
+		date-range parameter.</p>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View R-MIM" href="../Tabular%20View/QUPC_RM160007UK02.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif" width="19" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/QUPC_HD160007UK02-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/QUPC_MT160007UK02.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../../../Examples/PSIS%20Query/QUPC_EX160007UK02_02.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a>&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/QUPC_RM160007UK02-PSISCREListQuery.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a></p>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_MT160008UK05></a><a name=_Toc_Section_7.6></a>7.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS CRE List Query Response - QUPC_MT160008UK05</h2>		<p>The PSIS CRE List Query Response is a response to the 
+		PSIS CRE List Query and provides a list of documents which contain information 
+		for a given CRE-type in a service user’s NHS Care Record in the form of 
+		PSIS metadata.</p>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View R-MIM" href="../Tabular%20View/QUPC_RM160008UK05.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif" width="19" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/QUPC_HD160008UK05-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../../../Schemas/QUPC_MT160008UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../../../Examples/PSIS%20Query/QUPC_EX160008UK05.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a>&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/QUPC_RM160008UK05-PSISCREListQueryResponse.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a></p>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_MT160009UK03></a><a name=_Toc_Section_7.7></a>7.7&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation List Query - QUPC_MT160009UK03</h2>		<p>The PSIS Synchronisation List Query requests all documents 
+		held on PSIS about a given service user&nbsp; for a given date-range.</p>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View R-MIM" href="../Tabular%20View/QUPC_RM160009UK03.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif" width="19" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/QUPC_HD160009UK03-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/QUPC_MT160009UK03.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../../../Examples/PSIS%20Query/QUPC_EX160009UK03.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a>&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/QUPC_RM160009UK03-PSISSynchronisationQuery.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a></p>
+		<p>&nbsp;</p>
+		<h2><a name=QUPC_MT160010UK05></a><a name=_Toc_Section_7.8></a>7.8&nbsp;&nbsp;&nbsp;&nbsp;PSIS Synchronisation List Query Response - QUPC_MT160010UK05</h2>		<p>The PSIS Synchronisation List Query Response is a response 
+		to the PSIS Synchronisation List Query and provides all documents and associated 
+		PSIS metadata from a given service users record for a given date range.</p>
+		<p>&nbsp;</p>
+		<p>
+		<a title="View R-MIM" href="../Tabular%20View/QUPC_RM160010UK05.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif" width="19" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" href="../Tabular%20View/QUPC_HD160010UK05-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Schema" href="../../../Schemas/QUPC_MT160010UK05.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a href="../../../Examples/PSIS%20Query/QUPC_EX160010UK05.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a>&nbsp;&nbsp;
+		<a title="View MIF" href="../../../Mif/QUPC_RM160010UK05-PSISSynchronisationQueryResponse.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a></p>
+		<p>&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_8></a>8&nbsp;&nbsp;&nbsp;&nbsp;Glossary of Terms</h1>		<table class="MIMGlossaryTable" border="1" cellspacing="1" cellpadding="2">
+			<tr>
+				<td><font face="Arial" size="2">Active Document</font></td>
+				<td><font face="Arial" size="2">The state of &#39;Active&#39; is a virtual 
+				state to classify documents on PSIS where the attributes/values 
+				are as listed below:</font><ul>
+					<li><font face="Arial" size="2">PSISDataStatus = &quot;Normal&#39;</font></li>
+					<li><font face="Arial" size="2">DocumentDQState = &quot;NORMAL&quot; or 
+					&quot;DQSUSPECT&quot;.</font></li>
+				</ul>
+				</td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">CDA</font></td>
+				<td><font face="Arial" size="2">The HL7 Clinical Document Architecture 
+				(CDA) is a document mark-up standard that specifies the structure 
+				and semantics of &quot;clinical documents&quot; for the purpose of exchange.</font></td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">Clinical Document</font></td>
+				<td><font face="Arial" size="2">A clinical document is a documentation 
+				of clinical observations and services.</font></td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">Dissent</font></td>
+				<td><font face="Arial" size="2">Dissent refers to an articulated 
+				decision by a patient, or their authorised representative, that 
+				they do not consent to the patient&#39;s sensitive personal data being 
+				shared, for the purpose of providing healthcare to that patient, 
+				outside the boundary of the legal organisation responsible for creating 
+				or maintaining them.</font></td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">Document</font></td>
+				<td><font face="Arial" size="2">When referring to a document, this 
+				corresponds to the old concept of an Event. In PSIS a Document is 
+				any single message payload stored on PSIS. Examples include a GP-Summary 
+				(CSMP-based), or an Outpatient report (CDA-based).</font></td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">DQ State</font></td>
+				<td><font face="Arial" size="2">Data Quality State - a Document 
+				on PSIS will normally have a DQ state of &#39;NORMAL&#39; - this can be 
+				changed to a different state by Clinical Back Office applications 
+				only.</font></td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">Event</font></td>
+				<td><font face="Arial" size="2">Historically referred to as a PSIS 
+				Event, the terminology has now been change to &#39;Document&#39;. An Event 
+				(Document) is any single message payload stored on PSIS. </font>
+				</td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">Event Item</font></td>
+				<td><font face="Arial" size="2">Historically, Event Items corresponded 
+				to Clinical Statements (either single or compound). Event items 
+				refer to information which is returned in PSIS Query Reponses at 
+				Document Section Meta Data level. </font></td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">Message</font></td>
+				<td><font face="Arial" size="2">PSIS-Queries and responses are known 
+				as messages which return metadata about Documents and in some cases 
+				a complete Document. A message includes the wrappers.</font></td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">Message Payload</font></td>
+				<td><font face="Arial" size="2">A Message Payload is carried in 
+				a message and excludes wrappers. A payload could be a Document or 
+				a query meta-data response.</font></td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">PSIS</font></td>
+				<td><font face="Arial" size="2">Personal Spine Information System.</font></td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">Query Originator</font></td>
+				<td><font face="Arial" size="2">Clinician or Caldicott Guardian 
+				initiating the query.</font></td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">Section</font></td>
+				<td><font face="Arial" size="2">A Section is part of a CDA document 
+				which can contain any block below the CDA Header. CDA Sections can 
+				contain either:<br>
+				i) A Business Section<br>
+				ii) A CRE-Type Section<br>
+				iii) A Text Section<br>
+				iv) A coded Clinical Statement Section.</font></td>
+			</tr>
+			<tr>
+				<td><font face="Arial" size="2">Service User</font></td>
+				<td><font face="Arial" size="2">The patient who is the subject of 
+				a query.</font></td>
+			</tr>
+		</table>
+		<p>&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<p>&nbsp;</p>
+	</div>
+	<p><font face="Arial"><b>
+	<a name="_Toc_Section_9"></a>9&nbsp;&nbsp;&nbsp; Conformance to HL7</b></font></p>
+	<p><font face="Arial">All query request messages in the PSIS-Query domain conform 
+	to the HL7 Standard. The query response messages have been defined in a HL7-RIM 
+	conformant manner. </font></p>
+	<p>&nbsp;</p>
+</div>
+
+</body>
+
+</html>

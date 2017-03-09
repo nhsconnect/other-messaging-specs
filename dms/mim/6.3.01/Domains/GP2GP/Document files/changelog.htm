@@ -1,0 +1,231 @@
+<html>
+<head>
+    <style>
+<!--
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Arial;
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+h1
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-indent:0cm;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:Arial;
+	font-weight:bold}
+h2
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-indent:0cm;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic}
+h3
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-indent:0cm;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic}
+h4
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-indent:0cm;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:bold}
+h5
+	{margin:6.0pt 0cm; text-indent:0cm;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic}
+a:link
+	{color:blue;}
+a:visited
+	{color:purple;
+	text-decoration:none;
+	text-decoration:none;
+	}
+p
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	}
+p.TitlePanelHeader
+	{margin-bottom:.0001pt;
+	text-align:center;
+	font-size:10.0pt;
+	font-family:Verdana;
+	font-weight:bold; margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.TitlePanelblocktext
+	{margin-bottom:.0001pt;
+	text-align:center;
+	font-size:7.0pt;
+	font-family:Verdana;
+	text-transform:uppercase;
+	font-weight:bold; margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.Un-numberedHeading1
+	{margin-top:3.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	}
+p.TableText
+	{margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Arial;
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+span.TitlePanelbold
+	{font-family:Verdana;
+	font-weight:bold}
+span.TitlePanelstd
+	{font-family:Verdana;
+	}
+span.TitlePanelitalic
+	{font-family:Verdana;
+	font-style:italic}
+span.TableHeading
+	{font-family:Arial;
+	font-weight:bold}
+span.GlossaryTerm
+	{font-weight:bold}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<title>GP2GP Changelog</title>
+</head>
+
+<body>
+	<h1>MIM 5.1 release</h1>
+	<ul>
+		<li>
+			Reversioned EhrExtract message, and containing interaction.
+			<ul>
+				<li>
+					Spelling Mistake in "SpecimenInvestigtaion2" element.
+				</li>
+			</ul>
+		</li>
+		<li>
+			Two small changes to the EhrExtract model were made at a late stage. These changes were not reflected in the model bitmap but were correctly represented in 
+			the XML-Schema and the tabular view documentation. Bitmap has been regenerated.
+		</li>
+	</ul>
+    <h1>Errata in 2.0 Changelog</h1>
+	<ul>
+		<li>
+			The changelog entry reading <i>&quot;Added the EhrCategory class ...&quot;</i> should have read <i>&quot;Added the EhrStatementCategory class ..."&quot;</i> and has been corrected below.
+		</li>
+	</ul>
+    <h1>
+        2.0
+    </h1>
+    <h2>
+        Changes to specific messages
+    </h2>
+    <h3>
+        Changes to EhrExtract message
+    </h3>
+    <ul>
+        <li>The content of the Agent Directory has changed from the R_AgentRole [universal]
+            CMET ; since this CMET is officially deprecated content, the internal structure
+            has been re-modelled into the RMIM in the same location, with the addition of an
+            optional RoleLink to an AgentRef class, permitting a hierarchical relationship to
+            be defined. </li>
+        <li>EhrComposition.author now no longer refers to the primary instance of AgentRef,
+            which is now located in the agentdirectory </li>
+        <li>Added the EhrStatementCategory class and supporting structure to allow the allocation of
+            categories to EhrStatement class instances. </li>
+        <li>CMET for EhrFolder.author has changed from R_AgentNPFITOrganisationSDS (UKCT_MT120601UK03)
+            to R_Agent_NPFITDevice (UKCT_MT120601UK02)
+            <ul>
+                <li>This change allows the particulars of the systems sending and receiving the message
+                    to be stated in more detail, which allows for better version identification and
+                    compatibility.</li>
+                <li>The Organisation moves to the scoping role of the Device.</li>
+                <li>For consistency, this change has also been applied to EhrExtract@destination and
+                    EhrExtract.author</li></ul>
+        </li>
+        <li><b>Material</b> class : added lotnumberText attribute to allow batch numbers.</li>
+        <li>The <b>NarrativeStatement</b> Act has had the "code" attribute enabled in order
+            to provide a means of classifying the content more clearly.</li>
+        <li>SpecimenMaterial.quantity has been enabled to enhance PMIP support.</li>
+        <li>The name of an existing class called Person has changed to RelatedPerson in order to allow the more generic name "Person" to be used elsewhere in this RMIM.</li>
+        <li>Added a document on the <a href="PMIP_Mapping.htm">mapping of PMIP fields to GP2GP message structures</a>.</li>
+    </ul>
+    <p>
+    </p>
+        <h3>
+            PMIP Date Support</h3>
+        <p>
+            Particular attention should be paid to the changes made to support PMIP dates, as
+            several fundamental changes have occured.</p>
+        <ul>
+            <li>[PMIP Report].Report Received Date has moved</li>
+            <li>[Sample].Sample Received Date has moved</li>
+            <li>Existing GP2GP attributes may be reused for alternate PMIP fields</li>
+            <li>Several new structures have been added to support all 6 required date fields, mappings listed below
+                <ul>
+                    <li>Report Issued Date (<b>E185</b>) => EhrComposition@availabilityTime</li>
+                    <li>Request Date (<b>E154</b>) => EhrComposition.participant@time
+                        <ul>
+                            <li>Where particpant.typeCode == 'referrer'</li>
+                        </ul>
+                    </li>
+                    <li>Sample Collection Date (<b>E050</b>) => SpecimenRole@effectiveTime</li>
+                    <li>Sample Received Date (<b>E061</b>) => <i>EhrStatement</i>.specimenReceipt@time</li>
+                    <li>Investigation Date (<b>E138</b>) => <i>EhrStatement</i>.specimenInvestigation@time</li>
+                    <li>Report Received Date =>
+                        <ul>
+                            <li>EhrComposition.participant@time
+                                <ul>
+                                    <li>Where participant@typeCode == 'primary information recipient' ; for receipt by reviewing clinician</li>
+                                    <li>Where participant@typeCode == 'receiver'  ; for receipt by the GP system</li>
+                                </ul>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>EhrComposition@id multiplicity raised from [1..1] to [1..2] in order to permit it to carry naitve PMIP report identifier.
+        </ul>
+        
+        
+        <h1>
+            1.9
+        </h1>
+        <h2>
+            Changes to specific messages</h2>
+        <h3>
+            R_AgentRole CMET - RCCT_MT120101UK01</h3>
+        <ul>
+            <li>
+			<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%205.0/MIM-CR-0614%20-%20GP2GP%20CMET%20Correct%20SNOMED%20OID%20in%20tab%20view%20.doc.html">MIM-CR-0614</a>: Amended 2 default OID values in tabular view to
+                reference the correct SnomedCT OID: 2.16.840.1.113883.2.1.3.2.4.15</li>
+        </ul>
+        
+</body>
+</html>

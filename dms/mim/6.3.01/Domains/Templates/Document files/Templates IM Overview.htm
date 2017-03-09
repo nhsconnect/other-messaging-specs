@@ -1,0 +1,163 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Template Implementation Manual</title>
+<link rel="stylesheet" href="../../../Core/Stylesheets/IMCommon_v3.css" type="text/css">
+</head>
+
+<body lang="EN-GB" link="blue" vlink="purple">
+
+<div id="header">
+	<p>Templates Implementation Manual - Overview : Version 2.3</p>
+</div>
+<div id="content">
+	<div class="Section1">
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="Un-numberedHeading1">Contents</p>
+		<div class="index1" div id="fp_TOC" class="fp_TOC">
+			<a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;Overview</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.1">1.1&nbsp;&nbsp;&nbsp;&nbsp;Use of Templates 
+			in CDA domains</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.2">1.2&nbsp;&nbsp;&nbsp;&nbsp;NPfIT 
+CDA implementation using templates</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.3">1.3&nbsp;&nbsp;&nbsp;&nbsp;Use of Template in Non CDA 
+domains</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.4">1.4&nbsp;&nbsp;&nbsp;&nbsp;CRE/Template 
+			Mapping</a></div>
+		<div class="MsoMIM" align="center" style="text-align:center"><hr size="2" width="95%" align="center"></div>
+		<p class="Un-numberedHeading1">Change History&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/TemplateIMCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<div class="MsoMIM" align="center" style="text-align:center"><hr size="2" width="95%" align="center"></div>
+		<p class="MsoMIM">&nbsp;</p>
+		<h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;Overview</h1>		<p class="MsoMIM">The templates defined in this manual are intended to 
+		ensure&nbsp; consistent and tightly constrained communication of clinical 
+		information within messages.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<div class="Section1">
+			<h2><a name=_Toc_Section_1.1></a>1.1&nbsp;&nbsp;&nbsp;&nbsp;Use of Templates 
+			in CDA domains</h2>			<p class="MsoMIM">Message instances must validate against the 
+			CDA balloted schema, the NPfIT CDA constrained schema and the domain 
+			message schema and also any template schemas used. Message instances 
+			will use xml tag names (classnames)&nbsp; as per the balloted CDA schema. 
+			Where the templateId holds a reference to a template then the message 
+			instance must validate against&nbsp; the appropriate template schema. 
+			The appropriate transform should be run against the instance to transform 
+			the generalised instance tagnames to the template ( business ) names.</p>
+			<p class="MsoMIM">Interactions for CDA domains will be bound to the 
+			NPfIT CDA constrained schema.&nbsp;&nbsp;
+			</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">The following rules shall be followed when using 
+			templates:</p>
+			<ul>
+				<li>
+				<p class="MsoMIM">A template for an act can be entered by an 
+				act relationship at the specified entry point, the template id 
+				will be held in the focal act of the template and all other 
+				classes within that template.</p>
+				</li>
+				<li>
+				<p class="MsoMIM">Alternatively a template for an act can be 
+				entered by an act relationship at the specified entry point, the 
+				contentId id will be held in that act relationship</p>
+				</li>
+				<li>
+				<p class="MsoMIM">A template for a role can only be entered 
+				by a participation at the specified entry point, the template id 
+				will be held in the focal act of the template and all other 
+				classes within that template.</p>
+				</li>
+				<li>
+				<p class="MsoMIM">Alternatively a template for a role can 
+				only be entered by a participation at the specified entry point, 
+				the contentId id will be held in that participation </p>
+				</li>
+				<li>
+				<p class="MsoMIM">All mandatory and required classes and attributes 
+				in the template shall be included and populated accordingly</p>
+				</li>
+				<li>
+				<p class="MsoMIM">Optional classes and attributes in the template 
+				may be included so long as they conform to the specification of 
+				that class/attribute </p>
+				</li>
+				<li>
+				<p class="MsoMIM">Outbound act relationships or 
+				participations contained in the template allow templates to be 
+				included within templates </p>
+				</li>
+				<li>
+				<p class="MsoMIM">Class clone names in the template models, tabular 
+				views are for illustration only and in message instances they shall 
+				comply with the names in the balloted CDA schema.</p>
+				</li>
+			</ul>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">Further details of the NPfIT CDA implementation 
+			using templates refer to the latest version of&nbsp; <b>
+			&quot;NPFIT-ELIBR-AREL-P1R2-0178 Technical Guidance for Implementation of 
+			Templated CDA Domains&quot;&nbsp; </b></p>
+	<p class="MsoMIM">&nbsp;</p>
+			<h2><a name=_Toc_Section_1.3></a>1.3&nbsp;&nbsp;&nbsp;&nbsp;Use of Template in Non CDA 
+domains</h2>			<p class="MsoMIM">Message instances must validate against the domain 
+			message schema and also any template schemas used. Message instances 
+			will use xml tag names (classnames)&nbsp; as per the domain and 
+			template schemas. Where the templateId holds a reference to a template then the message 
+			instance must validate against&nbsp; the appropriate template schema. 
+			</p>
+			<p class="MsoMIM">Interactions for Non CDA domains that use 
+			templates will be bound to the domain schema in the normal way.&nbsp;&nbsp;
+			</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">The following rules shall be followed when using 
+			templates:</p>
+			<ul>
+				<li>
+				<p class="MsoMIM">A template for an act can be entered by an 
+				act relationship at the specified entry point, the template id 
+				will be held in the focal act of the template and all other 
+				classes within that template.</p>
+				</li>
+				<li>
+				<p class="MsoMIM">Alternatively a template for an act can be 
+				entered by an act relationship at the specified entry point, the 
+				contentId id will be held in that act relationship</p>
+				</li>
+				<li>
+				<p class="MsoMIM">A template for a role can only be entered 
+				by a participation at the specified entry point, the template id 
+				will be held in the focal act of the template and all other 
+				classes within that template.</p>
+				</li>
+				<li>
+				<p class="MsoMIM">Alternatively a template for a role can 
+				only be entered by a participation at the specified entry point, 
+				the contentId id will be held in that participation </p>
+				</li>
+				<li>
+				<p class="MsoMIM">All mandatory and required classes and attributes 
+				in the template shall be included and populated accordingly</p>
+				</li>
+				<li>
+				<p class="MsoMIM">Optional classes and attributes in the template 
+				may be included so long as they conform to the specification of 
+				that class/attribute </p>
+				</li>
+				<li>
+				<p class="MsoMIM">Outbound act relationships or 
+				participations contained in the template allow templates to be 
+				included within templates </p>
+				</li>
+			</ul>
+			<p class="MsoNormal">&nbsp;</p>
+			<h2><a name=_Toc_Section_1.4></a>1.4&nbsp;&nbsp;&nbsp;&nbsp;CRE/Template 
+			Mapping</h2>			<p class="MsoMIM">The CRE types to templates 
+			mapping information is contained the <b> <a href="cre_types_and_templates.htm"> CRE 
+			types and templates document.</a></b></p>
+			<p class="MsoMIM">&nbsp;</p>
+		</div>
+	</div>
+</div>
+
+</body>
+
+</html>

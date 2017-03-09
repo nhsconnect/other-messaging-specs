@@ -1,0 +1,1746 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Sealed Envelope Implementation Manual</title>
+<link rel="stylesheet" href="../../../Core/Stylesheets/IMCommon_v3.css" type="text/css">
+</head>
+
+</style>
+</head>
+
+<body lang="EN-GB" link="blue" vlink="purple">
+
+<div id="header">
+	<p>Sealed Envelope Implementation Manual - Version 1.5</p>
+</div>
+<div id="content">
+	<div class="Section1">
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p class="Un-numberedHeading1">Contents</p>
+		<div class="index1" div id="fp_TOC" class="fp_TOC">
+			<a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp; Overview</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_1.1">1.1&nbsp;&nbsp;&nbsp; Error 
+			Correction using CDA replacement</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_1.2">1.2&nbsp;&nbsp;&nbsp; CDA Sealing 
+			Documents</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_1.3">1.3&nbsp;&nbsp;&nbsp; Seal 
+			Status Notification to HealthSpace</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_1.4">1.4&nbsp;&nbsp;&nbsp; Use of 
+			templates</a><br>
+			<a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp; Storyboards</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_2.1">2.1&nbsp;&nbsp;&nbsp; Scenario 
+			for Refusal to Seal Report</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_2.2">2.2&nbsp;&nbsp;&nbsp; Scenario 
+			for Seal Event Report</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_2.3">2.3&nbsp;&nbsp;&nbsp; Scenario 
+			for UnSeal Event Report</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_2.4">2.4&nbsp;&nbsp;&nbsp; Scenario 
+			for Automated Accessor Group Change Notification</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_2.5">2.5&nbsp;&nbsp;&nbsp; Scenario 
+			for Sealing Notification</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_2.6">2.6&nbsp;&nbsp;&nbsp; Scenario 
+			for Manual Accessor Group Change Notification</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_2.7">2.7&nbsp;&nbsp;&nbsp; Scenario 
+			for Unsealing Notification</a><br>
+			<a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp; Application Roles</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp; Refusal 
+			To Seal Report Originating System - POCD_AR180001UK01</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_3.2">3.2&nbsp;&nbsp;&nbsp; Refusal 
+			To Seal Report Receiving System (PSIS) - POCD_AR180002UK01</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_3.3">3.3&nbsp;&nbsp;&nbsp; Seal 
+			Report Originating System - POCD_AR180003UK01</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_3.4">3.4&nbsp;&nbsp;&nbsp; Seal 
+			Report Receiving System (PSIS) - POCD_AR180004UK01</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_3.5">3.5&nbsp;&nbsp;&nbsp; UnSeal 
+			Report Originating System - POCD_AR180005UK01</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_3.6">3.6&nbsp;&nbsp;&nbsp; UnSeal 
+			Report Receiving System (PSIS) - POCD_AR180006UK01</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_3.7">3.7&nbsp;&nbsp;&nbsp; Notification 
+			of Seal Event Originating System - PRPA_AR000501UK01</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_3.8">3.8&nbsp;&nbsp;&nbsp; Notification 
+			of Seal Event Receiving System - PRPA_AR000502UK01</a><br>
+			<a href="#_Toc_Section_4">4&nbsp;&nbsp;&nbsp; Trigger Events</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_4.1">4.1&nbsp;&nbsp;&nbsp; Refusal 
+			To Seal Report - POCD_TE180001UK01</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_4.2">4.2&nbsp;&nbsp;&nbsp; Refusal 
+			To Seal Report Nullify By Replacement - POCD_TE180002UK02</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_4.3">4.3&nbsp;&nbsp;&nbsp; Seal 
+			Report - POCD_TE180003UK02</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_4.4">4.4&nbsp;&nbsp;&nbsp; Seal 
+			Report Nullify By Replacement - POCD_TE180004UK01</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_4.5">4.5&nbsp;&nbsp;&nbsp; UnSeal 
+			Report - POCD_TE180005UK01</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_4.6">4.6&nbsp;&nbsp;&nbsp; UnSeal 
+			Report Nullify By Replacement - POCD_TE180006UK01</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_4.7">4.7&nbsp;&nbsp;&nbsp; Change 
+			of Sealing Status - PRPA_TE000501UK01</a><br>
+			<a href="#_Toc_Section_5">5&nbsp;&nbsp;&nbsp; Interaction Diagrams</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_5.1">5.1&nbsp;&nbsp;&nbsp; Seal 
+			interactions</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_5.2">5.2&nbsp;&nbsp;&nbsp; Notification 
+			interactions</a><br>
+			<a href="#_Toc_Section_6">6&nbsp;&nbsp;&nbsp; Interactions</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_6.1">6.1&nbsp;&nbsp;&nbsp; Recipient 
+			responsibilities</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_6.2">6.2&nbsp;&nbsp;&nbsp; Originator 
+			Responsibilities</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_6.3">6.3&nbsp;&nbsp;&nbsp; PSIS 
+			Refusal To Seal Report - POCD_IN180001UK05</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_6.4">6.4&nbsp;&nbsp;&nbsp; Nullify 
+			Refusal To Seal Report - POCD_IN180002UK05</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_6.5">6.5&nbsp;&nbsp;&nbsp; PSIS 
+			Seal Report - POCD_IN180003UK02</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_6.6">6.6&nbsp;&nbsp;&nbsp; Nullify 
+			Seal Report - POCD_IN180004UK02</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_6.7">6.7&nbsp;&nbsp;&nbsp; PSIS 
+			UnSeal Report - POCD_IN180005UK02</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_6.8">6.8&nbsp;&nbsp;&nbsp; Nullify 
+			UnSeal Report - POCD_IN180006UK02</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_6.9">6.9&nbsp;&nbsp;&nbsp; Notification 
+			of Seal Event - PRPA_IN000501UK03</a><br>
+			<a href="#_Toc_Section_7">7&nbsp;&nbsp;&nbsp; Message Definitions</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_7.1">7.1&nbsp;&nbsp;&nbsp; Refusal 
+			To Seal Report - POCD_MT180001UK05 </a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#_Toc_Section_7.1.1">7.1.1&nbsp;&nbsp;&nbsp; Example for Scenario 
+			for Refusal to Seal Report</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_7.2">7.2&nbsp;&nbsp;&nbsp; Seal 
+			Report - POCD_MT180002UK02 </a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#_Toc_Section_7.2.1">7.2.1&nbsp;&nbsp;&nbsp; Example for Scenario 
+			for Seal Report</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_7.3">7.3&nbsp;&nbsp;&nbsp; UnSeal 
+			Report - POCD_MT180003UK02 </a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#_Toc_Section_7.3.1">7.3.1&nbsp;&nbsp;&nbsp; Example for Scenario 
+			Unseal Report</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="#_Toc_Section_7.4">7.4&nbsp;&nbsp;&nbsp; Notification 
+			of Seal Event - PRPA_MT000501UK03</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#_Toc_Section_7.4.1">7.4.1&nbsp;&nbsp;&nbsp; Example for notification 
+			of automated accessor group change</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#_Toc_Section_7.4.2">7.4.2&nbsp;&nbsp;&nbsp; Example for notification 
+			of information being sealed</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#_Toc_Section_7.4.3">7.4.3&nbsp;&nbsp;&nbsp; Example for notification 
+			of information being unsealed</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#_Toc_Section_7.4.4">7.4.4&nbsp;&nbsp;&nbsp; Example for notification 
+			of manual accessor change</a><br>
+			<a href="#_Toc_Section_8">8&nbsp;&nbsp;&nbsp; Glossary of Terms</a></div>
+		<div class="MsoMIM" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<p class="Un-numberedHeading1">Change History&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" style="color: blue" href="ChangeHistory/SealedEnvelopesCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<div class="MsoMIM" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<h1><a name="_Toc_Section_1"></a>1&nbsp;&nbsp;&nbsp; Overview</h1>
+		<p class="MsoMIM">&quot;Summary Care Record Phase 4 Implementation&quot; includes 
+		sealing of documents and the associated communications 
+		between PSIS, secondary care and primary care. No Sealing information is carried within the actual document 
+		but is held on the central access control service. The CDA sealing 
+		documents within this domain are used to maintain sealing history.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM"><font face="Arial">The CDA document definitions within this Implementation 
+		manual support the following care communications:</font></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<ul style="margin-top:0cm" type="disc">
+			<li class="MsoMIM"><font face="Arial">Refusal to Seal Report</font></li>
+			<li class="MsoMIM"><font face="Arial">Seal Event Report</font></li>
+			<li class="MsoMIM"><font face="Arial">Unseal Event Report</font></li>
+			<li class="MsoMIM"><font face="Arial">Notification of Seal Event</font></li>
+		</ul>
+		<h2><a name="_Toc_Section_1.1"></a>1.1&nbsp;&nbsp;&nbsp; Error Correction 
+		using CDA replacement</h2>
+		<p class="MsoMIM">If a document is sent in error, then the sending system 
+		should send a replacement document with the correct information using CDA 
+		replacement update semantics.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">Where this is not possible to use the above mechanism 
+		because no correcting document is available then the previous document is 
+		required to be nullified. A ‘nullify previous document’ document should 
+		be used and further details of this type of replacement is contained in 
+		the infrastructure domain.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">Documents can also be withdrawn by a receiving system 
+		see section 6.1 for further details.</p>
+		<h2><a name="_Toc_Section_1.2"></a>1.2&nbsp;&nbsp;&nbsp; CDA Sealing Documents</h2>
+		<p class="MsoMIM">The CDA sealing documents (Seal Report and Unseal Report) 
+		perform no sealing function other than to allow sealing history associated 
+		with a document / message to be held on PSIS. These documents carry no references 
+		to the documents / messages involved as this information is held on a separate 
+		central access control service. The parent document class in the model is for error correction 
+		replacement semantics as details in section 1.1 of this document. </p>
+		<p class="MsoMIM">The Refusal to Seal document&#39;s function is to allow details 
+		of a refusal to seal to be held on PSIS.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">Please consult the relevant sealing implementation guidance 
+		for full details of the mechanism used for sealing of PSIS documents.&nbsp;
+		</p>
+		<h2><a name="_Toc_Section_1.3"></a>1.3&nbsp;&nbsp;&nbsp; Seal Status Notification 
+		to HealthSpace</h2>
+		<p class="MsoMIM">In addition to the CDA documents that allow sealing history 
+		to be recorded, sealing related operations are to be reported to the HealthSpace 
+		system so that the patient can be informed of the changes. </p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">These changes include information becoming sealed or unsealed, 
+		often at the patient&#39;s own request (note that this reflects the act of sealing 
+		or unsealing and not the act of breaking a seal). Also covered are changes 
+		in who is allowed access to the sealed information, typically when a new 
+		workgroup gains access, perhaps due to a referral of care, or a change of 
+		the patient&#39;s GP. A dedicated notification message is provided for the notifications.
+		<br>
+		<br>
+		See also the Alerts domain, which covers notifying staff and patients of 
+		seal breaks, as distinct from the seal status changes.</p>
+		<h2><a name="_Toc_Section_1.4"></a>1.4&nbsp;&nbsp;&nbsp; Use of templates</h2>
+		<p class="MsoMIM">This domain uses templates, for further information on 
+		templates refer to the latest version of&nbsp; 
+		&quot;NPFIT-ELIBR-AREL-P1R2-0178 Technical Guidance for Implementation of 
+		Templated CDA Domains&quot; </p>
+		<p class="MsoMIM">&nbsp; </p>
+		<div class="MsoMIM" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name="_Toc_Section_2"></a>2&nbsp;&nbsp;&nbsp; Storyboards</h1>
+		<p class="MsoMIM">Storyboards are contained Sealed Envelopes Scenarios for 
+		Sealing Messages document and are hyperlinked from the following icon
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></font></p>
+		<h2><a name="_Toc_Section_2.1"></a>2.1&nbsp;&nbsp;&nbsp; Scenario for Refusal 
+		to Seal Report</h2>
+		<p>
+		<a href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918446">
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a></p>
+		<h2><a name="_Toc_Section_2.2"></a>2.2&nbsp;&nbsp;&nbsp; Scenario for Seal 
+		Event Report</h2>
+		<p class="MsoMIM">
+		<a href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918441">
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a></p>
+		<h2><a name="_Toc_Section_2.3"></a>2.3&nbsp;&nbsp;&nbsp; Scenario for UnSeal 
+		Event Report</h2>
+		<p class="MsoMIM">
+		<a href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918443">
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a></p>
+		<h2><a name="_Toc_Section_2.4"></a>2.4&nbsp;&nbsp;&nbsp; Scenario for Automated 
+		Accessor Group Change Notification</h2>
+		<p class="MsoMIM">
+		<a href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918448">
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a></p>
+		<h2><a name="_Toc_Section_2.5"></a>2.5&nbsp;&nbsp;&nbsp; Scenario for Sealing 
+		Notification</h2>
+		<p class="MsoMIM">
+		<a href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918441">
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a></p>
+		<h2><a name="_Toc_Section_2.6"></a>2.6&nbsp;&nbsp;&nbsp; Scenario for Manual 
+		Accessor Group Change Notification</h2>
+		<p class="MsoMIM">
+		<a href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918450">
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a></p>
+		<h2><a name="_Toc_Section_2.7"></a>2.7&nbsp;&nbsp;&nbsp; Scenario for Unsealing 
+		Notification</h2>
+		<p class="MsoMIM">
+		<a href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918443">
+		<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a></p>
+		<div class="MsoMIM" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name="_Toc_Section_3"></a>3&nbsp;&nbsp;&nbsp; Application Roles</h1>
+		<p class="MsoMIM">The applications involved in the processes play specific 
+		roles.&nbsp; These, along with the interactions associated with each role, 
+		are identified below.</p>
+		<h2><a name="POCD_AR180001UK01"></a><a name="_Toc_Section_3.1"></a>3.1&nbsp;&nbsp;&nbsp; 
+		Refusal To Seal Report Originating System - POCD_AR180001UK01</h2>
+		<p class="MsoMIM">The Refusal To Seal Report Originating System is responsible 
+		for sending the following Refusal To Seal interactions:</p>
+	</div>
+	<p class="MsoMIM">&nbsp;</p>
+	<p class="MsoMIM">PSIS Refusal To Seal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</font><span style="font-family:&quot;Times New Roman&quot;;color:black">
+	<a title="View Interaction" href="#_Toc_Section_5">
+	<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+	<p class="MsoMIM">Nullify Refusal To Seal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a title="View Interaction" href="#_Toc_Section_5">
+	<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+	<div class="Section1">
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">The Refusal To Seal Originating System Report receives 
+		responses to the above interactions from the Receiving System. </p>
+		<h2><a name="POCD_AR180002UK01"></a><a name="_Toc_Section_3.2"></a>3.2&nbsp;&nbsp;&nbsp; 
+		Refusal To Seal Report Receiving System (PSIS) - POCD_AR180002UK01</h2>
+		<p class="MsoMIM">The Refusal To Seal Report Receiving System (PSIS) receives 
+		processes and stores the following Refusal To Seal interactions:</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">PSIS Refusal To Seal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">The Refusal To Seal Report Receiving System (PSIS) receives 
+		and MUST act on the following Refusal To Seal interactions:</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">Nullify Refusal To Seal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<div class="Section1">
+			<h2><a name="POCD_AR180003UK01"></a><a name="_Toc_Section_3.3"></a>3.3&nbsp;&nbsp;&nbsp; 
+			Seal Report Originating System - POCD_AR180003UK01</h2>
+			<p class="MsoMIM">The Seal Report Originating System is responsible 
+			for sending the following Seal&nbsp; interactions:</p>
+		</div>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">PSIS Seal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</font><a title="View Interaction" href="#_Toc_Section_5">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoMIM">Nullify Seal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<div class="Section1">
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">The Seal Originating System Report receives responses 
+			to the above interactions from the Receiving System. </p>
+			<h2><a name="POCD_AR180004UK01"></a><a name="_Toc_Section_3.4"></a>3.4&nbsp;&nbsp;&nbsp; 
+			Seal Report Receiving System (PSIS) - POCD_AR180004UK01</h2>
+			<p class="MsoMIM">The Seal Report Receiving System (PSIS) receives processes 
+			and stores the following Seal interactions:</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">PSIS Seal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a title="View Interaction" href="#_Toc_Section_5">
+			<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">The Seal Report Receiving System (PSIS) receives and 
+			MUST act on the following Seal interactions:</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">Nullify Seal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a title="View Interaction" href="#_Toc_Section_5">
+			<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		</div>
+		<span style="font-family:&quot;Times New Roman&quot;;color:black">
+		<div class="Section1">
+			<h2><a name="POCD_AR180005UK01"></a><a name="_Toc_Section_3.5"></a>3.5&nbsp;&nbsp;&nbsp; 
+			UnSeal Report Originating System - POCD_AR180005UK01</h2>
+			<p class="MsoMIM">The UnSeal Report Originating System is responsible 
+			for sending the following UnSeal interactions:</p>
+		</div>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">PSIS UnSeal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</font><a title="View Interaction" href="#_Toc_Section_5">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoMIM">Nullify UnSeal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<div class="Section1">
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">The UnSeal Originating System Report receives responses 
+			to the above interactions from the Receiving System. </p>
+			<h2><a name="POCD_AR180006UK01"></a><a name="_Toc_Section_3.6"></a>3.6&nbsp;&nbsp;&nbsp; 
+			UnSeal Report Receiving System (PSIS) - POCD_AR180006UK01</h2>
+			<p class="MsoMIM">The UnSeal Report Receiving System (PSIS) receives 
+			processes and stores the following UnSeal interactions:</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">PSIS UnSeal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a title="View Interaction" href="#_Toc_Section_5">
+			<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">The UnSeal Report Receiving System (PSIS) receives 
+			and MUST act on the following UnSeal interactions:</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">Nullify UnSeal Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a title="View Interaction" href="#_Toc_Section_5">
+			<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		</div>
+		</span>
+		<h2><a name="PRPA_AR000501UK01"></a><a name="_Toc_Section_3.7"></a>3.7&nbsp;&nbsp;&nbsp; 
+		Notification of Seal Event Originating System - PRPA_AR000501UK01</h2>
+		<p class="MsoMIM">The Notification of Seal Event Originating System (an 
+		accredited LSP system or spine application) is responsible for sending the 
+		following interactions:</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM"><span style="color:black">Notification of Seal Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5.2">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></span></p>
+		<h2><a name="PRPA_AR000502UK01"></a><a name="_Toc_Section_3.8"></a>3.8&nbsp;&nbsp;&nbsp; 
+		Notification of Seal Event Receiving System - PRPA_AR000502UK01</h2>
+		<p class="MsoMIM">The Notification of Seal Event Receiving System (HealthSpace) 
+		receives and processes the following interactions:</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM"><span style="color:black">Notification of Seal Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5.2">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></span></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<div class="MsoMIM" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name="_Toc_Section_4"></a>4&nbsp;&nbsp;&nbsp; Trigger Events</h1>
+		<h2><a name="POCD_TE180001UK01"></a><a name="_Toc_Section_4.1"></a>4.1&nbsp;&nbsp;&nbsp; 
+		Refusal To Seal Report - POCD_TE180001UK01</h2>
+		<p class="MsoMIM">A Refusal To Seal Report trigger event indicates that 
+		a Refusal To Seal Report is ready to send from the originating system.</p>
+		<h2><a name="POCD_TE180002UK02"></a><a name="_Toc_Section_4.2"></a>4.2&nbsp;&nbsp;&nbsp; 
+		Refusal To Seal Report Nullify By Replacement - POCD_TE180002UK02</h2>
+		<p class="MsoMIM">For the Refusal To Seal Report document to be nullified 
+		the trigger event is the realisation that the Refusal To Seal Report document 
+		was sent in error, in that it contained an error and should never have been 
+		sent and that no correct Refusal To Seal Report document is available to 
+		send.</p>
+		<h2><a name="POCD_TE180003UK02"></a><a name="_Toc_Section_4.3"></a>4.3&nbsp;&nbsp;&nbsp; 
+		Seal Report - POCD_TE180003UK02</h2>
+		<p class="MsoMIM">A Seal Report trigger event indicates that a Seal Report 
+		is ready to send from the originating system.</p>
+		<h2><a name="POCD_TE180004UK01"></a><a name="_Toc_Section_4.4"></a>4.4&nbsp;&nbsp;&nbsp; 
+		Seal Report Nullify By Replacement - POCD_TE180004UK01</h2>
+		<p class="MsoMIM">For the Seal Report document to be nullified the trigger 
+		event is the realisation that the Seal Report document was sent in error, 
+		in that it contained an error and should never have been sent and that no 
+		correct Seal Report document is available to send.</p>
+		<h2><a name="POCD_TE180005UK01"></a><a name="_Toc_Section_4.5"></a>4.5&nbsp;&nbsp;&nbsp; 
+		UnSeal Report - POCD_TE180005UK01</h2>
+		<p class="MsoMIM">A UnSeal Report trigger event indicates that a UnSeal 
+		Report is ready to send from the originating system.</p>
+		<h2><a name="POCD_TE180006UK01"></a><a name="_Toc_Section_4.6"></a>4.6&nbsp;&nbsp;&nbsp; 
+		UnSeal Report Nullify By Replacement - POCD_TE180006UK01</h2>
+		<p class="MsoMIM">For the UnSeal Report document to be nullified the trigger 
+		event is the realisation that the UnSeal Report document was sent in error, 
+		in that it contained an error and should never have been sent and that no 
+		correct UnSeal Report document is available to send.</p>
+		<h2><a name="PRPA_TE000501UK01"></a><a name="_Toc_Section_4.7"></a>4.7&nbsp;&nbsp;&nbsp; 
+		Change of Sealing Status - PRPA_TE000501UK01</h2>
+		<p class="MsoMIM">A Change of Seal Status trigger event indicates that information 
+		has become sealed or unsealed or that there is a change in who is allowed 
+		to access the sealed information.</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<div class="MsoMIM" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name="_Toc_Section_5"></a>5&nbsp;&nbsp;&nbsp; Interaction Diagrams</h1>
+		<h2><a name="_Toc_Section_5.1"></a>5.1&nbsp;&nbsp;&nbsp; Seal interactions</h2>
+		<p>&nbsp;</p>
+		<p class="MsoMIM"><b>Note - Application 
+	Acknowledgements are sent to originating systems for notification of 
+	successful or failure handling by the receiving application.</b></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM"></p>
+		<div id="5a615a02-8e54-4bd6-a1ba-b71e6913f824">
+			<img class="MsoMIM" src="SE.png" border="0" usemap="#5a615a02-8e54-4bd6-a1ba-b71e6913f824" />
+			<map name="5a615a02-8e54-4bd6-a1ba-b71e6913f824">
+			<area href="#POCD_AR180001UK01" type="rect" coords="16, 58, 265, 110" />
+			<area href="#POCD_AR180002UK01" type="rect" coords="456, 58, 705, 110" />
+			<area href="#POCD_IN180001UK05" type="rect" coords="274, 132, 446, 169" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" type="rect" coords="272, 192, 448, 229" />
+			<area href="#POCD_IN180002UK05" type="rect" coords="272, 252, 449, 289" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" type="rect" coords="272, 312, 448, 349" />
+			<area href="#POCD_AR180003UK01" type="rect" coords="16, 388, 265, 440" />
+			<area href="#POCD_AR180004UK01" type="rect" coords="456, 388, 705, 440" />
+			<area href="#POCD_IN180003UK02" type="rect" coords="291, 462, 430, 499" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" type="rect" coords="272, 522, 448, 559" />
+			<area href="#POCD_IN180004UK02" type="rect" coords="291, 582, 430, 619" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" type="rect" coords="272, 642, 448, 679" />
+			<area href="#POCD_AR180005UK01" type="rect" coords="16, 718, 265, 770" />
+			<area href="#POCD_AR180006UK01" type="rect" coords="456, 718, 705, 770" />
+			<area href="#POCD_IN180005UK02" type="rect" coords="291, 792, 430, 829" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" type="rect" coords="272, 852, 448, 889" />
+			<area href="#POCD_IN180006UK02" type="rect" coords="291, 912, 430, 949" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" type="rect" coords="272, 972, 448, 1009" />
+			</map></div>
+		<p></p>
+		<h2><a name="_Toc_Section_5.2"></a>5.2&nbsp;&nbsp;&nbsp; Notification interactions</h2>
+		<p class="MsoMIM"><b>Note - Application 
+	Acknowledgements are sent to originating systems for notification of 
+	successful or failure handling by the receiving application.</b></p>
+		<p class="MsoMIM">&nbsp;</p>
+		<div id="6f88dc15-3bd5-427f-9ad9-836bd5f6bf8f">
+			<img class="MsoMIM" src="SEnot.png" border="0" usemap="#c78e3bd6-0007-4425-a0c6-36791835d3dc" />
+			<map name="c78e3bd6-0007-4425-a0c6-36791835d3dc">
+			<area href="#PRPA_AR000501UK01" type="rect" coords="30, 58, 250, 110" />
+			<area href="#PRPA_AR000502UK01" type="rect" coords="470, 58, 690, 110" />
+			<area href="#PRPA_IN000501UK03" type="rect" coords="285, 132, 435, 169" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" type="rect" coords="272, 192, 448, 229" />
+			</map>
+			<p>&nbsp;</p>
+			<div class="MsoMIM" align="center" style="text-align:center">
+				<hr size="3" width="100%" align="center"></div>
+			<h1><a name="_Toc_Section_6"></a>6&nbsp;&nbsp;&nbsp; Interactions</h1>
+			<p class="MsoMIM"><b>Note:- For CDA domains the interactions are bound 
+			to the &quot;<font color="#FF0000"><a href="../../CDA/NPFiT%20CDA%20using%20Templates.htm#_Toc_Section_3">NPfIT 
+			CDA generic model</a></font>&quot; and use the &quot;<font color="#FF0000"><a href="../../CDA/NPFiT%20CDA%20using%20Templates.htm#_Toc_Section_4">NPfIT 
+			CDA generic schema</a></font>&quot; instead of the &quot;NPfIT Domain CDA model 
+			schema&quot;. <br>
+			The CDA Domain models are used for conformance checking of NPfIT templates 
+			after transforming the &quot;Generic NPfIT CDA&quot; instance to &quot;NPfIT Domain 
+			CDA&quot; instance.</b></p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">The recipient and sender responsibilities stated in 
+			sections 6.2 to 6.4 are additional to the standard CDA recipient and 
+			originator responsibilities. </p>
+			<p class="MsoMIM">An NPfIT perspective of the standard CDA responsibilities 
+			are detailed within this section.</p>
+			<h2><a name="_Toc_Section_6.1"></a>6.1&nbsp;&nbsp;&nbsp; Recipient responsibilities</h2>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM"><b>Assume default values where they are defined in 
+			this specification, and where the instance does not contain a value 
+			: </b></p>
+			<ul>
+				<li>
+				<p class="MsoMIM">Where CDA defines default values, the recipient 
+				must assume these values in the event that no value is contained 
+				in a CDA instance.</p>
+				</li>
+			</ul>
+			<p class="MsoMIM"><b>Parse and interpret the complete CDA header :
+			</b></p>
+			<ul>
+				<li>
+				<p class="MsoMIM">A recipient of a CDA document must be able to 
+				parse and interpret the complete CDA header. </p>
+				</li>
+				<li>
+				<p class="MsoMIM">Because applications may choose to display demographic 
+				and other CDA header data drawn from a central master directory, 
+				the rendering of the CDA document header is at the discretion of 
+				the recipient. </p>
+				</li>
+				<li>
+				<p class="MsoMIM">An NPfIT style sheet is included within the MIM 
+				.Use of this style sheets is at the discretion of the recipient.
+				</p>
+				</li>
+			</ul>
+			<p class="MsoMIM"><b>Parse and interpret the CDA body sufficiently to 
+			be able to render it :</b> </p>
+			<ul>
+				<li>
+				<p class="MsoMIM">Where a system receives a document outside of 
+				its conformance level it may chose to only render the document
+				</p>
+				</li>
+				<li>
+				<p class="MsoMIM">A recipient of a CDA document must be able to 
+				parse and interpret the body of a CDA document sufficiently to be 
+				able to render it, using the following rendering rules: </p>
+				</li>
+				<li>
+				<p class="MsoMIM">The CDA structured Body, the label of a section, 
+				as conveyed in the Section.title component, must be rendered.</p>
+				</li>
+				<li>
+				<p class="MsoMIM">A recipient of a CDA document is not required 
+				to parse and interpret the complete set of CDA entries contained 
+				within the CDA body only those applicable to the receiving systems 
+				conformance level. </p>
+				</li>
+				<li>
+				<p class="MsoMIM">A recipient of a CDA document on receipt of a 
+				document equal to or less than it&#39;s conformance level is required 
+				to validate a CDA document against referenced templates.</p>
+				</li>
+				<li>
+				<p class="MsoMIM">A recipient of a CDA document on receipt of a 
+				document with templates higher than it&#39;s conformance is not required 
+				process those coded entries and should render the textual representation 
+				only.</p>
+				</li>
+			</ul>
+			<p class="MsoMIM"><b>Error handling </b></p>
+			<p class="MsoMIM"><br>
+			A recipient on receipt of a invalid / incorrect document may deal with 
+			errors by either</p>
+			<ul>
+				<li>
+				<p class="MsoMIM">Sending an Application Acknowledgement to the 
+				originating system stating the error type using one of the error 
+				codes from the code list for the domain contained in the relevant 
+				External Interface Specification.</p>
+				</li>
+			</ul>
+			<p class="MsoMIM">or</p>
+			<ul>
+				<li>
+				<p class="MsoMIM">The receiving system may nullify the document 
+				using a &quot;nullify document&quot; document which MUST be sent to the originating 
+				system. <br>
+				</p>
+				</li>
+			</ul>
+			<p class="MsoMIM"><br>
+			<b>Note - Application 
+	Acknowledgements are sent to originating systems for notification of 
+	successful or failure handling by the receiving application.</b></p>
+			<h2><a name="_Toc_Section_6.2"></a>6.2&nbsp;&nbsp;&nbsp; Originator 
+			Responsibilities</h2>
+			<p class="MsoMIM"><br>
+			<b>Properly construct CDA Narrative Blocks : </b></p>
+			<ul>
+				<li>
+				<p class="MsoMIM">An originator of a CDA document must ensure that 
+				the attested portion of the document body is structured such that 
+				a recipient, adhering to the recipient responsibilities above, will 
+				correctly render the document. </p>
+				</li>
+			</ul>
+			<p class="MsoMIM"><b>The CDA structured Body: </b></p>
+			<ul>
+				<li>
+				<p class="MsoMIM">The label of a section must be conveyed in the 
+				Section.title component.</p>
+				</li>
+				<li>
+				<p class="MsoMIM">The attested narrative contents of a section must 
+				be placed in the Section.text field, regardless of whether information 
+				is also conveyed in CDA entries. Attested multimedia referenced 
+				by URL in the narrative must not be carried in the document sent 
+				to PSIS. </p>
+				</li>
+				<li>
+				<p class="MsoMIM">An originator of a CDA document is not required 
+				to fully encode all narrative into CDA entries within the CDA body 
+				only those applicable to the sending systems conformance level.
+				<br>
+&nbsp;</p>
+				</li>
+			</ul>
+			<p class="MsoMIM"></p>
+			<p class="MsoMIM"></p>
+			<p class="MsoMIM"><b>Error handling </b></p>
+			<p class="MsoMIM">An Originating system on receipt of an Application 
+			Acknowledgement containing the one of the error codes from the code 
+			list for the domain contained in the relevant External Interface Specification 
+			should initiate a work stream to rectify any error by either<br>
+			<br>
+			</p>
+			<ul>
+				<li>
+				<p class="MsoMIM">Replacing the invalid document with a new correct 
+				version<br>
+				</p>
+				</li>
+			</ul>
+			<p class="MsoMIM">or</p>
+			<ul>
+				<li>
+				<p class="MsoMIM">by nullifying the invalid document using the &quot;Nullify 
+				Document&quot; document which MUST be sent to all recipients.<br>
+				It should also nullify any local cache / copy as necessary.<br>
+				</p>
+				</li>
+			</ul>
+			<p class="MsoMIM">An Originating system on receipt of a &quot;Nullify Document&quot; 
+			document for any document it has sent, should initiate a work stream 
+			to rectify any error including nullifying any local cache / copy as 
+			necessary.&nbsp; </p>
+			<h2><a name="POCD_IN180001UK05"></a><a name="_Toc_Section_6.3"></a>6.3&nbsp;&nbsp;&nbsp; 
+			PSIS Refusal To Seal Report - POCD_IN180001UK05</h2>
+			<p class="MsoMIM"><font size="3">Communicates a Refusal To Seal Report 
+			to PSIS for processing and storage</font><font size="2">.<br>
+&nbsp;</font></p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table123">
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Sending Role</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span class="TableHeading">Refusal to Seal 
+					Report originating system</span></p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Application Role" href="#_Toc_Section_3.1" style="color: blue">
+					POCD_AR180001UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Receiving Role</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Refusal to Seal Report receiving system 
+					(PSIS)</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Application Role" href="#_Toc_Section_3.2" style="color: blue">
+					POCD_AR180002UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Refusal To Seal Report</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Trigger Event" href="#_Toc_Section_4.1" style="color: blue">
+					POCD_TE180001UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Transmission Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Send Message Payload</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+					MCCI_MT010101UK12</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Control Act Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Control Act</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+					MCAI_MT040101UK03</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Message Type</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Refusal To Seal Report</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Message Type" href="#_Toc_Section_7.1" style="color: blue">
+					POCD_MT180001UK05</a></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">
+			<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN180001UK05.xsd">
+			<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+			<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table124">
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Reason</span></span></p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Interaction</span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">On receipt of document </p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Application Acknowledgement</p>
+					<p class="TableText">
+					<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+					MCCI_IN010000UK13</a></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<h2><a name="POCD_IN180002UK05"></a><a name="_Toc_Section_6.4"></a>6.4&nbsp;&nbsp;&nbsp; 
+			Nullify Refusal To Seal Report - POCD_IN180002UK05</h2>
+			<p class="MsoMIM">Communicates the nullification (by replacement) of 
+			any Refusal To Seal Report sent to PSIS.</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table127">
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading"><font size="2">
+					Sending Role</font></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span style="color:black">
+					<span class="TableHeading">Refusal to Seal Report originating 
+					system</span></p>
+					</span></td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span class="TableHeading">
+					<span style="font-weight:normal;">
+					<a title="View Application Role" href="#_Toc_Section_3.1" style="color: blue">
+					POCD_AR180001UK01</a></span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span style="color:black">Refusal to Seal 
+					Report receiving system (PSIS)</p>
+					</span></td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Application Role" href="#_Toc_Section_3.2" style="color: blue">
+					POCD_AR180002UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Refusal To Seal Report nullify by replacement</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Trigger Event" style="color: blue" href="#_Toc_Section_4.2">
+					POCD_TE180002UK02</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Transmission Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Send Message Payload</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+					MCCI_MT010101UK12</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Control Act Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Trigger Event Control Act</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+					MCAI_MT040101UK03</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Message Type</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><font face="Arial" size="2">Nullification 
+					Document</font></p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span style="color: #0000FF">
+					<a href="../../Nullification/Document%20files/Nullification%20IM.htm#_Toc_Section_5.1">
+					POCD_MT130001UK05</a></span></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">
+			<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN180002UK05.xsd">
+			<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+			<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table128">
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Reason</span></span></p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Interaction</span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">On receipt of document </p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Application Acknowledgement</p>
+					<p class="TableText">
+					<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+					MCCI_IN010000UK13</a></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<h2><a name="POCD_IN180003UK02"></a><a name="_Toc_Section_6.5"></a>6.5&nbsp;&nbsp;&nbsp; 
+			PSIS Seal Report - POCD_IN180003UK02</h2>
+			<p class="MsoMIM"><font size="3">Communicates a Seal Report to PSIS 
+			for processing and storage</font><font size="2">.<br>
+&nbsp;</font></p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table135">
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Sending Role</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span style="color:black">
+					<span class="TableHeading">Seal Report originating system</span></p>
+					</span></td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Application Role" href="#_Toc_Section_3.3" style="color: blue">
+					POCD_AR180003UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Receiving Role</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Seal Report receiving system (PSIS)</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Application Role" href="#_Toc_Section_3.4" style="color: blue">
+					POCD_AR180004UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Seal Report</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Trigger Event" href="#_Toc_Section_4.3" style="color: blue">
+					POCD_TE180003UK02</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Transmission Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Send Message Payload</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+					MCCI_MT010101UK12</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Control Act Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Control Act</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+					MCAI_MT040101UK03</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Message Type</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Seal Report</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Message Type" href="#_Toc_Section_7.2" style="color: blue">
+					POCD_MT180002UK02</a></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">
+			<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN180003UK02.xsd">
+			<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+			<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table136">
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Reason</span></span></p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Interaction</span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">On receipt of document </p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Application Acknowledgement</p>
+					<p class="TableText">
+					<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+					MCCI_IN010000UK13</a></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<h2><a name="POCD_IN180004UK02"></a><a name="_Toc_Section_6.6"></a>6.6&nbsp;&nbsp;&nbsp; 
+			Nullify Seal Report - POCD_IN180004UK02</h2>
+			<p class="MsoMIM">Communicates the nullification (by replacement) of 
+			any Seal Report sent to PSIS.</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table137">
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading"><font size="2">
+					Sending Role</font></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span style="color:black">
+					<span class="TableHeading">Seal Report originating system</span></p>
+					</span></td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span class="TableHeading">
+					<span style="font-weight:normal;">
+					<a title="View Application Role" href="#_Toc_Section_3.3" style="color: blue">
+					POCD_AR180003UK01</a></span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Seal Report receiving system (PSIS)</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Application Role" href="#_Toc_Section_3.4" style="color: blue">
+					POCD_AR180004UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Seal Report nullify by replacement</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Trigger Event" style="color: blue" href="#_Toc_Section_4.4">
+					POCD_TE180004UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Transmission Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Send Message Payload</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+					MCCI_MT010101UK12</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Control Act Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Trigger Event Control Act</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+					MCAI_MT040101UK03</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Message Type</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><font face="Arial" size="2">Nullification 
+					Document</font></p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span style="color: #0000FF">
+					<a href="../../Nullification/Document%20files/Nullification%20IM.htm#_Toc_Section_5.1">
+					POCD_MT130001UK05</a></span></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">
+			<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN180004UK02.xsd">
+			<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+			<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table138">
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Reason</span></span></p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Interaction</span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">On receipt of document </p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Application Acknowledgement</p>
+					<p class="TableText">
+					<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+					MCCI_IN010000UK13</a></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<h2><a name="POCD_IN180005UK02"></a><a name="_Toc_Section_6.7"></a>6.7&nbsp;&nbsp;&nbsp; 
+			PSIS UnSeal Report - POCD_IN180005UK02</h2>
+			<p class="MsoMIM"><font size="3">Communicates a UnSeal Report to PSIS 
+			for processing and storage</font><font size="2">.<br>
+&nbsp;</font></p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table143">
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Sending Role</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span class="TableHeading">UnSeal Report 
+					originating system </span></p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Application Role" href="#_Toc_Section_3.5" style="color: blue">
+					POCD_AR180005UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Receiving Role</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">UnSeal Report receiving system (PSIS)</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Application Role" href="#_Toc_Section_3.6" style="color: blue">
+					POCD_AR180006UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">UnSeal Report</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Trigger Event" href="#_Toc_Section_4.5" style="color: blue">
+					POCD_TE180005UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Transmission Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Send Message Payload</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+					MCCI_MT010101UK12</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Control Act Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Control Act</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+					MCAI_MT040101UK03</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Message Type</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">UnSeal Report</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Message Type" href="#_Toc_Section_7.3" style="color: blue">
+					POCD_MT180003UK02</a></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">
+			<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN180005UK02.xsd">
+			<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+			<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table144">
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Reason</span></span></p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;">Interaction</span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">On receipt of document </p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Application Acknowledgement</p>
+					<p class="TableText">
+					<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+					MCCI_IN010000UK13</a></p>
+					</td>
+				</tr>
+			</table>
+			<h2><a name="POCD_IN180006UK02"></a><a name="_Toc_Section_6.8"></a>6.8&nbsp;&nbsp;&nbsp; 
+			Nullify UnSeal Report - POCD_IN180006UK02</h2>
+			<p class="MsoMIM">Communicates the nullification (by replacement) of 
+			any UnSeal Report sent to PSIS.</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table145">
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading"><font size="2">
+					Sending Role</font></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span class="TableHeading">UnSeal Report 
+					originating system </span></p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span class="TableHeading">
+					<span style="font-weight:normal;">
+					<a title="View Application Role" href="#_Toc_Section_3.5" style="color: blue">
+					POCD_AR180005UK01</a></span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">UnSeal Report receiving system (PSIS)</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Application Role" href="#_Toc_Section_3.6" style="color: blue">
+					POCD_AR180006UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">UnSeal Report nullify by replacement</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Trigger Event" style="color: blue" href="#_Toc_Section_4.6">
+					POCD_TE180006UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Transmission Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Send Message Payload</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+					MCCI_MT010101UK12</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Control Act Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Trigger Event Control Act</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+					MCAI_MT040101UK03</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Message Type</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><font face="Arial" size="2">Nullification 
+					Document</font></p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span style="color: #0000FF">
+					<a href="../../Nullification/Document%20files/Nullification%20IM.htm#_Toc_Section_5.1">
+					POCD_MT130001UK05</a></span></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">
+			<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN180006UK02.xsd">
+			<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+			<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table146">
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Reason</span></span></p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Interaction</span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">On receipt of document </p>
+					</td>
+					<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Application Acknowledgement</p>
+					<p class="TableText">
+					<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+					MCCI_IN010000UK13</a></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<h2><a name="PRPA_IN000501UK03"></a><a name="_Toc_Section_6.9"></a>6.9&nbsp;&nbsp;&nbsp; 
+			Notification of Seal Event - PRPA_IN000501UK03</h2>
+			<p class="MsoMIM">Communicates the Sealing Event message to the receiver 
+			(HealthSpace).</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table129">
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading"><font size="2">
+					Sending Role</font></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span class="TableHeading">Notification 
+					of Seal Event Originating System </span></p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span class="TableHeading">
+					<span style="font-weight:normal;">
+					<a title="View Application Role" href="#_Toc_Section_3.7" style="color: blue">
+					PRPA_AR000501UK01</a></span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span class="TableHeading">
+					<span style="color:black">Notification of Seal Event Receiving 
+					System</span></span></p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Application Role" href="#_Toc_Section_3.8" style="color: blue">
+					PRPA_AR000502UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Change of Sealing Status</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Trigger Event" style="color: blue" href="#_Toc_Section_4.7">
+					PRPA_TE000501UK01</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Transmission Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Send Message Payload</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+					MCCI_MT010101UK12</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Control Act Wrapper</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Trigger Event Control Act</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">
+					<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+					MCAI_MT040101UK03</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Message Type</span></span></p>
+					</td>
+					<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">Notification of Seal Event</p>
+					</td>
+					<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText"><span style="color: #0000FF">
+					<a href="#_Toc_Section_7.4">PRPA_MT000501UK03</a></span></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">
+			<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/PRPA_IN000501UK03.xsd">
+			<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+			<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+			<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table130" width="918">
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Reason</span></span></p>
+					</td>
+					<td valign="top" style="width:443px;padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+					<p class="MsoMIM"><span class="TableHeading">
+					<span style="font-size:10.0pt;
+  ">Interaction</span></span></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+					<p class="TableText">On receipt of document </p>
+					</td>
+					<td valign="top" style="width:443px;padding-left:5.4pt; padding-right:5.4pt; padding-top:0cm; padding-bottom:0cm">
+					<p class="TableText">Application Acknowledgement</p>
+					<p class="TableText">
+					<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+					MCCI_IN010000UK13</a></p>
+					</td>
+				</tr>
+			</table>
+			<p class="MsoMIM">&nbsp;</p>
+			<div class="MsoMIM" align="center" style="text-align:center">
+				<hr size="3" width="100%" align="center"></div>
+			<h1><a name="_Toc_Section_7"></a>7&nbsp;&nbsp;&nbsp; Message Definitions</h1>
+			<p class="MsoMIM">There are three CDA documents associated with sealing 
+			history which are sent to PSIS. </p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">Additionally sealing related events are communicated 
+			to patients via the HealthSpace system, using the Notification of Seal 
+			Event message.</p>
+			<h2><a name="POCD_MT180001UK05"></a><a name="_Toc_Section_7.1"></a>7.1&nbsp;&nbsp;&nbsp; 
+			Refusal To Seal Report - POCD_MT180001UK05 </h2>
+			<p class="MsoMIM">The Refusal to Seal Report records a refusal by a 
+			clinician to seal 1 or more item of information.</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">
+			<a title="View R-MIM" style="color: blue" href="../Tabular%20View/POCD_RM180001UK05.htm">
+			<img border="0" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Tabular View" style="color: blue" href="../Tabular%20View/POCD_HD180001UK05-NoEdit.htm">
+			<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Schema" style="color: blue" href="../../../Schemas/POCD_MT180001UK05.xsd">
+			<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Templates" style="color: blue" href="../Tabular%20View/POCD_RM180001UK05-TemplateList.htm">
+			<img border="0" src="../../../Core/Components_files/image010.GIF" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View References" style="color: blue" href="../Tabular%20View/POCD_RM180001UK05-Reference%20Usage.htm">
+			<img border="0" src="../../../Core/Components_files/image011.GIF" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View MIF" style="color: blue" href="../../../Mif/POCD_RM180001UK05-RefusalToSealReport.mif">
+			<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a></p>
+			<p class="MsoMIM">&nbsp;</p>
+			<h3><a name="_Toc_Section_7.1.1"></a>7.1.1&nbsp;&nbsp;&nbsp; Example 
+			for Scenario for Refusal to Seal Report</h3>
+			<p></p>
+			<p class="MsoMIM">
+			<a title="View Scenario" style="color: blue" href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918446">
+			<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Example" style="color: blue" href="../../../Examples/Sealed%20Envelopes/POCD_MT180001UK05_01.xml">
+			<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+			<h2><a name="POCD_MT180002UK02"></a><a name="_Toc_Section_7.2"></a>7.2&nbsp;&nbsp;&nbsp; 
+			Seal Report - POCD_MT180002UK02 </h2>
+			<p class="MsoMIM">The Seal Report records details of a sealing event.</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">
+			<a title="View R-MIM" style="color: blue" href="../Tabular%20View/POCD_RM180002UK02.htm">
+			<img border="0" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Tabular View" style="color: blue" href="../Tabular%20View/POCD_HD180002UK02-NoEdit.htm">
+			<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Schema" style="color: blue" href="../../../Schemas/POCD_MT180002UK02.xsd">
+			<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Templates" style="color: blue" href="../Tabular%20View/POCD_RM180002UK02-TemplateList.htm">
+			<img border="0" src="../../../Core/Components_files/image010.GIF" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View References" style="color: blue" href="../Tabular%20View/POCD_RM180002UK02-Reference%20Usage.htm">
+			<img border="0" src="../../../Core/Components_files/image011.GIF" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View MIF" style="color: blue" href="../../../Mif/POCD_RM180002UK02-SealEventReport.mif">
+			<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a></p>
+			<p class="MsoMIM">&nbsp;</p>
+			<h3><a name="_Toc_Section_7.2.1"></a>7.2.1&nbsp;&nbsp;&nbsp; Example 
+			for Scenario for Seal Report</h3>
+			<p></p>
+			<p class="MsoMIM">
+			<a title="View Scenario" style="color: blue" href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918441">
+			<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Example" style="color: blue" href="../../../Examples/Sealed%20Envelopes/POCD_MT180002UK02_01.xml">
+			<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+			<h2><a name="POCD_MT180003UK02"></a><a name="_Toc_Section_7.3"></a>7.3&nbsp;&nbsp;&nbsp; 
+			UnSeal Report - POCD_MT180003UK02 </h2>
+			<p class="MsoMIM">The UnSeal Report records details Unsealing event.</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">
+			<a title="View R-MIM" style="color: blue" href="../Tabular%20View/POCD_RM180003UK02.htm">
+			<img border="0" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Tabular View" style="color: blue" href="../Tabular%20View/POCD_HD180003UK02-NoEdit.htm">
+			<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Schema" style="color: blue" href="../../../Schemas/POCD_MT180003UK02.xsd">
+			<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Templates" style="color: blue" href="../Tabular%20View/POCD_RM180003UK02-TemplateList.htm">
+			<img border="0" src="../../../Core/Components_files/image010.GIF" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View References" style="color: blue" href="../Tabular%20View/POCD_RM180003UK02-Reference%20Usage.htm">
+			<img border="0" src="../../../Core/Components_files/image011.GIF" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View MIF" style="color: blue" href="../../../Mif/POCD_RM180003UK02-UnSealEventReport.mif">
+			<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a>
+			</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<h3><a name="_Toc_Section_7.3.1"></a>7.3.1&nbsp;&nbsp;&nbsp; Example 
+			for Scenario Unseal Report</h3>
+			<p class="MsoMIM">
+			<a title="View Scenario" style="color: blue" href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918443">
+			<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Example" style="color: blue"  href="../../../Examples/Sealed%20Envelopes/POCD_MT180003UK02_01.xml">
+			<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+			<p class="MsoMIM">&nbsp;</p>
+			<h2><a name="PRPA_MT000501UK03"></a><a name="_Toc_Section_7.4"></a>7.4&nbsp;&nbsp;&nbsp; 
+			Notification of Seal Event - PRPA_MT000501UK03</h2>
+			<p class="MsoMIM">The Notification of Seal Event message is used to 
+			inform another system (HealthSpace) that an event relating to sealed 
+			envelopes has happened. This is typically either some information becoming 
+			sealed, locked or unsealed, or a change of who has permission to view 
+			sealed data.</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<p class="MsoMIM">
+			<a title="View R-MIM" style="color: blue" href="../Tabular%20View/PRPA_RM000501UK03.htm">
+			<img border="0" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Tabular View" style="color: blue" href="../Tabular%20View/PRPA_HD000501UK03-NoEdit.htm">
+			<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Schema" style="color: blue" href="../../../Schemas/PRPA_MT000501UK03.xsd">
+			<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Templates" style="color: blue" href="../Tabular%20View/PRPA_RM000501UK03-TemplateList.htm">
+			<img border="0" src="../../../Core/Components_files/image010.GIF" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View References" style="color: blue" href="../Tabular%20View/PRPA_RM000501UK03-Reference%20Usage.htm">
+			<img border="0" src="../../../Core/Components_files/image011.GIF" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View MIF" style="color: blue" href="../../../Mif/PRPA_RM000501UK03-SealEventNotification.mif">
+			<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a>
+			</p>
+			<p class="MsoMIM">&nbsp;</p>
+			<h3><a name="_Toc_Section_7.4.1"></a>7.4.1&nbsp;&nbsp;&nbsp; Example 
+			for notification of automated accessor group change</h3>
+			<p class="MsoMIM">
+			<a title="View Scenario" style="color: blue" href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918448">
+			<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Example" style="color: blue" href="../../../Examples/Sealed%20Envelopes/PRPA_EX000501UK03_01.xml">
+			<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+			<h3><a name="_Toc_Section_7.4.2"></a>7.4.2&nbsp;&nbsp;&nbsp; Example 
+			for notification of information being sealed</h3>
+			<p class="MsoMIM">
+			<a title="View Scenario" style="color: blue" href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918441">
+			<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Example" style="color: blue" href="../../../Examples/Sealed%20Envelopes/PRPA_EX000501UK03_02.xml">
+			<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+			<h3><a name="_Toc_Section_7.4.3"></a>7.4.3&nbsp;&nbsp;&nbsp; Example 
+			for notification of information being unsealed</h3>
+			<p class="MsoMIM">
+			<a title="View Scenario" style="color: blue" href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918443">
+			<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Example" style="color: blue" ref="../../../Examples/Sealed%20Envelopes/PRPA_EX000501UK03_04.xml">
+			<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+			<h3><a name="_Toc_Section_7.4.4"></a>7.4.4&nbsp;&nbsp;&nbsp; Example 
+			for notification of manual accessor change</h3>
+			<p class="MsoMIM">
+			<a title="View Scenario" style="color: blue" href="../../../External%20Documents/Scenarios/Sealed%20Envelope%20Clinical%20Scenarios.htm#_Toc173918450">
+			<img border="0" src="../../../Core/Components_files/image007.gif" width="21" height="25"></a>&nbsp;&nbsp;&nbsp;
+			<a title="View Example" style="color: blue" href="../../../Examples/Sealed%20Envelopes/PRPA_EX000501UK03_03.xml">
+			<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+			<hr>
+			<h1><a name="_Toc_Section_8"></a>8&nbsp;&nbsp;&nbsp; Glossary of Terms</h1>
+			<table class="MIMGlossaryTable" border="1" cellspacing="0" cellpadding="2">
+				<tr>
+					<td>Application Acknowledgement</td>
+					<td>A response from one application to another indicating that 
+					a message has been received and is valid.</td>
+				</tr>
+				<tr>
+					<td>Application Role</td>
+					<td>The role played by the application in a particular interaction.</td>
+				</tr>
+				<tr>
+					<td>Data type</td>
+					<td>The structural format of the data carried in an attribute</td>
+				</tr>
+				<tr>
+					<td>Data Type Flavour</td>
+					<td>A subdivision of a particular data type</td>
+				</tr>
+				<tr>
+					<td>DCE UUID</td>
+					<td>Universally Unique Identifier</td>
+				</tr>
+				<tr>
+					<td>ED</td>
+					<td>Emergency Department. Previously known as Accident &amp; Emergency</td>
+				</tr>
+				<tr>
+					<td>EHR</td>
+					<td>Electronic Healthcare Record</td>
+				</tr>
+				<tr>
+					<td>Legitimate Relationship</td>
+					<td>A Legitimate Relationship is a relationship between a clinician 
+					(or NHS organisation work group) and a patient, that gives the 
+					clinician, or workgroup member, certain levels of entitlement 
+					to access that patient’s health record maintained on National 
+					Systems.</td>
+				</tr>
+				<tr>
+					<td>NHS CRS</td>
+					<td>NHS Care Record Service</td>
+				</tr>
+				<tr>
+					<td>OID</td>
+					<td>Object Identifier, a unique identifier e.g. used to identify 
+					coding systems</td>
+				</tr>
+				<tr>
+					<td>Provider</td>
+					<td>An alternative term for a fulfiller</td>
+				</tr>
+				<tr>
+					<td>PCT</td>
+					<td>Primary Care Trust, responsible for primary and community 
+					health services within a geographical boundary.</td>
+				</tr>
+				<tr>
+					<td>PDS</td>
+					<td>Patient Demographic Service</td>
+				</tr>
+				<tr>
+					<td>PSIS</td>
+					<td>Personal Spine Information Service.</td>
+				</tr>
+				<tr>
+					<td>Requestor</td>
+					<td>The HCP responsible for the request</td>
+				</tr>
+				<tr>
+					<td>SDS</td>
+					<td>Spine Directory Service</td>
+				</tr>
+				<tr>
+					<td>Service User</td>
+					<td>A person who is registered on the PDS</td>
+				</tr>
+			</table>
+			<a name="_Changes"></a></div>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">&nbsp;</p>
+		<p class="MsoMIM">&nbsp;</p>
+	</div>
+	</span></div>
+
+</body>
+
+</html>

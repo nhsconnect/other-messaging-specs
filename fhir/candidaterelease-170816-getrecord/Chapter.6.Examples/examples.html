@@ -1,0 +1,436 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+			<title>GP Connect Get Record FHIR API Implementation Guide - FHIR Implementation Guide</title>
+
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="author" content="HSCIC" />        
+			<meta name="publisher version" content=	"FHIR-Furnace : 2.7.6137.25942" />
+		
+			<link href="../dist/css/fhir.css" rel="stylesheet" />
+	 
+			<!-- Bootstrap core CSS -->
+			<link href="../dist/css/bootstrap.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-fhir.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-glyphicons.css" rel="stylesheet" />
+
+			<!-- Project extras -->
+			
+			<link href="../dist/css/pygments-manni.css" rel="stylesheet" />
+
+			<script src="../dist/js/jquery.js"> </script>
+			<script src="../dist/js/bootstrap.min.js"> </script>
+
+			<script src="../dist/js/fhir.js"> </script>
+			
+				<script>
+				  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+				  ga('create', 'UA-67795986-1', 'auto');
+				  ga('send', 'pageview');
+
+				</script>
+			
+			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+				<script src="../dist/js/html5shiv.js"></script>
+				<script src="../dist/js/respond.min.js"></script>
+			<![endif]-->
+
+			<!-- Favicons -->
+			<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../dist/images/apple-touch-icon-144-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../dist/images/apple-touch-icon-114-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../dist/images/apple-touch-icon-72-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" href="../dist/images/apple-touch-icon-57-precomposed.png" />
+			<link rel="shortcut icon" href="../dist/images/favicon.ico" />
+	</head>
+	
+	<body>  
+		
+		<!-- segment-header -->
+		<div id="segment-header" class="segment">
+            
+            <div class="container">
+                <!-- container -->
+                <a id="logo" href="http://www.digital.nhs.uk" target="_blank">
+                    <img src="../dist/images/logo.png" alt="logo NHS Digital" />
+                </a>
+                <div id="specificationName">
+         
+                        <b>GP Connect Get Record FHIR API Implementation Guide</b>
+                  
+                </div>
+
+            </div>
+            <div class="container">
+                <!-- container -->
+            </div>
+        </div>
+        
+		<!-- /segment-header -->
+		
+		
+		<div id="segment-navbar" class="segment">
+            <!-- segment-navbar -->
+            <div id="stripe"> </div>
+            <div class="container">
+                <!-- container -->
+                <!-- HEADER CONTENT -->
+
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <button data-target=".navbar-inverse-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                        </button>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <ul class="nav navbar-nav">   
+
+											<li>
+												<a href='../Chapter.1.About/index.html'>About</a>
+											</li>
+											<li>
+												<a href='../Chapter.2.Change History/index.html'>Change History</a>
+											</li>
+											<li>
+												<a href='../Chapter.4.API Implementation/index.html'>API Implementation</a>
+											</li>
+											<li>
+												<a href='../Chapter.5.Constrained FHIR Models/index.html'>Constrained FHIR Models</a>
+											</li>
+											<li>
+												<a href='../Chapter.6.Examples/examples.html'>Examples</a>
+											</li>
+											<li>
+												<a href='../Chapter.7.Valuesets/valuesets.html'>Valuesets</a>
+											</li>
+
+                            </ul>
+							
+                            <p class="navbar-text pull-right" style="padding-right: 10px;padding-top: 3px;">
+                                <span class="label label-default"  style="font-size: 95%;">Version 1.0.0 : RC1</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </nav>				
+            </div>
+        </div>
+		
+		<div id="segment-breadcrumb" class="segment">
+            <!-- segment-breadcrumb -->
+            <div class="container">
+                <!-- container -->
+                <ul class="breadcrumb"></ul>
+            </div>
+            <!-- /container -->
+        </div>
+        <div id="segment-content" class="segment">
+            <!-- segment-content -->
+            <div class="container">
+                <!-- container -->
+                <div class="row">
+                    <div class="inner-wrapper">
+						<!-- CONTENT CONTENT -->
+                        <div class="col-12">
+							
+							
+							
+							
+							
+									<div class="panel panel - default">
+											<div class="package" xmlns="http://www.w3.org/1999/xhtml">
+  <br />
+  <h3>GetRecordQueryRequest</h3>
+  <div class="example-table" xmlns="">
+    <p>
+      <b>GPConnect-CareRecord-Operation-1</b>
+    </p>
+    <table>
+      <tr xmlns="http://www.w3.org/1999/xhtml">
+        <th class="col-name">Examples</th>
+        <th class="col-description">Description</th>
+        <th class="col-xml-file">XML File</th>
+        <th class="col-json-file">JSON File</th>
+      </tr>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <tr />
+        <tr>
+          <td>Operation-NHSPatientRecord</td>
+          <td />NHS Patient Record Operation<td><a target="_blank" href="../Examples\Profile.GetRecordQueryRequest\Operation-NHSPatientRecord.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryRequest\Operation-NHSPatientRecord.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+      </div>
+    </table>
+  </div>
+</div><div class="package" xmlns="http://www.w3.org/1999/xhtml">
+  <br />
+  <h3>GetRecordQueryResponse-HTMLView</h3>
+  <div class="example-table" xmlns="">
+    <p>
+      <b>GPConnect-Searchset-Bundle-1</b>
+    </p>
+    <table>
+      <tr xmlns="http://www.w3.org/1999/xhtml">
+        <th class="col-name">Examples</th>
+        <th class="col-description">Description</th>
+        <th class="col-xml-file">XML File</th>
+        <th class="col-json-file">JSON File</th>
+      </tr>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <tr />
+        <tr>
+          <td>Bundle-CareRecord-Medications</td>
+          <td />GPConnect-Searchset-Bundle-1 containing the GP Connect Query Response bundled resources (Patient Care Record) Medications Section Example<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Bundle-CareRecord-Medications.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Bundle-CareRecord-Medications.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Bundle-CareRecord-Summary</td>
+          <td />GPConnect-Searchset-Bundle-1 containing the GP Connect Query Response bundled resources (Patient Care Record) Summary Section Example<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Bundle-CareRecord-Summary.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Bundle-CareRecord-Summary.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Bundle-OperationOutcome</td>
+          <td />GPConnect-Searchset-Bundle-1 containing the the GP Connect Query Response bundled resources  (Operation Outcome - NHS Number Invalid) Example<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Bundle-OperationOutcome.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Bundle-OperationOutcome.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+      </div>
+    </table>
+  </div>
+  <div class="example-table" xmlns="">
+    <p>
+      <b>GPConnect-OperationOutcome-1</b>
+    </p>
+    <table>
+      <tr xmlns="http://www.w3.org/1999/xhtml">
+        <th class="col-name">Examples</th>
+        <th class="col-description">Description</th>
+        <th class="col-xml-file">XML File</th>
+        <th class="col-json-file">JSON File</th>
+      </tr>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <tr />
+        <tr>
+          <td>OperationOutcome-1a</td>
+          <td />GPConnect-OperationOutcome-1 (NHS Number Invalid) Example<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\OperationOutcome-1a.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\OperationOutcome-1a.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>OperationOutcome-1b</td>
+          <td />GPConnect-OperationOutcome-1 (No Record Found) Example<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\OperationOutcome-1b.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\OperationOutcome-1b.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+      </div>
+    </table>
+  </div>
+  <div class="example-table" xmlns="">
+    <p>
+      <b>GPConnect-Patient-1</b>
+    </p>
+    <table>
+      <tr xmlns="http://www.w3.org/1999/xhtml">
+        <th class="col-name">Examples</th>
+        <th class="col-description">Description</th>
+        <th class="col-xml-file">XML File</th>
+        <th class="col-json-file">JSON File</th>
+      </tr>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <tr />
+        <tr>
+          <td>Patient</td>
+          <td />NHS Patient example<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Patient.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Patient.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+      </div>
+    </table>
+  </div>
+  <div class="example-table" xmlns="">
+    <p>
+      <b>GPConnect-CareRecord-Composition-1</b>
+    </p>
+    <table>
+      <tr xmlns="http://www.w3.org/1999/xhtml">
+        <th class="col-name">Examples</th>
+        <th class="col-description">Description</th>
+        <th class="col-xml-file">XML File</th>
+        <th class="col-json-file">JSON File</th>
+      </tr>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <tr />
+        <tr>
+          <td>Composition-CareRecord-AdministrativeItems</td>
+          <td />NHS Patient Care Record - Administrative Items Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-AdministrativeItems.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-AdministrativeItems.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Composition-CareRecord-AllergiesandSensitivities</td>
+          <td />NHS Patient Care Record - Allergies and Sensitivities Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-AllergiesandSensitivities.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-AllergiesandSensitivities.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Composition-CareRecord-ClinicalItems</td>
+          <td />NHS Patient Care Record - Clinical Items Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-ClinicalItems.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-ClinicalItems.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Composition-CareRecord-Encounters</td>
+          <td />NHS Patient Care Record - Encounters Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Encounters.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Encounters.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Composition-CareRecord-Immunisations</td>
+          <td />NHS Patient Care Record - Immunisations Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Immunisations.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Immunisations.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Composition-CareRecord-Investigations</td>
+          <td />NHS Patient Care Record - Investigations Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Investigations.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Investigations.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Composition-CareRecord-Medications</td>
+          <td />NHS Patient Care Record - Medications Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Medications.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Medications.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Composition-CareRecord-Observations</td>
+          <td />NHS Patient Care Record - Observations Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Observations.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Observations.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Composition-CareRecord-PatientDetails</td>
+          <td />NHS Patient Care Record - Patient Details Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-PatientDetails.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-PatientDetails.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Composition-CareRecord-Problems</td>
+          <td />NHS Patient Care Record - Problems Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Problems.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Problems.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Composition-CareRecord-Referrals</td>
+          <td />NHS Patient Care Record - Referrals Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Referrals.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Referrals.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Composition-CareRecord-Summary</td>
+          <td />NHS Patient Care Record - Summary Section<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Summary.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Composition-CareRecord-Summary.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+      </div>
+    </table>
+  </div>
+  <div class="example-table" xmlns="">
+    <p>
+      <b>GPConnect-Practitioner-1</b>
+    </p>
+    <table>
+      <tr xmlns="http://www.w3.org/1999/xhtml">
+        <th class="col-name">Examples</th>
+        <th class="col-description">Description</th>
+        <th class="col-xml-file">XML File</th>
+        <th class="col-json-file">JSON File</th>
+      </tr>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <tr />
+        <tr>
+          <td>GP Practitioner</td>
+          <td />Practitioner example - GP<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\GP Practitioner.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\GP Practitioner.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Practitioner</td>
+          <td />Practitioner example - Consultant<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Practitioner.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Practitioner.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Practitioner-1a</td>
+          <td />Practitioner example - Nurse<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Practitioner-1a.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Practitioner-1a.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+      </div>
+    </table>
+  </div>
+  <div class="example-table" xmlns="">
+    <p>
+      <b>GPConnect-Location-1</b>
+    </p>
+    <table>
+      <tr xmlns="http://www.w3.org/1999/xhtml">
+        <th class="col-name">Examples</th>
+        <th class="col-description">Description</th>
+        <th class="col-xml-file">XML File</th>
+        <th class="col-json-file">JSON File</th>
+      </tr>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <tr />
+        <tr>
+          <td>Location-1a</td>
+          <td />Hematology clinic<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Location-1a.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Location-1a.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Location-1b</td>
+          <td />Hospital<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Location-1b.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Location-1b.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+      </div>
+    </table>
+  </div>
+  <div class="example-table" xmlns="">
+    <p>
+      <b>GPConnect-Organization-1</b>
+    </p>
+    <table>
+      <tr xmlns="http://www.w3.org/1999/xhtml">
+        <th class="col-name">Examples</th>
+        <th class="col-description">Description</th>
+        <th class="col-xml-file">XML File</th>
+        <th class="col-json-file">JSON File</th>
+      </tr>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <tr />
+        <tr>
+          <td>GP Organization</td>
+          <td />GP Practice Example<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\GP Organization.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\GP Organization.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Organization-1a</td>
+          <td />Organization Example<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Organization-1a.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Organization-1a.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+        <tr>
+          <td>Organization-1b</td>
+          <td />Organization Example<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Organization-1b.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Organization-1b.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+      </div>
+    </table>
+  </div>
+  <div class="example-table" xmlns="">
+    <p>
+      <b>GPConnect-Device-1</b>
+    </p>
+    <table>
+      <tr xmlns="http://www.w3.org/1999/xhtml">
+        <th class="col-name">Examples</th>
+        <th class="col-description">Description</th>
+        <th class="col-xml-file">XML File</th>
+        <th class="col-json-file">JSON File</th>
+      </tr>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+        <tr />
+        <tr>
+          <td>Device</td>
+          <td />Device<td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Device.xml" /><img src="../dist/images/file-xml-xs.png" xmlns="" /></td><td><a target="_blank" href="../Examples\Profile.GetRecordQueryResponse-HTMLView\Device.json" /><img src="../dist/images/file-json-xs.png" xmlns="" /></td></tr>
+      </div>
+    </table>
+  </div>
+</div>
+									</div>
+							
+						
+					   </div>                      
+                    </div>
+                    <!-- /inner-wrapper -->                   
+                </div>
+                <!-- /row -->              
+            </div>
+            <!-- /container -->           
+        </div>
+    <!-- /segment-content -->
+
+        <div id="segment-footer" class="segment">
+            <!-- segment-footer -->
+            <div class="container">
+                <!-- container -->
+                <div class="inner-wrapper">
+					<div id="explanatoryline">
+                         <img src="../dist/images/explanatoryline.png" alt="Information and technology for better health and care" />
+						 <p>
+                        Copyright &copy; 2016 Health and Social Care Information Centre<br/>
+						NHS Digital is the trading name of the Health and Social Care Information Centre.
+                    </p>
+                    </div>
+				<div id="hl7-nav">
+                    <a id="hl7-logo" href="http://www.hl7.org" target="_blank">
+                        <img src="../dist/images/hl7-logo.png" alt="visit the hl7 website" />
+                    </a>
+					<p>
+					FHIR&reg; is the registered trademark of HL7<br/>
+					and is used with the permission of HL7.
+					</p>
+				</div>
+					<p>
+						<!--<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> -->
+                    </p>
+                </div>
+                <!-- /inner-wrapper -->
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-post-footer" class="segment">
+            <!-- segment-post-footer -->
+            <div class="container">
+                <!-- container -->
+            </div>
+            <!-- /container -->
+        </div>
+	</body>
+</html>

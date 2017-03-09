@@ -1,0 +1,650 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>AuthorSDS Tabular View</title><style type="text/css">
+	table {empty-cells: show}
+</style><script language="JavaScript1.2">
+				
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+
+</script><style>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#maindiv {
+	overflow: auto; 
+	width: 100%; 
+	height: 90%; 
+	}
+
+
+.hypertext
+{
+	position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+}
+
+.actclass
+{
+	background-color: red;
+}
+
+.entclass
+{
+	background-color: lightgreen;;
+}
+
+.roleclass
+{
+	background-color: yellow;;
+}
+.otherclass
+{
+	background-color: blue;
+}
+.choiceclass
+{
+	background-color: gray;
+}
+.actrelclass
+{
+	background-color: pink;
+}
+.partclass
+{
+	background-color: cyan;
+}
+.rolelinkclass
+{
+	background-color: lightyellow;
+}
+
+</style></head>
+   <body onload="checkDOM('ds')">
+      <h1>AuthorSDS - tabular view</h1><span id="ds" class="hypertext">No Current Link To Vocabulary</span><span id="cwe" class="hypertext">Coded With Extensions</span><span id="cne" class="hypertext">Coded No Extensions</span><p><b>Thu Oct 25 13:12:08 BST 2007</b></p>
+      <table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="black">
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+         <tr>
+            <td height="35" colspan="2"><a href="COCD_TP145001UK03.htm"><b>COCD_TP145001UK03</b></a></td>
+            <td height="35" nowrap="yes"></td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="roleclass"><a name="AssignedAuthorSDS"><b>AssignedAuthorSDS</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  <strong>Identifies a person playing the role of author.  Full details of the role profile and person are available from SDS.</strong>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#"><b></b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>RoleClass</b></a> } ) {<b> Fixed="<font color="red">ASSIGNED</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>Indicates that this role is assigned.<br>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>code</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cwe')" onmouseover="popUp(event,'cwe')"><b>CWE</b></a>:<a href="../../../Vocabulary/SDSJobRoleName.htm" target="_top"><b>SDSJobRoleName</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Any code that describes a person's job role. <br>
+                        <br>The Coded Plain  flavour of the Coded Value (CV) data type shall be used to carry this  information as follows:  
+                     </p>
+                     
+                     <ul>
+                        
+                        <li>The <i>code</i> attribute shall contain the person's job role code<br>
+                           
+                        </li>
+                        
+                        <li>The <i>codeSystem</i> attribute shall contain the OID for the code system  
+                        </li>
+                        
+                        <li>The <i>displayName </i>attribute shall carry the person's job role name<br>
+                           
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..2] </b></font><font color="green"><b> [M] </b></font><b>id</b> (<a href="../../../Data Types/DataTypes.htm#SET"><b>SET</b></a><b>&lt;<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>&gt;</b>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>The first instance of id is mandatory shall carry the SDS User ID, the second instance is required shall carry the SDS User
+                     Role Profile ID when available on the sending system. They shall be carried as follows:<br>
+                     <br>  An SDS identifier that uniquely identifies the Person.<br>
+                     
+                     <ul>
+                        
+                        <li>The <i>root</i> attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.65 
+                        </li>
+                        
+                        <li>the <i>extension</i> attribute shall contain the SDS User ID, known in the External Interface Specification as User's Unique Identifier.
+                        </li>
+                        
+                     </ul>   An SDS identifier that uniquely identifies the role profile of the person<br>
+                     
+                     <ul>
+                        
+                        <li>The <i>root</i> attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.67
+                        </li>
+                        
+                        <li>the <i>extension</i> attribute shall contain the SDS Role Profile ID, known in the External Interface Specification as Role Profile Code.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+                  <p>When the role profile ID is not available a null flavor of "UNK" must be used </p>
+                  
+                  <p></p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>templateId</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>) {<b> Fixed="<font color="red">COCD_TP145001UK03#AssignedAuthorSDS</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>The fixed value of this attribute provides a unique identifier for the  template and the classname within that template.</p>
+                     
+                     <p>The IdentifierExternal datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</li>
+                        
+                        <li>The extension attribute shall contain the fixed value.</li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="AssignedAuthorSDS/assignedPerson"></a>assignedPerson</b> (<a href="#Person"><b>Person</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>A link to the person entity which is playing this role.<br>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="AssignedAuthorSDS/representedOrganization"></a>representedOrganization</b> (<a href="#Organization"><b>Organization</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A link to the represented organisation.<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="entclass"><a name="Person"><b>Person</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  <strong>Details to allow identifcation of a person.</strong>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#AssignedAuthorSDS"><b>AssignedAuthorSDS</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>EntityClass</b></a> } ) {<b> Fixed="<font color="red">PSN</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>Indicates that this a person.</div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>determinerCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>EntityDeterminer</b></a> } ) {<b> Fixed="<font color="red">INSTANCE</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>Indicates this is a instance of a person.</div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>name</b> (<a href="../../../Data Types/DataTypes.htm#PN"><b>PN</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>The name of the person.</div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>templateId</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>) {<b> Fixed="<font color="red">COCD_TP145001UK03#assignedPerson</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>The fixed value of this attribute provides a unique identifier for the  template and the classname within that template.</p>
+                     
+                     <p>The IdentifierExternal datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</li>
+                        
+                        <li>The extension attribute shall contain the fixed value.</li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="entclass"><a name="Organization"><b>Organization</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>Details to allow identifcation of an organization<br>
+                        </strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#AssignedAuthorSDS"><b>AssignedAuthorSDS</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>EntityClass</b></a> } ) {<b> Fixed="<font color="red">ORG</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>Indicates this is an organisation.<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>determinerCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>EntityDeterminer</b></a> } ) {<b> Fixed="<font color="red">INSTANCE</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>Indicates this is an instance of an organisation<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>id</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <div>
+                        
+                        <div>
+                           
+                           <p>A valid SDS identifier that uniquely identifies the Organization. The <em>root</em> attribute shall be the OID for the SDS code set  and the <em>extension</em> shall contain the code.<br>
+                              <br>The SDS organisation id attribute can be populated using the following SDS codes:
+                           </p>
+                           
+                           <p>Sites (including Branch surgeries) can be filtered within SDS combining the NACS code for the location which is relevant to
+                              the author with the objectClass "nhsSite".<br>
+                              
+                           </p>
+                           
+                           <ul>
+                              
+                              <li>The <em>root</em> attribute shall contain an OID with the value 2.16.840.1.113883.2.1.3.2.4.19.2  
+                              </li>
+                              
+                              <li>the <em>extension</em> attribute shall contain the SDS NACS site code
+                              </li>
+                              
+                           </ul>
+                           
+                        </div>
+                        
+                     </div>
+                     
+                     <div>
+                        
+                        <div>Organisations can be filtered in SDS by using the NACS code for the location which is relevant to the author and the types
+                           "nhsOrg" and "nhsGPPractice"<br>  (Organisations can be either of these)
+                        </div>
+                        
+                        <div>
+                           
+                           <ul>
+                              
+                              <li>The <em>root</em> attribute shall contain an OID with the value 2.16.840.1.113883.2.1.3.2.4.19.1  
+                              </li>
+                              
+                              <li>the <em>extension</em> attribute shall contain the SDS NACS code
+                              </li>
+                              
+                           </ul>
+                           <strong>Note these are listed in order preference for populating this attribute</strong>
+                           
+                        </div>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>name</b> (<a href="../../../Data Types/DataTypes.htm#ON"><b>ON</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <div>The name of the organisation.</div>
+                     
+                     <div></div>
+                     
+                     <div>This shall use the name associated with the code above which will be either</div>
+                     
+                     <div></div>
+                     
+                     <div>NACS site name (identified in the EIS  by LDAP OID 2.5.4.10)</div>
+                     
+                     <div>or</div>
+                     
+                     <div>NACS organisation Code (identified in the EIS by LDAP OID 2.5.4.11)  </div>
+                     
+                     <div></div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>templateId</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>) {<b> Fixed="<font color="red">COCD_TP145001UK03#representedOrganization</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>The fixed value of this attribute provides a unique identifier for the  template and the classname within that template.</p>
+                     
+                     <p>The IdentifierExternal datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain the OID "2.16.840.1.113883.2.1.3.2.4.18.2"</li>
+                        
+                        <li>The extension attribute shall contain the fixed value.</li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+      </table>
+   </body>
+</html>

@@ -1,0 +1,514 @@
+<HTML><HEAD><TITLE>A_RelevantHistory Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content=A_RelevantHistory name=Entry>
+<META content=UKCT_HD144005UK01 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>A_RelevantHistory - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=3 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="UKCT_RM144005UK01.htm"><B>UKCT_RM144005UK01</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Observation><B>Observation</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Observation;Observation_c title=UKCT_HD144005UK01#Observation style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Information about a clinical statement that describes an observation about 
+historic clinical information that is relevant to the patient&#39;s care.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=2><FONT color=gray><A name=Observation>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Act;Observation/$classCode title=Observation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an observation.</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Act;Observation/$moodCode title=Observation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates this is an event.</P>
+<ul>
+	<li>Fixed value: &quot;EVN&quot; </li>
+</ul>
+</NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..2] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#LIST"><B>LIST</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Act;Observation/$id title=Observation.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A&nbsp;set of unique identifiers for this instance of an observation.</P>
+<P>The first&nbsp;is mandatory and is a&nbsp;unique identifier for this instance of a specific clinical statement. The second is optional and allows an&nbsp;observation to be identified by a local identifier.</P>
+<P>The Identifier Global datatype flavour is used to carry the first identifier&nbsp;as follows:</P>
+<UL>
+<LI>The <I>root</I> attribute&nbsp;shall contain a DCE UUID</LI></UL>
+<P>The Identifier&nbsp;External datatype flavour is used to carry the second identifier as follows:</P>
+<UL>
+<LI>The <I>root </I>carries an OID for the local identifier scheme </LI>
+<LI>The <I>extension </I>carries a human-readable identifier from that scheme.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/RelevantHistorySnCT.htm">RelevantHistorySnCT</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Act;Observation/$code title=UKCT_HD144005UK01#Observation.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A SnomedCT code identifying the type of relevant history. 
+<P>The&nbsp;Concept Descriptor (CD) dataype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute shall contain a&nbsp;code from the relevant vocabulary </LI>
+<LI>The <I>code System</I> attribute shall contain&nbsp;the OID for SnomedCT </LI>
+<LI>The <I>display&nbsp;text</I> shall carry a description associated with the code&nbsp;in SnomedCT </LI>
+<LI>the <I>original text</I> attribute may be used if required </LI>
+<LI><I>qualifier</I>(s) may be used if required.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActStatus</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Act;Observation/$statusCode title=Observation.statusCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The (optional) status of the Observation, e.g. active, suspended, completed.</P>
+<P>Shall be present if status is aborted or cancelled.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;Act Status vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Act;Observation/$effectiveTime title=UKCT_HD144005UK01#Observation.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The clinically relevant date and time.</P>
+<P><B>For this release the effective time shall be constrained to</B> (<B><a href="../../../Data%20Types/DataTypes.htm#IVL">IVL</a>&lt;<a href="../../../Data%20Types/DataTypes.htm#TS">TS</a>&gt;</B>)</P>
+<P>A&nbsp;date range shall be carried as follows: </P>
+<P>If both a start date and an end date are present the Date or Time Interval Complete datatype shall be used:</P>
+<UL>
+<LI>The&nbsp;<I>low</I> attribute shall contain the start date </LI>
+<LI>The <I>high</I> attribute shall contain the end date.</LI></UL>
+<P>If only a start date is present the Date or Time Interval After datatype shall be used:</P>
+<UL>
+<LI>The <I>low</I> attribute shall contain the start date.</LI></UL>
+<P>If only an end date is present the Date or Time Interval Before datatype shall be used:</P>
+<UL>
+<LI>The <I>high</I> attribute shall contain the end date.</LI></UL>
+</NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#ANY"><B>ANY</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Observation;Observation/$value title=Observation.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The value of the observation.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Author><B>author</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=UKCT_HD144005UK01#Act;/Observation/author title=Observation/author style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Refers to the person or&nbsp;department responsible for&nbsp;authoring the 
+relevant history observation.</B></P>
+<P><b><font color="#FF0000">Only required if author is different to author 
+inherited via context conduction</font> &nbsp;</b></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=2>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144005UK01#Participation;Observation/author/$typeCode title=Observation/author.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the role&nbsp;of author of this RelevantHistory observation.</P>
+<UL>
+<LI>Fixed value: "AUT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OP</B>} )<A>{<B> Fixed="<FONT color=red>OP</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144005UK01#Participation;Observation/author/$contextControlCode title=author.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Fixed&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act. 
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[0..1] </B></FONT><B>time</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144005UK01#Participation;Observation/author/$time title=Observation/author.time style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>When the&nbsp;author authorised the relevant history observation.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[0..1] </B></FONT><B>modeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ParticipationMode</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<P>The mode in which the author authored this relevant history .</P>
+<P>Required if not "ELECTRONIC"&nbsp;</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;ParticipationMode vocabulary.</LI></UL>
+<p>&nbsp;</TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>role</B> (<B><A href="#RoleChoice">RoleChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144005UK01#Participation;Observation/author/participant+RoleChoice title=Participation/participant+RoleChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The&nbsp;person performing this particpation. </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Informant><B>informant</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=UKCT_HD144005UK01#Act;/Observation/informant title=Act/informant style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Refers&nbsp;to the&nbsp;person or device acting in the role of informant.&nbsp; The patient may&nbsp;act as&nbsp;an informant.</B> </NOTE>
+	<p><b><font color="#FF0000">Only required if informant is different to 
+	informant inherited via context conduction</font> </b></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=2>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INF</B>} )<A>{<B> Fixed="<FONT color=red>INF</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144005UK01#Participation;Observation/informant/$typeCode title=informant.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of informant.</P>
+<UL>
+<LI>Fixed value: "INF"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OP</B>} )<A>{<B> Fixed="<FONT color=red>OP</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144005UK01#Participation;Observation/informant/$contextControlCode title=informant.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Fixed value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act. 
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+</NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>time</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144005UK01#Participation;Observation/informant/$time title=Participation.time style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The date / time when/ during which&nbsp; the informant gave the information 
+about the relevant history.</P>
+<P>A&nbsp;date range shall be carried as follows: </P>
+<P>If both a start date and an end date are present the Date or Time Interval Complete datatype shall be used:</P>
+<UL>
+<LI>The&nbsp;<I>low</I> attribute shall contain the start date </LI>
+<LI>The <I>high</I> attribute shall contain the end date.</LI></UL>
+<P>If only a start date is present the Date or Time Interval After datatype shall be used:</P>
+<UL>
+<LI>The <I>low</I> attribute shall contain the start date.</LI></UL>
+<P>If only an end date is present the Date or Time Interval Before datatype shall be used:</P>
+<UL>
+<LI>The <I>high</I> attribute shall contain the end date.</LI></UL>
+<p></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[0..1] </B></FONT><B>modeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ParticipationMode</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<P>The mode in which the informant .</P>
+<P>Required if not "ELECTRONIC"&nbsp;</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;ParticipationMode vocabulary.</LI></UL>
+<p>&nbsp;</TD></TR>
+<TR vAlign=top>
+<TD width="48%"><FONT color=green><B>[1..1] </B></FONT><B>role</B> (<B><A href="#RoleChoice">RoleChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=UKCT_HD144005UK01#Participation;Observation/informant/participant+RoleChoice title=Participation/participant+RoleChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>The&nbsp;informing person.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=2 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=RoleChoice><B>RoleChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Role;participant+RoleChoice_c title=UKCT_HD144005UK01#participant+RoleChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>The&nbsp;person performing this particpation.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=2><FONT color=gray><A name=RoleChoice>Used by: </A></FONT><A href="#Observation"><B>Observation</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B><I>either </I></FONT>: <B><A href="#NonAgentRole">NonAgentRole</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Role;participant+RoleChoice/generalizes-NonAgentRole title=generalizes-NonAgentRole style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The&nbsp;participating person&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM142100UK01.htm">UKCT_MT142101UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Role;participant+RoleChoice/participant_R_AgentNPFITPoCPersonUniversal+UKCT_MT142101UK01 title=participant+RoleChoice/participant_R_AgentNPFITPoCPersonUniversal+UKCT_MT142101UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET to identify the&nbsp;person who is participating.</P>
+<P>The tabular view for this CMET describes its usage.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=NonAgentRole><B>NonAgentRole</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#RoleHeir;NonAgentRole_c title=NonAgentRole style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A role played by a person who is not an agent&nbsp; (i.e. not a care professional).</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=2><FONT color=gray><A name=NonAgentRole>Used by: </A></FONT><A href="#Observation"><B>Observation</B></A>, <A href="#RoleChoice"><B>RoleChoice</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ROL</B>} )<A>{<B> Fixed="<FONT color=red>ROL</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#RoleHeir;NonAgentRole/$classCode title=NonAgentRole.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates this is a role.</P>
+<UL>
+<LI>Fixed value: "ROL"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#RoleHeir;NonAgentRole/$id title=NonAgentRole.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An optional unique identifier of the role-player.&nbsp; May be used to convey the NHS number of a patient who is playing a role.&nbsp; It shall be an OID for the identification scheme and the identifier within that scheme (e.g. for patient NHS number).</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/PersonRelationshipType.htm"><B>PersonRelationshipType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#RoleHeir;NonAgentRole/$code title=NonAgentRole.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code identifying the relationship of the non-agent person to the patient, e.g. parent&nbsp; or carer.</P>
+<P>The Coded&nbsp; Plain flavour of the Coded&nbsp;Value (CV) datatype shall be used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute shall contain a value from the list of codes in the&nbsp; vocabulary </LI>
+<LI>The <I>code System</I> attribute shall contain&nbsp;the OID for the vocabulary </LI>
+<LI>The <I>display text</I> attribute will carry a description for the code from the vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>playingNonAgentPerson</B> (<A href="#NonAgentPerson"><B>NonAgentPerson</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#RoleHeir;NonAgentRole/playingNonAgentPerson-NonAgentPerson title=NonAgentRole/playingNonAgentPerson-NonAgentPerson style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An optional link to the person playing the non-agent role.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=NonAgentPerson><B>NonAgentPerson</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Person;NonAgentPerson_c title=NonAgentPerson style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Details of the non-agent person.</B> </NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=2><FONT color=gray><A name=NonAgentPerson>Used by: </A></FONT><A href="#NonAgentRole"><B>NonAgentRole</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PSN</B>} )<A>{<B> Fixed="<FONT color=red>PSN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Person;NonAgentPerson/$classCode title=NonAgentPerson.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a person</P>
+<UL>
+<LI>Fixed value: "PSN" </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Person;NonAgentPerson/$determinerCode title=NonAgentPerson.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable person.</P>
+<UL>
+<LI>Fixed value: "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=3 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>name</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#PN"><B>PN</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD144005UK01#Person;NonAgentPerson/$name title=NonAgentPerson.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The name(s) of the person</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=3 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

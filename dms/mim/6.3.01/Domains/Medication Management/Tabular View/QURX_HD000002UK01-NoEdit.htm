@@ -1,0 +1,272 @@
+<HTML><HEAD><TITLE>Prescription State List (Query By ID) Query Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="Prescription State List (Query By ID) Query" name=Entry>
+<META content=QURX_HD000002UK01 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Prescription State List (Query By ID) Query - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="QURX_RM000002UK01.htm"><B>QURX_RM000002UK01</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Query><B>Query</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000002UK01#QueryByParameter;Query_c title=QURX_HD000002UK01#Query_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>
+<P><B>The entry point to the query, which allows prescriptions to be selected by specifying </B><B>one or more prescription id(s)</B> <B>.</B> </P></B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Query>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..*] </B></FONT><B>prescriptionDetails</B> (<A href="#PrescriptionDetails"><B>PrescriptionDetails</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000002UK01#QueryByParameter;Query/prescriptionDetails-PrescriptionDetails title=QURX_HD000002UK01#prescriptionDetails-PrescriptionDetails style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><FONT style="BACKGROUND-COLOR: #ffffff">A&nbsp;list of parameters used for querying by prescription id.</FONT> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=PrescriptionDetails><B>PrescriptionDetails</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000002UK01#ParameterList;PrescriptionDetails_c title=PrescriptionDetails_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A&nbsp;named list of parameters (name/value pairs) used for querying by prescription id.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=PrescriptionDetails>Used by: </A></FONT><A href="#Query"><B>Query</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>prescription.id</B> (<A href="#Prescription.id"><B>Prescription.id</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000002UK01#ParameterList;PrescriptionDetails/prescription.id-Prescription.id title=QURX_HD000002UK01#PrescriptionDetails/prescription.id-Prescription.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Parameter&nbsp;for&nbsp;specifying&nbsp;the&nbsp;prescription id.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>prescription.repeatNumber</B> (<A href="#Prescription.repeatNumber"><B>Prescription.repeatNumber</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000002UK01#ParameterList;PrescriptionDetails/prescription.repeatNumber-Prescription.repeatNumber title=QURX_HD000002UK01#PrescriptionDetails/prescription.repeatNumber-Prescription.repeatNumber style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Parameter for&nbsp;specifying the repeat number of&nbsp;a repeat&nbsp;prescription instance.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Prescription.id><B>Prescription.id</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000002UK01#ParameterItem;Prescription.id_c title=QURX_HD000002UK01#Prescription.id_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>
+<P>Parameter&nbsp;item for selecting&nbsp;an identified prescription.</P></B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Prescription.id>Used by: </A></FONT><A href="#PrescriptionDetails"><B>PrescriptionDetails</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000002UK01#ParameterItem;Prescription.id/$value title=Prescription.id.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Prescription identifier that is universally unique across all records. &nbsp;</P>
+<P>This shall&nbsp;be the 18 character Short Form Prescription Identifier where&nbsp;it exists.</P>
+<P>The <B>Identifier External</B> datatype flavour is used to carry this information as follows: </P>
+<UL>
+<LI>the <I>root</I> attribute shall contain the value of the <B>Short Form Prescription Identifier</B> OID = 2.16.840.1.113883.2.1.3.2.4.18.8 </LI>
+<LI>the <I>extension</I> attribute shall contain the 18 character Short Form Prescription Identifier</LI></UL>
+<P>The 36 character clinical statement DCE UUID of the prescription shall only be used where the Short Form Prescription Identifier does not exist. &nbsp;</P>
+<P>The <B>Identifier&nbsp;Global</B> datatype flavour is used to carry this information as follows: </P>
+<UL>
+<LI>the <I>root</I> attribute shall contain the value of the DCE UUID.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000002UK01#ParameterItem;Prescription.id/$semanticsText title=QURX_HD000002UK01#Prescription.id.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Prescription.repeatNumber><B>Prescription.repeatNumber</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000002UK01#ParameterItem;Prescription.repeatNumber_c title=QURX_HD000002UK01#Prescription.repeatNumber_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Parameter item&nbsp;for specifying the&nbsp;instance number of a repeat dispensing prescription.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Prescription.repeatNumber>Used by: </A></FONT><A href="#PrescriptionDetails"><B>PrescriptionDetails</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#INT"><B>INT</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000002UK01#ParameterItem;Prescription.repeatNumber/$value title=Prescription.repeatNumber.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The repeat number of this prescription instance.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000002UK01#ParameterItem;Prescription.repeatNumber/$semanticsText title=Prescription.repeatNumber.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

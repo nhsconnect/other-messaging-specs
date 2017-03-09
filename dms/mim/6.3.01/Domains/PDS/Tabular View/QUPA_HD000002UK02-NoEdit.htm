@@ -1,0 +1,1527 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>PdsAdvancedTraceQuery Tabular View</title><style type="text/css">
+	table {empty-cells: show}
+</style><script language="JavaScript1.2">
+				
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+
+</script><style>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#maindiv {
+	overflow: auto; 
+	width: 100%; 
+	height: 90%; 
+	}
+
+
+.hypertext
+{
+	position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+}
+
+.actclass
+{
+	background-color: red;
+}
+
+.entclass
+{
+	background-color: lightgreen;;
+}
+
+.roleclass
+{
+	background-color: yellow;;
+}
+.otherclass
+{
+	background-color: blue;
+}
+.choiceclass
+{
+	background-color: gray;
+}
+.actrelclass
+{
+	background-color: pink;
+}
+.partclass
+{
+	background-color: cyan;
+}
+.rolelinkclass
+{
+	background-color: lightyellow;
+}
+
+</style></head>
+   <body onload="checkDOM('ds')">
+      <h1>PdsAdvancedTraceQuery - tabular view</h1><span id="ds" class="hypertext">No Current Link To Vocabulary</span><span id="cwe" class="hypertext">Coded With Extensions</span><span id="cne" class="hypertext">Coded No Extensions</span><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="black">
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+         <tr>
+            <td height="35" colspan="2"><a href="QUPA_RM000002UK02.htm"><b>QUPA_RM000002UK02</b></a></td>
+            <td height="35" nowrap="yes"></td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="Query"><b>Query</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  <strong>A heading for providing information about the query, in this case, an  advanced search for a Service User record on the PDS.</strong>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="Query">Used by: </a></font><a href="#"><b></b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="Query/historicDataIndicator"></a>historicDataIndicator</b> (<a href="#HistoricDataIndicator"><b>HistoricDataIndicator</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>A link to information about the historicDataIndicator parameter.</p>
+                     
+                     <p>The historicDataIndicator parameter shall occur one time to indicate whether or not historic data is required to be returned
+                        in the response to the query.
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b><a id="Query/ignoreHistoryIndicator"></a>ignoreHistoryIndicator</b> (<a href="#IgnoreHistoryIndicator"><b>IgnoreHistoryIndicator</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <div>
+                        
+                        <p>A link to information about the ignore history indicator parameter.</p>
+                        
+                     </div>
+                     
+                     <div>
+                        
+                        <p>The ignore history indicator parameter may occur zero to one time  to indicate whether or not to also search historic data
+                           (i.e. as well as current data).
+                        </p>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b><a id="Query/person.address"></a>person.address</b> (<a href="#Person.address"><b>Person.address</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div style="height: 100%; width: 100%">
+                     
+                     <div>
+                        
+                        <p> A link to information about the person address parameter. </p>
+                        
+                        <p> The person address parameter may occur zero or one time identifying the address of the person being searched for.  The address
+                           details will be compared to all addresses (usual, correspondence and temporary).<br>
+                           
+                        </p>
+                        
+                        <p>
+                           <br>
+                           
+                        </p>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="Query/person.administrativeGenderCode"></a>person.administrativeGenderCode</b> (<a href="#Person.administrativeGenderCode"><b>Person.administrativeGenderCode</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>A link to information about the person administrative gender  code parameter.                                            
+                        
+                     </p>                                                                                  The person administrative gender code parameter
+                     shall occur one time  identifying the administrative gender code of the person being searched  for.
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b><a id="Query/person.birthTime"></a>person.birthTime</b> (<a href="#Person.birthTime"><b>Person.birthTime</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div style="height: 100%; width: 100%">
+                     
+                     <div>
+                        
+                        <p>                                     A link to information about the person birth time  parameter.                       
+                           
+                        </p>
+                        
+                        <p> The person birth time parameter may occur zero or one time providing a full or partial birth date of the person being searched
+                           for, or providing a birth date range of the person being searched for. 
+                        </p>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b><a id="Query/person.deceasedTime"></a>person.deceasedTime</b> (<a href="#Person.deceasedTime"><b>Person.deceasedTime</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div style="height: 100%; width: 100%">
+                     
+                     <div>
+                        
+                        <p>                                     A link to information about the person deceased time  parameter.                    
+                           
+                        </p>
+                        
+                        <p> The person deceased time parameter may occur zero or one time, either providing a full or partial death date of the person
+                           being searched for, or providing a death date range of the person being searched for. 
+                        </p>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b><a id="Query/person.id"></a>person.id</b> (<a href="#Person.id"><b>Person.id</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <div style="height: 100%; width: 100%">
+                        
+                        <div>
+                           
+                           <p>                                     A link to information about the person identifier  parameter.                       
+                              
+                           </p>
+                           
+                           <p>                                     The person identifier parameter may occur zero or one time providing an  identifier of
+                              the person being searched for.                                                       
+                           </p>
+                           
+                        </div>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="Query/person.name"></a>person.name</b> (<a href="#Person.name"><b>Person.name</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div style="height: 100%; width: 100%">
+                     
+                     <div>A link to information about the person name parameter.<br>
+                        <br>The person name parameter shall occur one time identifying a name of the person being searched for.  The name details will
+                        be compared to all name types (i.e. usual, previous, preferred, alias).<br>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b><a id="Query/primaryCare.id"></a>primaryCare.id</b> (<a href="#PrimaryCare.id"><b>PrimaryCare.id</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p> A link to information about the primary care identifier parameter.                                                      
+                        
+                     </p>
+                     
+                     <p> This parameter may occur zero or one time identifying the type of care provider and it's care provider code (e.g GP Code,
+                        GP Practice Code etc...) being searched for.
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="Query/searchParameter"></a>searchParameter</b> (<a href="#SearchParameter"><b>SearchParameter</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div style="height: 100%; width: 100%">
+                     
+                     <div>
+                        
+                        <p>                                     A link to information about the searchParameter  parameter.                         
+                           
+                        </p>
+                        
+                        <p> The searchParameter parameter shall occur one time to indicate the type of search required, i.e. alphanumeric or algorithmic.
+                           
+                        </p>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="PrimaryCare.id"><b>PrimaryCare.id</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>
+                        <strong>A heading for providing information about the primary care identifier  parameter.</strong>
+                        
+                     </p>
+                     
+                     <p>
+                        <strong>The primary care identifier parameter may occur zero or one time,  providing an identifier of the primary care provider of
+                           the person being  searched for.</strong>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="PrimaryCare.id">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">PrimaryCare.id</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A literal text string identifying the PrimaryCare parameter item.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>To provide the value of the parameter item (identified in the associated  semanticsText element) to be searched.</p>
+                     
+                     <p>In this context, the value element provides the nationally recognised identifier for the primary care provider of the person
+                        that is to be searched for.
+                     </p>
+                     
+                     <p>This identifier will be a national GP code or national GP Practice code.</p>
+                     
+                     <p>The Identifier External datatype flavour is used to carry this information as  follows:-</p>
+                     
+                     <p>A national GP code is carried in the following way:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>root</em> attribute will contain an OID with the value  "2.16.840.1.113883.2.1.4.2";  
+                        </li>
+                        
+                        <li>The <em>extension</em> attribute will contain the national GP code  itself.
+                        </li>
+                        
+                     </ul>
+                     
+                     <p>A national GP Practice code is carried in the following way:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>root</em> attribute will contain an OID with the value  "2.16.840.1.113883.2.1.4.3";  
+                        </li>
+                        
+                        <li>The <em>extension</em> attribute will contain the national GP Practice code  itself.
+                        </li>
+                        
+                     </ul>
+                     
+                     <p>                                     Note:</p>
+                     
+                     <ul>
+                        
+                        <li>PDS does not perform transformation and searches only against the data held. If the ignore history indicator is set to 1,
+                           there is no need to supply a national GP code as all current data will be Practice codes and code transformation is not performed
+                           by PDS.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="Person.birthTime"><b>Person.birthTime</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>
+                        <strong>A heading for providing information about the person birth time  parameter.</strong>
+                        
+                     </p>
+                     
+                     <p>
+                        <strong>The person birth time parameter may occur zero or one time providing a full or partial birth date of the person being searched
+                           for, or providing a birth date range of the person being searched for.</strong>
+                        
+                     </p>
+                     
+                     <p>
+                        <strong>
+                           <u>NOTE</u>: Searching for the person's birth time is mandatory for alphanumeric searches and optional for other types of search.</strong>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="Person.birthTime">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">Person.birthTime</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A literal text string identifying the parameter item.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#IVL"><b>IVL</b></a><b>&lt;<a href="../../../Data Types/DataTypes.htm#TS"><b>TS</b></a>&gt;</b>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>To provide the value of the parameter item (identified in the associated  semanticsText element) to be searched.</p>
+                     
+                     <p>In this context, the value element provides a date of birth or birth date  range of the person that is to be searched for.</p>
+                     
+                     <p>One of the Date Only or Date Month or Date Year datatype flavours is used to  carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>Where a single date is to be given, the <em>center</em> sub-element shall be  present with the date to be searched for, provided in either YYYYMMDD, YYYYMM or  YYYY format in the
+                           <em>value</em> attribute;  
+                        </li>
+                        
+                        <li>Where a date range is to be given, the <em>low</em> sub-element may be present  with the earliest date to be searched for, provided in either YYYYMMDD, YYYYMM  or YYYY format
+                           in the <em>value</em> attribute;  
+                        </li>
+                        
+                        <li>Where a date range is to be given, the <em>high</em> sub-element may be  present with the latest to be searched for, provided in either YYYYMMDD, YYYYMM  or YYYY format in the
+                           <em>value</em> attribute.
+                        </li>
+                        
+                     </ul>
+                     
+                     <p>Where a date range is to be given, at least one of the <em>low</em>  sub-elements and <em>high</em> sub-elements shall be present.
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="IgnoreHistoryIndicator"><b>IgnoreHistoryIndicator</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>A heading for providing information about the IgnoreHistoryIndicator  parameter.</strong>
+                     <strong>This indicates whether or not to search historic data (i.e. as well as current data), and is only relevant (and is mandatory)
+                        to alphanumeric traces.</strong>
+                     <br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="IgnoreHistoryIndicator">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">IgnoreHistoryType</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A literal text string identifying the parameter item.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/IgnoreHistoryType.htm" target="_top"><b>IgnoreHistoryType</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>To provide the value of the parameter item (identified in the associated  semanticsText element) to be searched.</p>
+                     
+                     <p>In this context, the value element provides a code to indicate whether or not to search historic data (i.e. as well as current
+                        data)
+                     </p>
+                     
+                     <p>The Coded with Code System datatype flavour is used to carry this information  as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute will contain a value from the list of codes in the  <u>IgnoreHistoryType</u> vocabulary:
+                        </li>
+                        
+                        <ul>
+                           
+                           <ul>
+                              
+                              <li>1 - Ignore History</li>
+                              
+                              <li>0 - Search History</li>
+                              
+                           </ul>
+                           
+                        </ul>
+                        
+                        <li>The <em>codeSystem</em> attribute will contain the OID, "2.16.840.1.113883.2.1.3.2.4.17.169" referenced in the <u>IgnoreHistoryType</u> vocabulary.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="Person.address"><b>Person.address</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>
+                        <strong>A heading for providing information about the person address  parameter.</strong>
+                        
+                     </p>
+                     
+                     <div style="height: 100%; width: 100%">
+                        
+                        <div>
+                           
+                           <p>
+                              <strong> The person address parameter may occur zero or one time identifying the address of the person being searched for.  The address
+                                 details will be compared to all addresses (usual, correspondence and temporary).</strong>
+                              
+                           </p>
+                           
+                        </div>
+                        
+                     </div>
+                     
+                     <p>
+                        <br>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="Person.address">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">Person.address</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A literal text string identifying the parameter item.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#AD"><b>AD</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <div>
+                        
+                        <p>
+                           <font face="times new roman,times" size="3">To provide the value of the parameter item (identified in the associated semanticsText element) to be searched.</font>
+                           
+                        </p>
+                        
+                        <p>
+                           <font face="times new roman,times" size="3">In this context, the value element provides an address of the person that is being searched for.</font>
+                           
+                        </p>
+                        
+                        <p>
+                           <font face="times new roman,times" size="3">An address is composed of the following components:</font>
+                           
+                        </p>
+                        
+                        <ul>
+                           
+                           <li>
+                              <font face="times new roman,times" size="3">Between one and five unstructured address lines; </font>
+                              
+                           </li>
+                           
+                           <li>
+                              <font face="times new roman,times" size="3">Postcode; </font>
+                              
+                           </li>
+                           
+                           <li>
+                              <font face="times new roman,times" size="3">A PAF (postal address file) key.</font>
+                              
+                           </li>
+                           
+                        </ul>
+                        
+                        <p>
+                           <font face="times new roman,times" size="3">At least one of these components is required to be present.</font>
+                           
+                        </p>
+                        
+                        <p>
+                           <font face="times new roman,times" size="3">The following sub-elements are used to carry the components of an address:</font>
+                           
+                        </p>
+                        
+                        <ul>
+                           
+                           <li>
+                              <font face="times new roman,times" size="3">Between one and five <em>streetAddressLine</em> elements are used to carry unstructured address lines, with the order in which they are carried in the message being significant,
+                                 i.e. the first occurrence of the <em>streetAddressLine</em> element is used to carry the first line of address, the second occurrence of the <em>streetAddressLine</em> element is used to carry the second line of address etc; </font>
+                              
+                           </li>
+                           
+                           <li>
+                              <font face="times new roman,times" size="3">A <em>postalCode</em> element is used to carry a full or partial postcode; </font>
+                              
+                           </li>
+                           
+                           <li>
+                              <font face="times new roman,times" size="3">An <em>addressKey</em> element is used to carry a PAF key.</font>
+                              
+                           </li>
+                           
+                        </ul>
+                        
+                        <p>
+                           <font face="times new roman,times" size="3">Note: </font>
+                           
+                        </p>
+                        
+                        <ul>
+                           
+                           <li>
+                              <font face="times new roman,times" size="3">The PDS will search all address types.</font>
+                              
+                           </li>
+                           
+                           <li>
+                              
+                              <p>
+                                 <font face="times new roman,times" size="3"> The use of wildcards only applies to Alphanumeric Traces.  A wildcard (*) can be added to the end of any <em>streetAddressLine</em> and <em>postalCode </em>component, following at least 2 characters.</font>
+                                 
+                              </p>
+                              
+                           </li>
+                           
+                        </ul>
+                        
+                        <p>
+                           <font face="Times New Roman" size="3"></font>
+                           
+                        </p>
+                        <font face="Times New Roman" size="3"></font>
+                        
+                     </div>
+                     <font face="Times New Roman" size="3"></font>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="Person.deceasedTime"><b>Person.deceasedTime</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>
+                        <strong>A heading for providing information about the person deceased time  parameter.</strong>
+                        
+                     </p>
+                     
+                     <p>
+                        <strong>The person deceased time parameter may occur zero or one time, either  providing a full or partial death date of the person
+                           being searched for, or  providing a death date range of the person being searched for.</strong>
+                        <br>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="Person.deceasedTime">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">Person.deceasedTime</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A literal text string identifying the parameter item. <br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#IVL"><b>IVL</b></a><b>&lt;<a href="../../../Data Types/DataTypes.htm#TS"><b>TS</b></a>&gt;</b>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>To provide the value of the parameter item (identified in the associated  semanticsText element) to be searched.</p>
+                     
+                     <p>In this context, the value element provides a date of death or death date  range of the person that is to be searched for.</p>
+                     
+                     <p>One of the Date Only or Date Month or Date Year datatype flavours is used to  carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>Where a single date is to be given, the <em>center</em> sub-element shall be  present with the date to be searched for, provided in either YYYYMMDD, YYYYMM or  YYYY format in the
+                           <em>value</em> attribute;  
+                        </li>
+                        
+                        <li>Where a date range is to be given, the <em>low</em> sub-element may be present  with the earliest date to be searched for, provided in either YYYYMMDD, YYYYMM  or YYYY format
+                           in the <em>value</em> attribute;  
+                        </li>
+                        
+                        <li>Where a date range is to be given, the <em>high</em> sub-element may be  present with the latest to be searched for, provided in either YYYYMMDD, YYYYMM  or YYYY format in the
+                           <em>value</em> attribute.
+                        </li>
+                        
+                     </ul>
+                     
+                     <p>Where a date range is to be given, at least one of the <em>low</em>  sub-elements and <em>high</em> sub-elements shall be present.
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="Person.administrativeGenderCode"><b>Person.administrativeGenderCode</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>
+                        <strong>A heading for providing information about the person administrative gender  code parameter.</strong>
+                        
+                     </p>
+                     
+                     <p>
+                        <strong>The person administrative gender code parameter shall occur one time  identifying the administrative gender code of the person
+                           being searched for.</strong>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="Person.administrativeGenderCode">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">Person.administrativeGenderCode</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A literal text string identifying the parameter item.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/Sex.htm" target="_top"><b>Sex</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>To provide the value of the parameter item (identified in the associated  semanticsText element) to be searched.</p>
+                     
+                     <p>In this context, the value element provides an administrative gender code of  the person that is to be searched for.</p>
+                     
+                     <p>The Coded Only datatype flavour is used to carry this information as  follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute will contain a value from the list of codes in the  <u>Sex</u> vocabulary.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="Person.name"><b>Person.name</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>
+                        <strong>A heading for providing information about the person name parameter.</strong>
+                        
+                     </p>
+                     
+                     <p>
+                        <strong>The person name parameter shall occur one time identifying a name of the person being searched for.  The name details will
+                           be compared to all name types (i.e. usual, previous, preferred, alias). </strong>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="Person.name">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">Person.name</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A literal text string identifying the parameter item.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#PN"><b>PN</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <div>
+                        
+                        <div>
+                           
+                           <div>
+                              <font face="times new roman,times" size="3">
+                                 <font face="times new roman,times" size="3">The value of the parameter item in this case is a structured name, containing the following components:</font>
+                                 </font>
+                              <font face="times new roman,times" size="3">
+                                 
+                                 <ul>
+                                    
+                                    <li>
+                                       <font face="Times New Roman" size="3">A single instance of the <em>family</em> element is used to carry the family name (or surname). This is mandatory in an alphanumeric trace.</font>
+                                       
+                                    </li>
+                                    
+                                    <li>
+                                       <font face="Times New Roman" size="3">Between zero and two instances of the <em>given</em> element are used to carry given names (or forenames) or initials, with the order in which they are carried in the message
+                                          being significant, i.e. the first occurrence of the <em>given</em> element is used to carry the first given name, and the second occurrence of the <em>given</em> element is used to carry the second given name.</font>
+                                       
+                                    </li>
+                                    
+                                 </ul>
+                                 
+                                 <p>
+                                    <font face="Times New Roman" size="3">Note: </font>
+                                    
+                                 </p>
+                                 </font>
+                              
+                              <ul>
+                                 
+                                 <li>
+                                    <font face="Times New Roman" size="3">The PDS will ignore any <em>prefix</em> or <em>suffix</em> elements.</font>
+                                    
+                                 </li>
+                                 
+                                 <li>
+                                    <font face="Times New Roman" size="3">For an algorithmic trace it is possible to supply a given name either instead of or in addition to a family name.</font>
+                                    
+                                 </li>
+                                 
+                                 <li>
+                                    <font size="3">
+                                       <font face="times new roman,times">
+                                          <font>
+                                             <font face="times new roman,times" size="3"> A wildcard (*) can be added to the end of any name component search string, following at least 2 characters. This wildcard
+                                                (*) is for alpha trace only.</font>
+                                             </font>
+                                          </font>
+                                       </font>
+                                    
+                                 </li>
+                                 
+                              </ul>
+                              <font size="3">
+                                 <font size="3">
+                                    <font size="3"></font>
+                                    </font>
+                                 </font>
+                              
+                           </div>
+                           <font size="3">
+                              <font size="3">
+                                 <font size="3">
+                                    <font size="3">
+                                       <font size="3">
+                                          <font size="3"></font>
+                                          </font>
+                                       </font>
+                                    </font>
+                                 </font>
+                              </font>
+                           
+                        </div>
+                        <font size="3">
+                           <font size="3">
+                              <font size="3">
+                                 <font size="3">
+                                    <font size="3">
+                                       <font size="3"></font>
+                                       </font>
+                                    </font>
+                                 </font>
+                              </font>
+                           </font>
+                        
+                     </div>
+                     <font size="3">
+                        <font size="3">
+                           <font size="3"></font>
+                           </font>
+                        </font>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="HistoricDataIndicator"><b>HistoricDataIndicator</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>A heading for providing information about the historicDataIndicator  parameter.</strong>
+                     <strong>The historicDataIndicator parameter shall occur one time to  indicate whether or not historic data is required to be returned
+                        in the response  to the query.</strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="HistoricDataIndicator">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">HistoricDataIndicator</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A literal text string identifying the parameter item.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/HistoricDataIndicator.htm" target="_top"><b>HistoricDataIndicator</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>To provide the value of the parameter item (identified in the associated  semanticsText element) to be searched.</p>
+                     
+                     <p>In this context, the value element provides a code to indicate whether or not  historic data is required to be returned in
+                        the response to the query.
+                     </p>
+                     
+                     <p>The Coded with Code System datatype flavour is used to carry this information  as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute will contain a value from the list of codes in the  <u>HistoricDataIndicator</u> vocabulary;  
+                        </li>
+                        
+                        <li>The <em>codeSystem</em> attribute will contain the OID "2.16.840.1.113883.2.1.3.2.4.17.36" referenced in the  <u>HistoricDataIndicator</u> vocabulary.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="SearchParameter"><b>SearchParameter</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>A heading for providing information about the searchParameter  parameter.</strong>
+                     <strong>The searchParameter parameter shall occur one time to indicate  the type of search required, i.e. alphanumeric or algorithmic.</strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="SearchParameter">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">SearchParameter</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A literal text string identifying the parameter item.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/SearchParameter.htm" target="_top"><b>SearchParameter</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>To provide the value of the parameter item (identified in the associated  semanticsText element).</p>
+                     
+                     <p>In this context, the value element provides a code to indicate the type of  search required, i.e. alphanumeric or algorithmic.</p>
+                     
+                     <p>The Coded with Code System datatype flavour is used to carry this information  as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute will contain a value from the list of codes in the  <u>SearchParameter</u> vocabulary;  
+                        </li>
+                        
+                        <li>The <em>codeSystem</em> attribute will contain the OID, "2.16.840.1.113883.2.1.3.2.4.17.39" referenced in the  <u>SearchParameter</u> vocabulary.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="Person.id"><b>Person.id</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>
+                        <strong>A heading for providing information about the person identifier  parameter.</strong>
+                        
+                     </p>
+                     
+                     <p>
+                        <strong>The person identifier parameter may occur zero or one time providing an  identifier of the person being searched for.</strong>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="Person.id">Used by: </a></font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">Person.id</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A literal text string identifying the parameter item.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>To provide the value of the parameter item (identified in the associated  semanticsText element) to be searched.</p>
+                     
+                     <p>In this context, the value element provides an identifier of the person that  is to be searched for. This identifier will
+                        be one of:
+                     </p>
+                     
+                     <ul>
+                        
+                        <li>NHS number;  </li>
+                        
+                        <li>Temporary NHS number issued by an NHAIS registration authority;  </li>
+                        
+                        <li>Old format NHS number.</li>
+                        
+                     </ul>
+                     
+                     <p>The Identifier External datatype flavour is used to carry this information as  follows:-</p>
+                     
+                     <p>A NHS number is carried in the following way:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>root</em> attribute will contain an OID with the value  "2.16.840.1.113883.2.1.4.1";  
+                        </li>
+                        
+                        <li>The <em>extension</em> attribute will contain the NHS number itself.
+                        </li>
+                        
+                     </ul>
+                     
+                     <p>A Temporary NHS number issued by an NHAIS registration authority or an old  format NHS number is carried in the following
+                        way:
+                     </p>
+                     
+                     <ul>
+                        
+                        <li>The <em>root</em> attribute will contain an OID with the value  "2.16.840.1.113883.2.1.3.2.4.3";  
+                        </li>
+                        
+                        <li>The <em>extension</em> attribute will contain the Temporary NHS number issued  by an NHAIS registration authority or the old NHS  number itself.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+      </table>
+   </body>
+</html>

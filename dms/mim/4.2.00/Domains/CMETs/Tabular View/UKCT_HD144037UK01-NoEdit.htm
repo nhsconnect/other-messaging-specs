@@ -1,0 +1,3189 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>A_CareEvent Tabular View</title><style type="text/css">
+	table {empty-cells: show}
+</style><script language="JavaScript1.2">
+				
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+
+</script><style>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#maindiv {
+	overflow: auto; 
+	width: 100%; 
+	height: 90%; 
+	}
+
+
+.hypertext
+{
+	position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+}
+
+.actclass
+{
+	background-color: red;
+}
+
+.entclass
+{
+	background-color: lightgreen;;
+}
+
+.roleclass
+{
+	background-color: yellow;;
+}
+.otherclass
+{
+	background-color: blue;
+}
+.choiceclass
+{
+	background-color: gray;
+}
+.actrelclass
+{
+	background-color: pink;
+}
+.partclass
+{
+	background-color: cyan;
+}
+.rolelinkclass
+{
+	background-color: lightyellow;
+}
+
+</style></head>
+   <body onload="checkDOM('ds')">
+      <h1>A_CareEvent - tabular view</h1><span id="ds" class="hypertext">No Current Link To Vocabulary</span><span id="cwe" class="hypertext">Coded With Extensions</span><span id="cne" class="hypertext">Coded No Extensions</span><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="black">
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+         <tr>
+            <td height="35" colspan="2"><a href="UKCT_RM144037UK01.htm"><b>UKCT_RM144037UK01</b></a></td>
+            <td height="35" nowrap="yes"></td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass"><a name="CareEvent"><b>CareEvent</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p class=""></p>
+                     
+                     <p class="">
+                        <strong>To be used to represent a Care Event.</strong>
+                        
+                     </p>
+                     
+                     <p class=""></p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="CareEvent">Used by: </a></font><a href="#"><b></b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ActClass</b></a> } ) {<b> Fixed="<font color="red">ENC</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates that the care event is an encounter.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>moodCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>x_ActMoodIntentEvent</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>The mood code of the Care Event. </p>
+                     
+                     <p>The value of mood code should be set according to the information and context  of the clinical statement information being
+                        carried in the encounter  class.
+                     </p>
+                     
+                     <p>The CodedOnly datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute will contain a value from the list of codes in  the x_ActMoodIntentEvent vocabulary.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>code</b> (<a href="../../../Data Types/DataTypes.htm#CD"><b>CD</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/EncounterSnCT.htm" target="_top"><b>EncounterSnCT</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <div>
+                        
+                        <p>A SnomedCT code identifying the encounter type.  </p>
+                        
+                        <p>The Concept Descriptor (CD) datatype shall be used to carry this information  as follows:</p>
+                        
+                        <ul>
+                           
+                           <li>The <em>code</em> attribute shall contain acode from the relevant vocabulary  
+                           </li>
+                           
+                           <li>The <em>code System</em> attribute shall containthe OID for SnomedCT  
+                           </li>
+                           
+                           <li>The <em>display text</em> shall carry a description associated with the  code in SnomedCT  
+                           </li>
+                           
+                           <li>the <em>original text</em> attribute may be used if required  
+                           </li>
+                           
+                           <li>
+                              <em>qualifier</em>(s) may be used if required.
+                           </li>
+                           
+                        </ul>
+                        
+                        <table border="1" cellpadding="0" cellspacing="0" class="MsoNormalTable" style="border: medium none ; border-collapse: collapse" width="70%">
+                           
+                           <tbody>
+                              
+                              <tr>
+                                 
+                                 <td style="border: 1pt solid black; padding: 3pt">
+                                    
+                                    <p class="">
+                                       <span style="font-size: 10pt">951000000133</span>
+                                       
+                                    </p>
+                                    
+                                 </td>
+                                 
+                                 <td style="border-style: solid solid solid none; border-color: black black black -moz-use-text-color; border-width: 1pt 1pt 1pt medium; padding: 3pt">
+                                    
+                                    <p class="">
+                                       <span style="font-size: 10pt">Encounter   type</span>
+                                       
+                                    </p>
+                                    
+                                 </td>
+                                 
+                              </tr>
+                              
+                           </tbody>
+                           
+                        </table>
+                        
+                     </div>
+                     
+                     <div></div>
+                     
+                     <div>
+                        
+                        <p class="">The codes in this subset must always be used in this encounter act.</p>
+                        <br>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [R] </b></font><b>effectiveTime</b> (<a href="../../../Data Types/DataTypes.htm#IVL"><b>IVL</b></a><b>&lt;<a href="../../../Data Types/DataTypes.htm#TS"><b>TS</b></a>&gt;</b>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div id="UKCT_HD140900UK03#PatientEncounter;CareEvent/$effectiveTime" style="width: 100%; height: 100%; background-color: white">
+                     
+                     <p>The effective date carries the start and end date/time of the care event. The start date/time is required and the end date/time
+                        is optional. 
+                     </p>
+                     
+                     <p>The date range shall be carried as follows: </p>
+                     
+                     <p>If both a start date and an end date are present the Date or Time Interval Complete datatype shall be used:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>low</em> attribute shall contain the start date 
+                        </li>
+                        
+                        <li>The <em>high</em> attribute shall contain the end date.
+                        </li>
+                        
+                     </ul>
+                     
+                     <p>If only a start date is present the Date or Time Interval After datatype shall be used:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>low</em> attribute shall contain the start date.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>id</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p class="">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">This is a unique identifier for this instance of a Care Event.</span>
+                        
+                     </p>
+                     
+                     <p class="">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">The Identifier Global data type flavour is used to carry the identifiers follows:</span>
+                        
+                     </p>
+                     
+                     <ul>
+                        
+                        <li class="">
+                           <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">The <em>root</em> attribute shall      contain a DCE UUID.</span>
+                           
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>statusCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ActStatus</b></a> } ) {<b> Default="<font color="red">normal</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p class="">
+                        <a name="OLE_LINK2"></a>
+                        <a name="OLE_LINK1"></a>
+                        <span style="font-size: 12pt">The status of the Care Event. </span>
+                        
+                     </p>
+                     
+                     <p class="">
+                        <span style="font-size: 12pt">The Coded Only data type flavour is used to carry this information as follows:</span>
+                        
+                     </p>
+                     
+                     <ul>
+                        
+                        <li class="">
+                           <span style="font-size: 12pt">The <em>code</em> attribute will      contain a one of the following codes from the Act Status vocabulary:</span>
+                           
+                        </li>
+                        
+                        <ul>
+                           
+                           <li class="">
+                              <span style="font-size: 12pt">normal</span>
+                              
+                           </li>
+                           
+                           <li class="">
+                              <span style="font-size: 12pt">nullified</span>
+                              
+                           </li>
+                           
+                           <li class="">
+                              <span style="font-size: 12pt">active</span>
+                              
+                           </li>
+                           
+                           <li class="">
+                              <span style="font-size: 12pt">completed.</span>
+                              
+                           </li>
+                           
+                        </ul>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2" class="partclass"><font color="green"><b>[0..1] </b></font><b><a id="CareEvent/author"></a>author</b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p class="">
+                        <strong>
+                           <span style="font-size: 12pt">Refers to the person who is the author of the act.<br>
+                              <br>     Constraint:</span>
+                           </strong>
+                        <span style="font-size: 12pt"> This author is only required if the author or author time is different from the inherited author. </span>
+                        
+                     </p>
+                     <br>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>typeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ParticipationType</b></a> } ) {<b> Fixed="<font color="red">AUT</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>
+                        <span style="font-size: 11pt; font-family: &#34;Times New Roman&#34;">Indicates that this is an author.</span>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contextControlCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ContextControl</b></a> } ) {<b> Fixed="<font color="red">OP</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p></p>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">Specifies how this participation contributes to the context of the current act and whether it may be propagated to descendent
+                           acts whose association allows such propagation.</span>
+                        
+                     </p>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">"O" (Overriding)- the association replaces any context of the same or more specific type that has been conducted from the
+                           parent act. </span>
+                        
+                     </p>
+                     <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">"P" (Propagating)- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to
+                        "true".</span>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [R] </b></font><b>time</b> (<a href="../../../Data Types/DataTypes.htm#TS"><b>TS</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p></p>
+                     
+                     <p class="">
+                        <span style="font-family: &#34;Times New Roman&#34;">The time at which the author participated.</span>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>participant</b> (<a href="#RoleChoice"><b>RoleChoice</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <span style="font-size: 11pt; font-family: &#34;Times New Roman&#34;">The device or person who participates in the role of author.</span>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2" class="partclass"><font color="green"><b>[0..1] </b></font><b><a id="CareEvent/location"></a>location</b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>Refers to the choice of location relevant to clinical data conveyed in a  clinical statement.</strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>typeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ParticipationType</b></a> } ) {<b> Fixed="<font color="red">LOC</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates that this is a location.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contextControlCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ContextControl</b></a> } ) {<b> Fixed="<font color="red">OP</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">Specifies how this participation contributes to the context of the current act and whether it may be propagated to descendent
+                           acts whose association allows such propagation.</span>
+                        
+                     </p>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">"O" (Overriding)- the association replaces any context of the same or more specific type that has been conducted from the
+                           parent act. </span>
+                        
+                     </p>
+                     <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">"P" (Propagating)- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to
+                        "true".</span>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>participant</b> (<a href="#ActLocationChoice"><b>ActLocationChoice</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>The participation relationship to the choice of location.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2" class="partclass"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="CareEvent/location1"></a>location1</b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>Refers to the choice of location relevant to clinical data conveyed in a  clinical statement.</strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>typeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ParticipationType</b></a> } ) {<b> Fixed="<font color="red">LOC</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates that this is a location.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contextControlCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ParticipationContextControl</b></a> } ) {<b> Fixed="<font color="red">OP</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">Specifies how this participation contributes to the context of the current act and whether it may be propagated to descendent
+                           acts whose association allows such propagation.</span>
+                        
+                     </p>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">"O" (Overriding)- the association replaces any context of the same or more specific type that has been conducted from the
+                           parent act. </span>
+                        
+                     </p>
+                     <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">"P" (Propagating)- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to
+                        "true."</span>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>dedicatedServiceDeliveryLocation</b> (<a href="#DedicatedServiceDeliveryLocation"><b>DedicatedServiceDeliveryLocation</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A link to the care setting which is the service delivery location. <br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2" class="partclass"><font color="green"><b>[0..*] </b></font><b><a id="CareEvent/participant"></a>participant</b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>
+                        <strong>Refers to participants in clinical events not specifically modelled.</strong>
+                        </strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>typeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ParticipationType</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates the type of participation. The most appropriate value for the  context shall be selected from the vocabulary.</p>
+                     
+                     <p>The Coded Only datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute will contain a value from the list of codes in  the Participation Type vocabulary.
+                        </li>
+                        
+                     </ul>
+                     
+                     <p>The current allowed participation types are : -</p>
+                     
+                     <ul>
+                        
+                        <li>Data entry person - "ENT"  </li>
+                        
+                        <li>Responsible party - "RESP" -  </li>
+                        
+                        <li>Secondary performer - "SPRF" - used for assisting care professional  </li>
+                        
+                        <li>Remote - "RML"  </li>
+                        
+                        <li>Destination - "DST"  </li>
+                        
+                        <li>Consultant - "CON"  </li>
+                        
+                        <li>Referrer - "REF"  </li>
+                        
+                        <li>Receiver - "RCV"  </li>
+                        
+                        <li>Witness - "WIT"  </li>
+                        
+                        <li>Baby - "BBY"  </li>
+                        
+                        <li>Donor - "DON"  </li>
+                        
+                        <li>Origin - "ORG"  </li>
+                        
+                        <li>Verifier - "VRF"  </li>
+                        
+                        <li>Authenticator - "AUTHEN"  </li>
+                        
+                        <li>Legal authenticator - "LA"  </li>
+                        
+                        <li>Admitter - "ADM"  </li>
+                        
+                        <li>Attender - "ATND"</li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contextControlCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ContextControl</b></a> } ) {<b> Fixed="<font color="red">OP</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">Specifies how this participation contributes to the context of the current act and whether it may be propagated to descendent
+                           acts whose association allows such propagation.</span>
+                        
+                     </p>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">"O" (Overriding)- the association replaces any context of the same or more specific type that has been conducted from the
+                           parent act. </span>
+                        
+                     </p>
+                     <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">"P" (Propagating)- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to
+                        "true."</span>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b>modeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ParticipationMode</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>The mode in which the participant participated in the act described by the  clinical statement. </p>
+                     
+                     <p>The Coded Only data type flavour is used to carry this information as  follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute will contain a value from the list of codes in  the ParticipationMode vocabulary.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [R] </b></font><b>time</b> (<a href="../../../Data Types/DataTypes.htm#IVL"><b>IVL</b></a><b>&lt;<a href="../../../Data Types/DataTypes.htm#TS"><b>TS</b></a>&gt;</b>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>The time of the participation.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>participant</b> (<a href="#ParticipantChoice"><b>ParticipantChoice</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A choice on an organisation or person participant.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2" class="partclass"><font color="green"><b>[0..*] </b></font><b><a id="CareEvent/performer"></a>performer</b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>
+                        <strong>Refers to a performer of the act.</strong>
+                        
+                     </p>
+                     
+                     <p>Where performer participation is used, then all performers must be stated, even if they authored the act.</p>
+                     
+                     <p>Where the author did not perform the act then the performer(s) should be explicitly stated.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>typeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ParticipationType</b></a> } ) {<b> Fixed="<font color="red">PRF</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates that this is a performer.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contextControlCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ContextControl</b></a> } ) {<b> Fixed="<font color="red">OP</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">Specifies how this participation contributes to the context of the current act and whether it may be propagated to descendent
+                           acts whose association allows such propagation.</span>
+                        
+                     </p>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">"O" (Overriding)- the association replaces any context of the same or more specific type that has been conducted from the
+                           parent act. </span>
+                        
+                     </p>
+                     <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">"P" (Propagating)- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to
+                        "true."</span>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b>modeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ParticipationMode</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div id="UKCT_HD144013UK01#Participation;Observation/informant/$modeCode" style="width: 100%; height: 100%; background-color: white">
+                     
+                     <p>The mode in which the informant gave the information about the Care Event.</p>
+                     
+                     <p>The Coded Only datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute will contain a value from the list of codes in the ParticipationMode vocabulary.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [R] </b></font><b>time</b> (<a href="../../../Data Types/DataTypes.htm#IVL"><b>IVL</b></a><b>&lt;<a href="../../../Data Types/DataTypes.htm#TS"><b>TS</b></a>&gt;</b>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>The time during / at which the performer participated in the act described by  the clinical statement.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>participant</b> (<a href="#RoleChoice"><b>RoleChoice</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>The agent / device / non-agent performing this participation.</strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2" class="actrelclass"><font color="green"><b>[0..1] </b></font><b><a id="CareEvent/pertinentInformation"></a>pertinentInformation</b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <div>
+                        <strong>Refers to supporting information which is pertinent to a clinical statement.</strong>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>typeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ActRelationshipType</b></a> } ) {<b> Fixed="<font color="red">PERT</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates pertinent information..</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>contextConductionInd</b> (<a href="../../../Data Types/DataTypes.htm#BL"><b>BL</b></a>) {<b> Fixed="<font color="red">true</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     <span style="font-size: 11pt; font-family: &#34;Times New Roman&#34;">If true, associations in the parent act are conducted across the ActRelationship to the child act.</span>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>seperatableInd</b> (<a href="../../../Data Types/DataTypes.htm#BL"><b>BL</b></a>) {<b> Fixed="<font color="red">false</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     <span style="font-size: 11pt; font-family: &#34;Times New Roman&#34;">Indicates if the source Act is to be interpreted independently of the target Act.</span>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>pertinentSupportingInfo</b> (<a href="#SupportingInfo"><b>SupportingInfo</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p></p>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">Refers to supporting textual information which is pertinent to a clinical statement. </span>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2" class="actrelclass"><font color="green"><b>[0..*] </b></font><b><a id="CareEvent/pertinentInformation1"></a>pertinentInformation1</b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p></p>
+                     
+                     <p class="" style="background: white none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial">
+                        <strong>
+                           <span style="font-size: 12pt; font-family: &#34;Times New Roman&#34;">Information which is pertinent to the Clinical Statement.</span>
+                           </strong>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>typeCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>PERT</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>Indicates Pertinent Information.<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>inversionInd</b> (<a href="../../../Data Types/DataTypes.htm#BL"><b>BL</b></a>) {<b> Fixed="<font color="red">false</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <span style="font-size: 11pt; font-family: &#34;Times New Roman&#34;">An indicator specifying that the ActRelationship.typeCode should be interpreted as if the roles of the source and target Acts
+                        were reversed.</span>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>negationInd</b> (<a href="../../../Data Types/DataTypes.htm#BL"><b>BL</b></a>) {<b> Fixed="<font color="red">false</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <span style="font-size: 11pt; font-family: &#34;Times New Roman&#34;">When "true" allows the sender to specifically state that the semantic of the relationship is negated.</span>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>seperatableInd</b> (<a href="../../../Data Types/DataTypes.htm#BL"><b>BL</b></a>) {<b> Fixed="<font color="red">true</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <span style="font-size: 11pt; font-family: &#34;Times New Roman&#34;">Indicates if the source Act is to be interpreted independently of the target Act.</span>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>templateId</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>) {<b> Fixed="<font color="red">CSAB_RM-NPfITUK10.sourceOf1</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>An identifier of the Act Relationship that categorises clinical data by it's  role within the message instance.  </p>
+                     
+                     <p>The IdentifierExternal datatype flavour is used to carry this information as  follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>root</em> attribute shall containthe OID  "2.16.840.1.113883.2.1.3.2.4.18.2"  
+                        </li>
+                        
+                        <li>The <em>extension</em> shall contain the template  ID"CSAB_RM-NPfITUK10.sourceOf1".
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>pertinentReferencedClinicalStatementChoice</b> (<a href="#ReferencedClinicalStatementChoice"><b>ReferencedClinicalStatementChoice</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>A choice of clinical statement reference.</div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="choiceclass"><a name="RoleChoice"><b>RoleChoice</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>The agent / device / non-agent performing this participation. </strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="RoleChoice">Used by: </a></font><a href="#CareEvent"><b>CareEvent</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td colspan="10" height="1"></td>
+         </tr>
+         <tr>
+            <td colspan="2" width="50%"><font color="green"><b>[1..1] </b><i>either </i></font>: <b><a href="UKCT_RM160018UK01.htm">UKCT_MT160018UK01</a></b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A CMET to identify a person on SDS or provides detailed information for a person not registered on SDS.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td colspan="10" height="1"></td>
+         </tr>
+         <tr>
+            <td colspan="2" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <b><a href="UKCT_RM120600UK02.htm">UKCT_MT120601UK02</a></b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>A CMET identifying the participating device.</p>
+                     
+                     <p>
+                        <strong>AgentDevcie.classCode</strong> shall carry a fixed value of "AGNT" 
+                     </p>
+                     
+                     <p>
+                        <strong>AgentDevice. id</strong> shall carry a nationally agreed identifier for the  role being played. This shall be a code from a national coding scheme.
+                     </p>
+                     
+                     <p>A national code is carried in the following way:</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain the OID that identifies the coding scheme;  </li>
+                        
+                        <li>The extension attribute shall contain the code.</li>
+                        
+                     </ul>
+                     
+                     <p>
+                        <strong>If the device can be identified by reference to SDS then</strong>
+                        
+                     </p>
+                     
+                     <p>
+                        <strong>DeviceSDS.classcode</strong> shall carry a fixed value of "DEV" to indicates  that this is a Device. In this context the device can be hardware or software.
+                     </p>
+                     
+                     <p>
+                        <strong>DeviceSDS.determinerCode</strong> shall carry a fixed value of "INSTANCE" 
+                     </p>
+                     
+                     <p>
+                        <strong>DeviceSDS.id</strong> shall carry an SDS identifier that uniquely identifies  the Device.
+                     </p>
+                     
+                     <p>This is carried in the following way.</p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain an OID with the appropriate value;  </li>
+                        
+                        <li>The extension attribute shall contain the SDS Device ID. </li>
+                        
+                     </ul>
+                     
+                     <p>If the device cannot be identified by reference to SDS then</p>
+                     
+                     <p>
+                        <strong>Device.classCode</strong> shall carry a fixed value of "DEV"
+                     </p>
+                     
+                     <p>
+                        <strong>Device.determinerCode</strong> shall carry a fixed value of "INSTANCE"
+                     </p>
+                     
+                     <p>
+                        <strong>Device.id</strong> shall carry an optional identifier that uniquely identifies  the Device. Thisshall bea code from a national scheme.
+                     </p>
+                     
+                     <p>A national code is carried in the following way: </p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall carry the OID that identifies the coding scheme;  </li>
+                        
+                        <li>The extension attribute shall contain the code.</li>
+                        
+                     </ul>
+                     
+                     <p>If an id is not present, then a name shall be included .</p>
+                     
+                     <p>
+                        <strong>Device.code</strong> shall carry an optional codeto describe the type of  device.
+                     </p>
+                     
+                     <p>If a code is not present, then a description shall be included.</p>
+                     
+                     <p>
+                        <strong>Device.name</strong> shall carry an optional name of the device.
+                     </p>
+                     
+                     <p>This shall be included if an id is not present.</p>
+                     
+                     <p>
+                        <strong>Device.desc</strong>shall carry an optional description of the type of  device.
+                     </p>
+                     
+                     <p>This shall be included if a code is not present.</p>
+                     
+                     <p>
+                        <strong>Device.manufacturerModelName</strong> shall optionally carry the model name as  allocated by the Device manufacturer.
+                     </p>
+                     
+                     <p>
+                        <strong>Device.softwareName</strong> shall optionally carry the name of the software  used by the Device.
+                     </p>
+                     
+                     <p>If the device is scoped by an organization then and the organization can be  identified by reference to SDS then</p>
+                     
+                     <p>
+                        <strong>OrganizationSDS.classCode</strong> shall carry a fixed value of "ORG"
+                     </p>
+                     
+                     <p>
+                        <strong>OrganizationSDS.determinerCode</strong> shall carry a fixed value of  "INSTANCE".
+                     </p>
+                     
+                     <p>
+                        <strong>OrganizationSDS.id</strong> shall carry an SDS identifier that uniquely  identifies the Organization. This is carried in the following way: 
+                     </p>
+                     
+                     <ul>
+                        
+                        <li>The root attribute shall contain an OID with the value 1.2.826.0.1285.0.1.10; </li>
+                        
+                        <li>The extension attribute shall contain the SDS Organization ID.</li>
+                        
+                     </ul>
+                     
+                     <p>If the device is scoped by an organization then and the organization cannot  be identified by reference to SDS then</p>
+                     
+                     <p>
+                        <strong>Organization.classCode</strong> shall carry a fixed value of "ORG"
+                     </p>
+                     
+                     <p>
+                        <strong>Organization.determinerCode</strong> shall carry a fixed value  of"INSTANCE"
+                     </p>
+                     
+                     <p>
+                        <strong>Organization.id</strong>shall carryan optional identifier that uniquely  identifies the Organization. Thisshall bea code from a national scheme.
+                     </p>
+                     
+                     <p>A national code is carried in the following way: </p>
+                     
+                     <ul>
+                        
+                        <li>the root attribute shall contain the OID that identifies the coding scheme; </li>
+                        
+                        <li>the extension attribute shall contain the code.</li>
+                        
+                     </ul>
+                     
+                     <p>If an id is not present, then a name shall be included.</p>
+                     
+                     <p>
+                        <strong>Organization.code</strong> shall optionally carry a value from the  OrganizationType vocabulary to identify the type of Organization.
+                     </p>
+                     
+                     <p>The Coded Only datatype flavour is used to carry this information as  follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The code attribute shall contain a value from the list of codes in the  OrganizationType vocabulary.</li>
+                        
+                     </ul>
+                     
+                     <p>If a code is not present, then a description shall be included.</p>
+                     
+                     <p>
+                        <strong>Organization.name</strong> shall optionally contain the name of the  Organization. This shall be included if an id is not present.
+                     </p>
+                     
+                     <p>
+                        <strong>Organization.desc</strong> shall containa optional description of the type of  Organization. This shall be included if a code is not present.
+                     </p>
+                     
+                     <p>
+                        <strong>Organization.telecom</strong> shall contain optional telephone contact details  for the Organization.
+                     </p>
+                     
+                     <p>
+                        <strong>Organization.addr</strong> shall contain an optional address of the  Organization
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td colspan="10" height="1"></td>
+         </tr>
+         <tr>
+            <td colspan="2" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <b><a href="UKCT_HD144037UK01-NoEdit.htm#NonAgentRole">NonAgentRole</a></b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>The participating person who is a non-agent (not a clinician).<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="roleclass"><a name="NonAgentRole"><b>NonAgentRole</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>A role played by a person who is not an agent (i.e. not a care  professional).</strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="NonAgentRole">Used by: </a></font><a href="#CareEvent"><b>CareEvent</b></a>,<a href="#RoleChoice"><b>RoleChoice</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>RoleClass</b></a> } ) {<b> Fixed="<font color="red">ROL</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates this is a role.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>code</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/PersonRelationshipType.htm" target="_top"><b>PersonRelationshipType</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>A code identifying the relationship of the non-agent person to the patient,  e.g. parent or carer.</p>
+                     
+                     <p>The Coded Plain flavour of the CodedValue (CV) data type shall be used to  carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute shall contain a value from the list of codes in  the vocabulary;  
+                        </li>
+                        
+                        <li>The <em>code System</em> attribute shall containthe OID for the vocabulary; 
+                        </li>
+                        
+                        <li>The <em>display text</em> attribute will carry a description for the code from  the vocabulary.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b>id</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>An optional unique identifier of the role-player. May be used to convey the  NHS number of a patient who is playing a role.
+                     It shall be either an OID for  the identification scheme and the identifier within that scheme (e.g. for patient NHS number).
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b><a id="NonAgentRole/playingNonAgentPerson"></a>playingNonAgentPerson</b> (<a href="#NonAgentPerson"><b>NonAgentPerson</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>An optional link to the person playing the non-agent role.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="entclass"><a name="NonAgentPerson"><b>NonAgentPerson</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     <strong>Details of the non-agent person.</strong>
+                     <br>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="NonAgentPerson">Used by: </a></font><a href="#NonAgentRole"><b>NonAgentRole</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>EntityClass</b></a> } ) {<b> Fixed="<font color="red">PSN</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates that the entity is a person.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>determinerCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>EntityDeterminer</b></a> } ) {<b> Fixed="<font color="red">INSTANCE</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates that the entity is a single identifiable person.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>name</b> (<a href="../../../Data Types/DataTypes.htm#SET"><b>SET</b></a><b>&lt;<a href="../../../Data Types/DataTypes.htm#PN"><b>PN</b></a>&gt;</b>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>The name(s) of the person.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="choiceclass"><a name="ActLocationChoice"><b>ActLocationChoice</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>A choice of location relevant to the clinical statement.</strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="ActLocationChoice">Used by: </a></font><a href="#CareEvent"><b>CareEvent</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td colspan="10" height="1"></td>
+         </tr>
+         <tr>
+            <td colspan="2" width="50%"><font color="green"><b>[1..1] </b><i>either </i></font>: <b><a href="UKCT_RM160017UK01.htm">UKCT_MT160017UK01</a></b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A CMET to identify an organisation on SDS or provides detailed information for an organisation not registered on SDS.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td colspan="10" height="1"></td>
+         </tr>
+         <tr>
+            <td colspan="2" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <b><a href="UKCT_HD144037UK01-NoEdit.htm#IncidentalLocation">IncidentalLocation</a></b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>The place where the activity took place.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="roleclass"><a name="IncidentalLocation"><b>IncidentalLocation</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  <strong>A role played by a location that is not an organisational site.</strong>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="IncidentalLocation">Used by: </a></font><a href="#CareEvent"><b>CareEvent</b></a>,<a href="#ActLocationChoice"><b>ActLocationChoice</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>RoleClass</b></a> } ) {<b> Fixed="<font color="red">ISDLOC</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates that the role is a incidental location.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [R] </b></font><b>code</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/LocationTypeSnCT.htm" target="_top"><b>LocationTypeSnCT</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>A SnomedCT code identifying the kind of location being described (e.g. normal  residence, ambulance, public place)</p>
+                     
+                     <p>The Coded Plain flavour of the CodedValue (CV) datatype shall be used to  carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute shall contain a value from the list of codes in  the vocabulary; 
+                        </li>
+                        
+                        <li>The <em>code System</em> attribute shall contain the OID for SnomedCT; 
+                        </li>
+                        
+                        <li>The <em>display text</em> attribute will carry a description for the code from  the coding system.
+                        </li>
+                        
+                     </ul>
+                     
+                     <p class="">
+                        <em>
+                           <span style="color: red">This is currently not represented by a subset but by a list of codes..</span>
+                           </em>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b><a id="IncidentalLocation/location"></a>location</b> (<a href="#Place"><b>Place</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>Details of the individual place playing the role of the  IncidentialLocation.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="entclass"><a name="Place"><b>Place</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>An entity describing a place that is not an organisation recognised by SDS. If Place is used, at least one of the non-structural
+                        attributes SHALL be  used.</strong>
+                     <br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="Place">Used by: </a></font><a href="#IncidentalLocation"><b>IncidentalLocation</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>EntityClass</b></a> } ) {<b> Fixed="<font color="red">PLC</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates that the entity is a place.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>determinerCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>EntityDeterminer</b></a> } ) {<b> Fixed="<font color="red">INSTANCE</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates that the entity is a single identifiable place.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b>addr</b> (<a href="../../../Data Types/DataTypes.htm#AD"><b>AD</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>An optional address of the place.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b>gpsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>An optional GPS reference. It may be as precise as required.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><font color="green"><b> [R] </b></font><b>name</b> (<a href="../../../Data Types/DataTypes.htm#TN"><b>TN</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>The optional name of the place.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b>positionText</b> (<a href="../../../Data Types/DataTypes.htm#ED"><b>ED</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>An optional grid reference. It may be as precise as required.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b>telecom</b> (<a href="../../../Data Types/DataTypes.htm#TEL"><b>TEL</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>An optional telecom contact for the place.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="roleclass"><a name="DedicatedServiceDeliveryLocation"><b>DedicatedServiceDeliveryLocation</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>The type of location where the service was / is to be delivered.</strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="DedicatedServiceDeliveryLocation">Used by: </a></font><a href="#CareEvent"><b>CareEvent</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>RoleClass</b></a> } ) {<b> Fixed="<font color="red">DSDLOC</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates that this is a dedicated service delivery location.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>code</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/CareSettingTypeSnCT.htm" target="_top"><b>CareSettingTypeSnCT</b></a> } )
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>A SnomedCT code specifying the care setting..  </p>
+                     
+                     <p>The Coded Plain flavour of the CodedValue (CV) datatype shall be used to  carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute shall contain a value from the list of codes in  the vocabulary;
+                        </li>
+                        
+                        <li>The <em>code System</em> attribute shall containthe OID for SnomedCT; 
+                        </li>
+                        
+                        <li>The <em>display text</em> attribute will carry a description for the code from  the coding system.
+                        </li>
+                        
+                     </ul>
+                     <em>
+                        <span style="color: red">This is currently not represented by a subset but by a list of codes..</span>
+                        </em>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="choiceclass"><a name="ParticipantChoice"><b>ParticipantChoice</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>A choice on an organisation or person participant.</div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="ParticipantChoice">Used by: </a></font><a href="#CareEvent"><b>CareEvent</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td colspan="10" height="1"></td>
+         </tr>
+         <tr>
+            <td colspan="2" width="50%"><font color="green"><b>[1..1] </b><i>either </i></font>: <b><a href="UKCT_RM160018UK01.htm">UKCT_MT160018UK01</a></b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A CMET to identify a person on SDS or provides detailed information for a person not registered on SDS.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td colspan="10" height="1"></td>
+         </tr>
+         <tr>
+            <td colspan="2" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <b><a href="UKCT_RM160017UK01.htm">UKCT_MT160017UK01</a></b></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A CMET to identify an organisation on SDS or provides detailed information for an organisation not registered on SDS.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass"><a name="SupportingInfo"><b>SupportingInfo</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     <strong>An Act holding overflow information from the Act acting as the root of the  clinical statement</strong>. <strong>Supporting information shall not contradict the content of the source act, only add to it or explain it.</strong>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="SupportingInfo">Used by: </a></font><a href="#CareEvent"><b>CareEvent</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ActClass</b></a> } ) {<b> Fixed="<font color="red">OBS</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates that this is an observation. Note that SupportingInfo can be used  to supply overflow information for any kind of
+                        Act included in the  ClinicalStatementChoice, not just Observations.
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>moodCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ActMood</b></a> } ) {<b> Fixed="<font color="red">EVN</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>Indicates this is an event.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>code</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/TextType.htm" target="_top"><b>TextType</b></a> } ) {<b> Fixed="<font color="red">SupportingText</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p class="">
+                        <span style="font-family: &#34;Times New Roman&#34;">A code from the vocabulary shown indicating type of text.</span>
+                        
+                     </p>
+                     
+                     <p class="">
+                        <span style="font-family: &#34;Times New Roman&#34;"></span>
+                        
+                     </p>
+                     <span style="font-size: 11pt; font-family: &#34;Times New Roman&#34;">The Coded Plain flavour of the Coded Value (CV) data type shall be used to carry this information.</span>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>The Supporting Info text</div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="choiceclass"><a name="ReferencedClinicalStatementChoice"><b>ReferencedClinicalStatementChoice</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>A choice of clinical statement reference.<br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray"><a name="ReferencedClinicalStatementChoice">Used by: </a></font><a href="#CareEvent"><b>CareEvent</b></a></td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="green"><b>[1..1] </b><i>either </i></font>: <a id="PersonalPreference"><b>PersonalPreference</b></a></td>
+            <td width="50%">
+               <p>Reference to PersonalPreference</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											OBS} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">OBS</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="Finding"><b>Finding</b></a></td>
+            <td width="50%">
+               <p>Reference to Finding</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											OBS} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">OBS</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="Problem"><b>Problem</b></a></td>
+            <td width="50%">
+               <p>Reference to Problem</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											CNOD} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">CNOD</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="SocialContext"><b>SocialContext</b></a></td>
+            <td width="50%">
+               <p>Reference to SocialContext</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											OBS} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">OBS</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="FamilyHistory"><b>FamilyHistory</b></a></td>
+            <td width="50%">
+               <p>Reference to FamilyHistory</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											OBS} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">OBS</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="Diagnosis"><b>Diagnosis</b></a></td>
+            <td width="50%">
+               <p>Reference to Diagnosis</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											OBS} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">OBS</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="Investigation"><b>Investigation</b></a></td>
+            <td width="50%">
+               <p>Reference to Investigation</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											PROC} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">PROC</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											x_ActMoodIntentEvent}</b>)
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="Medication"><b>Medication</b></a></td>
+            <td width="50%">
+               <p>Reference to Medication</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											SBADM} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">SBADM</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											RQO}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">RQO</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="MedicationAdministration"><b>MedicationAdministration</b></a></td>
+            <td width="50%">
+               <p>Reference to MedicationAdministration</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											SBADM} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">SBADM</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="Document"><b>Document</b></a></td>
+            <td width="50%">
+               <p>Reference to Document</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											DOC} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">DOC</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="RiskToPerson"><b>RiskToPerson</b></a></td>
+            <td width="50%">
+               <p>Reference to RiskToPerson</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											OBS} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">OBS</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="AllergiesAndAdverseReactionsDE"><b>AllergiesAndAdverseReactionsDE</b></a></td>
+            <td width="50%">
+               <p>Reference to AllergiesAndAdverseReactionsDE</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											OBS} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">OBS</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="AdministrativeProcedure"><b>AdministrativeProcedure</b></a></td>
+            <td width="50%">
+               <p>Reference to AdministrativeProcedure</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											ACT} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">ACT</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											x_ActMoodIntentEvent}</b>)
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="RiskToPatient"><b>RiskToPatient</b></a></td>
+            <td width="50%">
+               <p>Reference to RiskToPatient</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											OBS} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">OBS</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="Service"><b>Service</b></a></td>
+            <td width="50%">
+               <p>Reference to Service</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											PCPR} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">PCPR</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											x_ActMoodIntentEvent}</b>)
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="ProvisionOfAdviceAndInformation"><b>ProvisionOfAdviceAndInformation</b></a></td>
+            <td width="50%">
+               <p>Reference to ProvisionOfAdviceAndInformation</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											INFRM} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">INFRM</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="Treatment"><b>Treatment</b></a></td>
+            <td width="50%">
+               <p>Reference to Treatment</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											PROC} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">PROC</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											x_ActMoodIntentEvent}</b>)
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="actclass" width="50%"><font color="white">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color="green"><i> ... or ...   </i></font>: <a id="AllergiesAndAdverseReactionsIdent"><b>AllergiesAndAdverseReactionsIdent</b></a></td>
+            <td width="50%">
+               <p>Reference to AllergiesAndAdverseReactionsIdent</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>classCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											OBS} )</b> )<b>{
+                  										 Fixed = 
+                  										 "<font color="red">OBS</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b>moodCode</b> ( <a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a><b>{<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>
+                  											:
+                  											EVN}</b> )<b>{
+                  										 Fixed = 
+                  										  "<font color="red">EVN</font>"}</b></td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2"><font color="green"><b>[1..1] [M] 
+                     										</b></font><b> id</b> ( <a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a> )
+            </td>
+            <td width="50%">
+               <p>TemplateText</p>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+      </table>
+   </body>
+</html>

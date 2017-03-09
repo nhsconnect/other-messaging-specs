@@ -1,0 +1,673 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>Discharge Implementation Manual</title>
+<link rel="stylesheet" href="../../../Core/Stylesheets/IMCommon_v2.css" type="text/css">
+</head>
+<body lang="EN-GB">
+<div id="header"><p>Coded Datatype Specialisations</p></div>
+<div id="content">
+<div class="Section1">
+    <p class="MsoNormal">&nbsp;</p>
+	<p class="Un-numberedHeading1">Contents</p>
+	<div class="index1" div id="fp_TOC" class="fp_TOC">
+		<a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;Rationale</a><br><a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp;&nbsp;Specialisations</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.1">2.1&nbsp;&nbsp;&nbsp;&nbsp;Concept Descriptor with CDA URL</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.2">2.2&nbsp;&nbsp;&nbsp;&nbsp;Coded Value with CDA URL</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.3">2.3&nbsp;&nbsp;&nbsp;&nbsp;Coded with 
+Equivalents with CDA URL</a><br><a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp;&nbsp;Schema Fragments</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp;&nbsp;Concept Descriptor 
+with CDA URL Schema</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp;&nbsp;Coded Value with CDA URL Schema</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.3">3.3&nbsp;&nbsp;&nbsp;Coded with Equivalents with CDA URL</a></div><div class=MsoNormal align=center style='text-align:center'><hr size=2 width="100%" align=center></div>  
+<h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;Rationale</h1>
+	<p>
+	<span style="font-size: 10pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;" lang="EN-GB">
+	CDA provides a mechanism for linking between coded entries and supporting 
+	text through use of the originalText/reference/@value attribute which has a 
+	datatype of URL.&nbsp; The common format for the value of this attribute is to 
+	prefix a # before the identifier, thus forming a relative URL.&nbsp; During the 
+	CDA implementation for CCN404 an issue with the use of this mechanism was 
+	found with the models.</span></p>
+	<p>&nbsp;</p>
+	<p>
+	<span style="font-size: 10pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;" lang="EN-GB">
+	The problem was found to be with the additional constraints added to the CFH 
+	schema for URL.&nbsp; The CDA schema (and the HL7 default one) is flexible to use 
+	anyURI to represent the URL.&nbsp; The MIM version of URL was previously modified 
+	to enforce constraints for domains within the MIM to exclude the use of 
+	relative URLs since these can become broken if fragments of the XML&nbsp; 
+	instance are processed independently.&nbsp;</span></p>
+	<p>&nbsp;</p>
+	<p>
+	<span style="font-size: 10pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;" lang="EN-GB">
+	CDA states that the datatypes specification included with it in the 
+	normative release should be used for CDA documents.&nbsp; However, domains such 
+	as PDS and Medications Management require the tight version to be used to 
+	ensure conformant versions of telecoms addresses etc and these are already 
+	live.&nbsp; To overcome this problem, three more relaxed specialisations of the 
+	base HL7 datatypes have been created to cover:</span></p>
+	<ul>
+		<li><font face="Arial" size="2">Concept Descriptor (CD)</font></li>
+		<li><font face="Arial" size="2">Coded Value (CV)</font></li>
+		<li><font face="Arial" size="2">Coded with Equivalents (CE) </font> </li>
+</ul>
+	<p><font face="Arial" size="2">Though these are referred to as 
+	specialisations, there are in fact generalisations.</font></p>
+<h1><a name=_Toc_Section_2></a>2&nbsp;&nbsp;&nbsp;&nbsp;Specialisations</h1></div>
+
+</div>
+<p><font size="2" face="Arial">The specialisations all allow the above coded datatypes to contain a loose 
+URL in the value attribute of originalText/reference.&nbsp; The specialisation 
+is applied to the coded element which within it lists the specialisation on URL.&nbsp; 
+The specialisations on the coded elements are:</font></p>
+<ul>
+	<li><font size="2" face="Arial">Concept Descriptor with CDA URL</font></li>
+	<li><font size="2" face="Arial">Coded Value with CDA URL</font></li>
+	<li><font size="2" face="Arial">Coded with Equivalents with CDA URL</font></li>
+</ul>
+<p><font size="2" face="Arial">The following sections are extracts from the MIM 
+Datatypes Implementation Manual Version 3.5.</font></p>
+<h2><a name=_Toc_Section_2.1></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;Concept Descriptor with CDA URL</h2>
+<p class="MsoNormal"><i><font size="2">Valid constraint of HL7 data types: CD.
+</font></i></p>
+<p class="MsoNormal"><font size="2">This flavour is used where the original 
+encoding uses the approved coding scheme for a message attribute but where there 
+may be some text entered or selected by the user either by direct entry or by 
+reference that is not identical to the display text or rubric associated with 
+the code.</font></p>
+<table class="NPfITGrid" style="width: 87.64%;" id="table1" border="1" cellpadding="0" cellspacing="3" width="87%">
+	<tr>
+		<td style="padding: 0cm 5.4pt; width: 90.45pt;" valign="top" width="121">
+		<p class="MsoNormal"><span style="font-size: 10pt;">1 code</span></td>
+		<td style="padding: 0cm 5.4pt; width: 352.7pt;" valign="top" width="470">
+		<p class="MsoNormal"><span style="font-size: 10pt;">The primary code 
+		value originally used to encode a statement.</span></td>
+	</tr>
+	<tr>
+		<td style="padding: 0cm 5.4pt; width: 90.45pt;" valign="top" width="121">
+		<p class="MsoNormal"><span style="font-size: 10pt;">1
+		<a name="displayName0">displayName</a> </span></td>
+		<td style="padding: 0cm 5.4pt; width: 352.7pt;" valign="top" width="470">
+		<p class="MsoNormal"><span style="font-size: 10pt;">The text or rubric 
+		associated with the code.</span></td>
+	</tr>
+	<tr>
+		<td style="padding: 0cm 5.4pt; width: 90.45pt;" valign="top" width="121">
+		<p class="MsoNormal"><span style="font-size: 10pt;">1 codeSystem </span>
+		</td>
+		<td style="padding: 0cm 5.4pt; width: 352.7pt;" valign="top" width="470">
+		<p class="MsoNormal"><span style="font-size: 10pt;">An OID identifying 
+		the coding system from which the code is derived.</span></td>
+	</tr>
+	<tr>
+		<td style="padding: 0cm 5.4pt; width: 90.45pt;" valign="top" width="121">
+		<p class="MsoNormal"><font size="2">0</font><span style="font-size: 10pt;">
+		<a name="originalText0">originalText</a> </span></td>
+		<td style="padding: 0cm 5.4pt; width: 352.7pt;" valign="top" width="470">
+		<p class="MsoNormal"><span style="font-size: 10pt;">The full text 
+		associated with this code as selected, typed or seen by the author of 
+		this statement. <i>This may contain additional information that is not 
+		completely coded. </i></span></td>
+	</tr>
+</table>
+<p class="MsoNormal"><font size="2">&nbsp;</font></p>
+<p class="MsoNormal"><font size="2">&nbsp;Examples:</font></p>
+<p class="MsoNormal" style><b>
+<span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">
+&lt;!--</span><span style="font-size: 10pt; color: gray; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white"> 
+To indicate a code with the original text upon which the code was based for a 
+&quot;code&quot; attribute of an observation class </span>
+<span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">
+--&gt;</span></b></p>
+<p class="MsoNormal" style><b>
+<span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">
+&lt;</span><span style="font-size: 10pt; color: maroon; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">code</span><span style="font-size: 10pt; color: red; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white"> 
+code</span><span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">=&quot;</span><span style="font-size: 10pt; color: black; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">195967001</span><span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">&quot;</span><span style="font-size: 10pt; color: red; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white"> 
+codeSystem</span><span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">=&quot;</span><span style="font-size: 10pt; color: black; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">2.16.840.1.113883.2.1.3.2.4.15</span><span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">&quot;</span><span style="font-size: 10pt; color: red; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white"> 
+displayName</span><span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">=&quot;</span><span style="font-size: 10pt; color: black; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">asthma</span><span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">&quot;&gt;</span></b></p>
+<p class="MsoNormal" style><b>
+<span style="font-size: 10pt; color: black; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">
+&nbsp;&nbsp;&nbsp; </span>
+<span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">
+&lt;</span><span style="font-size: 10pt; color: maroon; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">originalText</span><span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">&gt;</span></b></p>
+<p class="MsoNormal" style>
+<span style="background-color: rgb(255, 255, 255); background-position: 0%;">
+<font color="#0000ff" size="2"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;</b></font><b><font color="#800000" size="2">reference</font><font color="#0000ff" size="2">
+</font></b></span><b><font color="#ff0000">
+<span style="font-size: 10pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">
+value</span></font><span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">=&quot;</span><span style="font-size: 10pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">#a1</span><span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">&quot;/&gt;</span></b></p>
+<p class="MsoNormal" style>
+<span style="background-color: rgb(255, 255, 255); background-position: 0%;">
+<font color="#0000ff" size="2"><b>&nbsp;&nbsp;&nbsp; &lt;/</b></font></span><b><span style="font-size: 10pt; color: maroon; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">originalText&gt;</span></b></p>
+<p class="MsoNormal" style><b>
+<span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">
+&lt;/</span><span style="font-size: 10pt; color: maroon; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">code</span><span style="font-size: 10pt; color: blue; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; background: white">&gt;</span></b></p>
+<h2><a name=_Toc_Section_2.2></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;Coded Value with CDA URL</h2>
+<p class=MsoNormal><i><font size="2">Valid constraint of HL7 data types: CV.</font></i></p>
+<p class=MsoNormal><font size="2">This flavour is used where the original 
+encoding uses the approved coding scheme for a message attribute but where there 
+may be some text entered or selected by the user either by direct entry or by 
+reference that is not identical to the display text or rubric associated with 
+the code.</font></p>
+<table class=NPfITGrid border=1 cellspacing=3 cellpadding=0 width="87%"
+ style='width:87.64%' id="table2">
+	<tr>
+		<td width=121 valign=top style='width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>1 code</span></p></td>
+		<td width=470 valign=top style='width:352.7pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>The primary code value
+  originally used to encode a statement.</span></p></td>
+	</tr>
+	<tr>
+		<td width=121 valign=top style='width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>1 
+		<a name=displayName1 style="text-decoration: none">displayName</a>
+		</span></p></td>
+		<td width=470 valign=top style='width:352.7pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>The text or rubric
+  associated with the code.</span></p></td>
+	</tr>
+	<tr>
+		<td width=121 valign=top style='width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>1 codeSystem </span>
+		</p></td>
+		<td width=470 valign=top style='width:352.7pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>An OID identifying the coding
+  system from which the code is derived.</span></p></td>
+	</tr>
+	<tr>
+		<td width=121 valign=top style='width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><font size="2">0</font><span style='font-size:10.0pt'> 
+		<a name=originalText1 style="text-decoration: none">originalText</a>
+		</span></p></td>
+		<td width=470 valign=top style='width:352.7pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>The full text associated
+  with this code as selected, typed or seen by the author of this statement. <i>This
+  may contain additional information that is not completely coded. </i></span>
+		</p>
+		</td>
+	</tr>
+</table>
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal><font size="2">&nbsp;Examples:</font></p>
+<p class=MsoNormal style='text-autospace:none'><b>
+<span style='font-size:10.0pt;
+color:blue;background:white'>&lt;!--</span><span style='font-size:10.0pt;
+color:gray;background:white'> To indicate a code with the original text upon
+which the code was based for a &quot;code&quot; attribute of an observation
+class </span><span style='font-size:10.0pt;color:blue;background:white'>--&gt;</span></b></p>
+<p class=MsoNormal style='text-autospace:none'><b>
+<span style='font-size:10.0pt;
+color:blue;background:white'>&lt;</span><span style='font-size:10.0pt;
+color:maroon;background:white'>code</span><span style='font-size:10.0pt;
+color:red;background:white'> code</span><span style='font-size:10.0pt;
+color:blue;background:white'>=&quot;</span><span style='font-size:10.0pt;
+color:black;background:white'>195967001</span><span style='font-size:
+10.0pt;color:blue;background:white'>&quot;</span><span style='font-size:
+10.0pt;color:red;background:white'> codeSystem</span><span
+style='font-size:10.0pt;color:blue;background:white'>=&quot;</span><span
+style='font-size:10.0pt;color:black;background:white'>2.16.840.1.113883.2.1.3.2.4.15</span><span
+style='font-size:10.0pt;color:blue;background:white'>&quot;</span><span
+style='font-size:10.0pt;color:red;background:white'> displayName</span><span
+style='font-size:10.0pt;color:blue;background:white'>=&quot;</span><span
+style='font-size:10.0pt;color:black;background:white'>asthma</span><span
+style='font-size:10.0pt;color:blue;background:white'>&quot;&gt;</span></b></p>
+<p class=MsoNormal style='text-autospace:none'><b>
+<span style='font-size:10.0pt;
+color:black;background:white'>    </span>
+<span style='font-size:10.0pt;
+color:blue;background:white'>&lt;</span><span style='font-size:10.0pt;
+color:maroon;background:white'>originalText</span><span
+style='font-size:10.0pt;color:blue;background:white'>&gt;</span></b></p>
+<p class=MsoNormal style='text-autospace:none'>
+<span style="background-color: #FFFFFF; background-position: 0% 0%"><b>
+<font size="2" color="#0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;</font><font size="2" color="#800000">reference</font><font size="2" color="#0000FF">
+</font></b></span><b>
+<font color="#FF0000"><span
+style='font-size:10.0pt;background:white'>value</span></font><span
+style='font-size:10.0pt;color:blue;background:white'>=&quot;</span><span
+style='font-size:10.0pt;background:white'>#a1</span><span
+style='font-size:10.0pt;color:blue;background:white'>&quot;/&gt;</span></b></p>
+<p class=MsoNormal style='text-autospace:none'>
+<span style="background-color: #FFFFFF; background-position: 0% 0%">
+<font size="2" color="#0000FF"><b>&nbsp;&nbsp;&nbsp; &lt;/</b></font></span><b><span style='font-size:10.0pt;
+color:maroon;background:white'>originalText&gt;</span></b></p>
+<p class=MsoNormal style='text-autospace:none'><b>
+<span style='font-size:10.0pt;
+color:blue;background:white'>&lt;/</span><span style='font-size:10.0pt;
+color:maroon;background:white'>code</span><span style='font-size:10.0pt;
+color:blue;background:white'>&gt;</span></b></p>
+
+<h2><a name=_Toc_Section_2.3></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;Coded with 
+Equivalents with CDA URL</h2>
+<p class=MsoNormal><i><font size="2">Valid constraint of HL7 data types: CE .</font></i></p>
+<p class="MsoNormal"><font size="2">This flavour is used where the original 
+encoding uses the approved coding scheme for a message attribute but where there 
+may be some text entered or selected by the user either by direct entry or by 
+reference that is not identical to the display text or rubric associated with 
+the code.</font></p>
+<table class=NPfITGrid border=1 cellspacing=3 cellpadding=0 width="87%"
+ style='width:87.64%' id="table3">
+	<tr>
+		<td width=121 valign=top style='width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>1 code</span></p></td>
+		<td width=470 valign=top style='width:352.7pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>The primary code value
+  originally used to encode a statement.</span></p></td>
+	</tr>
+	<tr>
+		<td width=121 valign=top style='width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>1 
+		<a name=displayName2 style="text-decoration: none">displayName</a>
+		</span></p></td>
+		<td width=470 valign=top style='width:352.7pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>The text or rubric
+  associated with the code.</span></p></td>
+	</tr>
+	<tr>
+		<td width=121 valign=top style='width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>1 codeSystem </span>
+		</p></td>
+		<td width=470 valign=top style='width:352.7pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>An OID identifying the coding
+  system from which the code is derived.</span></p></td>
+	</tr>
+	<tr>
+		<td width=121 valign=top style='width:90.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><font size="2">0</font><span style='font-size:10.0pt'> 
+		<a name=originalText2 style="text-decoration: none">originalText</a>
+		</span></p></td>
+		<td width=470 valign=top style='width:352.7pt;padding:0cm 5.4pt 0cm 5.4pt'>
+		<p class=MsoNormal><span style='font-size:10.0pt'>The full text associated
+  with this code as selected, typed or seen by the author of this statement. <i>This
+  may contain additional information that is not completely coded. </i></span>
+		</p>
+		</td>
+	</tr>
+</table>
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal><font size="2">&nbsp;Examples:</font></p>
+<p class=MsoNormal style='text-autospace:none'><b>
+<span style='font-size:10.0pt;
+color:blue;background:white'>&lt;!--</span><span style='font-size:10.0pt;
+color:gray;background:white'> To indicate a code with the original text upon
+which the code was based for a &quot;code&quot; attribute of an observation
+class </span><span style='font-size:10.0pt;color:blue;background:white'>--&gt;</span></b></p>
+<p class=MsoNormal style='text-autospace:none'><b>
+<span style='font-size:10.0pt;
+color:blue;background:white'>&lt;</span><span style='font-size:10.0pt;
+color:maroon;background:white'>code</span><span style='font-size:10.0pt;
+color:red;background:white'> code</span><span style='font-size:10.0pt;
+color:blue;background:white'>=&quot;</span><span style='font-size:10.0pt;
+color:black;background:white'>195967001</span><span style='font-size:
+10.0pt;color:blue;background:white'>&quot;</span><span style='font-size:
+10.0pt;color:red;background:white'> codeSystem</span><span
+style='font-size:10.0pt;color:blue;background:white'>=&quot;</span><span
+style='font-size:10.0pt;color:black;background:white'>2.16.840.1.113883.2.1.3.2.4.15</span><span
+style='font-size:10.0pt;color:blue;background:white'>&quot;</span><span
+style='font-size:10.0pt;color:red;background:white'> displayName</span><span
+style='font-size:10.0pt;color:blue;background:white'>=&quot;</span><span
+style='font-size:10.0pt;color:black;background:white'>asthma</span><span
+style='font-size:10.0pt;color:blue;background:white'>&quot;&gt;</span></b></p>
+<p class=MsoNormal style='text-autospace:none'><b>
+<span style='font-size:10.0pt;
+color:black;background:white'>    </span>
+<span style='font-size:10.0pt;
+color:blue;background:white'>&lt;</span><span style='font-size:10.0pt;
+color:maroon;background:white'>originalText</span><span
+style='font-size:10.0pt;color:blue;background:white'>&gt;</span></b></p>
+<p class=MsoNormal style='text-autospace:none'>
+<span style="background-color: #FFFFFF; background-position: 0% 0%"><b>
+<font size="2" color="#0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;</font><font size="2" color="#800000">reference</font><font size="2" color="#0000FF">
+</font></b></span><b>
+<font color="#FF0000"><span
+style='font-size:10.0pt;background:white'>value</span></font><span
+style='font-size:10.0pt;color:blue;background:white'>=&quot;</span><span
+style='font-size:10.0pt;background:white'>#a1</span><span
+style='font-size:10.0pt;color:blue;background:white'>&quot;/&gt;</span></b></p>
+<p class=MsoNormal style='text-autospace:none'>
+<span style="background-color: #FFFFFF; background-position: 0% 0%">
+<font size="2" color="#0000FF"><b>&nbsp;&nbsp;&nbsp; &lt;/</b></font></span><b><span style='font-size:10.0pt;
+color:maroon;background:white'>originalText&gt;</span></b></p>
+<p class=MsoNormal style='text-autospace:none'><b>
+<span style='font-size:10.0pt;
+color:blue;background:white'>&lt;/</span><span style='font-size:10.0pt;
+color:maroon;background:white'>code</span><span style='font-size:10.0pt;
+color:blue;background:white'>&gt;</span></b></p>
+<h1><a name=_Toc_Section_3></a>3&nbsp;&nbsp;&nbsp;&nbsp;Schema Fragments</h1>
+<p><font size="2" face="Arial">The following sections contain fragments taken 
+from the datatypeflavours.xsd file.</font></p>
+<h2><a name=_Toc_Section_3.1></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;Concept Descriptor 
+with CDA URL Schema</h2>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: blue; background: white"><font size="2">&lt;</font></span><font size="2"><span style="color: maroon; background: white">xs:complexType</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">CD.NPfIT.CDA.Url</span></font><span style="color: blue; background: white"><font size="2">&quot;&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:complexContent</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:extension</span><span style="color: red; background: white"> 
+base</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">ANY</span></font><span style="color: blue; background: white"><font size="2">&quot;&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:sequence</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:element</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">originalText</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">Cda.NPfIT.ED</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+minOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">0</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:element</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">qualifier</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">CR</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+minOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">0</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+maxOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">unbounded</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:element</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">group</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+minOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">0</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+maxOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">unbounded</span></font><span style="color: blue; background: white"><font size="2">&quot;&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:complexType</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font>
+</span><font size="2"><span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:sequence</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font>
+</span><font size="2"><span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:element</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">qualifier</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">CR</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+maxOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">unbounded</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font>
+</span><font size="2"><span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:sequence</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:complexType</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:element</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:element</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">translation</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">CD</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+minOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">0</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+maxOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">unbounded</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:sequence</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">code</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">cs</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">codeSystem</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">uid</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">codeSystemName</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">st</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">codeSystemVersion</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">st</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">displayName</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">st</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:extension</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</font> </span>
+<font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:complexContent</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal"><span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font>
+</span><font size="2"><span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:complexType</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<h2><a name=_Toc_Section_3.1></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;Coded Value with CDA URL Schema</h2>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: blue; background: white"><font size="2">&lt;</font></span><font size="2"><span style="color: maroon; background: white">xs:complexType</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">CV.NPfIT.CDA.Url</span></font><span style="color: blue; background: white"><font size="2">&quot;&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:complexContent</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:restriction</span><span style="color: red; background: white"> 
+base</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">CE.NPfIT.CDA.Url</span></font><span style="color: blue; background: white"><font size="2">&quot;&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:sequence</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span>
+<font size="2"><span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:element</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">originalText</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">Cda.NPfIT.ED</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+minOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">0</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span>
+<font size="2"><span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:element</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">translation</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">CD</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+minOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">0</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+maxOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">0</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:sequence</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">code</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">cs</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">codeSystem</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">uid</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">codeSystemName</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">st</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">codeSystemVersion</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">st</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">displayName</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">st</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:restriction</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:complexContent</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal"><span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:complexType</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<h2><a name=_Toc_Section_3.3></a>3.3&nbsp;&nbsp;&nbsp;Coded with Equivalents with CDA URL</h2>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: blue; background: white"><font size="2">&lt;</font></span><font size="2"><span style="color: maroon; background: white">xs:complexType</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">CE.NPfIT.CDA.Url</span></font><span style="color: blue; background: white"><font size="2">&quot;&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:complexContent</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:restriction</span><span style="color: red; background: white"> 
+base</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">CD.NPfIT.CDA.Url</span></font><span style="color: blue; background: white"><font size="2">&quot;&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:sequence</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span>
+<font size="2"><span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:element</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">qualifier</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">CR</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+minOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">0</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+maxOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">0</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span>
+<font size="2"><span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:element</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">originalText</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">Cda.NPfIT.ED</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+minOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">0</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span>
+<font size="2"><span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:element</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">translation</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">CD</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+minOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">0</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+maxOccurs</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">unbounded</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:sequence</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">code</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">cs</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">codeSystem</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">uid</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">codeSystemName</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">st</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">codeSystemVersion</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">st</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;</span><span style="color: maroon; background: white">xs:attribute</span><span style="color: red; background: white"> 
+name</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">displayName</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+type</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">st</span><span style="color: blue; background: white">&quot;</span><span style="color: red; background: white"> 
+use</span><span style="color: blue; background: white">=&quot;</span><span style="color: black; background: white">optional</span></font><span style="color: blue; background: white"><font size="2">&quot;/&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:restriction</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal" style="text-autospace: none">
+<span style="color: black; background: white"><font size="2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:complexContent</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+<p class="MsoNormal"><span style="color: black; background: white">
+<font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font size="2">
+<span style="color: blue; background: white">&lt;/</span><span style="color: maroon; background: white">xs:complexType</span></font><span style="color: blue; background: white"><font size="2">&gt;</font></span></p>
+</body>
+
+</html>

@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>FHIR API implementation guide for GPSoC IM2 - FHIR Implementaton Guide</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="HSCIC" />        
+        <meta name="publisher version" content=	"FHIR-Furnace : 2.1.5816.30722" />
+	
+        <link href="../dist/css/fhir.css" rel="stylesheet" />
+ 
+        <!-- Bootstrap core CSS -->
+        <link href="../dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="../dist/css/bootstrap-fhir.css" rel="stylesheet" />
+        <link href="../dist/css/bootstrap-glyphicons.css" rel="stylesheet" />
+
+        <!-- Project extras -->
+        <link href="../dist/css/project.css" rel="stylesheet" />
+        <link href="../dist/css/pygments-manni.css" rel="stylesheet" />
+
+        <script src="../dist/js/jquery.js"> </script>
+        <script src="../dist/js/bootstrap.min.js"> </script>
+
+        <script src="../dist/js/fhir.js"> </script>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-67795986-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="../dist/js/html5shiv.js"></script>
+            <script src="../dist/js/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../dist/images/apple-touch-icon-144-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../dist/images/apple-touch-icon-114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../dist/images/apple-touch-icon-72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="../dist/images/apple-touch-icon-57-precomposed.png" />
+        <link rel="shortcut icon" href="../dist/images/favicon.png" />
+
+    </head>
+    <body>
+
+        <div id="segment-header" class="segment">
+            <!-- segment-header -->
+            <div class="container">
+                <!-- container -->
+                <a id="logo" href="http://www.hscic.gov.uk">
+                    <img src="../dist/images/logo.png" alt="logo hscic" />
+                </a>
+                <div id="hl7-status">
+                    <div id="hl7-igname">
+                        <b>FHIR API implementation guide for GPSoC IM2</b>
+                    </div>
+                </div>
+
+                <div id="hl7-nav">
+                    <a id="hl7-logo" href="http://www.hl7.org">
+                        <img src="../dist/images/hl7-logo.png" width="42" height="50" alt="visit the hl7 website" />
+                    </a>
+                </div>
+                <!--hl7-search-->
+            </div>
+            <div class="container">
+                <!-- container -->
+            </div>
+        </div>
+        <!-- /segment-header -->
+
+
+        <div id="segment-navbar" class="segment">
+            <!-- segment-navbar -->
+            <div id="stripe"> </div>
+            <div class="container">
+                <!-- container -->
+                <!-- HEADER CONTENT -->
+
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <button data-target=".navbar-inverse-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                        </button>
+                        <a href="index.html" class="navbar-brand hidden">FHIR</a>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <ul class="nav navbar-nav">
+
+                                        <li>
+                                            <a href='../Chapter.1.About/index.html'>About</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.2.Change History/index.html'>Change History</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.4.API Implementation/index.html'>API Implementation</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.6.Constrained FHIR Models/index.html'>Constrained FHIR Models</a>
+                                        </li>
+
+                            </ul>
+                            <p class="navbar-text pull-right" style="padding-right: 10px;padding-top: 3px;">
+                                <span class="label label-default"  style="font-size: 95%;">Version 1.0 : DRAFT B</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+
+        <div id="segment-breadcrumb" class="segment">
+            <!-- segment-breadcrumb -->
+            <div class="container">
+                <!-- container -->
+                <ul class="breadcrumb"></ul>
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-content" class="segment">
+            <!-- segment-content -->
+            <div class="container">
+                <!-- container -->
+                <div class="row">
+                    <div class="inner-wrapper">
+                        <!-- CONTENT CONTENT -->
+                        <div class="col-12">
+                           <h2>Organisation-Type-1-0</h2>
+<p>Default Scheme: NHS Data Model and Dictionary for England, ORGANISATION TYPE</p>
+<p>System URI: http://fhir.nhs.net/ValueSet/organisation-type-1-0</p>
+<p>Description</p>
+<p>A list of organisation type of organisations according to the nature of the organisation.</p>
+<table>
+<thead>
+<tr>
+	<th>Code</th>
+	<th>Description</th>
+	<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>AR</td>
+	<td>Application Service Provider</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BM</td>
+	<td>Booking Management System (BMS) Call Centre Establishment</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>CN</td>
+	<td>Cancer Network</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>CR</td>
+	<td>Cancer Registry</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CQ</td>
+	<td>Care Home Headquarters</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>CT</td>
+	<td>Care Trust</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>CC</td>
+	<td>Clinical Commissioning Group (CCG)</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>CL</td>
+	<td>Clinical Network</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>CA</td>
+	<td>Commissioning Support Unit (CSU)</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>JG</td>
+	<td>Court</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>DD</td>
+	<td>Dental Practice</td>
+	<td>Includes &quot;NHS and Private&quot; and &quot;Private only&quot; Dental Practices</td>
+</tr>
+<tr>
+	<td>ED</td>
+	<td>Education Establishment</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>EA</td>
+	<td>Executive Agency</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>AP</td>
+	<td>Executive Agency Programme</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>GD</td>
+	<td>Government Department</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GO</td>
+	<td>Government Office Region (GOR)</td>
+	<td>Government Office Regions (GORs) closed 31 March 2011 - from 1 April 2011 referred to as Regions</td>
+</tr>
+<tr>
+	<td>AA</td>
+	<td>GP Abeyance and Dispersal GP Practice</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>PR</td>
+	<td>GP Practices in England and Wales</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>HA</td>
+	<td>High Level Health Geography</td>
+	<td>For example, NHS England Region (Geography)</td>
+</tr>
+<tr>
+	<td>JD</td>
+	<td>Immigration Removal Centre</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PH</td>
+	<td>Independent Sector Healthcare Provider (ISHP)</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>EL</td>
+	<td>Local Authority</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>LB</td>
+	<td>Local Health Board (Wales)</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>LO</td>
+	<td>Local Service Provider (LSP)</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>MH</td>
+	<td>Military Hospital</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>NP</td>
+	<td>National Application Service Provider</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>RO</td>
+	<td>National Groupings</td>
+	<td>For example, NHS Commissioning Board Commissioning Regions, National Groupings (England), NHS Wales Informatics Service (NWIS)</td>
+</tr>
+<tr>
+	<td>NS</td>
+	<td>NHS Support Agency</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>TR</td>
+	<td>NHS Trust</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>NN</td>
+	<td>Non-NHS ORGANISATION</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>NA</td>
+	<td>Northern Ireland Health &amp; Social Care Board</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>NB</td>
+	<td>Northern Ireland Health &amp; Social Care Trust</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NC</td>
+	<td>Northern Ireland Local Commissioning Group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>OH</td>
+	<td>Optical Headquarters</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>OA</td>
+	<td>Other Statutory Authority (OSA)</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>PY</td>
+	<td>Pharmacy</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>PX</td>
+	<td>Pharmacy Headquarters</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>JE</td>
+	<td>Police Constabulary</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>JF</td>
+	<td>Police Custody Suite</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PT</td>
+	<td>Primary Care Trust</td>
+	<td>Primary Care Trusts closed 31 March 2013</td>
+</tr>
+<tr>
+	<td>ID</td>
+	<td>Primary Healthcare Directorate (Isle of Man)</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>PN</td>
+	<td>Prison Health Service</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>EE</td>
+	<td>School</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>JC</td>
+	<td>Secure Children's Home</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>JB</td>
+	<td>Secure Training Centre (STC)</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>JH</td>
+	<td>Sexual Assault Referral Centre (SARC)</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>SA</td>
+	<td>Special Health Authority (SpHA)</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>WA</td>
+	<td>Welsh Assembly</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>WH</td>
+	<td>Welsh Health Commission</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>LH</td>
+	<td>Welsh Local Health Board</td>
+	<td>All Welsh Local Health Boards closed on 30 September 2009.Local Health Boards (Wales) introduced from 1 October 2009.</td>
+</tr>
+<tr>
+	<td>JA</td>
+	<td>Young Offenders Institute</td>
+	<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+                        </div>                      
+                    </div>
+                    <!-- /inner-wrapper -->                   
+                </div>
+                <!-- /row -->              
+            </div>
+            <!-- /container -->           
+        </div>
+    <!-- /segment-content -->
+
+        <div id="segment-footer" class="segment">
+            <!-- segment-footer -->
+            <div class="container">
+                <!-- container -->
+                <div class="inner-wrapper">
+                    <p>
+                        &copy; HSCIC 2015+. FHIR Implementation Guide. 
+                    </p>
+<!--                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> -->
+                    </p>
+                </div>
+                <!-- /inner-wrapper -->
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-post-footer" class="segment hidden">
+            <!-- segment-post-footer -->
+            <div class="container">
+                <!-- container -->
+            </div>
+            <!-- /container -->
+        </div>
+        
+    </body>
+</html>

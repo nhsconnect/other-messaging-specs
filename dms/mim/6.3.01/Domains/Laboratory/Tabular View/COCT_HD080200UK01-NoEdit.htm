@@ -1,0 +1,888 @@
+<HTML><HEAD><TITLE>Specimen Lite Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content=COCT_HD080200UK01 name=Entry>
+<META content=COCT_HD080200UK01 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Specimen Lite - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne style="LEFT: 182px; VISIBILITY: hidden; TOP: 3053px">Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="COCT_RM080200UK01.htm"><B>COCT_RM080200UK01</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Specimen><B>Specimen</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#RoleHeir;Specimen_c title=COCT_HD080200UK01#Specimen_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>This Specimen CMET is derived from the R_Specimen [Universal] in the HL7 v3 ballot. It is designed to be used for general Laboratory requests and reports without the overhead of the requirements of Automation or Specimen Tracking. It is constrained for use with Human subjects and excludes environmental, non-human and manufactured specimens. The 'Specimen' may play the role of a Specimen or an Isolate.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Specimen>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SPEC</B>} )<A>{<B> Fixed="<FONT color=red>SPEC</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Role;Specimen/$classCode title=COCT_HD080200UK01#Specimen.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the role being played by the entity.</P>
+<P>Entities in the Specimen CMET may play the role of either a 'Specimen' or an 'Isolate'. The RoleClass identifies the type of role being played by the entity in a particular message. </P>
+<P>Valid role types are 'SPEC' or 'ISLT' according to the entity playing the role.</P>
+<P>Where 'SPEC' is used, the code shall be taken from the Snomed National Specimen Type subset.</P>
+<P>Where 'ISLT' is used, the code shall be taken from the Snomed National_Lab Isolate subset_UK20060401.&nbsp;&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Role;Specimen/$id title=COCT_HD080200UK01#Specimen.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The ID&nbsp;is the&nbsp;unique identifier for&nbsp;the <I>Specimen/Isolate</I>. </P>
+<P>According to the use of the CMET, the ID may be a Placer or a Fulfiller identifier for the Specimen/Isolate. In Request interactions, it shall be the Placer identifier, in Event interactions, it shall be the Fulfiller identifier. In Event interactions, provision is made to carry the Placer Identifier in an associated role (SpecimenAlternatIdentifier)&nbsp;in addition to the Fulfiller identifier where one is available.&nbsp;<SPAN style="FONT-SIZE: 12pt"> <SPAN class=938060214-15022006>The ID is made up of two parts, a root and extension. The Root will be an OID allocated to the&nbsp;system that generates the extension and will be at such a level that the combination of the Root and Extension is universally unique. The extension will be a human readable&nbsp;string generated by the system and may not be unique&nbsp;across the whole system.</SPAN> </SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006>E.g. There are many systems that are configured on a departmental basis and the same range of human readable&nbsp;strings are used in&nbsp;multiple departments. In such cases, the Root OID shall be allocated at such a level that the&nbsp;human readable portion is unique within that Root OID.</SPAN> </SPAN><SPAN class=938060214-15022006>
+<P><SPAN class=938060214-15022006><SPAN class=938060214-15022006><B><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">&lt;</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: maroon">id</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">root</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: black">9.99.999.99.10.2</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">extension</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="B05.00504885C</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"/&gt;</SPAN> </B></SPAN>
+<P><SPAN class=938060214-15022006><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"><FONT color=#000000 size=3>Where 9.99.999.99.&nbsp; identifies the Hospital organization and 9.99.999.99.10.2 identifies the&nbsp;ID scheme within the&nbsp;Laboratory system that generated the extension B05.00504885C</FONT> </SPAN></SPAN></SPAN></P></SPAN></SPAN></SPAN></SPAN></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CE"><B>CE</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SpecimenRoleType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Role;Specimen/$code title=COCT_HD080200UK01#Specimen.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Fixed value of 'P' Indicates thet the role is a Patient related or derived&nbsp;specimen rather than a Q.A. or Pooled specimen</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>specimenNatural</B> (<A href="#Natural"><B>Natural</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Role;Specimen/specimenNatural-Natural title=COCT_HD080200UK01#Specimen/specimenNatural-Natural style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The only entity available is 'Natural'. This restriction is in place to exclude non-human and manufactured entities. The current scope of the CMET is specimens obtained from a human source.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Subject1><B>subjectOf1</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=COCT_HD080200UK01#Role;/Specimen/subjectOf1 title=COCT_HD080200UK01#/Specimen/subjectOf1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>This provides a mechanism for carying one or more process steps that are performed on the specimen.</B>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBJ</B>} )<A>{<B> Fixed="<FONT color=red>SBJ</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Specimen/subjectOf1/$typeCode title=COCT_HD080200UK01#Specimen/subjectOf1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is the subject of the Process step.</P>
+<UL>
+<LI>Fixed value: "SBJ"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Specimen/subjectOf1/$contextControlCode title=COCT_HD080200UK01#Specimen/subjectOf1.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>processStep</B> (<A href="#ProcessStep"><B>ProcessStep</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Specimen/subjectOf1/processStep-ProcessStep title=COCT_HD080200UK01#Specimen/subjectOf1/processStep-ProcessStep style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Process steps identify processes such as 'Specimen received in Laboratory', 'Specimen treatment process' etc.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Subject2><B>subjectOf2</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=COCT_HD080200UK01#Role;/Specimen/subjectOf2 title=COCT_HD080200UK01#/Specimen/subjectOf2 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Allows for observations to be made about the specimen.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBJ</B>} )<A>{<B> Fixed="<FONT color=red>SBJ</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Specimen/subjectOf2/$typeCode title=COCT_HD080200UK01#Specimen/subjectOf2.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is the subject of an observation event.</P>
+<UL>
+<LI>Fixed value: "SBJ"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Specimen/subjectOf2/$contextControlCode title=COCT_HD080200UK01#Specimen/subjectOf2.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>specimenObservationEvent</B> (<A href="#SpecimenObservationEvent"><B>SpecimenObservationEvent</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Specimen/subjectOf2/specimenObservationEvent-SpecimenObservationEvent title=COCT_HD080200UK01#Specimen/subjectOf2/specimenObservationEvent-SpecimenObservationEvent style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The SpecimenObservationEvent carries information about the specimen such as Volume, Temperature, Dilution etc. It is not intended to carry results of analysis.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Product><B>productOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=COCT_HD080200UK01#Role;/Specimen/productOf title=COCT_HD080200UK01#/Specimen/productOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Identifies the 'Source' of the 'Specimen/Isolate'</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PRD</B>} )<A>{<B> Fixed="<FONT color=red>PRD</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Specimen/productOf/$typeCode title=COCT_HD080200UK01#Specimen/productOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a product.</P>
+<UL>
+<LI>Fixed value: "PRD"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Specimen/productOf/$contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>act</B> (<B><A href="#ProcessChoice">ProcessChoice</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Specimen/productOf/processChoice-ProcessChoice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Natural><B>Natural</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#EntityHeir;Natural_c title=COCT_HD080200UK01#Natural_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>This is the 'Specimen' Entity itself. This identifies the actual physical specimen.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Natural>Used by: </A></FONT><A href="#Specimen"><B>Specimen</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ENT</B>} )<A>{<B> Fixed="<FONT color=red>ENT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#EntityHeir;Natural/$classCode title=COCT_HD080200UK01#Natural.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an entity.</P>
+<UL>
+<LI>Fixed value: "ENT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#EntityHeir;Natural/$determinerCode title=COCT_HD080200UK01#Natural.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an Instance.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CE"><B>CE</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/SnomedCT.htm">SnomedCT</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#EntityHeir;Natural/$code title=COCT_HD080200UK01#Natural.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><FONT color=red>NOTE: This datatype is currently restricted by HL7 to CE. In order for Snomed to be able to apply post-coordination, the datatype will need to be changed to CD. An change request has been proposed to HL7 to enable this.</FONT></P>
+<P>The type of specimen is identified. It may be EITHER:-</P>
+<P>A Specimen conceptID taken from the </P>
+<P class=MsoNormal style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US>SNOMED lab specimen subset_UK_20060401</SPAN> </P>
+<P>and optionally post-coordinated with</P>
+<P class=MsoNormal style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US>SNOMED lab topography subset_UK_20060401</SPAN> </P>
+<P class=MsoNormal style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US>SNOMED lab morphology subset_UK_20060401</SPAN> </P><SPAN lang=EN-US>
+<P class=MsoNormal style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US>SNOMED lab laterality subset_UK_20060401</SPAN> </P></SPAN>
+<P>according to the Principals laid down in&nbsp;"<SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-US; mso-ansi-language: EN-GB; mso-bidi-language: AR-SA"> <SPAN style="mso-field-code: ' TITLE   * MERGEFORMAT '">Principles for carrying Pathology Request and Result data as SnCT concepts"&nbsp; </SPAN></SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-US; mso-ansi-language: EN-GB; mso-bidi-language: AR-SA"><SPAN style="mso-field-code: ' TITLE   * MERGEFORMAT '">(</SPAN> </SPAN>&nbsp;<SPAN style="FONT-SIZE: 8pt; FONT-FAMILY: Arial; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-US; mso-ansi-language: EN-GB; mso-bidi-language: AR-SA">NPFIT-<SPAN style="FONT-SIZE: 8pt; FONT-FAMILY: Arial; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-US; mso-ansi-language: EN-GB; mso-bidi-language: AR-SA; mso-bidi-font-style: italic">FNT-<SPAN style="FONT-SIZE: 8pt; FONT-FAMILY: Arial; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-US; mso-ansi-language: EN-GB; mso-bidi-language: AR-SA; mso-bidi-font-style: italic">TO-<SPAN style="FONT-SIZE: 8pt; FONT-FAMILY: Arial; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-US; mso-ansi-language: EN-GB; mso-bidi-language: AR-SA; mso-bidi-font-style: italic">DPM-<SPAN style="FONT-SIZE: 8pt; FONT-FAMILY: Arial; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-US; mso-ansi-language: EN-GB; mso-bidi-language: AR-SA">0378.01)</SPAN> </SPAN></SPAN></SPAN></SPAN></P>
+<P>OR:-</P>
+<P>An identified isolate taken from the SNOMED CT Concept&nbsp; organism%<BR>&nbsp; Exc&nbsp;&nbsp;domestic mammal -%<BR>&nbsp; Exc&nbsp;&nbsp;&nbsp;Kingdom Animalia -%<BR>&nbsp;&nbsp;Exc&nbsp;&nbsp; plant -%<BR>&nbsp; Exc&nbsp;&nbsp; resistant organism -%<BR>&nbsp;&nbsp;Exc&nbsp;&nbsp; trophic life form -%</P>
+<P>(% = concept and all descendents; Exc = Excluding)
+<P>Resistant Organisms&nbsp; (ESBL E.coli etc) will be carried as the Species with appropriate observations indicating the susceptibility pattern.
+<P>Isolates may be identified by Genus or to a Species level only. No post-coordination is allowed. All observations about the organism shall be carried as Observations off the SpecimenObservationCluster to which the Isolate is linked.</P></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>desc</B> (<A href="../../../Data Types/DataTypes.htm#ED"><B>ED</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#EntityHeir;Natural/$desc title=COCT_HD080200UK01#Natural.desc style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A textual additional description of the specimen to supplement the coded value. This shall only be used where codes are not available to describe the specimen. It shall not be used in place of appropriate codes.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>riskCode</B> (<A href="../../../Data Types/DataTypes.htm#CE"><B>CE</B></A> {<A onmouseover="popUp(event,'cwe')" onmouseout="popUp(event,'cwe')"><B>CWE</B></A>:<B>EntityRisk</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#EntityHeir;Natural/$riskCode title=COCT_HD080200UK01#Natural.riskCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Carries any risk associated with the specimen such as Biohazard.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>handlingCode</B> (<A href="../../../Data Types/DataTypes.htm#CE"><B>CE</B></A> {<A onmouseover="popUp(event,'cwe')" onmouseout="popUp(event,'cwe')"><B>CWE</B></A>:<B>EntityHandling</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#EntityHeir;Natural/$handlingCode title=COCT_HD080200UK01#Natural.handlingCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifies any specific handling instructions for the specimen. (Keep refrigerated etc)</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>playedSpecimenAlternateIdentifier</B> (<A href="#SpecimenAlternateIdentifier"><B>SpecimenAlternateIdentifier</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#EntityHeir;Natural/playedSpecimenAlternateIdentifier-SpecimenAlternateIdentifier title=COCT_HD080200UK01#Natural/playedSpecimenAlternateIdentifier-SpecimenAlternateIdentifier style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>In reports, this&nbsp;shall be used to carry the Placer Specimen Number</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>playedSpecimenStub</B> (<A href="#SpecimenStub"><B>SpecimenStub</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#EntityHeir;Natural/playedSpecimenStub-SpecimenStub title=COCT_HD080200UK01#Natural/playedSpecimenStub-SpecimenStub style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>May be used to identify the Parent specimen of the current specimen</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SpecimenAlternateIdentifier><B>SpecimenAlternateIdentifier</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#RoleHeir;SpecimenAlternateIdentifier_c title=COCT_HD080200UK01#SpecimenAlternateIdentifier_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>This is used to carry the Placer Specimen number in reports. It is not used in Requesting as there is only one (Placer) identifier which is carried in the Specimen Role</B> </NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SpecimenAlternateIdentifier>Used by: </A></FONT><A href="#Natural"><B>Natural</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>IDENT</B>} )<A>{<B> Fixed="<FONT color=red>IDENT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#RoleHeir;SpecimenAlternateIdentifier/$classCode title=COCT_HD080200UK01#SpecimenAlternateIdentifier.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an entity.</P>
+<UL>
+<LI>Fixed value: "IDENT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#RoleHeir;SpecimenAlternateIdentifier/$id title=COCT_HD080200UK01#SpecimenAlternateIdentifier.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The Placer ID for the specimen.</P>
+<P>The ID&nbsp;is the&nbsp;unique identifier for&nbsp;the <I>Specimen.</I> </P>
+<P><SPAN style="FONT-SIZE: 12pt">&nbsp;<SPAN class=938060214-15022006>It is made up of two parts, a root and extension. The Root will be an OID allocated to the&nbsp;system that generates the extension and will be at such a level that the combination of the Root and Extension is universally unique. The extension will be a human readable&nbsp;string generated by the system and may not be unique&nbsp;across the whole system.</SPAN> </SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006></SPAN><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006>E.g. There are many systems that are configured on a departmental basis and the same range of human readable&nbsp;strings are used in&nbsp;multiple departments. In such cases, the Root OID shall be allocated at such a level that the&nbsp;human readable portion is unique within that Root OID.</SPAN> </SPAN><SPAN class=938060214-15022006></SPAN></P>
+<P><SPAN class=938060214-15022006><SPAN class=938060214-15022006><B><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">&lt;</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: maroon">id</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">root</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: black">9.99.999.99.10.2</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">extension</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="GP00115085</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"/&gt;</SPAN> </B></SPAN></P>
+<P><SPAN class=938060214-15022006><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"><FONT color=#000000 size=3>Where 9.99.999.99.&nbsp; identifies the organization and 9.99.999.99.10.2 identifies the&nbsp;ID scheme within the&nbsp;Placer system that generated the extension.</FONT> </SPAN></SPAN></P></NOTE></SPAN></SPAN></SPAN></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SpecimenRoleType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#RoleHeir;SpecimenAlternateIdentifier/$code title=COCT_HD080200UK01#SpecimenAlternateIdentifier.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Fixed value of 'P' Indicates thet the role is a Patient related or derived&nbsp;specimen rather than a Q.A. or Pooled specimen</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>assigningOrganization</B> (<A href="#Organization"><B>Organization</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#RoleHeir;SpecimenAlternateIdentifier/assigningOrganization-Organization style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SpecimenStub><B>SpecimenStub</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#RoleHeir;SpecimenStub_c title=COCT_HD080200UK01#SpecimenStub_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Identifies the Parent specimen for the current specimen. For an Isolate, this may be used to identify the specimen from which the isolate was cultured. It may not be used to link one isolate to another. For this reason, the classCode is fixed as 'SPEC'.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SpecimenStub>Used by: </A></FONT><A href="#Natural"><B>Natural</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SPEC</B>} )<A>{<B> Fixed="<FONT color=red>SPEC</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#RoleHeir;SpecimenStub/$classCode title=SpecimenStub.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a specimen.</P>
+<UL>
+<LI>Fixed value: "SPEC"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#RoleHeir;SpecimenStub/$id title=COCT_HD080200UK01#SpecimenStub.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The Specimen ID of the Parent specimen.</P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006>It is made up of two parts, a root and extension. The Root will be an OID allocated to the&nbsp;system that generates the extension and will be at such a level that the combination of the Root and Extension is universally unique. The extension will be a human readable&nbsp;string generated by the system and may not be unique&nbsp;across the whole system.</SPAN> </SPAN></P>
+<P><SPAN style="FONT-SIZE: 12pt"><SPAN class=938060214-15022006></SPAN><SPAN class=938060214-15022006><B><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">&lt;</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: maroon">id</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">root</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: black">9.99.999.99.10.2</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">extension</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="B05.00504875C</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"/&gt;</SPAN> </B></SPAN></P>
+<P><SPAN class=938060214-15022006><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"><FONT color=#000000 size=3>Where 9.99.999.99.&nbsp; identifies the Hospital organization and 9.99.999.99.10.2 identifies the&nbsp;ID scheme within the&nbsp;Laboratory system that generated the extension B05.00504875C</FONT> </SPAN></SPAN></P></NOTE></SPAN></SPAN></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ProcessStep><B>ProcessStep</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#ActHeir;ProcessStep_c title=COCT_HD080200UK01#ProcessStep_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>An activity applied to the specimen.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ProcessStep>Used by: </A></FONT><A href="#Specimen"><B>Specimen</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>TRNS</B>} )<A>{<B> Fixed="<FONT color=red>TRNS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#ActHeir;ProcessStep/$classCode title=COCT_HD080200UK01#ProcessStep.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this&nbsp;is a Transport ProcessStep. This carries information about the transport of the specimen.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#ActHeir;ProcessStep/$moodCode title=COCT_HD080200UK01#ProcessStep.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActSpecimenTransportCode</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#ActHeir;ProcessStep/$code title=COCT_HD080200UK01#ProcessStep.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Code values are taken from HL7 A: x_LabProcessCodes&nbsp;<FONT color=#ffffff> </FONT><B>A: ActSpecimenTransportCode</B>. These are process steps concerned with transport of specimens. This act is primarily used to carry the Date/Time of the receipt of the specimen in the laboratory.</P>
+<P>(Values for this vocabulary are currently being authored)</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#ActHeir;ProcessStep/$effectiveTime title=COCT_HD080200UK01#ProcessStep.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This is the time at which the Process step took place. In the current scope, this is the time at which the specimen was received in the laboratory and will be a TS. Where the time is not accurate, the TS may be truncated from the right to an appropriate level of accuracy.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SpecimenObservationEvent><B>SpecimenObservationEvent</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Observation;SpecimenObservationEvent_c title=COCT_HD080200UK01#SpecimenObservationEvent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>An observation made on the specimen.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SpecimenObservationEvent>Used by: </A></FONT><A href="#Specimen"><B>Specimen</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SPCOBS</B>} )<A>{<B> Fixed="<FONT color=red>SPCOBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Observation;SpecimenObservationEvent/$classCode title=COCT_HD080200UK01#SpecimenObservationEvent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a specimen observation.</P>
+<UL>
+<LI>Fixed value: "SPCOBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Observation;SpecimenObservationEvent/$moodCode title=COCT_HD080200UK01#SpecimenObservationEvent.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/SnomedCT.htm"><B>SnomedCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Observation;SpecimenObservationEvent/$code title=COCT_HD080200UK01#SpecimenObservationEvent.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Values from SnCT Specimen&nbsp;Processing hierarchy relating to measurement e.g.</P>
+<UL>
+<LI>specimen weight (observable entity)</LI>
+<LI>specimen volume (observable entity)</LI>
+<LI>length of specimen (observable entity)</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#ANY"><B>ANY</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Observation;SpecimenObservationEvent/$value title=COCT_HD080200UK01#SpecimenObservationEvent.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Value according to the act.code. Units (UCUM) shall be specified where a numerical measurement is made.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ProcessChoice><B>ProcessChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Act;ProcessChoice_c title=COCT_HD080200UK01#ProcessChoice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Identifies the process by which the Specimen/Isolate was obtained</B> </NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ProcessChoice>Used by: </A></FONT><A href="#Specimen"><B>Specimen</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B><I>either </I></FONT>: <B><A href="#ActRef">ActRef</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Act;ProcessChoice/generalizes-ActRef style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="#Process">Process</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Act;ProcessChoice/generalizes-Process style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Organization><B>Organization</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Organization;Organization_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Organization>Used by: </A></FONT><A href="#SpecimenAlternateIdentifier"><B>SpecimenAlternateIdentifier</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ORG</B>} )<A>{<B> Fixed="<FONT color=red>ORG</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Organization;Organization/$classCode title=COCT_HD080200UK01#Organization.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an entity.</P>
+<UL>
+<LI>Fixed value: "ENT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Organization;Organization/$determinerCode title=COCT_HD080200UK01#Organization.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an Instance.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Organization;Organization/$id title=COCT_HD080200UK01#Organization.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This is the globally unique identifier (SDS value) for this&nbsp;<I>Organization.</I>. </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ActRef><B>ActRef</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#ActHeir;ActRef_c title=COCT_HD080200UK01#ActRef_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>References an act in the message&nbsp;using a unique identifier.</B> </P>
+<P><B>This is used where the identified specimen/Isolate is the product of another act carried within the message. This may occur if it is required to identify an act (e.g. Anaerobic Culture)&nbsp;that gave rise to an identified isolate. Not used in Requests.</B> </P>
+<P><B>This may only be used within the message and may not refer to any previously identified act that is not carried in the message.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ActRef>Used by: </A></FONT><A href="#Specimen"><B>Specimen</B></A>, <A href="#ProcessChoice"><B>ProcessChoice</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ACT</B>} )<A>{<B> Fixed="<FONT color=red>ACT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#ActHeir;ActRef/$classCode title=COCT_HD080200UK01#ActRef.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an act.</P>
+<UL>
+<LI>Fixed value: "ACT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#ActHeir;ActRef/$moodCode title=COCT_HD080200UK01#ActRef.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#ActHeir;ActRef/$id title=COCT_HD080200UK01#ActRef.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This is the Fulfiller Unique ID for&nbsp;the act in the message that gave rise to the identified specimen. It is a 'Real World' identifier for that act.</P>
+<P><SPAN class=938060214-15022006><B><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">&lt;</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: maroon">id</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">root</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: black">9.99.999.99.10.2</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: red">extension</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">="1002044</SPAN> <SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue">"/&gt;</SPAN> </B></SPAN></P>
+<P><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"></SPAN><SPAN class=938060214-15022006><SPAN style="FONT-SIZE: 10pt; BACKGROUND: white; COLOR: blue"><FONT color=#000000 size=3>Where 9.99.999.99.&nbsp; identifies the Hospital organization and 9.99.999.99.10.2 identifies the&nbsp;ID scheme within the&nbsp;Laboratory system that generated the extension.</FONT> </SPAN></SPAN></P></NOTE></SPAN></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#ActHeir;ActRef/$templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Process><B>Process</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Procedure;Process_c title=COCT_HD080200UK01#Process_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>This is the process by which the 'specimen' was obtained</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Process>Used by: </A></FONT><A href="#Specimen"><B>Specimen</B></A>, <A href="#ProcessChoice"><B>ProcessChoice</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PROC</B>} )<A>{<B> Fixed="<FONT color=red>PROC</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Procedure;Process/$classCode title=COCT_HD080200UK01#Process.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is&nbsp;a procedure.</P>
+<UL>
+<LI>Fixed value: "PROC"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>x_ActMoodIntentEvent</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Procedure;Process/$moodCode title=COCT_HD080200UK01#Process.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>May be intent or Event. It is not used in Request mood in order to request that the Lab collect. Here it would be in Event mood as the decision that the lab shall collect has been made.</P>
+<P>It may be in Intent mood where it has yet to be collected by the sender and they wish to indicate the time at which they intend to collect the specimen.</P>
+<P>It is not intended that this is ever used to place an 'Order' for collection, merely to identify the collection process.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Procedure;Process/$id title=COCT_HD080200UK01#Process.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Not used by NPfIT</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CE"><B>CE</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/SnomedCT.htm"><B>SnomedCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Procedure;Process/$code title=COCT_HD080200UK01#Process.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P class=MsoNormal style="MARGIN: 0cm 0cm 0pt"><SPAN lang=EN-US>A value taken from SNOMED lab collection method subset_UK_20060401</SPAN> </P>
+<P>For most specimens, this will be&nbsp;a generic concept of "17636008 specimen collection (procedure)". Where the collection method is specialised such as a 'Timed collection' or a method such as 'Clean Catch', 'Bag', 'Mid-stream' (applied to Urine collection), Biopsy etc, appropriate SnCT codes from the SNOMED lab collection method subset_UK_20060401 shall be used.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActStatus</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Procedure;Process/$statusCode title=COCT_HD080200UK01#Process.statusCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Set to 'completed' as the process has been defined.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Procedure;Process/$effectiveTime title=COCT_HD080200UK01#Process.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The actual or intended time of collection of the specimen. This may be an interval in the case of timed collections such as 24 hour collection (Start time - End time). In some circumstances, the Snomed concept for the collection process and the actual interval in the effective time may differ. The effective time&nbsp;or time interval&nbsp;shall be the time used for any calculation.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Performer><B>performer</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=COCT_HD080200UK01#Procedure;ProcessChoice/Process/performer style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PRF</B>} )<A>{<B> Fixed="<FONT color=red>PRF</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Process/performer/$typeCode title=COCT_HD080200UK01#Process/performer.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a performer.</P>
+<UL>
+<LI>Fixed value :"PRF"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Process/performer/$contextControlCode title=COCT_HD080200UK01#Process/performer.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<UL>
+<LI>Default&nbsp;value: "OP" - Overriding and propagating</LI></UL>
+<P>"O" (Overriding)&nbsp;- the association replaces any context of the same or more specific type that has been conducted from the parent act.</P>
+<P>"P" (Propagating)&nbsp;- the association is conducted to all child acts where the ActRelationship.contextConductionInd is set to "true"</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>time</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Process/performer/$time title=COCT_HD080200UK01#Process/performer.time style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Time that the performer carried out the act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD120300UK02-NoEdit.htm">agent</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM120300UK02.htm"><SMALL>[CMET:&nbsp;UKCT_MT120301UK02]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#Participation;Process/performer/agent+UKCT_MT120301UK02 title=COCT_HD080200UK01#Process/performer/agent+UKCT_MT120301UK02 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Carries the RoleProfile ID of the person who collected the smear</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=Precondition><B>precondition</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=COCT_HD080200UK01#Procedure;ProcessChoice/Process/precondition style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PRCN</B>} )<A>{<B> Fixed="<FONT color=red>PRCN</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#ActRelationship;Process/precondition/$typeCode title=COCT_HD080200UK01#Process/precondition.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a precondition.</P>
+<UL>
+<LI>Fixed value: "PRCN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#ActRelationship;Process/precondition/$contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#ActRelationship;Process/precondition/$contextConductionInd title=COCT_HD080200UK01#Process/precondition.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If true, associations in the parent act are conducted across the ActRelationship to the child act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>sequenceNumber</B> (<A href="../../../Data Types/DataTypes.htm#INT"><B>INT</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#ActRelationship;Process/precondition/$sequenceNumber title=COCT_HD080200UK01#Process/precondition.sequenceNumber style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An optional integer to allow relative ordering of this relationship among other like-types relationships having the same source Act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>criterion</B> (<A href="#Criterion"><B>Criterion</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD080200UK01#ActRelationship;Process/precondition/criterion-Criterion title=COCT_HD080200UK01#Process/precondition/criterion-Criterion style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The Criterion that shall be fulfilled prior to the source act taking place.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Criterion><B>Criterion</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Observation;Criterion_c title=COCT_HD080200UK01#Criterion_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>These criteria apply to the collection process. They shall be fulfilled prior to the collection process.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Criterion>Used by: </A></FONT><A href="#Process"><B>Process</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Observation;Criterion/$classCode title=COCT_HD080200UK01#Criterion.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an observation.</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN.CRT</B>} )<A>{<B> Fixed="<FONT color=red>EVN.CRT</FONT>"</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Observation;Criterion/$moodCode title=COCT_HD080200UK01#Criterion.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a event criterion.</P>
+<UL>
+<LI>Fixed value: "EVN.CRT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/SnomedCT.htm"><B>SnomedCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Observation;Criterion/$code title=COCT_HD080200UK01#Criterion.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Values from <SPAN lang=EN-US>SNOMED lab pre-condition subset_UK_20060401 </SPAN>for appropriate criteria for collection e.g. fasting patient (182923009), acute phase(255251009), post-dose (255566006)</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#ANY"><B>ANY</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD080200UK01#Observation;Criterion/$value title=COCT_HD080200UK01#Criterion.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>May be used where there is a need to carry a value for a criterion. E.g 20 mins (post dose)&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

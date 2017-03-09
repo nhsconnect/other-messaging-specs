@@ -1,0 +1,2694 @@
+<html>
+<head>
+
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+</style>
+
+<title>PSIS Query Implementation Manual</title>
+<meta name="domain" content="PSIS Query">
+
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+
+<!-- TD Addition -->
+<style>
+DIV.index1 {
+	FONT-SIZE: 12pt; FONT-FAMILY: Arial
+}
+</style>
+<!-- End of TD Addition -->
+
+<style>
+<!--
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Arial;
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+h1
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:2.0cm;
+	text-indent:-2.0cm;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:Arial;
+	font-weight:bold}
+h2
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:2.0cm;
+	text-indent:-2.0cm;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic}
+h3
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:2.0cm;
+	text-indent:-2.0cm;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic}
+h4
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:2.0cm;
+	text-indent:-2.0cm;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:bold}
+h5
+	{margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:2.0cm;
+	text-indent:-2.0cm;
+	font-size:12.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic}
+a:link
+	{color:blue;}
+a:visited
+	{color:purple;
+	text-decoration:none;
+	}
+p
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Arial";
+	}
+p.TitlePanelHeader
+	{margin-bottom:.0001pt;
+	text-align:center;
+	font-size:10.0pt;
+	font-family:Verdana;
+	font-weight:bold; margin-left:0cm; margin-right:0cm; margin-top:0cm}
+span.TitlePanelbold
+	{font-family:Verdana;
+	font-weight:bold}
+span.TitlePanelstd
+	{font-family:Verdana;
+	}
+p.TitlePanelblocktext
+	{margin-bottom:.0001pt;
+	text-align:center;
+	font-size:7.0pt;
+	font-family:Verdana;
+	text-transform:uppercase;
+	font-weight:bold; margin-left:0cm; margin-right:0cm; margin-top:0cm}
+span.TitlePanelitalic
+	{font-family:Verdana;
+	font-style:italic}
+p.Un-numberedHeading1
+	{margin-top:3.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	}
+span.TableHeading
+	{font-family:Arial;
+	font-weight:bold}
+p.TableText
+	{margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Arial;
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+span.GlossaryTerm
+	{font-family:Arial;
+	font-weight:bold}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+</head>
+<STYLE>
+A {text-decoration: none;} 
+	{margin-bottom 0cm div.index1 {
+font-family:Arial;
+font-size:12.0pt;}
+div.Section1
+	{page:Section1;}
+	
+	div.index1 {
+font-family:Arial;
+font-size:12.0pt;}
+	
+table.MsoTableGrid
+	{border:1.0pt solid windowtext;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+</STYLE>  
+
+<body lang=EN-GB link=blue vlink=purple>
+
+<div class=Section1>
+
+<table class=Heading2Char border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;' width="729">
+<tr style='page-break-inside:avoid'>
+<td rowspan=7 valign=top style='border-left:medium none; border-top:medium none; border-bottom:medium none; width:144;border-right:1.0pt solid windowtext;padding:0cm'>
+<p class=MsoNormal>
+<img border="0" src="../../../Core/Change_files/image001.jpg" width="139" height="89"></p>
+</td>
+<td colspan=4 valign=top style='border-right:1.0pt solid windowtext; border-top:1.0pt solid windowtext; border-bottom:1.0pt solid windowtext;
+ width:575;border-left:medium none;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=TitlePanelHeader>PSIS Query Implementation Manual</p>
+</td>
+</tr>
+<tr style='page-break-inside:avoid'>
+<td valign=top style='width:108;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>Programme</span></span></p>
+</td>
+<td valign=top style='border-right:1.0pt solid windowtext; border-top:1.0pt solid windowtext; border-bottom:1.0pt solid windowtext;
+ width:126;border-left:medium none;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>NPFIT</span></span></p>
+</td>
+<td colspan=2 valign=top style='border-right:1.0pt solid windowtext; border-top:1.0pt solid windowtext; border-bottom:1.0pt solid windowtext; width:323;border-left:medium none;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=TitlePanelblocktext>DOCUMENT NUMBER</p>
+</td>
+</tr>
+<tr style='page-break-inside:avoid'>
+<td valign=top style='width:108;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>Sub-Prog/Project</span></span></p>
+</td>
+<td valign=top style='width:126;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>Comms &amp; Messaging</span></span></p>
+</td>
+<td valign=middle style='border-top:medium none;border-left:medium none;
+  border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm' colspan="2" rowspan="3" align="center">
+			<p align="center">NPFIT-FNT-TO-DPM-0602</td>
+</tr>
+<tr style='page-break-inside:avoid'>
+<td valign=top style='width:108;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>Prog. Director</span></span></p>
+</td>
+<td valign=top style='width:126;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>Paul Jones</span></span></p>
+</td>
+</tr>
+<tr style='page-break-inside:avoid'>
+<td valign=top style='width:108;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>Sub-Prog/Proj Mgr</span></span></p>
+</td>
+<td valign=top style='width:126;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class="TitlePanelstd"><span style="font-size: 7pt">Ken 
+Lunn</span></span></p>
+</td>
+</tr>
+<tr style='page-break-inside:avoid'>
+<td valign=top style='width:108;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>Author</span></span></p>
+</td>
+<td valign=top style='width:126;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class="TitlePanelstd"><span style="font-size: 7pt">C&amp;M 
+Development Team</span></span></p>
+</td>
+<td valign=top style='width:132;border-top:medium none;
+  border-left:medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>Version No.</span></span></p>
+</td>
+<td valign=top style='width:182;border-top:medium none;
+  border-left:medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>1.7</span></span></p>
+</td>
+</tr>
+<tr style='page-break-inside:avoid'>
+<td valign=top style='width:108;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>Contact</span></span></p>
+</td>
+<td valign=top style='width:126;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class="TitlePanelstd"><span style="font-size: 7pt">
+Richard Kavanagh</span></span></p>
+</td>
+<td valign=top style='width:132;border-top:medium none;
+  border-left:medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>Status</span></span></p>
+</td>
+<td valign=top style='width:182;border-top:medium none;
+  border-left:medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+<p class=MsoNormal><span class=TitlePanelstd>
+<span style='font-size:7.0pt;
+  '>Issued</span></span></p>
+</td>
+</tr>
+</table>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="99%" align=center>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=Un-numberedHeading1>Contents</p>
+
+<div class="index1" div id="fp_TOC" class="fp_TOC">
+<a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;Overview</a><br><a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.1">2.1&nbsp;&nbsp;&nbsp;&nbsp;Patient Attends an 
+Emergency Department</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.2">2.2&nbsp;&nbsp;&nbsp;&nbsp;GP Has No Authorised Access To Patient 
+Records</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.3">2.3&nbsp;&nbsp;&nbsp;&nbsp;Patient Has No Records On PSIS </a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.4">2.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Query</a><br><a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Query Placer - QUPC_AR090000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.2">3.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Query Fulfiller - QUPC_AR100000UK01</a><br><a href="#_Toc_Section_4">4&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1">4.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Query Started - QUPC_TE180000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.2">4.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS
+Event Query Started - QUPC_TE190000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.3">4.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Query Started -
+QUPC_TE120000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.4">4.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Retrieval - QUPC_TE200000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.5">4.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS
+Event Retrieval - QUPC_TE210000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.6">4.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Data Retrieval -
+QUPC_TE160000UK01</a><br><a href="#_Toc_Section_5">5&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.1">5.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Query Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.2">5.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event Query Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.3">5.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Query Interactions</a><br><a href="#_Toc_Section_6">6&nbsp;&nbsp;&nbsp;&nbsp;Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.1">6.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Query Started - 
+QUPC_IN180000UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.2">6.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event Query Started - QUPC_IN190000UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.3">6.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Query Started - 
+QUPC_IN120000UK06</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.4">6.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS 
+Event List Retrieval - QUPC_IN200000UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.5">6.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event Retrieval - QUPC_IN210000UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.6">6.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Data Retrieval - 
+QUPC_IN160000UK06</a><br><a href="#_Toc_Section_7">7&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1">7.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS 
+Event List Query - QUPC_MT130101UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.2">7.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS 
+Event Query - QUPC_MT140101UK04</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.3">7.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS 
+DPA Subject Access Query - QUPC_MT120101UK06</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.4">7.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Query Response - 
+queryResponseEventList_02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.5">7.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event Query Response - 
+queryResponseEvent_02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.6">7.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Query Response - 
+queryResponsePatient_02</a><br><a href="#_Toc_Section_8">8&nbsp;&nbsp;&nbsp;&nbsp;Glossary of Terms</a><br><a href="#_Toc_Section_9">9&nbsp;&nbsp;&nbsp;&nbsp;Changes from v1.6</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_9.1">9.1&nbsp;&nbsp;&nbsp;&nbsp;General
+changes</a></div>
+<p class=MsoNormal>
+
+<a href="#_Toc_Section_10">10&nbsp;&nbsp;Conformance to HL7</a></p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=Un-numberedHeading1>Change History</p>
+
+<table class=Heading2Char border=1 cellspacing=3 cellpadding=0 width=731 style='width:548.15pt;'>
+<tr>
+<td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;  '>In Version</span></span></p>
+</td>
+
+<td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;  '>Author</span></span></p>
+</td>
+<td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;  '>Date</span></span></p>
+</td>
+<td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;  '>Amendment Details</span></span></p>
+</td>
+</tr>
+
+<tr>
+<td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>1.0</p>
+</td>
+<td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>Core Technical Team </p>
+</td>
+<td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>10/05/04</p>
+</td>
+<td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>First release</p>
+</td>
+</tr>
+
+<tr>
+<td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>1.1</p>
+</td>
+<td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>Core Technical Team</p>
+</td>
+<td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>25/06/04</p>
+</td>
+<td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>Addition of dissent override information.</p>
+<p class=TableText>Replacement PSIS Query Response message for all successful
+responses to PSIS Queries.</p>
+</td>
+</tr>
+
+<tr>
+<td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt' height="120">
+<p class=TableText>1.2</p>
+</td>
+<td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt' height="120">
+<p class=TableText>Core Technical Team</p>
+</td>
+<td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt' height="120">
+<p class=TableText>17/09/04</p>
+</td>
+<td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt' height="120">
+<p class=TableText>PSIS Summary Query removed as not in scope for P1R2.</p>
+<p class=TableText>New Queries and Responses for ‘Event List’ and ‘Event’.</p>
+<p class=TableText>Renaming of some existing queries and responses.</p>
+<p class=TableText>Alignment of queries with generic control act wrapper.</p>
+<p class=TableText>All response interactions and messages are for use in P1R2 only; the new 
+response message types do not have HL7 artefact identifiers.</p>
+</td>
+</tr>
+
+<tr>
+<td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>1.3</p>
+</td>
+<td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>Core Technical Team</p>
+</td>
+<td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>29/10/04</p>
+</td>
+<td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>Change requests MIM-CR-0028, 0034, 0089 - 0091, 0093 - 0094.</p>
+</td>
+</tr>
+
+<tr>
+<td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>1.4</p>
+</td>
+<td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>Core Technical Team</p>
+</td>
+<td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>6/12/04</p>
+</td>
+<td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>Change request MIM-CR-0270.</p>
+<p class=TableText>Removed previous Section 8 - Interaction Index.</p>
+</td>
+</tr>
+
+<tr>
+<td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>1.5</p>
+</td>
+<td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>Core Technical Team</p>
+</td>
+<td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>14/01/05</p>
+</td>
+<td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>New versions of Query Response tabular views and examples.</p>
+<p class=TableText>Changed lowercase characters in example UUIDs to uppercase. </p>
+</td>
+</tr>
+
+<tr>
+<td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>1.6</p>
+</td>
+<td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>Core Technical Team</p>
+</td>
+<td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>14/09/05</p>
+</td>
+<td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>Removed Clinical Statement and CRE queries to reflect the requirements of Core CRS.</p>
+<p class=TableText>Added withdrawingEventID to the query response messages.</p>
+<p class=TableText>Corrected the description of the behaviour for the DPA and Event list queries in the storyboards.</p>
+<p class=TableText>The vocabulary for eventStatus in the response messages has been updated for Core CRS.</p>
+<p class=TableText>interactionID has been renamed to payloadID in the query responses.</p>
+</td>
+</tr>
+
+<tr>
+<td width=75 valign=top style='width:56.6pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>1.7</p></td>
+<td width=145 valign=top style='width:108.55pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>Core Technical Team</p></td>
+<td width=81 valign=top style='width:61.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class=TableText>21/02/06</p></td>
+<td width=416 valign=top style='width:312.0pt;padding:0cm 2.85pt 0cm 2.85pt'>
+<p class="TableText">No major structural changes. Several minor changes made due 
+to issues raised or existing change requests - <a href="#_Toc_Section_9">See 
+Section 9</a>.</td>
+</tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+<hr size=2 width="100%" align=center>
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+<h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;Overview</h1>
+
+<p class=MsoNormal>PSIS Queries provide a mechanism for clinicians to gain
+access to the NHS Care Record Spine for an individual service user (patient).
+Local systems will query the service user’s NHS Care Record and populate
+screens with NHS Care Record data. </p>
+
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal>This version of PSIS-Query relates to Core PSIS.</p>
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>In Core PSIS there are a number of queries as follows:</p>
+
+<ul style='margin-top:0cm' type=disc>
+<li class=MsoNormal>PSIS Event List Query - requests a list of Events (message payloads);</li>
+<li class=MsoNormal>PSIS Event Query - data is requested for a single specified Event that has been retrieved in another query;</li>
+<li class=MsoNormal>PSIS DPA Subject Access Query - allows a service user to retrieve ALL data stored
+against their NHS Care Record via Data Protection Agency guidelines. </li>
+</ul>
+
+<p class=MsoNormal>&nbsp;</p>
+<div class=MsoNormal align=center style='text-align:center'>
+<hr size=2 width="100%" align=center>
+</div>
+
+<h1><a name=_Toc_Section_2></a>2&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</h1>
+<h2><a name=_Toc_Section_2.1></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;Patient Attends an 
+Emergency Department</h2>
+
+<p class=MsoNormal>Mr Frank Smith attends an Emergency Department (ED) at his 
+local hospital as he is suffering from severe back pains. The receptionist books 
+him in on the local system and a Legitimate Relationship (LR) is created so that 
+the ED doctor can view the patient’s information. The receptionist then selects 
+on her local system to retrieve a list of events about the patient – the local 
+system sends the request [<a href="#_Toc_Section_7.1">PSIS Event List Query</a>] 
+to PSIS.<br>
+<br>
+PSIS compiles a list of all events (including out of date versions), and send 
+this back to the local system [<a href="#_Toc_Section_7.4">PSIS Event List Query 
+Response</a>].<br>
+<br>
+The patient is seen by the ED doctor who decides to view a summary of events on 
+his local system. His local system then filters out the out-of-date events and 
+displays a list of current events. This list contains the Event ID, Event Type, 
+and Date/Time which PSIS received the event. <br>
+<br>
+On the local system the ED doctor chooses which event to view, a request is then 
+sent to PSIS to retrieve the information requested e.g. a GP Summary [<a href="#_Toc_Section_7.2">PSIS 
+Event Query</a>]. PSIS returns the appropriate data for that event back to the 
+GP’s system [<a href="#_Toc_Section_7.5">PSIS Event Query Response</a>] in the 
+same format as it was last uploaded to PSIS. The local system displays the event 
+in a readable format.<br>
+&nbsp;</p>
+
+<h2><a name=_Toc_Section_2.2></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;GP Has No Authorised Access To Patient 
+Records</h2>
+
+<p class=MsoNormal>Jane Robinson, who has just moved into the area, is feeling 
+unwell so decides to visit the local GP for the first time. Mrs Robinson attends 
+an appointment with Dr Percy Sugden. As Jane is a new patient to him, Dr Sugden uses his local system to request a list of her previous NHS Care Records 
+from PSIS.<br>
+<br>
+The local system sends a request to PSIS with the patients NHS Number and GP 
+details for a complete list of events for Mrs Robinson [<a href="#_Toc_Section_7.1">PSIS 
+Event List Query</a>].<br>
+<br>
+PSIS checks to see if the appropriate access rights exist for the GP to be able 
+to view Mrs Robinsons’ information however as Mrs Robinson has not yet 
+officially registered with the GP, no Legitimate Relationship (LR) yet exists 
+between the doctor and patient. PSIS returns the appropriate response [<a href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">Query 
+Act Failed</a>] containing the error ‘PQR-01 - No Legitimate Relationships exist 
+for the query originator’.<br>
+&nbsp;</p>
+
+<h2><a name=_Toc_Section_2.3></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;Patient Has No Records On PSIS </h2>
+
+<p class=MsoNormal>Following on from <a href="#_Toc_Section_2.2">Section 2.2</a>, 
+Dr Sugden requests and has been authorised the necessary access rights (LR’s) to 
+be able to view Mrs Robinsons’ information however her previous GP was not 
+PSIS compliant.<br>
+<br>
+Dr Sugden again uses his local system to request a list of Care Events from PSIS 
+[<a href="#_Toc_Section_7.1">PSIS Event List Query</a>]. After confirming that 
+the appropriate access rights exist, PSIS attempts to retrieve retrieve a list of 
+all events recorded. <br>
+<br>
+As Mrs Robinsons previous GP was not PSIS compliant PSIS cannot find any events 
+for Mrs Robinson and 
+returns the appropriate error code to the local system [<a href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">Query 
+Act Failed</a>] – with the appropriate response code. The system displays the 
+response to Dr Sugden in an appropriate format.<br>
+&nbsp;</p>
+
+<h2><a name=_Toc_Section_2.4></a>2.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Query</h2>
+
+<p class=MsoNormal>Mr Peter Jones decides that he wants to see what has been 
+recorded in his medical record. He finds out from his GP that he has to write to 
+Dr. Gerald Franks, the local Caldicott Guardian, giving his full name, address, 
+Date of Birth and NHS Number details (if known). <br>
+Peter does so. <br>
+<br>
+On receiving the letter from Peter Jones Dr Franks (or an authorised privacy 
+officer) logs onto his local terminal using his ‘Superuser’ access. Using his 
+local system, Dr Franks enters the patient identification details and selects to 
+retrieve all stored information.<br>
+<br>
+Dr Franks local system sends a request to PSIS [<a href="#_Toc_Section_7.3">PSIS 
+DPA Subject Access Query</a>]. After successfully verifying the patient and 
+Caldicott Guardians’ access rights, PSIS sends all of the events (of all 
+status’) back to the local system [<a href="#_Toc_Section_7.6">PSIS DPA Subject 
+Access Data Response</a>] which is then displayed in a readable format.<br>
+<br>
+Dr Franks checks and filters out any inappropriate third party information and 
+then writes the information to an appropriate format for sending back to the Mr. 
+Jones.<br>
+&nbsp;</p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<h1><a name=_Toc_Section_3></a>3&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</h1>
+
+<p class=MsoNormal>The applications involved in the PSIS Query processes play
+specific roles.  These, along with the
+interactions associated with each role, are identified below.</p>
+
+<h2><a name=_Toc_Section_3.1></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Query Placer - QUPC_AR090000UK01</h2>
+
+<p class=MsoNormal>The PSIS Query Placer will initiate any one of the PSIS
+queries. </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>PSIS Query Placer Interactions&nbsp;&nbsp;&nbsp;
+<a title="View Interaction" href="#_Toc_Section_5">
+<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a> </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name=_Toc_Section_3.2></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Query Fulfiller - QUPC_AR100000UK01</h2>
+
+<p class=MsoNormal>The PSIS Query Fulfiller will respond to any one of the PSIS
+queries. A response will either carry data as requested or will be an empty
+response which carries a reason for there being no data returned.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>PSIS Query Fulfiller Interactions&nbsp;&nbsp;&nbsp;
+<a title="View Interaction" href="#_Toc_Section_5">
+<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a> </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1><a name=_Toc_Section_4></a>4&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</h1>
+<h2><a name=_Toc_Section_4.1></a>4.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Query Started - QUPC_TE180000UK01</h2>
+
+<p class=MsoNormal>The PSIS Event List Query
+Started trigger event indicates that the query originator has initiated a query
+to obtain a list of Events for a specific service user. </p>
+
+<h2><a name=_Toc_Section_4.2></a>4.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS
+Event Query Started - QUPC_TE190000UK01</h2>
+
+<p class=MsoNormal>The PSIS Event Query
+Started trigger event indicates that the query originator has initiated a query
+to obtain a specified Event for a specific service user.</p>
+
+<h2><a name=_Toc_Section_4.3></a>4.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Query Started -
+QUPC_TE120000UK01</h2>
+
+<p class=MsoNormal>The PSIS DPA Subject Access Query Started trigger event
+indicates that the query originator has initiated a PSIS DPA Subject Access
+Query on behalf of a specific service user. </p>
+
+<h2><a name=_Toc_Section_4.4></a>4.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Retrieval - QUPC_TE200000UK01</h2>
+
+<p class=MsoNormal>The PSIS Event List
+Retrieval trigger event indicates that data has been found on PSIS which
+satisfies the specified criteria defined in the PSIS Event List Query.</p>
+
+<h2><a name=_Toc_Section_4.5></a>4.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS
+Event Retrieval - QUPC_TE210000UK01</h2>
+
+<p class=MsoNormal>The PSIS Event
+Retrieval trigger event indicates that data has been found on PSIS which
+satisfies the specified criteria defined in the PSIS Event Query.</p>
+
+<h2><a name=_Toc_Section_4.6></a>4.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Data Retrieval -
+QUPC_TE160000UK01</h2>
+
+<p class=MsoNormal>The PSIS DPA Subject Access Data Retrieval trigger event
+indicates that data has been found on PSIS which satisfies the specified
+criteria defined in the PSIS DPA Subject Access Query.</p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1><a name=_Toc_Section_5></a>5&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</h1>
+<h2><a name=_Toc_Section_5.1></a>5.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Query Interactions</h2>
+
+<p class=MsoNormal style='page-break-after:avoid'>
+	<img src="interaction_diagrams/PSIS interaction_001.png" border="0" usemap="#acce989c-5f84-463e-8464-28d1e91fdd47" />
+	<map name="acce989c-5f84-463e-8464-28d1e91fdd47">
+		<area alt="View Application Role" href="#_Toc_Section_3.1" type="rect" coords="50, 60, 230, 110" />
+		<area alt="View Application Role" href="#_Toc_Section_3.2" type="rect" coords="490, 60, 670, 110" />
+		<area alt="View Interaction" href="#_Toc_Section_6.1" type="rect" coords="271, 132, 449, 169" />
+		<area alt="View Interaction" href="#_Toc_Section_6.4" type="rect" coords="285, 192, 435, 229" />
+		<area alt="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3" type="rect" coords="293, 252, 427, 289" />
+	</map>
+</p>
+
+<h2><a name=_Toc_Section_5.2></a>5.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event Query Interactions</h2>
+
+<p class=MsoNormal>
+
+	<img src="interaction_diagrams/PSIS interaction_002.png" border="0" usemap="#5fbb4137-b5e4-461c-a75c-2a33aed000b9" />
+	<map name="5fbb4137-b5e4-461c-a75c-2a33aed000b9">
+		<area alt="View Application Role" href="#_Toc_Section_3.1" type="rect" coords="50, 60, 230, 110" />
+		<area alt="View Application Role" href="#_Toc_Section_3.2" type="rect" coords="490, 60, 670, 110" />
+		<area alt="View Interaction" href="#_Toc_Section_6.2" type="rect" coords="283, 132, 438, 169" />
+		<area alt="View Interaction" href="#_Toc_Section_6.5" type="rect" coords="291, 192, 430, 229" />
+		<area alt="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3" type="rect" coords="293, 252, 427, 289" />
+	</map>
+</p>
+
+
+<h2><a name=_Toc_Section_5.3></a>5.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Query Interactions</h2>
+
+<p class=MsoNormal>
+
+	<img src="interaction_diagrams/PSIS interaction_003.png" border="0" usemap="#23d194c7-ab05-4317-9a69-0537d72c75a2" />
+	<map name="23d194c7-ab05-4317-9a69-0537d72c75a2">
+		<area alt="View Application Role" href="#_Toc_Section_3.1" type="rect" coords="50, 60, 230, 110" />
+		<area alt="View Application Role" href="#_Toc_Section_3.2" type="rect" coords="490, 60, 670, 110" />
+		<area alt="View Interaction" href="#_Toc_Section_6.3" type="rect" coords="242, 132, 479, 169" />
+		<area alt="View Interaction" href="#_Toc_Section_6.6" type="rect" coords="241, 192, 479, 229" />
+		<area alt="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3" type="rect" coords="293, 252, 427, 289" />
+	</map>
+</p>
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<h1><a name=_Toc_Section_6></a>6&nbsp;&nbsp;&nbsp;&nbsp;Interactions</h1>
+<h2><a name=_Toc_Section_6.1></a>6.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Query Started - 
+QUPC_IN180000UK04</h2>
+
+<p class=MsoNormal>The PSIS Event List Query
+Started interaction occurs when a request for a list of the details of all the
+messages sent to PSIS for a specific patient 
+is started. The PSIS Query Placer <span
+lang=EN-US>sends a </span>PSIS Event List Query, with specific query parameters, to the PSIS Query
+Fulfiller.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<table class=Heading2Char border=1 cellspacing=3 cellpadding=0>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Sending Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><span
+  class=TableHeading><span style='font-weight:normal;'>PSIS Query Placer </span></span></p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Application Role" href="#_Toc_Section_3.1">QUPC_AR090000UK01</a><span
+  class=TableHeading></span></p>
+</td>
+</tr>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Receiving Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Query
+Fulfiller</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Application Role" href="#_Toc_Section_3.2">QUPC_AR100000UK01</a></p>
+</td>
+</tr>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Trigger Event</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Event List Query
+Started</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Trigger Event" href="#_Toc_Section_4.1">QUPC_TE180000UK01</a></p>
+</td>
+</tr>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Transmission Wrapper</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>Send Message
+Payload</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>
+<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1">
+MCCI_MT010101UK12</a></p>
+</td>
+</tr>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Message Type</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Event List
+Query</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Message Type" href="#_Toc_Section_7.1">
+QUPC_MT130101UK04</a></p>
+</td>
+</tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal>
+<a title="View Interaction Schema" href="../../../Schemas/QUPC_IN180000UK04.xsd">
+<img border='0' src='../../../Core/Components_files/image002.gif' width="20" height="15"></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=Un-numberedHeading1>Receiver
+Responsibilities</p>
+
+<table class=Heading2Char border=1 cellspacing=3 cellpadding=0 width=684
+ style='width:513.35pt;'>
+<tr style='height:12.2pt'>
+<td width=338 valign=top style='width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Reason</span></span></p>
+</td>
+<td width=338 valign=top style='width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Interaction</span></span></p>
+</td>
+</tr>
+<tr style='height:13.05pt'>
+<td width=338 valign=top style='width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt'>
+<p class=TableText>Query Data Found</p>
+</td>
+<td width=338 valign=top style='width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt'>
+<p class=TableText>PSIS Event List
+Retrieval:</p>
+<p class=TableText><a title="View Interaction" href="#_Toc_Section_6.4">
+QUPC_IN200000UK04</a></p>
+</td>
+</tr>
+<tr style='height:13.85pt'>
+<td width=338 valign=top style='width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt'>
+<p class=TableText>No Query Data Found</p>
+</td>
+<td width=338 valign=top style='width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;  height:13.85pt'>
+<p class=TableText>Query Act Failed</p>
+<p class=TableText>
+<a title="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">
+QUQI_IN010000UK14</a></p>
+</td>
+</tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name=_Toc_Section_6.2></a>6.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event Query Started - QUPC_IN190000UK04</h2>
+
+<p class=MsoNormal>The PSIS Event Query Started
+interaction occurs when a request for all the contents of a specified PSIS
+Event that has been previously discovered by use of a PSIS Event List Query is
+started. The PSIS Query Placer sends a PSIS Event Query, with specific query parameters, to the PSIS Query
+Fulfiller.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<table class=Heading2Char border=1 cellspacing=3 cellpadding=0>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Sending Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><span
+  class=TableHeading><span style='font-weight:normal;'>PSIS Query Placer </span></span></p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Application Role" href="#_Toc_Section_3.1">QUPC_AR090000UK01</a><span
+  class=TableHeading></span></p>
+</td>
+</tr>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Receiving Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Query
+Fulfiller</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Application Role" href="#_Toc_Section_3.2">QUPC_AR100000UK01</a></p>
+</td>
+</tr>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Trigger Event</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Event Query
+Started</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Trigger Event" href="#_Toc_Section_4.2">QUPC_TE190000UK01</a></p>
+</td>
+</tr>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Transmission Wrapper</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>Send Message
+Payload</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>
+<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1">
+MCCI_MT010101UK12</a></p>
+</td>
+</tr>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Message Type</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Event Query</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Message Type" href="#_Toc_Section_7.2">
+QUPC_MT140101UK04</a></p>
+</td>
+</tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>
+<a title="View Interaction Schema" href="../../../Schemas/QUPC_IN190000UK04.xsd">
+<img border='0' src='../../../Core/Components_files/image002.gif' width="20" height="15"></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=Un-numberedHeading1>Receiver
+Responsibilities</p>
+
+<table class=Heading2Char border=1 cellspacing=3 cellpadding=0 width=684
+ style='width:513.35pt;'>
+<tr style='height:12.2pt'>
+<td width=338 valign=top style='width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Reason</span></span></p>
+</td>
+<td width=338 valign=top style='width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:12.2pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Interaction</span></span></p>
+</td>
+</tr>
+<tr style='height:13.05pt'>
+<td width=338 valign=top style='width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt'>
+<p class=TableText>Query Data Found</p>
+</td>
+<td width=338 valign=top style='width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt'>
+<p class=TableText>PSIS Event
+Retrieval:</p>
+<p class=TableText><a title="View Interaction" href="#_Toc_Section_6.5">
+QUPC_IN210000UK04</a></p>
+</td>
+</tr>
+<tr style='height:13.85pt'>
+<td width=338 valign=top style='width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt'>
+<p class=TableText>No Query Data
+Found</p>
+</td>
+<td width=338 valign=top style='width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt'>
+<p class=TableText>Query Act Failed</p>
+<p class=TableText>
+<a title="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">
+QUQI_IN010000UK14</a></p>
+</td>
+</tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name=_Toc_Section_6.3></a>6.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Query Started - 
+QUPC_IN120000UK06</h2>
+
+<p class=MsoNormal>The PSIS DPA Subject Access Query Started interaction occurs when a request from a
+service user to return all the care information held on PSIS about him/her is
+started. The PSIS Query Placer sends a PSIS DPA Subject Access 
+Query, with specific query parameters to the PSIS Query Fulfiller.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<table class=Heading2Char border=1 cellspacing=3 cellpadding=0>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;  '>Sending Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><span class=TableHeading><span style='font-weight:normal;'>PSIS Query
+Placer</span></span></p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><span class=TableHeading><span style='font-weight:normal;'>
+<a title="View Application Role" href="#_Toc_Section_3.1">QUPC_AR090000UK01</a></span></span></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;  '>Receiving Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Query Fulfiller</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Application Role" href="#_Toc_Section_3.2">QUPC_AR100000UK01</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;
+  '>Trigger Event</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS DPA Subject Access Query Started</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Trigger Event" href="#_Toc_Section_4.3">QUPC_TE120000UK01</a></p>
+</td>
+</tr>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;
+  '>Transmission Wrapper</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>Send Message Payload</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>
+<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1">
+MCCI_MT010101UK12</a></p>
+</td>
+</tr>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;  '>Message Type</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS DPA Subject Access Query</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Message Type" href="#_Toc_Section_7.3">
+QUPC_MT120101UK06</a></p>
+</td>
+</tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>
+<a title="View Interaction Schema" href="../../../Schemas/QUPC_IN120000UK06.xsd">
+<img border='0' src='../../../Core/Components_files/image002.gif' width="20" height="15"></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=Un-numberedHeading1>Receiver Responsibilities</p>
+
+<table class=Heading2Char border=1 cellspacing=3 cellpadding=0 width=684 style='width:513.35pt;'>
+<tr style='height:12.2pt'>
+<td width=338 valign=top style='width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;  height:12.2pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;'>Reason</span></span></p>
+</td>
+<td width=338 valign=top style='width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;  height:12.2pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;
+  '>Interaction</span></span></p>
+</td>
+</tr>
+
+<tr style='height:13.05pt'>
+<td width=338 valign=top style='width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt;  height:13.05pt'>
+<p class=TableText>Query Data Found</p>
+</td>
+<td width=338 valign=top style='width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.05pt'>
+<p class=TableText>PSIS DPA Subject Access Data Retrieval:</p>
+<p class=TableText><a title="View Interaction" href="#_Toc_Section_6.6">
+QUPC_IN160000UK06</a></p>
+</td>
+</tr>
+
+<tr style='height:13.85pt'>
+<td width=338 valign=top style='width:253.65pt;padding:0cm 5.4pt 0cm 5.4pt; height:13.85pt'>
+<p class=TableText>No Query Data Found</p>
+</td>
+<td width=338 valign=top style='width:253.7pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:13.85pt'>
+<p class=TableText>Query Act Failed:</p>
+<p class=TableText>
+<a title="View Interaction" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.3">
+QUQI_IN010000UK14</a></p>
+</td>
+</tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name=_Toc_Section_6.4></a>6.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Retrieval - 
+QUPC_IN200000UK04</h2>
+
+<p class=MsoNormal style='text-autospace:none'>The 
+PSIS Event List Retrieval
+interaction occurs when all the PSIS Event List Query criteria are met and
+there is relevant clinical data present on PSIS. The PSIS Query
+Fulfiller sends a PSIS Event List Retrieval carrying the requested Event List to the PSIS Query
+Placer.</p>
+<p class=MsoNormal style='text-autospace:none'>&nbsp;</p>
+
+<table class=Heading2Char border=1 cellspacing=3 cellpadding=0>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Sending Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Query Fulfiller<span class=TableHeading></span></p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Application Role" href="#_Toc_Section_3.2">QUPC_AR100000UK01</a><span class=TableHeading></span></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal>
+<span  class=TableHeading><span style='font-size:10.0pt;'>Receiving Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><span
+  class=TableHeading><span style='font-weight:normal;'>PSIS Query Placer</span></span></p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Application Role" href="#_Toc_Section_3.1">QUPC_AR090000UK01</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt' height="20">
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Trigger Event</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt' height="20">
+<p class=TableText>PSIS Event List Retrieval</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt' height="20">
+<p class=TableText><a title="View Trigger Event" href="#_Toc_Section_4.4">QUPC_TE200000UK01</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Transmission Wrapper</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>Application
+Acknowledgement</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>
+<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.2">
+MCCI_MT020101UK12</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Control Act Wrapper</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>Query
+Acknowledgement Response</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>
+<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.4">
+QUQI_MT030101UK03</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Message Type</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Event List
+Query Response</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Message Type" href="#_Toc_Section_7.4">queryResponseEventList_02</a></p>
+</td>
+</tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><a href="../../../Schemas/QUPC_IN200000UK04.xsd">
+<img border='0' src='../../../Core/Components_files/image002.gif' width="20" height="15"></a>&nbsp; </p>
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name=_Toc_Section_6.5></a>6.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event Retrieval - QUPC_IN210000UK04</h2>
+
+<p class=MsoNormal style='text-autospace:none'>The PSIS Event Retrieval interaction occurs when all the PSIS Event Query
+criteria are met and there is relevant clinical data present on PSIS. The PSIS
+Query Fulfiller sends a PSIS Event Response Retrieval carrying the requested Event to the PSIS Query Placer.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<table class=Heading2Char border=1 cellspacing=3 cellpadding=0>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Sending Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Query Fulfiller<span class=TableHeading></span></p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Application Role" href="#_Toc_Section_3.2">QUPC_AR100000UK01</a><span class=TableHeading></span></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Receiving Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><span
+  class=TableHeading><span style='font-weight:normal;'>PSIS Query Placer</span></span></p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Application Role" href="#_Toc_Section_3.1">QUPC_AR090000UK01</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Trigger Event</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Event Retrieval</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Trigger Event" href="#_Toc_Section_4.5">QUPC_TE210000UK01</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Transmission Wrapper</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>Application
+Acknowledgement</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>
+<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.2">
+MCCI_MT020101UK12</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal>
+<span class=TableHeading><span style='font-size:10.0pt;'>Control Act Wrapper</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>Query Acknowledgement Response</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>
+<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.4">
+QUQI_MT030101UK03</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span
+  class=TableHeading><span style='font-size:10.0pt;'>Message Type</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Event Query
+Response</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Message Type" href="#_Toc_Section_7.5">
+queryResponseEvent_02</a></p>
+</td>
+</tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal><a href="../../../Schemas/QUPC_IN210000UK04.xsd">
+<img border='0' src='../../../Core/Components_files/image002.gif' width="20" height="15"></a>&nbsp;&nbsp; </p>
+
+<h2><a name=_Toc_Section_6.6></a>6.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Data Retrieval - 
+QUPC_IN160000UK06</h2>
+
+<p class=MsoNormal style='text-autospace:none'>The 
+PSIS DPA Subject Access Data Retrieval interaction occurs when all the PSIS DPA Subject Access Query
+criteria are met and there is an NHS Care Record for the patient held on PSIS.
+The PSIS Query Fulfiller sends
+a PSIS DPA Subject Access Data Retrieval carrying the appropriate Care Record Elements to
+the PSIS Query Placer.</p>
+<p class=MsoNormal style='text-autospace:none'>&nbsp;</p>
+
+
+<table class=Heading2Char border=1 cellspacing=3 cellpadding=0>
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;   '>Sending Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS Query Fulfiller<span class=TableHeading></span></p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Application Role" href="#_Toc_Section_3.2">QUPC_AR100000UK01</a>
+</p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;  '>Receiving Role</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><span class=TableHeading><span style='font-weight:normal;'>PSIS Query Placer</span></span></p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><span class=TableHeading><span style='font-weight:normal;'>
+<a title="View Application Role" href="#_Toc_Section_3.1">QUPC_AR090000UK01</a></span></span></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;  '>Trigger Event</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS DPA Subject Access Data Retrieval</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Trigger Event" href="#_Toc_Section_4.6">QUPC_TE160000UK01</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;   '>Transmission Wrapper</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>Application Acknowledgement</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>
+<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.2">
+MCCI_MT020101UK12</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;
+  '>Control Act
+Wrapper</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>Query Acknowledgement Response</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>
+<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.4">
+QUQI_MT030101UK03</a></p>
+</td>
+</tr>
+
+<tr>
+<td width=175 valign=top style='width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal><span class=TableHeading>
+<span style='font-size:10.0pt;  '>Message Type</span></span></p>
+</td>
+<td width=274 valign=top style='width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText>PSIS DPA Subject Access Query Response</p>
+</td>
+<td width=224 valign=top style='width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=TableText><a title="View Message Type" href="#_Toc_Section_7.6">
+queryResponsePatient_02</a></p>
+</td>
+</tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal><a href="../../../Schemas/QUPC_IN160000UK06.xsd">
+<img border='0' src='../../../Core/Components_files/image002.gif' width="20" height="15"></a>&nbsp;&nbsp; </p>
+<p class=MsoNormal>&nbsp;</p>
+<div class=MsoNormal align=center style='text-align:center'>
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1><a name=_Toc_Section_7></a>7&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</h1>
+<h2><a name=_Toc_Section_7.1></a>7.1&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Query - 
+QUPC_MT130101UK04</h2>
+
+<p class=MsoNormal>The PSIS Event List
+Query&nbsp;message&nbsp;allows the Service User to request a list of the details of all the messages sent to PSIS for a specific patient.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>
+<a title="View R-MIM" href="../Tabular%20View/QUPC_RM130000UK04.htm">
+<img border='0' src='../../../Core/Components_files/image003.gif' width="19" height="16" ></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Tabular View" href="../Tabular%20View/QUPC_HD130100UK04-NoEdit.htm">
+<img border='0' src='../../../Core/Components_files/image004.gif' width="16" height="16" ></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Schema" href="../../../Schemas/QUPC_MT130101UK04.xsd">
+<img border='0' src='../../../Core/Components_files/image005.gif' width="16" height="16" ></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Example" href="../../../Examples/QUPC_EX130101UK04.xml">
+<img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name=_Toc_Section_7.2></a>7.2&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event Query - QUPC_MT140101UK04</h2>
+
+<p class=MsoNormal>The PSIS Event Query&nbsp;message&nbsp;allows the Service User to request all the 
+contents of a specified PSIS Event that has been previously discovered by use of a PSIS Event List Query.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>
+<a title="View R-MIM" href="../Tabular%20View/QUPC_RM140000UK04.htm">
+<img border='0' src='../../../Core/Components_files/image003.gif' width="16" height="16" ></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Tabular View" href="../Tabular%20View/QUPC_HD140100UK04-NoEdit.htm">
+<img border='0' src='../../../Core/Components_files/image004.gif' width="16" height="16" ></a>&nbsp;&nbsp;&nbsp; 
+&nbsp;<a title="View Schema" href="../../../Schemas/QUPC_MT140101UK04.xsd"><img border='0' src='../../../Core/Components_files/image005.gif' width="16" height="16" ></a>&nbsp;&nbsp; 
+<a title="View Example" href="../../../Examples/QUPC_EX140101UK05.xml">
+<img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name=_Toc_Section_7.3></a>7.3&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Query - 
+QUPC_MT120101UK06</h2>
+
+<p class=MsoNormal>The PSIS DPA Subject Access Query requests all the care
+information held on PSIS about the service user (patient).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal>
+<a title="View R-MIM" href="../Tabular%20View/QUPC_RM120000UK06.htm">
+<img border='0' src='../../../Core/Components_files/image003.gif' width="16" height="16" ></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Tabular View" href="../Tabular%20View/QUPC_HD120100UK06-NoEdit.htm">
+<img border='0' src='../../../Core/Components_files/image004.gif' width="16" height="16" ></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Schema" href="../../../Schemas/QUPC_MT120101UK06.xsd">
+<img border='0' src='../../../Core/Components_files/image005.gif' width="16" height="16" ></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Example" href="../../../Examples/QUPC_EX120101UK06.xml">
+<img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a></p>
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name=_Toc_Section_7.4></a>7.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event List Query Response - 
+queryResponseEventList_02</h2>
+
+<p class=MsoNormal>The PSIS Event List Query Response is a response to the PSIS Event List 
+Query and provides a list of the details of those messages received by PSIS.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>
+<a title="View Tabular View" href="../../../External%20Documents/PSISQueryResponse/tabularviews/PSISEventListQueryResponse.html">
+<img border='0' src='../../../Core/Components_files/image004.gif' width="16" height="16"></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Schema" href="../../../External%20Documents/PSISQueryResponse/xsd/queryResponseEventList_02.xsd">
+<img border='0' src='../../../Core/Components_files/image005.gif' width="16" height="16" ></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Example" href="../../../External%20Documents/PSISQueryResponse/examples/queryResponseEventList_02.xml">
+<img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name=_Toc_Section_7.5></a>7.5&nbsp;&nbsp;&nbsp;&nbsp;PSIS Event Query Response - 
+queryResponseEvent_02</h2>
+
+<p class=MsoNormal>The PSIS Event Query Response is a response to the PSIS Event Query and 
+provides the entire contents of the message which is identified by the PSIS Event UUID.</p>
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal>
+<a title="View Tabular View" href="../../../External%20Documents/PSISQueryResponse/tabularviews/PSISEventQueryResponse.html">
+<img border='0' src='../../../Core/Components_files/image004.gif' width="16" height="16"></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Schema" href="../../../External%20Documents/PSISQueryResponse/xsd/queryResponseEvent_02.xsd">
+<img border='0' src='../../../Core/Components_files/image005.gif' width="16" height="16" ></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Example" href="../../../External%20Documents/PSISQueryResponse/examples/queryResponseEvent_02.xml">
+<img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name=_Toc_Section_7.6></a>7.6&nbsp;&nbsp;&nbsp;&nbsp;PSIS DPA Subject Access Query Response - 
+queryResponsePatient_02</h2>
+
+<p class=MsoNormal>The PSIS DPA Subject Access Query Response is a response to
+the PSIS DPA Subject Access Query and provides ALL the clinical statements from
+of the service user’s NHS Care Record.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>
+<a title="View Tabular View" href="../../../External%20Documents/PSISQueryResponse/tabularviews/PSISDPASubjectAccessQueryResponse.html">
+<img border='0' src='../../../Core/Components_files/image004.gif' width="16" height="16"></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Schema" href="../../../External%20Documents/PSISQueryResponse/xsd/queryResponsePatient_02.xsd">
+<img border='0' src='../../../Core/Components_files/image005.gif' width="16" height="16" ></a>&nbsp;&nbsp;&nbsp; 
+<a title="View Example" href="../../../External%20Documents/PSISQueryResponse/examples/queryResponsePatient_02.xml">
+<img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+<hr size=2 width="100%" align=center>
+</div>
+
+<h1><a name=_Toc_Section_8></a>8&nbsp;&nbsp;&nbsp;&nbsp;Glossary of Terms</h1>
+
+<table class=Heading2Char border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse;'>
+
+<tr>
+<td width=338 valign=top style='width:253.45pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal><span class=GlossaryTerm>Dissent</span></p>
+</td>
+<td width=338 valign=top style='width:253.5pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class="MsoNormal">
+Dissent refers to an articulated decision by a patient, or their authorised 
+representative, that they do not consent to the patient's sensitive personal 
+data being shared, for the purpose of providing healthcare to that patient, 
+outside the boundary of the legal organisation responsible for creating or 
+maintaining them.
+</p>
+</td>
+</tr>
+
+<tr>
+<td width=338 valign=top style='width:253.45pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal><span class=GlossaryTerm>DPA</span></p>
+</td>
+<td width=338 valign=top style='width:253.5pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal>Data Protection Agency</p>
+</td>
+</tr>
+
+<tr>
+<td width=338 valign=top style='width:253.45pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal><b>Event<span class=GlossaryTerm></span></b></p>
+</td>
+<td width=338 valign=top style='width:253.5pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal>Corresponds to the whole message payload, which is the
+record of the business activity conveyed in the message.&nbsp; This is the
+granularity at which data is added to and cancelled in a patient record;
+queries are also supported at Event-level.</p>
+</td>
+</tr>
+
+<tr>
+<td width=338 valign=top style='width:253.45pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal><b>Event Item<span class=GlossaryTerm></span></b></p>
+</td>
+<td width=338 valign=top style='width:253.5pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal>Corresponds to a clinical statement (either simple or
+compound).&nbsp; This is the granularity at which progression occurs in a
+patient record; queries are provided at Event Item-level.&nbsp; Event Items
+are indexed by PSIS using CRE types to facilitate PSIS Query.&nbsp; Note that
+an Event Item in PSIS may comprise more than one clinical statement - for
+example, if an Observation statement contains one or more Statement
+Commentary statements, the PSIS Event Item will be the whole Observation
+statement including any contained Statement Commentary statements.&nbsp; This
+is because it is not useful to retrieve or progress a Statement Commentary
+statement independently of the Observation statement which contains it.</p>
+</td>
+</tr>
+
+<tr>
+<td width=338 valign=top style='width:253.45pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal><span class=GlossaryTerm>PSIS</span></p>
+</td>
+<td width=338 valign=top style='width:253.5pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal>Personal Spine Information System</p>
+</td>
+</tr>
+<tr>
+
+<td width=338 valign=top style='width:253.45pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal><span class=GlossaryTerm>Query Originator </span></p>
+</td>
+
+<td width=338 valign=top style='width:253.5pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal>Clinician or Caldicott Guardian initiating the query</p>
+</td>
+</tr>
+
+<tr>
+<td width=338 valign=top style='width:253.45pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal><span class=GlossaryTerm>Service User</span></p>
+</td>
+
+<td width=338 valign=top style='width:253.5pt;padding:0cm 5.4pt 5.65pt 5.4pt'>
+<p class=MsoNormal>The patient who is the subject of a query</p>
+</td>
+</tr>
+
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+<hr size=2 width="100%" align=center>
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1><a name=_Toc_Section_9></a>9&nbsp;&nbsp;&nbsp;&nbsp;Changes from v1.6</h1>
+<h2><a name=_Toc_Section_9.1></a>9.1&nbsp;&nbsp;&nbsp;&nbsp;General
+changes</h2>
+<p>All of the changes for this version of PSIS-Query have been applied using MIM 4.1.01 
+/ PSIS-Query 1.6 as a 
+baseline. </p>
+<p class="MsoNormal">Most of the changes to the PSIS-Query domain have been 
+superficial with the exception of the following:</p>
+<ul>
+	<li>
+	<p class="MsoNormal">The response messages where withdrawinEventID has been made 
+optional. These messages have now a version number associated to differentiate 
+when a new version is released.<br>
+&nbsp;</p></li>
+	<li>
+	<p class="MsoNormal">The request messages have been constrained so that a person 
+has to exist if dissentOverride is active (or true), although there is no 
+mechanism to enforce this is the schema files.</p></li>
+</ul>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">Details of all changes are listed in the table below:</p>
+<p class="MsoNormal">&nbsp;</p>
+
+<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" width="727" style="width: 545.4pt; border-collapse: collapse; border: medium none" id="table1">
+	<tr>
+		<td width="114" valign="top" style="width: 85.7pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font size="2" color="#FFFFFF"><b>
+		<span style="font-family: Verdana">Section</span></b></font></p>
+		</td>
+		<td width="229" valign="top" style="width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Artefact ID</span></b></font></p>
+		</td>
+		<td width="384" valign="top" style="width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Details</span></b></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">
+		&nbsp;</td>
+		<td width="229" valign="top" style="width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">
+		&nbsp;</td>
+		<td width="384" valign="top" style="width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">5.</span></b><font size="2"><b><span style="font-family: Verdana">1</span></b></font></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><font size="2"><span style="font-family: Verdana">
+		PSIS Event List Query Interactions Diagram</span></font></td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		New diagram generated due to change of artefact version numbers.</span><span style="font-size:10.0pt;font-family:Verdana">&nbsp;</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><font size="2"><b>
+		<span style="font-family: Verdana">5</span></b></font><b><span style="font-size:10.0pt;font-family:Verdana">.2</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><font size="2"><span style="font-family: Verdana">
+		PSIS Event Query Interactions Diagram</span></font></td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		New diagram generated due to change of artefact version numbers.</span><span style="font-size:10.0pt;font-family:Verdana">&nbsp;</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><font size="2"><b>
+		<span style="font-family: Verdana">5</span></b></font><b><span style="font-size:10.0pt;font-family:Verdana">.3</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><font size="2"><span style="font-family: Verdana">
+		PSIS DPA Subject Access Query Interaction Diagram</span></font></td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		New diagram generated due to change of artefact version numbers.</span><span style="font-size:10.0pt;font-family:Verdana">&nbsp;</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll" bgcolor="#000000">
+		&nbsp;</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll" bgcolor="#000000">
+		&nbsp;</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll" bgcolor="#000000">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><font size="2"><b>
+		<span style="font-family: Verdana">6</span></b></font><b><span style="font-size:10.0pt;font-family:Verdana">.</span></b><font size="2"><b><span style="font-family: Verdana">1</span></b></font></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_IN180000UK03 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_IN180000UK04</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		Interaction up-versioned due to message constraint being added.</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">&nbsp;</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><font size="2"><b>
+		<span style="font-family: Verdana">6</span></b></font><b><span style="font-size:10.0pt;font-family:Verdana">.2</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_IN190000UK03 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_IN190000UK04</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		Interaction up-versioned due to message constraint being added.</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">&nbsp;</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><font size="2"><b>
+		<span style="font-family: Verdana">6</span></b></font><b><span style="font-size:10.0pt;font-family:Verdana">.3</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_IN120000UK05 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_IN120000UK06</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		Interaction up-versioned due to message constraint being added.</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">&nbsp;</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><font size="2"><b>
+		<span style="font-family: Verdana">6</span></b></font><b><span style="font-size:10.0pt;font-family:Verdana">.4</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_IN200000UK03 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_IN200000UK04</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		Interaction up-versioned due to message constraint being added.</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">&nbsp;</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><font size="2"><b>
+		<span style="font-family: Verdana">6</span></b></font><b><span style="font-size:10.0pt;font-family:Verdana">.5</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_IN210000UK03 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_IN210000UK04</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		Interaction up-versioned due to message constraint being added.</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">&nbsp;</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><font size="2"><b>
+		<span style="font-family: Verdana">6</span></b></font><b><span style="font-size:10.0pt;font-family:Verdana">.6</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_IN160000UK05 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_IN160000UK06</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		Interaction up-versioned due to message constraint being added.</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">&nbsp;</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="width: 85.7pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font size="2" color="#FFFFFF"><b>
+		<span style="font-family: Verdana">Section</span></b></font></p>
+		</td>
+		<td width="229" valign="top" style="width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Artefact ID</span></b></font></p>
+		</td>
+		<td width="384" valign="top" style="width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Details</span></b></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.1 RMIM</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_RM130000UK03 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to </span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_RM130000UK04</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Constraint added for CMET PersonSDS to exist if dissentOverride is true.</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.1 Tab View</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_HD130100UK03 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_HD130100UK04</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">DissentOverride.value changed to CNE from CWE (due to a bug in the tool)</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Constraint for CMET- PersonSDS existing added when dissentOverride is 
+		true</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">NHS Number example changed to value listed in approved list.</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">&nbsp;</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.1 XSD</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">QUPC_MT130101UK03</span></p>
+		<p class="MsoNormal"><font size="2"><span style="font-family: Verdana">
+		up-versioned to</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_MT130101UK04</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		Changed due to new RMIM being generated.</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.1 XML</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_EX130101UK03 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_EX130101UK04</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">NHS Number example changed to value listed in approved list.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Message referenced an old non-existent schema.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Example OID for workstationID updated to correct number that ref any 
+		ext w/station - 2.16.840.1.113883.2.1.3.2.4.18.5</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="width: 85.7pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font size="2" color="#FFFFFF"><b>
+		<span style="font-family: Verdana">Section</span></b></font></p>
+		</td>
+		<td width="229" valign="top" style="width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Artefact ID</span></b></font></p>
+		</td>
+		<td width="384" valign="top" style="width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Details</span></b></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.2 RMIM</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_RM140000UK03 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_RM140000UK04</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Constraint added for CMET PersonSDS to exist if dissentOverride is true.</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.2 Tab View</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_HD140100UK03 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_HD140100UK04</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">DissentOverride.value changed to CNE from CWE (due to a bug in the tool)</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Constraint for CMET-PersonSDS existing added when dissentOverride is 
+		true</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">NHS Number example changed to value listed in approved list.</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.2 XSD</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal">
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_MT140101UK03 <br>
+		up-versioned to <b>
+		QUPC_MT140101UK04</b></span></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		Changed due to new RMIM being generated.</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.2 XML</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_EX140101UK04 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_EX140101UK05</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">NHS Number example changed to value listed in approved list.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Message referenced an old non-existent schema.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Example OID for workstationID updated to correct number that ref any 
+		ext w/station - 2.16.840.1.113883.2.1.3.2.4.18.5</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="width: 85.7pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font size="2" color="#FFFFFF"><b>
+		<span style="font-family: Verdana">Section</span></b></font></p>
+		</td>
+		<td width="229" valign="top" style="width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Artefact ID</span></b></font></p>
+		</td>
+		<td width="384" valign="top" style="width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Details</span></b></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.3 RMIM</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_RM120000UK05 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_RM120000UK06</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Constraint added for CMET PersonSDS to exist if dissentOverride is true.</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.3 Tab View</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_HD120100UK05 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_HD120100UK06</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">DissentOverride.value changed to CNE from CWE (due to a bug in the tool)</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Constraint for CMET-PersonSDS existing added when dissentOverride is 
+		true</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">NHS Number example changed to value listed in approved list.</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">&nbsp;</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.3 XSD</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal">
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_MT120101UK05 <br>
+		up-versioned to <b>
+		QUPC_MT120101UK06</b></span></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		Changed due to new RMIM being generated.</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.3 XML</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QUPC_EX120101UK04 </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">QUPC_EX120101UK06</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Message incomplete - did not include DissentOverride – although this 
+		is required.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">NHS Number example changed to value listed in approved list.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Message referenced an old non-existent schema (QUPC_MT12010101UK03.xsd)</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Example OID for workstationID updated to correct
+		<span style="background-position: 0% 0%; background-image:none; background-repeat:repeat; background-attachment:scroll">number that ref any ext w/station -</span> 
+		2.16.840.1.113883.2.1.3.2.4.18.5</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><font size="2"><span style="font-family: Verdana">Inserted 
+		correct structure for Author CMET - was incomplete.</span></font></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">&nbsp;</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="width: 85.7pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font size="2" color="#FFFFFF"><b>
+		<span style="font-family: Verdana">Section</span></b></font></p>
+		</td>
+		<td width="229" valign="top" style="width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Artefact ID</span></b></font></p>
+		</td>
+		<td width="384" valign="top" style="width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Details</span></b></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.4 Tab View</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		EventListQueryResponse </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">EventListQueryResponse_02</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">updated documentation to reference correct CMET numbers for Author (was 
+		Visio, now XSD No.).</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Link to PSISDataStatus vocab inserted.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><font size="2"><span style="font-family: Verdana">Now 
+		states that 'Nullified' is changed to 'Withdrawn' (at message level).</span></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.4 XSD</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		queryResponseEventList </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to</span></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">queryResponseEventList_02</span></b></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">WithdrawingEventID constrained to optional (was mandatory) as per Tabular 
+		View specification.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">updated documentation to state that only 1 OID for NHS No. is used (not 
+		three).</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Updated documentation to reference correct CMET numbers for Author (was 
+		Visio, now XSD No.).</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Updated example message type to GP Summary not Care Event Report / Med 
+		Update.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		Changed 'Nullified' to 'Withdrawn'.</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.4 XML</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		queryResponseEventList </span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to<b> queryResponseEventList_02</b></span></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Removed suggestion that 3 types of NHS Number OID’s could be used.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Changed example NHS number to agreed test data (9900002784).</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Updated example message type to GP Summary not Care Event Report / Med 
+		Update.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Changed interactionID to payloadID.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Updated documentation to reference correct CMET numbers for Author (Visio 
+		was referenced, now XSD as in IM files).</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><font size="2"><span style="font-family: Verdana">Changed 
+		'Nullified' to 'Withdrawn'.</span></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="width: 85.7pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font size="2" color="#FFFFFF"><b>
+		<span style="font-family: Verdana">Section</span></b></font></p>
+		</td>
+		<td width="229" valign="top" style="width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Artefact ID</span></b></font></p>
+		</td>
+		<td width="384" valign="top" style="width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Details</span></b></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.5 Tab View</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		EventQueryResponse</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to<b> EventQueryResponse_02</b></span></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Link to PSISDataStatus vocab inserted.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><font size="2"><span style="font-family: Verdana">Now 
+		states that 'Nullified' is changed to 'Withdrawn' (at message level).</span></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.5 XSD</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		queryResponseEvent</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to<b> queryResponseEvent_02</b></span></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000FF">
+		</font>
+		</span></span><b><i>
+		<span style="font-size:10.0pt;font-family:
+  Verdana;">Unlike the other query responses, withdrawingEventID is 
+		not an issue as this schema references the queryResponsePatient_02 schema 
+		for most of its structure. </span></i></b></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Updated to include new queryResponsePatient_02 version. </span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">NOTE: As a result of the above, all changes made to queryResponsePatient_02 
+		are inherited by this schema.</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.5 XML</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		queryResponseEvent</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to<b> queryResponseEvent_02</b></span></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Removed suggestion that 3 types of NHS Number OID’s could be used.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Changed example NHS number to agreed test data (9900002784).</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Updated example message type to GP Summary not Care Event Report / Med 
+		Update.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Changed interactionID to payloadID.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Commented out example CareEventReport as no specs for this are agreed 
+		and this is for illustration of a payload only.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><font size="2"><span style="font-family: Verdana">Changed 
+		'Nullified' to 'Withdrawn'.</span></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="width: 85.7pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font size="2" color="#FFFFFF"><b>
+		<span style="font-family: Verdana">Section</span></b></font></p>
+		</td>
+		<td width="229" valign="top" style="width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Artefact ID</span></b></font></p>
+		</td>
+		<td width="384" valign="top" style="width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background: black">
+		<p class="MsoNormal"><font color="#FFFFFF"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">Details</span></b></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.6 Tab View</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QueryResponsePatient</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to<b> QueryResponsePatient_02</b></span></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">File renamed from PSISPatiengtQueryResponse.html<br>
+		To<br>
+		PSISDPASubjectAccessQueryResponse.html</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Link to PSISDataStatus vocab inserted.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Updated example message type to GP Summary not Care Event Report / Med 
+		Update.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><font size="2"><span style="font-family: Verdana">Now 
+		states that 'Nullified' is changed to 'Withdrawn' (at message level).</span></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.6 XSD</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QueryResponsePatient</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to<b> QueryResponsePatient_02</b></span></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">WithdrawingEventID constrained to optional (was mandatory) as per Tabular 
+		View specification.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span>
+		<span style="font-style:normal; font-variant:normal; font-weight:normal; font-size:10.0pt; font-family:Verdana">
+		Changed 'Nullified' to 'Withdrawn'.</span></p>
+		</td>
+	</tr>
+	<tr>
+		<td width="114" valign="top" style="background-position: 0% 0%; width: 85.7pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;font-family:Verdana">7.6 XML</span></b></p>
+		</td>
+		<td width="229" valign="top" style="background-position: 0% 0%; width: 171.8pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		QueryResponsePatient</span></p>
+		<p class="MsoNormal"><span style="font-size:10.0pt;font-family:Verdana">
+		up-versioned to<b> QueryResponsePatient_02</b></span></p>
+		</td>
+		<td width="384" valign="top" style="background-position: 0% 0%; width: 287.9pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm; background-image:none; background-repeat:repeat; background-attachment:scroll">
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Removed suggestion that 3 types of NHS Number OID’s could be used.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Changed example NHS number to agreed test data (9900002784).</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Updated example message type to GP Summary not Care Event Report / Med 
+		Update.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Changed interactionID to payloadID.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><span style="font-size:10.0pt;font-family:
+  Verdana">Commented out example CareEventReport as no specs for this are agreed.</span></p>
+		<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 20.85pt">
+		<span style="font-size: 10.0pt; font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span></span><font size="2"><span style="font-family: Verdana">Changed 
+		'Nullified' to 'Withdrawn'.</span></font></p>
+		</td>
+	</tr>
+	</table>
+
+<p class="MsoNormal" style="margin-left: 3.0pt">&nbsp;</p>
+<p class="MsoNormal" style="margin-left: 3.0pt">The following internal NPfIT 
+Change Requests (Raised Issues) have been addressed in this release.</p>
+<ul>
+	<li>
+	<p class="TableText">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0658%20-%20PSIS-Q%20Updates%20-%20IM%20mods%20&%20links,%20message%20examples.doc.html">CR-0658</a> - Tabular views and schemas updated so that withdrawingEventId is not optional (15915) and DissentOverride is not CNE 
+	not CWE (15071). </li>
+	<li>
+	<p class="TableText">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0322%20-%20definitionofdissent.doc.html">CR-0322</a> - Corrected definition of Dissent.</li>
+	<li>
+	<p class="TableText"><font face="Arial" size="2">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0339%20-%20psisquerydissentoverride.doc.html">CR-0339</a> - (10027) 
+	Constraint added to 'request' queries so that a person MUST be stated when DissentOverride is overridden.</font></li>
+	<li>
+	<p class="TableText">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0658%20-%20PSIS-Q%20Updates%20-%20IM%20mods%20&%20links,%20message%20examples.doc.html">CR-0658</a> - (8084, 10170, 15152) Links to example 
+	messages and schemas now corrected.</li>
+	<li>
+	<p class="TableText">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0341%20-%20psisquerystoryboards.doc.html">CR-0341</a> - (10088, 15402, 15405, 15429, 15615) All 
+	storyboards have been updated to reflect the requirements of CORE PSIS.</li>
+	<li>
+	<p class="TableText">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0340%20-%20psisqueryexamplemessageschemas.doc.html">CR-0340</a>/<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0616%20-%20PQ%20Examples%20reference%20wrong%20schema%20versions.doc.html">0616</a> - (14092) Schema versions now corrected 
+	and referenced by example messages. </li>
+	<li>
+	<p class="TableText">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0658%20-%20PSIS-Q%20Updates%20-%20IM%20mods%20&%20links,%20message%20examples.doc.html">CR-0658</a> - (14091, 14093, 14094) Examples also 
+	corrected.</li>
+	<li>
+	<p class="TableText">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0655%20-%20PSIS%20Q%20Domain%20has%20Different%20font.doc.html">CR-0655</a> - (15196) Font updated for this document.</li>
+	<li>
+	<p class="TableText">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0658%20-%20PSIS-Q%20Updates%20-%20IM%20mods%20&%20links,%20message%20examples.doc.html">CR-0658</a> - (14096) Links to response messages and 
+	schemas now added to this document.</li>
+	<li>
+	<p class="TableText">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0658%20-%20PSIS-Q%20Updates%20-%20IM%20mods%20&%20links,%20message%20examples.doc.html">CR-0658</a> - (15070, 15151)Link to PSIS Data Status vocab 
+	now added.</li>
+	<li>
+	<p class="TableText">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0658%20-%20PSIS-Q%20Updates%20-%20IM%20mods%20&%20links,%20message%20examples.doc.html">CR-0658</a> - (15430) Pink to PSIS Error Code vocab 
+	corrected.</li>
+	<li>
+	<p class="TableText">
+	<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.02/MIM-CR-0658%20-%20PSIS-Q%20Updates%20-%20IM%20mods%20&%20links,%20message%20examples.doc.html">CR-0658</a> - (14888) Query response tabular views 
+	corrected so that only 1 NHS Number OID is now referenced.</li>
+</ul>
+<p class="TableText">&nbsp;</p>
+<p class="TableText">&nbsp;</p></div>
+
+<p class="MsoNormal"><span style="font-size: 16pt"><b><a name="_Toc_Section_10">
+</a>10&nbsp;&nbsp;&nbsp; Conformance to HL7</b></span></p>
+<p class="MsoNormal">The query messages in the PSIS Query domain use the HL7 
+standard but aren't derived from messages in the ballot. The query response 
+messages use a locally defined return format that is not based on the HL7 RIM. </p>
+
+</body>
+
+</html>

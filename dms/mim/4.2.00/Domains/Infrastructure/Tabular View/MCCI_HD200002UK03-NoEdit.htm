@@ -1,0 +1,1140 @@
+<html xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Send Response Batch Wrapper Tabular View</title>
+		<style type="text/css">
+	table {empty-cells: show}
+</style>
+		<script language="JavaScript1.2">
+				
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+
+</script>
+		<style>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#maindiv {
+	overflow: auto; 
+	width: 100%; 
+	height: 90%; 
+	}
+
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+}
+</style>
+	</head>
+	<body onload="checkDOM('ds')">
+		<div id="maindiv">
+			<h1>Send Response Batch Wrapper - tabular view</h1><span id="ds" class="hypertext">No Current Link To Vocabulary</span><span id="cwe" class="hypertext">Coded With Extensions</span><span id="cne" class="hypertext">Coded No Extensions</span><table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="black">
+				<tr bgcolor="black">
+					<td height="4" colspan="10" />
+				</tr>
+				<tr>
+					<td height="35" colspan="2"><a href="MCCI_RM200002UK03.htm"><b>MCCI_IN200002UK03</b></a></td>
+					<td height="35" nowrap />
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="BatchResponse"><b>BatchResponse</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Batch;BatchResponse_c">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><strong>The Send Response Batch wrapper forms the outer wrapper for a batch of 
+							response or application acknowledgement message interactions.</strong></p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="BatchResponse">Used by: </a></font></td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>id</b> (<b><a href="../../../Data%20Types/DataTypes.htm#II">II</a></b>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Batch;BatchResponse/$id">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>A unique identifier for this acknowledgement or response batch.</p>
+								<p>The Identifier Global datatype flavour is used to carry this information as follows:</p>
+								<ul>
+									<li>A DCE UUID is held in the<em> root</em> attribute</li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>creationTime</b> (<b><a href="../../../Data%20Types/DataTypes.htm#TS">TS</a></b>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Batch;BatchResponse/$creationTime">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">The date and time that the sending system created the batch message.</p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>transmissionQuantity</b> (<b><a href="../../../Data%20Types/DataTypes.htm#INT">INT</a></b>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Batch;BatchResponse/$transmissionQuantity">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">A count of individual message interactions contained within this batch message.</p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>versionCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b><a target="_top" href="../../../Vocabulary/HL7StandardVersionCode.htm">HL7StandardVersionCode</a></b> } )</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Batch;BatchResponse/$versionCode">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>A code which identifies the version of the NPfIT 
+								Message Implementation Manual that describes the 
+								HL7 version 3 standard used to format the batch 
+								message. </p>
+								<p>The Coded Only datatype flavour is used to carry this information as follows:</p>
+								<ul>
+									<li>The <em>code</em> attribute shall contain a value from the list of codes in theHL7StandardVersionCode vocabulary.</li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>interactionId</b> (<b><a href="../../../Data%20Types/DataTypes.htm#II">II</a></b>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Batch;BatchResponse/$interactionId">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>The fixed value interaction identifier that identifies a Send Response Batch interchange.</p>
+								<p>The Identifier External datatype flavour is used to carry this information as follows:</p>
+								<ul>
+									<li>The<em> root </em>attribute shall contain an OID with the value 2.16.840.1.113883.2.1.3.2.4.12 </li>
+									<li>The <em>extension </em>attribute shall contain the value "MCCI_IN200002UKnn" where nn is the latest version number.</li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>communicationFunctionRcv</b> (<a href="#CommunicationFunctionRcv"><b>CommunicationFunctionRcv</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#CommunicationFunction;//$communicationFunctionRcv">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Identifying information about the system receiving the batch message.</p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>communicationFunctionSnd</b> (<a href="#CommunicationFunctionSnd"><b>CommunicationFunctionSnd</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#CommunicationFunction;//$communicationFunctionSnd">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Identifying information about the system sending the batch message.</p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[0..*] </b></font><b>manifestItem</b> (<a href="#ManifestItem"><b>ManifestItem</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AttentionLine;//$manifestItem">
+						A class&nbsp;which will occur once for each message 
+						interaction that is present in the batch response.</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b>batchSequenceNo</b> (<a href="#BatchSequenceNo"><b>BatchSequenceNo</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AttentionLine;//$batchSequenceNo">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">A class carrying the sequence number of the batch message within the sequence of batch messages relating to a single business process.</p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..*] </b></font><b>acknowledgement</b> (<a href="#Acknowledgement"><b>Acknowledgement</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Acknowledgement;//$acknowledgement">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Details about the type of acknowledgement and the 
+							batch message being acknowledged. </p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b>batchControlActEvent</b> (<a href="#BatchControlActEvent"><b>BatchControlActEvent</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#CACT;//$batchControlActEvent">
+						A batch Control Act.</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="CommunicationFunctionRcv"><b>CommunicationFunctionRcv</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#CommunicationFunction;CommunicationFunctionRcv_c">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><strong>Details about the receiving system.</strong></p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="CommunicationFunctionRcv">Used by: </a></font><a href="#BatchResponse"><b>BatchResponse</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>RCV</b></a> } ) {<b> Fixed="<font color="red">RCV</font> "</b> }</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#CommunicationFunction;BatchResponse/communicationFunctionRcv/$typeCode">
+							<p align="left" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Indicates that the communication function being served is the receiver.</p>
+							<UL>
+								<LI>Fixed value "RCV".</LI>
+							</UL>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>device</b> (<a href="#Device"><b>Device</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#DEV;//$device">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Identifying information about the receiving device.</p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="CommunicationFunctionSnd"><b>CommunicationFunctionSnd</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#CommunicationFunction;CommunicationFunctionSnd_c">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><strong>Details about the sending system.</strong></p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="CommunicationFunctionSnd">Used by: </a></font><a href="#BatchResponse"><b>BatchResponse</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>SND</b></a> } ) {<b> Fixed="<font color="red">SND</font> "</b> }</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#CommunicationFunction;BatchResponse/communicationFunctionSnd/$typeCode">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Indicates that the communication function being served is the sender.</p>
+							<UL>
+								<LI>Fixed value "SND".</LI>
+							</UL>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>device</b> (<a href="#Device"><b>Device</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#DEV;//$device">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Identifying information about the sending device.</p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="Device"><b>Device</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Device;Device_c">
+							<p align="left" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><strong>The Device class represents the sender and receiver.</strong></p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="Device">Used by: </a></font><a href="#CommunicationFunctionRcv"><b>CommunicationFunctionRcv</b></a>,<a href="#CommunicationFunctionSnd"><b>CommunicationFunctionSnd</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>DEV</b></a> } ) {<b> Fixed="<font color="red">DEV</font> "</b> }</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Device;CommunicationFunctionRcv/device/$classCode">
+							<p align="left" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Indicates that the entity is a device.</p>
+							<UL>
+								<LI>Fixed value "DEV".</LI>
+							</UL>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>determinerCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>INSTANCE</b></a> } ) {<b> Fixed="<font color="red">INSTANCE</font> "</b> }</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Device;CommunicationFunctionRcv/device/$determinerCode">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Indicates that the entity is a single instance.</p>
+							<UL>
+								<LI>Fixed value "INSTANCE".</LI>
+							</UL>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..*] </b></font><b>id</b> (<b><a href="../../../Data%20Types/DataTypes.htm#SET">SET</a>&lt;<a href="../../../Data%20Types/DataTypes.htm#II">II</a>&gt;</b>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Device;CommunicationFunctionRcv/device/$id">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>A single unique identifier of the accredited system that represents the party who is either sending or receiving the batch message. </p>
+								<p>The accredited system is represented by the SDS Accredited Application Instance Id held in the SDS directory as the Accredited System Identifier. This is carried in the following way: </p>
+								<ul>
+									<li>The <em>root</em> attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.107 </li>
+									<li>the <em>extension</em> attribute shall contain the appropriate identifier.</li>
+								</ul>
+								<p>A set of ids allows more than one address identifying the party to be present. This requirement does not exist at present but may be identified in the future.</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b>agencyFor</b> (<a href="#Agent"><b>Agent</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Device;//$agencyFor">
+							<p align="left" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><strong>An agent role linking device and organisation.</strong></p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="Acknowledgement"><b>Acknowledgement</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Acknowledgement;Acknowledgement_c">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><strong>Details about the batch message being acknowledged.</strong></p>
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+							<strong>NB. The batch acknowledgement reflects the 
+							action taken by the receiving system on the whole 
+							batch. In the case where there is not a one to one 
+							relationship between the Send and Response batches, 
+							eg, many response interactions to one request, the 
+							same acknowledgement detail will be repeated on 
+							every batch response. </strong></p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="Acknowledgement">Used by: </a></font><a href="#BatchResponse"><b>BatchResponse</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>AcknowledgementType</b></a> } )</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Acknowledgement;BatchResponse/acknowledgement/$typeCode">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>A code identifying the action that has been taken by the receiving system on the batch message being acknowledged. The code is related only to the batch process and does not reflect processing of the individual interactions.</p>
+								<p>The Coded Only datatype flavour is used to carry this information as follows:</p>
+								<ul>
+									<li>The <em>code</em> attribute shall contain a value from the list of codes in the Acknowledgement Type vocabulary.</li>
+								</ul>
+								<p>If the receiving system processes the whole batch message successfully this code shall contain the value "AA" - Application Acknowledgement Accept. This accept code is related only to the batch message process, not to the processing of individual interactions.</p>
+								<p>If the receiving system identifies a batch level business issue or error this code shall contain "AE" - Application Acknowledgement Error. This error code relates only to the batch process and not to the processing of individual interactions.</p>
+								<p>If the receiving system fails to process the whole batch message for reasons relating to the delivery of the batch message or it's structure, this code shall contain "AR" - Application Acknowledgement Reject and the error shall be reported in AcknowledgementDetail.code.</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[0..*] </b></font><b>acknowledgementDetail</b> (<a href="#AcknowledgementDetail"><b>AcknowledgementDetail</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AcknowledgementDetail;//$acknowledgementDetail">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Error detail information pertaining to the batch message being acknowledged.</p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>targetBatch</b> (<a href="#TargetBatch"><b>TargetBatch</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Transmission;//$targetBatch">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Identifying information about the batch message being acknowledged.</p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="TargetBatch"><b>TargetBatch</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Transmission;TargetBatch_c">
+							<p align="left" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><strong>The reference to the specific batch that is being acknowledged.</strong></p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="TargetBatch">Used by: </a></font><a href="#Acknowledgement"><b>Acknowledgement</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>id</b> (<b><a href="../../../Data%20Types/DataTypes.htm#II">II</a></b>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Transmission;Acknowledgement/targetBatch/$id">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>The unique identifier of the batch that is being acknowledged. This is the identifier from the Batch.id attribute of the batch message being acknowledged.</p>
+								<p>The Identifier Global datatype flavour is used to carry this information as follows:</p>
+								<ul>
+									<li>A UUID is held in the<em> root</em> attribute</li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="AcknowledgementDetail"><b>AcknowledgementDetail</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AcknowledgementDetail;AcknowledgementDetail_c">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p><strong>Additional detail about a batch message that has been processed by the receiving system and the messaging error that has been identified. A messaging error is related to the communication and delivery of the batch message or it's structure.</strong></p>
+								<p><strong>This information shall only be present when Acknowledgement.typeCode = "AR".</strong></p>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="AcknowledgementDetail">Used by: </a></font><a href="#Acknowledgement"><b>Acknowledgement</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>AcknowledgementDetailType</b></a> } )</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AcknowledgementDetail;Acknowledgement/acknowledgementDetail/$typeCode">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>A code identifying the severity of the messaging problem that has been identified.</p>
+								<p>The Coded Only datatype flavour is used to carry this information as follows:</p>
+								<ul>
+									<li>The <em>code</em> attribute shall contain a value from the list of codes in the AcknowledgementDetailType vocabulary.</li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>code</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CV">CV</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<b><a target="_top" href="../../../Vocabulary/AcknowledgementExceptionCode.htm">AcknowledgementExceptionCode</a></b> } )</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AcknowledgementDetail;Acknowledgement/acknowledgementDetail/$code">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>A code identifying the specific problem being reported.</p>
+								<p>Any of the CodedValue datatype flavours can be used to carry this information as follows:</p>
+								<ul>
+									<li>The <em>code</em> attribute shall contain a value from the list of codes in the AcknowledgementExceptionCode vocabulary. </li>
+									<li>The <em>codeSystem</em> attribute shall contain the appropriate OID. </li>
+									<li>The <em>displayName</em> attribute is optional and may contain the textual description of the code.<em></em></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="Agent"><b>Agent</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Role;Agent_c">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><strong>An agent linking device and organisation.</strong></p>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="Agent">Used by: </a></font><a href="#Device"><b>Device</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>AGNT</b></a> } ) {<b> Fixed="<font color="red">AGNT</font> "</b> }</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Role;Device/agencyFor/$classCode">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Indicates that the role is that of an agent.</p>
+							<UL>
+								<LI>Fixed value "AGNT".</LI>
+							</UL>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[0..1] </b></font><b>representedOrganization</b> (<a href="#Organization"><b>Organization</b></a>)</td>
+					<td width="50%">
+						Identifying information about the organisation.</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="Organization"><b>Organization</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Entity;Organization_c"><strong xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><p><strong>The organisation of the sender or receiver of the batch message. </strong></p>
+								<p><strong>N.B. Domain specific guidance will be given describing the population of this construct in a future MIM.</strong></p>
+							</strong></div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="Organization">Used by: </a></font><a href="#Agent"><b>Agent</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ENT</b></a> } ) {<b> Fixed="<font color="red">ENT</font> "</b> }</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Entity;Agent/representedOrganization/$classCode">
+							<p align="left" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Indicates that this is an organisation.</p>
+							<UL>
+								<LI>Fixed value "ENT".</LI>
+							</UL>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>determinerCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>INSTANCE</b></a> } ) {<b> Fixed="<font color="red">INSTANCE</font> "</b> }</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Entity;Agent/representedOrganization/$determinerCode">
+							<p xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Indicates that the entity is a single instance.</p>
+							<UL>
+								<LI>Fixed value "INSTANCE".</LI>
+							</UL>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>id</b> (<b><a href="../../../Data%20Types/DataTypes.htm#II">II</a></b>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Entity;Agent/representedOrganization/$id">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>An SDS identifier that uniquely identifies the organisation of the intended recipient. This is carried in the following way: </p>
+								<ul>
+									<li>The <em>root</em> attribute shall contain an OID with the value 1.2.826.0.1285.0.1.10 </li>
+									<li>the <em>extension</em> attribute shall contain the SDS Organisation ID</li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+					<a href="../../CMETs/Tabular%20View/UKCT_HD120300UK02-NoEdit.htm">scopedRole1</a></b>      <small><a href="../../CMETs/Tabular%20View/UKCT_RM120300UK02.htm">[CMET: UKCT_MT120301UK02]</a></small></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Organization;//$scopedRole1">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>NPfIT CMET identifying an Organization fulfilling a specific role. Full details of the organization are available from SDS. Details of the scoping organization are either not required or available from SDS.</p>
+								<p>In this context the optional CMET identifies an SDS workgroup id as the recipient of the message. The only attribute that may be populated in this context is UKCT_MT120501UK03.OrganizationSDS.id as follows:</p>
+								<ul>
+									<li>The <em>root</em> attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.109 </li>
+									<li>The <em>extension</em> attribute shall contain the SDS workgroup id.</li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>
+					<a href="../../CMETs/Tabular%20View/UKCT_HD120500UK03-NoEdit.htm">scopedRole2</a></b>      <small><a href="../../CMETs/Tabular%20View/UKCT_RM120500UK03.htm">[CMET: UKCT_MT120501UK03]</a></small></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Organization;//$scopedRole2">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>NPfIT CMET identifying a person fulfilling a specific role. Full details of the person and role profile are available from SDS.</p>
+								<p>In this context the person is the named intended recipient of the message who shall be identified by an SDS Role Profile Id and an SDS User Id. </p>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="ManifestItem"><b>ManifestItem</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AttentionLine;ManifestItem_c">
+						A class carrying a set of values relating to a specific 
+						message interaction present in the batch response 
+						message. Typically this class will be repeated for each 
+						message interaction.
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="ManifestItem">Used by: </a></font><a href="#BatchResponse"><b>BatchResponse</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>payloadId</b> (<b><a href="../../../Data%20Types/DataTypes.htm#II">II</a></b>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AttentionLine;BatchResponse/manifestItem/$payloadId">
+						The unique identifier for a specific message interaction 
+						contained within the batch response. <br>
+						<br>
+						The Identifier Global datatype flavour is used to carry 
+						this information as follows:<ul>
+							<li>A DCE UUID is held in the root attribute </li>
+						</ul>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[2..2] </b></font><b>manifestValue</b> (<a href="#ManifestValue"><b>ManifestValue</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AttentionLine;//$manifestValue">
+						The set of values relating to this message interaction.</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="BatchSequenceNo"><b>BatchSequenceNo</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AttentionLine;BatchSequenceNo_c">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p><font color="#000000"><strong>A parameter carrying a batch sequence number attribute.</strong></font></p>
+								<p><font color="#000000"><strong>The batch sequence number (BSN) is managed by the sender of a batch message.</strong></font></p>
+								<div class="Section1">
+									<p class="MsoNormal"><font color="#000000" face="Verdana"><span style="font-weight: 700; font-family: Times New Roman">The BSN is a mechanism for describing the order in which batch messages (either request or response) are sent. This mechanism is used where a business process at the sender generates multiple batch requests or responses. </span></font></p>
+									<p class="MsoNormal"><font color="#000000" face="Verdana"><span style="font-weight: 700; font-family: Times New Roman">BSNs must be unique within a <span class="SpellE">concatenation of the ebXML ConversationId</span> and the Accredited System Identifier carried in BatchRequest.communicationFunctionSnd.device.id. This allows both the sender of the request and the sender of the response to manage sequencing independently. </span></font></p>
+									<p class="MsoNormal"><font color="#000000"><strong><span style="font-family: Times New Roman">T</span><font face="Verdana"><span style="font-family: Times New Roman">he BSN will allow the receiver to physically order the in-going interactions for further processing; thus preserving message order. Message ordering is not mandatory behaviour </span></font></strong><strong><font face="Verdana"><span style="font-family: Times New Roman">it is the responsibility of <span class="GramE">the receiver</span> to determine whether it is required. </span></font></strong></font></p>
+									<p class="MsoNormal"><font color="#000000"><font color="#000000"><font face="Verdana"><span style="font-weight: 700; font-family: Times New Roman">The BSN can assist the receiver in determining missing batch messages within a sequence. A missing batch message is determined at the receiver by analysing BSNs, and looking for gaps. However, the BSN</span></font><font face="Verdana"><span style="font-weight: 700; color: maroon; font-family: Times New Roman"></span></font></font><font face="Verdana"><span style="font-weight: 700; font-family: Times New Roman"><font color="#000000"> does not aid the receiver in identifying a lost last Send Batch message. Hence, it is the responsibility of the sender to determine that batch requests have gone missing and have not been processed by the receiver. Application specific behaviour is required to recover from a missing interaction.</font></span></font></font></p>
+									<p class="MsoNormal"><font face="Verdana"><span style="font-weight: 700; font-family: Times New Roman"><font color="#000000">Due to the behavioural characteristics of batching, the responses to the individual messages in a request batch interaction can be sent in more than one response interaction. For correlation purposes, the BSN of the batch request interaction is provided in the batch response in an <span class="SpellE">AttentionLine</span> item for an individual message response.</font></span></font></p>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="BatchSequenceNo">Used by: </a></font><a href="#BatchResponse"><b>BatchResponse</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>value</b> (<b><a href="../../../Data%20Types/DataTypes.htm#II">II</a></b>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AttentionLine;BatchResponse/batchSequenceNo/$value">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>The batch sequence number will be carried in an identifier using the IdentifierExternal datatype flavour as follows:</p>
+								<ul>
+									<li>The<em> root </em>attribute shall contain an OID with the value 2.16.840.1.113883.2.1.3.2.4.18.10 </li>
+									<li>The <em>extension </em>attribute shall carry the sequence number </li>
+								</ul>
+								<p>The sequence number shall start at 0 for the first send batch message in a related sequence of batch messages and increment by 1 for each subsequent batch message. The maximum number is 99999999. If the maximum is reached, the sender must re-start at 0. </p>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="BatchControlActEvent"><b>BatchControlActEvent</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#ControlAct;BatchControlActEvent_c">
+						A batch Control Act which is 
+	mandatory and occurs once within each batch. It allows those participations 
+	that are common to all interactions in a batch, author and author1, to be 
+	carried once only.</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="BatchControlActEvent">Used by: </a></font><a href="#BatchResponse"><b>BatchResponse</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>classCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>CACT</b></a> } ) {<b> Fixed="<font color="red">CACT</font> "</b> }</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#ControlAct;BatchResponse/batchControlActEvent/$classCode">
+							<UL>
+								<LI>Fixed value "CACT".</LI>
+							</UL>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>moodCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>EVN</b></a> } ) {<b> Fixed="<font color="red">EVN</font> "</b> }</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#ControlAct;BatchResponse/batchControlActEvent/$moodCode">
+							<UL>
+								<LI>Fixed value "EVN".</LI>
+							</UL>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2" bgcolor="d0ffff"><font color="green"><b>[1..2] </b></font><b>author1</b></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#BatchControlActEvent;//$author1">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p><strong>A participation referring to one or more systems that are involved in the initiation of the 
+								batch message.</strong></p>
+								<p><strong>One instance of the participation is mandatory and shall carry the accredited service id of the system in use at the time the 
+								batch message is initiated.</strong></p>
+								<p><strong>One instance of the participation is optional and may carry the workstation id of the system being used by the logged in user at the time the 
+								batch message is initiated</strong>.</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td />
+					<td width="50%" colspan="1"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>AUT</b></a> } ) {<b> Fixed="<font color="red">AUT</font> "</b> }</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Participation;BatchControlActEvent/author1/$typeCode">
+							<p align="left" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Indicates that the role has author responsibility.</p>
+							<UL>
+								<LI>Fixed value "AUT".</LI>
+							</UL>
+						</div>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td />
+					<td width="50%" colspan="1"><font color="green"><b>[1..1] </b></font><b>
+					<a href="../../CMETs/Tabular%20View/UKCT_HD121000UK01-NoEdit.htm">agent</a></b>      <small><a href="../../CMETs/Tabular%20View/UKCT_RM121000UK01.htm">[CMET: UKCT_MT121001UK01]</a></small></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#BatchControlActEvent;//$author1">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>NPfIT CMET to identify a mandatory system which could be software or hardware. Full details of the system are available from SDS.</p>
+								<p>In this context the system is a system in use at the time the message is initiated. This shall be represented by either the SDS Accredited Application Instance Id held in the SDS directory as the Accredited System Identifier or a locally identified workstation id.</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2" bgcolor="d0ffff"><font color="green"><b>[0..1] </b></font><b>author</b></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#BatchControlActEvent;//$author">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p><strong>A participation referring to a person who is logged in at the time the message is initiated.</strong></p>
+								<p><strong>The participation is optional. It shall be present when the message is initiated by a person. It shall not be present when the message is automaticallyinitiated by a system.</strong></p>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td />
+					<td width="50%" colspan="1"><font color="green"><b>[1..1] </b></font><b>typeCode</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CS">CS</a></b> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>AUT</b></a> } ) {<b> Fixed="<font color="red">AUT</font> "</b> }</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Participation;BatchControlActEvent/author/$typeCode">
+							<p align="left" xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Indicates that the role has author responsibility.</p>
+							<UL>
+								<LI>Fixed value "AUT".</LI>
+							</UL>
+						</div>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td />
+					<td width="50%" colspan="1"><font color="green"><b>[1..1] </b></font><b>
+					<a href="../../CMETs/Tabular%20View/UKCT_HD120900UK01-NoEdit.htm">agent</a></b>      <small><a href="../../CMETs/Tabular%20View/UKCT_RM120900UK01.htm">[CMET: UKCT_MT120901UK01]</a></small></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#BatchControlActEvent;//$author">
+							<div xmlns="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+								<p>NPfIT CMET to identify a person fulfilling a specific role where the Person, Role Profile and JobRole are all mandatory. Full details of the person, role profile and job role are available from SDS.</p>
+								<p>In this context the person is the signed in user for the user session responsible for initiating the message. The person shall be identified by SDS Role Profile ID, SDS User Id and SDS Role Id.</p>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..*] </b></font><b>message</b> (<a href="#Message"><b>Message</b></a>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#Message;//$message">
+						A link to one or more message interactions contained 
+						within the batch.</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="ManifestValue"><b>ManifestValue</b></a></td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AttentionLine;ManifestValue_c">
+						<b>A set of unique identifiers relating to a single message 
+						interaction contained in the batch. </b>
+						<p><b>In this instance the batch response mandates the 
+						inclusion of two unique identifiers per message 
+						interaction:</b></p>
+						<ul>
+							<li><b>&nbsp;interaction identifier</b></li>
+							<li><b>batch sequence number</b></li>
+						</ul>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="ManifestValue">Used by: </a></font><a href="#ManifestItem"><b>ManifestItem</b></a>,</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>manifestItemKey</b> (<b><a href="../../../Data%20Types/DataTypes.htm#CV">CV</a> 
+					{CNE:<a href="../../../Vocabulary/ManifestItemType.htm">ManifestItemType</a>}</b>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AttentionLine;ManifestItem/manifestValue/$manifestItemKey">
+								<p>A keyword identifying the type of identifier.</p>
+								<p>Any of the CodedValue datatype flavours can be used to carry this information as follows:</p>
+								<ul>
+									<li>The <em>code</em> attribute shall contain a value from the list of codes in the 
+									ManifestItemType vocabulary. </li>
+								</ul>
+							<p>There shall be two fixed keyword values available 
+							in this instance:</p>
+						<ol>
+							<li>&quot;interaction&quot;</li>
+							<li>&quot;batchSeqNo&quot;</li>
+						</ol>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="gray">
+					<td height="1" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><b>manifestItemValue</b> (<b><a href="../../../Data%20Types/DataTypes.htm#II">II</a></b>)</td>
+					<td width="50%">
+						<div style="height: 100%; width: 100%;" contenteditable="false" id="MCCI_IN200002UK03#AttentionLine;ManifestItem/manifestValue/$manifestItemValue">
+						The value pertaining to the keyword carried in 
+						manifestItemKey.<p>Where the keyword is &quot;interaction&quot;, 
+						the value shall be the interaction identifier of the 
+						interaction identified by payloadId.</p>
+						<p>The Identifier External datatype flavour is used to 
+						carry this information as follows:</p>
+						<ul>
+							<li>The root attribute shall contain an OID with the value 
+						2.16.840.1.113883.2.1.3.2.4.12</li>
+							<li>The extension attribute shall carry the 
+							interaction identifier</li>
+						</ul>
+						<p>Where the keyword is &quot;batchSeqNo&quot;, the value shall be 
+						the batch sequence number of the interaction identified 
+						by payloadId.</p>
+						<p>The batch sequence number identifier is obtained from 
+						the batch wrapper BatchSequenceNo.value of the batch 
+						message carrying the interaction to which this response 
+						message interaction is responding. It will be carried in 
+						an identifier using the Identifier External datatype 
+						flavour as follows:</p>
+						<ul>
+							<li>The root attribute shall contain an OID with the value 
+						2.16.840.1.113883.2.1.3.2.4.18.10 </li>
+							<li>The extension attribute shall carry the sequence number.</li>
+						</ul>
+						</div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr valign="top">
+					<td bgcolor="yellow" colspan="2"><a name="Message"><b>Message</b></a></td>
+					<td width="50%">
+						<div style="height: 19px; width: 480px;" contenteditable="false" id="MCCI_IN200002UK03#Message;Message_c">
+						The entry point into each interaction within the batch.<p>
+						See <a href="BatchControlActItemRespond.htm">
+						BatchControlActItemRespond</a></div>
+					</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="3" colspan="10" />
+				</tr>
+				<tr class="mif">
+					<td align="right" colspan="1" />
+					<td colspan="10"><font color="gray"><a name="Message">Used by: </a></font><a href="#BatchControlActEvent"><b>BatchControlActEvent</b></a>,</td>
+				</tr>
+				<tr bgcolor="black">
+					<td height="4" colspan="10" />
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

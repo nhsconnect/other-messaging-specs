@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<sch:ns prefix="hl7" uri="urn:hl7-org:v3"/>
+	<sch:title>PSIS Query Checks</sch:title>
+	<sch:pattern name="Dissent Override Checks">
+		<sch:rule context="hl7:ControlActEvent">
+			<sch:report test="count(hl7:author)!=1 and (descendant::hl7:dissentOverride/hl7:value/@code!='0')">An author (person) element must exist when dissent code>0</sch:report>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Dissent Attribute Checks">
+		<sch:rule context="//hl7:dissentOverride/hl7:value">
+			<sch:report test="@code=0 and @displayName ">Invalid data type flavour (use of attribute displayName not allowed when dissent code=0)</sch:report>
+			<sch:report test="@code=0 and ./hl7:originalText ">Invalid data type flavour (use of element originalText not allowed when dissent code=0)</sch:report>
+			<sch:report test="@code!=0 and not(@displayName) ">Invalid data type flavour (display name must be present when dissent code>0)</sch:report>
+			<sch:report test="@code!=0 and not(./hl7:originalText) ">Invalid data type flavour (use of element originalText must be present when dissent code>0)</sch:report>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Filter Parameter Checks">
+		<sch:rule context="//hl7:filterParameters">
+			<sch:report test="./hl7:setId and (./hl7:documentType or ./hl7:date)">Error - setId cannot be present when documentType or date is present</sch:report>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

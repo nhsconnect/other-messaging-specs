@@ -1,0 +1,1748 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 10 (filtered)">
+<title>Batching - Multi-Version Batching in ETP Pharmacy Downloads</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+span.MsoFootnoteReference
+	{vertical-align:super;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-GB>
+
+<div class=Section1>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt'>Multi-Version Batching in
+ETP Pharmacy Downloads</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt'>Draft for discussion –
+v0.5</span></b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Damian Murphy, 10 June 2005</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b>Introduction</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>[MVBI] describes a general
+mechanism for handling batch content in HL7 messages, where the types (multiple
+versions) of batch items are unknown at design time. An example of this is
+found in ETP, where a pharmacy may be nominated dispenser for patients from a
+number of differently-versioned prescribing systems. This document describes
+such a case in detail.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><b>Scenario</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>In the case where a patient
+presents a prescription token to a pharmacist, the pharmacy system will request
+that prescription, singly, from the ETP service. In the case where the
+pharmacist is nominated (for example, at the patient’s request), the pharmacy
+will request from the ETP service those prescriptions expected to be collected.
+These scenarios are described in detail in storyboards 2.2 and 2.3 in [M4MM].</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>In the case where the
+pharmacist receives nominated prescriptions from more than one prescriber,
+there will be periods where more than one version of the prescription message
+must be handled. For the pharmacy system itself, this situation is covered by
+the ETP version management approach, which requires any message receivers to be
+able to process any extant version. For the nominated pharmacy download itself,
+there is a need for a way to carry multiple versions of prescription messages,
+since the alternative is for the pharmacy system to know which versions are
+extant, and separately to request prescriptions for each version.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>For nominated pharmacy
+downloads, prescriptions are returned by ETP in date order, without regard to
+version. Use of the “type-grouped” batch pattern would impose an unacceptable
+performance penalty on the ETP service, and break the required ordering. As
+such, the “flat-type” pattern is used.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><b>The Batch Pattern and the PrescriptionReleaseResponse
+Model</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The “flat-type batch pattern”
+is given in [MVBI] as:</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><img
+width=554 height=163
+src="Multi-Version_Batching_In_ETP_Pharmacy_Downloads_files/image001.gif"></p>
+
+<p class=MsoCaption align=center style='text-align:center'>Figure 1. Batch Pattern</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The pattern is used as a
+framework, around which are built the application-specific requirements. In
+this case, the PrescriptionReleaseResponse model is constructed by adding
+structures to support the prescription download application. The “BatchPayload”
+and “AbstractBatchContent” classes are also renamed for clarity:</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><img
+width=553 height=220
+src="Multi-Version_Batching_In_ETP_Pharmacy_Downloads_files/image002.gif"></p>
+
+<p class=MsoCaption align=center style='text-align:center'>Figure 2. Example implementation: PrescriptionReleaseResponse</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The
+AbstractPrescriptionResponse is never instantiated. [M3110MM] has an explicit
+model of a prescription download response that contains a single, fixed
+prescription (of a single, fixed version) suitable for the
+patient-presents-token use case. </span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>In the above model, each
+instance of PrescriptionResponse is founding a PrescriptionReleaseResponse/component
+element that identifies the type (version) of the content, then contains the
+content itself. Considering an HL7 payload model with
+PrescriptionReleaseResponse as the root element, and omitting the
+application-specific data and most of the structural attributes, we get the
+structure shown below.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>&lt;PrescriptionReleaseResponse&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>       &lt;component
+typeCode=&quot;COMP&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>              &lt;templateId
+root=&quot;OID.for.PrescriptionResponse.Versions&quot;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>                     extension=&quot;PORX_MT132004UKyy&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>              &lt;PrescriptionResponse&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>                     &lt;!--
+MiM 4.y prescription response --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>              &lt;/PrescriptionResponse&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>       &lt;/component&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>       &lt;component
+typeCode=&quot;COMP&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>              &lt;templateId
+root=&quot;OID.for.PrescriptionResponse.Versions&quot;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>                     extension=&quot;PORX_MT132004UKzz&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>              &lt;PrescriptionResponse&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>                     &lt;!--
+MiM 4.z prescription response --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>              &lt;/PrescriptionResponse&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>       &lt;/component&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>       &lt;component
+typeCode=&quot;COMP&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>              &lt;templateId
+root=&quot;OID.for.PrescriptionResponse.Versions&quot;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>                     extension=&quot;PORX_MT132004UKyy&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>              &lt;PrescriptionResponse&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>                     &lt;!--
+MiM 4.y prescription response --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>              &lt;/PrescriptionResponse&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>       &lt;/component&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'>&lt;/PrescriptionReleaseResponse&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>In this case, the nominated
+pharmacy has made a single, version-agnostic request to the ETP service. ETP
+has responded with a batch containing two “version yy” and one “version zz”
+prescriptions. The order in which versions are presented is not enforced in the
+message, so the component/sequenceNumber is omitted. Similarly, although this
+is implemented as a “batch” (as in a “batch response”) it is really more of an
+object query response with a multi-versioned result set. As such there is no
+specified batch control and the SET&lt;II&gt; BatchPayload/id element, which is
+included in the flat-typed pattern to support batch manifests, is omitted from
+the PrescriptionBatchHeader.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><b>Pharmacy Systems Processing Model</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The pharmacy system, as a
+message receiver, is required by ETP version management policy to be able to
+process both “version yy” and “version zz” of the PrescriptionResponse payload.
+The PrescriptionReleaseResponse message itself is implemented as a “placeholder”,
+as described in [MVBI] and is not re-versioned to handle the new prescription
+message version. The PrescriptionReleaseResponse/component class itself does
+not care about the details of the payload type, it merely carries an identifier<a
+href="#_ftn1" name="_ftnref1" title=""><span class=MsoFootnoteReference><span
+class=MsoFootnoteReference><span style='font-size:11.0pt;font-family:"Times New Roman"'>[1]</span></span></span></a>
+for its content type in the templateId<a href="#_ftn2" name="_ftnref2" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:11.0pt;font-family:"Times New Roman"'>[2]</span></span></span></a>
+element.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>On receipt of the
+PrescriptionReleaseResponse message, the pharmacy system will perform
+application-specific processing on the PrescriptionReleaseResponse,
+DownloadRequest and BatchInfo elements. For each PrescriptionReleaseResponse/component
+it finds, it will use the templateId/@extension attribute to determine the
+content of the component element, then pass the next element to the handler for
+that version.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><b>XML Schema Documents and Transforms</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The HL7 payload model shown
+in figure 2 uses an “abstract” class that is never instantiated. The inclusion
+of such classes is currently unsupported by the HL7 RMIM Designer tools and, as
+such, the standard XML schema generator will write an XML schema document for
+the model in figure 2 that includes the AbstractPrescriptionResponse as a
+concrete class (this XML schema document is given at appendix 1). </span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Whilst support for such
+abstract classes is an aim for improved modelling tools, in the meantime the
+“standard” output may be trivially converted into that required by
+post-processing with an XSL transform. This conversion follows the rule that
+the standard XML schema document is copied except that:</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt'><span
+style='font-size:11.0pt'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Element declarations
+(&lt;xs:element&gt;) that have abstract types, the “any content model”, have
+&lt;xs:any/&gt; substituted for the standard element.</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt'><span
+style='font-size:11.0pt'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:11.0pt'>Complex type declarations
+(&lt;xs:complexType&gt;) for abstract types are omitted.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The transform given at
+appendix 2 implements these copying rules. To support this interim solution, we
+adopt the naming convention shown in figures 1 and 2. Abstract classes are
+indicated by names of the form “Abstract*”. Assuming this, the transform gives
+the production XML schema document shown at appendix 3<a href="#_ftn3"
+name="_ftnref3" title=""><span class=MsoFootnoteReference><span
+class=MsoFootnoteReference><span style='font-size:11.0pt;font-family:"Times New Roman"'>[3]</span></span></span></a>,
+with the “anyType” substitution highlighted. </span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>Note that the use of this
+transform in a “flat-typed” instance of the pattern relies on the content model
+for the component act relationship being expressed in a sequence (i.e. child
+element ordering is enforced), and that there is a 1:1 relationship between
+component and abstract content elements.</span></p>
+
+<p class=MsoNormal><b>Running The Placeholder Transform</b></p>
+
+<p class=MsoNormal><b>&nbsp;</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>It has been noted that the
+transform given does not work correctly when executed from within the Altova
+XMLspy 2004 environment. This is manifest in spurious XML Schema attributes
+being identified for xs:element declarations and xs:complexType definitions. At
+the time of writing, other versions of this popular XML software are untested.
+However, Altova also provides a standalone XSLT environment<a href="#_ftn4"
+name="_ftnref4" title=""><span class=MsoFootnoteReference><span
+class=MsoFootnoteReference><span style='font-size:11.0pt;font-family:"Times New Roman"'>[4]</span></span></span></a>
+that executes the transform correctly. Other XSLT engines, such as that
+provided by Saxon<a href="#_ftn5" name="_ftnref5" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:11.0pt;font-family:"Times New Roman"'>[5]</span></span></span></a>,
+should also work correctly and have the advantage over XMLspy of being able to
+work on a batch of schema inputs at once. It is unclear why XMLspy 2004 should
+exhibit this behaviour, and given that alternatives exist, the transform is not
+supported inside XMLspy 2004 and any other environments that exhibit similar
+behaviour.</span></p>
+
+<p class=MsoNormal><b>&nbsp;</b></p>
+
+<p class=MsoNormal><b>Exception Handling and Failure-in-Detail</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>The current exception
+handling mechanism in the MiM “Infrastructure” domain assumes a single
+potential point of failure – or at least that any message content will result
+in errors that affect the entire payload. It does not support the concept of
+multiple content instances in the payload that might fail individually without
+invalidating the complete instance set.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>It would be attractive to
+amend the ControlAct/reason/DetectedIssueEvent model to include an “id” and
+hence to permit a reported exception to include a pointer to its location.
+However such an approach is unavailable due to the impact of such changes on
+Programme timescales<a href="#_ftn6" name="_ftnref6" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:11.0pt;font-family:"Times New Roman"'>[6]</span></span></span></a>.
+As such, a suboptimal but more pragmatic approach is to use a “batch failure”
+message to provide the functionality absent from the extant exception handling
+system:</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;page-break-after:avoid'><span
+style='font-size:10.0pt;font-family:Arial;color:blue'><img width=462
+height=236
+src="Multi-Version_Batching_In_ETP_Pharmacy_Downloads_files/image003.jpg"></span></p>
+
+<p class=MsoCaption align=center style='text-align:center'>Figure 3. Batch detail error reporting</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>This behaves in much the same
+way as the “DetectedIssueEvent” in the MiM “Infrastructure”, the difference
+being that there may be many BatchItemError instances, one for each type of
+error in the batch. The SET&lt;II&gt; id element carries the identifiers of the
+individual batch items in the original message, that exhibited that error.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>This is a synthetic message
+type introduced merely to work around exception reporting for multiple-content
+messages. It is a short-term fix only.</span></p>
+
+<p class=MsoNormal><b>References</b></p>
+
+<p class=MsoNormal><b>&nbsp;</b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>[MVBI] Multi-Version Batch
+Implementation, v0.8, Damian Murphy, </span><span
+ style='font-size:11.0pt'>8 June 2005</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>[M4MM] Medication Management
+domain, MiM 4.0a.</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>[M3110MM] Medication
+Management domain, MiM 3.1.10</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt'>&nbsp;</span></p>
+
+<span style='font-size:11.0pt;font-family:"Times New Roman"'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal><b><span style='font-size:11.0pt'>Appendix 1. “Standard”
+Schema Output for example PrescriptionReleaseResponse</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;?xml
+version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;
+standalone=&quot;no&quot;?&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;xs:schema
+targetNamespace=&quot;urn:hl7-org:v3&quot;
+elementFormDefault=&quot;qualified&quot;
+xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;
+xmlns=&quot;urn:hl7-org:v3&quot; xmlns:hl7=&quot;urn:hl7-org:v3&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:include
+schemaLocation=&quot;../dt/datatypes.xsd&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:include
+schemaLocation=&quot;../voc/voc.xsd&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:annotation&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:documentation&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              Generated
+using schema builder version 1.21p12.</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              Stylesheets:</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              RoseTreeToMIFStaticModel.xsl
+version: 1.1</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              SplitModels.xsl
+version: 1.1</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              AssocInMif.xsl
+version:1.1</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              StaticMifToXsd.xsl
+version 1.1&lt;/xs:documentation&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:annotation&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;!--</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>*****************************************************************************************************************</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>*
+XML schema for message type .</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>*
+Generated by XMLITS version 1.21p12, Copyright (C) 2002, 2003 by Health Level
+7, Inc.</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>*</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>*
+Copyright (c) 2002, 2003, Health Level Seven. All rights reserved.</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+Redistribution and use in source and binary forms, with or without</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+modification, are permitted provided that the following conditions</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+are met:</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+1. Redistributions of source code must retain the above copyright</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>*    
+notice, this list of conditions and the following disclaimer.</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+2. Redistributions in binary form must reproduce the above copyright</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>*    
+notice, this list of conditions and the following disclaimer in the</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>*    
+documentation and/or other materials provided with the distribution.</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+3. All advertising materials mentioning features or use of this software</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>*    
+must display the following acknowledgement:</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>*      
+This product includes software developed by Health Level Seven.</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+THIS SOFTWARE IS PROVIDED BY HEALTH LEVEL SEVEN, INC. AND CONTRIBUTORS &quot;AS
+IS&quot; AND</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>* 
+SUCH DAMAGE.</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>*</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>********************************************************************************************************************</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>--&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:element
+name=&quot;PrescriptionReleaseResponse&quot;
+type=&quot;PORX_MT122002UK30.PrescriptionReleaseResponse&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.PrescriptionReleaseResponse&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;id&quot; type=&quot;II&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;effectiveTime&quot; type=&quot;TS&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;component&quot; type=&quot;PORX_MT122002UK30.Component&quot;
+maxOccurs=&quot;unbounded&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;pertinentInformation&quot;
+type=&quot;PORX_MT122002UK30.PertinentInformation17&quot;
+minOccurs=&quot;0&quot; maxOccurs=&quot;2&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;inFulfillmentOf&quot;
+type=&quot;PORX_MT122002UK30.InFulfillmentOf1&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;ControlAct&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;classCode&quot; type=&quot;ActClass&quot; use=&quot;optional&quot;
+default=&quot;INFO&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;moodCode&quot; type=&quot;ActMood&quot; use=&quot;optional&quot;
+default=&quot;EVN&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                            &lt;xs:list
+itemType=&quot;cs&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot; use=&quot;optional&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.Component&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;seperatableInd&quot; type=&quot;BL&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;templateId&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xs:attribute
+name=&quot;root&quot; use=&quot;required&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                &lt;xs:restriction
+base=&quot;uid&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                       &lt;xs:enumeration
+value=&quot;2.16.840.1.113883.2.1.3.2.4.18.2&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                &lt;/xs:restriction&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xs:attribute
+name=&quot;extension&quot; use=&quot;required&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                &lt;xs:restriction
+base=&quot;st&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xs:attribute
+name=&quot;assigningAuthorityName&quot; type=&quot;st&quot;
+use=&quot;optional&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xs:attribute
+name=&quot;displayable&quot; type=&quot;bl&quot; use=&quot;optional&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;abstractPrescriptionResponse&quot;
+type=&quot;PORX_MT122002UK30.AbstractPrescriptionResponse&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;ActRelationship&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeCode&quot; type=&quot;ActRelationshipType&quot;
+use=&quot;optional&quot; default=&quot;COMP&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;contextConductionInd&quot; type=&quot;bl&quot;
+use=&quot;optional&quot; default=&quot;false&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot; use=&quot;optional&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.AbstractPrescriptionResponse&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;id&quot; type=&quot;II&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;typeId&quot; type=&quot;II&quot; minOccurs=&quot;0&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;ControlAct&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;classCode&quot; type=&quot;ActClass&quot; use=&quot;optional&quot;
+default=&quot;INFO&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;moodCode&quot; type=&quot;ActMood&quot; use=&quot;optional&quot;
+default=&quot;EVN&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot; use=&quot;optional&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.PertinentInformation17&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;seperatableInd&quot; type=&quot;BL&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;pertinentBatchInfo&quot; type=&quot;PORX_MT122002UK30.BatchInfo&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;ActRelationship&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeCode&quot; type=&quot;ActRelationshipType&quot;
+use=&quot;optional&quot; default=&quot;PERT&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;contextConductionInd&quot; type=&quot;bl&quot;
+use=&quot;optional&quot; default=&quot;true&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot; use=&quot;optional&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.BatchInfo&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;code&quot; type=&quot;CD&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;value&quot; type=&quot;INT&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;Observation&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;classCode&quot; type=&quot;ActClass&quot; use=&quot;optional&quot;
+default=&quot;OBS&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;moodCode&quot; type=&quot;ActMood&quot; use=&quot;optional&quot;
+default=&quot;EVN&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot; use=&quot;optional&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.InFulfillmentOf1&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;seperatableInd&quot; type=&quot;BL&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;priorDownloadRequestRef&quot;
+type=&quot;PORX_MT122002UK30.DownloadRequestRef&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;ActRelationship&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeCode&quot; type=&quot;ActRelationshipType&quot;
+use=&quot;optional&quot; default=&quot;FLFS&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;inversionInd&quot; type=&quot;bl&quot; use=&quot;optional&quot;
+default=&quot;false&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;negationInd&quot; type=&quot;bl&quot; use=&quot;optional&quot;
+default=&quot;false&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot; use=&quot;optional&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.DownloadRequestRef&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;id&quot; type=&quot;II&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;ControlAct&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;classCode&quot; type=&quot;ActClass&quot; use=&quot;optional&quot;
+default=&quot;INFO&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;moodCode&quot; type=&quot;ActMood&quot; use=&quot;optional&quot;
+default=&quot;RQO&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot; use=&quot;optional&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;/xs:schema&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<span style='font-size:9.0pt;font-family:"Courier New"'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal><b><span style='font-size:11.0pt'>Appendix 2. “Placeholder”
+Transform</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;?xml
+version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;xsl:stylesheet
+version=&quot;1.0&quot;
+xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;
+xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xsl:output
+version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; indent=&quot;yes&quot;/&gt; </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;!--</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              Multi-Version-Placeholder-Transform</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              Version:
+1.2, </span><span style='font-size:8.0pt;font-family:"Courier New"'>9 June 2005</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              Damian
+Murphy &lt;damian.murphy@npfit.nhs.uk&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              NHS
+Connecting For Health NPfIT Comms &amp; Messaging Team</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              Clone
+XML schema document, removing type declarations for abstract types, and
+replacing</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     abstract
+element declarations with xs:anyType content models.</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     TODO:
+Put a check into the &quot;xs:any&quot; model writer to make sure that the
+parent Act carries the HL7</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     templateId
+&quot;attribute&quot; (i.e. element declaration)</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xsl:template
+match=&quot;/&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xsl:apply-templates/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xsl:template&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xsl:template
+match=&quot;@*|node()&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xsl:copy&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xsl:for-each
+select=&quot;@*&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xsl:variable
+name=&quot;aName&quot; select=&quot;name()&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xsl:attribute
+name=&quot;{$aName}&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xsl:value-of
+select=&quot;.&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;/xsl:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xsl:for-each&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                      &lt;xsl:for-each
+select=&quot;*&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xsl:call-template
+name=&quot;process&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;xsl:with-param
+name=&quot;this&quot;  select=&quot;.&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;/xsl:call-template&gt;              </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                      &lt;/xsl:for-each&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xsl:copy&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xsl:template&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xsl:template
+name=&quot;process&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xsl:param
+name=&quot;this&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xsl:variable
+name=&quot;eName&quot; select=&quot;name($this)&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xsl:choose&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;!--</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           Just
+skip a complexType declaration for an Abstract type</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xsl:when
+test=&quot;($eName = 'xs:complexType') and
+contains($this/@name,'.Abstract')&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;!--
+</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           Use
+&lt;xs:any/&gt; in place of an element declaration with an Abstract type </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xsl:when
+test=&quot;($eName = 'xs:element') and
+contains($this/@type,'.Abstract')&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xsl:element
+name=&quot;xs:any&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xsl:when&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;!--</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           Otherwise
+just clone the node</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     --&gt;                  </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xsl:otherwise&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xsl:element
+name=&quot;{$eName}&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xsl:for-each
+select=&quot;$this/@*&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;xsl:variable
+name=&quot;aName&quot; select=&quot;name()&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;xsl:attribute
+name=&quot;{$aName}&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                &lt;xsl:value-of
+select=&quot;.&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;/xsl:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;/xsl:for-each&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xsl:choose&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;xsl:when
+test=&quot;not($this/*)&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                &lt;xsl:value-of
+select=&quot;string($this)&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;/xsl:when&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;xsl:otherwise&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                &lt;xsl:for-each
+select=&quot;$this/*&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                       &lt;xsl:call-template
+name=&quot;process&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                              &lt;xsl:with-param
+name=&quot;this&quot; select=&quot;.&quot;/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                       &lt;/xsl:call-template&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                &lt;/xsl:for-each&gt;                   </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;/xsl:otherwise&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;/xsl:choose&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;/xsl:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xsl:otherwise&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xsl:choose&gt;        </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xsl:template&gt;      </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;/xsl:stylesheet&gt;<br
+clear=all style='page-break-before:always'>
+</span><b><span style='font-size:11.0pt'>Appendix 3. Transformed XML Schema
+document</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:11.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;?xml
+version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;!-- This is a
+non-standard &quot;strict&quot; version of an NPfIT schema, with optional
+elements made required and II/CV types tightened --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;!--
+It is provided &quot;without prejudice&quot; with no guarantee of fitness for
+any purpose --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;!--
+Produced by XSDStrictMaker v1.5, Definition file v1.2, Rik Smithies </span><span style='font-size:8.0pt;font-family:"Courier New"'>15/04/2005</span><span
+style='font-size:8.0pt;font-family:"Courier New"'> --&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;xs:schema
+xmlns=&quot;urn:hl7-org:v3&quot; xmlns:hl7=&quot;urn:hl7-org:v3&quot;
+xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;
+targetNamespace=&quot;urn:hl7-org:v3&quot;
+elementFormDefault=&quot;qualified&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:include
+schemaLocation=&quot;../dt/datatypes.xsd&quot;&gt;&lt;/xs:include&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:include
+schemaLocation=&quot;../voc/voc.xsd&quot;&gt;&lt;/xs:include&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:annotation&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:documentation&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              Generated
+using schema builder version 1.21p12.</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              Stylesheets:</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              </span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              RoseTreeToMIFStaticModel.xsl
+version: 1.1</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              SplitModels.xsl
+version: 1.1</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              AssocInMif.xsl
+version:1.1</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              StaticMifToXsd.xsl
+version 1.1&lt;/xs:documentation&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:annotation&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:element
+name=&quot;PrescriptionReleaseResponse&quot;
+type=&quot;PORX_MT122002UK30.PrescriptionReleaseResponse&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.PrescriptionReleaseResponse&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;id&quot; type=&quot;II&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;1&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;effectiveTime&quot; type=&quot;TS&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;1&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+type=&quot;PORX_MT122002UK30.Component&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;unbounded&quot;
+name=&quot;component&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+type=&quot;PORX_MT122002UK30.PertinentInformation17&quot;
+minOccurs=&quot;0&quot; maxOccurs=&quot;2&quot;
+name=&quot;pertinentInformation&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+type=&quot;PORX_MT122002UK30.InFulfillmentOf1&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;1&quot; name=&quot;inFulfillmentOf&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;ControlAct&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;classCode&quot; type=&quot;ActClass&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;moodCode&quot; type=&quot;ActMood&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot;
+use=&quot;optional&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.Component&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;seperatableInd&quot; type=&quot;BL&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;1&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;templateId&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xs:attribute
+name=&quot;root&quot; use=&quot;required&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                &lt;xs:restriction
+base=&quot;uid&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                       &lt;xs:enumeration
+value=&quot;2.16.840.1.113883.2.1.3.2.4.18.2&quot;&gt;&lt;/xs:enumeration&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                &lt;/xs:restriction&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xs:attribute
+name=&quot;extension&quot; use=&quot;required&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                                &lt;xs:restriction
+base=&quot;st&quot;&gt;&lt;/xs:restriction&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                         &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xs:attribute
+name=&quot;assigningAuthorityName&quot; type=&quot;st&quot;
+use=&quot;optional&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                                  &lt;xs:attribute
+name=&quot;displayable&quot; type=&quot;bl&quot;
+use=&quot;optional&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                            &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:any/&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;ActRelationship&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeCode&quot; type=&quot;ActRelationshipType&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;contextConductionInd&quot; type=&quot;bl&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot;
+use=&quot;optional&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.PertinentInformation17&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;seperatableInd&quot; type=&quot;BL&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;1&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+type=&quot;PORX_MT122002UK30.BatchInfo&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;1&quot;
+name=&quot;pertinentBatchInfo&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;ActRelationship&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeCode&quot; type=&quot;ActRelationshipType&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;contextConductionInd&quot; type=&quot;bl&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot;
+use=&quot;optional&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.BatchInfo&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;code&quot; type=&quot;CD&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;1&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;value&quot; type=&quot;INT&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;1&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;Observation&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;classCode&quot; type=&quot;ActClass&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;moodCode&quot; type=&quot;ActMood&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot;
+use=&quot;optional&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.InFulfillmentOf1&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;seperatableInd&quot; type=&quot;BL&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;1&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+type=&quot;PORX_MT122002UK30.DownloadRequestRef&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;1&quot;
+name=&quot;priorDownloadRequestRef&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;ActRelationship&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeCode&quot; type=&quot;ActRelationshipType&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;inversionInd&quot; type=&quot;bl&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;negationInd&quot; type=&quot;bl&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot;
+use=&quot;optional&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;xs:complexType
+name=&quot;PORX_MT122002UK30.DownloadRequestRef&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:element
+name=&quot;id&quot; type=&quot;II&quot; minOccurs=&quot;1&quot;
+maxOccurs=&quot;1&quot;&gt;&lt;/xs:element&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:sequence&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;type&quot; type=&quot;Classes&quot;
+default=&quot;ControlAct&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;classCode&quot; type=&quot;ActClass&quot; use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;moodCode&quot; type=&quot;ActMood&quot;
+use=&quot;required&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;typeID&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;oid&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;realmCode&quot; use=&quot;optional&quot;&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                           &lt;xs:list
+itemType=&quot;cs&quot;&gt;&lt;/xs:list&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>                     &lt;/xs:simpleType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>              &lt;xs:attribute
+name=&quot;nullFlavor&quot; type=&quot;cs&quot;
+use=&quot;optional&quot;&gt;&lt;/xs:attribute&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>       &lt;/xs:complexType&gt;</span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>&lt;/xs:schema&gt;</span></p>
+
+</div>
+
+<div><br clear=all>
+
+<hr align=left size=1 width="33%">
+
+<div id=ftn1>
+
+<p class=MsoFootnoteText><a href="#_ftnref1" name="_ftn1" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[1]</span></span></span></a>
+Note that this will require the correct assignment of an OID to describe extant
+parent prescription message versions.</p>
+
+</div>
+
+<div id=ftn2>
+
+<p class=MsoFootnoteText><a href="#_ftnref2" name="_ftn2" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[2]</span></span></span></a>
+After some discussion, the original “templateId”, rather than “typeId”, is used
+to carry this information. This is because in HL7 the “typeId” attribute is
+used to indicate the type of the “thing with the typeId” itself. The templateId
+attribute is used to provide typing information on what comes next.</p>
+
+</div>
+
+<div id=ftn3>
+
+<p class=MsoFootnoteText><a href="#_ftnref3" name="_ftn3" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[3]</span></span></span></a>
+Note that the “standard output” at appendix 1 is the basic XML schema output
+that provides defaults for HL7 structural attributes. The “placeholder”
+transform will, however, work unchanged on “tightened” schemas that enforce the
+NPfIT constraints on structural attributes, as has happened with this example.</p>
+
+</div>
+
+<div id=ftn4>
+
+<p class=MsoFootnoteText><a href="#_ftnref4" name="_ftn4" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[4]</span></span></span></a>
+Available free at http://www.altova.com/resources_freetools.html</p>
+
+</div>
+
+<div id=ftn5>
+
+<p class=MsoFootnoteText><a href="#_ftnref5" name="_ftn5" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[5]</span></span></span></a>
+Available free at http://saxon.sourceforge.net/</p>
+
+</div>
+
+<div id=ftn6>
+
+<p class=MsoFootnoteText><a href="#_ftnref6" name="_ftn6" title=""><span
+class=MsoFootnoteReference><span class=MsoFootnoteReference><span
+style='font-size:10.0pt;font-family:"Times New Roman"'>[6]</span></span></span></a>
+This is in part due to the current practice of tightly-coupling the wrapper
+structures to the payloads, an architectural flaw imposed by current tooling.</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

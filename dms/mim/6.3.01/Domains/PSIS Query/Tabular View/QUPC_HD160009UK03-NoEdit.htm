@@ -1,0 +1,560 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>PSIS Synchronisation List Query Tabular View</title><style type="text/css">
+	table {empty-cells: show}
+</style><script language="JavaScript1.2">
+				
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+
+</script><style>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#maindiv {
+	overflow: auto; 
+	width: 100%; 
+	height: 90%; 
+	}
+
+
+.hypertext
+{
+	position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+}
+
+.actclass
+{
+	background-color: red;
+}
+
+.entclass
+{
+	background-color: lightgreen;;
+}
+
+.roleclass
+{
+	background-color: yellow;;
+}
+.otherclass
+{
+	background-color: blue;
+}
+.choiceclass
+{
+	background-color: gray;
+}
+.actrelclass
+{
+	background-color: pink;
+}
+.partclass
+{
+	background-color: cyan;
+}
+.rolelinkclass
+{
+	background-color: lightyellow;
+}
+
+</style></head>
+   <body onload="checkDOM('ds')">
+      <h1>PSIS Synchronisation List Query - tabular view</h1><span id="ds" class="hypertext">No Current Link To Vocabulary</span><span id="cwe" class="hypertext">Coded With Extensions</span><span id="cne" class="hypertext">Coded No Extensions</span><p><b>Thu Jun 07 12:15:42 BST 2007</b></p>
+      <table border="1px" frame="vsides" rules="cols" cellpadding="2" cellspacing="0" bordercolor="black">
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+         <tr>
+            <td height="35" colspan="2"><a href="QUPC_RM160009UK03.htm"><b>QUPC_RM160009UK03</b></a></td>
+            <td height="35" nowrap="yes"></td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="Query"><b>Query</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div style="height: 100%; width: 100%">
+                     
+                     <p>
+                        <strong>Information about the query, in this case, a </strong>
+                        <strong>request for meta-data about all documents held on  PSIS about a given service user for a given date-range or date-from.</strong>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#"><b></b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="Query/dissentOverride"></a>dissentOverride</b> (<a href="#DissentOverride"><b>DissentOverride</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false"></div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="Query/filterParameters"></a>filterParameters</b> (<a href="#FilterParameters"><b>FilterParameters</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false"></div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="Query/nHSNumber"></a>nHSNumber</b> (<a href="#NHSNumber"><b>NHSNumber</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false"></div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="DissentOverride"><b>DissentOverride</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>To provide information about Dissent Override.</strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">DissentOverride</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div id="QUPC_HD130100UK04#ParameterItem;DissentOverride/$semanticsText" style="width: 100%; height: 100%; background-color: white">
+                     
+                     <p>A literal text string identifying the parameter item.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/DissentOverride.htm" target="_top"><b>DissentOverride</b></a> } ) {<b> Default="<font color="red">0</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div id="QUPC_HD130100UK04#ParameterItem;DissentOverride/$value" style="width: 100%; height: 100%; background-color: white">
+                     
+                     <p>To provide the value of the Dissent Override parameter.</p>
+                     
+                     <p>Where "No override" is being indicated, the Coded with Code System datatype flavour is used to carry this information as follows:</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute will contain value "0" from the list of codes in the <u>DissentOverride</u> vocabulary; 
+                        </li>
+                        
+                        <li>The <em>codeSystem</em> attribute will contain the OID referenced in the <u>DissentOverride</u> vocabulary.
+                        </li>
+                        
+                     </ul>
+                     
+                     <p>Where an override reason is being indicated, the Coded with Original Text datatype flavour is used to carry this information
+                        as follows:
+                     </p>
+                     
+                     <ul>
+                        
+                        <li>The <em>code</em> attribute will contain a value other than "0" from the list of codes in the <u>DissentOverride</u> vocabulary; 
+                        </li>
+                        
+                        <li>The <em>codeSystem</em> attribute will contain the OID referenced in the <u>DissentOverride</u> vocabulary; 
+                        </li>
+                        
+                        <li>The <em>displayName</em> attribute will contain the text meaning of the code; 
+                        </li>
+                        
+                        <li>The <em>originalText</em> sub-element will contain the textual explanation of the reason for dissent override upon which the code is based.
+                        </li>
+                        
+                     </ul>
+                     
+                     <p>
+                        <strong>Note:</strong> If DissentOverride &gt; 0 (i.e. true) then an instance of R_AgentNPFITPersonSDSWithRoleId (Author) must exist.
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="NHSNumber"><b>NHSNumber</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div id="QUPC_HD130100UK04#ParameterItem;NHSNumber_c" style="width: 100%; height: 100%; background-color: white">
+                     
+                     <p>
+                        <strong>This query parameter holds the NHS number of the patient for whom the event list is being requested.</strong>
+                        
+                     </p>
+                     
+                     <p>
+                        <strong>The NHSNumber parameter shall occur once.</strong>
+                        
+                     </p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">NHSNumber</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div id="QUPC_HD130100UK04#ParameterItem;NHSNumber/$semanticsText" style="width: 100%; height: 100%; background-color: white">
+                     
+                     <p>A literal text string identifying the parameter item.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div id="QUPC_HD130100UK04#ParameterItem;NHSNumber/$value" style="width: 100%; height: 100%; background-color: white">
+                     
+                     <p>To provide the value of the NHS number for the patient.</p>
+                     
+                     <p>The Identifier External datatype flavour is used to carry this information as follows:-</p>
+                     
+                     <ul>
+                        
+                        <li>The <em>root</em> attribute will contain an OID with the value "2.16.840.1.113883.2.1.4.1"; 
+                        </li>
+                        
+                        <li>The <em>extension</em> attribute will contain the NHS number itself.
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="FilterParameters"><b>FilterParameters</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>Filter parameters to be used with the query.</strong>
+                     <br>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#Query"><b>Query</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b><a id="FilterParameters/date"></a>date</b> (<a href="#Date"><b>Date</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false"></div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td colspan="2" class="otherclass"><a name="Date"><b>Date</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     <strong>A date from or date range parameter.</strong>
+                     <span style="font-size: 10pt; line-height: 150%; font-family: Arial"></span>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="3" colspan="10"></td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="5%"></td>
+            <td colspan="10"><font color="gray">Used by: </font><a href="#FilterParameters"><b>FilterParameters</b></a></td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>semanticsText</b> (<a href="../../../Data Types/DataTypes.htm#ST"><b>ST</b></a>) {<b> Fixed="<font color="red">Date</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div id="QUPC_HD130100UK04#ParameterItem;DissentOverride/$semanticsText" style="width: 100%; height: 100%; background-color: white">
+                     
+                     <p>A literal text string identifying the parameter item.</p>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="gray">
+            <td height="1" colspan="10"></td>
+         </tr>
+         <tr valign="top">
+            <td width="50%" colspan="2"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#IVL"><b>IVL</b></a><b>&lt;<a href="../../../Data Types/DataTypes.htm#TS"><b>TS</b></a>&gt;</b>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <p>The date from or date range required by the system to filter the data to be retrieved.</p>
+                     
+                     <p>Either just a start date or both start and end date may be specified.</p>
+                     
+                     <p>Where just a start date is specified, the Date or Time Interval After data type shall be used:                           
+                        
+                     </p>
+                     
+                     <ul>
+                        
+                        <li>The <i>low</i> attribute shall contain the start date.                              
+                        </li>
+                        
+                     </ul>
+                     
+                     <p>Where both a start and end date are specified, the Date or Time Interval  Complete data type shall be used: </p>
+                     
+                     <ul>
+                        
+                        <li>The <i>low</i> attribute shall contain the start date.                              
+                        </li>
+                        
+                        <li>The <i>high</i> attribute shall contain the end date.                             
+                        </li>
+                        
+                     </ul>
+                     
+                     <p>The accuracy of the date will always be to the millisecond and in PSIS format - YYYYMMDDhhmmss.nnn.</p>  The date range will filter on PSIS Last Update Time, in query responses this correlates to PSISDocMetaData.effectiveTime.
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr bgcolor="black">
+            <td height="4" colspan="10"></td>
+         </tr>
+      </table>
+   </body>
+</html>

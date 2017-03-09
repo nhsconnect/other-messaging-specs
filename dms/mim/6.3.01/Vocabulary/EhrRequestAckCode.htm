@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+   <head>
+      <title>Vocabulary for EhrRequestAckCode</title>
+      <style type="text/css" media="all">
+				/**/
+                                                        @import "vocabulary.css";
+                                                div.Section1
+        {page:Section1;}
+/**/
+				</style>
+   </head>
+   <body>
+      <div>
+         <h1>
+            <span class="pretitle">Vocabulary for </span>EhrRequestAckCode</h1>
+         <h2>Code System Id</h2>
+         <div class="section1_1">
+            <p>2.16.840.1.113883.2.1.3.2.4.17.101</p>
+            <table class="version">
+               <tbody>
+                  <tr>
+                     <td class="vocabheader">Version: </td>
+                     <td>2.0</td>
+                  </tr>
+                  <tr>
+                     <td class="vocabheader">Status: </td>
+                     <td>active</td>
+                  </tr>
+                  <tr>
+                     <td class="vocabheader">Date: </td>
+                     <td>2006-02-07</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <h2>Description</h2>
+         <div class="section1_2">
+            <p>Assigned OID : 2.16.840.1.113883.2.1.3.2.4.17.101</p>
+            <p>
+               <b>Use of the codes</b>
+            </p>
+            <p>
+               <i>Positive Responses</i>
+            </p>
+            <p>When constructing a positive response to a received GP2GP Message no numeric error code is used, however the typeCode is used as follows:</p>
+            <p>
+               <tt>&lt;acknowledgement typeCode = "AA"&gt;</tt>
+            </p>
+            <p>In this case the ControlActEvent will not contain a 'reason' element</p>
+            <p>
+               <i>Negative Responses</i>
+            </p>
+            <p>When constructing a negative response to a received GP2GP Message the table of numeric codes in section 3 are available for use.</p>
+            <p>Here the Acknowledgement.typeCode is used as follows:</p>
+            <p>
+               <tt>&lt;acknowledgement typeCode = "AE"&gt;</tt>
+            </p>
+            <p>In addition the ControlActEvent.reason should be populated as follows (using the relevant code from the table, as highlighted in blue below):</p>
+         </div>
+         <h2>Values</h2>
+         <div class="section1_3">
+            <table>
+               <thead class="vocabheader">
+                  <tr>
+                     <td style="width: 10%">Code</td>
+                     <td style="width: 35%">Description</td>
+                     <td>Note</td>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="retired">
+                     <td>03</td>
+                     <td>Record available but cannot be sent</td>
+                     <td>
+                        <p>
+                           <b>
+                              <i>Deprecated Code</i>
+                           </b>: This should be used in cases where the activity of sending failed for technical reasons.</p>
+                     </td>
+                  </tr>
+                  <tr class="retired">
+                     <td>04</td>
+                     <td>record unavailable</td>
+                     <td>
+                        <p>
+                           <b>
+                              <i>Deprecated Code</i>
+                           </b>: This should be used when the record is not available for viewing by the requester.  Most likely this will be as a result of the requester having no LR with the target patient, or the requester not being registered as the healthCareProvider in PDS.</p>
+                     </td>
+                  </tr>
+                  <tr class="retired">
+                     <td>05</td>
+                     <td>Record lost</td>
+                     <td>
+                        <p>
+                           <b>
+                              <i>Deprecated Code</i>
+                           </b>: This should be used when the patient is identified on the local index, but the record cannot be located on the system.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>06</td>
+                     <td>Patient not at surgery</td>
+                     <td>
+                        <p>This should be used when the patient, identified by the NHS Number in the EHR Request, cannot be located in the local index of the receiving system.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>07</td>
+                     <td>GP2GP Messaging is not enabled on this system</td>
+                     <td>
+                        <p>This should be used when a GP2GP message is received whilst the system is configured in the 'Disabled' mode.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>08</td>
+                     <td>The system's configuration prevents it from processing this message.</td>
+                     <td>
+                        <p>This should be used when a GP2GP message is received whilst the 'Safe Exchange Framework' is enabled, and the received message breaks the processing rules.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>09</td>
+                     <td>EHR Extract received without corresponding request.</td>
+                     <td>
+                        <p>This should be used when a GP2GP EHR Extract message is received by a system that has not previously sent an EHR Request message.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>10</td>
+                     <td>Failed to successfully generate EHR Extract.</td>
+                     <td>
+                        <p>This should be used when a system fails to generate the EHR Extract for sending.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>11</td>
+                     <td>Failed to successfully integrate EHR Extract.</td>
+                     <td>
+                        <p>This should be used when a system fails to successfully integrate the received EHR Extract into the clinical system.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>12</td>
+                     <td>Duplicate EHR Extract received.</td>
+                     <td>
+                        <p>This should be used when a system receives a subsequent copy of an EHR Extract after it has previously integrated one for the current registration.</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>99</td>
+                     <td>Unexpected condition.</td>
+                     <td>
+                        <p>This is a code that should only be used in circumstances where the above codes cannot be used to accurately describe the condition.</p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div align="center">
+         <p>This page conforms to the W3C XHTML 1.0 Recommendation.</p>
+         <img src="./../Core/Components_files/image008.gif"/>
+      </div>
+      <hr/>
+   </body>
+</html>

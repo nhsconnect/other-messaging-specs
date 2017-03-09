@@ -1,0 +1,536 @@
+<HTML><HEAD><TITLE>Prescription State List (Query By Requester) Query Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="Prescription State List (Query By Requester) Query" name=Entry>
+<META content=QURX_HD000003UK01 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Prescription State List (Query By Requester) Query - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="QURX_RM000003UK01.htm"><B>QURX_RM000003UK01</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Query><B>Query</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#QueryByParameter;Query_c title=QURX_HD000003UK01#Query_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>
+<P><B>The entry point to the query, which allows prescriptions to be selected by specifying </B><B>the&nbsp;requester's&nbsp;details and (optionally) prescription status parameters</B><B>.</B> </P></B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Query>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>requesterParameters</B> (<A href="#RequesterParameters"><B>RequesterParameters</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#QueryByParameter;Query/requesterParameters-RequesterParameters title=QURX_HD000003UK01#requesterParameters-RequesterParameters style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><FONT style="BACKGROUND-COLOR: #ffffff">A&nbsp;list of parameters used for specifying by&nbsp;the requseter's details.</FONT> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=RequesterParameters><B>RequesterParameters</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterList;RequesterParameters_c title=QURX_HD000003UK01#RequesterParameters_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A&nbsp;named list of parameters (name/value pairs) representing the selection criteria for querying by a requester's details.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=RequesterParameters>Used by: </A></FONT><A href="#Query"><B>Query</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>lastActivityTime</B> (<A href="#LastActivityTime"><B>LastActivityTime</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterList;RequesterParameters/lastActivityTime-LastActivityTime title=QURX_HD000003UK01#lastActivityTime-LastActivityTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Parameter to&nbsp;specify the time interval within which the prescription was last active. </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>onlyCancellationPending</B> (<A href="#OnlyCancellationPending"><B>OnlyCancellationPending</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterList;RequesterParameters/onlyCancellationPending-OnlyCancellationPending title=QURX_HD000003UK01#ParameterList/onlyCancellationPending-OnlyCancellationPending style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Parameter&nbsp;to specify only those prescriptions with&nbsp;cancellation pending.&nbsp; </P>
+<P>This parameter is reserved for future use.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>organization.id</B> (<A href="#Organization.id"><B>Organization.id</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterList;RequesterParameters/organization.id-Organization.id title=QURX_HD000003UK01#organization.id-Organization.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Parameter&nbsp;to&nbsp;specify prescriptions issued, downloaded or dispensed&nbsp;by the identified Prescriber or Dispenser organisation. </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>requesterOrganizationType</B> (<A href="#RequesterOrganizationType"><B>RequesterOrganizationType</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterList;RequesterParameters/requesterOrganizationType-RequesterOrganizationType title=QURX_HD000003UK01#requesterOrganizationType-RequesterOrganizationType style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Parameter&nbsp;to&nbsp;specify the requester organization type.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusCompleted</B> (<A href="#StatusCompleted"><B>StatusCompleted</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterList;RequesterParameters/statusCompleted-StatusCompleted title=QURX_HD000003UK01#RequesterParameters/statusCompleted-StatusCompleted style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Parameter&nbsp;to specify&nbsp;prescriptions that are completed&nbsp;(without claim). </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusCompletedClaimed</B> (<A href="#StatusCompletedClaimed"><B>StatusCompletedClaimed</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterList;RequesterParameters/statusCompletedClaimed-StatusCompletedClaimed title=QURX_HD000003UK01#RequesterParameters/statusCompletedClaimed-StatusCompletedClaimed style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Parameter&nbsp;to specify&nbsp;prescriptions that are completed&nbsp;and claimed. </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusWithDispenser</B> (<A href="#StatusWithDispenser"><B>StatusWithDispenser</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterList;RequesterParameters/statusWithDispenser-StatusWithDispenser title=QURX_HD000003UK01#statusWithDispenser-StatusWithDispenser style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Parameter to specify prescriptions that are with the dispenser. </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>statusWithDispenserActive</B> (<A href="#StatusWithDispenserActive"><B>StatusWithDispenserActive</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterList;RequesterParameters/statusWithDispenserActive-StatusWithDispenserActive title=QURX_HD000003UK01#statusWithDispenserActive-StatusWithDispenserActive style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Parameter to specify prescriptions that are with the dispenser <I>and</I> active.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>timeIssued</B> (<A href="#TimeIssued"><B>TimeIssued</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterList;RequesterParameters/timeIssued-TimeIssued title=QURX_HD000003UK01#timeIssued-TimeIssued style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Parameter to specify prescriptions&nbsp;issued&nbsp;within a specified time interval. </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=LastActivityTime><B>LastActivityTime</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;LastActivityTime_c title=QURX_HD000003UK01#LastActivityTime_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Parameter for specifiyng the time interval within which the last dispense of the prescriptions occurred. </B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=LastActivityTime>Used by: </A></FONT><A href="#RequesterParameters"><B>RequesterParameters</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;LastActivityTime/$value title=QURX_HD000003UK01#LastActivityTime.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Provides the value for the valued element structure (name-value pair) for the element specified in the query response.</P>
+<P>This data shall be carried using one of the following datatype flavours: </P>
+<P>1. the <B>Date or Time Interval After</B> where:</P>
+<UL>
+<LI>the <I>low.value</I> attribute shall contain the last activity after date&nbsp;with YYYYMMDDHHMMSS precision; or</LI></UL>
+<P>2. the <B>Date or Time Interval&nbsp;Before</B> datatype flavour where:</P>
+<UL>
+<LI>the <I>high.value</I> attribute shall contain the&nbsp;last activity before&nbsp;date with YYYYMMDDHHMMSS precision; or</LI></UL>
+<P>3. the <B>Date or Time Interval Complete</B> where:</P>
+<UL>
+<LI>the <I>low.value</I> attribute shall contain the&nbsp;last activity after date&nbsp;with YYYYMMDDHHMMSS precision; and </LI>
+<LI>the <I>high.value</I> attribute shall contain the&nbsp;last activity before&nbsp;date with YYYYMMDDHHMMSS precision.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;LastActivityTime/$semanticsText title=ParameterItem.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Provides a unique identification (the name of the name-value pair) to an element within a specified query response structure.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=OnlyCancellationPending><B>OnlyCancellationPending</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;OnlyCancellationPending_c title=QURX_HD000003UK01#OnlyCancellationPending_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Parameter&nbsp;for specifying prescriptions with&nbsp;cancellation pending. </B></P>
+<P><B>This parameter is reserved for future use, as&nbsp;currently the ETP System will operate&nbsp;with the default value of&nbsp;false.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=OnlyCancellationPending>Used by: </A></FONT><A href="#RequesterParameters"><B>RequesterParameters</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;OnlyCancellationPending/$value title=QURX_HD000003UK01#OnlyCancellationPending.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Boolean flag to&nbsp;include or exclude&nbsp;prescriptions with&nbsp;cancellation pending: </P>
+<UL>
+<LI><I>true</I> if only prescriptions with cancellation pending shall be present in the query response, or </LI>
+<LI><I>false</I> if only prescriptions without cancellation pending shall be present in the query response</LI></UL>
+<P>The value shall&nbsp;be set to <I>false </I>by default.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;OnlyCancellationPending/$semanticsText title=ParameterItem.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Provides a unique identification (the name of the name-value pair) to an element within a specified query response structure.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Organization.id><B>Organization.id</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;Organization.id_c title=QURX_HD000003UK01#Organization.id_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Parameter for specifying&nbsp;prescriptions issued, downloaded or dispensed&nbsp;by the identified Prescriber or Dispenser organisation.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Organization.id>Used by: </A></FONT><A href="#RequesterParameters"><B>RequesterParameters</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;Organization.id/$value title=QURX_HD000003UK01#Organization.id.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This is the&nbsp;prescriber site id (NACS code) if the requester organisation is a prescriber&nbsp;or the dispensing site id (NACS code) if the&nbsp;requester organisation&nbsp;is the downloading or the last dispensing site. </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;Organization.id/$semanticsText title=Organization.id.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=RequesterOrganizationType><B>RequesterOrganizationType</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;RequesterOrganizationType_c title=QURX_HD000003UK01#RequesterOrganizationType_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Parameter for identifying the requester organisation type.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=RequesterOrganizationType>Used by: </A></FONT><A href="#RequesterParameters"><B>RequesterParameters</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cwe')" onmouseout="popUp(event,'cwe')"><B>CNE</B></A>:<A href="../../../Vocabulary/RxEventQueryOrganizationType.htm"><B>RxEventQueryOrganizationType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;RequesterOrganizationType/$value title=QURX_HD000003UK01#RequesterOrganizationType.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Code indicating the requester organisation type.</P>
+<P>The&nbsp;<B>Coded&nbsp;with Codesystem&nbsp;</B>datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>the <I>code</I> attribute shall contain a value from the list of codes in the&nbsp;<U>RxEventQueryOrganizationType</U> vocabulary;</LI>
+<LI>the <I>codeSystem</I> attribute shall contain the OID value referenced in the&nbsp;<U>RxEventQueryOrganizationType</U> vocabulary. </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;RequesterOrganizationType/$semanticsText title=RequesterOrganizationType.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=StatusCompleted><B>StatusCompleted</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusCompleted_c title=QURX_HD000003UK01#StatusCompleted_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><b>Parameter&nbsp;to specify&nbsp;prescriptions that are completed&nbsp;(without claim).
+</b> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=StatusCompleted>Used by: </A></FONT><A href="#RequesterParameters"><B>RequesterParameters</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusCompleted/$value title=StatusCompleted.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Boolean flag to select prescriptions that are completed (without claim). </P>
+<UL>
+<LI>Default&nbsp;value: <I>true</I> </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusCompleted/$semanticsText title=StatusCompleted.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=StatusCompletedClaimed><B>StatusCompletedClaimed</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusCompletedClaimed_c title=QURX_HD000003UK01#StatusCompletedClaimed_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><b>Parameter&nbsp;to specify&nbsp;prescriptions that are completed&nbsp;and claimed.
+</b> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=StatusCompletedClaimed>Used by: </A></FONT><A href="#RequesterParameters"><B>RequesterParameters</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusCompletedClaimed/$value title=StatusCompletedClaimed.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Boolean flag to select prescriptions that are completed and claimed. </P>
+<UL>
+<LI>Default&nbsp;value: <I>true</I> </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusCompletedClaimed/$semanticsText title=StatusCompletedClaimed.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=StatusWithDispenser><B>StatusWithDispenser</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusWithDispenser_c title=QURX_HD000003UK01#StatusWithDispenser_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Parameter for selecting&nbsp;prescriptions that are with the dispenser.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=StatusWithDispenser>Used by: </A></FONT><A href="#RequesterParameters"><B>RequesterParameters</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusWithDispenser/$value title=QURX_HD000003UK01#StatusWithDispenser.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Boolean flag to&nbsp;select prescriptions that are with the dispenser. </P>
+<UL>
+<LI>Default&nbsp;value: <I>true</I> </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusWithDispenser/$semanticsText title=StatusWithDispenser.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=StatusWithDispenserActive><B>StatusWithDispenserActive</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusWithDispenserActive_c title=QURX_HD000003UK01#StatusWithDispenserActive_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Parameter for selecting&nbsp;prescriptions that are with the dispenser and active.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=StatusWithDispenserActive>Used by: </A></FONT><A href="#RequesterParameters"><B>RequesterParameters</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusWithDispenserActive/$value title=QURX_HD000003UK01#StatusWithDispenserActive.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Boolean flag to select prescriptions that are with the dispenser <I>and</I> active. </P>
+<UL>
+<LI>Default&nbsp;value: <I>true</I> </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;StatusWithDispenserActive/$semanticsText title=StatusWithDispenserActive.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=TimeIssued><B>TimeIssued</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;TimeIssued_c title=QURX_HD000003UK01#TimeIssued_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Parameter for specifiyng the time interval within which the&nbsp;prescription was issued. </B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=TimeIssued>Used by: </A></FONT><A href="#RequesterParameters"><B>RequesterParameters</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;TimeIssued/$value title=QURX_HD000003UK01#TimeIssued.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Provides the value for the valued element structure (name-value pair) for the element specified in the query response.</P>
+<P>This data shall be carried using one of the following datatype flavours: </P>
+<P>1. the <B>Date or Time Interval After</B> where:</P>
+<UL>
+<LI>the <I>low.value</I> attribute shall contain the issued after date&nbsp;with YYYYMMDDHHMMSS precision; or</LI></UL>
+<P>2. the <B>Date or Time Interval&nbsp;Before</B> datatype flavour where:</P>
+<UL>
+<LI>the <I>high.value</I> attribute shall contain the&nbsp;issued before&nbsp;date with YYYYMMDDHHMMSS precision; or</LI></UL>
+<P>3. the <B>Date or Time Interval Complete</B> where:</P>
+<UL>
+<LI>the <I>low.value</I> attribute shall contain the&nbsp;issued after date&nbsp;with YYYYMMDDHHMMSS precision; and</LI>
+<LI>the <I>high.value</I> attribute shall contain the&nbsp;issued before&nbsp;date with YYYYMMDDHHMMSS precision.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>semanticsText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=QURX_HD000003UK01#ParameterItem;TimeIssued/$semanticsText title=TimeIssued.semanticsText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A literal text string identifying the parameter item.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

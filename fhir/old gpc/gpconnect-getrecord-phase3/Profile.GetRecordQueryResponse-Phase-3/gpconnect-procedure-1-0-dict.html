@@ -1,0 +1,180 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>GP Connect Get Record FHIR API Implementation Guide - FHIR Implementaton Guide</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="HSCIC" />        
+        <meta name="publisher version" content=	"FHIR-Furnace : 2.5.5956.29362" />
+	
+        <link href="../dist/css/fhir.css" rel="stylesheet" />
+ 
+        <!-- Bootstrap core CSS -->
+        <link href="../dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="../dist/css/bootstrap-fhir.css" rel="stylesheet" />
+        <link href="../dist/css/bootstrap-glyphicons.css" rel="stylesheet" />
+
+        <!-- Project extras -->
+        <link href="../dist/css/project.css" rel="stylesheet" />
+        <link href="../dist/css/pygments-manni.css" rel="stylesheet" />
+
+        <script src="../dist/js/jquery.js"> </script>
+        <script src="../dist/js/bootstrap.min.js"> </script>
+
+        <script src="../dist/js/fhir.js"> </script>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-67795986-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="../dist/js/html5shiv.js"></script>
+            <script src="../dist/js/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../dist/images/apple-touch-icon-144-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../dist/images/apple-touch-icon-114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../dist/images/apple-touch-icon-72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="../dist/images/apple-touch-icon-57-precomposed.png" />
+        <link rel="shortcut icon" href="../dist/images/favicon.png" />
+
+    </head>
+    <body>
+
+        <div id="segment-header" class="segment">
+            <!-- segment-header -->
+            <div class="container">
+                <!-- container -->
+                <a id="logo" href="http://www.hscic.gov.uk">
+                    <img src="../dist/images/logo.png" alt="logo hscic" />
+                </a>
+                <div id="hl7-status">
+                    <div id="hl7-igname">
+                        <b>GP Connect Get Record FHIR API Implementation Guide</b>
+                    </div>
+                </div>
+
+                <div id="hl7-nav">
+                    <a id="hl7-logo" href="http://www.hl7.org">
+                        <img src="../dist/images/hl7-logo.png" width="42" height="50" alt="visit the hl7 website" />
+                    </a>
+                </div>
+                <!--hl7-search-->
+            </div>
+            <div class="container">
+                <!-- container -->
+            </div>
+        </div>
+        <!-- /segment-header -->
+
+
+        <div id="segment-navbar" class="segment">
+            <!-- segment-navbar -->
+            <div id="stripe"> </div>
+            <div class="container">
+                <!-- container -->
+                <!-- HEADER CONTENT -->
+
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <button data-target=".navbar-inverse-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                        </button>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <ul class="nav navbar-nav">
+
+                                        <li>
+                                            <a href='../Chapter.1.About/index.html'>About</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.2.Change History/index.html'>Change History</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.4.API Implementation/index.html'>API Implementation</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.5.Constrained FHIR Models/index.html'>Constrained FHIR Models</a>
+                                        </li>
+                                        <li>
+                                            <a href='../Chapter.6.Examples/examples.html'>Examples</a>
+                                        </li>
+
+                            </ul>
+                            <p class="navbar-text pull-right" style="padding-right: 10px;padding-top: 3px;">
+                                <span class="label label-default"  style="font-size: 95%;">Version 1.0 : DRAFT D</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+
+        <div id="segment-breadcrumb" class="segment">
+            <!-- segment-breadcrumb -->
+            <div class="container">
+                <!-- container -->
+                <ul class="breadcrumb"></ul>
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-content" class="segment">
+            <!-- segment-content -->
+            <div class="container">
+                <!-- container -->
+                <div class="row">
+                    <div class="inner-wrapper">
+                        <!-- CONTENT CONTENT -->
+                        <div class="col-12">
+                           <div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">GPConnect-Procedure-1-0</h3></div><div class="panel-body"><div xmlns="http://www.w3.org/1999/xhtml"><p><b>GPConnect-Procedure-1-0</b></p><table class="dict"><tr><td colspan="2" class="structure"><a name="Procedure"></a><b>Procedure</b></td></tr><tr><td width="150px">Definition</td><td><p>An action that is or was performed on a patient. This can be a physical intervention like an operation, or less invasive like counseling or hypnotherapy.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/procedure.html" xmlns="http://www.w3.org/1999/xhtml">Procedure</a></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.identifier"></a><b>Procedure.identifier</b></td></tr><tr><td width="150px">Definition</td><td><p>A unique identifier for the procedure.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#identifier" xmlns="http://www.w3.org/1999/xhtml">Identifier</a></td></tr><tr><td width="150px">Requirements</td><td><p>Need to allow connection to a wider workflow.</p></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.identifier.system"></a><b>Procedure.identifier.system</b></td></tr><tr><td width="150px">Definition</td><td><p>Establishes the namespace in which set of possible id values is unique.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#uri" xmlns="http://www.w3.org/1999/xhtml">Uri</a></td></tr><tr><td width="150px">Requirements</td><td><p>There are many sequences of identifiers.  To perform matching, we need to know what sequence we're dealing with. The system identifies a particular sequence or set of unique identifiers.</p></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td>Example</td><td>http://www.acme.com/identifiers/patient or urn:ietf:rfc:3986 if the Identifier.value itself is a full uri</td></tr><tr><td colspan="2" class="structure"><a name="Procedure.identifier.value"></a><b>Procedure.identifier.value</b></td></tr><tr><td width="150px">Definition</td><td><p>The portion of the identifier typically displayed to the user and which is unique within the context of the system.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a></td></tr><tr><td width="150px">Comments</td><td><p>If the value is a full URI, then the system SHALL be urn:ietf:rfc:3986.</p></td></tr><tr><td>Example</td><td>123456</td></tr><tr><td colspan="2" class="structure"><a name="Procedure.Patient"></a><b>Procedure.subject(Patient)</b></td></tr><tr><td width="150px">Definition</td><td><p>The person, animal or group on which the procedure was performed.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.status"></a><b>Procedure.status</b></td></tr><tr><td width="150px">Definition</td><td><p>A code specifying the state of the procedure. Generally this will be in-progress or completed state.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/terminologies.html">Binding</a></td><td>A code specifying the state of the procedure.<br />The codes SHALL be taken from  <a href="http://hl7.org/fhir/ValueSet/procedure-status">http://hl7.org/fhir/ValueSet/procedure-status</a></td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#code" xmlns="http://www.w3.org/1999/xhtml">Code</a></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a></td><td>True</td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.Procedure Code"></a><b>Procedure.code(Procedure Code)</b></td></tr><tr><td width="150px">Definition</td><td><p>The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. "Laparoscopic Appendectomy").</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/terminologies.html">Binding</a></td><td>A code to identify a specific procedure .<br />The codes SHALL be taken from  <a href="http://snomed.info/sct">http://snomed.info/sct</a></td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#codeableconcept" xmlns="http://www.w3.org/1999/xhtml">CodeableConcept</a></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.code.coding"></a><b>Procedure.code.coding</b></td></tr><tr><td width="150px">Definition</td><td><p>A reference to a code defined by a terminology system.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#coding" xmlns="http://www.w3.org/1999/xhtml">Coding</a></td></tr><tr><td width="150px">Requirements</td><td><p>Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings.</p></td></tr><tr><td width="150px">Comments</td><td><p>Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true.</p></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.code.coding.system"></a><b>Procedure.code.coding.system</b></td></tr><tr><td width="150px">Definition</td><td><p>The identification of the code system that defines the meaning of the symbol in the code.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#uri" xmlns="http://www.w3.org/1999/xhtml">Uri</a></td></tr><tr><td width="150px">Requirements</td><td><p>Need to be unambiguous about the source of the definition of the symbol.</p></td></tr><tr><td width="150px">Comments</td><td><p>The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously.</p></td></tr><tr><td>Fixed Value</td><td>http://snomed.info/sct</td></tr><tr><td colspan="2" class="structure"><a name="Procedure.code.coding.code"></a><b>Procedure.code.coding.code</b></td></tr><tr><td width="150px">Definition</td><td><p>A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#code" xmlns="http://www.w3.org/1999/xhtml">Code</a></td></tr><tr><td width="150px">Requirements</td><td><p>Need to refer to a particular code in the system.</p></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.code.coding.display"></a><b>Procedure.code.coding.display</b></td></tr><tr><td width="150px">Definition</td><td><p>A representation of the meaning of the code in the system, following the rules of the system.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a></td></tr><tr><td width="150px">Requirements</td><td><p>Need to be able to carry a human-readable meaning of the code for readers that do not know  the system.</p></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.code.text"></a><b>Procedure.code.text</b></td></tr><tr><td width="150px">Definition</td><td><p>A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a></td></tr><tr><td width="150px">Requirements</td><td><p>The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source.</p></td></tr><tr><td width="150px">Comments</td><td><p>Very often the text is the same as a displayName of one of the codings.</p></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.bodySite"></a><b>Procedure.bodySite</b></td></tr><tr><td width="150px">Definition</td><td><p>Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch biopsies of a lesion.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/terminologies.html">Binding</a></td><td>Codes describing anatomical locations. May include laterality.<br />The codes SHALL be taken from  <a href="http://snomed.info/sct">http://snomed.info/sct</a></td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#codeableconcept" xmlns="http://www.w3.org/1999/xhtml">CodeableConcept</a></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.bodySite.coding"></a><b>Procedure.bodySite.coding</b></td></tr><tr><td width="150px">Definition</td><td><p>A reference to a code defined by a terminology system.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#coding" xmlns="http://www.w3.org/1999/xhtml">Coding</a></td></tr><tr><td width="150px">Requirements</td><td><p>Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings.</p></td></tr><tr><td width="150px">Comments</td><td><p>Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labelled as UserSelected = true.</p></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.bodySite.coding.system"></a><b>Procedure.bodySite.coding.system</b></td></tr><tr><td width="150px">Definition</td><td><p>The identification of the code system that defines the meaning of the symbol in the code.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#uri" xmlns="http://www.w3.org/1999/xhtml">Uri</a></td></tr><tr><td width="150px">Requirements</td><td><p>Need to be unambiguous about the source of the definition of the symbol.</p></td></tr><tr><td width="150px">Comments</td><td><p>The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously.</p></td></tr><tr><td>Fixed Value</td><td>http://snomed.info/sct</td></tr><tr><td colspan="2" class="structure"><a name="Procedure.bodySite.coding.code"></a><b>Procedure.bodySite.coding.code</b></td></tr><tr><td width="150px">Definition</td><td><p>A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#code" xmlns="http://www.w3.org/1999/xhtml">Code</a></td></tr><tr><td width="150px">Requirements</td><td><p>Need to refer to a particular code in the system.</p></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.bodySite.coding.display"></a><b>Procedure.bodySite.coding.display</b></td></tr><tr><td width="150px">Definition</td><td><p>A representation of the meaning of the code in the system, following the rules of the system.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a></td></tr><tr><td width="150px">Requirements</td><td><p>Need to be able to carry a human-readable meaning of the code for readers that do not know  the system.</p></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.bodySite.text"></a><b>Procedure.bodySite.text</b></td></tr><tr><td width="150px">Definition</td><td><p>A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a></td></tr><tr><td width="150px">Requirements</td><td><p>The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source.</p></td></tr><tr><td width="150px">Comments</td><td><p>Very often the text is the same as a displayName of one of the codings.</p></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.performer"></a><b>Procedure.performer</b></td></tr><tr><td width="150px">Definition</td><td><p>Limited to 'real' people rather than equipment.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/backboneelement.html" xmlns="http://www.w3.org/1999/xhtml">BackboneElement</a></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.performer.modifierExtension"></a><b>Procedure.performer.modifierExtension</b></td></tr><tr><td width="150px">Definition</td><td><p>May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/extensibility.html#Extension" xmlns="http://www.w3.org/1999/xhtml">Extension</a></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#ismodifier">Is Modifier</a></td><td>True</td></tr><tr><td>Aliases</td><td>extensions, user content, modifiers</td></tr><tr><td width="150px">Comments</td><td><p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.performer.Performer"></a><b>Procedure.performer.actor(Performer)</b></td></tr><tr><td width="150px">Definition</td><td><p>The practitioner who was involved in the procedure.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.Date Time"></a><b>Procedure.performed[x](Date Time)</b></td></tr><tr><td width="150px">Definition</td><td><p>The date(time) over which the procedure was performed. </p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#datetime" xmlns="http://www.w3.org/1999/xhtml">DateTime</a></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.encounter"></a><b>Procedure.encounter</b></td></tr><tr><td width="150px">Definition</td><td><p>The encounter during which the procedure was performed.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.encounter.reference"></a><b>Procedure.encounter.reference</b></td></tr><tr><td width="150px">Definition</td><td><p>A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1 ?</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a></td></tr><tr><td width="150px">Comments</td><td><p>Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure "/[type]/[id]" then it should be assumed that the reference is to a FHIR RESTful server.</p></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.encounter.display"></a><b>Procedure.encounter.display</b></td></tr><tr><td width="150px">Definition</td><td><p>Plain text narrative that identifies the resource in addition to the resource reference.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a></td></tr><tr><td width="150px">Comments</td><td><p>This is generally not the same as the Resource.text of the referenced resource.  The purpose is to identify what's being referenced, not to fully describe it.</p></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.location"></a><b>Procedure.location</b></td></tr><tr><td width="150px">Definition</td><td><p>The location where the procedure actually happened.  E.g. a newborn at home, a tracheostomy at a restaurant.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td width="150px">Requirements</td><td><p>Ties a procedure to where the records are likely kept.</p></td></tr><tr><td width="150px">Comments</td><td></td></tr><tr><td colspan="2" class="structure"><a name="Procedure.location.reference"></a><b>Procedure.location.reference</b></td></tr><tr><td width="150px">Definition</td><td><p>A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1 ?</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a></td></tr><tr><td width="150px">Comments</td><td><p>Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure "/[type]/[id]" then it should be assumed that the reference is to a FHIR RESTful server.</p></td></tr><tr><td>Example</td><td>Location/1DD5FEB8-79B2-4FBC-BA54-8C1E6332C9A2</td></tr><tr><td colspan="2" class="structure"><a name="Procedure.location.display"></a><b>Procedure.location.display</b></td></tr><tr><td width="150px">Definition</td><td><p>Plain text narrative that identifies the resource in addition to the resource reference.</p></td></tr><tr><td><a href="http://www.hl7.org/fhir/conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr><tr><td><a href="http://www.hl7.org/fhir/datatypes.html">Type</a></td><td><a href="http://www.hl7.org/fhir/datatypes.html#string" xmlns="http://www.w3.org/1999/xhtml">String</a></td></tr><tr><td width="150px">Comments</td><td><p>This is generally not the same as the Resource.text of the referenced resource.  The purpose is to identify what's being referenced, not to fully describe it.</p></td></tr></table></div></div></div>
+                        </div>                      
+                    </div>
+                    <!-- /inner-wrapper -->                   
+                </div>
+                <!-- /row -->              
+            </div>
+            <!-- /container -->           
+        </div>
+    <!-- /segment-content -->
+
+        <div id="segment-footer" class="segment">
+            <!-- segment-footer -->
+            <div class="container">
+                <!-- container -->
+                <div class="inner-wrapper">
+                    <p>
+                        &copy; HSCIC 2015+. FHIR Implementation Guide. 
+                    </p>
+<!--                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> -->
+                    </p>
+                </div>
+                <!-- /inner-wrapper -->
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-post-footer" class="segment hidden">
+            <!-- segment-post-footer -->
+            <div class="container">
+                <!-- container -->
+            </div>
+            <!-- /container -->
+        </div>
+        
+    </body>
+</html>

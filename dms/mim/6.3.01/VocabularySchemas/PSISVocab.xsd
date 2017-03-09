@@ -1,0 +1,253 @@
+<xs:schema xmlns="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:hl7-org:v3" elementFormDefault="qualified">
+	<xs:include schemaLocation="../dt/datatypes.xsd"/>
+	<xs:simpleType name="DissentOverride_code">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>2.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="cs">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DissentOverride_displayName">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>2.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="st">
+			<xs:enumeration value="No override"/>
+			<xs:enumeration value="Access made in the public interest"/>
+			<xs:enumeration value="Access required by statute"/>
+			<xs:enumeration value="Access required by Court Order"/>
+			<xs:enumeration value="Query for update"/>
+			<xs:enumeration value="Override dissent with temporary patient consent"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DissentOverride_codeSystem">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>2.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.60"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CV_DissentOverride">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DissentOverride_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DissentOverride_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_DissentOverride">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="DissentOverride_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="DocumentDQState_code">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>1.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="cs">
+			<xs:enumeration value="NORMAL"/>
+			<xs:enumeration value="DQSUSPECT"/>
+			<xs:enumeration value="DQNULLIFIED"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentDQState_displayName">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>1.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="st">
+			<xs:enumeration value="Normal"/>
+			<xs:enumeration value="Data Quality Suspect"/>
+			<xs:enumeration value="Data Quality Nullified"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentDQState_codeSystem">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>1.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.189"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CV_DocumentDQState">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="DocumentDQState_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="DocumentDQState_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_DocumentDQState">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="DocumentDQState_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="PSISDataStatus_code">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>1.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="cs">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PSISDataStatus_displayName">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>1.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="st">
+			<xs:enumeration value="Normal"/>
+			<xs:enumeration value="Withdrawn"/>
+			<xs:enumeration value="Replaced"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PSISDataStatus_codeSystem">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>1.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.59"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CV_PSISDataStatus">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="PSISDataStatus_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="PSISDataStatus_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_PSISDataStatus">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="PSISDataStatus_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="QueryActType_code">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>1.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="cs">
+			<xs:enumeration value="RPLD"/>
+			<xs:enumeration value="WTHD"/>
+			<xs:enumeration value="SLAC"/>
+			<xs:enumeration value="SLIN"/>
+			<xs:enumeration value="DCOL"/>
+			<xs:enumeration value="PDMD"/>
+			<xs:enumeration value="CRST"/>
+			<xs:enumeration value="DCST"/>
+			<xs:enumeration value="DQST"/>
+			<xs:enumeration value="BSEC"/>
+			<xs:enumeration value="ESTD"/>
+			<xs:enumeration value="DMET"/>
+			<xs:enumeration value="DSMD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="QueryActType_displayName">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>1.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="st">
+			<xs:enumeration value="Replacing Document UUID"/>
+			<xs:enumeration value="Withdrawing Document UUID"/>
+			<xs:enumeration value="Seal Accessor"/>
+			<xs:enumeration value="Sealing Information"/>
+			<xs:enumeration value="Document Collection"/>
+			<xs:enumeration value="PSIS Document Metadata"/>
+			<xs:enumeration value="Care Record State"/>
+			<xs:enumeration value="Document State"/>
+			<xs:enumeration value="Document DQ State"/>
+			<xs:enumeration value="Business Section Code"/>
+			<xs:enumeration value="Estimated Document Size"/>
+			<xs:enumeration value="Document Metadata"/>
+			<xs:enumeration value="Document Section Metadata"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="QueryActType_codeSystem">
+		<xs:annotation>
+			<xs:appinfo>
+				<status>active</status>
+				<version>1.0</version>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="uid">
+			<xs:enumeration value="2.16.840.1.113883.2.1.3.2.4.17.177"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CV_QueryActType">
+		<xs:complexContent>
+			<xs:restriction base="CV">
+				<xs:sequence>
+					<xs:element name="originalText" type="ED" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="QueryActType_code" use="optional"/>
+				<xs:attribute name="codeSystem" type="QueryActType_codeSystem" use="optional"/>
+				<xs:attribute name="displayName" type="st" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CS_QueryActType">
+		<xs:complexContent>
+			<xs:restriction base="CS">
+				<xs:attribute name="code" type="QueryActType_code" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

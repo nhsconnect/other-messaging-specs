@@ -1,0 +1,1097 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Outpatient Report Implementation Manual</title>
+<link rel="stylesheet" href="../../../Core/Stylesheets/IMCommon_v2.css" type="text/css">
+</head>
+
+<body lang="EN-GB">
+
+<div id="header">
+	<p>Outpatient Implementation Manual - Version 1.6</p>
+</div>
+<div id="content">
+	<div class="Section1">
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Contents</p>
+		<div class="index1" div id="fp_TOC" class="fp_TOC">
+			<a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;Overview</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.1">1.1&nbsp;&nbsp;&nbsp;&nbsp;Domain Compliancy Statement</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.2">1.2&nbsp;&nbsp;&nbsp;&nbsp;Error Correction 
+		using CDA replacement</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.3">1.3&nbsp;&nbsp;&nbsp;&nbsp;Use of templates</a><br><a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.1">2.1&nbsp;&nbsp;&nbsp;&nbsp;Scenario 
+		Wilfred (Adult with Lipoma)</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.2">2.2&nbsp;&nbsp;&nbsp;&nbsp;Scenario 
+		for Ethel (Adult attending Cardiology Rapid Access Chest Pain Clinic)</a><br><a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report Originating System - POCD_AR170001UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.2">3.2&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report Primary Receiving System - POCD_AR170002UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.3">3.3&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report Receiving System (PSIS) - POCD_AR170003UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.4">3.4&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report Copy Recipient - POCD_AR170004UK02</a><br><a href="#_Toc_Section_4">4&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1">4.1&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report - POCD_TE170001UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.2">4.2&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report Nullify By Replacement - POCD_TE170002UK01</a><br><a href="#_Toc_Section_5">5&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.1">5.1&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report 
+		Interactions</a><br><a href="#_Toc_Section_6">6&nbsp;&nbsp;&nbsp;&nbsp;Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.1">6.1&nbsp;&nbsp;&nbsp;&nbsp;Recipient responsibilities</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.2">6.2&nbsp;&nbsp;&nbsp;&nbsp;Originator Responsibilities</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.3">6.3&nbsp;&nbsp;&nbsp;&nbsp;Primary Recipient Outpatient Report - POCD_IN170001UK06</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.4">6.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS 
+			Outpatient Report - POCD_IN170002UK06</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.5">6.5&nbsp;&nbsp;&nbsp;&nbsp;Copy Outpatient Report - POCD_IN170003UK06</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.6">6.6&nbsp;&nbsp;&nbsp;&nbsp;Nullify Outpatient Report - POCD_IN170004UK06</a><br><a href="#_Toc_Section_7">7&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1">7.1&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report - POCD_MT170001UK06
+</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1.1">7.1.1&nbsp;&nbsp;&nbsp;&nbsp;Example for Scenario for Ethel (Adult attending Cardiology Rapid Access Chest Pain Clinic)</a><br><a href="#_Toc_Section_8">8&nbsp;&nbsp;&nbsp;&nbsp;Glossary of Terms</a></div>
+		<p class="Un-numberedHeading1">&nbsp;</p>
+		<div class="index1" div id="fp_TOC0" class="fp_TOC">
+&nbsp;</div>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="2" width="100%" align="center"></div>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Change History&nbsp;&nbsp;&nbsp;
+		<a title="View Change History" style="color: blue" href="ChangeHistory/OutpatientsCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;Overview</h1>
+		<p class="MsoNormal">&quot;Summary Care Record Phase 4 Implementation&quot; includes 
+		Outpatient Report and the associated communications between PSIS, secondary 
+		care and primary care. An Outpatient Report captures clinical information 
+		that relates to the care a patient has received while attending an outpatient 
+		clinic.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">The CDA document definitions within this 
+		Implementation manual support the following care communications:</p>
+		<ul>
+			<li>
+			<p class="MsoNormal">Outpatient Report </p>
+			</li>
+		</ul>
+		<p class="MsoNormal">Some types of information require the use of CRE-types whereas others prohibit the use of CRE-types - refer to the 
+		Implementation Guidance for Suppliers or PSIS Integration Strategy 
+		documents for the recommended use of CRE-types.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">The CRE Section holds a list of ID's which are 
+		associated with the coded entries. The coded entries have a &lt;reference&gt; 
+		to the &lt;content&gt; in a text section which allows linking therefore 
+		enabling indirect association with a CRE-type. Refer to the latest 
+		version of&nbsp; &quot;<b>NPFIT-ELIBR-AREL-P1R2-0178 Technical Guidance for 
+		Implementation of Templated CDA Domains</b>&quot;&nbsp; for further information on 
+		how sections and entries are linked with text.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=_Toc_Section_1.1></a>1.1&nbsp;&nbsp;&nbsp;&nbsp;Domain Compliancy Statement</h2>
+		<p class="MsoNormal">This CDA domain document utilised within this 
+		domain complies with the conformance statement from &quot;HL7 Clinical 
+		Document Architecture, Release 2.0&quot; (2006 Normative Edition), namely :</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">&quot;<i>A conformant CDA document is one that at a 
+		minimum validates against the CDA Schema, and that restricts its use of 
+		coded vocabulary to values allowable within the specified vocabulary 
+		domains.</i>&quot;</p>
+	<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">This CDA specifications described in this domain 
+		makes use of a templating mechanism that supports both entry-level and 
+		section-level templating. NHS CFH have implemented the HL7 guidelines 
+		for CDA and have included localisations to aid the navigation of the CDA 
+		document.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">In the absence of any other machine enforceable 
+		templating constraint mechanism the NHS CFH approach is being 
+		pre-adopted.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=_Toc_Section_1.2></a>1.2&nbsp;&nbsp;&nbsp;&nbsp;Error Correction 
+		using CDA replacement</h2>
+		<p class="MsoNormal">If a document is sent in error, then the sending system 
+		should send a replacement document with the correct information using CDA 
+		replacement update semantics.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">Where this is not possible to use the above mechanism 
+		because no correcting document is available then the previous document is 
+		required to be nullified. A ‘nullify document’ document should be used and 
+		further details of this type of replacement is contained in the infrastructure 
+		domain.</p>
+		<p class="MsoNormal">Documents can also be withdrawn by a receiving 
+		system see section 6.1 for further details.</p>
+		<p class="MsoNormal">&nbsp;</p>  <h2><a name=_Toc_Section_1.3></a>1.3&nbsp;&nbsp;&nbsp;&nbsp;Use of templates</h2>
+	<p class="MsoNormal">This CDA domain uses templates and the <b>
+	<a href="../../Templates/Document%20files/Templates%20IM.htm">Template 
+	Implementation manual</a></b> should referenced for details of the templates. </p>
+	<p class="MsoNormal">For further information on templates refer to the 
+	latest version of&nbsp; <b>&quot;NPFIT-ELIBR-AREL-P1R2-0178 Technical Guidance for 
+	Implementation of Templated CDA Domains&quot;&nbsp;</b></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<hr size="3" width="100%" align="center">
+		<h1><a name=_Toc_Section_2></a>2&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</h1>
+		<p class="MsoNormal">This domain contains two storyboards:</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<ul>
+			<li>
+			<p class="MsoNormal">Scenario 
+		Wilfred (Adult with Lipoma)</li>
+		<li>
+		<p class="MsoNormal">Scenario 
+		for Ethel (Adult attending Cardiology Rapid Access Chest Pain Clinic)</li>
+</ul>
+		<p>
+		&nbsp;</p>
+<p class="MsoNormal">
+		<b>Both of these may be found in the business documentation
+<a href="../../../External%20Documents/PSIS%20CRS_CSA/BusinessModels/index.htm">
+here</a>.</b></p>
+		<hr size="3" width="100%" align="center">
+		<h1><a name=_Toc_Section_3></a>3&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</h1>
+		<p class="MsoNormal">The applications involved in the Outpatient Report 
+		processes play specific roles.&nbsp; These, along with the interactions 
+		associated with each role, are identified below.</p>
+		<h2><a name=POCD_AR170001UK02></a><a name=_Toc_Section_3.1></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report Originating System - POCD_AR170001UK02</h2>
+		<p class="MsoNormal">The Outpatient Report Originating System is responsible 
+		for sending the following Outpatient interactions:</p>
+		<ul>
+			<li>
+			<p class="MsoNormal"><i>MUST always issue a '</i>PSIS Outpatient 
+			Report<i>', with PSIS as a Primary Recipient. </i></p></li>
+			<li>
+			<p class="MsoNormal"><i>MUST issue a '</i>Primary Recipient 
+			Outpatient Report<i>' to a recipient (or recipients) where the report contains an implied action  for that recipient.
+			</i></p></li>
+			<li>
+			<p class="MsoNormal"><i>MAY issue a '</i>Copy Outpatient Report<i>' to a recipient where the report is for information or does not contain an implied action. The recipient should be a copy-to  (tracker) recipient in this case
+			</i></p></li>
+		</ul>
+		<p class="MsoNormal">Primary Recipient Outpatient Report&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5" style="color: blue">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">PSIS Outpatient Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5" style="color: blue">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">Copy Outpatient Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5" style="color: blue">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">The Outpatient Report Originating System receives responses 
+		to the above interactions from the Receiving System.&nbsp; </p>
+		<h2><a name=POCD_AR170002UK02></a><a name=_Toc_Section_3.2></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report Primary Receiving System - POCD_AR170002UK02</h2>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">The Outpatient Primary Report Receiving System receives 
+		and should indicate to the user that recommendations are contained in the 
+		document of the following Outpatient interaction:</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">Primary Recipient Outpatient Report&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5" style="color: blue">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">The Outpatient Report Primary Receiving System receives 
+		and MUST act on the following Outpatient interaction:</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">Nullify Outpatient Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5" style="color: blue">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">Outpatient Report Primary Receiving System initiates 
+		responses for the above interactions to the Outpatient Report Originating 
+		System.</p>
+		<h2><a name=POCD_AR170003UK02></a><a name=_Toc_Section_3.3></a>3.3&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report Receiving System (PSIS) - POCD_AR170003UK02</h2>
+		<p class="MsoNormal">The Outpatient Report Receiving System (PSIS) receives 
+		processes and stores the following Outpatient interactions:</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">PSIS Outpatient Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5" style="color: blue">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">The Outpatient Report Receiving System (PSIS) receives 
+		and MUST act on the following Outpatient interactions:</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">Nullify Outpatient Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5" style="color: blue">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">The Outpatient Report Receiving System (PSIS) initiates 
+		responses for the above interactions to the Outpatient Report Originating 
+		System.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=POCD_AR170004UK02></a><a name=_Toc_Section_3.4></a>3.4&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report Copy Recipient - POCD_AR170004UK02</h2>
+		<p class="MsoNormal">The Outpatient Report Copy Recipient receives the following 
+		Outpatient interaction:</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">Copy Outpatient Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5" style="color: blue">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">The Outpatient Report Copy Recipient receives and MUST 
+		act on the following Outpatient interaction:</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">Nullify Outpatient Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a title="View Interaction" href="#_Toc_Section_5" style="color: blue">
+		<img border="0" src="../../../Core/Components_files/image001.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">The Outpatient Report Copy Recipient initiates responses 
+		for the above interactions to the Outpatient Report Originating System.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h1><a name=_Toc_Section_4></a>4&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</h1>
+		<h2><a name=POCD_TE170001UK01></a><a name=_Toc_Section_4.1></a>4.1&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report - POCD_TE170001UK01</h2>
+		<p class="MsoNormal">A Outpatient Report trigger event indicates that a 
+		Outpatient Report is ready to send from the originating system.</p>
+		<h2><a name=POCD_TE170002UK01></a><a name=_Toc_Section_4.2></a>4.2&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report Nullify By Replacement - POCD_TE170002UK01</h2>
+		<p class="MsoNormal">For the Outpatient Report document to be nullified the 
+		trigger event is the realisation that the Outpatient Report document was 
+		sent in error, in that it contained an error and should never have been 
+		sent and that no correct Outpatient Report document is available to send.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		</font>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_5></a>5&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</h1>
+		<h2><a name=_Toc_Section_5.1></a>5.1&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report 
+		Interactions</h2>
+		<p class="MsoNormal">
+	<b>Note - Application 
+	Acknowledgements are sent to originating systems for notification of 
+	successful or failure handling by the receiving application.</b></p>
+		<p>&nbsp;</p>
+			<div id="b87a88e6-86d9-4f81-b711-e27b59dee849">
+		<img src="Outpatients.png" border="0" usemap="#b87a88e6-86d9-4f81-b711-e27b59dee849" />
+		<map name="b87a88e6-86d9-4f81-b711-e27b59dee849">
+			<area href="#POCD_AR170001UK02" type="rect" coords="28, 58, 252, 110" />
+			<area href="#POCD_AR170002UK02" type="rect" coords="468, 58, 692, 110" />
+			<area href="#POCD_IN170001UK06" type="rect" coords="255, 132, 465, 169" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 192, 448, 229" />
+			<area href="#POCD_IN170004UK06" type="rect" coords="287, 252, 433, 289" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 312, 448, 349" />
+			<area href="#POCD_AR170003UK02" type="rect" coords="468, 388, 692, 440" />
+			<area href="#POCD_IN170002UK06" type="rect" coords="290, 462, 431, 499" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 522, 448, 559" />
+			<area href="#POCD_IN170004UK06" type="rect" coords="287, 582, 433, 619" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 642, 448, 679" />
+			<area href="#POCD_AR170004UK02" type="rect" coords="468, 718, 692, 770" />
+			<area href="#POCD_IN170003UK06" type="rect" coords="290, 792, 431, 829" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 852, 448, 889" />
+			<area href="#POCD_IN170004UK06" type="rect" coords="287, 912, 433, 949" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="272, 972, 448, 1009" />
+
+		</map>
+	</div>		<p>&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_6></a>6&nbsp;&nbsp;&nbsp;&nbsp;Interactions</h1>
+		<p class="MsoNormal"><b>Note:- For CDA domains the interactions are bound to 
+	the &quot;<font color="#FF0000"><a href="../../CDA/NPFiT%20CDA%20using%20Templates.htm#_Toc_Section_3">NPfIT 
+	CDA generic model</a></font>&quot; and use the &quot;<font color="#FF0000"><a href="../../CDA/NPFiT%20CDA%20using%20Templates.htm#_Toc_Section_4">NPfIT 
+	CDA generic schema</a></font>&quot; instead of the &quot;NPfIT Domain CDA
+	model schema&quot;. <br>
+	The CDA Domain models are used for conformance checking of NPfIT templates 
+	after transforming the &quot;Generic NPfIT CDA&quot; instance to &quot;NPfIT Domain CDA&quot; 
+	instance.</b></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">The recipient and sender responsibilities stated in 
+		section 6.2 onwards are additional&nbsp; to the standard CDA recipient and 
+		originator responsibilities. </p>
+		<p class="MsoNormal">An NPfIT perspective of the standard CDA responsibilities 
+		are detailed within this section.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h2><a name=_Toc_Section_6.1></a>6.1&nbsp;&nbsp;&nbsp;&nbsp;Recipient responsibilities</h2>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal"><b>Assume default values where they are defined in 
+		this specification, and where the instance does not contain a value :
+		</b></p>
+		<ul>
+			<li>
+			<p class="MsoNormal">Where CDA defines default values, the recipient 
+			must assume these values in the event that no value is contained in 
+			a CDA instance.</p>
+			</li>
+		</ul>
+		<p class="MsoNormal">&nbsp;<br>
+		<b>Parse and interpret the complete CDA header : </b></p>
+		<ul>
+			<li>
+			<p class="MsoNormal">A recipient of a CDA document must be able to parse 
+			and interpret the complete CDA header. </p>
+			</li>
+			<li>
+			<p class="MsoNormal">Because applications may choose to display demographic 
+			and other CDA header data drawn from a central master directory, the 
+			rendering of the CDA document header is at the discretion of the recipient.
+			</p>
+			</li>
+			<li>
+			<p class="MsoNormal">An NPfIT style sheet is included within the MIM 
+			.Use of this style sheets is at the discretion of the recipient. </p>
+			</li>
+		</ul>
+		<p class="MsoNormal"><br>
+		<b>Parse and interpret the CDA body sufficiently to be able to render it 
+		:</b> </p>
+		<p class="MsoNormal">&nbsp;</p>
+	<ul>
+		<li>
+		<p class="MsoNormal">Where a system receives a document outside of its 
+		conformance level it may chose to only render the document </li>
+		<li>
+		<p class="MsoNormal">A recipient of a CDA document must be able to parse 
+		and interpret the body of a CDA document sufficiently to be able to 
+		render it, using the following rendering rules: </li>
+		<li>
+		<p class="MsoNormal">The CDA structured Body, the label of a section, as 
+		conveyed in the Section.title component, must be rendered.</li>
+		<li>
+		<p class="MsoNormal">A recipient of a CDA document is not required to 
+		parse and interpret the complete set of CDA entries contained within the 
+		CDA body only those applicable to the receiving systems conformance 
+		level. </li>
+		<li>
+		<p class="MsoNormal">A recipient of a CDA document on receipt of a 
+		document equal to or less than it's conformance level is required to 
+		validate a CDA document against referenced templates.</li>
+		<li>
+		<p class="MsoNormal">A recipient of a CDA document on receipt of a 
+		document with templates higher than it's conformance is not required 
+		process those coded entries and should render the textual representation 
+		only.</li>
+	</ul>
+		<p class="MsoNormal"><br>&nbsp;</p>
+		<p class="MsoNormal"><b>Error handling </b><br><br>Possible Scenario <br>
+		<br>The GP recognises that reports sent to him about his patient is not 
+		actually his patient.<br><br><b>Example 1</b><br>Incorrect NHS number used by originator. Document arrives saying this is 
+		for John Smith, NHS #, DOB etc. Where the NHS# the GP system is for Jane 
+		Smith etc.<br><br><b>Example 2</b><br>Report arrives at GP, in the next consultation with patient GP discuss 
+		report with patient, who denies he had the care. How this could occur, 
+		if someone turns up to AE and uses someone else name, address, DOB etc.
+		<br><br>A recipient on receipt of such a invalid / incorrect document may deal 
+		with errors by either</p>
+		<ul>
+			<li>
+			<p class="MsoNormal">Sending an Application Acknowledgement to the originating system stating 
+		the error type using one of the error codes from the code list for the 
+		domain contained in the relevant External Interface Specification. </p>
+			</li>
+		</ul>
+		<p class="MsoNormal">or</p>
+		<ul>
+			<li>
+			<p class="MsoNormal">The receiving system may nullify the document using a &quot;nullify document&quot; 
+		document which MUST be sent to all recipients and the originating 
+		system. <br><br><b>Note - Application 
+	Acknowledgements are sent to originating systems for notification of 
+	successful or failure handling by the receiving application.</b></p></li>
+		</ul>
+		<h2><a name=_Toc_Section_6.2></a>6.2&nbsp;&nbsp;&nbsp;&nbsp;Originator Responsibilities</h2>
+		<p class="MsoNormal"><br>
+		<b>Properly construct CDA Narrative Blocks : </b></p>
+		<ul>
+			<li>
+			<p class="MsoNormal">An originator of a CDA document must ensure that 
+			the attested portion of the document body is structured such that a 
+			recipient, adhering to the recipient responsibilities above, will correctly 
+			render the document. </p>
+			</li>
+		</ul>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal"><b>The CDA structured Body: </b></p>
+		<ul>
+			<li>
+			<p class="MsoNormal">The label of a section must be conveyed in the 
+			Section.title component.</p>
+			</li>
+			<li>
+			<p class="MsoNormal">The attested narrative contents of a section must 
+			be placed in the Section.text field, regardless of whether information 
+			is also conveyed in CDA entries. Attested multimedia referenced by URL 
+			in the narrative must not be carried in the document sent to PSIS.
+			</p>
+			</li>
+			<li>
+			<p class="MsoNormal">An originator of a CDA document is not required 
+			to fully encode all narrative into CDA entries within the CDA body only 
+			those applicable to the sending systems conformance level.&nbsp;&nbsp;
+			</p>
+			</li>
+		</ul>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal"><b>Error handling </b><br>
+		<br>
+		An Originating system on receipt of an Application Acknowledgement 
+		containing the one of the error codes from the code list for the domain 
+		contained in the relevant External Interface Specification should 
+		initiate a work stream to rectify any error by either</p>
+		<ul>
+			<li>
+			<p class="MsoNormal">Replacing the invalid document with a new correct version</p>
+			</li>
+		</ul>
+		<p class="MsoNormal">or </p>
+		<ul>
+			<li>
+			<p class="MsoNormal">by nullifying the invalid document using the &quot;Nullify Document&quot; document 
+		which MUST be sent to all recipients.<br>It should also nullify any local cache / copy as necessary.</p>
+			</li>
+		</ul>
+		<p class="MsoNormal">An Originating system on receipt of a &quot;Nullify Document&quot; document for 
+		any document it has sent, should initiate a work stream to rectify any 
+		error including nullifying any local cache / copy as necessary. </p>
+		<h2><a name=POCD_IN170001UK06></a><a name=_Toc_Section_6.3></a>6.3&nbsp;&nbsp;&nbsp;&nbsp;Primary Recipient Outpatient Report - POCD_IN170001UK06</h2>
+		<p class="MsoNormal">Communicates a Outpatient Report to a primary recipient 
+		where the recipient is recommended to act upon information carried in the 
+		document.</span></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table137">
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Sending Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span class="TableHeading">O<span style="font-weight: 400">utpatient 
+				Report Originating System </span></span></p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span class="TableHeading">
+				<span style="font-weight:normal;">
+				<a title="View Application Role" href="#_Toc_Section_3.1" style="color: blue">
+				POCD_AR170001UK02</a></span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report Receiving System</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_3.2" style="color: blue">
+				POCD_AR170002UK02</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Trigger Event" href="#_Toc_Section_4.1" style="color: blue">
+				POCD_TE170001UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Transmission Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Send Message Payload</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+				MCCI_MT010101UK12</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Control Act Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Control Act</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+				MCAI_MT040101UK03</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Message Type</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Message Type" style="color: blue" href="#_Toc_Section_7.1">
+				POCD_MT170001UK06</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">
+		<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN170001UK06.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table138">
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Reason</span></span></p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Interaction</span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">On receipt of document</p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Application Acknowledgement</p>
+				<p class="TableText">
+				<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+				MCCI_IN010000UK13</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="TableText">&nbsp;</p>
+		<p class="MsoNormal"><b>The receiving system should replace any copy of 
+		the document stored or cached on the system on receiving a new version of 
+		a document. </b></p>
+		<h2><a name=POCD_IN170002UK06></a><a name=_Toc_Section_6.4></a>
+		6.4&nbsp;&nbsp;&nbsp;&nbsp;PSIS Outpatient Report - POCD_IN170002UK06</h2>
+		<p class="MsoNormal">Communicates a Outpatient Report to PSIS for processing 
+		and storage.<br>
+&nbsp;</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table139">
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Sending Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span class="TableHeading">O<span style="font-weight: 400">utpatient 
+				Report Originating System</span></span></p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_3.1" style="color: blue">
+				POCD_AR170001UK02</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Receiving Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report Receiving System (PSIS)</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_3.3" style="color: blue">
+				POCD_AR170003UK02</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Trigger Event" href="#_Toc_Section_4.1" style="color: blue">
+				POCD_TE170001UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Transmission Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Send Message Payload</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+				MCCI_MT010101UK12</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Control Act Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Control Act</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+				MCAI_MT040101UK03</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Message Type</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Message Type" style="color: blue" href="#_Toc_Section_7.1">
+				POCD_MT170001UK06</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">
+		<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN170002UK06.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table140">
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Reason</span></span></p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Interaction</span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">On receipt of document</p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Application Acknowledgement</p>
+				<p class="TableText">
+				<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+				MCCI_IN010000UK13</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="TableText">&nbsp;</p>
+		<p class="MsoNormal"><b>The receiving system should replace any copy of 
+		the document stored or cached on the system on receiving a new version of 
+		a document. </b></p>
+		<h2><a name=POCD_IN170003UK06></a><a name=_Toc_Section_6.5></a>6.5&nbsp;&nbsp;&nbsp;&nbsp;Copy Outpatient Report - POCD_IN170003UK06</h2>
+		<p class="MsoNormal">Communicates a Outpatient Report to a copy recipient 
+		where the document is for information only and NO system action is defined.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">Note :- if the receiving system does store , process 
+		or act on information contained in this document in any way, then it must 
+		process any replacement document received in a suitable manner.</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table141">
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Sending Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span class="TableHeading">O<span style="font-weight: 400">utpatient 
+				Report Originating System</span></span></p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_3.1" style="color: blue">
+				POCD_AR170001UK02</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Receiving Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report Copy Recipient</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_3.4" style="color: blue">
+				POCD_AR170004UK02</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Trigger Event" href="#_Toc_Section_4.1" style="color: blue">
+				POCD_TE170001UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Transmission Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Send Message Payload</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+				MCCI_MT010101UK12</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Control Act Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Trigger Event Control Act</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+				MCAI_MT040101UK03</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Message Type</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Message Type" style="color: blue" href="#_Toc_Section_7.1">
+				POCD_MT170001UK06</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="TableText"><span style="color: #0000FF">&nbsp;</span></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">
+		<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN170003UK06.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table142">
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Reason</span></span></p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;">Interaction</span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">On receipt of document</p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Application Acknowledgement</p>
+				<p class="TableText">
+				<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+				MCCI_IN010000UK13</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="TableText">&nbsp;</p>
+		<p class="MsoNormal"><b>The receiving system should replace any copy of 
+		the document stored or cached on the system on receiving a new version of 
+		a document. </b></p>
+		<p class="TableText">&nbsp;</p>
+		<h2><a name=POCD_IN170004UK06></a><a name=_Toc_Section_6.6></a>6.6&nbsp;&nbsp;&nbsp;&nbsp;Nullify Outpatient Report - POCD_IN170004UK06</h2>
+		<p class="MsoNormal">Communicates the nullification (by replacement) of 
+		any Outpatient Report sent to any recipient.</p>
+		<p class="MsoNormal">Must be sent to all information recipients (including 
+		trackers ).</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table143">
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Sending Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report Originating System</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span class="TableHeading">
+				<span style="font-weight:normal;">
+				<a title="View Application Role" href="#_Toc_Section_3.1" style="color: blue">
+				POCD_AR170001UK02</a></span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report Primary Receiving System</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_3.2" style="color: blue">
+				POCD_AR170002UK02</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report Receiving System (PSIS)&nbsp;
+				</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_3.3" style="color: blue">
+				POCD_AR170003UK02</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Receiving Role</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report Copy Recipient</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Application Role" href="#_Toc_Section_3.4" style="color: blue">
+				POCD_AR170004UK02</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Trigger Event</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Outpatient Report Withdrawal</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Trigger Event" style="color: blue" href="#_Toc_Section_4.2">
+				POCD_TE170002UK01</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Transmission Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Send Message Payload</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Transmission Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1" style="color: blue">
+				MCCI_MT010101UK12</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Control Act Wrapper</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Trigger Event Control Act</p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">
+				<a title="View Control Act Wrapper" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3" style="color: blue">
+				MCAI_MT040101UK03</a></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="219" valign="top" style="width:131.15pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Message Type</span></span></p>
+				</td>
+				<td width="342" valign="top" style="width:205.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><font face="Arial" size="2">Nullification Document</font></p>
+				</td>
+				<td width="280" valign="top" style="width:168.05pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText"><span style="color: #0000FF">
+				<a href="../../Nullification/Document%20files/Nullification%20IM.htm#_Toc_Section_5.1">
+				POCD_MT130001UK05</a></span></p>
+				</td>
+			</tr>
+		</table>
+		<p class="TableText">&nbsp;</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">
+		<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/POCD_IN170004UK06.xsd">
+		<img border="0" src="../../../Core/Components_files/image002.gif" width="20" height="15"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+		<table class="MsoTableGrid" border="1" cellspacing="3" cellpadding="0" style="border:1.0pt solid windowtext;" id="table144">
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Reason</span></span></p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="MsoNormal"><span class="TableHeading">
+				<span style="font-size:10.0pt;
+  ">Interaction</span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="422" valign="top" style="width:253.2pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">On receipt of document</p>
+				</td>
+				<td width="422" valign="top" style="width:253.25pt;padding:0cm 5.4pt 0cm 5.4pt">
+				<p class="TableText">Application Acknowledgement</p>
+				<p class="TableText">
+				<a title="View Application Acknowledgement" href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2" style="color: blue">
+				MCCI_IN010000UK13</a></p>
+				</td>
+			</tr>
+		</table>
+		<p class="TableText">&nbsp;</p>
+		<p class="MsoNormal"><b>The receiving system must also nullify any copy 
+		of the document stored or cached on the system. </b></p>
+		</font>
+		<p class="TableText">&nbsp;</p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_7></a>7&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</h1>
+		<h2><a name=POCD_MT170001UK06></a><a name=_Toc_Section_7.1></a>7.1&nbsp;&nbsp;&nbsp;&nbsp;Outpatient Report - POCD_MT170001UK06
+</h2>
+		<p class="MsoNormal"><font size="3">The Outpatient Report communicates information 
+		about an Outpatient and optionally information about the care provided during 
+		the Outpatient event.</font></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">
+		<a title="View R-MIM" style="color: blue" href="../Tabular%20View/POCD_RM170001UK06.htm">
+		<img border="0" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View Tabular View" style="color: blue" href="../Tabular%20View/POCD_HD170001UK06-NoEdit.htm">
+		<img border="0" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		<a style="color: blue" href="../../../Schemas/POCD_MT170001UK06.xsd">
+		<img border="0" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;<a title="View Templates" style="color: blue;" href="../Tabular%20View/POCD_RM170001UK06-TemplateList.htm"><img src="../../../Core/Components_files/image010.GIF" border="0" height="16" width="16"></a>&nbsp;&nbsp;&nbsp;
+		<a title="View References" style="color: blue;" href="../Tabular%20View/POCD_RM170001UK06-Reference%20Usage.htm">
+		<img src="../../../Core/Components_files/image011.GIF" border="0" height="16" width="16"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a style="color: blue" href="../../../Mif/POCD_RM170001UK06-OutpatientsReport.mif">
+		<img border="0" src="../../../Core/Components_files/icon_mif.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;
+		</p>
+		<p class="MsoNormal">&nbsp;</p>
+		<h3><a name=_Toc_Section_7.1.1></a>7.1.1&nbsp;&nbsp;&nbsp;&nbsp;Example for Scenario for Ethel (Adult attending Cardiology Rapid Access Chest Pain Clinic)</h3>
+		<p class="MsoNormal">
+		&nbsp;</p>
+		<p class="MsoNormal">
+		<a style="color: blue; text-decoration: none" href="../../../Examples/Outpatients/POCD_EX170001UK06_02.xml">
+		<img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+		<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal"><b>&quot;The Information Examples and Example Messages 
+		published in this MiM have been validated both clinically and 
+		technically. An extended set of examples, produced in collaboration with 
+		suppliers and including rendering rules for all templates, will be 
+		published separately from this MiM.&quot;</b></p>
+		<div class="MsoNormal" align="center" style="text-align:center">
+			<hr size="3" width="100%" align="center"></div>
+		<h1><a name=_Toc_Section_8></a>8&nbsp;&nbsp;&nbsp;&nbsp;Glossary of Terms</h1>
+		<table class="MIMGlossaryTable " border="1" cellspacing="0" cellpadding="2">
+			<tr>
+				<td>Application Acknowledgement</td>
+				<td>A response from one application to another indicating that a message has been received and is valid.</td>
+			</tr>
+			<tr>
+				<td>Application Role</td>
+				<td>The role played by the application in a particular interaction.</td>
+			</tr>
+			<tr>
+				<td>Data type</td>
+				<td>The	structural format of the data carried in an attribute</td>
+			</tr>
+			<tr>
+				<td>Data Type Flavour</td>
+				<td>A subdivision of a particular data type</td>
+			</tr>
+			<tr>
+				<td>DCE UUID</td>
+				<td>Universally	Unique Identifier</td>
+			</tr>
+			<tr>
+				<td>ED</td>
+				<td>Emergency Department. Previously known as Accident &amp; Emergency</td>
+			</tr>
+			<tr>
+				<td>EHR</td>
+				<td>Electronic Healthcare Record</td>
+			</tr>
+			<tr>
+				<td>Legitimate Relationship</td>
+				<td>A Legitimate Relationship is a relationship between 
+				a clinician (or NHS organisation work group) and a patient, that 
+				gives the clinician, or workgroup member, certain levels of entitlement 
+				to access that patient’s health record maintained on National Systems.</td>
+			</tr>
+			<tr>
+				<td>NHS CRS</td>
+				<td>NHS Care Record Service</td>
+			</tr>
+			<tr>
+				<td>OID</td>
+				<td>Object Identifier, a unique identifier e.g. used to identify coding systems</td>
+			</tr>
+			<tr>
+				<td>Provider</td>
+				<td>An alternative term for a fulfiller</td>
+			</tr>
+			<tr>
+				<td>
+				<span class="GlossaryTerm">PCT</span></td>
+				<td>
+				<p class="MsoNormal"><span lang="EN-US">
+				<font size="3" face="Verdana">Primary Care 
+				Trust, responsible for primary and community health services within 
+				a geographical boundary.</font></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td>PDS</td>
+				<td>Patient Demographic Service.</td>
+			</tr>
+			<tr>
+				<td>PSIS</td>
+				<td>Personal Spine Information Service.</td>
+			</tr>
+			<tr>
+				<td>Requestor</td>
+				<td>The HCP responsible for the request.</td>
+			</tr>
+			<tr>
+				<td>SDS</td>
+				<td>Spine Directory Service.</td>
+			</tr>
+			<tr>
+				<td>Service User</td>
+				<td>A person who is registered on the PDS.</td>
+			</tr>
+		</table>
+		</font></div>
+</div>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">&nbsp;</p>
+</body>
+
+</html>

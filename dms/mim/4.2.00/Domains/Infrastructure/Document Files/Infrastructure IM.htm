@@ -1,0 +1,587 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv=Content-Type content="text/html; charset=windows-1252"><style>w\:* {behavior:url(#default#VML);}
+</style>
+<title>Infrastructure Implementation Manual</title><style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<style>
+<!--
+ p.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Arial;
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+h1
+ {margin-top:12.0pt;
+ margin-right:0cm;
+ margin-bottom:6.0pt;
+ margin-left:2.0cm;
+ text-indent:-2.0cm;
+ page-break-after:avoid;
+ font-size:16.0pt;
+ font-family:Arial;
+ font-weight:bold}
+h2
+ {margin-top:12.0pt;
+ margin-right:0cm;
+ margin-bottom:6.0pt;
+ margin-left:2.0cm;
+ text-indent:-2.0cm;
+ page-break-after:avoid;
+ font-size:14.0pt;
+ font-family:Arial;
+ font-weight:bold;
+ font-style:italic}
+
+h3
+ {margin-top:12.0pt;
+ margin-right:0cm;
+ margin-bottom:6.0pt;
+ margin-left:2.0cm;
+ text-indent:-2.0cm;
+ page-break-after:avoid;
+ font-size:13.0pt;
+ font-family:Arial;
+ font-weight:bold;
+ font-style:italic}
+a:link, span.MsoHyperlink
+	{color:blue;}
+a:visited
+	{color:purple;
+	text-decoration:none;
+	text-decoration:none;
+	}
+p.titlepanelheader
+	{margin-bottom:.0001pt;
+	text-align:center;
+	font-size:10.0pt;
+	font-family:Verdana;
+	font-weight:bold; margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.titlepanelblocktext
+	{margin-bottom:.0001pt;
+	text-align:center;
+	font-size:7.0pt;
+	font-family:Verdana;
+	text-transform:uppercase;
+	font-weight:bold; margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.un-numberedheading1
+	{margin-top:3.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold}
+p.tabletext
+	{margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:Arial;
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+span.titlepanelbold
+	{font-family:Verdana;
+	font-weight:bold}
+span.titlepanelstd
+	{font-family:Verdana;
+	}
+span.titlepanelitalic
+	{font-family:Verdana;
+	font-style:italic}
+span.tableheading
+	{font-family:Arial;
+	font-weight:bold}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]><style> table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman"}
+</style>
+<![endif]--></head><STYLE>
+A {text-decoration: none;} 
+div.Section1
+	{page:Section1;}
+span.SpellE
+	{}
+div.index1 {
+font-family:Arial;
+font-size:12.0pt;)	
+-->
+</STYLE>  
+
+
+
+<body lang=EN-GB link=blue vlink=purple><div class=Section1><table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;'><tr style='page-break-inside:avoid'><td width=144 rowspan=7 valign=top style='width:108.25pt;border:none;
+  border-right:solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm'><p class=MsoNormal><span lang=EN-US>
+    <img border="0" src="../../../Core/Change_files/image001.jpg" width="139" height="89"></span></p></td>
+		<td width=521 colspan=4 valign=top style='width:391.0pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 2.85pt 0cm 2.85pt'><p class=titlepanelheader>Infrastructure Implementation Manual</p></td></tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=titlepanelstd><span style='font-size:7.0pt'>Programme</span></span></p></td>
+		<td valign=top style='border-right:1.0pt solid windowtext; border-top:1.0pt solid windowtext; border-bottom:1.0pt solid windowtext; width:127px;border-left:medium none;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=titlepanelstd><span style='font-size:7.0pt'>NPFIT</span></span></p></td>
+		<td colspan=2 valign=top style='border-right:1.0pt solid windowtext; border-top:1.0pt solid windowtext; border-bottom:1.0pt solid windowtext; width:322px;border-left:medium none;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=titlepanelblocktext>DOCUMENT NUMBER</p></td></tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=titlepanelstd><span style='font-size:7.0pt'>Sub-Prog/Project</span></span></p></td>
+		<td valign=top style='width:127px;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=titlepanelstd><span style='font-size:7.0pt'>Comms &amp; Messaging</span></span></p></td>
+		<td valign=middle style='border-top:medium none;border-left:medium none;
+  border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm' colspan="2" rowspan="3">
+		<p class="MsoNormal" align="center">NPFIT-FNT-TO-DPM-0602</td></tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=titlepanelstd><span style='font-size:7.0pt'>Prog. Director</span></span></p></td>
+		<td valign=top style='width:127px;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal>
+		<span class="titlepanelstd"><span style="font-size: 7pt">Paul </span>
+		<span style='font-size:7.0pt'>Jones</span></span></p></td>
+		</tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=titlepanelstd><span style='font-size:7.0pt'>Sub-Prog/Proj Mgr</span></span></p></td>
+		<td valign=top style='width:127px;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal>
+		<span class="titlepanelstd"><span style="font-size: 7pt">Ken Lunn</span></span></p></td></tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=titlepanelstd><span style='font-size:7.0pt'>Author</span></span></p></td>
+		<td valign=top style='width:127px;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal>
+		<span class="titlepanelstd"><span style="font-size: 7pt">C&amp;M Development 
+		Team</span></span></p></td>
+		<td valign=top style='width:131px;border-top:medium none;
+  border-left:medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=titlepanelstd><span style='font-size:7.0pt'>Version No.</span></span></p></td>
+		<td width=165 valign=top style='width:123.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=titlepanelstd><span style='font-size:7.0pt'>
+    3.12</span></span></p></td></tr><tr style='page-break-inside:avoid'><td width=108 valign=top style='width:81.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=titlepanelstd>
+		<span style='font-size:7.0pt'>Contact</span></span></p></td>
+		<td valign=top style='width:127px;border-top:medium none;border-left:
+  medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal>
+		<span class="titlepanelstd"><span style="font-size: 7pt">Richard 
+		Kavanagh</span></span></p></td>
+		<td valign=top style='width:131px;border-top:medium none;
+  border-left:medium none;border-bottom:1.0pt solid windowtext;border-right:1.0pt solid windowtext;
+  padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=titlepanelstd><span style='font-size:7.0pt'>Status</span></span></p></td>
+		<td width=165 valign=top style='width:123.6pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=titlepanelstd><span style='font-size:7.0pt'>Issued</span></span></p></td></tr></table><p class=MsoNormal>&nbsp;</p><div class=MsoNormal align=center style='text-align:center'><hr size=2 width="100%" align=center></div><p class=MsoNormal>&nbsp;</p><p class=un-numberedheading1>Contents</p><p class=MsoNormal><span class=MsoHyperlink></span>&nbsp;</p><div class="index1" div id="fp_TOC" class="fp_TOC"><a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;Overview</a><br><a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.1">2.1&nbsp;&nbsp;&nbsp;&nbsp;Request/Notification Message Receiver - MCCI_AR010000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.2">2.2&nbsp;&nbsp;&nbsp;&nbsp;Request/Notification Message Sender - MCCI_AR020000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.3">2.3&nbsp;&nbsp;&nbsp;&nbsp;Query Fulfiller - QUQI_AR010000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.4">2.4&nbsp;&nbsp;&nbsp;&nbsp;Query Placer - QUQI_AR020000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.5">2.5&nbsp;&nbsp;&nbsp;&nbsp;Batch Sender - MCCI_AR200001UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.6">2.6&nbsp;&nbsp;&nbsp;&nbsp;Batch Receiver - MCCI_AR200002UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.7">2.7&nbsp;&nbsp;&nbsp;&nbsp;Batch Response Sender - MCCI_AR200003UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.8">2.8&nbsp;&nbsp;&nbsp;&nbsp;Batch 
+	Response Receiver - 
+MCCI_AR200004UK01</a><br><a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp;&nbsp;Send Application Acknowledgement - 
+MCCI_TE010000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.2">3.2&nbsp;&nbsp;&nbsp;&nbsp;Query Failed - QUQI_TE010000UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.3">3.3&nbsp;&nbsp;&nbsp;&nbsp;Send Batch - MCCI_TE200001UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.4">3.4&nbsp;&nbsp;&nbsp;&nbsp;Send Response Batch - MCCI_TE200002UK01</a><br><a href="#_Toc_Section_4">4&nbsp;&nbsp;&nbsp;&nbsp;Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1">4.1&nbsp;&nbsp;&nbsp;&nbsp;Exception Handling Guidance</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1.1">4.1.1&nbsp;&nbsp;&nbsp;&nbsp;Overview</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1.2">4.1.2&nbsp;&nbsp;&nbsp;&nbsp;Messaging Issues/Errors</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1.3">4.1.3&nbsp;&nbsp;&nbsp;&nbsp;Business Issues/Errors</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.2">4.2&nbsp;&nbsp;&nbsp;&nbsp;Application Acknowledgement - MCCI_IN010000UK13</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.3">4.3&nbsp;&nbsp;&nbsp;&nbsp;Query Act Failed - QUQI_IN010000UK14</a><br><a href="#_Toc_Section_5">5&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.1">5.1&nbsp;&nbsp;&nbsp;&nbsp;Send Message Payload - MCCI_MT010101UK12</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.2">5.2&nbsp;&nbsp;&nbsp;&nbsp;Application Acknowledgement - MCCI_MT020101UK12</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.3">5.3&nbsp;&nbsp;&nbsp;&nbsp;Trigger Event Control Act – MCAI_MT040101UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.4">5.4&nbsp;&nbsp;&nbsp;&nbsp;Query Acknowledgement Response – QUQI_MT030101UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.5">5.5&nbsp;&nbsp;&nbsp;&nbsp;Notify Message Withdrawal with Reason - UKCI_MT000001UK02</a><br><a href="#_Toc_Section_6">6&nbsp;&nbsp;&nbsp;&nbsp;Batching </a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.1">6.1&nbsp;&nbsp;&nbsp;&nbsp;Send Batch Interaction</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.1.1">6.1.1&nbsp;&nbsp;&nbsp;&nbsp;Send Batch - MCCI_IN200001UK02</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.1.2">6.1.2&nbsp;&nbsp;&nbsp;&nbsp;Batched PDS Trace Query 
+	and Batched PDS Retrieval Query</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.2">6.2&nbsp;&nbsp;&nbsp;&nbsp;Send Response Batch Interaction</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.2.1">6.2.1&nbsp;&nbsp;&nbsp;&nbsp;Send 
+	Response Batch - MCCI_IN200002UK03</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.2.2">6.2.2&nbsp;&nbsp;&nbsp;&nbsp;Batched PDS Trace Query Successful 
+	and Batched PDS Retrieval Query Successful</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.3">6.3&nbsp;&nbsp;&nbsp;&nbsp;ConversationId</a><br><a href="#_Toc_Section_7">7&nbsp;&nbsp;&nbsp;&nbsp;Message Interaction Examples</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1">7.1&nbsp;&nbsp;&nbsp;&nbsp;PDS Request/Response</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.2">7.2&nbsp;&nbsp;&nbsp;&nbsp;PDS Query/Response</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.3">7.3&nbsp;&nbsp;&nbsp;&nbsp;Discharge Notification/Response</a><br><a href="#_Toc_Section_8">8&nbsp;&nbsp;&nbsp;&nbsp;Changes for v3.12</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_8.1">8.1&nbsp;&nbsp;&nbsp;&nbsp;General Withdrawal 
+with Reason Changes</a></div><p class=MsoNormal>&nbsp;</p><div class=MsoNormal align=center style='text-align:center'><hr size=2 width="100%" align=center></div><p class=MsoNormal>&nbsp;</p><p class=un-numberedheading1>Change History</p><table class=MsoNormalTable border=1 cellspacing=3 cellpadding=0 width=731
+ style='width:548.15pt;' height="390"><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>In Version</span></span></p></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Author</span></span></p></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Date</span></span></p></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Amendment Details</span></span></p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=tabletext>0.1</p></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Core Technical Team</p></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>26/10/2003</p></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>First draft version</p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=tabletext>0.2</p></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Core Technical Team</p></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>25/11/2003</p></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Final draft before issue</p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=tabletext>1.0</p></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Core Technical Team</p></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>28/11/2003</p></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Issued</p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=tabletext>2.0</p></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Core Technical Team</p></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>14/02/2004</p></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>New messages defined, messages renamed, modifications made, interactions introduced.</p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=tabletext>2.1</p></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Core Technical Team</p></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>23/03/04</p></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Includes interaction schemas and tabular view modification for PDS.</p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=tabletext>3.0</p></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Core Technical Team</p></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>10/05/04</p></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Change request DACM-CT-2, new control act, cosmetic modifications.</p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=tabletext>3.1</p></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Core Technical Team</p></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>25/06/04</p></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Vocabularies constrained to CV datatype in QUQI_MT020101UK11.</p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=tabletext>3.2</p></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Core Technical Team</p></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>20/08/04</p></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Repaired Hyperlinks </p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=tabletext>3.3</p></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Core Technical Team</p></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>03/09/04</p></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>New generic Control Act wrapper and generic Query Acknowledgement Response wrapper.</p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class=tabletext>3.4</p></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Core Technical Team </p></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>17/09/04</p></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Removal of deprecated interactions and messages.</p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class="tabletext"><font face="Arial">3.5</font></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class="tabletext"><font face="Arial">Core Technical Team </font></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class="tabletext"><font face="Arial">29/10/04</font></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class="tabletext"><font face="Arial">Changes to Send Message Payload &amp; Application Acknowledgement to include intended recipient. Changes to Application Acknowledgement,&nbsp; Control Act and Query Acknowledgement Response to enable consistent issue/error reporting. See change log for details.</font></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class="tabletext"><font size="2" face="Arial">3.6</font></td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class="tabletext"><font size="2" face="Arial">Core Technical Team</font></td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class="tabletext"><font face="Arial">06/12/04</font></td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class="tabletext"><font size="2" face="Arial">Added NHS number to Notify Message Withdrawal. Minor changes to wrapper RMIMs to support consistent issue/error reporting. Additional guidance on issue error reporting. New section containing interaction examples.&nbsp; </font></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class="tabletext">3.7</td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class="tabletext">Core Technical Team</td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class="tabletext">14/01/05</td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class=tabletext>Changed lowercase characters in example UUIDs to uppercase. </p></td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'><p class="tabletext">3.8</td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class="tabletext">Core Technical Team</td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class="tabletext">09/03/05</td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'><p class="tabletext">MIM-CR-0238, 0442 and 0457</td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="tabletext">3.9</td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">C&amp;M Development Team</td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">30/09/05</td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">New Batch Wrappers. Amendments to Withdrawal message to include Reason</td></tr><tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="tabletext">3.10</td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">C&amp;M Development Team</td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">16/12/05</td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">Addresses issues raised for MIMv 4.1. </td></tr>
+	<tr>
+		<td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="tabletext">3.11</td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">C&amp;M Development Team</td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">20/03/06</td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">Addresses batching issues raised for MIMv.4.1.01</td>
+	</tr>
+	<tr><td width=75 valign=top style='width:56.5pt;padding:0cm 2.85pt 0cm 2.85pt'>
+		<p class="tabletext">3.12</td>
+		<td valign=top style='width:153px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">C&amp;M Development Team</td>
+		<td valign=top style='width:66px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">07/08/06</td>
+		<td valign=top style='width:385px;padding-left:2.85pt; padding-right:2.85pt; padding-top:0cm; padding-bottom:0cm'>
+		<p class="tabletext">Amendments to Withdrawal with Reasons message to 
+		change vocabulary used for MessageWithdrawal and Reason Act.</td></tr></table>
+	<p class="tabletext">&nbsp;</p>
+	<p class=MsoNormal>&nbsp;</p><div class=MsoNormal align=center style='text-align:center'><hr size=2 width="100%" align=center></div><p class=MsoNormal>&nbsp;</p>  <h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;Overview</h1>	<p class=MsoNormal>The Infrastructure Domain defines message profiles for use in all NPfIT HL7 messaging.</p><p class=MsoNormal>&nbsp;</p><p class=un-numberedheading1>Development of profiles</p><p class=MsoNormal>The HL7 v3 Infrastructure messages have a large amount of optionality. For wrappers it is clearly useful to limit optionality and only specify features for which there is a clear requirement. These profiles are designed to meet these objectives.</p><p class=MsoNormal>&nbsp;</p><p class=un-numberedheading1>Routing</p><p class=MsoNormal>This&nbsp; set of messages are intended for a conventional HL7 v3 routing infrastructure, with Sender and Receiver logical addresses allowing the usual HL7 v3 capability for special routing on any of the communication paths which messages need to traverse from Sender to Receiver.</p><p class=MsoNormal>&nbsp;</p><p class=un-numberedheading1>Send Message Payload, Control Act, Query and message contents</p><p class=MsoNormal>Send Message Payload, Control Act and Query have no stand-alone role and are used as wrappers to be integrated with domain messages. Integration occurs at the schema level and NPfIT messages are being issued with full integration of the schemas already in place.</p><p class=MsoNormal>&nbsp;</p><div class=MsoNormal align=center style='text-align:center'><hr size=2 width="100%" align=center></div><p class=MsoNormal>&nbsp;</p>  <h1><a name=_Toc_Section_2></a>2&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</h1>	<h2><a name=MCCI_AR010000UK01</a><a name=_Toc_Section_2.1></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;Request/Notification Message Receiver - MCCI_AR010000UK01</h2>	<p class=MsoNormal>The Request/Notification Message Receiver receives HL7 composite message payloads and sends application acknowledgements.</p><p class=MsoNormal>&nbsp;</p>  <h2><a name=MCCI_AR020000UK01</a><a name=_Toc_Section_2.2></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;Request/Notification Message Sender - MCCI_AR020000UK01</h2>	<p class=MsoNormal>The Request/Notification Message Sender sends HL7 composite message payloads and receives application acknowledgements.</p><p class=MsoNormal>&nbsp;</p>  <h2><a name=QUQI_AR010000UK01</a><a name=_Toc_Section_2.3></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;Query Fulfiller - QUQI_AR010000UK01</h2>	<p class=MsoNormal>A query role that responds to HL7 version 3 queries that have been specified using the query by parameter mechanism. </p><p class=MsoNormal>&nbsp;</p>  <h2><a name=QUQI_AR020000UK01</a><a name=_Toc_Section_2.4></a>2.4&nbsp;&nbsp;&nbsp;&nbsp;Query Placer - QUQI_AR020000UK01</h2>	<p class=MsoNormal>A query role that places HL7 version 3 queries using the query by parameter query specification mechanism.</p>
+	<p class=MsoNormal>&nbsp;</p>  <h2><a name=MCCI_AR200001UK01</a><a name=_Toc_Section_2.5></a>2.5&nbsp;&nbsp;&nbsp;&nbsp;Batch Sender - MCCI_AR200001UK01</h2>	<p class="MsoNormal">The batch sender sends a Batch Transmission containing 
+	1 or more message interactions.</p>
+	<p class="MsoNormal">&nbsp;</p>
+	<h2><a name=MCCI_AR200002UK01</a><a name=_Toc_Section_2.6></a>2.6&nbsp;&nbsp;&nbsp;&nbsp;Batch Receiver - MCCI_AR200002UK01</h2>	<p class="MsoNormal">The batch receiver receives a Batch Transmission 
+	containing 1 or more message interactions.</p>
+	<p class="MsoNormal">&nbsp;</p>
+	<h2><a name=MCCI_AR200003UK01</a><a name=_Toc_Section_2.7></a>2.7&nbsp;&nbsp;&nbsp;&nbsp;Batch Response Sender - MCCI_AR200003UK01</h2>	<p class="MsoNormal">The batch response sender sends a Send Response Batch 
+	containing 0 or more message interactions.</p>
+	<p class="MsoNormal">&nbsp;</p>  <h2><a name=MCCI_AR200004UK01</a><a name=_Toc_Section_2.8></a>2.8&nbsp;&nbsp;&nbsp;&nbsp;Batch 
+	Response Receiver - 
+MCCI_AR200004UK01</h2>	<p class="MsoNormal">The batch response receiver receives a Receive Response 
+	Batch containing 0 or more message interactions.</p>
+	<p class=MsoNormal>&nbsp;</p><div class=MsoNormal align=center style='text-align:center'><hr size=2 width="100%" align=center></div><p class=MsoNormal>&nbsp;</p>  <h1><a name=_Toc_Section_3></a>3&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</h1>	<h2><a name=MCCI_TE010000UK01</a><a name=_Toc_Section_3.1></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;Send Application Acknowledgement - 
+MCCI_TE010000UK01</h2>	<p class=MsoNormal>The sending of an application acknowledgement occurs in response to the receipt of an HL7 composite message payload.</p><p class=MsoNormal>&nbsp;</p>  <h2><a name=QUQI_TE010000UK01</a><a name=_Toc_Section_3.2></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;Query Failed - QUQI_TE010000UK01</h2>	<p class=MsoNormal>The sending of a query failed response occurs in response to the receipt of a failed query from a query placer. </p>
+	<p class=MsoNormal>&nbsp;</p>  <h2><a name=MCCI_TE200001UK01</a><a name=_Toc_Section_3.3></a>3.3&nbsp;&nbsp;&nbsp;&nbsp;Send Batch - MCCI_TE200001UK01</h2>	<p class=MsoNormal>The processing of a send operation on a batch of 
+	interactions has started.</p>
+	<p class=MsoNormal>&nbsp;</p>  <h2><a name=MCCI_TE200002UK01</a><a name=_Toc_Section_3.4></a>3.4&nbsp;&nbsp;&nbsp;&nbsp;Send Response Batch - MCCI_TE200002UK01</h2>	<p class="MsoNormal">The processing of a send operation on a batch of 
+	response interactions has started.&nbsp; </p>
+	<div class=MsoNormal align=center style='text-align:center'><hr size=2 width="100%" align=center></div><p class=MsoNormal>&nbsp;</p>  <h1><a name=_Toc_Section_4></a>4&nbsp;&nbsp;&nbsp;&nbsp;Interactions</h1>	<h2><a name=_Toc_Section_4.1></a>4.1&nbsp;&nbsp;&nbsp;&nbsp;Exception Handling Guidance</h2>	<h3><a name=_Toc_Section_4.1.1></a>4.1.1&nbsp;&nbsp;&nbsp;&nbsp;Overview</h3>	<p class="MsoNormal">&nbsp;</p><p class="MsoNormal">The purpose of this guidance is to describe the approach taken by NPfIT to enable consistent exception handling across all domains. This approach was originally defined in MIM v3.1.07 and has been expanded in MIM v3.1.08.</p><p class="MsoNormal">&nbsp;</p><p style="background: white" class="MsoNormal">Issues/errors can be identified at two levels, messaging and business:</p><ul><li><p style="background: white" class="MsoNormal">Messaging issues are those related to the&nbsp;communication and delivery of the message or its structure<b>.</b>&nbsp;</p></li><li><p style="background: white" class="MsoNormal">Business issues are<b> </b>defined as being those related to the information&nbsp;conveyed by the&nbsp;message, evaluated in context by the processing application.</p></li></ul>  <h3><a name=_Toc_Section_4.1.2></a>4.1.2&nbsp;&nbsp;&nbsp;&nbsp;Messaging Issues/Errors</h3>	<p class="MsoNormal">&nbsp;</p><p class="MsoNormal">Messaging issues and errors are carried in the Application Acknowledgement wrapper in the AcknowledgementDetail class. A single code system managed externally by BT Syntegra and referenced in the MIM will define all codes that identify messaging issues and errors. Each code shall be further classified by the AcknowledgementDetail.typeCode which contains a severity indicator who’s purpose is&nbsp; to indicate the severity of the error.</p><p class="MsoNormal">&nbsp;</p><p class="MsoNormal">The MHS codes will be documented in the BT External Interface Specification.&nbsp; As these codes are generic to MHS implementations (i.e. not specific to the BT MHS implementation) other MHS implementers shall have the ability to add codes to the MHS error namespace.&nbsp; To get new codes added to the MHS namespace the implementer should contact BT through the Authority Spine liaison point.</p>  <h3><a name=_Toc_Section_4.1.3></a>4.1.3&nbsp;&nbsp;&nbsp;&nbsp;Business Issues/Errors</h3>	<p style="background: white" class="MsoNormal">Business issues and errors are carried in the Trigger Event Control Act and Query Acknowledgement Response wrappers in the DetectedIssueEvent class; with the option of supporting details being carried in the response payload. </p><p style="background: white" class="MsoNormal">&nbsp;</p><p style="background: white" class="MsoNormal">The code identifying a business issue or error should no longer be carried in the domain response payload. </p><p style="background: white" class="MsoNormal">&nbsp;</p><p style="background: white" class="MsoNormal">In MIM V3.1.08, codes carried in PDS response payloads and LR response payloads have been removed. </p><p style="background: white" class="MsoNormal">&nbsp;</p><p style="background: white" class="MsoNormal">PDS Response messages no longer explicitly carry a code and value indicating success. A successful confirmation is implicit from the presence of the response payload; an indication of a failed confirmation or additional information relating to the confirmation (such as an indication that sensitivity conditions apply to the information) is provided in the DetectedIssue<span style="background-color: #FFFFFF; background-position: 0% 0%">Event class.</span></p><p style="background: white" class="MsoNormal">&nbsp;</p><p style="background: white" class="MsoNormal">The ability to carry codes in ETP and GP2GP response payloads has been retained but made optional to enable backwards compatibility. However, it is recommended that from MIM V3.1.08, all issue and error codes be carried in the Trigger Event Control Act and Query Acknowledgement Response wrappers DetectedIssueEventClass. </p><p style="background: white" class="MsoNormal">&nbsp;</p><p style="background: white" class="MsoNormal">Where necessary, detail supporting an issue or error shall be carried in a response payload.</p><p style="background: white" class="MsoNormal">The ActDetectedIssueCode vocabulary page identifies a code system for each business domain. In all cases, except ETP, there is a single code system per domain. Where a code system is managed externally, the contents can only be obtained from the code system custodian. If a pertinent code does not exist in the relevant code system, its inclusion can be managed by the code system custodian.</p><p style="background: white" class="MsoNormal">The error codes for the following domains are documented in the BT External Interface Specification:</p><ul><li><p style="background: white" class="MsoNormal">PDS</p></li><li><p style="background: white" class="MsoNormal">Medication Management (except error codes generated by the PPA).</p></li><li><p style="background: white" class="MsoNormal">PSIS</p></li><li><p style="background: white" class="MsoNormal">ACF (LRs)</p></li></ul><p style="background: white" class="MsoNormal">For additional information on these code namespaces, contact BT through the Authority Spine Liaison point.</p>
+	<p style="background: white" class="MsoNormal">&nbsp;</p>
+	<p style="background: white" class="MsoNormal">&nbsp;</p>  <h2><a name=MCCI_IN010000UK13</a><a name=_Toc_Section_4.2></a>4.2&nbsp;&nbsp;&nbsp;&nbsp;Application Acknowledgement - MCCI_IN010000UK13</h2>	<p class=MsoNormal>An application acknowledgement on receipt of a request or notification. Note: This interaction is invoked, where appropriate, as a receiver responsibility.</p><p class=MsoNormal>This interaction can also be invoked by an intermediary, such as the TMS, when a messaging error occurs. In these circumstances, the sender identifier will identify the intermediary using the standard SDS identifier as described in the message documentation.&nbsp; </p><p class=MsoNormal><span lang=EN-US>&nbsp;</span></p><table class=MsoNormalTable border=1 cellspacing=3 cellpadding=0 width=632
+ style='width:474.1pt;' id="table1"><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Sending Role</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext><span lang=EN-US>Request/Notification Message receiver</span></p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a title="View Application Role" href="#_Toc_Section_2.1" >MCCI_AR010000UK01</a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Receiving Role</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext><span lang=EN-US>Request/Notification Message sender</span></p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a title="View Application Role" href="#_Toc_Section_2.2" >MCCI_AR020000UK01</a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Trigger Event</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>Send Application Acknowledgement</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a title="View Trigger Event" href="#_Toc_Section_3.1">MCCI_TE010000UK01</a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Transmission Wrapper</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>Application Acknowledgement</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a title="View Transmission Wrapper" href="#_Toc_Section_5.2" >MCCI_MT020101UK12</a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Control Act Wrapper</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>Control Act</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a title="View Control Act Wrapper" href="#_Toc_Section_5.3" >MCAI_MT040101UK03</a></p></td></tr></table><p class="tabletext">&nbsp;</p><p class=MsoNormal><a title="View Interaction Schema"  href="../../../Schemas/MCCI_IN010000UK13.xsd">
+  <img border=0 src="../../../Core/Components_files/image002.gif"></a></p><p class=MsoNormal>&nbsp;</p>  <h2><a name=QUQI_IN010000UK14</a><a name=_Toc_Section_4.3></a>4.3&nbsp;&nbsp;&nbsp;&nbsp;Query Act Failed - QUQI_IN010000UK14</h2>	<p class=MsoNormal><span lang=EN-US>A Query Act Failed interaction contains status information on an identified query that has failed and does not contain any query results.</span></p><p class=MsoNormal><span lang=EN-US>&nbsp;</span></p><table class=MsoNormalTable border=1 cellspacing=3 cellpadding=0 width=632
+ style='width:474.1pt;'><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Sending Role</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>Query Fulfiller</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a title="Application Role" href="#_Toc_Section_2.3">QUQI_AR010000UK01</a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Receiving Role</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext><span lang=EN-US>Query </span>Placer</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a title="Application Role" href="#_Toc_Section_2.4">QUQI_AR020000UK01</a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Trigger Event</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext><span lang=EN-US>Query </span>Failed</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a title="Trigger Event" href="#_Toc_Section_3.2">QUQI_TE010000UK01</a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Transmission Wrapper</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>Application Acknowledgement</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a title="View Transmission Wrapper" href="#_Toc_Section_5.2">MCCI_MT020101UK12</a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Control Act Wrapper</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>Query Acknowledgement Response</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a title="View Control Act Wrapper" href="#_Toc_Section_5.4">QUQI_MT030101UK03</a></p></td></tr></table><p class=MsoNormal>&nbsp;</p><a title="View Interaction Schema" href="../../../Schemas/QUQI_IN010000UK14.xsd">
+  <img border=0 src="../../../Core/Components_files/image002.gif" width="20" height="15"></a>&nbsp;<p class=MsoNormal>&nbsp;</p>
+	<div class=MsoNormal>  
+		<hr size=2 width="100%" align=center></div><p class=MsoNormal>&nbsp;</p>  <h1><a name=_Toc_Section_5></a>5&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</h1>	<h2><a name=MCCI_MT010101UK12</a><a name=_Toc_Section_5.1></a>5.1&nbsp;&nbsp;&nbsp;&nbsp;Send Message Payload - MCCI_MT010101UK12</h2>	<p class=MsoNormal>This message is the outer transport wrapper for all NPfIT domain messages with the exception of specific business response interactions which use an application acknowledgement wrapper. It identifies the sender and recipient of the message and contains the “controlled act” that is being sent.</p><p class=MsoNormal>&nbsp;</p><a  href="../Tabular%20View/MCCI_RM010000UK12.htm">
+  <img border="0" title="View RMIM" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>       <a href="../Tabular%20View/MCCI_HD010100UK12-NoEdit.htm">
+  <img border="0" title="View Tabular View" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a> <span style='color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="../../../Schemas/MCCI_MT010101UK12.xsd"><img border="0" title="View Schema" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>    <a title="View Example" href="../../../Examples/MCCI_EX010101UK12.xml">
+  <img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a><p class=MsoNormal>&nbsp;</p>  <h2><a name=MCCI_MT020101UK12</a><a name=_Toc_Section_5.2></a>5.2&nbsp;&nbsp;&nbsp;&nbsp;Application Acknowledgement - MCCI_MT020101UK12</h2>	<p class=MsoNormal>The application acknowledgement wrapper enables a response indicating either successful receipt of the message or that the message has been received containing issues or errors.&nbsp; </p><p class=MsoNormal>&nbsp;</p><a href="../Tabular%20View/MCCI_RM020000UK12.htm">
+  <img border="0" title="View RMIM" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>       <a href="../Tabular%20View/MCCI_HD020100UK12-NoEdit.htm">
+  <img border="0" title="View Tabular View" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a> <span style='color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a title="View Schema" href="../../../Schemas/MCCI_MT020101UK12.xsd"><img border="0" title="View Schema" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>    &nbsp;<a title="View Example" href="../../../Examples/MCCI_EX020101UK12.xml"><img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p><p class=MsoNormal>&nbsp;</p>  <h2><a name=MCAI_MT040101UK03</a><a name=_Toc_Section_5.3></a>5.3&nbsp;&nbsp;&nbsp;&nbsp;Trigger Event Control Act – MCAI_MT040101UK03</h2>	<p class=MsoNormal>This control act is designed for use by all domains. It provides audit functionality by carrying the identity of the person and/or system responsible for initiating the message and enables the optional reporting of detected issues/errors.</p><p class=MsoNormal>&nbsp;</p><a href="../Tabular%20View/MCAI_RM040000UK03.htm">
+  <img border="0" title="View RMIM" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>       <a href="../Tabular%20View/MCAI_HD040100UK03-NoEdit.htm">
+  <img border="0" title="View Tabular View" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a> <span style='color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="../../../Schemas/MCAI_MT040101UK03.xsd"><img border="0" title="View Schema" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>    &nbsp;<a title="View Example" href="../../../Examples/MCAI_EX040101UK04.xml"><img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p><p class=MsoNormal><span style='color:#0000CC'>&nbsp;</span></p>  <h2><a name=QUQI_MT030101UK03</a><a name=_Toc_Section_5.4></a>5.4&nbsp;&nbsp;&nbsp;&nbsp;Query Acknowledgement Response – QUQI_MT030101UK03</h2>	<p class=MsoNormal>The Query Acknowledgement Response defines the control act used in all query responses. It contains an optional domain response and an option to report issues/errors.</p><p class=MsoNormal>&nbsp;</p><a href="../Tabular%20View/QUQI_RM030000UK03.htm">
+  <img border="0" title="View RMIM" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>       <a href="../Tabular%20View/QUQI_HD030100UK03-NoEdit.htm">
+  <img border="0" title="View Tabular View" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a> <span style='color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="../../../Schemas/QUQI_MT030101UK03.xsd"><img border="0" title="View Schema" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a>    &nbsp;<a title="View Example" href="../../../Examples/QUQI_EX030101UK04.xml"><img border="0" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a><h2><a name=UKCI_MT000001UK02</a><a name=_Toc_Section_5.5></a>5.5&nbsp;&nbsp;&nbsp;&nbsp;Notify Message Withdrawal with Reason - UKCI_MT000001UK02</h2>	<p class=MsoNormal>This message is used to notify the recipient that the identified message which the recipient has already received should not have been sent. 
+    It requires a reason to be specified for the request to withdraw the 
+    message.</p>
+	<p>
+	<a style="color: blue" href="../Tabular%20View/UKCI_RM000001UK02.htm">
+    <img border="0" title="View RMIM" src="../../../Core/Components_files/image003.gif" width="16" height="16"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<a style="color: blue" href="../Tabular%20View/UKCI_HD000001UK02-NoEdit.htm">
+    <img border="0" title="View Tabular View" src="../../../Core/Components_files/image004.gif" width="16" height="16"></a> <span style='color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a style="color: blue" href="../../../Schemas/UKCI_MT000001UK02.xsd"><img border="0" title="View Schema" src="../../../Core/Components_files/image005.gif" width="16" height="16"></a> <span style='color:windowtext'>&nbsp;&nbsp;&nbsp;&nbsp;</span><a style="color: blue" href="../../../Examples/UKCI_EX000001UK02.xml"><img border="0" title="View Example" src="../../../Core/Components_files/image006.gif" width="16" height="16"></a></p>
+	<h1><a name=_Toc_Section_6></a>6&nbsp;&nbsp;&nbsp;&nbsp;Batching </h1>	<p class="MsoNormal">This section describes the generic mechanism used to 
+	batch NPfIT interactions allowing any domain to batch any interaction if 
+	desired.&nbsp;A batch can contain interactions that are all of the same type 
+	or interactions that are different types. Guidance on which interactions can 
+	be batched and when they should be batched will be issued in the relevant 
+	domain specific documentation. </p>
+	<p class="MsoNormal">&nbsp;</p>
+	<p class="MsoNormal">In order to generate an efficient batch message format, 
+	specialised schemas have been designed to support the sending and receiving 
+	of messages in a batch as follows :</p>
+	<p class="MsoNormal">&nbsp;</p>
+	<p class="MsoNormal">&nbsp;&nbsp;&nbsp; BatchCommon.xsd&nbsp;&nbsp; A schema 
+	carrying common HL7 batch components&nbsp;&nbsp;
+	<a title="View Schema" href="../../../Schemas/BatchCommon.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a></p>
+	<p class="MsoNormal">&nbsp;&nbsp;&nbsp; BatchMapping.xsd&nbsp;&nbsp;&nbsp; A 
+	schema carrying NPfIT customised batch components&nbsp;
+	<a title="View Schema" href="../../../Schemas/BatchMapping.xsd"><img border='0' src='../../../Core/Components_files/image005.gif'></a></p>
+	<p class="MsoNormal">&nbsp;</p>
+		<p class="MsoNormal">NB. This section contains a number of batch interaction examples to show how 
+		batch wrappers are combined with message interactions. </p><p class="MsoNormal">The examples are provided for illustrative purposes only. They have had no clinical validation nor are they guaranteed to be fully compliant with the written message specifications. Where there are conflicts with the written message specifications or schemas, the specifications or schemas shall be considered to take precedence.</p>
+	<p class="MsoNormal">&nbsp;</p>
+	<h2><a name=_Toc_Section_6.1></a>6.1&nbsp;&nbsp;&nbsp;&nbsp;Send Batch Interaction</h2>	<h3><a name=MCCI_IN200001UK02</a><a name=_Toc_Section_6.1.1></a>6.1.1&nbsp;&nbsp;&nbsp;&nbsp;Send Batch - MCCI_IN200001UK02</h3>		<p class="MsoNormal">A Send Batch interaction groups together one or 
+		more Message interactions for communication purposes. The send batch 
+		schema specifies a fixed structure carrying batch control items, 
+		addressing details, interaction and message identifiers and Control Act 
+		items.&nbsp; It allows any payload to be included enabling a batch to be 
+		constructed of different interaction types. The examples in section 
+		6.2.2 describe PDS Query interactions as PDS is 
+		the first domain to implement batches. </p>
+		<p class="MsoNormal">&nbsp;</p>
+		<table class=MsoNormalTable border=1 cellspacing=3 cellpadding=0 width=632
+ style='width:474.1pt;'><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Sending Role</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+				Batch Sender</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a href="#_Toc_Section_2.5" style="color: blue"><span style="color: #0000FF">
+			MCCI_AR200001UK01</span></a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Receiving Role</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+				Batch Receiver</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a href="#_Toc_Section_2.6" style="color: blue"><span style="color: #0000FF">
+			MCCI_AR200002UK01</span></a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Trigger Event</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+				<span lang="en-us">Send Batch</span></p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a href="#_Toc_Section_3.3" style="color: blue"><span style="color: #0000FF">
+			MCCI_TE200001UK01</span></a></p></td></tr>
+			<tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Batch Wrapper</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+				<span lang="en-us">Send Batch</span></p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+				<span class="tableheading"><span style="font-weight: 400">
+				MCCI_IN200001UK02</span></span></p></td></tr>
+			<tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Transmission Wrapper</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+				n/a</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			&nbsp;</p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Control Act Wrapper</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+				<p class="tabletext">n/a</td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'>&nbsp;</td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
+			<span class=tableheading><span style='font-size:10.0pt'>Message Wrapper</span></span></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+			<p class="tabletext">n/a</td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+			&nbsp;</td></tr></table>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	<a title="View Interaction Schema" href="../../../Schemas/MCCI_IN200001UK02.xsd">
+	<img border='0' src='../../../Core/Components_files/image002.gif' width="20" height="17"></a></p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	Send Batch Diagram MCCI_RM200001UK02 - This diagram provides a visual 
+	representation of the send batch interaction schema and includes HL7 
+	standard constructs where possible. </p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	&nbsp;<a title="View R-MIM" href="../Tabular%20View/MCCI_RM200001UK02.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a></p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	Send Batch tabular view - This tabular view documents the Send Batch 
+	Diagram. It includes additional documentation describing the schema that 
+	supports the inclusion of the payload in the batch.</p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	&nbsp;<a title="View Tabular View" href="../Tabular%20View/MCCI_HD200001UK02-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a></p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=Un-numberedHeading1><font size="3">Receiver Responsibilities</font></p><table class=NPfITGrid border=1 cellspacing=3 cellpadding=0><tr><td width=310 valign=top style='width:232.7pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=TableHeading><span style='font-size:10.0pt'>Reason</span></span></p></td><td width=310 valign=top style='width:232.7pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=TableHeading><span style='font-size:10.0pt'>Interaction</span></span></p></td></tr><tr><td width=310 valign=top style='width:232.7pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=TableText>
+		Respond to batch received</p></td><td width=310 valign=top style='width:232.7pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=TableText>
+		Batch Response <a href="#_Toc_Section_6.3">MCCI_IN200002UK03</a></p></td></tr></table><p class=MsoNormal>&nbsp;</p>
+	<h3><a name=_Toc_Section_6.1.2></a>6.1.2&nbsp;&nbsp;&nbsp;&nbsp;Batched PDS Trace Query 
+	and Batched PDS Retrieval Query</h3>	<p class="MsoNormal">The Batch PDS Trace Query and Batch PDS Retrieval Query interactions 
+	must be sent within a Send Batch. </p>
+		<p class="MsoNormal">&nbsp;</p>
+	<p class="MsoNormal">NB. This section contains a number of batch interaction examples to show how 
+		message interactions are combined within a&nbsp; batch. </p><p class="MsoNormal">The examples are provided for illustrative purposes only. They have had no clinical validation nor are they guaranteed to be fully compliant with the written message specifications. Where there are conflicts with the written message specifications or schemas, the specifications or schemas shall be considered to take precedence.</p>
+	<p class="MsoNormal">&nbsp;</p>
+	<p class="MsoNormal">Shown here is an example of a batch interaction message 
+	for a batch that contains two Batch PDS Trace Query interactions.</p>
+	<p class="MsoNormal">&nbsp;</p>
+	<p class="MsoNormal">
+	<a title="View Example" href="../../../Examples/MCCI_EX200001UK02_01.xml">
+	<img border='0' src='../../../Core/Components_files/image006.gif'></a></p>
+	<p class="MsoNormal">&nbsp;</p>
+	<p class="MsoNormal">Shown here is an example of a batch interaction message 
+	for a batch that contains one Batch PDS Trace Query and one Batch PDS Retrieval Query.</p>
+	<p class="MsoNormal">&nbsp;</p>
+	<p class="MsoNormal">
+	<a title="View Example" href="../../../Examples/MCCI_EX200001UK02_02.xml">
+	<img border='0' src='../../../Core/Components_files/image006.gif'></a></p>
+	<h2><a name=_Toc_Section_6.2></a>6.2&nbsp;&nbsp;&nbsp;&nbsp;Send Response Batch Interaction</h2>	<h3><a name=MCCI_IN200002UK03</a><a name=_Toc_Section_6.2.1></a>6.2.1&nbsp;&nbsp;&nbsp;&nbsp;Send 
+	Response Batch - MCCI_IN200002UK03</h3>		<p class="MsoNormal">A Send Response Batch interaction groups together 
+		zero or more response interactions for communication purposes. It is 
+		sent as a response to a batch. A batch response interaction will hold 
+		no response interactions if the receiving system fails to process the 
+		whole batch message. The send response batch schema specifies a fixed 
+		structure carrying batch control items, addressing and acknowledgement 
+		details, interaction and message identifiers and Control Act and Query 
+		Acknowledgement items.&nbsp; It allows any payload to be included 
+		enabling a batch response to be constructed of different response interaction types.&nbsp; The examples 
+		in section 6.3.2 describe PDS Query response interactions and the generic Query Act Failed 
+		response interaction as PDS is the first domain to implement batches. </p>
+	<p class="MsoNormal">&nbsp;</p>
+	<p class="MsoNormal">&nbsp;</p>
+		<table class=MsoNormalTable border=1 cellspacing=3 cellpadding=0 width=632
+ style='width:474.1pt;'><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Sending Role</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+				Batch Response Sender</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a style="color: blue" href="#_Toc_Section_2.7"><span style="color: #0000FF">
+			MCCI_AR200003UK01</span></a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Receiving Role</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+				Batch Response Receiver</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a style="color: blue" href="#_Toc_Section_2.8"><span style="color: #0000FF">
+			MCCI_AR200004UK01</span></a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Trigger Event</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+				<span lang="en-us">Send Response Batch</span></p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			<a style="color: blue" href="#_Toc_Section_3.4"><span style="color: #0000FF">
+			MCCI_TE200002UK01</span></a></p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
+				<p class="tabletext">
+				<span class="tableheading">Send Response Batch</span></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+				<p class="tabletext">
+				<span class="tableheading">
+				<span style="font-weight: 400" lang="en-us">Send Response Batch</span></span></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+				<p class="tabletext">
+				<span class="tableheading"><span style="font-weight: 400">
+				MCCI_IN200002UK03</span></span></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Transmission Wrapper</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+				n/a</p></td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=tabletext>
+			&nbsp;</p></td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal><span class=tableheading><span style='font-size:10.0pt'>Control Act Wrapper</span></span></p></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+				<p class="tabletext">n/a</td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'>&nbsp;</td></tr><tr><td width=168 valign=top style='width:125.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
+			<span class=tableheading><span style='font-size:10.0pt'>Message Wrapper</span></span></td><td width=278 valign=top style='width:208.35pt;padding:0cm 5.4pt 0cm 5.4pt'>
+			<p class="tabletext">n/a</td><td width=176 valign=top style='width:132.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+			&nbsp;</td></tr></table><p class=MsoNormal>&nbsp;</p>
+	<p class=MsoNormal>
+	<a title="View Interaction Schema" style="color: blue" href="../../../Schemas/MCCI_IN200002UK03.xsd">
+	<img border='0' src='../../../Core/Components_files/image002.gif' width="20" height="17"></a></p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	Send Response Batch Diagram MCCI_RM200002UK03 - This diagram provides a 
+	visual representation of the send batch interaction schema and includes HL7 
+	standard constructs where possible. </p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	<a title="View R-MIM" style="color: blue" href="../Tabular%20View/MCCI_RM200002UK03.htm"><img border='0' src='../../../Core/Components_files/image003.gif'></a></p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	Send Batch tabular view - This tabular view documents the Send Batch 
+	Diagram. It includes additional documentation describing the schema that 
+	supports the inclusion of the payload in the batch.</p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<p class=MsoNormal>
+	<a title="View Tabular View" style="color: blue" href="../Tabular%20View/MCCI_HD200002UK03-NoEdit.htm"><img border='0' src='../../../Core/Components_files/image004.gif'></a></p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+	<h3><a name=_Toc_Section_6.2.2></a>6.2.2&nbsp;&nbsp;&nbsp;&nbsp;Batched PDS Trace Query Successful 
+	and Batched PDS Retrieval Query Successful</h3>	<p class="MsoNormal">The Batch PDS Trace Query Successful&nbsp; and Batch PDS Retrieval 
+	Query Successful interactions must be sent within a Send Response batch. </p>
+		<p class="MsoNormal">&nbsp;</p>
+	<p class="MsoNormal">NB. This section contains a number of batch interaction examples to show how 
+		batch wrappers are combined with message interactions. </p><p class="MsoNormal">The examples are provided for illustrative purposes only. They have had no clinical validation nor are they guaranteed to be fully compliant with the written message specifications. Where there are conflicts with the written message specifications or schemas, the specifications or schemas shall be considered to take precedence.</p>
+	<p class="MsoNormal">&nbsp;</p>
+	<p class="MsoNormal">Shown here is an example of a batch interaction 
+	response message that contains two PDS Trace Query Successful interactions</p>
+	<p>
+	<a title="View Example" href="../../../Examples/MCCI_EX200002UK03_01.xml">
+	<img border='0' src='../../../Core/Components_files/image006.gif'></a></p>
+	<p><font face="Arial">The Batch Query Act Failed interaction, 
+	QUQI_IN000002UK01,&nbsp; must be sent within a Send Response batch. </font></p>
+	<p><font face="Arial">This interaction can be batched on it's own or with 
+	successful query interactions.&nbsp; </font> </p>
+	<p class="MsoNormal">
+	Shown here is an example of a batch interaction response message that 
+	contains one PDS Retrieval Query Successful interaction and one Query Act 
+	Failed interaction.</p>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class="MsoNormal">
+	<a title="View Example" href="../../../Examples/MCCI_EX200002UK03_02.xml">
+	<img border='0' src='../../../Core/Components_files/image006.gif'></a></p>
+	<p class="MsoNormal">
+	&nbsp;</p>
+	<p class="MsoNormal">
+	Shown here is an example of a batch interaction response message that 
+	highlights an error in the batch and therefore does not contain any business 
+	interactions.</p>
+	<p>
+	<a title="View Example" href="../../../Examples/MCCI_EX200002UK03_03.xml">
+	<img border='0' src='../../../Core/Components_files/image006.gif'></a></p>
+	<h2><a name=_Toc_Section_6.3></a>6.3&nbsp;&nbsp;&nbsp;&nbsp;ConversationId</h2>	<p class="MsoNormal">The use of the ebXML&nbsp; conversationId is 
+	described here to ensure correct implementation.</p>
+	<p class="MsoNormal">&nbsp;</p>
+	<div class="Section1">
+		<p class="MsoNormal"><font size="3">The <span class="SpellE">
+		conversationId</span> is an identifier that relates a group of batch 
+		request messages to a business process.&nbsp; The sender determines which 
+		messages make up a conversation and determines the value of the
+		<span class="SpellE">conversationId</span>.&nbsp; The receiver is required to 
+		return the same <span class="SpellE">conversationId</span> on all 
+		response messages related to this conversation.&nbsp; Furthermore, the 
+		receiver MUST only include batch response interactions related to the 
+		same <span class="SpellE">conversationId</span> in the response(s).</font></p>
+		<p class="MsoNormal"><font size="3">&nbsp;</font></p>
+		<p class="MsoNormal"><font size="3">The <span class="SpellE">
+		conversationId</span> is carried in the ebXML part of the message, and 
+		MUST follow the rules defined by ebXML Message Service Specification.</font></p>
+		<p class="MsoNormal">&nbsp;</div>
+		<div class="Section1">  <h1><a name=_Toc_Section_7></a>7&nbsp;&nbsp;&nbsp;&nbsp;Message Interaction Examples</h1>		<p class="MsoNormal">This section contains a number of message interaction examples to show how wrappers are combined with domain payload messages. </p><p class="MsoNormal">The examples are provided for illustrative purposes only. They have had no clinical validation nor are they guaranteed to be fully compliant with the written message specifications. Where there are conflicts with the written message specifications or schemas, the specifications or schemas shall be considered to take precedence.</p><p class="MsoNormal">&nbsp;</p>  <h2><a name=_Toc_Section_7.1></a>7.1&nbsp;&nbsp;&nbsp;&nbsp;PDS Request/Response</h2>		<p class="MsoNormal">This sequence of examples contains a PDS NHS Number Allocation Request Started interaction followed by a choice of 2 response interactions. The first is a successful PDS NHS Number Allocation Request Completed interaction and the second is an application acknowledgement interaction representing a failure response.</p><p class="MsoNormal">&nbsp;</p><p class="MsoNormal">
+			<a title="View Example" href="PRPA_EX040000UK30INF.xml">
+    <img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a><a title="View Example" href="PRPA_EX040000UK30INF.xml">&nbsp;&nbsp;</a>&nbsp; PDS NHS 
+			Number Allocation Request Started - PRPA_IN040000UK30</p><p class="MsoNormal">&nbsp;</p><p class="MsoNormal">
+			<a title="View Example" href="PRPA_EX060000UK30INF.xml">
+    <img border='0' src='../../../Core/Components_files/image006.gif' width="14" height="16"></a>&nbsp;&nbsp;&nbsp; PDS NHS 
+			Number Allocation Request Completed - PRPA_IN060000UK30</p><p class="MsoNormal">&nbsp;</p><p class="MsoNormal">
+			<a title="View Example" href="MCCI_EX010000UK13_01.xml">
+    <img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a>&nbsp;&nbsp;&nbsp; Application Acknowledgement - MCCI_IN010000UK13</p>  <h2><a name=_Toc_Section_7.2></a>7.2&nbsp;&nbsp;&nbsp;&nbsp;PDS Query/Response</h2>		<p class="MsoNormal">This sequence of examples contains a PDS Trace Query Started interaction followed by a choice of 2 query response interactions. The first is a successful PDS Trace Query Successful interaction and the second is a query act failed interaction.</p><p class="MsoNormal">&nbsp;</p><p class="MsoNormal">
+			<a title="View Example" href="QUPA_EX010000UK31INF.xml">
+    <img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a>&nbsp;&nbsp;&nbsp; PDS 
+			Trace Query Started - QUPA_IN010000UK31</p><p class="MsoNormal">&nbsp;</p><p class="MsoNormal">
+			<a title="View Example" href="QUPA_EX030000UK31INF.xml">
+    <img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a>&nbsp;&nbsp;&nbsp; PDS 
+			Trace Query Successful - QUPA_IN030000UK31</p><p class="MsoNormal">&nbsp;</p><p class="MsoNormal">
+			<a title="View Example" href="QUQI_EX010000UK14_01.xml">
+    <img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a>&nbsp;&nbsp;&nbsp; Query Act Failed - QUQI_IN010000UK14</p>  <h2><a name=_Toc_Section_7.3></a>7.3&nbsp;&nbsp;&nbsp;&nbsp;Discharge Notification/Response</h2>		<p class="MsoNormal">This sequence of examples contains a Discharge Notification interaction followed by a choice of 2&nbsp; application acknowledgement interactions. The first indicates that the Discharge Notification has been received without errors and the second indicates that there has been an error identified en route to the recipient.</p><p class="MsoNormal">&nbsp;</p><p class="MsoNormal">
+			<a title="View Example" href="REPC_EX150002UK02INF.xml">
+    <img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a>&nbsp;&nbsp;&nbsp; 
+			Discharge Notification - REPC_IN150002UK02</p><p class="MsoNormal">&nbsp;</p><p class="MsoNormal">
+			<a title="View Example" href="MCCI_EX010000UK13_02.xml">
+    <img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a>&nbsp;&nbsp;&nbsp; Application Acknowledgement - MCCI_IN010000UK13 (successful receipt, no errors)</p><p class="MsoNormal">&nbsp;</p><p class="MsoNormal">
+			<a title="View Example" href="MCCI_EX010000UK13_03.xml">
+    <img border='0' src='../../../Core/Components_files/image006.gif' width="16" height="16"></a>&nbsp;&nbsp;&nbsp; Application Acknowledgement - MCCI_IN00000UK13 (error identified by TMS)</div><hr size=2 width="100%" align=center></div><div>  
+    <a name=_Changes></a>
+	<h1><a name=_Toc_Section_8></a>8&nbsp;&nbsp;&nbsp;&nbsp;Changes for v3.12</h1></div>
+<h2><a name=_Toc_Section_8.1></a>8.1&nbsp;&nbsp;&nbsp;&nbsp;General Withdrawal 
+with Reason Changes</h2><p class="MsoNormal">
+<a href="../../../External%20Documents/Change%20Requests/Changes%20MIM%204.1.04/CR-0724%20-%20Infrastructure%20Changes.htm">CR-0724</a> 
+Withdrawal with reasons </p>
+
+  <p class=Input><!--[if supportFields]><![endif]--><font face="Arial"><span
+  lang=EN-US>1. Amended existing vocabulary MessageControlSnCT to remove SnCT as
+  it is not SNOMED vocabulary, assigned OID added in one value.</span></font></p>
+  <p class=Input><font face="Arial"><span lang=EN-US>2. Amended existing vocabulary
+  WithdrawalReason so that it is assigned an OID and added three values to the
+  vocabulary.</span></font></p>
+  <p class=Input><font face="Arial"><span lang=EN-US>3. Changed act relationship reason from
+  required to mandatory.</span></font></p>
+  <p class=Input><font face="Arial"><span lang=EN-US>4. Changed the participation recordTarget from
+  required to mandatory.</span></font></p>
+  <p class=Input><font face="Arial"><span lang=EN-US>5. Re-generated corresponding htm, tabular
+  views, schema and examples to reflect changes.</span></font></p>
+  <p class=Input><font face="Arial"><span lang=EN-US>6. Updated domain GPSummary and DI to refer
+  to new versioned model.</span></font></p>
+  <p class=Input><font face="Arial"><span lang=EN-US>7. Reversion model from UKCI_MT000001UK01
+  to UKCI_MT000001UK02. <!--[if gte mso 9]><xml>
+   <w:data>FFFFFFFF0000000014000500540065007800740038000000000000000000000000000000000000000000000000000000</w:data>
+  </xml><![endif]--></span></font><!--[if supportFields]><![endif]--></p>
+  
+</body></html>

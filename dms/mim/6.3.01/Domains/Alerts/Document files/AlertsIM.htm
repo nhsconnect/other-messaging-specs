@@ -1,0 +1,249 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Alerts Implementation Manual</title>
+<link rel="stylesheet" href="../../../Core/Stylesheets/IMCommon_v2.css" type="text/css">
+<style>
+
+td
+{
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	margin-left:0cm;
+	margin-right:0cm;
+	margin-top:0cm;
+}
+.TableHeading {
+	font-weight:bold
+}
+.GlossaryTerm {
+	font-weight:bold
+}
+
+table.MsoTableGrid
+	{border:1.0pt solid windowtext;
+	font-size:10.0pt;
+	font-family:"Times New Roman"}
+
+</style>
+</head>
+
+<body lang="EN-GB" link="blue" vlink="purple">
+
+<div id="header">
+	<p><font face="Arial">Alerts - Version 1.0 [Issued]</font></p>
+</div>
+<div id="content">
+	<p class="MsoNormal">&nbsp;</p>
+	<p class="MsoNormal">&nbsp;</p>
+	<p class="Un-numberedHeading1">Contents</p>
+	<div class="index1">
+		<div class="index1" div id="fp_TOC" class="fp_TOC">
+			<a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;Overview</a><br><a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.1">2.1&nbsp;&nbsp;&nbsp;&nbsp;Message from 
+	Accredited System to Spine</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.2">2.2&nbsp;&nbsp;&nbsp;&nbsp;Message from Spine to 
+	Accredited System</a><br><a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp;&nbsp;Alert Raiser - COMT_AR000001UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.2">3.2&nbsp;&nbsp;&nbsp;&nbsp;Alert Receiver - COMT_AR000002UK01</a><br><a href="#_Toc_Section_4">4&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1">4.1&nbsp;&nbsp;&nbsp;&nbsp;Alert Raised - COMT_TE000001UK01</a><br><a href="#_Toc_Section_5">5&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_5.1">5.1&nbsp;&nbsp;&nbsp;&nbsp;Alert Raised 
+	Interaction</a><br><a href="#_Toc_Section_6">6&nbsp;&nbsp;&nbsp;&nbsp;Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.1">6.1&nbsp;&nbsp;&nbsp;&nbsp;Alert Raised 
+	- COMT_IN000001UK01</a><br><a href="#_Toc_Section_7">7&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1">7.1&nbsp;&nbsp;&nbsp;&nbsp;Alert - COMT_MT000001UK01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_7.1.1">7.1.1&nbsp;&nbsp;&nbsp;&nbsp;Example 1</a></div>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p></p>
+	</div>
+	<hr size="2" width="100%" align="center">
+	<p>&nbsp;</p>
+	<p class="MsoNormal"><b>Change History&nbsp;</b>&nbsp;&nbsp;
+		<a title="View Change History" href="ChangeHistory/AlertsCH.htm">
+		<img border="0" src="../../../Core/Contents_files/Document.gif" width="30" height="20"></a></p>
+	<p>&nbsp;</p>
+	<hr size="2" width="100%" align="center">
+	<p>&nbsp;</p>
+	
+	<h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;Overview</h1>	<p class="MsoNormal"><span style="font-family: Arial"><font size="3">This 
+	domain describes the TES Services Alerts messages that the Spine can send or 
+	receives from external Accredited Systems. </font></span></p>
+	<p class="MsoNormal"><br>
+	<span style="font-family: Arial"><font size="3">A key use for Alerts is in 
+	the area of Information Governance (IG). IG Alerts are raised when an event 
+	occurs that is deemed to compromise the confidentiality of patient data. 
+	Such alerts shall be made available to authorised persons, such as Privacy 
+	Officers, with a responsibility for governance of patient information.</font></span></p>
+	<p class="MsoNormal">&nbsp;</p>
+	<p>&nbsp;</p>
+	<h1><a name=_Toc_Section_2></a>2&nbsp;&nbsp;&nbsp;&nbsp;Storyboards</h1>	<h2><a name=_Toc_Section_2.1></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;Message from 
+	Accredited System to Spine</h2>	<ul>
+		<li>
+		<p class="Bullet1"><font face="Arial">An Accredited System sends an 
+		alert to Spine<br>
+&nbsp;</font></li>
+		<li>
+		<p class="Bullet1"><font face="Arial">Spine processes the alert, i.e.</font></li>
+	</ul>
+	<blockquote>
+		<ul>
+			<li>
+			<p class="Bullet2"><font face="Arial">it uses the information in the 
+			alert and in its Spine Directory Service (SDS) to identify 
+			recipients who must be informed of the alert</font></li>
+			<li>
+			<p class="Bullet2"><font face="Arial">Spine stores the alert</font></li>
+			<li>
+			<p class="Bullet2"><span style="font-family: Arial">Spine sends an 
+			email notification to each recipient </span></li>
+		</ul>
+		<p class="Bullet2">&nbsp;</p>
+	</blockquote>
+	<h2><a name=_Toc_Section_2.2></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;Message from Spine to 
+	Accredited System</h2>	<p class="MsoBodyText"><font face="Arial">&nbsp;&nbsp; If an alert received 
+	by the Spine (see <a href="#_Toc_Section_2.1">2.1</a>) is one of which an 
+	Accredited System must be made aware then:</font></p>
+	<ul>
+		<li>
+		<p class="Bullet1" style="margin-left:18.0pt;text-indent:-18.0pt">
+		<font face="Arial">&nbsp;Spine creates an HL7 message and sends it to 
+		the Accredited System (or Systems). </font></li>
+	</ul>
+	<p class="Bullet1" style="margin-left:18.0pt;text-indent:-18.0pt">
+	<font face="Arial">&nbsp;&nbsp;&nbsp; The original alert from an Accredited 
+	System will in effect be forwarded to a second Accredited System (or 
+	Systems)</font></p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<hr size="2" width="100%" align="center" />
+	<h1><a name=_Toc_Section_3></a>3&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</h1>	<p><font face="Arial">The applications involved in the alert processes play specific roles.&nbsp; 
+	These, along with the interactions associated with each role, are identified 
+	below.</font></p>
+	<p>&nbsp;</p>
+	<h2><a name=COMT_AR000001UK01></a><a name=_Toc_Section_3.1></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;Alert Raiser - COMT_AR000001UK01</h2>	<p><font face="Arial">The Alert Raiser is the application role that originates 
+	the Alert</font></p>
+	<p>&nbsp;</p>
+	<p><font face="Arial">Alert Raiser Interactions.
+	<a title="View Interaction" href="#_Toc_Section_5.1">
+	<img border="0" src="../../../Core/Components_files/image001.gif"></a></font></p>  <h2><a name=COMT_AR000002UK01></a><a name=_Toc_Section_3.2></a>3.2&nbsp;&nbsp;&nbsp;&nbsp;Alert Receiver - COMT_AR000002UK01</h2>	<p><font face="Arial">The Alert Receiver is the application role that 
+	receives the Alert</font></p>
+	<p>&nbsp;</p>
+	<p><font face="Arial">Alert Receiver Interactions.&nbsp;
+	<a title="View Interaction" href="#_Toc_Section_5.2">
+	<img border="0" src="../../../Core/Components_files/image001.gif"></a></font></p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<hr size="2" width="100%" align="center">
+	<h1><a name=_Toc_Section_4></a>4&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</h1>	<h2><a name=COMT_TE000001UK01></a><a name=_Toc_Section_4.1></a>4.1&nbsp;&nbsp;&nbsp;&nbsp;Alert Raised - COMT_TE000001UK01</h2>	<p><font face="Arial">This event marks the point at which an alert needs to 
+	be raised by an accredited system, or by Spine.</font></p>
+	<p>&nbsp;</p>
+	<table border="1">
+		<tr>
+			<td width="151" class="TableHeading"><font face="Arial">Structured Name</font></td>
+			<td width="525"><em style="font-style: normal"><font face="Arial">
+			Alert Raised</font></em></td>
+		</tr>
+		<tr>
+			<td width="151" class="TableHeading"><font face="Arial">Type</font></td>
+			<td width="525"><font face="Arial">State-transition Based</font></td>
+		</tr>
+	</table>
+	<p>&nbsp;</p>
+	<hr size="2" width="100%" align="center">
+	<p>&nbsp;</p>
+	<h1><a name=_Toc_Section_5></a>5&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</h1>	<h2><a name=_Toc_Section_5.1></a>5.1&nbsp;&nbsp;&nbsp;&nbsp;Alert Raised 
+	Interaction</h2>	<p>&nbsp;</p>
+	<div id="content0">
+		<div class="Section1">
+			<p class="MsoNormal"><b>Note :- Application Acknowledgement shown is 
+			only sent in the event of an error.</b></div>
+	</div>
+	<p>&nbsp;</p>
+	<div id="6f88dc15-3bd5-427f-9ad9-836bd5f6bf7f">
+		<img src="alerts.png" border="0" usemap="#6f88dc15-3bd5-427f-9ad9-836bd5f6bf7f" />
+		<map name="6f88dc15-3bd5-427f-9ad9-836bd5f6bf7f">
+			<area href="#COMT_AR000001UK01" type="rect" coords="48, 60, 233, 110" />
+			<area href="#COMT_AR000002UK01" type="rect" coords="488, 60, 673, 110" />
+			<area href="#COMT_IN000001UK01" type="rect" coords="274, 128, 446, 172" />
+			<area href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#MCCI_IN010000UK13" type="rect" coords="251, 188, 470, 232" />
+
+		</map>
+	</div>
+	<p>&nbsp;</p>
+	<hr size="2" width="100%" align="center">
+	<p>&nbsp;</p>
+	<h1><a name=_Toc_Section_6></a>6&nbsp;&nbsp;&nbsp;&nbsp;Interactions</h1>	<h2><a name=COMT_IN000001UK01></a><a name=_Toc_Section_6.1></a>6.1&nbsp;&nbsp;&nbsp;&nbsp;Alert Raised 
+	- COMT_IN000001UK01</h2>	<p><font face="Arial">This interaction is used when an alert is communicated. </font></p>
+	<p>&nbsp;</p>
+	<table border="1">
+		<tr>
+			<td width="190" class="TableHeading"><font face="Arial">Sending Role</font></td>
+			<td width="259"><font face="Arial">Alert Raising System</font></td>
+			<td width="224"><font face="Arial"><a href="#_Toc_Section_3.1">COMT_AR000001UK01</a></font></td>
+		</tr>
+		<tr>
+			<td width="190" class="TableHeading"><font face="Arial">Receiving 
+			Role</font></td>
+			<td width="259"><font face="Arial">Alert Receiving System</font></td>
+			<td width="224"><font face="Arial"><a href="#_Toc_Section_3.2">COMT_AR000002UK01</a></font></td>
+		</tr>
+		<tr>
+			<td width="190" class="TableHeading"><font face="Arial">Trigger Event</font></td>
+			<td width="259"><font face="Arial">Alert Raised</font></td>
+			<td width="224"><font face="Arial"><a href="#_Toc_Section_4.1">COMT_TE000001UK01</a></font></td>
+		</tr>
+		<tr>
+			<td width="190" class="TableHeading"><font face="Arial">Transmission Wrapper</font></td>
+			<td width="259"><font face="Arial">Send Message Payload</font></td>
+			<td width="224">
+			<font face="Arial">
+			<a href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.1">
+			MCCI_MT010101UK12</a></font></td>
+		</tr>
+		<tr>
+			<td width="190" class="TableHeading"><font face="Arial">Control Act Wrapper</font></td>
+			<td width="259"><font face="Arial">Control Act</font></td>
+			<td width="224">
+			<font face="Arial">
+			<a href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_5.3">
+			MCAI_MT040101UK03</a></font></td>
+		</tr>
+		<tr>
+			<td width="190" class="TableHeading"><font face="Arial">Message Type</font></td>
+			<td width="259"><font face="Arial">Alert</font></td>
+			<td width="224"><font face="Arial"><a href="#_Toc_Section_7.1">COMT_MT000001UK01</a></font></td>
+		</tr>
+	</table>
+	<p><font face="Arial">&nbsp; </font> </p>
+	<p>
+	<font face="Arial">
+	<a title="View Interaction Schema" href="../../../Schemas/COMT_IN000001UK01.xsd">
+	<img border="0" src="../../../Core/Components_files/image002.gif"></a></font></p>
+	<p>&nbsp;</p>
+	<p class="Un-numberedHeading1">Receiver Responsibilities</p>
+	<table border="1" width="694">
+		<tr>
+			<td class="TableHeading"><font face="Arial">Reason</font></td>
+			<td width="223"><font face="Arial">Interaction</span></font></td>
+		</tr>
+		<tr>
+			<td class="TableHeading"><font face="Arial">
+			<span style="font-weight: 400">
+			Receiver finds an error in the alert message</span></font></td>
+			<td width="223"><font face="Arial"><a href="../../Infrastructure/Document%20Files/Infrastructure%20IM.htm#_Toc_Section_4.2">MCCI_IN010000UK13</a></font></td>
+		</tr>
+		</table>
+	<hr size="2" width="100%" align="center">
+	<h1><a name=_Toc_Section_7></a>7&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</h1>	<h2><a name=COMT_MT000001UK01></a><a name=_Toc_Section_7.1></a>7.1&nbsp;&nbsp;&nbsp;&nbsp;Alert - COMT_MT000001UK01</h2>	<p><font face="Arial">A message containing the details of the Alert. </font> </p>
+	<p>&nbsp;</p>
+	<p><font face="Arial"><a title="View R-MIM" href="../Tabular%20View/COMT_RM000001UK01.htm">
+	<img border="0" src="../../../Core/Components_files/image003.gif"></a>&nbsp;&nbsp;&nbsp;
+	<a title="View Tabular View" href="../Tabular%20View/COMT_HD000001UK01-NoEdit.htm">
+	<img border="0" src="../../../Core/Components_files/image004.gif"></a>&nbsp;&nbsp;
+	<a title="View Schema" href="../../../Schemas/COMT_MT000001UK01.xsd">
+	<img border="0" src="../../../Core/Components_files/image005.gif"></a></font></p>
+	<h3><a name=_Toc_Section_7.1.1></a>7.1.1&nbsp;&nbsp;&nbsp;&nbsp;Example 1</h3>	<p><font face="Arial">&nbsp;</font></p>
+	<p>
+	<font face="Arial">
+	<a title="View Example" href="../../../Examples/Alerts/COMT_EX000001UK01_01.xml">
+	<img border="0" src="../../../Core/Components_files/image006.gif"></a></font></p>
+	<p>&nbsp;</p>
+	<hr size="2" width="100%" align="center">
+</div>
+
+</body>
+
+</html>
