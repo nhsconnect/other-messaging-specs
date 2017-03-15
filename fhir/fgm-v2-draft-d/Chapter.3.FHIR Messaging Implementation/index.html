@@ -1,0 +1,320 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+			<title>FGM Risk Indication System - FHIR Implementation Guide</title>
+
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="author" content="HSCIC" />        
+			<meta name="publisher version" content=	"FHIR-Furnace : 2.7.6179.25752" />
+		
+			<link href="../dist/css/fhir.css" rel="stylesheet" />
+	 
+			<!-- Bootstrap core CSS -->
+			<link href="../dist/css/bootstrap.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-fhir.css" rel="stylesheet" />
+			<link href="../dist/css/bootstrap-glyphicons.css" rel="stylesheet" />
+
+			<!-- Project extras -->
+			
+			<link href="../dist/css/pygments-manni.css" rel="stylesheet" />
+
+			<script src="../dist/js/jquery.js"> </script>
+			<script src="../dist/js/bootstrap.min.js"> </script>
+
+			<script src="../dist/js/fhir.js"> </script>
+			
+				<script>
+				  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+				  ga('create', 'UA-67795986-1', 'auto');
+				  ga('send', 'pageview');
+
+				</script>
+			
+			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+				<script src="../dist/js/html5shiv.js"></script>
+				<script src="../dist/js/respond.min.js"></script>
+			<![endif]-->
+
+			<!-- Favicons -->
+			<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../dist/images/apple-touch-icon-144-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../dist/images/apple-touch-icon-114-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../dist/images/apple-touch-icon-72-precomposed.png" />
+			<link rel="apple-touch-icon-precomposed" href="../dist/images/apple-touch-icon-57-precomposed.png" />
+			<link rel="shortcut icon" href="../dist/images/favicon.ico" />
+	</head>
+	
+	<body>  
+		
+		<!-- segment-header -->
+		<div id="segment-header" class="segment">
+            
+            <div class="container">
+                <!-- container -->
+                <a id="logo" href="http://www.digital.nhs.uk" target="_blank">
+                    <img src="../dist/images/logo.png" alt="logo NHS Digital" />
+                </a>
+                <div id="specificationName">
+         
+                        <b>FGM Risk Indication System</b>
+                  
+                </div>
+
+            </div>
+            <div class="container">
+                <!-- container -->
+            </div>
+        </div>
+        
+		<!-- /segment-header -->
+		
+		
+		<div id="segment-navbar" class="segment">
+            <!-- segment-navbar -->
+            <div id="stripe"> </div>
+            <div class="container">
+                <!-- container -->
+                <!-- HEADER CONTENT -->
+
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <button data-target=".navbar-inverse-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                            <span class="icon-bar"> </span>
+                        </button>
+                        <div class="nav-collapse collapse navbar-inverse-collapse">
+                            <ul class="nav navbar-nav">   
+
+											<li>
+												<a href='../Chapter.1.About/index.html'>About</a>
+											</li>
+											<li>
+												<a href='../Chapter.2.Change History/index.html'>Change History</a>
+											</li>
+											<li>
+												<a href='../Chapter.3.FHIR Messaging Implementation/index.html'>FHIR Messaging Implementation</a>
+											</li>
+											<li>
+												<a href='../Chapter.4.FHIR Messages/index.html'>FHIR Messages</a>
+											</li>
+											<li>
+												<a href='../Chapter.5.Examples/examples.html'>Examples</a>
+											</li>
+											<li>
+												<a href='../Chapter.6.Glossary/index.html'>Glossary</a>
+											</li>
+											<li>
+												<a href='../Chapter.7.Valuesets/valuesets.html'>Valuesets</a>
+											</li>
+
+                            </ul>
+							
+                            <p class="navbar-text pull-right" style="padding-right: 10px;padding-top: 3px;">
+                                <span class="label label-default"  style="font-size: 95%;">Version 2.0 : DRAFT D</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </nav>				
+            </div>
+        </div>
+		
+		<div id="segment-breadcrumb" class="segment">
+            <!-- segment-breadcrumb -->
+            <div class="container">
+                <!-- container -->
+                <ul class="breadcrumb"></ul>
+            </div>
+            <!-- /container -->
+        </div>
+        <div id="segment-content" class="segment">
+            <!-- segment-content -->
+            <div class="container">
+                <!-- container -->
+                <div class="row">
+                    <div class="inner-wrapper">
+						<!-- CONTENT CONTENT -->
+                        <div class="col-12">
+							
+							
+							
+							
+							
+									<div class="panel panel - default">
+											<h2>FHIR Messaging Architecture</h2>
+<p><strong>FGM Risk Indication System Spine 2 interface Overview</strong></p>
+<p>This section provides FGM implementers with an overview of the FGM Risk Indication System Spine 2 FHIR messaging interface also known as the 'FGM Service'.  </p>
+<p>The FGM Service supports the following functionality:</p>
+<ul>
+<li>Query for patient FGM status</li>
+<li>Create patient FGM flag</li>
+<li>Delete patient FGM flag</li>
+</ul>
+<p>The FGM Service is based on the <a href="http://hl7.org/fhir/messaging.html">HL7 FHIR DSTU2 1.0.1 Messaging Implementation</a> (Sept 2015) Messaging Implementation. </p>
+<hr />
+<p><strong>FGM FHIR Message Patterns and Structures</strong></p>
+<p>In FHIR messaging, a &quot;message&quot; is sent from a source application to a destination application when an event happens. Events mostly correspond to things that happen in the real world. </p>
+<p>The FGM Service utilises a synchronous request / response pattern. It is synchronous with respect to HTTP connections which means that only a single HTTP connection 
+is required to perform a complete request.</p>
+<p>This message communication pattern is similar to the Spine 1 'Web Service Mode'. However, as the FHIR message payload
+contains the required sender and receiver endpoint information there is no longer any need to support the legacy HL7 v3 transport wrapper, WS-Addressing or for the SOAP header information within the structure.</p>
+<p>The FGM request / response FHIR message payloads consist of combined FHIR resources that are bundled together within a FHIR Bundle wrapper to form the FHIR message structure. The Bundle resource is a container for a collection of resources identified by the type &quot;message&quot;, with the first 
+resource in the bundle being a MessageHeader resource.</p>
+<p>The MessageHeader resource has a message event code (MessageHeader.event.code) that identifies the nature of the request/ response message. The message event in FGM is the SOAPAction (service and action) URI once carried as an HTTP Header e.g. urn:nhs:names:services:clinicals-sync:FGMQuery_1_0</p>
+<p>The MessageHeader.source.endpoint and  the MessageHeader.destination.endpoint elements identify the sender and receiver addresses and are used for authorisation and audit purposes. An example of a sender address URN is: urn:nhs:addressing:asid:047192794544</p>
+<p>Any resources referenced in the MessageHeader or child resources must be included in the bundle.</p>
+<p>For implementers of the FGM Query 'read only' interface this DMS should be read in conjunction with the 'FGM Service' Implementation Guide: <a href="FGM_implementation_guide-v1.pdf">FGM_implementation_guide-v1</a>.</p>
+<p><font color="red"><strong>Note</strong></p>
+<p>Implementation guidance for the FGM Create and Delete 'update' Spine 2 interfaces TBA. 
+</font></p>
+<hr />
+<p><strong>QRY-FGM-QueryRequest-2-0 Interaction</strong> </p>
+<p>The client system will construct an FGM Query Request message and send it to Spine 2.</p>
+<ul>
+<li><em>Sender:</em> FGM Client</li>
+<li><em>Receiver:</em> Spine 2</li>
+<li><em>Message: Wire Format:</em> <a href="../Profile.FGMRISQueryRequest/Profile.FGMRISQueryRequest.html">FGM-QueryRequest-2-0</a></li>
+</ul>
+<p><strong>Acknowledgements</strong></p>
+<p>HTTP Response.</p>
+<p><strong>Responses</strong></p>
+<p>Spine 2 <strong>must</strong> send the following response:</p>
+<p><em>FGM Query Response</em> - <a href="#RSP-FGM-QueryRequestResponse-2-0">RSP-FGM-QueryRequestResponse-2-0</a></p>
+<hr />
+<p><strong><a name="RSP-FGM-QueryRequestResponse-2-0"></a> RSP-FGM-QueryRequestResponse-2-0 Interaction</strong> </p>
+<p>Assuming successful transport of the FGM-QueryRequest-2-0 message, Spine 2 will construct an FGM Query Response message and send it to the FGM Client.</p>
+<ul>
+<li><em>Sender:</em> Spine 2 </li>
+<li><em>Receiver:</em> FGM Client</li>
+<li><em>Message: Wire Format:</em> <a href="../Profile.FGMRISQueryRequestResponse/Profile.FGMRISQueryRequestResponse.html">FGM-QueryRequestResponse-2-0</a></li>
+</ul>
+<p>There are three possible outcomes to the Query Request:</p>
+<ul>
+<li><strong>Invalid Query:</strong> SPINE rejects the FGM query due to business rules around the query construct.</li>
+<li><strong>FGM Entry Found:</strong> SPINE executes the FGM query and there is an FGM risk entry for the patient.</li>
+<li><strong>No FGM Entry Found:</strong> SPINE executes the FGM query and there is no FGM risk entry for the patient.</li>
+</ul>
+<hr />
+<p><strong>NOT-FGM-CreateFlagRequest-1-0 Interaction</strong> </p>
+<p>The client system will construct an FGM Create Flag message and send it to Spine 2.</p>
+<ul>
+<li><em>Sender:</em> FGM Client</li>
+<li><em>Receiver:</em> Spine 2</li>
+<li><em>Message: Wire Format:</em> <a href="../Profile.FGMRISCreateRequest/Profile.FGMRISCreateRequest.html">FGM-CreateFlagRequest-1-0</a></li>
+</ul>
+<p><strong>Acknowledgements</strong></p>
+<p>HTTP Response.</p>
+<p><strong>Responses</strong></p>
+<p>Spine 2 <strong>must</strong> send the following response:</p>
+<p><em>FGM CreateFlag Response</em> - <a href="#RSP-FGM-CreateFlagRequestResponse-1-0">RSP-FGM-CreateFlagRequestResponse-1-0</a></p>
+<hr />
+<p><strong><a name="RSP-FGM-CreateFlagRequestResponse-1-0"></a> RSP-FGM-CreateFlagRequestResponse-1-0 Interaction</strong> </p>
+<p>Assuming successful transport of the FGM-CreateFlagRequest-1-0 message, Spine 2 will construct an FGM Create Flag Response message and send it to the FGM Client.</p>
+<ul>
+<li><em>Sender:</em> Spine 2 </li>
+<li><em>Receiver:</em> FGM Client</li>
+<li><em>Message: Wire Format:</em> <a href="../Profile.FGMRISCreateRequestResponse/Profile.FGMRISCreateRequestResponse.html">FGM-CreateFlagResponse-1-0</a></li>
+</ul>
+<p>There are two possible outcomes to the FGM-CreateFlagRequest-1-0:</p>
+<ul>
+<li><strong>FGM Create:</strong> SPINE executes the FGM create flag request and an FGM risk entry for the patient is created on Spine 2.</li>
+<li><strong>Invalid Create Request:</strong> SPINE rejects the FGM create flag request due to business rules around the create flag construct.</li>
+</ul>
+<hr />
+<p><strong>NOT-FGM-DeleteRequest-1-0 Interaction</strong> </p>
+<p>The client system will construct an FGM Delete message and send it to Spine 2.</p>
+<ul>
+<li><em>Sender:</em> FGM Client</li>
+<li><em>Receiver:</em> Spine 2</li>
+<li><em>Message: Wire Format:</em> <a href="../Profile.FGMRISDeleteRequest/Profile.FGMRISDeleteRequest.html">FGM-DeleteRequest-1-0</a></li>
+</ul>
+<p><strong>Acknowledgements</strong></p>
+<p>HTTP Response.</p>
+<p><strong>Responses</strong></p>
+<p>Spine 2 <strong>must</strong> send the following response:</p>
+<p><em>FGM Delete Response</em> - <a href="#RSP-FGM-DeleteRequestResponse-1-0">RSP-FGM-DeleteRequestResponse-1-0</a></p>
+<hr />
+<p><strong><a name="RSP-FGM-DeleteRequestResponse-1-0"></a> RSP-FGM-DeleteRequestResponse-1-0 Interaction</strong> </p>
+<p>Assuming successful transport of the FGM-CreateFlagRequest-1-0 message, Spine 2 will construct an FGM Delete Response message and send it to the FGM Client.</p>
+<ul>
+<li><em>Sender:</em> Spine 2 </li>
+<li><em>Receiver:</em> FGM Client</li>
+<li><em>Message: Wire Format:</em> <a href="../Profile.FGMRISDeleteRequestResponse/Profile.FGMRISDeleteRequestResponse.html">FGM-DeleteResponse-1-0</a></li>
+</ul>
+<p>There are two possible outcomes to the FGM-DeleteRequest-1-0:</p>
+<ul>
+<li><strong>FGM Delete:</strong> SPINE executes the FGM delete request and the FGM risk entry for the patient is removed from Spine 2.</li>
+<li><strong>Invalid Delete Request:</strong> SPINE rejects the FGM delete request due to business rules around the delete message construct.</li>
+</ul>
+<hr />
+<p><strong>FGM Risk Indication System Spine 2 Interaction Diagram</strong>
+</br></p>
+<p>The diagram shows the FGM Risk Indication System Spine 2 Interactions:</p>
+<p></br></p>
+<div style="display: block;"><img  src="FGMFHIRInteractions.png" alt="Interactions"></div>  
+<p><br></p>
+<p><strong>Further Information</strong></p>
+<p>For more information about FHIR messaging please visit: <a href="http://hl7.org/fhir/messaging.html">HL7 FHIR DSTU2 1.0.1 Messaging Implementation</a> and for the 'FGM Service' read only interface see: <a href="FGM_implementation_guide-v1.pdf">FGM_implementation_guide-v1</a>: FGM_implementation_guide-v1.pdf.</p>
+<p>Quick links to FHIR reference implementations and implementation tool downloads are available from the <a href="http://hl7.org/fhir/index.html">FHIR DSTU2 1.0.1</a> (Sept 2015) specification.</p>
+
+									</div>
+							
+						
+					   </div>                      
+                    </div>
+                    <!-- /inner-wrapper -->                   
+                </div>
+                <!-- /row -->              
+            </div>
+            <!-- /container -->           
+        </div>
+    <!-- /segment-content -->
+
+        <div id="segment-footer" class="segment">
+            <!-- segment-footer -->
+            <div class="container">
+                <!-- container -->
+                <div class="inner-wrapper">
+					<div id="explanatoryline">
+                         <img src="../dist/images/explanatoryline.png" alt="Information and technology for better health and care" />
+						 <p>
+                        Copyright &copy; 2017 Health and Social Care Information Centre<br/>
+						NHS Digital is the trading name of the Health and Social Care Information Centre.
+                    </p>
+                    </div>
+				<div id="hl7-nav">
+                    <a id="hl7-logo" href="http://www.hl7.org" target="_blank">
+                        <img src="../dist/images/hl7-logo.png" alt="visit the hl7 website" />
+                    </a>
+					<p>
+					FHIR&reg; is the registered trademark of HL7<br/>
+					and is used with the permission of HL7.
+					</p>
+				</div>
+					<p>
+						<!--<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> -->
+                    </p>
+                </div>
+                <!-- /inner-wrapper -->
+            </div>
+            <!-- /container -->
+        </div>
+
+        <div id="segment-post-footer" class="segment">
+            <!-- segment-post-footer -->
+            <div class="container">
+                <!-- container -->
+            </div>
+            <!-- /container -->
+        </div>
+	</body>
+</html>
