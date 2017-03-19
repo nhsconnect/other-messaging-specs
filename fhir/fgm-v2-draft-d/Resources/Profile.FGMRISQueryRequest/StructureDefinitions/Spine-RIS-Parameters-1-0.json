@@ -1,0 +1,894 @@
+{
+  "resourceType": "StructureDefinition",
+  "meta": {
+    "lastUpdated": "2016-04-21T16:21:33.03+01:00",
+    "tag": [
+      {
+        "system": "urn:hscic:examples",
+        "code": "Example-qr-3",
+        "display": "Spine-RIS-Parameters-1-0 Example"
+      },
+      {
+        "system": "urn:hscic:publishOrder",
+        "code": "03"
+      }
+    ]
+  },
+  "url": "http://fhir.nhs.net/StructureDefinition/spine-ris-parameters-1-0",
+  "version": "0.0.1",
+  "name": "Spine-RIS-Parameters-1-0",
+  "display": "Spine-RIS-Parameters-1-0",
+  "status": "draft",
+  "publisher": "http://fhir.nhs.net",
+  "date": "2015-04-02T13:21:09+01:00",
+  "description": "This Parameters Resource is constrained for FGM Query messaging requirements. ",
+  "mapping": [
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM"
+    }
+  ],
+  "kind": "resource",
+  "constrainedType": "Parameters",
+  "abstract": false,
+  "base": "http://hl7.org/fhir/StructureDefinition/Parameters",
+  "snapshot": {
+    "element": [
+      {
+        "path": "Parameters",
+        "short": "Query Parameters Request",
+        "definition": "This special resource type is used to represent [operation](operations.html] request and response. It has no other use, and there is no RESTful end=point associated with it.",
+        "comments": "The parameters that may be used are defined by the OperationDefinition resource.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Resource"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "n/a"
+          },
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter",
+        "name": "parameter",
+        "slicing": {
+          "discriminator": [
+            "name"
+          ],
+          "ordered": true,
+          "rules": "closed"
+        },
+        "short": "Operation Parameter",
+        "definition": "A parameter passed to or received from the operation.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "inv-1",
+            "severity": "error",
+            "human": "A parameter must have a value or a resource, but not both",
+            "xpath": "exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter.name",
+        "short": "Name from the definition",
+        "definition": "The name of the parameter (reference to the operation definition).",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter.name",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter.value[x]",
+        "short": "If parameter is a data type",
+        "definition": "If the parameter is a data type.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter.value[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          },
+          {
+            "code": "integer"
+          },
+          {
+            "code": "decimal"
+          },
+          {
+            "code": "base64Binary"
+          },
+          {
+            "code": "instant"
+          },
+          {
+            "code": "string"
+          },
+          {
+            "code": "uri"
+          },
+          {
+            "code": "date"
+          },
+          {
+            "code": "dateTime"
+          },
+          {
+            "code": "time"
+          },
+          {
+            "code": "code"
+          },
+          {
+            "code": "oid"
+          },
+          {
+            "code": "id"
+          },
+          {
+            "code": "unsignedInt"
+          },
+          {
+            "code": "positiveInt"
+          },
+          {
+            "code": "markdown"
+          },
+          {
+            "code": "Annotation"
+          },
+          {
+            "code": "Attachment"
+          },
+          {
+            "code": "Identifier"
+          },
+          {
+            "code": "CodeableConcept"
+          },
+          {
+            "code": "Coding"
+          },
+          {
+            "code": "Quantity"
+          },
+          {
+            "code": "Range"
+          },
+          {
+            "code": "Period"
+          },
+          {
+            "code": "Ratio"
+          },
+          {
+            "code": "SampledData"
+          },
+          {
+            "code": "Signature"
+          },
+          {
+            "code": "HumanName"
+          },
+          {
+            "code": "Address"
+          },
+          {
+            "code": "ContactPoint"
+          },
+          {
+            "code": "Timing"
+          },
+          {
+            "code": "Reference"
+          },
+          {
+            "code": "Meta"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ]
+      },
+      {
+        "path": "Parameters.parameter.resource",
+        "short": "If parameter is a whole resource",
+        "definition": "If the parameter is a whole resource.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter.resource",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Resource"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ]
+      },
+      {
+        "path": "Parameters.parameter.part",
+        "short": "Named part of a parameter (e.g. Tuple)",
+        "definition": "A named part of a parameter. In many implementation context, a set of named parts is known as a \"Tuple\".",
+        "comments": "Only one level of Tuples is allowed.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "Parameters.parameter.part",
+          "min": 0,
+          "max": "*"
+        },
+        "nameReference": "parameter",
+        "constraint": [
+          {
+            "key": "inv-2",
+            "severity": "error",
+            "human": "A part must have a value or a resource, but not both",
+            "xpath": "exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter",
+        "name": "Risk Indicator",
+        "short": "Operation Parameter",
+        "definition": "A parameter passed to or received from the operation.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "inv-1",
+            "severity": "error",
+            "human": "A parameter must have a value or a resource, but not both",
+            "xpath": "exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter.name",
+        "name": "Risk Indicator",
+        "short": "RiskIndicator",
+        "definition": "The name of the parameter (reference to the operation definition).",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter.name",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "RiskIndicator",
+        "exampleString": "RiskIndicator"
+      },
+      {
+        "path": "Parameters.parameter.valueString",
+        "label": "Risk Indicator",
+        "code": [
+          {
+            "system": "http://fhir.nhs.net/ValueSet/risk-indicator-type-1-0",
+            "code": "FGM"
+          }
+        ],
+        "short": "Risk Indicator code fixed to 'FGM'.",
+        "definition": "coding",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter.value[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ]
+      },
+      {
+        "path": "Parameters.parameter.resource",
+        "short": "If parameter is a whole resource",
+        "definition": "If the parameter is a whole resource.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Parameters.parameter.resource",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Resource"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ]
+      },
+      {
+        "path": "Parameters.parameter.part",
+        "short": "Named part of a parameter (e.g. Tuple)",
+        "definition": "A named part of a parameter. In many implementation context, a set of named parts is known as a \"Tuple\".",
+        "comments": "Only one level of Tuples is allowed.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Parameters.parameter.part",
+          "min": 0,
+          "max": "*"
+        },
+        "nameReference": "parameter",
+        "constraint": [
+          {
+            "key": "inv-2",
+            "severity": "error",
+            "human": "A part must have a value or a resource, but not both",
+            "xpath": "exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter",
+        "name": "NHS Number",
+        "short": "Operation Parameter",
+        "definition": "A parameter passed to or received from the operation.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "inv-1",
+            "severity": "error",
+            "human": "A parameter must have a value or a resource, but not both",
+            "xpath": "exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter.modifierExtension",
+        "short": "Extensions that cannot be ignored",
+        "definition": "May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.",
+        "comments": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content",
+          "modifiers"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "BackboneElement.modifierExtension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ],
+        "isModifier": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter.name",
+        "name": "NHS Number",
+        "short": "NHSNumber",
+        "definition": "The name of the parameter (reference to the operation definition).",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter.name",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "NHSNumber",
+        "exampleString": "NHSNumber"
+      },
+      {
+        "path": "Parameters.parameter.valueString",
+        "code": [
+          {
+            "system": "http://fhir.nhs.net/Id/nhs-number"
+          }
+        ],
+        "short": "Verified NHS number of the patient ",
+        "definition": "identifier",
+        "comments": "the NHS number must be a valid verified nhs number. ",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter.value[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ]
+      },
+      {
+        "path": "Parameters.parameter.resource",
+        "short": "If parameter is a whole resource",
+        "definition": "If the parameter is a whole resource.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Parameters.parameter.resource",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Resource"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ]
+      },
+      {
+        "path": "Parameters.parameter.part",
+        "short": "Named part of a parameter (e.g. Tuple)",
+        "definition": "A named part of a parameter. In many implementation context, a set of named parts is known as a \"Tuple\".",
+        "comments": "Only one level of Tuples is allowed.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Parameters.parameter.part",
+          "min": 0,
+          "max": "*"
+        },
+        "nameReference": "parameter",
+        "constraint": [
+          {
+            "key": "inv-2",
+            "severity": "error",
+            "human": "A part must have a value or a resource, but not both",
+            "xpath": "exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))"
+          }
+        ]
+      }
+    ]
+  },
+  "differential": {
+    "element": [
+      {
+        "path": "Parameters",
+        "short": "Query Parameters Request",
+        "definition": "This special resource type is used to represent [operation](operations.html] request and response. It has no other use, and there is no RESTful end=point associated with it.",
+        "comments": "The parameters that may be used are defined by the OperationDefinition resource.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Resource"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "v2",
+            "map": "n/a"
+          },
+          {
+            "identity": "rim",
+            "map": "n/a"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter",
+        "name": "parameter",
+        "slicing": {
+          "discriminator": [
+            "name"
+          ],
+          "ordered": true,
+          "rules": "closed"
+        },
+        "short": "Operation Parameter",
+        "definition": "A parameter passed to or received from the operation.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "inv-1",
+            "severity": "error",
+            "human": "A parameter must have a value or a resource, but not both",
+            "xpath": "exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter",
+        "name": "Risk Indicator",
+        "short": "Operation Parameter",
+        "definition": "A parameter passed to or received from the operation.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "inv-1",
+            "severity": "error",
+            "human": "A parameter must have a value or a resource, but not both",
+            "xpath": "exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter.name",
+        "name": "Risk Indicator",
+        "short": "RiskIndicator",
+        "definition": "The name of the parameter (reference to the operation definition).",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter.name",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "RiskIndicator",
+        "exampleString": "RiskIndicator"
+      },
+      {
+        "path": "Parameters.parameter.valueString",
+        "label": "Risk Indicator",
+        "code": [
+          {
+            "system": "http://fhir.nhs.net/ValueSet/risk-indicator-type-1-0",
+            "code": "FGM"
+          }
+        ],
+        "short": "Risk Indicator code fixed to 'FGM'.",
+        "definition": "coding",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter.value[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ]
+      },
+      {
+        "path": "Parameters.parameter.resource",
+        "short": "If parameter is a whole resource",
+        "definition": "If the parameter is a whole resource.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Parameters.parameter.resource",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Resource"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ]
+      },
+      {
+        "path": "Parameters.parameter.part",
+        "short": "Named part of a parameter (e.g. Tuple)",
+        "definition": "A named part of a parameter. In many implementation context, a set of named parts is known as a \"Tuple\".",
+        "comments": "Only one level of Tuples is allowed.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Parameters.parameter.part",
+          "min": 0,
+          "max": "*"
+        },
+        "nameReference": "parameter",
+        "constraint": [
+          {
+            "key": "inv-2",
+            "severity": "error",
+            "human": "A part must have a value or a resource, but not both",
+            "xpath": "exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter",
+        "name": "NHS Number",
+        "short": "Operation Parameter",
+        "definition": "A parameter passed to or received from the operation.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "inv-1",
+            "severity": "error",
+            "human": "A parameter must have a value or a resource, but not both",
+            "xpath": "exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))"
+          }
+        ]
+      },
+      {
+        "path": "Parameters.parameter.name",
+        "name": "NHS Number",
+        "short": "NHSNumber",
+        "definition": "The name of the parameter (reference to the operation definition).",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter.name",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "fixedString": "NHSNumber",
+        "exampleString": "NHSNumber"
+      },
+      {
+        "path": "Parameters.parameter.valueString",
+        "code": [
+          {
+            "system": "http://fhir.nhs.net/Id/nhs-number"
+          }
+        ],
+        "short": "Verified NHS number of the patient ",
+        "definition": "identifier",
+        "comments": "the NHS number must be a valid verified nhs number. ",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Parameters.parameter.value[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ]
+      },
+      {
+        "path": "Parameters.parameter.resource",
+        "short": "If parameter is a whole resource",
+        "definition": "If the parameter is a whole resource.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Parameters.parameter.resource",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Resource"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ]
+      },
+      {
+        "path": "Parameters.parameter.part",
+        "short": "Named part of a parameter (e.g. Tuple)",
+        "definition": "A named part of a parameter. In many implementation context, a set of named parts is known as a \"Tuple\".",
+        "comments": "Only one level of Tuples is allowed.",
+        "min": 0,
+        "max": "0",
+        "base": {
+          "path": "Parameters.parameter.part",
+          "min": 0,
+          "max": "*"
+        },
+        "nameReference": "parameter",
+        "constraint": [
+          {
+            "key": "inv-2",
+            "severity": "error",
+            "human": "A part must have a value or a resource, but not both",
+            "xpath": "exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))"
+          }
+        ]
+      }
+    ]
+  }
+}
