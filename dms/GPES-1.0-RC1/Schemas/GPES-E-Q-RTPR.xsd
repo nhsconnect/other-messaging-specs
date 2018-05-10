@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ic.nhs.uk/GPES-I/Schema" targetNamespace="http://www.ic.nhs.uk/GPES-I/Schema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./GPES-Data-Types.xsd"/>
+	<xs:element name="GPES-E-Q-RTPR-Message">
+		<xs:annotation>
+			<xs:documentation>Root element for Run-Time-Parameters-Response message</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Run-Time-Parameters-Response">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="Run-Time-Parameters-Response-Type"/>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="GPES-I-Version" type="xs:string" use="required"/>
+			<xs:attribute name="RTPR-Message-Version" type="xs:string" use="required" fixed="0.2"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Run-Time-Parameters-Response-Type">
+		<xs:sequence>
+			<xs:element ref="Scheduled-Query-Instance-ID"/>
+			<xs:element ref="GP-Practice-Cohort"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Scheduled-Query-Instance-ID">
+		<xs:annotation>
+			<xs:documentation>Reference number unique to the Scheduled Query Instance. Comprised of three elements; Query Identifier, Sequence Number and Regular/Adhoc query identifier</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="Scheduled-Query-Instance-ID-Type">
+					<xs:attribute name="RTPR-UUID" type="UUID-Type" use="required"/>
+					<xs:attribute name="RTP-UUID" type="UUID-Type" use="required"/>
+					<xs:attribute name="Issue-Date-Time" type="Date-Time-Type" use="required"/>
+					<xs:attribute name="Query-Name" type="Description-Attribute-Type" use="optional"/>
+					<xs:attribute name="Query-Description" type="Description-Attribute-Type" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GP-Practice-Cohort" type="GP-Practice-Cohort-Type">
+		<xs:annotation>
+			<xs:documentation>A list of one or more GP Practice identifiers against which results should be returned</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="GP-Practice-Cohort-Type">
+		<xs:sequence>
+			<xs:element ref="Practice-ID" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Practice-ID">
+		<xs:annotation>
+			<xs:documentation>Single GP Practice NACS Code</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="Practice-ID-Type">
+					<xs:attribute name="GPET-Q-SQI-Authentication-Signature" type="UUID-Type" use="required"/>
+					<xs:attribute name="GPET-E-SQI-Authentication-Signature" type="UUID-Type" use="optional"/>
+					<xs:attribute name="RTP-Response-ID" type="UC5-Digit-Hexidecimal-Type" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ic.nhs.uk/GPES-I/Schema" targetNamespace="http://www.ic.nhs.uk/GPES-I/Schema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.2">
+	<xs:include schemaLocation="GPES-Data-Types.xsd"/>
+	<xs:element name="GPES-E-Q-NT_Message">
+		<xs:annotation>
+			<xs:documentation>Root element for GPET-E to GPET-Q Notifications messages</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="E-Q-Notification" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GPES-E-Q-Notification-Type">
+								<xs:attribute name="E-Q-NT-UUID" type="UUID-Type" use="required"/>
+								<xs:attribute name="Issue-Date-Time" type="Date-Time-Type" use="required"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="GPES-I-Version" type="xs:string" use="required"/>
+			<xs:attribute name="E-Q-NT-Message-Version" type="xs:string" use="required" fixed="0.2"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="GPES-E-Q-Notification-Type">
+		<xs:sequence>
+			<xs:element ref="E-Q-Notification-Type">
+				<xs:annotation>
+					<xs:documentation>A string that defines the type of Notification and allows the receiving system to take appropriate action if required and to instruct what XML structure is detailed in this message, specific to E to Q notifications</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Q-E-NT-UUID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unique identifier as provided in a GPET-Q Notification message that allows a Notification to be tracked between systems, not populated if GPET-E initiates the conversation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Practice-ID"/>
+			<xs:element ref="GP-System-Identifier"/>
+			<xs:element name="Terminology-Identifiers" type="Terminology-Identifiers-Type" maxOccurs="unbounded"/>
+			<xs:element ref="Scheduled-Query-Identifier-ID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>reference number unique to the Scheduled Query Instance - only populated here if the Notification is regarding a specific SQI</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element ref="Stage1-Notification-Response"/>
+				<xs:element ref="Stage2-Notification-Response"/>
+				<xs:element ref="Event-Notification"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Q-E-NT-UUID" type="UUID-Type">
+		<xs:annotation>
+			<xs:documentation>Unique identifier as provided in a GPET-Q Notification message that allows a Notification to be tracked between systems</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="E-Q-Notification-Type" type="E-Q-Notification-Type-Type">
+		<xs:annotation>
+			<xs:documentation>A string that defines the type of Notification and allows the receiving system to take appropriate action if required</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Practice-ID">
+		<xs:annotation>
+			<xs:documentation>Single GP Practice NACS Code</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="Practice-ID-Type"/>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GP-System-Identifier" type="GPSoC-System-Identifier-Type">
+		<xs:annotation>
+			<xs:documentation>A product and version identifier conforming to the standard defined by GPSoC</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Scheduled-Query-Identifier-ID">
+		<xs:annotation>
+			<xs:documentation>reference number unique to the Scheduled Query Instance</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="Scheduled-Query-Instance-ID-Type"/>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Terminology-Identifiers-Type">
+		<xs:sequence>
+			<xs:element ref="CodeSchemeID"/>
+			<xs:element ref="Terminology-Name"/>
+			<xs:element ref="Terminology-Release"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CodeSchemeID" type="Oid-Type">
+		<xs:annotation>
+			<xs:documentation>ISO Object Identifier for the coding scheme</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Terminology-Name" type="Common-Identifier-Type">
+		<xs:annotation>
+			<xs:documentation>The clinical coding standards used in the content of the results file(s)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Terminology-Release" type="Common-Identifier-Type">
+		<xs:annotation>
+			<xs:documentation>The version of the periodic release of the clinical coding standards</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Stage1-Notification-Response" type="Participation-Notification-Response-Type">
+		<xs:annotation>
+			<xs:documentation>Structure used to communicate responses to stage 1 notifications from GPET-E to GPET-Q</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Stage2-Notification-Response" type="Participation-Notification-Response-Type">
+		<xs:annotation>
+			<xs:documentation>Structure used to communicate responses to stage 2 notifications from GPET-E to GPET-Q</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="Participation-Notification-Response-Type">
+		<xs:sequence>
+			<xs:element name="Notification-Response" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="Notification-Question-ID" type="xs:normalizedString" use="required">
+								<xs:annotation>
+									<xs:documentation>Identifier to uniquely identify each question in a notification and for use by GPET-E to quote the identifier when returning an answer</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="Answer-ID" type="xs:normalizedString" use="required">
+								<xs:annotation>
+									<xs:documentation>Each allowed value for a question has a unique identifier to be used when returning the answer to a question to GPET-E.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:attribute name="Contains-Free-Text" type="YesNo-Type" use="required">
+								<xs:annotation>
+									<xs:documentation>Indicates if "Notification-Response" element has free text included in it</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Event-Notification" type="Event-Notification-Type">
+		<xs:annotation>
+			<xs:documentation>Structure used to communicate Event Notifications from GPET-E to GPET-Q</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="Event-Notification-Type">
+		<xs:sequence>
+			<xs:element ref="Event-Data"/>
+			<xs:element ref="System-Reference-Data"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Event-Data" type="Event-Data-Type">
+		<xs:annotation>
+			<xs:documentation>Structure used to hold event data attributes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="Event-Data-Type">
+		<xs:sequence>
+			<xs:element name="Event-Code" type="UC5-Digit-Hexidecimal-Type">
+				<xs:annotation>
+					<xs:documentation>Alphanumeric code relating to specific events, as documented in GPES Interface Code Register</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Event-Code-Supplementary-Data" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Where necessary, additional data to supplement an event code data, the use of, or not, is contained in the GPES Interface Code Register</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Event-Description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional, verbose description of an event code; Included primarily for debugging and test use</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="200"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="System-Reference-Data" type="System-Reference-Data-Type">
+		<xs:annotation>
+			<xs:documentation>Structure used to hold "data provider system reference data" data attributes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="System-Reference-Data-Type">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Data-Model-Attribute-Support">
+				<xs:annotation>
+					<xs:documentation>Used to communicate if attributes in the GPES Primary Care Data Model are supported: "Y" is they are supported, "N" if they are not supported</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="YesNo-Type">
+							<xs:attribute name="Data-Model-Reference-ID" type="Data-Model-Reference-ID-Type" use="required">
+								<xs:annotation>
+									<xs:documentation>Sourced from the "Ref" column in each of the 4 tables in the GPES Primary Care Data Model</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

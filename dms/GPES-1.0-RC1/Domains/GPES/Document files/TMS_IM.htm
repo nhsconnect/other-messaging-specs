@@ -1,0 +1,1026 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>General Practice Extraction Service: TMS Implementation</title>
+</head>
+
+<!-- Framework CSS -->
+<link rel="stylesheet" href="../../../Core/Stylesheets/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="../../../Core/Stylesheets/print.css" type="text/css" media="print">
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="../../../Core/Stylesheets/ie.css" type="text/css" media="screen, projection">
+<![endif]-->
+</head>
+<body>
+<div class="d-mim-container">
+	<div id="banner">
+		<div class="d-mim-span-6 d-mim-left">
+			<img src="../../../Core/ImageFiles/CorporateLogoImage.png"/>
+		</div>
+		<div class="d-mim-span-12">	
+<h1><a name=_Toc_Section_></a>General Practice Extraction Service<br/>Domain Message Specification</h1>
+		</div>
+		<div class="d-mim-span-6 d-mim-last">
+						<img src="../../../Core/ImageFiles/CorporateLogoText.jpg" class="d-mim-right"/>
+		</div>
+	</div>
+		<div id="navigation">
+		<div id="status">Version:  1.0; Status: RC1</div>
+		<ul class="tabs level0">
+			<li>
+			<a href="../../../Index.htm" title="Overview">
+			Overview</a></li>
+			<li class="selected">
+			<a href="../../../Domains/GPES/Document files/IM.htm" title="Message Definitions">Message Definitions</a></li>
+			<li>
+			<a href="../../../Core/Generic.htm" title="Generic">
+			Generic</a></li>
+			<li>
+			<a href="../../../Core/References.htm" title="References">
+			References</a></li>
+			<li>
+			<a href="../../../Core/Glossary.htm" title="Glossary">
+			Glossary</a></li><li><a href="../../../Core/Guide.htm" title="User Guide">User Guide</a></li>
+		</ul>
+		<ul class="tabs level1">
+			<li class="selected">
+				<a href="TMS_IM.htm" title="TMS Implementation">
+				TMS Implementation </a>
+			</li>	
+		</ul>
+	</div>
+<div id="content">
+    <h1> <a name=_Toc_Section_></a>TMS Implementation</h1>
+	<p class="un-numberedheading2">Contents</p>
+	<div id="content0">
+<div class="Section1">
+	<div class="index1" div id="fp_TOC" class="fp_TOC">
+		<a href="#_Toc_Section_1">1&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.1">1.1&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q System - COMT_AR000001GB01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_1.2">
+	1.2&nbsp;&nbsp;&nbsp;&nbsp;GPET-E System - COMT_AR000002GB01</a><br><a href="#_Toc_Section_2">2&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.1">2.1&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E Stage 1 Notification - COMT_TE000001GB01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.2">2.2&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E Stage 2 Notification - COMT_TE000002GB01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.3">2.3&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E System Ping 
+Notification - COMT_TE000003GB01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.4">2.4&nbsp;&nbsp;&nbsp;&nbsp;GPET-E-Q Notification 
+Response - COMT_TE000004GB01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.5">2.5&nbsp;&nbsp;&nbsp;&nbsp;GPET-E-Q Ad Hoc Notification - COMT_TE000005GB01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.6">2.6&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E 
+Runtime Parameter Request - COMT_TE000006GB01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_2.7">2.7&nbsp;&nbsp;&nbsp;&nbsp;GPET-E-Q Receipt 
+	of 
+Runtime Parameter Request - COMT_TE000007GB01</a><br><a href="#_Toc_Section_3">3&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_3.1">3.1&nbsp;&nbsp;&nbsp;&nbsp;General Practice Extraction Service interactions</a><br><a href="#_Toc_Section_4">4&nbsp;&nbsp;&nbsp;&nbsp;Interactions</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.1">
+	4.1&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E Run-Time-Parameter&nbsp;Request - COMT_IN000001GB01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.2">4.2&nbsp;&nbsp;&nbsp;&nbsp;GPET-E-Q 
+Run-Time-Parameter Response&nbsp;- COMT_IN000002GB01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.3">4.3&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E Notification - COMT_IN000003GB01</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_4.4">
+	4.4&nbsp;&nbsp;&nbsp;&nbsp;GPET-E-Q Notification - COMT_IN000004GB01</a><br><a href="#_Toc_Section_5">5&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</a><br><a href="#_Toc_Section_6">6&nbsp;&nbsp;&nbsp;&nbsp;Message Examples Using TMS Wrappers</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#_Toc_Section_6.1">6.1&nbsp;&nbsp;&nbsp;&nbsp;Examples for Scenario 1 (Scheduled 
+Query on a single GP Practice)</a></div><div class=MsoMIM align=center style='text-align:center'><hr size=2 width="100%" align=center></div>  
+	<h1><a name=_Toc_Section_1></a>1&nbsp;&nbsp;&nbsp;&nbsp;Application Roles</h1>
+	<p class="MsoMIM">The applications involved in the General Practice Extraction Service	processes play specific roles.&nbsp; These, along with the interactions associated 
+	with each role, are identified below.</p>
+	<h2><a name=_Toc_Section_1.1></a>1.1&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q System - COMT_AR000001GB01</h2>
+	<div align="center">
+	<table class="MsoTableGrid" style="border: 1pt solid windowtext" id="table196" border="1" cellpadding="0" cellspacing="3" width="80%">
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" colspan="2" bgcolor="#99CCFF">
+
+			<b><font size="3">The GPET-Q system is responsible for sending the following General Practice Extraction Service interactions:</font></b></td>
+		</tr>
+		<tr>
+			<td style="width: 1080px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" align="left">
+			GPET-Q-E Notification</td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="22" align="center">
+	<font size="2">
+	<a title="View Interaction" href="#_Toc_Section_4.3">
+<img border="0" src="../../../Core/ImageFiles/Interaction.gif" width="16" height="16"></a></font></td>
+		</tr>
+		<tr>
+			<td style="width: 1080px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" align="left">
+			<font size="2">GPET-Q-E Run-Time-Parameter Request</font> </td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="22" align="center">
+	<font size="2">
+	<a title="View Interaction" href="#_Toc_Section_4.1">
+	<img border="0" src="../../../Core/ImageFiles/Interaction.gif" width="16" height="16"></a></font></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" colspan="2" bgcolor="#99CCFF">
+			<b><font size="2">The GPET-Q System receives responses to the above interactions from the GPET-E System.</font></b></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" colspan="2" bgcolor="#99CCFF">
+
+			<b><font size="3">The GPET-Q system is responsible for receiving the following General Practice Extraction Service interactions:</font></b></td>
+		</tr>
+		<tr>
+			<td style="width: 1080px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" align="left">
+			GPET-E-Q Notification</td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="22" align="center">
+	<font size="2">
+	<a title="View Interaction" href="#_Toc_Section_4.4">
+<img border="0" src="../../../Core/ImageFiles/Interaction.gif" width="16" height="16"></a></font></td>
+		</tr>
+		<tr>
+			<td style="width: 1080px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" align="left">
+			<a href="#_Toc_Section_4.4">
+			<font color="#000000">GPET-E-Q Run-Time-Parameter Response</font></a></td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="22" align="center">
+	<font size="2">
+	<a title="View Interaction" href="#_Toc_Section_4.2">
+	<img border="0" src="../../../Core/ImageFiles/Interaction.gif" width="16" height="16"></a></font></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" colspan="2" bgcolor="#99CCFF">
+			<b><font size="2">The GPET-Q System responds to the interactions from the GPET-E System.</font></b></td>
+		
+
+		</tr>
+
+	</table>
+	</div>
+	
+	<h2><a name=_Toc_Section_1.2></a>
+	1.2&nbsp;&nbsp;&nbsp;&nbsp;GPET-E System - COMT_AR000002GB01</h2>
+	<div align="center">
+	<table class="MsoTableGrid" style="border: 1pt solid windowtext" id="table196" border="1" cellpadding="0" cellspacing="3" width="80%">
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" colspan="2" bgcolor="#99CCFF">
+
+			<b><font size="3">The GPET-E system is responsible for sending the following General Practice Extraction Service interactions:</font></b></td>
+		</tr>
+		<tr>
+			<td style="width: 1080px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" align="left">
+			GPET-E-Q Notification</td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="22" align="center">
+	<font size="2">
+	<a title="View Interaction" href="#_Toc_Section_4.4">
+<img border="0" src="../../../Core/ImageFiles/Interaction.gif" width="16" height="16"></a></font></td>
+		</tr>
+		<tr>
+			<td style="width: 1080px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" align="left">
+			<a href="#_Toc_Section_4.4">
+			<font color="#000000">GPET-E-Q Run-Time-Parameter Response</font></a></td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="22" align="center">
+	<font size="2">
+	<a title="View Interaction" href="#_Toc_Section_4.2">
+	<img border="0" src="../../../Core/ImageFiles/Interaction.gif" width="16" height="16"></a></font></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" colspan="2" bgcolor="#99CCFF">
+			<b><font size="2">The GPET-E System receives responses to the above interactions from the GPET-Q System.</font></b></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" colspan="2" bgcolor="#99CCFF">
+
+			<b><font size="3">The GPET-E system is responsible for receiving the following General Practice Extraction Service interactions:</font></b></td>
+		</tr>
+		<tr>
+			<td style="width: 1080px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" align="left">
+			GPET-Q-E Notification</td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="22" align="center">
+	<font size="2">
+	<a title="View Interaction" href="#_Toc_Section_4.3">
+<img border="0" src="../../../Core/ImageFiles/Interaction.gif" width="16" height="16"></a></font></td>
+		</tr>
+		<tr>
+			<td style="width: 1080px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" align="left">
+			<font size="2">GPET-Q-E Run-Time-Parameter Request</font> </td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="22" align="center">
+	<font size="2">
+	<a title="View Interaction" href="#_Toc_Section_4.1">
+	<img border="0" src="../../../Core/ImageFiles/Interaction.gif" width="16" height="16"></a></font></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" colspan="2" bgcolor="#99CCFF">
+			<b><font size="2">The GPET-E System responds to the interactions from the GPET-Q System.</font></b></td>
+		
+		</tr>
+
+	</table>
+	</div>
+	
+	<h1><a name=_Toc_Section_2></a>2&nbsp;&nbsp;&nbsp;&nbsp;Trigger Events</h1>
+	<h2><a name=_Toc_Section_2.1></a>2.1&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E Stage 1 Notification - COMT_TE000001GB01</h2>
+		<font face="Arial">
+		<div align="center">
+		<table class="MsoTableGrid" style="border: 1pt solid windowtext;" id="table255" width="80%" border="1" cellpadding="0" cellspacing="3">
+			<tr>
+				<td style="padding: 0cm 5.4pt;" valign="top" bgcolor="#99ccff">
+				<b>The</b><font face="Arial"><b> GPET-Q-E Stage 1 Notification</b></font><b> trigger event indicates that a 
+				n</b><font face="Arial"><b>otification message</b></font><b> 
+				requesting for the confirmation of participation in future 
+				scheduled query events is ready to send from the </b>
+				<b>
+		<font face="Arial">
+				GPET-Q</font>
+				system.</b></td>
+			</tr>
+		</table>
+		</div>
+	</font>
+	<h2><a name=_Toc_Section_2.2></a>2.2&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E Stage 2 Notification - COMT_TE000002GB01</h2>
+		<font face="Arial">
+		<div align="center">
+		<table class="MsoTableGrid" style="border: 1pt solid windowtext;" id="table304" width="80%" border="1" cellpadding="0" cellspacing="3">
+			<tr>
+				<td style="padding: 0cm 5.4pt;" valign="top" bgcolor="#99ccff">
+				<b>The </b><font face="Arial"><b> GPET-Q-E Stage 2 Notification</b></font><b> trigger event indicates that a </b>
+		<font face="Arial">
+				<b>request for confirmation that query results sent from GPET-E-to 
+				GPET-Q can be sent to the GPES customer </b></font>
+				<b>is ready to send from the </b>
+		<font face="Arial">
+				<b>GPET-</b></font><b>Q system.</b></td>
+			</tr>
+		</table>
+		</div>
+	</font>
+	<h2><a name=_Toc_Section_2.3></a>2.3&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E System Ping 
+Notification - COMT_TE000003GB01</h2>
+		<font face="Arial">
+		<div align="center">
+		<table class="MsoTableGrid" style="border: 1pt solid windowtext;" id="table305" width="80%" border="1" cellpadding="0" cellspacing="3">
+			<tr>
+				<td style="padding: 0cm 5.4pt;" valign="top" bgcolor="#99ccff">
+				<b>The</b><font face="Arial"><b> GPET-Q-E System Ping Notification</b></font><b> trigger event indicates that a </b>
+		<font face="Arial">
+				<b>request for the GPET-E System to provide system information </b></font>
+				<b> is ready to send from the 
+		<font face="Arial">
+				GPET-Q</font>
+				system.</b></td>
+			</tr>
+		</table>
+		</div>
+	</font>
+	<h2><a name=_Toc_Section_2.4></a>2.4&nbsp;&nbsp;&nbsp;&nbsp;GPET-E-Q Notification 
+Response - COMT_TE000004GB01</h2>
+		<font face="Arial">
+		<div align="center">
+		<table class="MsoTableGrid" style="border: 1pt solid windowtext;" id="table306" width="80%" border="1" cellpadding="0" cellspacing="3">
+			<tr>
+				<td style="padding: 0cm 5.4pt;" valign="top" bgcolor="#99ccff">
+				<b>The GPET-E-Q-Notification Response trigger event indicates that a </b>
+				<font face="Arial">
+				<b>response to the GPET-Q notification messages </b>
+	</font>
+				<b>is ready to send from the </b>
+		<font face="Arial">
+				<b>GPET-E</b></font><b> system.</b></td>
+			</tr>
+		</table>
+		</div>
+	</font>
+	<h2><a name=_Toc_Section_2.5></a>2.5&nbsp;&nbsp;&nbsp;&nbsp;GPET-E-Q Ad Hoc Notification - COMT_TE000005GB01</h2>
+		<font face="Arial">
+		<div align="center">
+		<table class="MsoTableGrid" style="border: 1pt solid windowtext;" id="table307" width="80%" border="1" cellpadding="0" cellspacing="3">
+			<tr>
+				<td style="padding: 0cm 5.4pt;" valign="top" bgcolor="#99ccff">
+				<font face="Arial">
+				<b>The GPET-E-Q Ad Hoc Notification Response trigger event indicates that an 
+				ad hoc notification of a system change/software upgrade/ 
+				processing errors is ready to send from the GPET-E system.</b></font></td>
+			</tr>
+		</table>
+		</div>
+	</font>
+	<h2><a name=_Toc_Section_2.6></a>2.6&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E 
+Runtime Parameter Request - COMT_TE000006GB01</h2>
+	<div align="center">
+		<font face="Arial">
+		<table class="MsoTableGrid" style="border: 1pt solid windowtext;" id="table256" width="80%" border="1" cellpadding="0" cellspacing="3">
+			<tr>
+				<td style="padding: 0cm 5.4pt;" valign="top" bgcolor="#99ccff">
+				<font face="Arial">
+				<b>The GPET-Q-E Runtime Parameter Request trigger event indicates that a GPES-Q-E-RTP 
+				message is ready to send from the GPET-Q system.</b></font></td>
+			</tr>
+		</table>
+	<h2 align="left"><a name=_Toc_Section_2.7></a>2.7&nbsp;&nbsp;&nbsp;&nbsp;GPET-E-Q Receipt 
+	of 
+Runtime Parameter Request - COMT_TE000007GB01</h2>
+	<div align="center">
+		<table class="MsoTableGrid" style="border: 1pt solid windowtext;" id="table303" width="80%" border="1" cellpadding="0" cellspacing="3">
+			<tr>
+				<td style="padding: 0cm 5.4pt;" valign="top" bgcolor="#99ccff">
+				<b>The
+				</b>
+		<font face="Arial">
+				<b>GPET-E </b>
+	</font>
+				<b><font face="Arial">
+				Receipt of  
+Runtime Parameter Request </font>trigger event </b>
+		<font face="Arial">
+				<b>indicates receipt of a </b></font><b>GPES-Q-E-RTP</b> <b>
+				message and </b><font face="Arial">
+				<b>that a GPES-E-Q-RTPR message is ready to 
+				send from the GPET-E system.</b></font></td>
+			</tr>
+		</table>
+		</div>
+		<p>&nbsp;</font></div>
+		<hr size="3" width="100%" align="center">
+	<h1><a name=_Toc_Section_3></a>3&nbsp;&nbsp;&nbsp;&nbsp;Interaction Diagrams</h1>
+	<h2><a name=_Toc_Section_3.1></a>3.1&nbsp;&nbsp;&nbsp;&nbsp;General Practice Extraction Service interactions</h2>
+	<p class="MsoMIM"><b>Note - Application 
+	Acknowledgements are sent to originating systems for notification of 
+	successful or failure handling by the receiving application.</b></p>
+&nbsp;<div id="7DD3D2B8-7F29-41BD-870D-7BE31E0AAE72">
+		<p align="center">
+		<img class="MsoMIM" src="GPES_TMS.png" border="0" usemap="#7DD3D2B8-7F29-41BD-870D-7BE31E0AAE72" />
+		<map name="7DD3D2B8-7F29-41BD-870D-7BE31E0AAE72">
+			<area href="#_Toc_Section_1.1" type="rect" coords="50, 60, 230, 110" />
+			<area href="#_Toc_Section_1.2" type="rect" coords="490, 60, 670, 110" />
+			<area href="#_Toc_Section_4.3" type="rect" coords="290, 132, 430, 169" />
+			<area href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_4.2" type="rect" coords="272, 192, 448, 229" />
+			<area href="#_Toc_Section_4.4" type="rect" coords="290, 252, 430, 289" />
+			<area href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_4.2" type="rect" coords="272, 312, 448, 349" />
+			<area href="#_Toc_Section_4.1" type="rect" coords="240, 372, 480, 409" />
+			<area href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_4.2" type="rect" coords="272, 432, 448, 469" />
+			<area href="#_Toc_Section_4.2" type="rect" coords="235, 492, 485, 529" />
+			<area href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_4.2" type="rect" coords="272, 552, 448, 589" />
+		</map>
+	</div>
+
+
+	</p>
+
+	<div class="MsoMIM" align="center" style="text-align:center">
+		<hr size="3" width="100%" align="center">
+		</div>
+		
+	<h1><a name=_Toc_Section_4></a>4&nbsp;&nbsp;&nbsp;&nbsp;Interactions</h1>
+	<h2><a name=_Toc_Section_4.1></a>
+	4.1&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E Run-Time-Parameter&nbsp;Request - COMT_IN000001GB01</h2>
+
+<font face="Arial">
+		
+
+			<table>
+				<tr>
+					<th colspan="2">Interaction Details<br/><span style="font-size: 12px">Interaction Name</span></th>
+					<th><br/><span style="font-size: 12px">Interaction ID</span></th>
+				</tr>
+				<tr>
+					<td colspan="2">GPET-Q-E Run-Time-Parameter Request (Version 1.0)</td>
+					<td>COMT_IN000001GB01
+					<a title="View TMS Interaction Schema" style="color: blue" href="../../../Schemas/COMT_IN000001GB01.xsd" target="_blank">
+			<img border="0" src="../../../Core/ImageFiles/TMSInteractionSchema.gif" width="20" height="15"></td>
+				</tr>
+				<tr>
+					<th colspan="3">Interaction Description</th>
+				</tr>
+				<tr>
+					<td colspan="3">Communicates a GPES-Q-E-RTP message to a GPET-E System where the recipient is recommended to act upon information carried in the 
+					message.</td>
+				</tr>
+				<tr>
+					<th class="noUnderLine" colspan="3">Sender Responsibilities</th>
+				</tr>
+				<tr>
+					<th><span style="font-size: 12px">Trigger</span></th>
+					<th><span style="font-size: 12px">Message Name</span></th>
+					<th><span style="font-size: 12px">Message Definition</span></th>
+				</tr>
+				<tr>
+					<td style="vertical-align: top" width="19%" rowspan="1">Sending of Message</td>
+					<td width="38%" style="vertical-align: top">
+<font face="Arial">
+					<b>Message Type: </b>GPES-Q-E-RTP (Version 1.0)</font></td>
+					<td width="39%" style="vertical-align: top">
+					<a href="IM.htm#_Toc_Section_2.5"">COMT_MT000003GB01 </a>
+					</td>
+				</tr>
+				<tr>
+					<th class="noUnderLine" colspan="3">Receiver Responsibilities</th>
+				</tr>
+				<tr>
+					
+					<th><span style="font-size: 12px">Trigger</span></th>
+					<th><span style="font-size: 12px">Response Name</span></th>
+					<th><span style="font-size: 12px">Response Definition</span></th>
+				</tr>
+				<tr>
+					<td width="19%">Receipt of Message</td>
+					<td>Application Acknowledgment (Version 13.0)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_4.2">
+					MCCI_IN010000UK13</a></td>
+				</tr>
+				<tr>
+					<td width="19%">&nbsp;</td>
+					<td style="text-align: center">
+					<b>AND</b></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td bgcolor="#DDDDDD" width="19%">&nbsp;</td>
+					<td bgcolor="#DDDDDD">&nbsp;</td>
+					<td bgcolor="#DDDDDD">
+					&nbsp;</td>
+				</tr>
+
+				<tr>
+					<td width="19%">Receipt of Message</td>
+					<td>
+<font face="Arial">
+					GPES-E-Q-RTPR</font> (Version 1.0)</td>
+					<td>
+					<a href="IM.htm#_Toc_Section_2.5"">COMT_IN000002GB01 </a>
+</td>
+				</tr>
+
+				<tr>
+					<th width="19%">Transmission Details<br/><span style="font-size:12px">Item</span></th>
+					<th><br/><span style="font-size: 12px">Name</span></th>
+					<th><br/><span style="font-size:12px">ID</span></th>
+				</tr>
+				<tr>
+					<td width="19%">Transmission Wrapper</td>
+					<td>Send Message Payload (Version <font face="Arial">12.0</font>)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_5.1">
+					MCCI_MT010101UK12</a></td>
+				</tr>
+				<tr>
+					<td width="19%">Control Act Wrapper</td>
+					<td>Control Act (Version <font face="Arial">3.0</font>)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_5.3">MCAI_MT040101UK03</a></td>
+				</tr>
+				</table>
+
+
+
+
+	</font>
+			
+	
+	<h2><a name=_Toc_Section_4.2></a>4.2&nbsp;&nbsp;&nbsp;&nbsp;GPET-E-Q 
+Run-Time-Parameter Response&nbsp;- COMT_IN000002GB01</h2>
+
+<font face="Arial">
+		
+
+			<table>
+				<tr>
+					<th colspan="2">Interaction Details<br/><span style="font-size: 12px">Interaction Name</span></th>
+					<th><br/><span style="font-size: 12px">Interaction ID</span></th>
+				</tr>
+				<tr>
+					<td colspan="2">GPET-E-Q Run-Time-Parameter Response (Version 1.0)</td>
+					<td>COMT_IN000002GB01
+					<a title="View TMS Interaction Schema" style="color: blue" href="../../../Schemas/COMT_IN000002GB01.xsd" target="_blank">
+			<img border="0" src="../../../Core/ImageFiles/TMSInteractionSchema.gif" width="20" height="15"></td>
+				</tr>
+				<tr>
+					<th colspan="3">Interaction Description</th>
+				</tr>
+				<tr>
+					<td colspan="3">Communicates a GPES-E-Q-RTPR message 
+					to the GPET-Q System where the recipient is recommended to act upon information carried in the 
+					message.</td>
+				</tr>
+				<tr>
+					<th class="noUnderLine" colspan="3">Sender Responsibilities</th>
+				</tr>
+				<tr>
+					<th><span style="font-size: 12px">Trigger</span></th>
+					<th><span style="font-size: 12px">Message Name</span></th>
+					<th><span style="font-size: 12px">Message Definition</span></th>
+				</tr>
+				<tr>
+					<td style="vertical-align: top" width="19%" rowspan="1">Sending of Message</td>
+					<td width="38%" style="vertical-align: top">
+<font face="Arial">
+					<b>Message Type: </b>GPES-E-Q-RTPR (Version 1.0)</font></td>
+					<td width="39%" style="vertical-align: top">
+					<a href="IM.htm#_Toc_Section_2.5"">COMT_MT000004GB01 </a>
+					</td>
+				</tr>
+				<tr>
+					<th class="noUnderLine" colspan="3">Receiver Responsibilities</th>
+				</tr>
+				<tr>
+					
+					<th><span style="font-size: 12px">Trigger</span></th>
+					<th><span style="font-size: 12px">Response Name</span></th>
+					<th><span style="font-size: 12px">Response Definition</span></th>
+				</tr>
+				<tr>
+					<td width="19%">Receipt of Message</td>
+					<td>Application Acknowledgment (Version 13.0)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_4.2">
+					MCCI_IN010000UK13</a></td>
+				</tr>
+
+				<tr>
+					<th width="19%">Transmission Details<br/><span style="font-size:12px">Item</span></th>
+					<th><br/><span style="font-size: 12px">Name</span></th>
+					<th><br/><span style="font-size:12px">ID</span></th>
+				</tr>
+				<tr>
+					<td width="19%">Transmission Wrapper</td>
+					<td>Send Message Payload (Version <font face="Arial">12.0</font>)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_5.1">
+					MCCI_MT010101UK12</a></td>
+				</tr>
+				<tr>
+					<td width="19%">Control Act Wrapper</td>
+					<td>Control Act (Version <font face="Arial">3.0</font>)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_5.3">MCAI_MT040101UK03</a></td>
+				</tr>
+				</table>
+
+
+
+	</font>
+			
+	
+	<h2><a name=_Toc_Section_4.3></a>4.3&nbsp;&nbsp;&nbsp;&nbsp;GPET-Q-E Notification - COMT_IN000003GB01</h2>
+
+<font face="Arial">
+		
+
+			<table>
+				<tr>
+					<th colspan="2">Interaction Details<br/><span style="font-size: 12px">Interaction Name</span></th>
+					<th><br/><span style="font-size: 12px">Interaction ID</span></th>
+				</tr>
+				<tr>
+					<td colspan="2">GPET-Q-E Notification (Version 1.0)</td>
+					<td>COMT_IN000003GB01
+					<a title="View TMS Interaction Schema" style="color: blue" href="../../../Schemas/COMT_IN000003GB01.xsd" target="_blank">
+			<img border="0" src="../../../Core/ImageFiles/TMSInteractionSchema.gif" width="20" height="15"></td>
+				</tr>
+				<tr>
+					<th colspan="3">Interaction Description</th>
+				</tr>
+				<tr>
+					<td colspan="3">Communicates a GPET-Q-E Notification message to a 
+					GPET-E System where the recipient is recommended to act upon information carried in the 
+					message.</td>
+				</tr>
+				<tr>
+					<th class="noUnderLine" colspan="3">Sender Responsibilities</th>
+				</tr>
+				<tr>
+					<th><span style="font-size: 12px">Trigger</span></th>
+					<th><span style="font-size: 12px">Message Name</span></th>
+					<th><span style="font-size: 12px">Message Definition</span></th>
+				</tr>
+				<tr>
+					<td style="vertical-align: top" width="19%" rowspan="1">Sending of Message</td>
+					<td width="38%" style="vertical-align: top">
+<font face="Arial">
+					<b>Message Type: </b>GPES-Q-E-NT (Version 1.0)</font></td>
+					<td width="39%" style="vertical-align: top">
+					<a href="IM.htm#_Toc_Section_2.5"">COMT_MT000001GB01 </a>
+					</td>
+				</tr>
+				<tr>
+					<th class="noUnderLine" colspan="3">Receiver Responsibilities</th>
+				</tr>
+				<tr>
+					
+					<th><span style="font-size: 12px">Trigger</span></th>
+					<th><span style="font-size: 12px">Response Name</span></th>
+					<th><span style="font-size: 12px">Response Definition</span></th>
+				</tr>
+				<tr>
+					<td width="19%">Receipt of Message</td>
+					<td>Application Acknowledgment (Version 13.0)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_4.2">
+					MCCI_IN010000UK13</a></td>
+				</tr>
+				<tr>
+					<td width="19%">&nbsp;</td>
+					<td style="text-align: center">
+					<b>AND</b></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td bgcolor="#DDDDDD" width="19%">&nbsp;</td>
+					<td bgcolor="#DDDDDD">&nbsp;</td>
+					<td bgcolor="#DDDDDD">
+					&nbsp;</td>
+				</tr>
+
+				<tr>
+					<td width="19%">Receipt of Message</td>
+					<td>GPES-E-Q-NT (Version 1.0)</td>
+					<td>
+					<a href="IM.htm#_Toc_Section_2.5"">COMT_IN000004GB01 </a>
+</td>
+				</tr>
+
+				<tr>
+					<th width="19%">Transmission Details<br/><span style="font-size:12px">Item</span></th>
+					<th><br/><span style="font-size: 12px">Name</span></th>
+					<th><br/><span style="font-size:12px">ID</span></th>
+				</tr>
+				<tr>
+					<td width="19%">Transmission Wrapper</td>
+					<td>Send Message Payload (Version <font face="Arial">12.0</font>)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_5.1">
+					MCCI_MT010101UK12</a></td>
+				</tr>
+				<tr>
+					<td width="19%">Control Act Wrapper</td>
+					<td>Control Act (Version <font face="Arial">3.0</font>)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_5.3">MCAI_MT040101UK03</a></td>
+				</tr>
+				</table>
+
+
+	</font>
+			
+	
+	<h2><a name=_Toc_Section_4.4></a>
+	4.4&nbsp;&nbsp;&nbsp;&nbsp;GPET-E-Q Notification - COMT_IN000004GB01</h2>
+
+<font face="Arial">
+		
+
+			<table>
+				<tr>
+					<th colspan="2">Interaction Details<br/><span style="font-size: 12px">Interaction Name</span></th>
+					<th><br/><span style="font-size: 12px">Interaction ID</span></th>
+				</tr>
+				<tr>
+					<td colspan="2">GPET-E-Q Notification (Version 1.0)</td>
+					<td>COMT_IN000004GB01
+					<a title="View TMS Interaction Schema" style="color: blue" href="../../../Schemas/COMT_IN000004GB01.xsd" target="_blank">
+			<img border="0" src="../../../Core/ImageFiles/TMSInteractionSchema.gif" width="20" height="15"></td>
+				</tr>
+				<tr>
+					<th colspan="3">Interaction Description</th>
+				</tr>
+				<tr>
+					<td colspan="3">Communicates a GPET-E-Q Notification message 
+					to the GPET-Q System where the recipient is recommended to act upon information carried in the 
+					message.</td>
+				</tr>
+				<tr>
+					<th class="noUnderLine" colspan="3">Sender Responsibilities</th>
+				</tr>
+				<tr>
+					<th><span style="font-size: 12px">Trigger</span></th>
+					<th><span style="font-size: 12px">Message Name</span></th>
+					<th><span style="font-size: 12px">Message Definition</span></th>
+				</tr>
+				<tr>
+					<td style="vertical-align: top" width="19%" rowspan="1">Sending of Message</td>
+					<td width="38%" style="vertical-align: top">
+<font face="Arial">
+					<b>Message Type: </b>GPES-E-Q-NT (Version 1.0)</font></td>
+					<td width="39%" style="vertical-align: top">
+					<a href="IM.htm#_Toc_Section_2.5"">COMT_MT000002GB01 </a>
+					</td>
+				</tr>
+				<tr>
+					<th class="noUnderLine" colspan="3">Receiver Responsibilities</th>
+				</tr>
+				<tr>
+					
+					<th><span style="font-size: 12px">Trigger</span></th>
+					<th><span style="font-size: 12px">Response Name</span></th>
+					<th><span style="font-size: 12px">Response Definition</span></th>
+				</tr>
+				<tr>
+					<td width="19%">Receipt of Message</td>
+					<td>Application Acknowledgment (Version 13.0)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_4.2">
+					MCCI_IN010000UK13</a></td>
+				</tr>
+
+				<tr>
+					<th width="19%">Transmission Details<br/><span style="font-size:12px">Item</span></th>
+					<th><br/><span style="font-size: 12px">Name</span></th>
+					<th><br/><span style="font-size:12px">ID</span></th>
+				</tr>
+				<tr>
+					<td width="19%">Transmission Wrapper</td>
+					<td>Send Message Payload (Version <font face="Arial">12.0</font>)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_5.1">
+					MCCI_MT010101UK12</a></td>
+				</tr>
+				<tr>
+					<td width="19%">Control Act Wrapper</td>
+					<td>Control Act (Version <font face="Arial">3.0</font>)</td>
+					<td>
+					<a href="../../Infrastructure/Document%20files/IM.htm#_Toc_Section_5.3">MCAI_MT040101UK03</a></td>
+				</tr>
+				</table>
+
+
+
+	</font>
+			
+	
+	<div class="MsoMIM" align="center" style="text-align:center">
+		<hr size="3" width="100%" align="center"></div>
+	<h1><a name=_Toc_Section_5></a>5&nbsp;&nbsp;&nbsp;&nbsp;Message Definitions</h1>
+	<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The message payload specifications are <b>
+	<a href="IM.htm">here</a></b></p>
+		<hr size="3" width="100%" align="center">
+	<font face="Arial">  <h1><a name=_Toc_Section_6></a>6&nbsp;&nbsp;&nbsp;&nbsp;Message Examples Using TMS Wrappers</h1>
+	<h2><a name=_Toc_Section_6.1></a>6.1&nbsp;&nbsp;&nbsp;&nbsp;Examples for Scenario 1 (Scheduled 
+Query on a single GPET-E system)</h2>
+	</font>
+	</div>
+		<font face="Arial">
+<p class="MsoNormal">
+	Examples for Spine Compliant Systems using scenario 1</p>
+<p class="MsoNormal">
+	&nbsp;</p>
+	<div align="center">
+	<table class="MsoTableGrid" style="border: 1pt solid windowtext" id="table302" border="1" cellpadding="0" cellspacing="3" width="80%">
+		<tr>
+			<td style="width: 417px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" bgcolor="#99CCFF">
+			<font size="3" face="Arial"><b>Scenario </b></font><font size="3"><b>1</b></font></td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="536" bgcolor="#99CCFF" colspan="2">
+<font size="3"><b>Artefacts</b></font></td>
+		</tr>
+		<tr>
+			<td style="width: 417px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" rowspan="2">
+			GPET-Q-E Notification 
+		<font face="Arial">
+			example
+	</font>
+			(COMT_IN000003GB01) interaction c<font face="Arial">ommunicates a GPET-Q-E NT 
+			example (COMT_MT000001GB01) message to a GPET-E System. This is a Stage 1 
+			data extraction notification sent to GPET-E.</font></td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" align="center">
+			<b>Payload</b></td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="113" align="center">
+			<b>Wrapped payload</b></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/COMT_EX000001GB01_01.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/TMS_Interaction_Examples/COMT_EX000003GB01_01_TMS.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 417px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" rowspan="2">
+
+<font face="Arial">
+		
+
+			GPET-E-Q Notification example (COMT_IN000004GB01) interaction communicates a GPET-E-Q 
+			NT example (COMT_MT000002GB01) message 
+					to the GPET-Q System. This is a Stage 1 notification 
+response sent to GPET-Q.</font></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/COMT_EX000002GB01_01.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/TMS_Interaction_Examples/COMT_EX000004GB01_01_TMS.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 417px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" rowspan="2">
+			GPET-Q-E Run-Time-Parameter 
+			<font size="2">Request </font>
+		<font face="Arial">
+			example
+	</font>
+			(COMT_IN000001GB01)
+		<font face="Arial">
+			interaction</font>
+			c<font face="Arial">ommunicates a GPES-Q-E-RTP example 
+			(COMT_MT000003GB01) message to a GPET-E System. This is a Runtime 
+			Parameter request sent to GPET-E.</font></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/COMT_EX000003GB01_01.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<a title="View Example" href="../../../Examples/GPES/TMS_Interaction_Examples/COMT_EX000001GB01_01_TMS.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></td>
+		</tr>
+<tr>
+			<td style="width: 417px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" rowspan="2">
+			GPET-E-Q Run-Time-Parameter Response 
+		<font face="Arial">
+			example</font>(COMT_IN000002GB01)
+		<font face="Arial">
+			interaction communicates a GPES-E-Q-RTPR example (COMT_MT000004GB01) message 
+					to the GPET-Q System. This is a Runtime Parameter Response 
+			sent to GPET-Q.</font></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/COMT_EX000004GB01_01.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/TMS_Interaction_Examples/COMT_EX000002GB01_01_TMS.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+		</tr>
+
+
+		</table>
+		
+		
+		<h2 align="left"><a name=_Toc_Section_6.1></a>6.2&nbsp;&nbsp;&nbsp;&nbsp;Examples for Scenario 
+		2 (System-Ping-Request-Notification to a single GPET-E system)</h2>
+	</font>
+	</div>
+		<font face="Arial">
+<p class="MsoNormal">
+	Examples for Spine Compliant Systems using scenario 2</p>
+<p class="MsoNormal">
+	&nbsp;</p>
+	<div align="center">
+	<table class="MsoTableGrid" style="border: 1pt solid windowtext" id="table302" border="1" cellpadding="0" cellspacing="3" width="80%">
+		<tr>
+			<td style="width: 417px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" bgcolor="#99CCFF">
+			<font size="3" face="Arial"><b>Scenario </b></font><font size="3"><b>2</b></font></td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="536" bgcolor="#99CCFF" colspan="2">
+<font size="3"><b>Artefacts</b></font></td>
+		</tr>
+		<tr>
+			<td style="width: 417px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" rowspan="2">
+			GPET-Q-E Notification 
+		<font face="Arial">
+			example
+	</font>
+			(COMT_IN000003GB01) interaction c<font face="Arial">ommunicates a GPET-Q-E NT 
+			example (COMT_MT000001GB01) message to a GPET-E System. This is 
+			a system ping request notification sent to GPET-E to provide system information.</font></td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" align="center">
+			<b>Payload</b></td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="113" align="center">
+			<b>Wrapped payload</b></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/COMT_EX000001GB01_02.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/TMS_Interaction_Examples/COMT_EX000003GB01_02_TMS.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 417px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" rowspan="2">
+
+<font face="Arial">
+		
+
+			GPET-E-Q Notification example (COMT_IN000004GB01) interaction communicates a GPET-E-Q 
+			NT example (COMT_MT000002GB01) message 
+					to the GPET-Q System. This is the GPET-E '40000' event response to 
+the system ping request.</font></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/COMT_EX000002GB01_02.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left; width:26px; height:19px">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/TMS_Interaction_Examples/COMT_EX000004GB01_02_TMS.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+		</tr>
+		
+
+		</table>
+		
+		
+		<h2 align="left"><a name=_Toc_Section_6.1></a>6.3&nbsp;&nbsp;&nbsp;&nbsp;Examples for 
+		Scenario 3 (Notification to GPET-Q of a 
+		system change)</h2>
+	</font>
+	</div>
+		<font face="Arial">
+<p class="MsoNormal">
+	Examples for Spine Compliant Systems using scenario 3</p>
+<p class="MsoNormal">
+	&nbsp;</p>
+	<div align="center">
+	<table class="MsoTableGrid" style="border: 1pt solid windowtext" id="table302" border="1" cellpadding="0" cellspacing="3" width="80%">
+		<tr>
+			<td style="width: 417px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" bgcolor="#99CCFF">
+			<font size="3" face="Arial"><b>Scenario </b></font><font size="3"><b>3</b></font></td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="536" bgcolor="#99CCFF" colspan="2">
+<font size="3"><b>Artefacts</b></font></td>
+		</tr>
+		<tr>
+			<td style="width: 417px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" rowspan="2">
+			
+<font face="Arial">
+		
+
+			GPET-E-Q Notification example (COMT_IN000004GB01) interaction communicates a GPET-E-Q 
+			NT example (COMT_MT000002GB01) message 
+					to the GPET-Q System. This is the GPET-E '40001' event 
+notification of an initial installation of GPET-E Enabling Service Software.</font></td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" align="center">
+			<b>Payload</b></td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="113" align="center">
+			<b>Wrapped payload</b></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/COMT_EX000002GB01_03.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/TMS_Interaction_Examples/COMT_EX000004GB01_03_TMS.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 417px; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" rowspan="2">
+
+<font face="Arial">
+		
+
+			GPET-E-Q Notification example (COMT_IN000004GB01) interaction communicates a GPET-E-Q 
+			NT example (COMT_MT000002GB01) message 
+					to the GPET-Q System. This is the GPET-E '40006' event 
+notification.</font></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/COMT_EX000002GB01_04.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+			<td style="padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" valign="top" width="103" height="22" align="center">
+	<div style="float: left">
+		<p style="text-align: center">
+	<a title="View Example" href="../../../Examples/GPES/TMS_Interaction_Examples/COMT_EX000004GB01_04_TMS.xml" target="_blank">
+	<img border="0" src="../../../Core/ImageFiles/XMLExample.gif" width="16" height="16"></a></div>
+			</td>
+		</tr>
+		
+
+		</table>
+
+
+		
+	<p>&nbsp;</div>
+	<a name="_Changes"></a></div>
+	</font>
+		<hr size="3" width="100%" align="center">
+	<font face="Arial">
+</font>
+</div>
+<div id="footer">
+<div class="d-mim-span-8">Document Ref: NPFIT-FNT-TO-DSD-0217</div>
+<div class="d-mim-span-8">CFH Interoperability Team: <a href="mailto:CFH.interoperabilityteam@nhs.net">Contact Us</a></div>
+<div class="d-mim-span-8 d-mim-last">Release Date: 06-Mar-2012</div>
+</div>
+</div>
+</body>
+
+</html>

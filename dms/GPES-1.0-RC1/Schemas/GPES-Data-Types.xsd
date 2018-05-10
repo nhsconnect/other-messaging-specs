@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dt="http://www.ic.nhs.uk/GPES-I/DataTypes" xmlns="http://www.ic.nhs.uk/GPES-I/Schema" targetNamespace="http://www.ic.nhs.uk/GPES-I/Schema" elementFormDefault="qualified" version="0.2">
+	<xs:simpleType name="Scheduled-Query-Instance-ID-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:length value="21"/>
+			<xs:pattern value="[0-9A-F]{6}-[0-9]{12}-[RA]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Description-Attribute-Type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Query-Domain-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="Live"/>
+			<xs:enumeration value="Test"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Date-Time-Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-3][0-9]{3}-(0[0-9]|10|11|12)-([0-2][0-9]|30|31)[T]([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="YesNo-Type">
+		<xs:restriction base="xs:string">
+			<xs:length value="1"/>
+			<xs:enumeration value="Y"/>
+			<xs:enumeration value="N"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UUID-Type">
+		<xs:annotation>
+			<xs:documentation>Universal Unique IDentifier (aka GUID). Complies with RFC 4122 and ISO/IEC 11578:1996</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:length value="36"/>
+			<xs:pattern value="[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Practice-ID-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:pattern value="[A-Z][0-9]{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Oid-Type">
+		<xs:annotation>
+			<xs:documentation>ISO Object Identifier. Used for identifiers that are based on the ISO OID scheme in which a sequence of integers separated by period define unique objects.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="255"/>
+			<xs:pattern value="[1-9][0-9]*(\.[1-9][0-9]*)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RID-Type">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="AID-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Test-Pack-ID-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="[a-zA-Z0-9._-]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CodeValueType">
+		<xs:sequence>
+			<xs:element name="Code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The code value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DisplayName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The optional code description.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IncludeChildren" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>An indication of whether the search should include descendants of the code.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Query-Priority-Type">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UC5-Digit-Hexidecimal-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:length value="5"/>
+			<xs:pattern value="[0-9A-F]{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GPSoC-System-Identifier-Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9a-zA-Z]{3}\.[0-9a-zA-Z]{3}\.[0-9a-zA-Z]{3}\.[0-9a-zA-Z]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>--------------------</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="Filename-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:length value="28"/>
+			<xs:pattern value="[0-9]{12}-[A-Z][0-9]{5}-[0-9]{3}\.gpes"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="File-Sequence-Type">
+		<xs:restriction base="xs:string">
+			<xs:length value="3"/>
+			<xs:pattern value="[0-9]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MD5-Checksum-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:length value="32"/>
+			<xs:pattern value="[0-9A-F]{32}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Common-Identifier-Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Notification-ID-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:length value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Q-E-Notification-Type-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="Stage1-Notification"/>
+			<xs:enumeration value="Stage2-Notification"/>
+			<xs:enumeration value="System-Ping-Request-Notification"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="E-Q-Notification-Type-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="Stage1-Notification-Response"/>
+			<xs:enumeration value="Stage2-Notification-Response"/>
+			<xs:enumeration value="Event-Notification"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UID-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:length value="12"/>
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MIME-Attachment-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="text/plain"/>
+			<xs:enumeration value="application/XML"/>
+			<xs:enumeration value="text/HTML"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Markup-Format-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="text/plain"/>
+			<xs:enumeration value="text/HTML"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Data-Model-Reference-ID-Type">
+		<xs:restriction base="xs:normalizedString">
+			<xs:pattern value="[T][1,2,3,4][A][0-9]?[0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Notification-Response-Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>------------------------------------------------------</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="GPES-I-Sex-Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GPES-I-Alphanumeric-Type">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="GP-Number-Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[G][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GPES-I-Date-Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="0000-00-00"/>
+			<xs:pattern value="9999-99-99"/>
+			<xs:pattern value="[0-3][0-9]{3}-(0[0-9]|10|11|12)-([0-2][0-9]|30|31)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GPES-I-Numeric-Type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="16"/>
+			<xs:pattern value="((\-){0,1})([0-9]{1,10})((\.[0-9]{1,4}){0,1})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GPES-I-Code-Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GPES-I-Time-Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="99:99:99"/>
+			<xs:pattern value="([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GPES-I-Links-Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{1,12})([:][0-9]{1,12})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ic.nhs.uk/GPES-I/Schema" targetNamespace="http://www.ic.nhs.uk/GPES-I/Schema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./GPES-Data-Types.xsd"/>
+	<xs:element name="GPES-Q-E-RTP-Message">
+		<xs:annotation>
+			<xs:documentation>Root element for Run-Time-Parameters message</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Run-Time-Parameters">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="Run-Time-Parameters-Type"/>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="GPES-I-Version" type="xs:string" use="required"/>
+			<xs:attribute name="RTP-Message-Version" type="xs:string" use="required" fixed="0.2"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Run-Time-Parameters-Type">
+		<xs:sequence>
+			<xs:element ref="Scheduled-Query-Instance-ID"/>
+			<xs:element ref="Query-Domain"/>
+			<xs:element ref="Execution-Date"/>
+			<xs:element ref="Cutoff-Date"/>
+			<xs:element ref="Interim-Date" minOccurs="0"/>
+			<xs:element ref="Query-Priority"/>
+			<xs:element ref="QR-Retention-Period"/>
+			<xs:element ref="GP-Practice-Cohort"/>
+			<xs:element ref="Patient-Participation"/>
+			<xs:element ref="Query-Set-Variables" minOccurs="0"/>
+			<xs:element ref="Show-Descriptions"/>
+			<xs:element ref="DTS-Return-Address"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Scheduled-Query-Instance-ID">
+		<xs:annotation>
+			<xs:documentation>Reference number unique to the Scheduled Query Instance. Comprised of three elements; Query Identifier, Sequence Number and Regular/Adhoc query identifier</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="Scheduled-Query-Instance-ID-Type">
+					<xs:attribute name="RTP-UUID" type="UUID-Type" use="required"/>
+					<xs:attribute name="Issue-Date-Time" type="Date-Time-Type" use="required"/>
+					<xs:attribute name="RTP-ReIssue" type="YesNo-Type" use="required"/>
+					<xs:attribute name="Query-Name" type="Description-Attribute-Type" use="optional"/>
+					<xs:attribute name="Query-Description" type="Description-Attribute-Type" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Query-Domain">
+		<xs:annotation>
+			<xs:documentation>The Query Domain to be used for the request, If Domain=Test then a Test-Pack-ID attribute must be supplied</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="Query-Domain-Type">
+					<xs:attribute name="Test-Pack-ID" type="Test-Pack-ID-Type" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Execution-Date" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>The earliest date that the request can be actioned</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Cutoff-Date" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>The date by which all results must have been returned</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Interim-Date" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>The earliest date by which results MAY be returned</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Query-Priority" type="Query-Priority-Type">
+		<xs:annotation>
+			<xs:documentation>Query priority 0 (low) to 9999 (high). Used to provide a indication to GPET-E Systems the relative priority of the request</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="QR-Retention-Period" type="xs:nonNegativeInteger">
+		<xs:annotation>
+			<xs:documentation>The period, in days, for how long Data Provider Output is to be retained on GPET-E Systems for audit purposes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="GP-Practice-Cohort" type="GP-Practice-Cohort-Type">
+		<xs:annotation>
+			<xs:documentation>A list of one or more GP Practice identifiers against which results should be returned</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="GP-Practice-Cohort-Type">
+		<xs:sequence>
+			<xs:element ref="Practice-ID" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Practice-ID">
+		<xs:annotation>
+			<xs:documentation>Single GP Practice NACS Code</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="Practice-ID-Type">
+					<xs:attribute name="GPET-Q-SQI-Authentication-Signature" type="UUID-Type" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Patient-Participation" type="Patient-Participation-Type">
+		<xs:annotation>
+			<xs:documentation>A set of indicators that allow Patient Participation decisions to be made in support of the extraction</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="Patient-Participation-Type">
+		<xs:sequence>
+			<xs:element ref="NCRS-Detailed-Care-Record-Sharing"/>
+			<xs:element ref="NCRS-Patient-Sealing"/>
+			<xs:element ref="NCRS-PDS-S-Flagging"/>
+			<xs:element ref="Exclusion-Code-String" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="NCRS-Detailed-Care-Record-Sharing" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>NCRS Detailed Care Record Sharing patient choice flag. True=Patient record sharing choice MUST be considered</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NCRS-Patient-Sealing" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>NCRS Sealed/Sealed-Locked flag. True=Sealed data WILL be extracted</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NCRS-PDS-S-Flagging" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>NCRS PSD-S-Flag. True=Patients with S-Flags will be excluded. False=S-Flagged patients will be INCLUDED</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Exclusion-Code-String">
+		<xs:annotation>
+			<xs:documentation>List of codes. Patients with these codes must be excluded.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Exclusion-Code-String-Type"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Exclusion-Code-String-Type">
+		<xs:sequence>
+			<xs:element ref="CodeSchemeID"/>
+			<xs:element ref="CodeValue" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CodeSchemeID" type="Oid-Type">
+		<xs:annotation>
+			<xs:documentation>ISO Object Identifier for the coding scheme</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CodeValue" type="CodeValueType">
+		<xs:annotation>
+			<xs:documentation>A single code value</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Query-Set-Variables" type="Query-Set-Variables-Type">
+		<xs:annotation>
+			<xs:documentation>A list of values with an associated metadata tags used  to replace placeholders within Extraction Requirements</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="Query-Set-Variables-Type">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element ref="Substitution-Value"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Substitution-Value">
+		<xs:annotation>
+			<xs:documentation>The value or values to be used in place of each placeholder in an Extraction Requirement. Identified by an AttributeID. Multiple values are allowed, delimited with a section character ("§" a non keyboard character - HTML: &#167; or ASCII code 245)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="AID" type="UUID-Type" use="required"/>
+					<xs:attribute name="Description" type="Description-Attribute-Type" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Show-Descriptions" type="YesNo-Type">
+		<xs:annotation>
+			<xs:documentation>If Y then all optional friendly name attrubutes of Description-Type are to be populated. Used for debugging purposes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DTS-Return-Address" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The DTS Address to which the Query Results file(s) produced in response to this RTP is/are to be returned e.g. address1@dts.nhs.uk. Must contain account and domain name elements</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>
