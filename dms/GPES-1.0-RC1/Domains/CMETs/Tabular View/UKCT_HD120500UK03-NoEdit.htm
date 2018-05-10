@@ -1,0 +1,349 @@
+<HTML><HEAD><TITLE>R_AgentNPFITOrgSDS Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content=R_AgentNPFITOrgSDS name=Entry>
+<META content=UKCT_HD120500UK03 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>R_AgentNPFITOrgSDS - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="UKCT_RM120500UK03.htm"><B>UKCT_RM120500UK03</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AgentOrgSDS><B>AgentOrgSDS</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#RoleHeir;AgentOrgSDS_c title=AgentOrgSDS style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifies an Organization fulfilling a specific role.&nbsp; Full details of the organization are available from SDS.&nbsp; Details of the scoping organization are either not required or available from SDS.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AgentOrgSDS>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AGNT</B>} )<A>{<B> Fixed="<FONT color=red>AGNT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Role;AgentOrgSDS/$classCode title=Role.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an Agent</P>
+<UL>
+<LI>Fixed value: "AGNT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Role;AgentOrgSDS/$id title=UKCT_HD120500UK03#AgentOrgSDS.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>NB. This identifier is deprecated in this CMET and will be removed from a future version of the MIM.</B>&nbsp;</P>
+<P>A nationally agreed identifier for the role being played.&nbsp; This may be either a code from a national coding scheme or a DCE UUID.</P>
+<P>A national code is carried in the following way:</P>
+<UL>
+<LI>the <I>root </I>attribute shall contain the OID that identifies the coding scheme</LI>
+<LI>the <I>extension</I> attribute shall contain the code</LI></UL>
+<P>A DCE UUID is carried in the <I>root</I> attribute.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A><B>RoleCode</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Role;AgentOrgSDS/$code title=AgentOrgSDS.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code identifying the type of role that the agent is playing</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>agentOrganizationSDS</B> (<A href="#OrganizationSDS"><B>OrganizationSDS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Role;AgentOrgSDS/agentOrganizationSDS-OrganizationSDS title=UKCT_HD120500UK03#AgentOrgSDS/agentOrganizationSDS-OrganizationSDS style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to the Organization playing the role.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=OrganizationSDS><B>OrganizationSDS</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Organization;OrganizationSDS_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=OrganizationSDS>Used by: </A></FONT><A href="#AgentOrgSDS"><B>AgentOrgSDS</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ORG</B>} )<A>{<B> Fixed="<FONT color=red>ORG</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Organization;OrganizationSDS/$classCode title=Organization.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an Organization</P>
+<UL>
+<LI>Fixed value: "ORG"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Organization;OrganizationSDS/$determinerCode title=Organization.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable Organization</P>
+<UL>
+<LI>Fixed value: "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Organization;OrganizationSDS/$id title=UKCT_HD120500UK03#OrganizationSDS.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A valid SDS identifier that uniquely identifies the Organization.&nbsp; This could come from a number of SDS sets including (but not limited to) Organizations and Workgroups.&nbsp; The <I>root</I> attribute shall be the OID for the SDS code set and the <I>extension</I> shall contain the code.</P>
+<P>An SDS Organization shall be identified as follows:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value 1.2.826.0.1285.0.1.10 </LI>
+<LI>the <I>extension</I> attribute shall contain the SDS Organisation Id, known in the External Interface Specification as the NACS Organisation Code.</LI></UL>
+<P>An SDS Workgroup shall be identified as follows:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.109 </LI>
+<LI>the <I>extension</I> attribute shall contain the SDS Workgroup.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>serviceDeliveryLocation</B> (<A href="#ServiceDeliveryLocation"><B>ServiceDeliveryLocation</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Organization;OrganizationSDS/serviceDeliveryLocation-ServiceDeliveryLocation title=serviceDeliveryLocation-ServiceDeliveryLocation style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>When the agent is a Organization, it can have any number locations/places where care is provided.&nbsp; These may be either formal care provision locations (eg. wards, consulting rooms etc.) or informal locations where care was given out of neccesity (eg. corridor, toilets etc.)</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ServiceDeliveryLocation><B>ServiceDeliveryLocation</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#RoleHeir;ServiceDeliveryLocation_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ServiceDeliveryLocation>Used by: </A></FONT><A href="#OrganizationSDS"><B>OrganizationSDS</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SDLOC</B>} )<A>{<B> Fixed="<FONT color=red>SDLOC</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#RoleHeir;ServiceDeliveryLocation/$classCode title=ServiceDeliveryLocation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The SDLOC code domain should be refined to either:</P>
+<UL>
+<LI>DSDLOC - Dedicated Service Delivery Location</LI>
+<LI>ISDLOC - Incidental Service Delivery Loaction</LI></UL>
+<P>depending on whether the location is one where care is routinely provided.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../Vocabulary/EHRLocationType.htm"><B>EHRLocationType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#RoleHeir;ServiceDeliveryLocation/$code title=ServiceDeliveryLocation.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code specifying the type of location or place.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>location</B> (<A href="#Place"><B>Place</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#RoleHeir;ServiceDeliveryLocation/location-Place title=ServiceDeliveryLocation/location-Place style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the place that is the Service Delivery Location.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Place><B>Place</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Place;Place_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Place>Used by: </A></FONT><A href="#ServiceDeliveryLocation"><B>ServiceDeliveryLocation</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PLC</B>} )<A>{<B> Fixed="<FONT color=red>PLC</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Place;Place/$classCode title=Place.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a Place</P>
+<UL>
+<LI>Fixed value: "PLC"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Place;Place/$determinerCode title=Place.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable Place.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>name</B> (<A href="../../../Data Types/DataTypes.htm#PN"><B>PN</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Place;Place/$name title=Place.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The name of the Place.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>telecom</B> (<A href="../../../Data Types/DataTypes.htm#TEL"><B>TEL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Place;Place/$telecom title=Place.telecom style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The telephone number of the Place.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>addr</B> (<A href="../../../Data Types/DataTypes.htm#AD"><B>AD</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD120500UK03#Place;Place/$addr title=Place.addr style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The address of the Place.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

@@ -1,0 +1,341 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>GPES-Q-E-RTP Tabular View</title><script language="JavaScript1.2">
+				
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+
+</script><style>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#maindiv {
+	overflow: auto; 
+	width: 100%; 
+	height: 90%; 
+	}
+
+
+.hypertext
+{
+	position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+}
+
+.actclass
+{
+	background-color: red;
+}
+
+.entclass
+{
+	background-color: lightgreen;;
+}
+
+.roleclass
+{
+	background-color: yellow;;
+}
+.otherclass
+{
+	background-color: blue;
+}
+.choiceclass
+{
+	background-color: gray;
+}
+.actrelclass
+{
+	background-color: pink;
+}
+.partclass
+{
+	background-color: cyan;
+}
+.rolelinkclass
+{
+	background-color: lightyellow;
+}
+TABLE {
+	empty-cells: show;
+	border-collapse: collapse;
+	border: 1px solid black;
+	border-width: 3px 1px;
+}
+.part td
+{
+	border-width: 2px 1px;
+	border-color: gray;
+	border-style: solid;
+}
+.class td
+{
+	border-width: 3px 1px;
+	border-color: black;
+	border-style: solid;
+}
+
+
+</style></head>
+   <body onload="checkDOM('ds')">
+      <h1>GPES-Q-E-RTP - tabular view</h1><span id="ds" class="hypertext">No Current Link To Vocabulary</span><span id="cwe" class="hypertext">Coded With Extensions</span><span id="cne" class="hypertext">Coded No Extensions</span><table frame="vsides" rules="cols" cellpadding="2" cellspacing="0">
+         <tr class="class">
+            <td height="35"><a href="COMT_RM000003GB01.htm"><b>COMT_RM000003GB01</b></a></td>
+            <td height="35" nowrap="yes"></td>
+         </tr>
+         <tr valign="top" class="class">
+            <td class="actclass"><a name="GPES-Q-E-RTP"><b>GPES-Q-E-RTP</b></a></td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>
+                     <strong>A message containing values to be used in the execution of an  			Extraction Requirement. </strong>
+                     
+                  </p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr class="mif">
+            <td align="right" width="50%"></td>
+            <td><font color="gray">Used by: </font><a href="#"><b></b></a></td>
+         </tr>
+         <tr valign="top" class="part">
+            <td width="50%"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>classCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ActClass</b></a> } )<br> {<b> Fixed="<font color="red">OBS</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>Indicates that this is an observation.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr valign="top" class="part">
+            <td width="50%"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>moodCode</b> (<a href="../../../Data Types/DataTypes.htm#CS"><b>CS</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a target="_top"><b>ActMood</b></a> } )<br> {<b> Fixed="<font color="red">EVN</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>Indicates that this is an event.</p>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr valign="top" class="part">
+            <td width="50%"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>code</b> (<a href="../../../Data Types/DataTypes.htm#CV"><b>CV</b></a> {<a onmouseout="popUp(event,'cne')" onmouseover="popUp(event,'cne')"><b>CNE</b></a>:<a href="../../../Vocabulary/GPESMessageType.htm" target="_top"><b>GPESMessageType</b></a> } )<br> {<b> Fixed="<font color="red">GPES-Q-E-RTP</font>"</b> }
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <div>
+                        
+                        <p>A code from the vocabulary shown indicating that this is an GPES-Q-E-RTP message.</p>
+                        
+                        <p>The Coded with Code System flavour of Coded Value  (CV) datatype shall be used to carry this information as follows:</p>
+                        
+                        <ul>
+                           
+                           <li>The <em>code</em> attribute shall contain the value.
+                           </li>
+                           
+                           <li>The  <em>codeSystem</em> attribute shall contain the OID for the vocabulary  concerned.
+                           </li>
+                           
+                        </ul>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr valign="top" class="part">
+            <td width="50%"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>id</b> (<a href="../../../Data Types/DataTypes.htm#II"><b>II</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <div>
+                     
+                     <div>
+                        
+                        <p>This is a unique identifier for this instance of a GPES-Q-E-RTP message.</p>
+                        
+                        <p>The Identifier Global datatype flavour is used to carry the identifier as follows:</p>
+                        
+                        <ul>
+                           
+                           <li>The <em>root</em> attribute shall contain a DCE UUID.
+                           </li>
+                           
+                        </ul>
+                        
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+            </td>
+         </tr>
+         <tr valign="top" class="part">
+            <td width="50%"><font color="green"><b>[1..1] </b></font><font color="green"><b> [M] </b></font><b>value</b> (<a href="../../../Data Types/DataTypes.htm#ED"><b>ED</b></a>)
+            </td>
+            <td width="50%">
+               <div style="height: 100%; width: 100%;" contenteditable="false">
+                  
+                  <p>The <em>value</em> attribute contains encapsulated data. It is constrained to the GPES-Q-E-RTP schema.
+                  </p>
+                  
+                  <p>The ED datatype shall be used to carry this encapsulated data as follows:</p>
+                  
+                  <ul>
+                     
+                     <li>The <em>mediaType</em> attribute shall contain the value "text/xml".
+                     </li>
+                     
+                     <li>The <em>representation</em> attribute shall contain the value "TXT".
+                     </li>
+                     
+                  </ul>
+                  
+                  <p></p>
+                  
+               </div>
+            </td>
+         </tr>
+      </table>
+   </body>
+</html>

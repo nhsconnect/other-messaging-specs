@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ic.nhs.uk/GPES-I/Schema" targetNamespace="http://www.ic.nhs.uk/GPES-I/Schema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.2">
+	<xs:include schemaLocation="./GPES-Data-Types.xsd"/>
+	<xs:element name="GPES-Q-E-NT_Message">
+		<xs:annotation>
+			<xs:documentation>Root element for GPET-Q to GPET-E Notifications messages</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Q-E-Notification" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GPES-Q-E-Notification-Type">
+								<xs:attribute name="Q-E-NT-UUID" type="UUID-Type" use="required"/>
+								<xs:attribute name="Issue-Date-Time" type="Date-Time-Type" use="required"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="GPES-I-Version" type="xs:string" use="required"/>
+			<xs:attribute name="Q-E-NT-Message-Version" type="xs:string" use="required" fixed="0.2"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="GPES-Q-E-Notification-Type">
+		<xs:sequence>
+			<xs:element ref="Q-E-Notification-Type">
+				<xs:annotation>
+					<xs:documentation>A string that defines the type of Notification and allows the receiving system to take appropriate action if required and to instruct what XML structure is detailed in this message, specific to Q to E notifications</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="E-Q-NT-UUID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unique identifier as provided in a GPET-E Notification message that allows a Notification to be tracked between systems, not populated if GPET-Q initiates the conversation. NOTE: In this version of GPES-I this attribute is not used but included here to provide symetry between noficiation messages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element ref="Stage1-Notification"/>
+				<xs:element ref="Stage2-Notification"/>
+				<xs:element ref="System-Ping-Request-Notification"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="E-Q-NT-UUID" type="UUID-Type">
+		<xs:annotation>
+			<xs:documentation>Unique identifier as provided in a GPET-E Notification message that allows a Notification to be tracked between systems, not populated if GPET-Q initiates the conversation</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Q-E-Notification-Type" type="Q-E-Notification-Type-Type">
+		<xs:annotation>
+			<xs:documentation>A string that defines the type of Notification and allows the receiving system to take appropriate action if required, specific to Q to E notifications</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Scheduled-Query-Identifier-ID">
+		<xs:annotation>
+			<xs:documentation>reference number unique to the Scheduled Query Instance</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="Scheduled-Query-Instance-ID-Type"/>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Practice-ID">
+		<xs:annotation>
+			<xs:documentation>Single GP Practice NACS Code</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="Practice-ID-Type"/>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UID" type="UID-Type">
+		<xs:annotation>
+			<xs:documentation>A list of users identified using the CFH UUID corresponding to their NCRS Smart Card. Used to allow an individual to be notified of an event</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Stage1-Notification" type="Participation-Notification-Type">
+		<xs:annotation>
+			<xs:documentation>Structure used to communicate stage 1 notifications from GPET-Q to GPET-E</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Stage2-Notification" type="Participation-Notification-Type">
+		<xs:annotation>
+			<xs:documentation>Structure used to communicate stage 2 notifications from GPET-Q to GPET-E</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="System-Ping-Request-Notification" type="System-Ping-Request-Notification-Type">
+		<xs:annotation>
+			<xs:documentation>Structure used to communicate system ping request notificationsfrom GPET-Q to GPET-E</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="Participation-Notification-Type">
+		<xs:sequence>
+			<xs:element ref="Practice-ID"/>
+			<xs:element ref="Scheduled-Query-Identifier-ID" minOccurs="0"/>
+			<xs:element ref="UID" minOccurs="0" maxOccurs="1000"/>
+			<xs:element name="Notification-Payload">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Notification-Title">
+							<xs:annotation>
+								<xs:documentation>Data to be used for the title of the notification presented to users</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="Order" type="xs:nonNegativeInteger" use="required">
+											<xs:annotation>
+												<xs:documentation>The order in which the data should be displayed, starting at 1 and incrementing by 1.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="Data-Format" type="Markup-Format-Type" use="required"/>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element name="Notification-Question">
+								<xs:annotation>
+									<xs:documentation>Structure used to present a question to users along with allowed values and identifiers to uniquely identify the question and the allowed values to be returned</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Question-Text" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Question text is optional to allow the case where only free text might be required to be presented. It is expected this attribute will be populated in most cases</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="Data-Format" type="Markup-Format-Type" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Allowed-Values">
+											<xs:annotation>
+												<xs:documentation>The allowed values will either be one or more values  that GPET-Q provides or a free text field for a user to provide a textual response</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:choice>
+													<xs:element name="Value" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>Each allowed value for a question is presented here along with a unique identifier to be used when returning the answer to a question to GPET-E. Where required, GPET-Q will identify one of the allowed values to be used as the default option</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="Answer-ID" type="xs:normalizedString" use="required"/>
+																	<xs:attribute name="Default" type="xs:string" use="optional" fixed="Y"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Free-Text" fixed="Y">
+														<xs:annotation>
+															<xs:documentation>Where a question requires a user to input some free text, this attribute will be populated. It has a unique identifier similar to "Value" and also has an optional maximum length attribute to be populated when required - this attribute should be treated similar to the HTML Maxlength attribute</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="Answer-ID" type="xs:normalizedString" use="required"/>
+																	<xs:attribute name="Maxlength" type="xs:nonNegativeInteger" use="optional"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:choice>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Question-Post-Text" minOccurs="0">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="Data-Format" type="Markup-Format-Type" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Notification-Question-ID" type="xs:normalizedString" use="required">
+										<xs:annotation>
+											<xs:documentation>Identifier to uniquely identify each question in a notification and for use by GPET-E to quote the identifier when returning an answer</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="Order" type="xs:nonNegativeInteger" use="required">
+										<xs:annotation>
+											<xs:documentation>The order in which the data should be displayed, starting at 1 and incrementing by 1</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Notification-Narrative">
+								<xs:annotation>
+									<xs:documentation>Data to be used within the body of the notification presented to users</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="Order" type="xs:nonNegativeInteger" use="required">
+												<xs:annotation>
+													<xs:documentation>The order in which the data should be displayed, starting at 1 and incrementing by 1</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:attribute name="Data-Format" type="Markup-Format-Type" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="System-Ping-Request-Notification-Type">
+		<xs:sequence>
+			<xs:element ref="Practice-ID"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
