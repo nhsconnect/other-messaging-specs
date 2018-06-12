@@ -1,0 +1,448 @@
+<HTML><HEAD><TITLE>R_Patient Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content=R_Patient name=Entry>
+<META content=COCT_HD050012UK04 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>R_Patient - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="COCT_RM050012UK04.htm"><B>COCT_RM050012UK04</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Patient><B>Patient</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Patient;Patient_c title=COCT_HD050012UK04#Patient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Details about the patient</B>.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Patient>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PAT</B>} )<A>{<B> Fixed="<FONT color=red>PAT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Role;Patient/$classCode title=COCT_HD050012UK04#Patient.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of a patient.</P>
+<UL>
+<LI>Fixed value "PAT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Role;Patient/$id title=Patient.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The NHS number or temporary NHS number that identifies the patient.</P>
+<P>NHS numbers are composed of ten numerics. All other formats shall be treated as temporary. This is the only way of differentiating between the two formats in this implementation.</P>
+<P>The <I>root</I> element identifies the&nbsp; NHS patient numbering scheme&nbsp;represented by&nbsp;OID 2.16.840.1.113883.2.1.4.1 and the <I>extension</I> contains the actual identifier. </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/NHAISRegistration.htm"><B>NHAISRegistration</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Role;Patient/$code title=COCT_HD050012UK04#Patient.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To indicate the type of patient role in coded form.</P>
+<P>This will only be used in the case of a patient who is a private patient choosing not to use normal NHS services as free at point of delivery.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>the <I>code</I> attribute will contain a value from the list of codes in the <U>NHAISRegistration</U> vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>addr</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#AD"><B>AD</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Role;Patient/$addr title=COCT_HD050012UK04#Patient.addr style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide zero or more addresses of the patient.</P>
+<P>An address is composed of the following components:</P>
+<UL>
+<LI>Between one and five unstructured address lines; </LI>
+<LI>Postcode; </LI>
+<LI>A PAF (postal address file) key; </LI>
+<LI>In the case of a temporary address, a textual description of nature of the address may also be provided; </LI>
+<LI>An effective from date may be provided for every address; an effective to date may also be provided for any address.</LI></UL>
+<P>The first of these components is required to be present with any address.</P>
+<P>The type of address is required to be identified by using one of the following codes in the <I>use</I> attribute:</P>
+<UL>
+<LI>H - usual address; </LI>
+<LI>TMP - temporary address; </LI>
+<LI>PST - correspondence address.</LI></UL>
+<P>The following sub-elements are used to carry the components of an address:</P>
+<UL>
+<LI>Between one and five <I>streetAddressLine</I> elements are used to carry unstructured address lines, with the order in which they are carried in the message being significant, i.e. the first occurrence of the <I>streetAddressLine</I> element is used to carry the first line of address, the second occurrence of the <I>streetAddressLine</I> element is used to carry the second line of address etc; </LI>
+<LI>A <I>postalCode</I> element is used to carry a postcode; </LI>
+<LI>An <I>addressKey</I> element is used to carry a PAF key; </LI>
+<LI>For a temporary address only, a <I>desc</I> element is used to carry a textual description of nature of the address.</LI></UL>
+<P>For any address, the <I>useablePeriod</I> sub-element may be used to indicate dates from and to which the address was/is to be effective. This mechanism allows previous addresses of any of the three types listed above to be carried in the message and distinguished from current addresses. These effective dates are indicated, in the following way:</P>
+<UL>
+<LI>The <I>low</I> sub-element of the <I>useablePeriod</I> element may optionally be present with the date from which the address was effective provided in YYYYMMDD format in the value attribute; </LI>
+<LI>The <I>high</I> sub-element of the <I>useablePeriod</I> element may optionally be present with the date to which the address was/is to be effective provided in YYYYMMDD format in the value attribute.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>telecom</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TEL"><B>TEL</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Role;Patient/$telecom title=COCT_HD050012UK04#Patient.telecom style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide zero or more telecommunication numbers of the patient, together with the contact method for each. These two items of information are carried in the <I>value</I> attribute, separated by a colon character. The contact method will be one of the following values:</P>
+<UL>
+<LI>tel (for telephone numbers); </LI>
+<LI>fax (for fax numbers); </LI>
+<LI>mailto (for e-mail addresses).</LI></UL>
+<P>In addition, for each telecommunication number, zero or more occurrences of the use attribute may be used to indicate the context for the telecommunication number, using the following values:</P>
+<UL>
+<LI>H - A communication address at a home; </LI>
+<LI>HP - The primary home, to reach a person after business hours; </LI>
+<LI>HV - A vacation home, to reach a person while on vacation; </LI>
+<LI>WP - An office address; </LI>
+<LI>AS - An automated answering machine; </LI>
+<LI>EC - A contact specifically designated to be used for emergencies; </LI>
+<LI>PG - A paging device suitable to solicit a callback or to leave a very short message; </LI>
+<LI>MC - A telecommunication device that moves and stays with its owner.</LI></UL>
+<P>For any telecommunication number, the useablePeriod sub-element may also be used to indicate dates from and to which the telecommunication number was/is to be effective. This mechanism allows previous telecommunication numbers of any of the types listed above to be carried in the message and distinguished from current telecommunication numbers. These effective dates are indicated, in the following way:</P>
+<UL>
+<LI>The <I>low</I> sub-element of the useablePeriod element may optionally be present with the date from which the telecommunication number was effective provided in YYYYMMDD format in the <I>value</I> attribute; </LI>
+<LI>The <I>high</I> sub-element of the useablePeriod element may optionally be present with the date to which the telecommunication number was/is to be effective provided in YYYYMMDD format in the <I>value</I> attribute.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>certificateText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Role;Patient/$certificateText title=COCT_HD050012UK04#Patient.certificateText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the patient's shared secret (defined as personal information provided by the patient) as a text string.</P>
+<P><B>Example</B> </P>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;certificateText&gt;Grandfather's name is Fred&lt;/certificateText&gt;</SPAN> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>confidentialityCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>Confidentiality</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Patient;Patient/$confidentialityCode title=COCT_HD050012UK04#Patient.confidentialityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To indicate the nature of any sensitive information about the patient in coded form.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>the <I>code</I> attribute will contain a value from the list of codes in the <U>Confidentiality</U> vocabulary.</LI></UL>
+<P><B>THIS FIELD IS DEPRECATED AND NOT TO BE POPULATED.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>patientPerson</B> (<A href="#Person"><B>Person</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Role;Patient/patientPerson-Person title=Patient/patientPerson-Person style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the person who is the identified patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=SourceOf><B>sourceOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=COCT_HD050012UK04#Role;/Patient/sourceOf title=COCT_HD050012UK04#/Patient/sourceOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A role link that links the registered GP to the patient.</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>registeredWit</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD050012UK04#RoleLink;Patient/sourceOf/$typeCode title=COCT_HD050012UK04#Patient/sourceOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the patient is registered with the GP.</P>
+<UL>
+<LI>Fixed value&nbsp; "registeredWith"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>target</B> (<A href="#GpRegisteredWith"><B>GpRegisteredWith</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=COCT_HD050012UK04#RoleLink;Patient/sourceOf/target-GpRegisteredWith title=Patient/sourceOf/target-GpRegisteredWith style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the GP the patient is registered with.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Person><B>Person</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Person;Person_c title=COCT_HD050012UK04#Person_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Details about the person who is the patient.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Person>Used by: </A></FONT><A href="#Patient"><B>Patient</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PSN</B>} )<A>{<B> Fixed="<FONT color=red>PSN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Person;Person/$classCode title=COCT_HD050012UK04#Person.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a person.</P>
+<UL>
+<LI>Fixed value "PSN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Person;Person/$determinerCode title=COCT_HD050012UK04#Person.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable person.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>name</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#PN"><B>PN</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Person;Person/$name title=COCT_HD050012UK04#Person.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide a structured name for the person.</P>
+<P>The following sub-elements are used to carry components of a structured name:</P>
+<UL>
+<LI>A single instance of the <I>prefix</I> element is used to carry a name title, for example, Mr, Mrs, Ms etc; </LI>
+<LI>One or more instances of the <I>given</I> element are used to carry given names (or forenames) or initials, with the order in which they are carried in the message being significant, i.e. the first occurrence of the <I>given</I> element is used to carry the first given name, the second occurrence of the <I>given</I> element is used to carry the second given name etc; </LI>
+<LI>A single instance of the <I>family</I> element is used to carry the family name (or surname); </LI>
+<LI>A single instance of the <I>suffix</I> element is used to carry a name prefix, for example, Jnr, Snr etc.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>administrativeGenderCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/sex.htm"><B>sex</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Person;Person/$administrativeGenderCode title=COCT_HD050012UK04#Person.administrativeGenderCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the sex of the patient in coded form.</P>
+<P>The CodedOnly datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the <U>Sex</U> vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>birthTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Person;Person/$birthTime title=COCT_HD050012UK04#Person.birthTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the date the patient was born.</P>
+<P>The date may be given in one of the following formats:</P>
+<UL>
+<LI>YYYYMMDD where the full date of birth is known; </LI>
+<LI>YYYYMM or YYYY where the full date of birth is not known.</LI></UL>
+<P>One of the Date Only or Date Month or Date Year datatype flavours is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>value</I> attribute will contain the date value in one of the formats indicated.</LI></UL>
+<P>Alternatively, where the birth date is not known, this can be conveyed in the following way:</P>
+<UL>
+<LI>The <I>nullFlavor</I> attribute will contain the value "UNK" (Unknown).</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>deceasedTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Person;Person/$deceasedTime title=COCT_HD050012UK04#Person.deceasedTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the date (and time where available) the patient died, where relevant.</P>
+<P>The date/time may be given in one of the following formats:</P>
+<UL>
+<LI>YYYYMMDDHHMM where the full date and time of death is known; </LI>
+<LI>YYYYMMDD where the full date of death is known; </LI>
+<LI>YYYYMM or YYYY where the full date of death is not known.</LI></UL>
+<P>One of the Date and Time, Date Only, Date Month or Date Year datatype flavours is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>value</I> attribute will contain the date value in one of the formats indicated.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>disabilityCode</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#CE"><B>CE</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#Person;Person/$disabilityCode title=COCT_HD050012UK04#Person.disabilityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide details of person disabilities, for administrative purposes, in coded form.</P>
+<P>This field may be repeated to provide either or both of the following pieces of information:</P>
+<UL>
+<LI>Person hearing impairment; </LI>
+<LI>Person visual impairment.</LI></UL>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the <U>PersonDisability</U> vocabulary.</LI></UL>
+<P><B>THIS FIELD IS DEPRECATED AND NOT TO BE POPULATED.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=GpRegisteredWith><B>GpRegisteredWith</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#RoleHeir;GpRegisteredWith_c title=COCT_HD050012UK04#GpRegisteredWith style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Details about the&nbsp;GP the&nbsp;patient is registered with.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=GpRegisteredWith>Used by: </A></FONT><A href="#Patient"><B>Patient</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ROL</B>} )<A>{<B> Fixed="<FONT color=red>ROL</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#RoleHeir;GpRegisteredWith/$classCode title=COCT_HD050012UK04#GpRegisteredWith.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates&nbsp;the role of GP the patient is registered with.</P>
+<UL>
+<LI>Fixed value "ROL"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=COCT_HD050012UK04#RoleHeir;GpRegisteredWith/$id title=COCT_HD050012UK04#GpRegisteredWith.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the&nbsp;GP the patient is registered with. </P>
+<P>This&nbsp;shall be represented by&nbsp;the <SPAN>1.2.826.0.1285.0.2.0.65<SPAN style="mso-spacerun: yes">&nbsp;</SPAN></SPAN>in the <I>root </I>element and the&nbsp;SDS unique identifier&nbsp; in the &nbsp;<I>extension.</I> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

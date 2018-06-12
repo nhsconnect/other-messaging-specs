@@ -1,0 +1,236 @@
+<HTML><HEAD><TITLE>Medication Choice Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="Medication Choice" name=Entry>
+<META content=UKCT_HD141000UK01 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Medication Choice - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="UKCT_RM141000UK01.htm"><B>UKCT_RM141000UK01</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=MedicationChoice><B>MedicationChoice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD141000UK01#Act;MedicationChoice_c title=UKCT_HD141000UK01#MedicationChoice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A CMET that represents various kinds of statements that can be made about the administration and supply of medication.&nbsp; It does not cover statements that are specific to electronic prescribing.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=MedicationChoice>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B><I>either </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM140700UK01.htm">UKCT_MT140701UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD141000UK01#Act;MedicationChoice/A_AdministerMedicationCourseUniversal+UKCT_MT140701UK01 title=UKCT_HD141000UK01#MedicationChoice/A_AdministerMedicationCourseUniversal+UKCT_MT140701UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A CMET that represents a scheduled / ongoing / ended administration of a complete course of medication.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM140200UK01.htm">UKCT_MT140201UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD141000UK01#Act;MedicationChoice/A_AdministerMedicationSingleUniversal+UKCT_MT140201UK01 title=UKCT_HD141000UK01#MedicationChoice/A_AdministerMedicationSingleUniversal+UKCT_MT140201UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A CMET that represents a scheduled / ongoing / ended administration of a single dose of medication.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM140300UK01.htm">UKCT_MT140301UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD141000UK01#Act;MedicationChoice/A_PlanMedicationAdministrationUniversal+UKCT_MT140301UK01 title=UKCT_HD141000UK01#MedicationChoice/A_PlanMedicationAdministrationUniversal+UKCT_MT140301UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A CMET that describes a course of medication which has been authorised for administration to a patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM140100UK01.htm">UKCT_MT140101UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD141000UK01#Act;MedicationChoice/A_RecommendUniversal+UKCT_MT140101UK01 title=UKCT_HD141000UK01#MedicationChoice/A_RecommendUniversal+UKCT_MT140101UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A CMET that represents the various recommendations relevant to medication, i.e. recommendations <BR>- to avoid administration of a medication<BR>- to substitute one medication administration for another<BR>- to administer a medication<BR>- to change the dosage of medication already authorised<BR>- to stop administering a medication<BR>- to carry on administering a medication.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM140800UK01.htm">UKCT_MT140801UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD141000UK01#Act;MedicationChoice/A_RequestMedicationAdministrationUniversal+UKCT_MT140801UK01 title=UKCT_HD141000UK01#MedicationChoice/A_RequestMedicationAdministrationUniversal+UKCT_MT140801UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A CMET that represents a request to administer medication to a patient.&nbsp; In primary care this and the request to supply would constitute a prescribed item on a prescription.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM140600UK01.htm">UKCT_MT140601UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD141000UK01#Act;MedicationChoice/A_RequestMedicationSupplyAbortedUniversal+UKCT_MT140601UK01 title=UKCT_HD141000UK01#MedicationChoice/A_RequestMedicationSupplyAbortedUniversal+UKCT_MT140601UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A CMET that represents a request to abort an existing request to supply medication, e.g. to cancel a prescription.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM140400UK01.htm">UKCT_MT140401UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD141000UK01#Act;MedicationChoice/A_RequestMedicationSupplyUniversal+UKCT_MT140401UK01 title=UKCT_HD141000UK01#MedicationChoice/A_RequestMedicationSupplyUniversal+UKCT_MT140401UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A CMET that represents a request for the supply of a medication.&nbsp; It may be a formal prescription (e.g. from an NHS GP) or a request from a hospital clinician to a hospital pharmacy.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM140500UK01.htm">UKCT_MT140501UK01</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=UKCT_HD141000UK01#Act;MedicationChoice/A_SupplyMedicationUniversal+UKCT_MT140501UK01 title=UKCT_HD141000UK01#MedicationChoice/A_SupplyMedicationUniversal+UKCT_MT140501UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A CMET that represents the planned / ongoing / completed supply of medication to the patient / patient's representative /clinician.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

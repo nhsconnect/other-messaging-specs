@@ -1,0 +1,1104 @@
+<HTML><HEAD><TITLE>Request Appointment Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="" name=Entry>
+<META content=PRSC_HD040100UK08 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Request Appointment - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne style="LEFT: 179px; VISIBILITY: hidden; TOP: 268px">Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="PRSC_RM040000UK08.htm"><B>PRSC_RM040000UK08</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=RequestAppointmentConfirmation><B>RequestAppointmentConfirmation</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#ActHeir;RequestAppointmentConfirmation_c title=RequestAppointmentConfirmation_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The Request Appointment Confirmation </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=RequestAppointmentConfirmation>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PCPR</B>} )<A>{<B> Fixed="<FONT color=red>PCPR</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Act;RequestAppointmentConfirmation/$classCode title=PRSC_HD040100UK08#RequestAppointmentConfirmation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a patient care provision.</P>
+<UL>
+<LI>Fixed value "PCPR"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RQO</B>} )<A>{<B> Fixed="<FONT color=red>RQO</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Act;RequestAppointmentConfirmation/$moodCode title=PRSC_HD040100UK08#RequestAppointmentConfirmation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a request.</P>
+<UL>
+<LI>Fixed value:"RQO"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Act;RequestAppointmentConfirmation/$id title=Act.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>UUID identifying this instance of a&nbsp;service request. This identifier is&nbsp;universally unique across all records. It is in the form of a UUID. </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Subject><B>subject</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRSC_HD040100UK08#Act;/RequestAppointmentConfirmation/subject title=RequestAppointmentConfirmation/subject style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Refers to the patient&nbsp;for whom the&nbsp;appointment is being confirmed.&nbsp;</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBJ</B>} )<A>{<B> Fixed="<FONT color=red>SBJ</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#Participation;RequestAppointmentConfirmation/subject/$typeCode title=PRSC_HD040100UK08#RequestAppointmentConfirmation/subject.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the&nbsp;patient is the subject of the request.</P>
+<UL>
+<LI>&nbsp;Fixed value "SBJ"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>patient</B> (<A href="#Patient"><B>Patient</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#Participation;RequestAppointmentConfirmation/subject/patient-Patient title=RequestAppointmentConfirmation/subject/patient-Patient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the patient who is the subject.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Component><B>component</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRSC_HD040100UK08#Act;/RequestAppointmentConfirmation/component title=PRSC_HD040100UK08#/RequestAppointmentConfirmation/component style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Refers to the correspondence suppression flag which is a component.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#ActRelationship;RequestAppointmentConfirmation/component/$typeCode title=RequestAppointmentConfirmation/component.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a component.</P>
+<UL>
+<LI>Fixed value: "COMP"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>correspondenceSuppression</B> (<A href="#CorrespondenceSuppression"><B>CorrespondenceSuppression</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#ActRelationship;RequestAppointmentConfirmation/component/correspondenceSuppression-CorrespondenceSuppression title=PRSC_HD040100UK08#RequestAppointmentConfirmation/component/correspondenceSuppression-CorrespondenceSuppression style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the correspondence suppression flag.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=PertinentInformation><B>pertinentInformation2</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRSC_HD040100UK08#Act;/RequestAppointmentConfirmation/pertinentInformation2 title=PRSC_HD040100UK08#/RequestAppointmentConfirmation/pertinentInformation2 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Refers to information that is pertinent to this confirmation request</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#ActRelationship;RequestAppointmentConfirmation/pertinentInformation2/$typeCode title=RequestAppointmentConfirmation/pertinentInformation2.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentCallbackConsent</B> (<A href="#CallbackConsent"><B>CallbackConsent</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#ActRelationship;RequestAppointmentConfirmation/pertinentInformation2/pertinentCallbackConsent-CallbackConsent title=PRSC_HD040100UK08#RequestAppointmentConfirmation/pertinentInformation2/pertinentCallbackConsent-CallbackConsent style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the callback consent.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PertinentInformation2><B>pertinentInformation1</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRSC_HD040100UK08#Act;/RequestAppointmentConfirmation/pertinentInformation1 title=PRSC_HD040100UK08#/RequestAppointmentConfirmation/pertinentInformation1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Refers to information that is pertinent to this confirmation request.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#ActRelationship;RequestAppointmentConfirmation/pertinentInformation1/$typeCode title=RequestAppointmentConfirmation/pertinentInformation1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value: "PERT"&nbsp;</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentReferral</B> (<A href="#ReferralInformation"><B>ReferralInformation</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#ActRelationship;RequestAppointmentConfirmation/pertinentInformation1/pertinentReferral-ReferralInformation title=PRSC_HD040100UK08#RequestAppointmentConfirmation/pertinentInformation1/pertinentReferral-ReferralInformation style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the referral.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=InFulfillmentOf2><B>inFulfillmentOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRSC_HD040100UK08#Act;/RequestAppointmentConfirmation/inFulfillmentOf title=PRSC_HD040100UK08#/RequestAppointmentConfirmation/inFulfillmentOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Refers to the original&nbsp;request for a scheduled service.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>FLFS</B>} )<A>{<B> Fixed="<FONT color=red>FLFS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#ActRelationship;RequestAppointmentConfirmation/inFulfillmentOf/$typeCode title=RequestAppointmentConfirmation/inFulfillmentOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is fulfilling a request.</P>
+<UL>
+<LI>Fixed value: "FLFS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>priorRequestedService</B> (<A href="#RequestedService"><B>RequestedService</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#ActRelationship;RequestAppointmentConfirmation/inFulfillmentOf/priorRequestedService-RequestedService title=PRSC_HD040100UK08#RequestAppointmentConfirmation/inFulfillmentOf/priorRequestedService-RequestedService style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the previous service request that the&nbsp;confirmed appointment&nbsp;is in fulfilment of.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=InFulfillmentOf><B>fulfillment</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRSC_HD040100UK08#Act;/RequestAppointmentConfirmation/fulfillment title=PRSC_HD040100UK08#/RequestAppointmentConfirmation/fulfillment style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Refers to the appointment that has been scheduled to fulfill&nbsp;the requested service.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>FLFS</B>} )<A>{<B> Fixed="<FONT color=red>FLFS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#ActRelationship;RequestAppointmentConfirmation/fulfillment/$typeCode title=RequestAppointmentConfirmation/fulfillment.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is fulfilling a request.</P>
+<UL>
+<LI>Fixed value: "FLFS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>appointmentSlot</B> (<A href="#AppointmentSlot"><B>AppointmentSlot</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#ActRelationship;RequestAppointmentConfirmation/fulfillment/appointmentSlot-AppointmentSlot title=PRSC_HD040100UK08#RequestAppointmentConfirmation/fulfillment/appointmentSlot-AppointmentSlot style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the appointment that is fulfilling the service request.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Patient><B>Patient</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Patient;Patient_c title=Patient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Patient>Used by: </A></FONT><A href="#RequestAppointmentConfirmation"><B>RequestAppointmentConfirmation</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PAT</B>} )<A>{<B> Fixed="<FONT color=red>PAT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Patient;Patient/$classCode title=PRSC_HD040100UK08#Patient.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of a patient.</P>
+<UL>
+<LI>Fixed value "PAT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Patient;Patient/$id title=PRSC_HD040100UK08#Patient.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the current nationally recognised identifier for the patient. This identifier will be one of:</P>
+<UL>
+<LI>NHS number; </LI>
+<LI>Temporary NHS number issued by an NHAIS registration authority; </LI>
+<LI>PDS allocated temporary NHS number.</LI></UL>
+<P>The Identifier External datatype flavour is used to carry this information as follows:-</P>
+<P>An NHS number is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value "2.16.840.1.113883.2.1.4.1"; </LI>
+<LI>The <I>extension</I> attribute shall contain the NHS number itself.</LI></UL>
+<P>A Temporary NHS number issued by an NHAIS registration authority is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value "2.16.840.1.113883.2.1.3.2.4.3"; </LI>
+<LI>The <I>extension</I> attribute shall contain the Temporary NHS number issued by an NHAIS registration authority itself.</LI></UL>
+<P>A PDS allocated temporary NHS number is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value "2.16.840.1.113883.2.1.3.2.4.4"; </LI>
+<LI>The <I>extension</I> attribute shall contain the PDS allocated temporary NHS number itself.</LI></UL>
+<P><B>Examples</B> </P>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;!-- NHS number --&gt;<BR>&lt;id root="2.16.840.1.113883.2.1.4.1" extension="9999999484"/&gt;<BR><BR>&lt;!-- Temporary NHS number issued by an NHAIS registration authority --&gt;<BR>&lt;id root="2.16.840.1.113883.2.1.3.2.4.3" extension="BRS123456"/&gt;<BR><BR>&lt;!-- PDS allocated temporary NHS number --&gt;<BR>&lt;id root="2.16.840.1.113883.2.1.3.2.4.4" extension="PDS1234567890"/&gt;</SPAN></P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>patientPerson</B> (<A href="#Person"><B>Person</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Patient;Patient/patientPerson-Person title=Patient/patientPerson-Person style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the person who is the identified patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=SourceOf><B>sourceOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRSC_HD040100UK08#Patient;subject/Patient/sourceOf title=subject/Patient/sourceOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A role link that links the patient to the&nbsp;GP he/she is registered with.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>registeredWith</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#RoleLink;Patient/sourceOf/$typeCode title=PRSC_HD040100UK08#Patient/sourceOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the patient is registered with the GP.</P>
+<UL>
+<LI>Fixed value "registeredWith"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>target</B> (<A href="#GpRegisteredWith"><B>GpRegisteredWith</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#RoleLink;Patient/sourceOf/target-GpRegisteredWith title=Patient/sourceOf/target-GpRegisteredWith style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the GP the patient is registered with.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=CorrespondenceSuppression><B>CorrespondenceSuppression</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Observation;CorrespondenceSuppression_c title=PRSC_HD040100UK08#CorrespondenceSuppression_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator to whether correspondence must be suppressed.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=CorrespondenceSuppression>Used by: </A></FONT><A href="#RequestAppointmentConfirmation"><B>RequestAppointmentConfirmation</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Observation;CorrespondenceSuppression/$classCode title=PRSC_HD040100UK08#CorrespondenceSuppression.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate this is a observation</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Observation;CorrespondenceSuppression/$moodCode title=PRSC_HD040100UK08#CorrespondenceSuppression.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate this is an event</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/CorrespondenceSuppression.htm">CorrespondenceSuppression</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Observation;CorrespondenceSuppression/$code title=PRSC_HD040100UK08#CorrespondenceSuppression.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate whether to suppress correspondence.</P>
+<P>The Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain value "1"&nbsp;(suppress corresponce)&nbsp;from the list of codes in the&nbsp; <U>CorrespondenceSuppression</U> vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the&nbsp;<U>CorrespondenceSuppression</U> vocabulary.</LI></UL>
+<P><B>Example</B> </P>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;!-- To indicate "Suppress correspondence" --&gt;<BR>&lt;code code="1" </SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New"><SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New"><SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">codeSystem="<SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA">2.16.840.1.113883.2.1.3.2.4.17.90"</P><SPAN><SPAN><SPAN><SPAN><SPAN><SPAN></NOTE></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=CallbackConsent><B>CallbackConsent</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#PatientEncounter;CallbackConsent_c title=CallbackConsent_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator of consent to contact the patient by telephone.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=CallbackConsent>Used by: </A></FONT><A href="#RequestAppointmentConfirmation"><B>RequestAppointmentConfirmation</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ENC</B>} )<A>{<B> Fixed="<FONT color=red>ENC</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#PatientEncounter;CallbackConsent/$classCode title=PRSC_HD040100UK08#CallbackConsent.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates an interaction between the patient and the eBooking System.</P>
+<UL>
+<LI>Fixed value: "ENC"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PRP</B>} )<A>{<B> Fixed="<FONT color=red>PRP</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#PatientEncounter;CallbackConsent/$moodCode title=PRSC_HD040100UK08#CallbackConsent.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that there is an intention to call back the patient.</P>
+<UL>
+<LI>Fixed value: "PRP"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>specialCourtesiesCode</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/CallbackConsent.htm">CallbackConsent</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#PatientEncounter;CallbackConsent/$specialCourtesiesCode title=PRSC_HD040100UK08#CallbackConsent.specialCourtesiesCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code indicating whether the patient has consented to a call back</P>
+<P>The Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain value "1"&nbsp;(suppress corresponce)&nbsp;from the list of codes in the&nbsp; <U>CallbackConsent</U> vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the&nbsp;<U>CallbackConsent</U> vocabulary.</LI></UL>
+<P><B>Example</B> </P>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;!-- To indicate&nbsp;that the patient has not consented&nbsp;--&gt;</SPAN><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New"><BR>&lt;code code="0" codeSystem="<FONT size=3><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New"><FONT face=Arial>2.16.840.1.113883.2.1.3.2.4.17.99</SPAN>/&gt;</P><FONT size=+0><FONT size=+0><SPAN></NOTE></SPAN></FONT></FONT></FONT></FONT></SPAN></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ReferralInformation><B>ReferralInformation</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#ActHeir;ReferralInformation_c title=PRSC_HD040100UK08#ReferralInformation_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the referral.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ReferralInformation>Used by: </A></FONT><A href="#RequestAppointmentConfirmation"><B>RequestAppointmentConfirmation</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INFRM</B>} )<A>{<B> Fixed="<FONT color=red>INFRM</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#ActHeir;ReferralInformation/$classCode title=PRSC_HD040100UK08#ReferralInformation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Code to indicate inform.</P>
+<UL>
+<LI>Fixed value: "INFRM"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#ActHeir;ReferralInformation/$moodCode title=PRSC_HD040100UK08#ReferralInformation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Code to indicate this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#ActHeir;ReferralInformation/$effectiveTime title=PRSC_HD040100UK08#ReferralInformation.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The date of the decision to refer.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>priorityCode</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/PriorityType.htm">PriorityType</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#ActHeir;ReferralInformation/$priorityCode title=PRSC_HD040100UK08#ReferralInformation.priorityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code specifying the&nbsp;level of urgency applying to the referral.</P>
+<P>The Coded with Code System datatype flavour is used to carry this information as follows</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;<U>PriorityType</U> vocabulary;</LI></UL>
+<UL>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the&nbsp;<U>PriorityType</U>&nbsp; vocabulary</LI></UL>
+<UL>
+<LI>The <I>code</I> attribute shall default to value "1", Routine</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Author><B>author</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRSC_HD040100UK08#ActHeir;pertinentInformation1/ReferralInformation/author title=PRSC_HD040100UK08#pertinentInformation1/ReferralInformation/author style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A participation referring to a person who is logged in at the time the message is initiated.&nbsp;</B></P>
+<P><B>The participation is optional. It shall be present when the message is&nbsp;initiated by a person. It shall not be present when the message is automatically&nbsp;initiated by a system.&nbsp;</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#Participation;ReferralInformation/author/$typeCode title=ReferralInformation/author.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the author of the request.</P>
+<UL>
+<LI>Fixed value "AUT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>agentPersonSDS</B> (<A href="#AgentPersonSDS"><B>AgentPersonSDS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRSC_HD040100UK08#Participation;ReferralInformation/author/agentPersonSDS-AgentPersonSDS title=PRSC_HD040100UK08#ReferralInformation/author/agentPersonSDS-AgentPersonSDS style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identify&nbsp;person fulfilling a specific role where&nbsp;the Person,&nbsp;Role Profile, Job&nbsp;Role and associated Organisation are all mandatory. Full details of the person, role profile, job role&nbsp;and associated Organisation are available from SDS.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=RequestedService><B>RequestedService</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Supply;RequestedService_c title=RequestedService_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the requested service.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=RequestedService>Used by: </A></FONT><A href="#RequestAppointmentConfirmation"><B>RequestAppointmentConfirmation</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SPLY</B>} )<A>{<B> Fixed="<FONT color=red>SPLY</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Supply;RequestedService/$classCode title=PRSC_HD040100UK08#RequestedService.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that a service is being supplied.</P>
+<UL>
+<LI>Fixed value: "SPLY"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PRMS</B>} )<A>{<B> Fixed="<FONT color=red>PRMS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Supply;RequestedService/$moodCode title=PRSC_HD040100UK08#RequestedService.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that there&nbsp;is a promise to fulfil&nbsp;a service request.</P>
+<UL>
+<LI>Fixed value: "PRMS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Supply;RequestedService/$id title=PRSC_HD040100UK08#RequestedService.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This identifier is unique within the eBooking Service. It identifies the Unique Booking Reference Number(UBRN) allocated to the service request for which an appointment has been made</P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The&nbsp;<I>root</I> attribute shall contain an OID with the value 2.16.840.1.113883.2.1.3.2.4.1 </LI>
+<LI>The <I>extension</I> attribute shall contain the UBRN</LI></UL>
+<P>&nbsp;<B>Example</B></P>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;id root="2.16.840.1.113883.2.1.3.2.4.1" extension="1000000001"</SPAN></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AppointmentSlot><B>AppointmentSlot</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Supply;AppointmentSlot_c title=AppointmentSlot_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about an appointment slot.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AppointmentSlot>Used by: </A></FONT><A href="#RequestAppointmentConfirmation"><B>RequestAppointmentConfirmation</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SPLY</B>} )<A>{<B> Fixed="<FONT color=red>SPLY</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Supply;AppointmentSlot/$classCode title=PRSC_HD040100UK08#AppointmentSlot.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that an appointment is being supplied.</P>
+<UL>
+<LI>Fixed value: "SPLY"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SLOT</B>} )<A>{<B> Fixed="<FONT color=red>SLOT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Supply;AppointmentSlot/$moodCode title=PRSC_HD040100UK08#AppointmentSlot.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a slot.</P>
+<UL>
+<LI>Fixed value: "SLOT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Supply;AppointmentSlot/$id title=PRSC_HD040100UK08#AppointmentSlot.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This&nbsp;identifies the Unique Slot Reference Number(USRN) allocated to the appointment slot that is being confirmed.</P>
+<P>The Identifier Global datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>A&nbsp;UUID is held in the&nbsp;<I>root</I> attribute</LI></UL>
+<P>&nbsp;<B>Example</B></P>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;id root="BBBBE23A-A9D1-A411-F824-9F7A00A33757"/&gt;</SPAN></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Person><B>Person</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;Person_c title=PRSC_HD040100UK08#Person_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the person who is the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Person>Used by: </A></FONT><A href="#Patient"><B>Patient</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PSN</B>} )<A>{<B> Fixed="<FONT color=red>PSN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;Person/$classCode title=PRSC_HD040100UK08#Person.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a person.</P>
+<UL>
+<LI>Fixed value "PSN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;Person/$determinerCode title=PRSC_HD040100UK08#Person.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable person.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..*] </B></FONT><B>name</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#PN"><B>PN</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;Person/$name title=PRSC_HD040100UK08#Person.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>One or more names of the patient.</P>
+<P>The entire current name shall be provided using "CURRENT" in the <I>use</I> attribute.</P>
+<P>Zero or more previous names may be provided using "PREVIOUS" in the <I>use</I> attribute.</P>
+<P>Zero or one preferred&nbsp; name may be provided using "PREFERRED" in the <I>use</I> attribute.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>telecom</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TEL"><B>TEL</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;Person/$telecom title=PRSC_HD040100UK08#Person.telecom style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Zero or more telecommunication numbers of the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>administrativeGenderCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/Sex.htm">Sex</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;Person/$administrativeGenderCode title=PRSC_HD040100UK08#Person.administrativeGenderCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The code of the sex of the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>birthTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;Person/$birthTime title=PRSC_HD040100UK08#Person.birthTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The date and time the patient was born.</P>
+<P>Time&nbsp;may be given if available otherwise the date may be truncated from the right as required.</P>
+<P>eg: YYYYDDMM or YYYYMM or YYYY</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..*] </B></FONT><B>addr</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#AD"><B>AD</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;Person/$addr title=PRSC_HD040100UK08#Person.addr style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>One or more&nbsp;addresses of the patient. &nbsp;</P>
+<P>The type of address, eg. permanent or temporary,&nbsp;is identified by the inclusion of the <I>use</I>&nbsp;attribute.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>languageCommunication</B> (<A href="#LanguageCommunication"><B>LanguageCommunication</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;Person/languageCommunication-LanguageCommunication title=PRSC_HD040100UK08#Person/languageCommunication-LanguageCommunication style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the primary language&nbsp;used by&nbsp;the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=LanguageCommunication><B>LanguageCommunication</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#LanguageCommunication;LanguageCommunication_c title=PRSC_HD040100UK08#LanguageCommunication_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the language preference of the person who is the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=LanguageCommunication>Used by: </A></FONT><A href="#Person"><B>Person</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>languageCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/HumanLanguage.htm">HumanLanguage</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#LanguageCommunication;LanguageCommunication/$languageCode title=LanguageCommunication.languageCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code specifying the language&nbsp;preferred for all communications.&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>preferenceInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#LanguageCommunication;LanguageCommunication/$preferenceInd title=LanguageCommunication.preferenceInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator specifying whether or not the language is preferred by the entity for use in this context.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=GpRegisteredWith><B>GpRegisteredWith</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#RoleHeir;GpRegisteredWith_c title=GpRegisteredWith style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the&nbsp;GP the&nbsp;patient is registered with.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=GpRegisteredWith>Used by: </A></FONT><A href="#Patient"><B>Patient</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ROL</B>} )<A>{<B> Fixed="<FONT color=red>ROL</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#RoleHeir;GpRegisteredWith/$classCode title=PRSC_HD040100UK08#GpRegisteredWith.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates&nbsp;the role of GP the patient is registered with.</P>
+<UL>
+<LI>Fixed value "ROL"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#RoleHeir;GpRegisteredWith/$id title=PRSC_HD040100UK08#GpRegisteredWith.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the&nbsp;GP the patient is registered with. </P>
+<P>The Identifier External datatype flavour is used to carry this information.</P>
+<P>A&nbsp;national GP code is carried in the following way:</P>
+<UL>
+<LI>The<I> root</I>&nbsp;attribute shall contain an&nbsp;OID with the value <SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana; mso-ansi-language: EN-GB; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA; mso-bidi-font-family: Arial">1.2.826.0.1285.0.2.0.67</SPAN>&nbsp; </LI>
+<LI>&nbsp;The <I>extension </I>attribute shall contain the GMP National Code</LI></UL>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New"></SPAN>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>playingGpPerson</B> (<A href="#GpPerson"><B>GpPerson</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#RoleHeir;GpRegisteredWith/playingGpPerson-GpPerson title=GpRegisteredWith/playingGpPerson-GpPerson style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the person who is the GP the patient is registered with.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>scopingGpPractice</B> (<A href="#GpPractice"><B>GpPractice</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#RoleHeir;GpRegisteredWith/scopingGpPractice-GpPractice title=GpRegisteredWith/scopingGpPractice-GpPractice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the GP practice that scopes the role of registered GP.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AgentPersonSDS><B>AgentPersonSDS</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#RoleHeir;AgentPersonSDS_c title=PRSC_HD040100UK08#AgentPersonSDS_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the Agent</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AgentPersonSDS>Used by: </A></FONT><A href="#ReferralInformation"><B>ReferralInformation</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AGNT</B>} )<A>{<B> Fixed="<FONT color=red>AGNT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#RoleHeir;AgentPersonSDS/$classCode title=PRSC_HD040100UK08#AgentPersonSDS.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an Agent</P>
+<UL>
+<LI>Fixed value: "AGNT".</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#RoleHeir;AgentPersonSDS/$id title=PRSC_HD040100UK08#AgentPersonSDS.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An SDS identifier that uniquely identifies the Role of the Agent.&nbsp;&nbsp; This is carried in the following way: </P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value 1.2.826.0.1285.0.2.0.67 </LI>
+<LI>the <I>extension</I> attribute shall contain the SDS&nbsp;Role Profile&nbsp;ID</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>agentPersonSDS</B> (<A href="#PersonSDS"><B>PersonSDS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#RoleHeir;AgentPersonSDS/agentPersonSDS-PersonSDS title=PRSC_HD040100UK08#AgentPersonSDS/agentPersonSDS-PersonSDS style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to the Agent playing the role.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>representedOrganisationSDS</B> (<A href="#OrganisationSDS"><B>OrganisationSDS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#RoleHeir;AgentPersonSDS/representedOrganisationSDS-OrganisationSDS title=PRSC_HD040100UK08#AgentPersonSDS/representedOrganisationSDS-OrganisationSDS style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to the Organisation represented by the agent.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=GpPerson><B>GpPerson</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;GpPerson_c title=PRSC_HD040100UK08#GpPerson_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the person who is the GP the patient is registered with.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=GpPerson>Used by: </A></FONT><A href="#GpRegisteredWith"><B>GpRegisteredWith</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PSN</B>} )<A>{<B> Fixed="<FONT color=red>PSN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;GpPerson/$classCode title=PRSC_HD040100UK08#GpPerson.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a person.</P>
+<UL>
+<LI>Fixed value "PSN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;GpPerson/$determinerCode title=PRSC_HD040100UK08#GpPerson.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable person.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>name</B> (<A href="../../../Data Types/DataTypes.htm#PN"><B>PN</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;GpPerson/$name title=GpPerson.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The name of the person who is the GP.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=GpPractice><B>GpPractice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Organization;GpPractice_c title=GpPractice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of the organisation that is the GP Practice.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=GpPractice>Used by: </A></FONT><A href="#GpRegisteredWith"><B>GpRegisteredWith</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ORG</B>} )<A>{<B> Fixed="<FONT color=red>ORG</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Organization;GpPractice/$classCode title=PRSC_HD040100UK08#GpPractice.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is an organisation.</P>
+<UL>
+<LI>Fixed value "ORG"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Organization;GpPractice/$determinerCode title=PRSC_HD040100UK08#GpPractice.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable organisation.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Organization;GpPractice/$id title=PRSC_HD040100UK08#GpPractice.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier&nbsp;of the GP practice. </P>
+<P>The Identifier External datatype flavour is used to carry this information.</P>
+<P>A&nbsp;GP practice code is carried in the following way:</P>
+<UL>
+<LI>The<I> root</I>&nbsp;attribute shall contain an&nbsp;OID with the value <SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana; mso-ansi-language: EN-GB; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA; mso-bidi-font-family: 'Times New Roman'">1.2.826.0.1285.0.1.10</SPAN>&nbsp; </LI>
+<LI>&nbsp;The <I>extension </I>attribute shall contain the NHS Organisation Code</LI></UL>
+<P>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>name</B> (<A href="../../../Data Types/DataTypes.htm#ON"><B>ON</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Organization;GpPractice/$name title=GpPractice.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The name of&nbsp; the GP practice.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..*] </B></FONT><B>telecom</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TEL"><B>TEL</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Organization;GpPractice/$telecom title=GpPractice.telecom style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>One or more&nbsp;telecommunication numbers of the GP practice.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>addr</B> (<A href="../../../Data Types/DataTypes.htm#AD"><B>AD</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Organization;GpPractice/$addr title=PRSC_HD040100UK08#GpPractice.addr style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The address of the GP practice.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=PersonSDS><B>PersonSDS</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;PersonSDS_c title=PRSC_HD040100UK08#PersonSDS_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of the Person</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=PersonSDS>Used by: </A></FONT><A href="#AgentPersonSDS"><B>AgentPersonSDS</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PSN</B>} )<A>{<B> Fixed="<FONT color=red>PSN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;PersonSDS/$classCode title=PRSC_HD040100UK08#Person.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a person.</P>
+<UL>
+<LI>Fixed value "PSN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;PersonSDS/$determinerCode title=PRSC_HD040100UK08#Person.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable person.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Person;PersonSDS/$id title=PRSC_HD040100UK08#PersonSDS.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the&nbsp;person.</P>
+<P>The Identifier External datatype flavour is used to carry this information.</P>
+<P>The person is identified using an SDS User Identifier carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value <SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana; mso-ansi-language: EN-GB; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA; mso-bidi-font-family: Arial">1.2.826.0.1285.0.2.0.65</SPAN> </LI>
+<LI>The <I>extension</I> attribute shall contain the SDS User Id</LI></UL>
+<P>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=OrganisationSDS><B>OrganisationSDS</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Organization;OrganisationSDS_c title=PRSC_HD040100UK08#OrganisationSDS_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of the agent's organisation</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=OrganisationSDS>Used by: </A></FONT><A href="#AgentPersonSDS"><B>AgentPersonSDS</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ORG</B>} )<A>{<B> Fixed="<FONT color=red>ORG</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Organization;OrganisationSDS/$classCode title=PRSC_HD040100UK08#OrganisationSDS.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an Organisation</P>
+<UL>
+<LI>Fixed value: "ORG"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Organization;OrganisationSDS/$determinerCode title=PRSC_HD040100UK08#OrganisationSDS.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable organisation.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRSC_HD040100UK08#Organization;OrganisationSDS/$id title=PRSC_HD040100UK08#OrganisationSDS.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the&nbsp;Organisation.</P>
+<P>The Identifier External datatype flavour is used to carry this information.</P>
+<P>The HCP is identified using an SDS&nbsp;Organisation Identifier carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value <SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana; mso-ansi-language: EN-GB; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA; mso-bidi-font-family: 'Times New Roman'">1.2.826.0.1285.0.1.10</SPAN> </LI>
+<LI>The <I>extension</I> attribute shall contain the SDS&nbsp;Organisation Id</LI></UL>
+<P><FONT face="Courier New" size=2><FONT size=+0>&nbsp;</FONT></FONT></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

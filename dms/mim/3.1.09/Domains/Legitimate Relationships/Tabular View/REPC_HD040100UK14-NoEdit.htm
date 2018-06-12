@@ -1,0 +1,408 @@
+<HTML><HEAD><TITLE>LRStatusChange Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content=LRStatusChange name=Entry>
+<META content=REPC_HD040100UK14 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>LRStatusChange - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="REPC_RM040000UK14.htm"><B>REPC_RM040000UK14</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SCRequest><B>SCRequest</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#ActHeir;SCRequest_c title=REPC_HD040100UK14#SCRequest_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Details about the Status Change Request.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SCRequest>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PCPR</B>} )<A>{<B> Fixed="<FONT color=red>PCPR</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#Act;SCRequest/$classCode title=REPC_HD040100UK14#SCRequest.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a patient care provision.</P>
+<UL>
+<LI>Fixed Value: "PCPR"</LI></UL>
+<P>The classCode is carried as an attribute of the <I>SCRequest </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RQO</B>} )<A>{<B> Fixed="<FONT color=red>RQO</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#Act;SCRequest/$moodCode title=REPC_HD040100UK14#SCRequest.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a request for a service</P>
+<UL>
+<LI>Fixed Value: "RQO"</LI></UL>
+<P>The moodCode is carried as an attribute of the <I>SCRequest </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>reasonCode</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/SCreasoncode.htm"><B>SCreasoncode</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#Act;SCRequest/$reasonCode title=REPC_HD040100UK14#SCRequest.reasonCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the reason for the Status Change Request.</P>
+<P>The Coded&nbsp;Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>the <I>code</I> attribute will contain a value from the list of codes in the <U>SCreasoncode </U>vocabulary.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=RecordTarget><B>recordTarget</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD040100UK14#Act;/SCRequest/recordTarget title=REPC_HD040100UK14#/SCRequest/recordTarget style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>The information held in the LR record is about specified patient. The patient does not have any direct input into the record itself.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RCT</B>} )<A>{<B> Fixed="<FONT color=red>RCT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD040100UK14#Participation;SCRequest/recordTarget/$typeCode title=REPC_HD040100UK14#SCRequest/recordTarget.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the patient of the request.</P>
+<UL>
+<LI>Fixed Value: "RCT"</LI></UL>
+<P>The typeCode is carried as an attribute of the <I>recordTarget </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>patient</B> (<A href="#Patient"><B>Patient</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD040100UK14#Participation;SCRequest/recordTarget/patient-Patient title=REPC_HD040100UK14#SCRequest/recordTarget/patient-Patient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading providing information about the patient to whom the&nbsp;record pertains to.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Author><B>author</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD040100UK14#Act;/SCRequest/author title=REPC_HD040100UK14#/SCRequest/author style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>A heading linking Author details.</B> </NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD040100UK14#Participation;SCRequest/author/$typeCode title=SCRequest/author.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the author of the Create LR Request.</P>
+<UL>
+<LI>Fixed value: "AUT"</LI></UL>
+<P>The typeCode is carried as an attribute of the <I>author </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>role</B> (<B><A href="#AuthorDetails">AuthorDetails</A></B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD040100UK14#Participation;SCRequest/author/participant+AuthorDetails style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PertinentInformation><B>pertinentInformation</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=REPC_HD040100UK14#Act;/SCRequest/pertinentInformation title=REPC_HD040100UK14#/SCRequest/pertinentInformation style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading for providing an optional link to information pertinent to the Create Request</B> </P>
+<P><B>Example</B> </P>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;pertinentInformation typeCode="PERT"&gt;</SPAN> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD040100UK14#ActRelationship;SCRequest/pertinentInformation/$typeCode title=SCRequest/pertinentInformation.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates pertinent information.</P>
+<UL>
+<LI>Fixed value: "PERT"</LI></UL>
+<P>The typeCode is carried as an attribute of the <I>pertinentinformation </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentLR</B> (<A href="#LR"><B>LR</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=REPC_HD040100UK14#ActRelationship;SCRequest/pertinentInformation/pertinentLR-LR title=REPC_HD040100UK14#SCRequest/pertinentInformation/pertinentLR-LR style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Refers to details about LR record.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Patient><B>Patient</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#Patient;Patient_c title=REPC_HD040100UK14#Patient_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A heading linking details about the patient.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Patient>Used by: </A></FONT><A href="#SCRequest"><B>SCRequest</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PAT</B>} )<A>{<B> Fixed="<FONT color=red>PAT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#Patient;Patient/$classCode title=REPC_HD040100UK14#Patient.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of a patient.</P>
+<UL>
+<LI>Fixed value: "PAT"</LI></UL>
+<P>The classCode is carried as an attribute of the <I>Patient </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#Patient;Patient/$id title=REPC_HD040100UK14#Patient.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The NHS number that identifies the patient.</P>
+<P>NHS numbers are composed of ten numerics. </P>
+<UL>
+<LI>The <I>root</I> element identifies the&nbsp; NHS patient numbering scheme&nbsp;represented by&nbsp;OID 2.16.840.1.113883.2.1.4.1</LI>
+<LI>the <I>extension</I> contains the actual identifier. </LI></UL>
+<P>Example: </P>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;!-- Patient Identifier code --&gt;<BR>&lt;id root="<SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-bidi-language: AR-SA; mso-ansi-language: EN-GB; mso-fareast-language: EN-GB">2.16.840.1.113883.2.1.4.1</SPAN>" <SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">extension="<FONT face=Arial size=3>1234567899"/&gt;</P><FONT size=+0><SPAN><SPAN><SPAN><SPAN><FONT size=+0><FONT size=+0><SPAN><SPAN></NOTE></SPAN></SPAN></FONT></FONT></SPAN></SPAN></SPAN></SPAN></FONT></FONT></SPAN></SPAN></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AuthorDetails><B>AuthorDetails</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#Role;participant+AuthorDetails_c title=REPC_HD040100UK14#participant+AuthorDetails_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details for Choice of Author. Either Application/Device or Person.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AuthorDetails>Used by: </A></FONT><A href="#SCRequest"><B>SCRequest</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B><I>either </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM120700UK02.htm">UKCT_MT120701UK02</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#Role;participant+AuthorDetails/participant_R_AgentNPFITDeviceSDSUniversal+UKCT_MT120701UK02 title=REPC_HD040100UK14#participant+AuthorDetails/participant_R_AgentNPFITDeviceSDSUniversal+UKCT_MT120701UK02 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Full details of the accredited application generated the request for the&nbsp;status change&nbsp;of the LR. Details are available&nbsp;from SDS.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><I>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; ... or ... </I></FONT>: <B><A href="../../CMETs/Tabular View/UKCT_RM120300UK02.htm">UKCT_MT120301UK02</A></B></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#Role;participant+AuthorDetails/participant_R_AgentNPFITPersonSDSUniversal+UKCT_MT120301UK02 title=REPC_HD040100UK14#participant+AuthorDetails/participant_R_AgentNPFITPersonSDSUniversal+UKCT_MT120301UK02 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of Person acting in the role of author. Full details are available from SDS.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=LR><B>LR</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#ActHeir;LR_c title=REPC_HD040100UK14#LR_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Details about the LR Record</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=LR>Used by: </A></FONT><A href="#SCRequest"><B>SCRequest</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PCPR</B>} )<A>{<B> Fixed="<FONT color=red>PCPR</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#ActHeir;LR/$classCode title=REPC_HD040100UK14#LR.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a patient care provision.</P>
+<UL>
+<LI>Fixed Value: "PCPR"</LI></UL>
+<P>The classCode is carried as an attribute of the <I>LR </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RQO</B>} )<A>{<B> Fixed="<FONT color=red>RQO</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#ActHeir;LR/$moodCode title=REPC_HD040100UK14#LR.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a request for a service</P>
+<UL>
+<LI>Fixed Value: "RQO"</LI></UL>
+<P>The moodCode is carried as an attribute of the <I>LR </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=REPC_HD040100UK14#ActHeir;LR/$id title=REPC_HD040100UK14#LR.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This identifier is&nbsp;universally unique across all LR records. </P>
+<P>ID value is mandatory. The Author will know which LR record requires the status change.</P>
+<P>An Identifier code is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value 2.16.840.1.113883.2.1.3.2.4.18.3&nbsp;&nbsp; </LI>
+<LI>the Extension attribute shall contain the&nbsp;LR record id.</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

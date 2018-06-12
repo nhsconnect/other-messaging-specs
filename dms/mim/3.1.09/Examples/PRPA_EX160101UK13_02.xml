@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This example message is provided for illustrative purposes only. It has had no clinical validation nor is it guaranteed to be fully compliant with the written message specification. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence. -->
+<PdsUpdateRequest xmlns="urn:hl7-org:v3" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msg="urn:hl7-org:v3/mif" xmlns:voc="urn:hl7-org:v3/voc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3
+../Schemas/PRPA_MT160101UK13.xsd" classCode="REG" moodCode="RQO">
+	<!-- To indicate that all updates are "Change to existing data" -->
+	<code code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.40"/>
+	<subject typeCode="SBJ">
+		<patientRole classCode="PAT">
+			<!-- NHS number (identifies patient - not an updated item of data) -->
+			<id root="2.16.840.1.113883.2.1.4.1" extension="9999999484"/>
+			<!-- To indicate new (added) data - "Usual" address of the patient (note all components of the address are to be given even if only one component of it has changed) -->
+			<addr use="H" updateMode="added">
+				<streetAddressLine>HEXAGON HOUSE</streetAddressLine>
+				<streetAddressLine>PYNES HILL</streetAddressLine>
+				<streetAddressLine>RYDON LANE</streetAddressLine>
+				<streetAddressLine>EXETER</streetAddressLine>
+				<streetAddressLine>DEVON</streetAddressLine>
+				<postalCode>EX2 5SE</postalCode>
+				<addressKey>12345678</addressKey>
+			</addr>
+			<!-- To indicate new (added) data - "home (after business hours)" telecom details of the patient -->
+			<telecom use="HP" value="tel:01392251289" updateMode="added"/>
+			<!-- To indicate new (added) data - "mobile" telecom details of the patient -->
+			<telecom use="MC" value="tel:07700012345" updateMode="added"/>
+			<!-- To indicate new (added) data - "home" e-mail details of the patient -->
+			<telecom use="H" value="mailto:joe.bloggs@myisp.co.uk" updateMode="added"/>
+			<!-- To indicate new (added) data - "work" telecom details of the patient -->
+			<telecom use="WP" value="tel:01392206700" updateMode="added"/>
+			<patientPerson classCode="PSN" determinerCode="INSTANCE">
+				<!-- To indicate a change to the "Usual" name of the patient (note all components of the name are given even if only one component of it has changed) -->
+				<name use="L" updateMode="added">
+					<prefix>Ms</prefix>
+					<given>Three</given>
+					<given>Zoe</given>
+					<family>Editestpatient</family>
+				</name>
+				<!-- To indicate new (added) data - "Alias" name of the patient (note all components of the name are given even if only one component of it has changed) -->
+				<name use="A" updateMode="added">
+					<prefix>Ms</prefix>
+					<given>Mary</given>
+					<family>Smith</family>
+				</name>
+				<!-- To indicate new (added) data - "Preferred" name of the patient (note all components of the name are given even if only one component of it has changed) -->
+				<name use="PREFERRED" updateMode="added">
+					<prefix>Ms</prefix>
+					<given>Zoe</given>
+					<family>Editestpatient</family>
+				</name>
+				<!-- To indicate new (added) data - Administrative gender to "Female" -->
+				<administrativeGenderCode code="2" updateMode="added"/>
+				<!-- To indicate new (added) data - date of birth of the patient -->
+				<birthTime value="19780719" updateMode="added"/>
+				<!-- To indicate new (added) data - birth order number of the patient -->
+				<multipleBirthOrderNumber value="2" updateMode="added"/>
+				<!-- To indicate new (added) data - primary care provision -->
+				<playedOtherProviderPatient classCode="PAT">
+					<subjectOf typeCode="SBJ">
+						<patientCareProvision classCode="PCPR" moodCode="EVN" updateMode="added">
+							<!-- To indicate primary care provision -->
+							<code code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.37"/>
+							<responsibleParty typeCode="RESP">
+								<healthCareProvider classCode="PROV">
+									<!-- National GP Practice code of primary care provider -->
+									<id root="2.16.840.1.113883.2.1.4.3" extension="Z99993"/>
+								</healthCareProvider>
+							</responsibleParty>
+						</patientCareProvision>
+					</subjectOf>
+				</playedOtherProviderPatient>
+				<!-- To indicate new (added) data - nominated pharmacy -->
+				<playedOtherProviderPatient classCode="PAT">
+					<subjectOf typeCode="SBJ">
+						<patientCareProvision classCode="PCPR" moodCode="EVN" updateMode="added">
+							<!-- To indicate nominated pharmacy -->
+							<code code="P1" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.37"/>
+							<responsibleParty typeCode="RESP">
+								<healthCareProvider classCode="PROV">
+									<!-- National Pharmacy code of nominated pharmacy -->
+									<id root="2.16.840.1.113883.2.1.3.2.4.8" extension="F12345"/>
+								</healthCareProvider>
+							</responsibleParty>
+						</patientCareProvision>
+					</subjectOf>
+				</playedOtherProviderPatient>
+				<!-- Addition of contact proxy information -->
+				<scopedRelatedPersonRole classCode="AGNT" updateMode="added">
+					<!-- To indicate "Proxy - Contact" (where classCode="AGNT") -->
+					<code code="17" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.15"/>
+					<!-- Usual address -->
+					<addr use="H">
+						<streetAddressLine>HEXAGON HOUSE</streetAddressLine>
+						<streetAddressLine>PYNES HILL</streetAddressLine>
+						<streetAddressLine>RYDON LANE</streetAddressLine>
+						<streetAddressLine>EXETER</streetAddressLine>
+						<streetAddressLine>DEVON</streetAddressLine>
+						<postalCode>EX2 5SE</postalCode>
+						<addressKey>12345678</addressKey>
+					</addr>
+					<!-- Home telephone number -->
+					<telecom use="H" value="tel:01392251289">
+						<useablePeriod>
+							<low value="19990401"/>
+						</useablePeriod>
+					</telecom>
+					<!-- Current effective time -->
+					<effectiveTime>
+						<low value="20040504"/>
+					</effectiveTime>
+					<positionNumber value="3"/>
+					<player classCode="PSN" determinerCode="INSTANCE">
+						<name>
+							<prefix>Ms</prefix>
+							<given>Three</given>
+							<given>Zoe</given>
+							<family>Editestpatient</family>
+						</name>
+						<languageCommunication>
+							<!-- To indicate "French" -->
+							<languageCode code="fr"/>
+							<!-- code to indicate interpreter required -->
+							<proficiencyLevelCode code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.39"/>
+							<preferenceInd value="true"/>
+						</languageCommunication>
+					</player>
+					<subjectOf1 typeCode="SBJ">
+						<preferredContactMethod classCode="OBS" moodCode="EVN">
+							<code code="9" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+							<value code="3" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.16"/>
+							<pertinentInformation typeCode="PERT">
+								<pertinentPreferredContactTimes classCode="OBS" moodCode="EVN">
+									<code code="10" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+									<value>Evenings only</value>
+								</pertinentPreferredContactTimes>
+							</pertinentInformation>
+						</preferredContactMethod>
+					</subjectOf1>
+					<subjectOf2 typeCode="SBJ">
+						<preferredWrittenCommunicationFormat classCode="OBS" moodCode="EVN">
+							<code code="13" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+							<value code="2" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.17"/>
+						</preferredWrittenCommunicationFormat>
+					</subjectOf2>
+					<part2 typeCode="PART">
+						<partNextOfKin classCode="NOK">
+							<!-- To indicate "Yes" -->
+							<code code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.13"/>
+						</partNextOfKin>
+					</part2>
+					<part1 typeCode="PART">
+						<partCorrespondence classCode="CON">
+							<!-- To indicate "Yes" -->
+							<code code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.4"/>
+						</partCorrespondence>
+					</part1>
+				</scopedRelatedPersonRole>
+				<!-- Addition of legal guardian information -->
+				<scopedRelatedPersonRole classCode="GUARD" updateMode="added">
+					<!-- To indicate "Legal Guardian as designated by parent" -->
+					<code code="05" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.15"/>
+					<!-- Current usual address -->
+					<addr use="H">
+						<streetAddressLine>HEXAGON HOUSE</streetAddressLine>
+						<streetAddressLine>PYNES HILL</streetAddressLine>
+						<streetAddressLine>RYDON LANE</streetAddressLine>
+						<streetAddressLine>EXETER</streetAddressLine>
+						<streetAddressLine>DEVON</streetAddressLine>
+						<postalCode>EX2 5SE</postalCode>
+						<addressKey>12345678</addressKey>
+						<useablePeriod>
+							<low value="19990401"/>
+						</useablePeriod>
+					</addr>
+					<!-- Current home telephone number -->
+					<telecom use="H" value="tel:01392251289">
+						<useablePeriod>
+							<low value="20010401"/>
+						</useablePeriod>
+					</telecom>
+					<!-- Current effective time -->
+					<effectiveTime>
+						<low value="20010606"/>
+					</effectiveTime>
+					<positionNumber value="1"/>
+					<player classCode="PSN" determinerCode="INSTANCE">
+						<name>
+							<prefix>Ms</prefix>
+							<given>Three</given>
+							<given>Zoe</given>
+							<family>Editestpatient</family>
+						</name>
+						<languageCommunication>
+							<!-- To indicate "French" -->
+							<languageCode code="fr"/>
+							<!-- code to indicate interpreter required -->
+							<proficiencyLevelCode code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.39"/>
+							<preferenceInd value="true"/>
+						</languageCommunication>
+					</player>
+					<subjectOf1 typeCode="SBJ">
+						<preferredContactMethod classCode="OBS" moodCode="EVN">
+							<code code="9" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+							<value code="3" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.16"/>
+							<pertinentInformation typeCode="PERT">
+								<pertinentPreferredContactTimes classCode="OBS" moodCode="EVN">
+									<code code="10" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+									<value>Evenings only</value>
+								</pertinentPreferredContactTimes>
+							</pertinentInformation>
+						</preferredContactMethod>
+					</subjectOf1>
+					<subjectOf2 typeCode="SBJ">
+						<preferredWrittenCommunicationFormat classCode="OBS" moodCode="EVN">
+							<code code="13" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+							<value code="2" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.17"/>
+						</preferredWrittenCommunicationFormat>
+					</subjectOf2>
+					<part2 typeCode="PART">
+						<partNextOfKin classCode="NOK">
+							<!-- To indicate "Yes" -->
+							<code code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.13"/>
+						</partNextOfKin>
+					</part2>
+					<part1 typeCode="PART">
+						<partCorrespondence classCode="CON">
+							<!-- To indicate "Yes" -->
+							<code code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.4"/>
+						</partCorrespondence>
+					</part1>
+				</scopedRelatedPersonRole>
+				<!-- To indicate new (added) data - patient's preferred language where it is not English -->
+				<languageCommunication updateMode="added">
+					<!-- To indicate "French" -->
+					<languageCode code="fr"/>
+					<!-- code to indicate interpreter required -->
+					<proficiencyLevelCode code="1" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.39"/>
+					<preferenceInd value="true"/>
+				</languageCommunication>
+			</patientPerson>
+			<!-- To indicate new (added) data - patient's "NHAIS registration" -->
+			<subjectOf6 typeCode="SBJ">
+				<nhaisRegistration classCode="OBS" moodCode="EVN" updateMode="added">
+					<code code="14" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+					<effectiveTime>
+						<low value="20040504"/>
+					</effectiveTime>
+					<value code="X" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.12"/>
+				</nhaisRegistration>
+			</subjectOf6>
+			<!-- To indicate new (added) data - patient's "preferred contact method" -->
+			<subjectOf2 typeCode="SBJ">
+				<preferredContactMethod classCode="OBS" moodCode="EVN" updateMode="added">
+					<code code="9" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+					<value code="3" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.16"/>
+					<pertinentInformation typeCode="PERT">
+						<pertinentPreferredContactTimes classCode="OBS" moodCode="EVN">
+							<code code="10" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+							<value>Any time</value>
+						</pertinentPreferredContactTimes>
+					</pertinentInformation>
+				</preferredContactMethod>
+			</subjectOf2>
+			<!-- To indicate new (added) data - patient's "Consent to call-centre call-back" -->
+			<subjectOf1 typeCode="SBJ">
+				<consent classCode="OBS" moodCode="EVN" updateMode="added">
+					<!-- To indicate that type of consent is "Consent to call-centre call-back" -->
+					<code code="3" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+					<!-- To indicate "Yes" to call-centre call-back -->
+					<value code="5" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.2"/>
+				</consent>
+			</subjectOf1>
+			<!-- To indicate new (added) data - patient's "preferred written communication format" -->
+			<subjectOf4 typeCode="SBJ">
+				<preferredWrittenCommunicationFormat classCode="OBS" moodCode="EVN" updateMode="added">
+					<code code="13" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+					<value code="2" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.17"/>
+				</preferredWrittenCommunicationFormat>
+			</subjectOf4>
+			<!-- To indicate new (added) data - patient's "shared secret" -->
+			<subjectOf5 typeCode="SBJ">
+				<sharedSecret classCode="OBS" moodCode="EVN" updateMode="added">
+					<code code="15" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+					<value>[Encrypted form of "Grandfather's name is Fred"]</value>
+				</sharedSecret>
+			</subjectOf5>
+			<!-- To indicate new (added) data - patient's "healthspace registration" -->
+			<subjectOf3 typeCode="SBJ">
+				<healthspaceRegistration classCode="OBS" moodCode="EVN" updateMode="added">
+					<code code="8" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+					<value code="2" codeSystem="2.16.840.1.113883.2.1.3.2.4.16.7"/>
+				</healthspaceRegistration>
+			</subjectOf3>
+		</patientRole>
+	</subject>
+	<pertinentInformation typeCode="PERT">
+		<pertinentSerialChangeNumber classCode="OBS" moodCode="EVN">
+			<!-- To indicate this is an observation of a Serial Change Number -->
+			<code code="2" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.35"/>
+			<value value="2"/>
+		</pertinentSerialChangeNumber>
+	</pertinentInformation>
+</PdsUpdateRequest>

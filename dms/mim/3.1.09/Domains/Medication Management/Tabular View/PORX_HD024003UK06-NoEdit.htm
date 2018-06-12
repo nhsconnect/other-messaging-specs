@@ -1,0 +1,1590 @@
+<HTML><HEAD><TITLE>PS Notification Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="PS Notification" name=Entry>
+<META content=PORX_HD024003UK06 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>PS Notification - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne>Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="PORX_RM024003UK06.htm"><B>PORX_RM024003UK06</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=PSNotification><B>PSNotification</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ControlAct;PSNotification_c title=PORX_HD024003UK06#PSNotification_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>This is the act where a pharmacist notifies the ETP component that he has dispensed to a patient a medication against an agreed clinical protocol. The protocol acts as the 'prescription' template as it will define for a given clinical condition this medication can be given in this quantity, etc&nbsp;</B></P><B>
+<P><B>Reference: W5-14.4.1.1</B></P></B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=PSNotification>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INFO</B>} )<A>{<B> Fixed="<FONT color=red>INFO</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Act;PSNotification/$classCode title=PSNotification.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code indicating that the PSNotification focal act&nbsp;is for information purposes only</P>
+<UL>
+<LI>Fixed value: "INFO"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Act;PSNotification/$moodCode title=Act.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Act;PSNotification/$id title=PORX_HD024003UK06#PSNotification.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>UUID identifying this instance of a&nbsp;service request. This identifier is&nbsp;universally unique across all records. It is in the form of a UUID. </P>
+<P>This is the unique number of the event that identifies the payload of the message.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/SnomedCT.htm"><B>SnomedCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Act;PSNotification/$code title=PORX_HD024003UK06#PSNotification.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A fixed code (<SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA">163531000000103)</SPAN>&nbsp;from the SnomedCT UK subset that describes this message as&nbsp;a Protocol Supply Medication<SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA"> </SPAN>event.</P>
+<P>The 'Coded with Original Text' datatype flavour should be used.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Act;PSNotification/$effectiveTime title=PORX_HD024003UK06#PSNotification.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Date and time stamp for the PS Notification&nbsp;message. </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=RecordTarget><B>recordTarget</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#Act;/PSNotification/recordTarget title=PORX_HD024003UK06#/PSNotification/recordTarget style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A link between the&nbsp;PSNotification focal act&nbsp;and&nbsp;the patient who receives the medication treatment.</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>RCT</B>} )<A>{<B> Fixed="<FONT color=red>RCT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;PSNotification/recordTarget/$typeCode title=PSNotification/recordTarget.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code indicating that the patient's records will hold the information relating to this Protocol Supply</P>
+<UL>
+<LI>Fixed value: "RCT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular%20View/COCT_RM050012UK04.htm">patient</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular%20View/COCT_RM050012UK04.htm"><SMALL>[CMET:&nbsp;COCT_MT050012UK04]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;PSNotification/recordTarget/patient+COCT_MT050012UK04 title=PORX_HD024003UK06#PSNotification/recordTarget/patient+COCT_MT050012UK04 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link&nbsp;to identify&nbsp;a person fulfilling&nbsp;the specific role for a patient&nbsp; receiving the medical treatment.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PrimaryInformationRecipient><B>primaryInformationRecipient</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#Act;/PSNotification/primaryInformationRecipient title=PORX_HD024003UK06#/PSNotification/primaryInformationRecipient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>This participation provides a link to the (payor) organisation to whom the reimbursement claim for this dispense will be presented.</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PRCP</B>} )<A>{<B> Fixed="<FONT color=red>PRCP</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;PSNotification/primaryInformationRecipient/$typeCode title=primaryInformationRecipient.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code indicating that the receiving organisation is the primary recipient</P>
+<UL>
+<LI>Fixed value: "PRCP"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD120400UK02-NoEdit.htm">participant</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM120400UK02.htm"><SMALL>[CMET:&nbsp;UKCT_MT120401UK02]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;PSNotification/primaryInformationRecipient/participant+UKCT_MT120401UK02 title=PORX_HD024003UK06#PSNotification/primaryInformationRecipient/participant+UKCT_MT120401UK02 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET&nbsp;fulfilling&nbsp;the specific role of an organisation, in this instance the&nbsp;payor organisation (which may be the PPA) to whom the claim is presented. Full details of the&nbsp;organisation and role profile are available from SDS.</P>
+<P>This information is mandatory.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PertinentInformation1><B>pertinentInformation3</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#Act;/PSNotification/pertinentInformation3 title=PORX_HD024003UK06#/PSNotification/pertinentInformation3 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>An act relationship that identifies whether a claim for reimbursement is to follow or not.</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation3/$typeCode title=PSNotification/pertinentInformation3.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>inversionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation3/$inversionInd title=PORX_HD024003UK06#PSNotification/pertinentInformation3.inversionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator specifying that the ActRelationship.typeCode should be interpreted as if the roles of the source and target Acts were reversed. The inversion indicator is used when the meaning of ActRelationship.typeCode must be reversed. In this context the inversionInd defaults to "false".&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation3/$contextConductionInd title=pertinentInformation3.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If true, associations in the parent act are conducted across the ActRelationship to the child act.<BR>In this context the contextConductionInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>negationInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation3/$negationInd title=ActRelationship.negationInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>When "true" allows the sender to specifically state that the relationship does not apply.<BR>In this context the negationInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation3/$seperatableInd title=pertinentInformation3.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.<BR>If the source act is intended to be interpreted independently the value shall be 'true' otherwise the value shall be 'false'.<BR>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.<BR>In this context the seperatableInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentClaimToFollow</B> (<A href="#ClaimToFollow"><B>ClaimToFollow</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation3/pertinentClaimToFollow-ClaimToFollow title=PORX_HD024003UK06#PSNotification/pertinentInformation3/pertinentClaimToFollow-ClaimToFollow style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to the ClaimToFollow information</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PertinentInformation2><B>pertinentInformation1</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#Act;/PSNotification/pertinentInformation1 title=PORX_HD024003UK06#/PSNotification/pertinentInformation1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>An act relationship that associates the PSNotification focal act with SupplyHeader - the primary act of the PSIS clinical message.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation1/$typeCode title=PSNotification/pertinentInformation1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation1/$contextConductionInd title=pertinentInformation1.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If true, associations in the parent act are conducted across the ActRelationship to the child act.<BR>In this context the contextConductionInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation1/$templateId title=PORX_HD024003UK06#PSNotification/pertinentInformation1.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that relates clinical statements directly to the focal act.</P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The root attribute shall contain&nbsp; the OID 2.16.840.1.113883.2.1.3.2.4.18.2 </LI>
+<LI>The extension shall contain the fixed template ID <BR>"CSAB_RM-NPfITUK10.pertinentInformation"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentSupplyHeader</B> (<A href="#SupplyHeader"><B>SupplyHeader</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation1/pertinentSupplyHeader-SupplyHeader title=PORX_HD024003UK06#PSNotification/pertinentInformation1/pertinentSupplyHeader-SupplyHeader style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The&nbsp;SupplyHeader is pertinent to&nbsp;the PSNotification.</P>
+<P>This information is mandatory.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PertinentInformation9><B>pertinentInformation2</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#Act;/PSNotification/pertinentInformation2 title=PORX_HD024003UK06#/PSNotification/pertinentInformation2 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>An identifier of the Act Relationship that relates clinical statements directly to the focal act.</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation2/$typeCode title=PSNotification/pertinentInformation2.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation2/$templateId title=PORX_HD024003UK06#PSNotification/pertinentInformation2.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that categorises clinical data by the Care Record Element classification used by PSIS.</P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The root attribute shall contain&nbsp; the OID 2.16.840.1.113883.2.1.3.2.4.18.2 </LI>
+<LI>The extension shall contain the fixed template ID <BR>"CSAB_RM-NPfITUK10.pertinentInformation1</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentCareRecordElementCategory</B> (<A href="#CareRecordElementCategory"><B>CareRecordElementCategory</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;PSNotification/pertinentInformation2/pertinentCareRecordElementCategory-CareRecordElementCategory title=PORX_HD024003UK06#PSNotification/pertinentInformation2/pertinentCareRecordElementCategory-CareRecordElementCategory style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The CareRecordElementCategory is pertinent to the&nbsp;PSNotification and is used to categorise the clinical statement acts according to CRE types.</P>
+<P>This information is mandatory.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ClaimToFollow><B>ClaimToFollow</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;ClaimToFollow_c title=PORX_HD024003UK06#ClaimToFollow_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Details of whether a Claim for Reimbursement is to follow</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ClaimToFollow>Used by: </A></FONT><A href="#PSNotification"><B>PSNotification</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;ClaimToFollow/$classCode title=Observation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this act is an observation</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;ClaimToFollow/$moodCode title=Observation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this&nbsp;is an event</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;ClaimToFollow/$value title=PORX_HD024003UK06#ClaimToFollow.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A boolean indicator to denote if a reimbursement Claim is to follow. </P>
+<UL>
+<LI>Value: "True" - claim message to follow</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SupplyHeader><B>SupplyHeader</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SupplyHeader_c title=PORX_HD024003UK06#SupplyHeader_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A container for the collection of&nbsp;clinical statements that constitute PS Notification information to be available on PSIS.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SupplyHeader>Used by: </A></FONT><A href="#PSNotification"><B>PSNotification</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBADM</B>} )<A>{<B> Fixed="<FONT color=red>SBADM</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SupplyHeader/$classCode title=SupplyHeader.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate introducing or applying a substance to a subject.</P>
+<UL>
+<LI>Fixed value: "SBADM"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SupplyHeader/$moodCode title=SupplyHeader.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[2..2] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#LIST"><B>LIST</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SupplyHeader/$id title=PORX_HD024003UK06#SupplyHeader.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><SPAN class=835364913-28102004>&nbsp;UUID identifying this instance of a&nbsp;service request. This identifier is&nbsp;universally unique across all records. It is in the form of a list.&nbsp; This Id consists of:
+<UL>
+<LI>globally unique number to identify the individual prescription (DCE UUID) </LI>
+<LI>a check digit for UUID verification</LI></UL></SPAN></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/SnomedCT-Administration.htm"><B>SnomedCT-Administration</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SupplyHeader/$code title=PORX_HD024003UK06#SupplyHeader.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code from the SnomedCT-Administration UK subset that describes a protocol supply.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SupplyHeader/$effectiveTime title=PORX_HD024003UK06#SupplyHeader.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Date and time stamp for the Protocol Supply event. </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Author><B>author</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;pertinentInformation1/SupplyHeader/author title=PORX_HD024003UK06#pertinentInformation1/SupplyHeader/author style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A participation used to provide a link from an act to a role in this case used to convey that the role(<I>participant</I>) is the&nbsp;author for the act.</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;SupplyHeader/author/$typeCode title=SupplyHeader/author.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the author of the request.</P>
+<UL>
+<LI>Fixed value: "AUT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OP</B>} )<A>{<B> Fixed="<FONT color=red>OP</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;SupplyHeader/author/$contextControlCode title=author.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act, and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P>
+<UL>
+<LI>Default value: "OP" - Overriding and propagating</LI></UL>
+<P>The default value of "OP" indicates that the association adds to the existing context associated with the Act, and will propagate to any descendant Acts reached by conducting ActRelationships.</P>
+<P>In this instance, a&nbsp;code that this professional propagates through to the clinical statements as the care professional unless specifically overriden for individual acts.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>time</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;SupplyHeader/author/$time title=PORX_HD024003UK06#SupplyHeader/author.time style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The date and local time that the dispenser has signed the protocol supply details.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>signatureText</B> (<A href="../../../Data Types/DataTypes.htm#ED"><B>ED</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;SupplyHeader/author/$signatureText title=PORX_HD024003UK06#SupplyHeader/author.signatureText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The electronic signature of the contents to be signed as "legal and true" by the dispenser.</P>
+<P>The following information is to be included in the digital signature:</P>
+<UL>
+<LI>Protocol Supply Definition </LI>
+<LI>Medication supplied</LI>
+<LI>Author&nbsp;</LI>
+<LI>Patient </LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B><A href="../../CMETs/Tabular View/UKCT_HD120200UK03-NoEdit.htm">participant</A></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="../../CMETs/Tabular View/UKCT_RM120200UK03.htm"><SMALL>[CMET:&nbsp;UKCT_MT120201UK03]</SMALL></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;SupplyHeader/author/participant+UKCT_MT120201UK03 title=PORX_HD024003UK06#SupplyHeader/author/participant+UKCT_MT120201UK03 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET&nbsp;to identify&nbsp;a person fulfilling&nbsp;the specific role for a person (dispenser) that&nbsp;supplied the medication against a protocol.</P>
+<P>This information is mandatory</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..*] </B></FONT><A name=PertinentInformation3><B>pertinentInformation1</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;pertinentInformation1/SupplyHeader/pertinentInformation1 title=PORX_HD024003UK06#pertinentInformation1/SupplyHeader/pertinentInformation1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>An act relationship that provides information about the actual supplied Line Item (medication).</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation1/$typeCode title=SupplyHeader/pertinentInformation1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value&nbsp;: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>inversionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation1/$inversionInd title=SupplyHeader/pertinentInformation1.inversionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator specifying that the ActRelationship.typeCode should be interpreted as if the roles of the source and target Acts were reversed. The inversion indicator is used when the meaning of ActRelationship.typeCode must be reversed.<BR>In this instance, the inversionInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation1/$contextConductionInd title=pertinentInformation1.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If true, associations in the parent act are conducted across the ActRelationship to the child act.<BR>In this context the contextConductionInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>negationInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation1/$negationInd title=ActRelationship.negationInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>When "true" allows the sender to specifically state that the relationship does not apply.<BR>In this context the negationInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation1/$seperatableInd title=SupplyHeader/pertinentInformation1.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.<BR>If the source act is intended to be interpreted independently the value shall be 'true' otherwise the value shall be 'false'.<BR>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.<BR>In this context the seperatableInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>templateId</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation1/$templateId title=PORX_HD024003UK06#SupplyHeader/pertinentInformation1.templateId style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the Act Relationship that supports the linkage of clinical statements using the "Direct Relationship" mechanism.</P>
+<P>The Identifier External datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The root attribute shall contain&nbsp; the OID 2.16.840.1.113883.2.1.3.2.4.18.2 </LI>
+<LI>The extension shall contain the fixed template ID <BR>"CSAB_RM-NPfITUK10.sourceOf2"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentSuppliedLineItem</B> (<A href="#SuppliedLineItem"><B>SuppliedLineItem</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation1/pertinentSuppliedLineItem-SuppliedLineItem title=PORX_HD024003UK06#SupplyHeader/pertinentInformation1/pertinentSuppliedLineItem-SuppliedLineItem style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the&nbsp;SuppliedLineItem is pertinent to the SupplyHeader. Provides information on the actual medication items supplied.</P>
+<P>This information is mandatory.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=PertinentInformation8><B>pertinentInformation2</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;pertinentInformation1/SupplyHeader/pertinentInformation2 title=PORX_HD024003UK06#pertinentInformation1/SupplyHeader/pertinentInformation2 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>An act relationship to provide a link to the details of the Protocol used to authenticate this medication supply event</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation2/$typeCode title=SupplyHeader/pertinentInformation2.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value&nbsp;: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>inversionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation2/$inversionInd title=SupplyHeader/pertinentInformation2.inversionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator specifying that the ActRelationship.typeCode should be interpreted as if the roles of the source and target Acts were reversed. The inversion indicator is used when the meaning of ActRelationship.typeCode must be reversed.<BR>In this instance, the inversionInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation2/$contextConductionInd title=SupplyHeader/pertinentInformation2.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If true, associations in the parent act are conducted across the ActRelationship to the child act.<BR>In this context the contextConductionInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>negationInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation2/$negationInd title=pertinentInformation2.negationInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>When "true" allows the sender to specifically state that the relationship does not apply.<BR>In this context the negationInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation2/$seperatableInd title=PORX_HD024003UK06#SupplyHeader/pertinentInformation2.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.<BR>If the source act is intended to be interpreted independently the value shall be 'true' otherwise the value shall be 'false'.<BR>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.<BR>In this context the seperatableInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentPSDefinition</B> (<A href="#PSDefinition"><B>PSDefinition</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SupplyHeader/pertinentInformation2/pertinentPSDefinition-PSDefinition title=PORX_HD024003UK06#SupplyHeader/pertinentInformation2/pertinentPSDefinition-PSDefinition style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to the details of the Protocol Supply Definition&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=CareRecordElementCategory><B>CareRecordElementCategory</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ActHeir;CareRecordElementCategory_c title=CareRecordElementCategory style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>An act used to categorise clinical statements within the message into care record element categories. The <I>CareRecordElementCategory</I> act can reference multiple <I>ActRef</I> acts to 'group' multiple clinical statements under a single category.</B> </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=CareRecordElementCategory>Used by: </A></FONT><A href="#PSNotification"><B>PSNotification</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>CATEGORY</B>} )<A>{<B> Fixed="<FONT color=red>CATEGORY</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ActHeir;CareRecordElementCategory/$classCode title=CareRecordElementCategory.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this&nbsp;act is a&nbsp;category act.</P>
+<UL>
+<LI>Fixed value : "CATEGORY"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ActHeir;CareRecordElementCategory/$moodCode title=CareRecordElementCategory.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate this is an event.</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/CREType.htm"><B>CREType</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ActHeir;CareRecordElementCategory/$code title=PORX_HD024003UK06#CareRecordElementCategory.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Coding system used to categorise the clinical statement messages:</P>
+<P>In this instances, all clinical statements for this message will be categorised under CREType <B>Medication</B>.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..*] </B></FONT><A name=Component><B>component</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#ActHeir;pertinentInformation2/CareRecordElementCategory/component title=pertinentInformation2/CareRecordElementCategory/component style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>An act relationship used to&nbsp;convey that the <I>ActRef</I> act forms a component of the acts within the <I>CareRecordElementCategory</I>.</B> </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>COMP</B>} )<A>{<B> Fixed="<FONT color=red>COMP</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;CareRecordElementCategory/component/$typeCode title=CareRecordElementCategory/component.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this act relationship&nbsp;is a component act relationship.</P>
+<UL>
+<LI>Fixed value : "COMP"</LI></UL>
+<P>The typeCode is carried as an attribute of <I>component.</I> </P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>actRef</B> (<A href="#ActRef"><B>ActRef</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;CareRecordElementCategory/component/actRef-ActRef title=CareRecordElementCategory/component/actRef-ActRef style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to information about an act (clinical statement defined elsewhere within this message) that is a component of this care record element category.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SuppliedLineItem><B>SuppliedLineItem</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SuppliedLineItem_c title=PORX_HD024003UK06#SuppliedLineItem_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Details about the medication Line Items supplied&nbsp;to satisfy the requirements&nbsp;of the protocol supply definition.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SuppliedLineItem>Used by: </A></FONT><A href="#SupplyHeader"><B>SupplyHeader</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBADM</B>} )<A>{<B> Fixed="<FONT color=red>SBADM</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SuppliedLineItem/$classCode title=SubstanceAdministration.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate introducing or applying a substance to a subject.</P>
+<UL>
+<LI>Fixed value: "SBADM"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PRMS</B>} )<A>{<B> Fixed="<FONT color=red>PRMS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SuppliedLineItem/$moodCode title=SuppliedLineItem.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a promise for a service.</P>
+<UL>
+<LI>Fixed value: "PRMS" (intent to perform a service based on a committment)</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SuppliedLineItem/$id title=PORX_HD024003UK06#SuppliedLineItem.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>UUID identifying this instance of a&nbsp;service request. This identifier is&nbsp;universally unique across all records. It is in the form of a UUID.&nbsp;&nbsp;</P>
+<P>In this instance, this is the&nbsp;unique identifier for each Medication Line Item supplied to the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/SnomedCT-Administration.htm"><B>SnomedCT-Administration</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SuppliedLineItem/$code title=PORX_HD024003UK06#SuppliedLineItem.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code from the SnomedCT-Administration UK subset that describes the medication to be administered to the patient. This is post-cordinated with SnomedCT-RouteOfAdministraton and SnomedCT-AdministrationSite.</P>
+<P>The&nbsp;Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;<U>RouteOfAdministrationSnCT </U>vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID value referenced in the&nbsp;<U>RouteOfAdministrationSnCT </U>vocabulary. </LI>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;<U>AdministrationSiteSnCT </U>vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID value referenced in the&nbsp;<U>AdministrationSiteSnCT </U>vocabulary</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#GTS"><B>GTS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SuppliedLineItem/$effectiveTime title=PORX_HD024003UK06#SuppliedLineItem.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The "dosage instructions" - details of how the patient should administer the medication, e.g. 'Massage into wet hair &amp; scalp vigorously twice daily for a week'.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>doseQuantity</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#PQ"><B>PQ</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SuppliedLineItem/$doseQuantity title=PORX_HD024003UK06#SuppliedLineItem.doseQuantity style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The amount of medication treatment that is to be administered to the patient. Units of measure are SNOMED ID (SCTID) from dm+d.</P>
+<P>e.g. '5mls'</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>rateQuantity</B> (<A href="../../../Data Types/DataTypes.htm#IVL"><B>IVL</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#PQ"><B>PQ</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;SuppliedLineItem/$rateQuantity title=PORX_HD024003UK06#SuppliedLineItem.rateQuantity style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The frequency at which the medication treatment is administered over the administration time interval (for example&nbsp;10mls/day).</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Consumable><B>consumable</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;pertinentInformation1/SuppliedLineItem/consumable title=PORX_HD024003UK06#pertinentInformation1/SuppliedLineItem/consumable style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Provides information about the&nbsp;Line Item identified in the protocol supply definition </B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>CSM</B>} )<A>{<B> Fixed="<FONT color=red>CSM</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;SuppliedLineItem/consumable/$typeCode title=SuppliedLineItem/consumable.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a consumable.</P>
+<UL>
+<LI>Fixed value: "CSM"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;SuppliedLineItem/consumable/$contextControlCode title=consumable.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act, and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P>
+<UL>
+<LI>Default value: "OP" - Overriding and propagating</LI></UL>
+<P>The default value of "OP" indicates that the association adds to the existing context associated with the Act, and will propagate to any descendant Acts reached by conducting ActRelationships.</P>
+<P>In this instance, a&nbsp;code that this product propagates through to the clinical statements as the&nbsp;medication unless specifically overriden for individual acts.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>requestedManufacturedProduct</B> (<A href="#RequestedManufacturedProduct"><B>RequestedManufacturedProduct</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;SuppliedLineItem/consumable/requestedManufacturedProduct-RequestedManufacturedProduct title=PORX_HD024003UK06#SuppliedLineItem/consumable/requestedManufacturedProduct-RequestedManufacturedProduct style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that RequestedManufacturedProduct is consumed by the SuppliedLineItem. RequestedManufacturedProduct represents the required medication and this information in the message is manually provided by the Dispenser.</P>
+<P>This information is mandatory</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=PertinentInformation4><B>pertinentInformation1</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;pertinentInformation1/SuppliedLineItem/pertinentInformation1 title=PORX_HD024003UK06#pertinentInformation1/SuppliedLineItem/pertinentInformation1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>An act relationship designed to accomodate any additional instructions to support the protocol supply event.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation1/$typeCode title=SuppliedLineItem/pertinentInformation1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value&nbsp;: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>inversionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation1/$inversionInd title=SuppliedLineItem/pertinentInformation1.inversionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator specifying that the ActRelationship.typeCode should be interpreted as if the roles of the source and target Acts were reversed. The inversion indicator is used when the meaning of ActRelationship.typeCode must be reversed.<BR>In this context the negationInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation1/$contextConductionInd title=pertinentInformation1.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If true, associations in the parent act are conducted across the ActRelationship to the child act.<BR>In this context the contextConductionInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>negationInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation1/$negationInd title=ActRelationship.negationInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>When "true" allows the sender to specifically state that the relationship does not apply.<BR>In this context the negationInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation1/$seperatableInd title=SuppliedLineItem/pertinentInformation1.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.<BR>If the source act is intended to be interpreted independently the value shall be 'true' otherwise the value shall be 'false'.<BR>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.<BR>In this context the seperatableInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentAdditionalInstructions</B> (<A href="#AdditionalInstructions"><B>AdditionalInstructions</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation1/pertinentAdditionalInstructions-AdditionalInstructions title=PORX_HD024003UK06#SuppliedLineItem/pertinentInformation1/pertinentAdditionalInstructions-AdditionalInstructions style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that AdditionalInstructions are pertinent to SuppliedLineItem.</P>
+<P>This information is optional and may be omitted.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..*] </B></FONT><A name=PertinentInformation5><B>pertinentInformation2</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;pertinentInformation1/SuppliedLineItem/pertinentInformation2 title=PORX_HD024003UK06#pertinentInformation1/SuppliedLineItem/pertinentInformation2 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>An act relationship to allow the specification of dosage instructions in human readable form.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation2/$typeCode title=SuppliedLineItem/pertinentInformation2.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value&nbsp;: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>inversionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation2/$inversionInd title=SuppliedLineItem/pertinentInformation2.inversionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator specifying that the ActRelationship.typeCode should be interpreted as if the roles of the source and target Acts were reversed. The inversion indicator is used when the meaning of ActRelationship.typeCode must be reversed.<BR>In this context the negationInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation2/$contextConductionInd title=SuppliedLineItem/pertinentInformation2.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If true, associations in the parent act are conducted across the ActRelationship to the child act.<BR>In this context the contextConductionInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>negationInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation2/$negationInd title=pertinentInformation2.negationInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>When "true" allows the sender to specifically state that the relationship does not apply.<BR>In this context the negationInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation2/$seperatableInd title=PORX_HD024003UK06#SuppliedLineItem/pertinentInformation2.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.<BR>If the source act is intended to be interpreted independently the value shall be 'true' otherwise the value shall be 'false'.<BR>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.<BR>In this context the seperatableInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentDosageInstructions</B> (<A href="#DosageInstructions"><B>DosageInstructions</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation2/pertinentDosageInstructions-DosageInstructions title=PORX_HD024003UK06#SuppliedLineItem/pertinentInformation2/pertinentDosageInstructions-DosageInstructions style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the DosageInstructions are pertinent to the supplied LineItem.</P>
+<P>This information is mandatory as coded forms of dosage instructions may not always be available and reference will be made to the human readable form.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..*] </B></FONT><A name=PertinentInformation6><B>pertinentInformation3</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#SubstanceAdministration;pertinentInformation1/SuppliedLineItem/pertinentInformation3 title=PORX_HD024003UK06#pertinentInformation1/SuppliedLineItem/pertinentInformation3 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>An act relationship to provide information on the actual quantity of medication supplied to the patient&nbsp;in this&nbsp;event.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation3/$typeCode title=PORX_HD024003UK06#SuppliedLineItem/pertinentInformation3.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value&nbsp;: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>inversionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation3/$inversionInd title=SuppliedLineItem/pertinentInformation3.inversionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator specifying that the ActRelationship.typeCode should be interpreted as if the roles of the source and target Acts were reversed. The inversion indicator is used when the meaning of ActRelationship.typeCode must be reversed.<BR>In this context the negationInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation3/$contextConductionInd title=SuppliedLineItem/pertinentInformation3.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If true, associations in the parent act are conducted across the ActRelationship to the child act.<BR>In this context the contextConductionInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>negationInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation3/$negationInd title=ActRelationship.negationInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>When "true" allows the sender to specifically state that the relationship does not apply.<BR>In this context the negationInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation3/$seperatableInd title=PORX_HD024003UK06#SuppliedLineItem/pertinentInformation3.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.<BR>If the source act is intended to be interpreted independently the value shall be 'true' otherwise the value shall be 'false'.<BR>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.<BR>In this context the seperatableInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentSuppliedLineItemQuantity</B> (<A href="#SuppliedLineItemQuantity"><B>SuppliedLineItemQuantity</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItem/pertinentInformation3/pertinentSuppliedLineItemQuantity-SuppliedLineItemQuantity title=PORX_HD024003UK06#SuppliedLineItem/pertinentInformation3/pertinentSuppliedLineItemQuantity-SuppliedLineItemQuantity style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that SuppliedLineItemQuantity is pertinent to SuppliedLineItem.</P>
+<P>This information is mandatory.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=PSDefinition><B>PSDefinition</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;PSDefinition_c title=PORX_HD024003UK06#PSDefinition_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>The Details of the Protocol Supply Definition used to authorize this supply</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=PSDefinition>Used by: </A></FONT><A href="#SupplyHeader"><B>SupplyHeader</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;PSDefinition/$classCode title=Observation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this act is an observation</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;PSDefinition/$moodCode title=Observation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this&nbsp;is an event</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/PrescriptionAnnotation.htm"><B>PrescriptionAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;PSDefinition/$code title=PORX_HD024003UK06#PSDefinition.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is the Protocol Supply Definition.</P>
+<UL>
+<LI>Fixed value: "PSD"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>text</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;PSDefinition/$text title=PORX_HD024003UK06#PSDefinition.text style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Textual (human readable) form of the Protocol Supply definition.</P>
+<P>This will need to be present if the value below is 'Null'</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cwe')" onmouseout="popUp(event,'cwe')"><B>CWE</B></A>:<A href="../../../vocabulary/ProtocolCondition.htm"><B>ProtocolCondition</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;PSDefinition/$value title=PORX_HD024003UK06#PSDefinition.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Coded information specifying the definiton used to authorize the protocol supply event.</P>
+<P>The&nbsp;Coded with Code System datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;<U>ProtocolCondition</U> vocabulary; </LI>
+<LI>The <I>codeSystem</I> attribute will contain the OID value referenced in the&nbsp;<U>ProtocolCondition</U> vocabulary</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=ActRef><B>ActRef</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ActHeir;ActRef_c title=PORX_HD024003UK06#ActRef_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>Refers to a component using a unique identifier.</B></P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=ActRef>Used by: </A></FONT><A href="#CareRecordElementCategory"><B>CareRecordElementCategory</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ACT</B>} )<A>{<B> Fixed="<FONT color=red>ACT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ActHeir;ActRef/$classCode title=ActRef.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The classCode shall take the value of the target act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ActMood</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ActHeir;ActRef/$moodCode title=ActRef.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The moodCode shall take the value of the target act.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ActHeir;ActRef/$id title=PORX_HD024003UK06#ActRef.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The unique identifier of the target act being referred to.&nbsp; This shall be a DCE UUID carried in the root attribute of the id element.</P>
+<P>In this instance, this is a link to one of the clinical acts in this message.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=RequestedManufacturedProduct><B>RequestedManufacturedProduct</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#RoleHeir;RequestedManufacturedProduct_c title=PORX_HD024003UK06#RequestedManufacturedProduct_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Details of the treatment ordered in the Protocol Supply Definition.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=RequestedManufacturedProduct>Used by: </A></FONT><A href="#SuppliedLineItem"><B>SuppliedLineItem</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>MANU</B>} )<A>{<B> Fixed="<FONT color=red>MANU</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#RoleHeir;RequestedManufacturedProduct/$classCode title=RequestedManufacturedProduct.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this act is a manufactured product</P>
+<UL>
+<LI>Fixed value: "MANU"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>manufacturedRequestedMaterial</B> (<A href="#RequestedMaterial"><B>RequestedMaterial</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#RoleHeir;RequestedManufacturedProduct/manufacturedRequestedMaterial-RequestedMaterial title=PORX_HD024003UK06#RequestedManufacturedProduct/manufacturedRequestedMaterial-RequestedMaterial style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to an entity providing more information on the physical characteristics of the treatment ordered.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=AdditionalInstructions><B>AdditionalInstructions</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;AdditionalInstructions_c title=PORX_HD024003UK06#AdditionalInstructions_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Supplementary instructions provided in addition to the&nbsp;dosage instructions for the&nbsp;medication.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=AdditionalInstructions>Used by: </A></FONT><A href="#SuppliedLineItem"><B>SuppliedLineItem</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;AdditionalInstructions/$classCode title=AdditionalInstructions.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this act is an observation</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;AdditionalInstructions/$moodCode title=Observation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this&nbsp;is an event</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/PrescriptionAnnotation.htm"><B>PrescriptionAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;AdditionalInstructions/$code title=AdditionalInstructions.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this are additional instructions.</P>
+<UL>
+<LI>Fixed value: "AI"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;AdditionalInstructions/$value title=PORX_HD024003UK06#AdditionalInstructions.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Textual (human readable) form of representation providing the additional medication instructions.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=DosageInstructions><B>DosageInstructions</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;DosageInstructions_c title=PORX_HD024003UK06#DosageInstructions_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>The dosage and administration instructions in human readable form.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=DosageInstructions>Used by: </A></FONT><A href="#SuppliedLineItem"><B>SuppliedLineItem</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;DosageInstructions/$classCode title=Observation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this act is an observation</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;DosageInstructions/$moodCode title=DosageInstructions.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this&nbsp;is an event</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/PrescriptionAnnotation.htm"><B>PrescriptionAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;DosageInstructions/$code title=PORX_HD024003UK06#DosageInstructions.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is representation of the dosage instructions.</P>
+<UL>
+<LI>Fixed value: "DI"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;DosageInstructions/$value title=PORX_HD024003UK06#DosageInstructions.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Human readable representation of the dosage instructions (for example: 'Massage into wet hair &amp; scalp vigorously twice daily for a week').</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SuppliedLineItemQuantity><B>SuppliedLineItemQuantity</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Supply;SuppliedLineItemQuantity_c title=PORX_HD024003UK06#SuppliedLineItemQuantity_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Details of the actual medication treatment supplied&nbsp;in this protocol supply event.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SuppliedLineItemQuantity>Used by: </A></FONT><A href="#SuppliedLineItem"><B>SuppliedLineItem</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SPLY</B>} )<A>{<B> Fixed="<FONT color=red>SPLY</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Supply;SuppliedLineItemQuantity/$classCode title=SuppliedLineItemQuantity.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code to indicate&nbsp;supply.</P>
+<UL>
+<LI>Fixed value: "SPLY"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Supply;SuppliedLineItemQuantity/$moodCode title=PORX_HD024003UK06#SuppliedLineItemQuantity.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this&nbsp;is an event</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CD"><B>CD</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/SnomedCT-Supply.htm"><B>SnomedCT-Supply</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Supply;SuppliedLineItemQuantity/$code title=PORX_HD024003UK06#SuppliedLineItemQuantity.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code from the SnomedCT-Supply UK subset that describes&nbsp;the prescribed&nbsp;quantity of medication to be supplied. Refer to vocabulary <B>SupplyActSnCT</B>.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>quantity</B> (<A href="../../../Data Types/DataTypes.htm#PQ"><B>PQ</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Supply;SuppliedLineItemQuantity/$quantity title=PORX_HD024003UK06#SuppliedLineItemQuantity.quantity style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A quantification of the actual amount of medication treatment dispensed for this SuppliedLineItem.</P>
+<P>Units of measure follow SNOMED ID (SCTID) from dm+d, e.g. 1 x 300ml bottle</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Product><B>product</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#Supply;pertinentInformation3/SuppliedLineItemQuantity/product title=PORX_HD024003UK06#pertinentInformation3/SuppliedLineItemQuantity/product style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>An act relationship to describe the actual medication supplied to the patient.</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PRD</B>} )<A>{<B> Fixed="<FONT color=red>PRD</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;SuppliedLineItemQuantity/product/$typeCode title=SuppliedLineItemQuantity/product.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A&nbsp;code to indicate that this is a supplied product.</P>
+<UL>
+<LI>Fixed value: "PRD"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextControlCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ContextControl</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;SuppliedLineItemQuantity/product/$contextControlCode title=SuppliedLineItemQuantity/product.contextControlCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code that specifies how this Participation contributes to the context of the current Act, and whether it may be propagated to descendent Acts whose association allows such propagation.</P>
+<P>The value of contextControlCode should be set appropriately according to the context of the participation being modelled.</P>
+<UL>
+<LI>Default value: "OP" - Overriding and propagating</LI></UL>
+<P>The default value of "OP" indicates that the association adds to the existing context associated with the Act, and will propagate to any descendant Acts reached by conducting ActRelationships.</P>
+<P>In this instance, a&nbsp;code that this product propogates&nbsp;through to the clinical statements as the&nbsp;medication unless specifically overriden for individual acts.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>suppliedManufacturedProduct</B> (<A href="#SuppliedManufacturedProduct"><B>SuppliedManufacturedProduct</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#Participation;SuppliedLineItemQuantity/product/suppliedManufacturedProduct-SuppliedManufacturedProduct title=PORX_HD024003UK06#SuppliedLineItemQuantity/product/suppliedManufacturedProduct-SuppliedManufacturedProduct style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to the entity that describes the physical characteristics of the suppliedManufacturedProduct.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=PertinentInformation4><B>pertinentInformation2</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#Supply;pertinentInformation3/SuppliedLineItemQuantity/pertinentInformation2 title=PORX_HD024003UK06#pertinentInformation3/SuppliedLineItemQuantity/pertinentInformation2 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>This is a shadow act relationship referring to the Additional Instructions as outlined above</B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..*] </B></FONT><A name=PertinentInformation7><B>pertinentInformation1</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PORX_HD024003UK06#Supply;pertinentInformation3/SuppliedLineItemQuantity/pertinentInformation1 title=PORX_HD024003UK06#pertinentInformation3/SuppliedLineItemQuantity/pertinentInformation1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>An act relationship to enable the provision of supply instructions for the supplied medication, as printed on the supplied items. </B></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PERT</B>} )<A>{<B> Fixed="<FONT color=red>PERT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItemQuantity/pertinentInformation1/$typeCode title=PORX_HD024003UK06#SuppliedLineItemQuantity/pertinentInformation1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is pertinent information.</P>
+<UL>
+<LI>Fixed value: "PERT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>inversionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItemQuantity/pertinentInformation1/$inversionInd title=SuppliedLineItemQuantity/pertinentInformation1.inversionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator specifying that the ActRelationship.typeCode should be interpreted as if the roles of the source and target Acts were reversed. The inversion indicator is used when the meaning of ActRelationship.typeCode must be reversed.<BR>In this instance, the inversionInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contextConductionInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItemQuantity/pertinentInformation1/$contextConductionInd title=pertinentInformation1.contextConductionInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If true, associations in the parent act are conducted across the ActRelationship to the child act.<BR>In this context the contextConductionInd defaults to "true".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>negationInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItemQuantity/pertinentInformation1/$negationInd title=ActRelationship.negationInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>When "true" allows the sender to specifically state that the relationship does not apply.<BR>In this context the negationInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>seperatableInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItemQuantity/pertinentInformation1/$seperatableInd title=SuppliedLineItemQuantity/pertinentInformation1.seperatableInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>This attribute indicates whether or not the source Act is intended to be interpreted independently of the target Act.<BR>If the source act is intended to be interpreted independently the value shall be 'true' otherwise the value shall be 'false'.<BR>The value of seperatableInd shall be evaluated for each usage of the pertinentInformation relationship.<BR>In this context the seperatableInd defaults to "false".</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>pertinentSupplyInstructions</B> (<A href="#SupplyInstructions"><B>SupplyInstructions</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PORX_HD024003UK06#ActRelationship;SuppliedLineItemQuantity/pertinentInformation1/pertinentSupplyInstructions-SupplyInstructions title=pertinentSupplyInstructions-SupplyInstructions style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that SupplyInstructions are pertinent to SuppliedLineItemQuantity.</P>
+<P>This information is mandatory</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=RequestedMaterial><B>RequestedMaterial</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ManufacturedMaterial;RequestedMaterial_c title=PORX_HD024003UK06#RequestedMaterial_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Details of the physical characteristics of the&nbsp;prescribed medication treatment.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=RequestedMaterial>Used by: </A></FONT><A href="#RequestedManufacturedProduct"><B>RequestedManufacturedProduct</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>MMAT</B>} )<A>{<B> Fixed="<FONT color=red>MMAT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ManufacturedMaterial;RequestedMaterial/$classCode title=PORX_HD024003UK06#RequestedMaterial.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a single identifiable&nbsp;manufactured material&nbsp;entity.</P>
+<UL>
+<LI>Fixed value "MMAT"</LI></UL>
+<P>The classCode is carried as an attribute of the&nbsp;RequestedMaterial element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>KIND</B>} )<A>{<B> Fixed="<FONT color=red>KIND</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ManufacturedMaterial;RequestedMaterial/$determinerCode title=PORX_HD024003UK06#RequestedMaterial.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the entity is a single identifiable kind of medication.</P>
+<UL>
+<LI>Fixed value: "KIND"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CE"><B>CE</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/ManufacturedMaterialSnCT.htm"><B>ManufacturedMaterialSnCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ManufacturedMaterial;RequestedMaterial/$code title=PORX_HD024003UK06#RequestedMaterial.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code from the Snomed ManufacturedMaterialSnCT&nbsp;UK subset that describes a manufactured material (e.g. a pharmaceutical product or personal medical device).</P>
+<P>This information&nbsp;comprises of</P>
+<UL>
+<LI>ID = SNOMED ID (SCTID) from the NHS dm+d </LI>
+<LI>TEXT = human readable representation of the medication treatment</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SuppliedManufacturedProduct><B>SuppliedManufacturedProduct</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#RoleHeir;SuppliedManufacturedProduct_c title=PORX_HD024003UK06#SuppliedManufacturedProduct style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Details of the physical characteristics of the actually dispensed medication treatment.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SuppliedManufacturedProduct>Used by: </A></FONT><A href="#SuppliedLineItemQuantity"><B>SuppliedLineItemQuantity</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>MANU</B>} )<A>{<B> Fixed="<FONT color=red>MANU</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#RoleHeir;SuppliedManufacturedProduct/$classCode title=SuppliedManufacturedProduct.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a manufactured material.</P>
+<UL>
+<LI>Fixed value "MANU"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>manufacturedSuppliedMaterial</B> (<A href="#SuppliedMaterial"><B>SuppliedMaterial</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#RoleHeir;SuppliedManufacturedProduct/manufacturedSuppliedMaterial-SuppliedMaterial title=PORX_HD024003UK06#SuppliedManufacturedProduct/manufacturedSuppliedMaterial-SuppliedMaterial style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A link to the entity that describes the physical characteristics of the supplied medication.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SupplyInstructions><B>SupplyInstructions</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;SupplyInstructions_c title=PORX_HD024003UK06#SupplyInstructions_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Medication administration instructions as supplied by the dispenser and printed on the supplied items. </B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SupplyInstructions>Used by: </A></FONT><A href="#SuppliedLineItemQuantity"><B>SuppliedLineItemQuantity</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>OBS</B>} )<A>{<B> Fixed="<FONT color=red>OBS</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;SupplyInstructions/$classCode title=Observation.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this act is an observation</P>
+<UL>
+<LI>Fixed value: "OBS"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;SupplyInstructions/$moodCode title=Observation.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this&nbsp;is an event</P>
+<UL>
+<LI>Fixed value: "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/PrescriptionAnnotation.htm"><B>PrescriptionAnnotation</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;SupplyInstructions/$code title=SupplyInstructions.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that these are instructions supplied by the dispenser.</P>
+<UL>
+<LI>Fixed value: "SI"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>value</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#Observation;SupplyInstructions/$value title=PORX_HD024003UK06#SupplyInstructions.value style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Textual (human readable) form of representation providing the medication instructions by the dispenser</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=SuppliedMaterial><B>SuppliedMaterial</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ManufacturedMaterial;SuppliedMaterial_c title=PORX_HD024003UK06#SuppliedMaterial_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white"><B>Details of the physical characteristics of the&nbsp;medication treatment actually supplied.</B></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=SuppliedMaterial>Used by: </A></FONT><A href="#SuppliedManufacturedProduct"><B>SuppliedManufacturedProduct</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>MMAT</B>} )<A>{<B> Fixed="<FONT color=red>MMAT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ManufacturedMaterial;SuppliedMaterial/$classCode title=PORX_HD024003UK06#SuppliedMaterial.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a single identifiable&nbsp;manufactured material&nbsp;entity.</P>
+<UL>
+<LI>Fixed value "MMAT"</LI></UL>
+<P>The classCode is carried as an attribute of the&nbsp;SuppliedManufacturedProduct element</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ManufacturedMaterial;SuppliedMaterial/$determinerCode title=PORX_HD024003UK06#SuppliedMaterial.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is an&nbsp;instance of&nbsp;material entity.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL>
+<P>The determinerCode is carried as an attribute of the&nbsp;SuppliedMaterial<I> </I>element.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CE"><B>CE</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<A href="../../../vocabulary/ManufacturedMaterialSnCT.htm"><B>ManufacturedMaterialSnCT</B></A>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PORX_HD024003UK06#ManufacturedMaterial;SuppliedMaterial/$code title=PORX_HD024003UK06#SuppliedMaterial.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code from the Snomed ManufacturedMaterialSnCT&nbsp;UK subset that describes a manufactured material (e.g. a pharmaceutical product or personal medical device).</P>
+<P>This information&nbsp; comprises of</P>
+<UL>
+<LI>ID = SNOMED ID (SCTID) from the NHS dm+d </LI>
+<LI>TEXT = human readable representation of the medication treatment</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

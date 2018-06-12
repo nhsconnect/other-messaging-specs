@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+PSIS Detailed (statement) query response schema.
+
+This is the response to a "get event item by event item ID" call. It contains
+the clinical statement for a given patient that corresponds to an event item ID.
+
+The metadata elements of this response are in the "urn:npfit:psisqr"
+namespace, with the "psis" prefix. The original HL7 of the event is in the
+"urn:hl7-org:v3" namespace, with no prefix.
+
+
+11 August 2004
+
+-->
+<xs:schema targetNamespace="urn:npfit:psisqr" elementFormDefault="qualified" xmlns:hl7="urn:hl7-org:v3" xmlns="urn:npfit:psisqr" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- This schema is based on the queryResponseSummary schema -->
+	<xs:include schemaLocation="queryResponseSummary.xsd"/>
+	<xs:element name="queryResponseStatement">
+		<xs:annotation>
+			<xs:documentation>
+			queryResponseStatement is the root element of the response
+			for a "get event item by event item ID" request.
+
+			Although in PSIS P1R2 there will only ever be one statement returned,
+			the maxOccurs of the eventItem is defined as unbounded so multiple
+			statements can be returned in future phases.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="recordTarget" type="recordTarget"/>
+				<xs:element name="eventItem" type="eventItem" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
