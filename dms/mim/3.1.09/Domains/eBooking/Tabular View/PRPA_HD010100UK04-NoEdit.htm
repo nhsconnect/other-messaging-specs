@@ -1,0 +1,892 @@
+<HTML><HEAD><TITLE>Request Service Tabular View</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="Request Service" name=Entry>
+<META content=PRPA_HD010100UK04 name=Identifier>
+<STYLE type=text/css>
+	table {empty-cells: show}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2>
+
+var isNew=0;
+var isNS4=0;
+var isIE4=0;
+
+var brow=((navigator.appName) + (parseInt(navigator.appVersion)));
+
+//alert(brow);
+if (parseInt(navigator.appVersion)>=5)
+{
+	isNew=1
+}
+else
+{
+	if(brow=="Netscape4")
+	{
+		isNS4=1;
+		document.captureEvents(Event.ONMOUSEOVER);
+	}
+	else
+	{
+		if(brow=="Microsoft Internet Explorer4")
+		{
+			isIE4=1;
+		}
+	}
+		
+}
+
+// thats ok
+
+
+if(isNS4||isIE4||isNew)
+{
+	docObj=(isNS4) ? 'document' : 'document.all';
+	
+	styleObj=(isNS4) ? ' ' : '.style';
+}
+
+function checkDOM(elementName)
+{
+	if(isNS4||isIE4||isNew)
+	{
+		dom=eval(docObj + '.' + elementName + styleObj);
+		//alert('This browser uses the ' + dom + 'Document Object Model.');
+		dom.left =0;
+		dom.top =0;
+	}
+}
+
+function popUp(evt,currElem)
+{
+
+	if((isNS4 && currElem !=0) || (isIE4 && currElem !=0))
+	{
+		dom =eval(docObj +'.' +currElem+styleObj);
+		state=dom.visibility;
+		if ((state == "visible") || (state=="show"))
+		{
+			dom.visibility="hidden";
+		}
+		else
+		{
+			if(isNS4)
+			{
+				topVal=eval(evt.pageY);
+				leftVal=eval(evt.pageX);
+				/*if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}*/
+
+			}
+			if(isIE4)
+			{
+				topVal=eval(event.clientY)  + document.body.scrollTop+20;
+				leftVal=eval(event.clientX) + document.body.scrollLeft;
+				
+				if(((document.body.scrollLeft+document.body.clientWidth)-leftVal)< 150)
+				{
+					leftVal=(document.body.clientWidth+document.body.scrollLeft-151);
+				}
+				if(((document.body.scrollTop+document.body.clientHeight)-topVal)< 30)
+				{
+					topVal=(document.body.clientHeight+document.body.scrollTop-80);
+				}
+			}
+			if(leftVal < 2)
+			{
+				leftVal=2;
+			}
+			dom.top=topVal;
+			dom.left=leftVal;
+			dom.visibility="visible";
+		}
+	}
+}
+</SCRIPT>
+
+<STYLE>
+#ds
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+#cwe
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#cne
+{
+	position: absolute;
+	visibility: hidden;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+.hypertext
+{
+position: absolute;
+	background-color: white;
+	layer-background-colour: cornflowerblue;
+	padding: 3px;
+	border: 3px solid blue;
+	width: 150px;
+	font:normal 10pt/13pt helvetica, sans-serif;
+	text-align: left;
+	color: blue;
+
+	
+}
+</STYLE>
+</HEAD>
+<BODY onload="checkDOM('ds')">
+<H1>Request Service - tabular view</H1><SPAN class=hypertext id=ds style="LEFT: 0px; TOP: 0px">No Current Link To Vocabulary</SPAN><SPAN class=hypertext id=cwe>Coded With Extensions</SPAN><SPAN class=hypertext id=cne style="LEFT: 203px; VISIBILITY: hidden; TOP: 7215px">Coded No Extensions</SPAN>
+<TABLE borderColor=black cellSpacing=0 cellPadding=2 rules=cols border=1 frame=vsides>
+<TBODY>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR>
+<TR>
+<TD colSpan=2 height=35><A href="PRPA_RM010000UK04.htm"><B>PRPA_RM010000UK04</B></A></TD>
+<TD noWrap height=35></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=RequestService><B>RequestService</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#ActHeir;RequestService_c title=RequestService_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The&nbsp;Request Service&nbsp;represents a request for a service from&nbsp;a service requester to the eBooking Service.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=RequestService>Used by: </A></FONT></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PCPR</B>} )<A>{<B> Fixed="<FONT color=red>PCPR</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Act;RequestService/$classCode title=PRPA_HD010100UK04#RequestService.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a patient care provision.</P>
+<UL>
+<LI>Fixed value "PCPR"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>moodCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>EVN</B>} )<A>{<B> Fixed="<FONT color=red>EVN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Act;RequestService/$moodCode title=PRPA_HD010100UK04#RequestService.moodCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that this is a request.</P>
+<UL>
+<LI>Fixed value "EVN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Act;RequestService/$id title=PRPA_HD010100UK04#RequestService.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A unique identifier for&nbsp;this instance of a&nbsp;service request.&nbsp;</P>
+<P>The Identifier Global datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>A&nbsp;UUID is held in the&nbsp;<I>root</I> attribute</LI></UL>
+<P>&nbsp;<B>Example</B> </P>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;id root="BBBBE23A-A9D1-A411-F824-9F7A00A33757"/&gt; </SPAN></P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>effectiveTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Act;RequestService/$effectiveTime title=PRPA_HD010100UK04#RequestService.effectiveTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The date and time that the request service&nbsp;was made.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>priorityCode</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/PriorityType.htm">PriorityType</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Act;RequestService/$priorityCode title=PRPA_HD010100UK04#RequestService.priorityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code specifying the&nbsp;level of urgency attributed to the request.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the <U>PriorityType</U> vocabulary;</LI></UL>
+<UL>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the <U>PriorityType</U> vocabulary</LI></UL>
+<UL>
+<LI>The <I>code</I> attribute shall default to "1", Routine</LI></UL>
+<P><B>Example</B></P>
+<P>&lt;code="3" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.95"/&gt;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..1] </B></FONT><A name=Subject><B>subject</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRPA_HD010100UK04#Act;/RequestService/subject title=RequestService/subject style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Refers to the patient for whom this service is being&nbsp;requested. </P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>SBJ</B>} )<A>{<B> Fixed="<FONT color=red>SBJ</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK04#Participation;RequestService/subject/$typeCode title=PRPA_HD010100UK04#RequestService/subject.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is the subject of the request.</P>
+<UL>
+<LI>&nbsp;Fixed value "SBJ"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>patient</B> (<A href="#Patient"><B>Patient</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK04#Participation;RequestService/subject/patient-Patient title=RequestService/subject/patient-Patient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the patient who is the subject.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=Author><B>author</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRPA_HD010100UK04#Act;/RequestService/author title=PRPA_HD010100UK04#/RequestService/author style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A participation referring to a person who is logged in at the time the message is initiated.&nbsp;</B></P>
+<P><B>The participation is optional. It shall be present when the message is&nbsp;initiated by a person. It shall not be present when the message is automatically&nbsp;initiated by a system.&nbsp;</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK04#Participation;RequestService/author/$typeCode title=PRPA_HD010100UK04#RequestService/author.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role has author responsibility.</P>
+<UL>
+<LI>Fixed value: "AUT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>
+<a href="../../CMETs/Tabular%20View/UKCT_HD120900UK01-NoEdit.htm">participant</a></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SMALL><a href="../../CMETs/Tabular%20View/UKCT_RM120900UK01.htm">[CMET:&nbsp;UKCT_MT120901UK01]</a></SMALL></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK04#Participation;RequestService/author/participant+UKCT_MT120901UK01 title=PRPA_HD010100UK04#RequestService/author/participant+UKCT_MT120901UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET&nbsp;to identify a person fulfilling a specific role where&nbsp;the Person,&nbsp;Role Profile and Job&nbsp;Role are all mandatory. Full details of the person, role profile and job role&nbsp;are available from SDS.</P>
+<P>In this context the person is the&nbsp;signed in user&nbsp;for the user session responsible for initiating&nbsp;the message.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[1..2] </B></FONT><A name=Author2><B>author1</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRPA_HD010100UK04#Act;/RequestService/author1 title=PRPA_HD010100UK04#/RequestService/author1 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P><B>A participation referring to one or more&nbsp;systems that are involved in the&nbsp;initiation of the&nbsp;message.</B></P>
+<P><B>One instance of the participation is mandatory and&nbsp;shall carry the accredited service id of the system in use at the time the message is initiated.</B></P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>AUT</B>} )<A>{<B> Fixed="<FONT color=red>AUT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK04#Participation;RequestService/author1/$typeCode title=PRPA_HD010100UK04#RequestService/author1.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role has author responsibility.</P>
+<UL>
+<LI>Fixed value: "AUT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>
+<a href="../../CMETs/Tabular%20View/UKCT_HD121000UK01-NoEdit.htm">participant</a></B> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SMALL><a href="../../CMETs/Tabular%20View/UKCT_RM121000UK01.htm">[CMET:&nbsp;UKCT_MT121001UK01]</a></SMALL></TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK04#Participation;RequestService/author1/participant+UKCT_MT121001UK01 title=PRPA_HD010100UK04#RequestService/author1/participant+UKCT_MT121001UK01 style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>NPfIT CMET&nbsp;to identify a&nbsp;mandatory system which could be software or hardware. Full details of the system are available from SDS.</P>
+<P>In this context the system is&nbsp;a system in use at the time the message is initiated.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Patient><B>Patient</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Patient;Patient_c title=Patient style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Patient>Used by: </A></FONT><A href="#RequestService"><B>RequestService</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PAT</B>} )<A>{<B> Fixed="<FONT color=red>PAT</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Patient;Patient/$classCode title=PRPA_HD010100UK04#Patient.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of a patient.</P>
+<UL>
+<LI>Fixed value "PAT"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Patient;Patient/$id title=PRPA_HD010100UK04#Patient.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>To provide the current nationally recognised identifier for the patient. This identifier will be one of:</P>
+<UL>
+<LI>NHS number; </LI>
+<LI>Temporary NHS number issued by an NHAIS registration authority; </LI>
+<LI>PDS allocated temporary NHS number.</LI></UL>
+<P>The Identifier External datatype flavour is used to carry this information as follows:-</P>
+<P>An NHS number is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value "2.16.840.1.113883.2.1.4.1"; </LI>
+<LI>The <I>extension</I> attribute shall contain the NHS number itself.</LI></UL>
+<P>A Temporary NHS number issued by an NHAIS registration authority is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value "2.16.840.1.113883.2.1.3.2.4.3"; </LI>
+<LI>The <I>extension</I> attribute shall contain the Temporary NHS number issued by an NHAIS registration authority itself.</LI></UL>
+<P>A PDS allocated temporary NHS number is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value "2.16.840.1.113883.2.1.3.2.4.4"; </LI>
+<LI>The <I>extension</I> attribute shall contain the PDS allocated temporary NHS number itself.</LI></UL>
+<P><B>Examples</B> </P>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;!-- NHS number --&gt;<BR>&lt;id root="2.16.840.1.113883.2.1.4.1" extension="9999999484"/&gt;<BR><BR>&lt;!-- Temporary NHS number issued by an NHAIS registration authority --&gt;<BR>&lt;id root="2.16.840.1.113883.2.1.3.2.4.3" extension="BRS123456"/&gt;<BR><BR>&lt;!-- PDS allocated temporary NHS number --&gt;<BR>&lt;id root="2.16.840.1.113883.2.1.3.2.4.4" extension="PDS1234567890"/&gt; </SPAN></P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>patientPerson</B> (<A href="#Person"><B>Person</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Patient;Patient/patientPerson-Person title=Patient/patientPerson-Person style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the person who is the identified patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" bgColor=#d0ffff colSpan=2><FONT color=green><B>[0..1] </B></FONT><A name=SourceOf><B>sourceOf</B></A></TD>
+<TD style="BACKGROUND-COLOR: white">
+<DIV id=PRPA_HD010100UK04#Patient;subject/Patient/sourceOf title=subject/Patient/sourceOf style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A role link that links the patient to the&nbsp;GP he/she is registered with.</P></NOTE></DIV></TD></TR>
+<TR>
+<TD width="4%"></TD>
+<TD bgColor=white colSpan=10>
+<TABLE borderColor=gray cellSpacing=0 cellPadding=2 rules=cols width="100%" border=1 frame=vsides>
+<TBODY>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>typeCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>registeredWith</B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK04#RoleLink;Patient/sourceOf/$typeCode title=PRPA_HD010100UK04#Patient/sourceOf.typeCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the patient is registered with the GP.</P>
+<UL>
+<LI>Fixed value "registeredWith"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="48%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>target</B> (<A href="#GpRegisteredWith"><B>GpRegisteredWith</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="52%">
+<DIV id=PRPA_HD010100UK04#RoleLink;Patient/sourceOf/target-GpRegisteredWith title=Patient/sourceOf/target-GpRegisteredWith style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the GP the patient is registered with.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=2></TD></TR></TBODY></TABLE></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Person><B>Person</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person_c title=PRPA_HD010100UK04#Person_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the person who is the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Person>Used by: </A></FONT><A href="#Patient"><B>Patient</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PSN</B>} )<A>{<B> Fixed="<FONT color=red>PSN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person/$classCode title=PRPA_HD010100UK04#Person.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a person.</P>
+<UL>
+<LI>Fixed value "PSN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person/$determinerCode title=PRPA_HD010100UK04#Person.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable person.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..*] </B></FONT><B>name</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#PN"><B>PN</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person/$name title=PRPA_HD010100UK04#Person.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>One or more names of the patient.</P>
+<P>The entire current name shall be provided using "CURRENT" in the <I>use</I> attribute.</P>
+<P>Zero or more previous names may be provided using "PREVIOUS" in the <I>use</I> attribute.</P>
+<P>Zero or one preferred&nbsp; name may be provided using "PREFERRED" in the <I>use</I> attribute.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>telecom</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TEL"><B>TEL</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person/$telecom title=PRPA_HD010100UK04#Person.telecom style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Zero or more&nbsp;telecommunication numbers of the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>administrativeGenderCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/Sex.htm">Sex</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person/$administrativeGenderCode title=PRPA_HD010100UK04#Person.administrativeGenderCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The code of the sex of the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>birthTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person/$birthTime title=PRPA_HD010100UK04#Person.birthTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The date and time the patient was born.</P>
+<P>Time&nbsp;may be given if available otherwise the date may be truncated from the right as required.</P>
+<P>eg: YYYYDDMM or YYYYMM or YYYY</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..*] </B></FONT><B>addr</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#AD"><B>AD</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person/$addr title=PRPA_HD010100UK04#Person.addr style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>One or more&nbsp;addresses of the patient. &nbsp;</P>
+<P>The type of address, eg. permanent or temporary,&nbsp;is identified by the inclusion of the <I>use</I>&nbsp;attribute.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>disabilityCode</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/HearingStatus.htm">HearingStatus</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person/$disabilityCode title=PRPA_HD010100UK04#Person.disabilityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An optional&nbsp;code identifying a hearing disability.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;<U>HearingStatus</U> vocabulary;</LI></UL>
+<UL>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the&nbsp;<U>HearingStatus</U> vocabulary</LI></UL>
+<P><B>Example</B></P>
+<P>&lt;code="1" codeSystem="<SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA">2.16.840.1.113883.2.1.3.2.4.17.98</SPAN>"/&gt;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>guardian</B> (<A href="#Guardian"><B>Guardian</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person/guardian-Guardian title=PRPA_HD010100UK04#Person/guardian-Guardian style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the patient's legal guardian.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>scopedProxy</B> (<A href="#Proxy"><B>Proxy</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person/scopedProxy-Proxy title=PRPA_HD010100UK04#Person/scopedProxy-Proxy style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about&nbsp;the patient's appointed proxy.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>languageCommunication</B> (<A href="#LanguageCommunication"><B>LanguageCommunication</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;Person/languageCommunication-LanguageCommunication title=PRPA_HD010100UK04#Person/languageCommunication-LanguageCommunication style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the primary language&nbsp;used by&nbsp;the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Guardian><B>Guardian</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;Guardian_c title=Guardian_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the role of guardian.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Guardian>Used by: </A></FONT><A href="#Person"><B>Person</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>GUARD</B>} )<A>{<B> Fixed="<FONT color=red>GUARD</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;Guardian/$classCode title=Guardian.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of a guardian.</P>
+<UL>
+<LI>Fixed value: "GUARD"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/PersonRelationshipType.htm">PersonRelationshipType</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;Guardian/$code title=PRPA_HD010100UK04#Guardian.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifies the type of relationship&nbsp;between legal guardian and&nbsp;patient.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;<U>PersonRelationshipType</U> vocabulary;</LI></UL>
+<UL>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the&nbsp;<U>PersonRelationshipType </U>vocabulary</LI></UL>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA"></SPAN>&nbsp;<B>Example</B> <SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New"><BR>&lt;code code="001" codeSystem="2.16.840.1.113883.2.1.3.4.16.15"/&gt;</SPAN></P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>guardianOtherPerson</B> (<A href="#OtherPerson"><B>OtherPerson</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;Guardian/guardianOtherPerson-OtherPerson title=PRPA_HD010100UK04#Guardian/guardianOtherPerson-OtherPerson style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the person who is the patient's guardian.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=Proxy><B>Proxy</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;Proxy_c title=Proxy_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the role of proxy</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=Proxy>Used by: </A></FONT><A href="#Person"><B>Person</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>CON</B>} )<A>{<B> Fixed="<FONT color=red>CON</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;Proxy/$classCode title=Proxy.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the role is that of contact for the patient.</P>
+<UL>
+<LI>Fixed value: "CON"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>code</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/PersonRelationshipType.htm">PersonRelationshipType</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;Proxy/$code title=PRPA_HD010100UK04#Proxy.code style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Identifies the type of relationship between proxy and patient.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;<U>PersonRelationshipType</U> vocabulary;</LI></UL>
+<UL>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the&nbsp;<U>PersonRelationshipType </U>vocabulary</LI></UL>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA"></SPAN>&nbsp;<B>Example</B> <SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New"><BR>&lt;code code="001" codeSystem="2.16.840.1.113883.2.1.3.4.16.15"/&gt;</SPAN></P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>certificateText</B> (<A href="../../../Data Types/DataTypes.htm#ST"><B>ST</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;Proxy/$certificateText title=PRPA_HD010100UK04#Proxy.certificateText style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Holds the word or text to be used to authenticate the proxy's identity by the BMS.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>contactOtherPerson</B> (<A href="#OtherPerson"><B>OtherPerson</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;Proxy/contactOtherPerson-OtherPerson title=PRPA_HD010100UK04#Proxy/contactOtherPerson-OtherPerson style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the person who is the patient's proxy.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=LanguageCommunication><B>LanguageCommunication</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#LanguageCommunication;LanguageCommunication_c title=PRPA_HD010100UK04#LanguageCommunication_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates the language preference of the person who is either the patient, patient's proxy or patient's guardian. </P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=LanguageCommunication>Used by: </A></FONT><A href="#Person"><B>Person</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>languageCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/HumanLanguage.htm">HumanLanguage</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#LanguageCommunication;LanguageCommunication/$languageCode title=LanguageCommunication.languageCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>A code specifying the language&nbsp;preferred for all communications.&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>preferenceInd</B> (<A href="../../../Data Types/DataTypes.htm#BL"><B>BL</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#LanguageCommunication;LanguageCommunication/$preferenceInd title=LanguageCommunication.preferenceInd style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An indicator specifying whether or not the language is preferred by the entity for use in this context.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=GpRegisteredWith><B>GpRegisteredWith</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;GpRegisteredWith_c title=GpRegisteredWith style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the&nbsp;GP the&nbsp;patient is registered with.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=GpRegisteredWith>Used by: </A></FONT><A href="#Patient"><B>Patient</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ROL</B>} )<A>{<B> Fixed="<FONT color=red>ROL</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;GpRegisteredWith/$classCode title=PRPA_HD010100UK04#GpRegisteredWith.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates&nbsp;the role of GP the patient is registered with.</P>
+<UL>
+<LI>Fixed value "ROL"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;GpRegisteredWith/$id title=PRPA_HD010100UK04#GpRegisteredWith.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier of the&nbsp;GP the patient is registered with. </P>
+<P>The Identifier External datatype flavour is used to carry this information.</P>
+<P>A&nbsp;national GP code is carried in the following way:</P>
+<UL>
+<LI>The<I> root</I>&nbsp;attribute shall contain an&nbsp;OID with the value <SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana; mso-ansi-language: EN-GB; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA; mso-bidi-font-family: Arial">1.2.826.0.1285.0.2.0.67</SPAN>&nbsp; </LI>
+<LI>&nbsp;The <I>extension </I>attribute shall contain the SDS Role Profile ID<SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&nbsp;</SPAN></LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>playingGpPerson</B> (<A href="#GpPerson"><B>GpPerson</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;GpRegisteredWith/playingGpPerson-GpPerson title=GpRegisteredWith/playingGpPerson-GpPerson style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the person who is the GP the patient is registered with.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>scopingGpPractice</B> (<A href="#GpPractice"><B>GpPractice</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#RoleHeir;GpRegisteredWith/scopingGpPractice-GpPractice title=GpRegisteredWith/scopingGpPractice-GpPractice style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Information about the GP practice that scopes the role of registered GP.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=OtherPerson><B>OtherPerson</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;OtherPerson_c title=OtherPerson_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details of the other person who&nbsp;can be&nbsp;either the guardian or the proxy.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=OtherPerson>Used by: </A></FONT><A href="#Guardian"><B>Guardian</B></A>,&nbsp;<A href="#Proxy"><B>Proxy</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PSN</B>} )<A>{<B> Fixed="<FONT color=red>PSN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;OtherPerson/$classCode title=PRPA_HD010100UK04#Person.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a person.</P>
+<UL>
+<LI>Fixed value "PSN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;OtherPerson/$determinerCode title=PRPA_HD010100UK04#OtherPerson.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable person.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;OtherPerson/$id title=PRPA_HD010100UK04#OtherPerson.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>If present, this&nbsp;is the&nbsp;current nationally recognised identifier for&nbsp;the guardian or proxy.&nbsp;This identifier will be one of:</P>
+<UL>
+<LI>NHS number; </LI>
+<LI>Temporary NHS number issued by an NHAIS registration authority; </LI>
+<LI>PDS allocated temporary NHS number.</LI></UL>
+<P>The Identifier External datatype flavour is used to carry this information as follows:-</P>
+<P>An NHS number is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value "2.16.840.1.113883.2.1.4.1"; </LI>
+<LI>The <I>extension</I> attribute shall contain the NHS number itself.</LI></UL>
+<P>A Temporary NHS number issued by an NHAIS registration authority is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value "2.16.840.1.113883.2.1.3.2.4.3"; </LI>
+<LI>The <I>extension</I> attribute shall contain the Temporary NHS number issued by an NHAIS registration authority itself.</LI></UL>
+<P>A PDS allocated temporary NHS number is carried in the following way:</P>
+<UL>
+<LI>The <I>root</I> attribute shall contain an OID with the value "2.16.840.1.113883.2.1.3.2.4.4"; </LI>
+<LI>The <I>extension</I> attribute shall contain the PDS allocated temporary NHS number itself.</LI></UL>
+<P><B>Examples</B> </P>
+<P><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Courier New">&lt;!-- NHS number --&gt;<BR>&lt;id root="2.16.840.1.113883.2.1.4.1" extension="9999999484"/&gt;<BR><BR>&lt;!-- Temporary NHS number issued by an NHAIS registration authority --&gt;<BR>&lt;id root="2.16.840.1.113883.2.1.3.2.4.3" extension="BRS123456"/&gt;<BR><BR>&lt;!-- PDS allocated temporary NHS number --&gt;<BR>&lt;id root="2.16.840.1.113883.2.1.3.2.4.4" extension="PDS1234567890"/&gt; </SPAN></P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>name</B> (<A href="../../../Data Types/DataTypes.htm#PN"><B>PN</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;OtherPerson/$name title=PRPA_HD010100UK04#Person.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>One or more names of the patient.</P>
+<P>The entire current name shall be provided using "CURRENT" in the <I>use</I> attribute.</P>
+<P>Zero or more previous names may be provided using "PREVIOUS" in the <I>use</I> attribute.</P>
+<P>Zero or one preferred&nbsp; name may be provided using "PREFERRED" in the <I>use</I> attribute.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..*] </B></FONT><B>telecom</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TEL"><B>TEL</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;OtherPerson/$telecom title=PRPA_HD010100UK04#Person.telecom style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Zero or more&nbsp;telecommunication numbers of the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>administrativeGenderCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/Sex.htm">Sex</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;OtherPerson/$administrativeGenderCode title=PRPA_HD010100UK04#Person.administrativeGenderCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The code of the sex of the patient.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>birthTime</B> (<A href="../../../Data Types/DataTypes.htm#TS"><B>TS</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;OtherPerson/$birthTime title=PRPA_HD010100UK04#Person.birthTime style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The date and time the patient was born.</P>
+<P>Time&nbsp;may be given if available otherwise the date may be truncated from the right as required.</P>
+<P>eg: YYYYDDMM or YYYYMM or YYYY</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>addr</B> (<A href="../../../Data Types/DataTypes.htm#AD"><B>AD</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;OtherPerson/$addr title=PRPA_HD010100UK04#Person.addr style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>One or more&nbsp;addresses of the patient. &nbsp;</P>
+<P>The type of address, eg. permanent or temporary,&nbsp;is identified by the inclusion of the <I>use</I>&nbsp;attribute.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>disabilityCode</B> (<A href="../../../Data Types/DataTypes.htm#CV"><B>CV</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B><a href="../../../Vocabulary/HearingStatus.htm">HearingStatus</a></B>} )</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;OtherPerson/$disabilityCode title=PRPA_HD010100UK04#Person.disabilityCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An optional&nbsp;code identifying a hearing disability.</P>
+<P>The Coded Only datatype flavour is used to carry this information as follows:</P>
+<UL>
+<LI>The <I>code</I> attribute will contain a value from the list of codes in the&nbsp;<U>HearingStatus</U> vocabulary;</LI></UL>
+<UL>
+<LI>The <I>codeSystem</I> attribute will contain the OID referenced in the&nbsp;<U>HearingStatus</U> vocabulary</LI></UL>
+<P><B>Example</B></P>
+<P>&lt;code="1" codeSystem="<SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-GB; mso-bidi-language: AR-SA">2.16.840.1.113883.2.1.3.2.4.17.98</SPAN>"/&gt;</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=GpPerson><B>GpPerson</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;GpPerson_c title=PRPA_HD010100UK04#GpPerson_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details about the person who is the GP the patient is registered with.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=GpPerson>Used by: </A></FONT><A href="#GpRegisteredWith"><B>GpRegisteredWith</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>PSN</B>} )<A>{<B> Fixed="<FONT color=red>PSN</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;GpPerson/$classCode title=PRPA_HD010100UK04#GpPerson.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a person.</P>
+<UL>
+<LI>Fixed value "PSN"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;GpPerson/$determinerCode title=PRPA_HD010100UK04#GpPerson.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable person.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>name</B> (<A href="../../../Data Types/DataTypes.htm#PN"><B>PN</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Person;GpPerson/$name title=GpPerson.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The name of the person who is the GP.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR vAlign=top>
+<TD bgColor=yellow colSpan=2><A name=GpPractice><B>GpPractice</B></A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Organization;GpPractice_c title=PRPA_HD010100UK04#GpPractice_c style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Details&nbsp;about the organisation that is the GP Practice associated with the GP the patient is registered with.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=3></TD></TR>
+<TR class=hmd>
+<TD align=right></TD>
+<TD colSpan=10><FONT color=gray><A name=GpPractice>Used by: </A></FONT><A href="#GpRegisteredWith"><B>GpRegisteredWith</B></A></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>classCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>ORG</B>} )<A>{<B> Fixed="<FONT color=red>ORG</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Organization;GpPractice/$classCode title=PRPA_HD010100UK04#GpPractice.classCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is an organisation.</P>
+<UL>
+<LI>Fixed value "ORG"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>determinerCode</B> (<A href="../../../Data Types/DataTypes.htm#CS"><B>CS</B></A> {<A onmouseover="popUp(event,'cne')" onmouseout="popUp(event,'cne')"><B>CNE</B></A>:<B>INSTANCE</B>} )<A>{<B> Fixed="<FONT color=red>INSTANCE</FONT> "</B> }</A></TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Organization;GpPractice/$determinerCode title=PRPA_HD010100UK04#GpPractice.determinerCode style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>Indicates that the entity is a single identifiable organisation.</P>
+<UL>
+<LI>Fixed value "INSTANCE"</LI></UL></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[0..1] </B></FONT><B>id</B> (<A href="../../../Data Types/DataTypes.htm#II"><B>II</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Organization;GpPractice/$id title=PRPA_HD010100UK04#GpPractice.id style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>An identifier&nbsp;of the GP practice. </P>
+<P>The Identifier External datatype flavour is used to carry this information.</P>
+<P>A&nbsp;GP practice code is carried in the following way:</P>
+<UL>
+<LI>The<I> root</I>&nbsp;attribute shall contain an&nbsp;OID with the value 1.2.826.0.1285.0.2.5.4.10&nbsp; </LI>
+<LI>&nbsp;The <I>extension </I>attribute shall contain the NHS Organisation Code</LI></UL>
+<P>&nbsp;</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>name</B> (<A href="../../../Data Types/DataTypes.htm#ON"><B>ON</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Organization;GpPractice/$name title=GpPractice.name style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The name of&nbsp; the GP practice.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..*] </B></FONT><B>telecom</B> (<A href="../../../Data Types/DataTypes.htm#SET"><B>SET</B></A><B>&lt;<A href="../../../Data Types/DataTypes.htm#TEL"><B>TEL</B></A>&gt;</B>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Organization;GpPractice/$telecom title=GpPractice.telecom style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>One or more&nbsp;telecommunication numbers of the GP practice.</P></NOTE></DIV></TD></TR>
+<TR bgColor=gray>
+<TD colSpan=10 height=1></TD></TR>
+<TR vAlign=top>
+<TD width="50%" colSpan=2><FONT color=green><B>[1..1] </B></FONT><B>addr</B> (<A href="../../../Data Types/DataTypes.htm#AD"><B>AD</B></A>)</TD>
+<TD style="BACKGROUND-COLOR: white" width="50%">
+<DIV id=PRPA_HD010100UK04#Organization;GpPractice/$addr title=GpPractice.addr style="WIDTH: 100%; HEIGHT: 100%; BACKGROUND-COLOR: white">
+<P>The address of the GP practice.</P>
+<P>The type of address, eg. permanent or temporary,&nbsp;may be&nbsp;identified by the inclusion of the <I>use</I>&nbsp;attribute.</P></NOTE></DIV></TD></TR>
+<TR bgColor=black>
+<TD colSpan=10 height=4></TD></TR></TBODY></TABLE></BODY></HTML>

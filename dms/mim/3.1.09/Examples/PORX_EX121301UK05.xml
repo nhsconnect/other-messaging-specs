@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+Dispense Proposal Return - PORX_121301UK05
+
+The IDs used in this example are randomly generated strings of the correct format, they are not true UUIDs.
+All names, addresses, telephone numbers, IDs etc are ficticious and are based on datasets from the Dramatis Persona.
+Where SnomedCT codes have been assumed, these are clearly identified with comments and need to be reviewed accordingly.
+-->
+<DispenseProposalReturn xsi:schemaLocation="urn:hl7-org:v3 ../Schemas/PORX_MT121301UK05.xsd" classCode="INFO" moodCode="EVN" type="ControlAct" xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!-- This ID of the return message-->
+	<id root="38738B97-723C-27E0-7A36-7A4026EC537D"/>
+	<effectiveTime value="20040920112000"/>
+	<author typeCode="AUT" type="Participation">
+		<AgentPerson classCode="AGNT" type="RoleHeir">
+			<telecom use="WP" value="01603620121"/>
+			<agentPerson classCode="PSN" determinerCode="INSTANCE" type="Person">
+				<name>
+					<prefix integrityCheckAlgorithm="SHA-1" representation="TXT" partType="PFX" mediaType="text/plain">Mr.</prefix>
+					<given integrityCheckAlgorithm="SHA-1" representation="TXT" partType="GIV" mediaType="text/plain">Peter</given>
+					<family integrityCheckAlgorithm="SHA-1" representation="TXT" partType="FAM" mediaType="text/plain">Potion</family>
+				</name>
+			</agentPerson>
+			<!--Community Pharmacy -->
+			<representedOrganization classCode="ORG" determinerCode="INSTANCE" type="Organization">
+				<id root="1.2.826.0.1285.0.1.10" extension="FC679"/>
+				<code codeSystem="2.16.840.1.113883.2.1.3.2.4.17.94" code="003"/>
+				<name>Lloyds Pharmacy</name>
+				<telecom use="WP" value="01603620121"/>
+				<addr use="WP">
+					<streetAddressLine integrityCheckAlgorithm="SHA-1" representation="TXT" partType="SAL" mediaType="text/plain">22</streetAddressLine>
+					<streetAddressLine integrityCheckAlgorithm="SHA-1" representation="TXT" partType="SAL" mediaType="text/plain">West End Street</streetAddressLine>
+					<streetAddressLine integrityCheckAlgorithm="SHA-1" representation="TXT" partType="SAL" mediaType="text/plain">Norwich</streetAddressLine>
+					<streetAddressLine integrityCheckAlgorithm="SHA-1" representation="TXT" partType="SAL" mediaType="text/plain">Norfolk</streetAddressLine>
+					<postalCode integrityCheckAlgorithm="SHA-1" representation="TXT" partType="ZIP" mediaType="text/plain">NR2 4JJ</postalCode>
+				</addr>
+			</representedOrganization>
+		</AgentPerson>
+	</author>
+	<component typeCode="COMP" type="ActRelationship">
+		<prescriptionRef classCode="SPLY" moodCode="RQO" type="Supply">
+			<!-- This ID of the original prescription-->
+			<id root="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"/>
+		</prescriptionRef>
+	</component>
+	<pertinentInformation typeCode="PERT" type="ActRelationship">
+		<pertinentReturnReason classCode="OBS" moodCode="EVN" type="Observation">
+			<!--Dispense Proposal Return Reason-->
+			<code codeSystem="2.16.840.1.113883.2.1.3.2.4.17.30" code="RR"/>
+			<!--Patient requested release-->
+			<value codeSystem="2.16.840.1.113883.2.1.3.2.4.16.28" code="0002" displayName="Unable to dispense medication on prescriptions"/>
+		</pertinentReturnReason>
+	</pertinentInformation>
+	<reversalOf typeCode="REV" type="ActRelationship">
+		<priorPrescriptionReleaseResponseRef classCode="SBADM" moodCode="RQO" type="SubstanceAdministration">
+			<!-- This ID of the original release request response-->
+			<id root="BC860A1A-A959-1383-7A40-C5ADA9632D71"/>
+		</priorPrescriptionReleaseResponseRef>
+	</reversalOf>
+</DispenseProposalReturn>
